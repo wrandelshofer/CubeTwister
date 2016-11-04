@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>${cube.name}</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="cubeBody">
+<p class="byline">${document.name}</p>
+<h1>${cube.name}</h1>
+<p>
+  <applet code="${cube.shorterKind}Player"
+    archive="${cube.shorterKind}Player.jar"
+    codebase="../applets"
+          width="300" height="340">
+  	<param name="resourceFile" value="../applets/resources.xml.zip" />
+  	<param name="cube" value="${cube.nameParameter}" />
+<!-- BEGIN Parameters for Sun Java Plugin -->
+        <param name="codebase_lookup" value="false" />
+        <param name="classloader_cache" value="false" />
+        <param name="java_arguments" value="-Djnlp.packEnabled=true" />
+        <param name="image" value="Splash.gif" />
+        <param name="centerimage" value="true" />
+        <param name="boxborder" value="false" />
+<!-- END Parameters for Sun Java Plugin -->
+<!-- BEGIN Mandatory parameters for Applet security -->
+        <param name="permissions" value="sandbox">
+<!-- END Mandatory parameters for Applet security -->
+  </applet>
+</p>
+<p>${cube.description}</p>
+<p>${cube.author} ${cube.date}</p>
+<p></p>
+<p></p>
+<p>&nbsp; </p>
+</body>
+</html>

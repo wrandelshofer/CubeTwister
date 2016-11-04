@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>${script.name}</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="scriptBody">
+<p class="byline">${document.name}</p>
+<h1>${script.name}</h1>
+<p>
+  <applet code="${script.cube.shorterKind}Player" 
+    archive="${script.cube.shorterKind}Player.jar" 
+    codebase="../applets" 
+    width="600" height="320">
+  	<param name="resourceFile" value="../applets/resources.xml.zip" />
+  	<param name="cube" value="${script.cube.nameParameter}" />
+  	<param name="notation" value="${script.notation.nameParameter}" />
+  	<param name="script" value="${script.scriptParameter}" />
+  	<param name="scriptType" value="${script.scriptType}" />
+  	<param name="showInfo" value="true" />
+  <!-- BEGIN Parameters for Sun Java Plugin -->
+    <param name="codebase_lookup" value="false" />
+    <param name="classloader_cache" value="false" />
+    <param name="java_arguments" value="-Djnlp.packEnabled=true" />
+    <param name="image" value="Splash.gif" />
+    <param name="centerimage" value="true" />
+    <param name="boxborder" value="false" />
+  <!-- END Parameters for Sun Java Plugin -->
+  <!-- BEGIN Mandatory parameters for Applet security -->
+    <param name="permissions" value="sandbox">
+  <!-- END Mandatory parameters for Applet security -->
+  </applet>
+</p>
+<!--
+<p>${script.script}</p>
+<ul>
+  ${FOR script.macro}
+    <li>${script.macro}</li>
+    ${ENDFOR script.macro}
+</ul>
+<p>Twists: ${script.faceTurnCount} ftm, ${script.blockTurnCount} btm, ${script.layerTurnCount}, ${script.quarterTurnCount} qtm</p>
+<p></p>
+<p>Order: ${script.visibleOrder}v, ${script.order}r</p>
+<p></p>
+<p>Permutation:<br/>${script.permutation}</p>
+<p></p>
+<p>Cube: <a href="../cubes/${script.cube}.html">${script.cube.name}</a></p>
+<p>Notation: <a href="../notations/${script.notation}.html">${script.notation.name}</a></p>
+-->
+<p></p>
+<p>${script.description}</p>
+<p></p>
+<p>${script.author} ${script.date}</p>
+<p></p>
+<p>&nbsp;</p>
+<p></p>
+<p></p>
+<p>&nbsp; </p>
+</body>
+</html>

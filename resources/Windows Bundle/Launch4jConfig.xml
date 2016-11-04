@@ -1,0 +1,35 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>/Users/Shared/Developer/Java/CubeTwister/current/CubeTwister/dist/CubeTwister.jar</jar>
+  <outfile>/Users/Shared/Developer/Java/CubeTwister/current/CubeTwister/dist/CubeTwister.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>/Users/Shared/Developer/Java/CubeTwister/current/CubeTwister/resources/Windows Bundle/CubeTwister.ico</icon>
+  <jre>
+    <path></path>
+    <minVersion>1.5.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <maxHeapSize>512</maxHeapSize>
+  </jre>
+  <versionInfo>
+    <fileVersion>2.0.48.0</fileVersion>
+    <txtFileVersion>2.0alpha48</txtFileVersion>
+    <fileDescription>CubeTwister</fileDescription>
+    <copyright>© Werner Randelshofer, All Rights Reserved.</copyright>
+    <productVersion>2.0.48.0</productVersion>
+    <txtProductVersion>2.0alpha48</txtProductVersion>
+    <productName>CubeTwister</productName>
+    <companyName></companyName>
+    <internalName>CubeTwister</internalName>
+    <originalFilename>CubeTwister.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

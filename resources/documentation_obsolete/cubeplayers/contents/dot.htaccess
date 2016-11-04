@@ -1,0 +1,6 @@
+Options FollowSymLinks ExecCGI
+
+RewriteEngine on
+RewriteBase /pocketplayer
+RewriteRule ^(.*)\.jar$ pack200.php/$1.jar.pack.gz
+

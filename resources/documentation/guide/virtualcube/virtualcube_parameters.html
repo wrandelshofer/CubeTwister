@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>VirtualCube · Parameters</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+<script type="text/javascript">
+function fixSelection() {
+	// We have to fix the selection once the page is loaded because the autocomplete-feature
+	// of the browser gets into our way.
+
+	// Determine which applet to select
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "VirtualRubiksCube";
+	}
+	
+	// Select the applet
+	var choice = document.getElementById("theChoice");
+	for (i in choice.options) {
+		if (choice.options[i].value == whichApplet) {
+			choice.selectedIndex = i;
+			break;
+		}
+	}
+	
+}
+function printParameters() {
+	var applet = document.getElementById("theApplet");
+	var table = document.getElementById("theTable");
+	var info = applet.getParameterInfo();
+	for (var i=0; i < info.length; i++) {
+		var tr;
+		var td;
+		
+		tr = document.createElement("tr");
+		table.tBodies[0].appendChild(tr);
+		td = document.createElement("td");
+		td.appendChild(document.createTextNode(info[i][0]));
+		tr.appendChild(td);
+		td = document.createElement("td");
+		td.appendChild(document.createTextNode(info[i][1]));
+		tr.appendChild(td);
+		td = document.createElement("td");
+		td.appendChild(document.createTextNode(info[i][2]));
+		tr.appendChild(td);
+	}
+}
+function openPage(name) {
+	if (name.charAt(0) != '-') {
+
+	// Opens the page again for the specified applet
+	var newLocation = window.location.href;
+	
+	// Remove fragment from URI
+	var p = newLocation.indexOf('#');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	// Remove query string from URI
+	p = newLocation.indexOf('?');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	
+	// Append applet name to URI	
+	newLocation += '?'+name;
+	window.location.href = newLocation;
+	}
+}
+</script>
+<body bgcolor="#FFFFFF" onload="javascript:fixSelection();printParameters();">
+<h3>VirtualCube Applets</h3>
+<h1>Applet Parameters</h1>
+<p>The applet supports the  parameters shown below.</p>
+<form id="form1" method="post" action="">
+  <label>Select a cube:
+  <select name="theChoice" id="theChoice" onchange="openPage(this.value);">
+    <option value="VirtualPocketCube">2x2 Pocket Cube</option>
+    <option value="-1"></option>
+    <option value="VirtualRubiksCube" selected="selected">3x3 Rubik's Cube</option>
+    <option value="VirtualRubiksBarrel">3x3 Rubik's Barrel</option>
+    <option value="VirtualRubiksDiamond">3x3 Rubik's Diamond</option>
+    <option value="VirtualRubiksCuboctahedron">3x3 Rubik's Cuboctahedron</option>
+    <option value="-2"></option>
+    <option value="VirtualRevengeCube">4x4 Revenge Cube</option>
+    <option value="VirtualProfessorCube">5x5 Professor Cube</option>
+    <option value="VirtualVCube6">6x6 V-Cube 6</option>
+    <option value="VirtualVCube7">7x7 V-Cube 7</option>
+  </select>
+  </label>
+</form>
+<p>&nbsp;</p>
+<p>
+  <script type="text/javascript">
+	// Determine which applet to show
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "VirtualRubiksCube";
+	}
+	
+	// Write the applet tag for the specified applet
+	document.write('<applet id="theApplet" name="theApplet" archive="applets/'+whichApplet+'.jar" codebase = "../.."');
+	document.write('code="'+whichApplet+'" width="260" height="280" mayscript="mayscript">');
+	if (whichApplet.indexOf('Rubik') != -1) {
+		document.writeln('<param name="script" value="MR2 MF2 MU2"/>');
+	}
+	document.write('</applet>');
+  </script>
+</p>
+<p>&nbsp;</p>
+<table width="600" border="0" cellpadding="0" cellspacing="0" id="theTable" class="paramTable">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Kind</th>
+    <th scope="col">Description</th>
+  </tr>
+</table>
+<p class="tip"><strong>Note:</strong> If you don't see the parameters table, you might want to open this page with a different browser. For example with Firefox. Make sure that Java and JavaScript is installed and activated.</p>
+<p></p>
+<h2>&nbsp;</h2>
+</body>
+</html>

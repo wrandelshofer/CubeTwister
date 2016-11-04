@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>VirtualCube Applets · Readme</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+<script type="text/javascript">
+function fixSelection() {
+	// We have to fix the selection once the page is loaded because the autocomplete-feature
+	// of the browser gets into our way.
+
+	// Determine which applet to select
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "VirtualRubiksCube";
+	}
+	
+	// Select the applet
+	var choice = document.getElementById("theChoice");
+	for (i in choice.options) {
+		if (choice.options[i].value == whichApplet) {
+			choice.selectedIndex = i;
+			break;
+		}
+	}
+	
+}
+function openPage(name) {
+	if (name.charAt(0) != '-') {
+
+	// Opens the page again for the specified applet
+	var newLocation = window.location.href;
+	
+	// Remove fragment from URI
+	var p = newLocation.indexOf('#');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	// Remove query string from URI
+	p = newLocation.indexOf('?');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	
+	// Append applet name to URI	
+	newLocation += '?'+name;
+	window.location.href = newLocation;
+	}
+}
+</script>
+<body bgcolor="#FFFFFF" onload="fixSelection();">
+<h3>VirtualCube Applets</h3>
+<h1>Read Me</h1>
+<p align="center">With the VirtualCube applets you can integrate  interactive Rubik's Cube-like puzzles into your HTML page. The virtual cubes can be twisted, zoomed and taken apart.</p>
+<form id="form1" method="post" action="">
+  <label>Select a cube:
+  <select name="theChoice" id="theChoice" onchange="openPage(this.value);">
+    <option value="VirtualPocketCube">2x2 Pocket Cube</option>
+    <option value="-1"></option>
+    <option value="VirtualRubiksCube">3x3 Rubik's Cube</option>
+    <option value="VirtualRubiksBarrel">3x3 Rubik's Barrel</option>
+    <option value="VirtualRubiksDiamond">3x3 Rubik's Diamond</option>
+    <option value="VirtualRubiksCuboctahedron">3x3 Rubik's Cuboctahedron</option>
+    <option value="-2"></option>
+    <option value="VirtualRevengeCube">4x4 Revenge Cube</option>
+    <option value="VirtualProfessorCube">5x5 Professor Cube</option>
+    <option value="VirtualVCube6">6x6 V-Cube 6</option>
+    <option value="VirtualVCube7">7x7 V-Cube 7</option>
+  </select>
+  </label>
+</form>
+</p>
+<p>&nbsp;</p>
+<p>
+  <script type="text/javascript">
+	// Determine which applet to show
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "VirtualRubiksCube";
+	}
+	
+	// Write the applet tag for the specified applet
+	document.write('<applet id="theApplet" name="theApplet" archive="applets/'+whichApplet+'.jar" codebase = "../.."');
+	document.write('code="'+whichApplet+'" width="260" height="280" mayscript="mayscript">');
+	if (whichApplet.indexOf('Rubik') != -1) {
+		document.writeln('<param name="script" value="MR2 MF2 MU2"/>');
+	}
+	document.write('</applet>');
+  </script>
+</p>
+</body>
+</html>

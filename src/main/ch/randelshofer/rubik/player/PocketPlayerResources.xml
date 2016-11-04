@@ -1,0 +1,93 @@
+<CubeMarkup version="8">
+  <Notation id="o1" default="true" layerCount="2">
+    <Name>Superset ENG 2x2</Name>
+    <Description>Superset ENG 2x2 is a notation for Rubik&apos;s Cubes with 2 layers, such as the Pocket Cube. The notation is based on the English language. It supports 90&#xb0; and 180&#xb0; twists of the faces of the cube. A whole cube can be rotated along its face axes. Permutation and orientation changes of individual cube parts can be specified using permutation cycles. &#xa;&#xa;The notation supports the following high-level constructs:&#xa;- grouping, &#xa;- repetition, &#xa;- inversion, &#xa;- reflection, &#xa;- conjugation, &#xa;- commutation, and &#xa;- rotation,&#xa;- single-line and multiple-line comments.&#xa;&#xa;&#xa;Single moves&#xa;===========================&#xa;&#xa;Face twists: R, R&apos;, R2&#xa;----------------------------------&#xa;Clockwise 90&#xb0; twists of the six faces of the cube are described by the capital letters: &#xab;R&#xbb;, &#xab;U&#xbb;, &#xab;F&#xbb;, &#xab;L&#xbb;, &#xab;D&#xbb; and &#xab;B&#xbb;, (right, up, front, left, down, back).&#xa;&#xa;Counterclockwise twists and rotations are described by appending the inversion operator &#xab;&apos;&#xbb; to a move: &#xab;R&apos;&#xbb;, &#xab;U&apos;&#xbb;, &#xab;F&apos;&#xbb;, &#x2026; .&#xa;&#xa;In environments, where the the &#xab;&apos;&#xbb; character can not be used, the character &#xab;-&#xbb; can be used as the inversion operator.&#xa;&#xa;180&#xb0; twists and rotations are described by appending the number &#xab;2&#xbb; to a move: &#xab;R2&#xbb;, &#xab;U2&#xbb;, &#xab;F2&#xbb;, &#x2026; .&#xa;&#xa;&#xa;Cube rotations: CR, CR&apos;, CR2&#xa;----------------------------------&#xa;Rotations of the whole cube are described by prepending the letter &#xab;C&#xbb; to a face twist. &#xa;&#xa;For example, &#xab;CR&#xbb; rotates the whole cube in clockwise direction as seen from the right face.&#xa;&#xa;&#xa;&#xa;Constructs &#xa;===========================&#xa;&#xa;Sequences of moves &#xa;----------------------------------&#xa;Sequences of moves are specified by appending moves, for example &#xab;R2L2UD&apos;F2B2UD&apos;&#xbb;.&#xa;&#xa;To improve readability, whitespace can be used to separate moves: &#xab;R2 L2 U D&apos; F2 B2 U D&apos;&#xbb;.&#xa;&#xa;Sequences of moves can be separated using a middle dot character &#xab;&#xb7;&#xbb;. In environments where this character is not available, the full stop character can be used &#xab;.&#xbb;. The following sequences are equivalent: &#xab;R2 L2 &#xb7; U D&apos; &#xb7; F2 B2 &#xb7; U D&apos;&#xbb; and &#xab;R2 L2 . U D&apos; . F2 B2 . U D&apos;&#xbb;.&#xa;&#xa;&#xa;Grouping&#xa;----------------------------------&#xa;Sequences of moves can be grouped using brackets: &#xab;(R U F)&#xbb;.&#xa;&#xa;&#xa;Repetition&#xa;----------------------------------&#xa;Moves and groups can be repeated multiple times by appending the number of repetitions to the closing bracket: &#xab;(R U F)3&#xbb;.&#xa;&#xa;&#xa;Inversion&#xa;----------------------------------&#xa;Moves and groups can be inverted by appending the invertor operator &#xab;&apos;&#xbb; to the closing bracket: &#xab;(R U F)&apos;&#xbb;.&#xa;&#xa;&#xa;Reflection&#xa;----------------------------------&#xa;Moves and groups can be reflected using the reflector operator &#xab;*&#xbb;&#xa;&#xa;&#xa;Conjugation&#xa;----------------------------------&#xa;Conjugations of type A B A&apos; are described by enclosing the conjugator A with angle brackets and prepending it to the conjugee B: &#xab;&lt;A&gt;B&#xbb;.&#xa;&#xa;&#xa;Commutation&#xa;----------------------------------&#xa;Commutations of type A B A&apos; B&apos; are described by enclosing the commutator A and the commutee B with square brackets and delimiting A and B by a comma: &#xab;[A,B]&#xbb;.&#xa;&#xa;Rotation&#xa;----------------------------------&#xa;Rotations of type A&apos; B A are described by enclosing the rotator A with angle brackets and appending a invertor operator. The rotator is then prepended to rotatee B: &#xab;&lt;A&gt;&apos; B&#xbb;.&#xa;&#xa;&#xa;Permutation cycles&#xa;----------------------------------&#xa;A permutation of the cube is described by a sequence of parenthesized lists for each cycle of the cube parts which are permuted.&#xa;&#xa;The location of a cube part is described by the faces on which its stickers can be seen. A face of the cubes is described by the lower-case letters: &#xab;r&#xbb;, &#xab;u&#xbb;, &#xab;f&#xbb;, &#xab;l&#xbb;, &#xab;d&#xbb; and &#xab;b&#xbb;, (right, up, front, left, down, back).&#xa;&#xa;e. g. A corner part having its stickers at the upper front right corner is described by the three letter sequence: &#xab;ufr&#xbb;.&#xa;&#xa;Each cycle contains a list of corner parts which have been permuted.&#xa;&#xa;The face names in a cycle are used to describe orientation changes of the parts. The first face name in a location description denotes where the first sticker goes. The second face name in a location description denotes where the second sticker goes, and so on.&#xa;&#xa;e.g. &#xab;(ufl,rfu)&#xbb; describes, that the first sticker on face &#xab;u&#xbb; at corner location &#xab;uf&#xbb; goes to face &#xab;r&#xbb; at corner location &#xab;rfu&#xbb;, the second sticker on face &#xab;f&#xbb; at corner location &#xab;ufl&#xbb; goes to face &#xab;f&#xbb; at &#xab;rfu&#xbb;, and the third sticker on &#xab;l&#xbb; at &#xab;ufl&#xbb; goes to &#xab;u&#xbb; at &#xab;rfu&#xbb;.&#xa;&#xa;If the cube parts change orientation after going through a single cycle, then a &#xab;+&#xbb; or a &#xab;-&#xbb; character is added to the first location description of a sequence to denote this change in orientation.&#xa;&#xa;&#xa;Comments&#xa;---------&#xa;Single line comments start with two slash characters: &#xab;// this is a comment&#xbb;.&#xa;&#xa;Multiline comments starts with a slash and a star characer and end with star and a slash character: &#xab;/* this is a comment */&#xbb;.</Description>
+    <Author>Werner Randelshofer, Walter Randelshofer</Author>
+    <Date>2010-03-27</Date>
+    <Statement symbol="comment">
+      <Token symbol="commentMultiLineBegin">/*</Token>
+      <Token symbol="commentMultiLineEnd">*/</Token>
+      <Token symbol="commentSingleLineBegin">//</Token>
+    </Statement>
+    <Statement symbol="NOP">
+      <Token symbol="NOP">&#xb7; .</Token>
+    </Statement>
+    <Statement symbol="move">
+      <Token axis="x" layerList="1" angle="-180">L2 T1L2 N1L2</Token>
+      <Token axis="x" layerList="1" angle="-90">L T1L N1L</Token>
+      <Token axis="x" layerList="1" angle="90">L&apos; N2R</Token>
+      <Token axis="x" layerList="1" angle="180">L2&apos; N2R2</Token>
+      <Token axis="y" layerList="1" angle="-180">D2 T1D2 N1D2</Token>
+      <Token axis="y" layerList="1" angle="-90">D T1D N1D</Token>
+      <Token axis="y" layerList="1" angle="90">D&apos; N2U</Token>
+      <Token axis="y" layerList="1" angle="180">D2&apos; N2U2</Token>
+      <Token axis="z" layerList="1" angle="-180">B2 T1B2 N1B2</Token>
+      <Token axis="z" layerList="1" angle="-90">B T1B N1B</Token>
+      <Token axis="z" layerList="1" angle="90">B&apos; N2F</Token>
+      <Token axis="z" layerList="1" angle="180">B2&apos; N2F2</Token>
+      <Token axis="x" layerList="2" angle="-180">R2&apos; N2L2</Token>
+      <Token axis="x" layerList="2" angle="-90">R&apos; N2L</Token>
+      <Token axis="x" layerList="2" angle="90">R T1R N1R</Token>
+      <Token axis="x" layerList="2" angle="180">R2 T1R2 N1R2</Token>
+      <Token axis="y" layerList="2" angle="-180">U2&apos; N2D2</Token>
+      <Token axis="y" layerList="2" angle="-90">U&apos; N2D</Token>
+      <Token axis="y" layerList="2" angle="90">U T1U N1U</Token>
+      <Token axis="y" layerList="2" angle="180">U2 T1U2 N1U2</Token>
+      <Token axis="z" layerList="2" angle="-180">F2&apos; N2B2</Token>
+      <Token axis="z" layerList="2" angle="-90">F&apos; N2B</Token>
+      <Token axis="z" layerList="2" angle="90">F T1F N1F</Token>
+      <Token axis="z" layerList="2" angle="180">F2 T1F2 N1F2</Token>
+      <Token axis="x" layerList="1,2" angle="-180">CL2 N1-2L2</Token>
+      <Token axis="x" layerList="1,2" angle="-90">CL N1-2L</Token>
+      <Token axis="x" layerList="1,2" angle="90">CR N1-2R</Token>
+      <Token axis="x" layerList="1,2" angle="180">CR2 N1-2R2</Token>
+      <Token axis="y" layerList="1,2" angle="-180">CD2 N1-2D2</Token>
+      <Token axis="y" layerList="1,2" angle="-90">CD N1-2D</Token>
+      <Token axis="y" layerList="1,2" angle="90">CU N1-2U</Token>
+      <Token axis="y" layerList="1,2" angle="180">CU2 N1-2U2</Token>
+      <Token axis="z" layerList="1,2" angle="-180">CB2 N1-2B2</Token>
+      <Token axis="z" layerList="1,2" angle="-90">CB N1-2B</Token>
+      <Token axis="z" layerList="1,2" angle="90">CF N1-2F</Token>
+      <Token axis="z" layerList="1,2" angle="180">CF2 N1-2F2</Token>
+    </Statement>
+    <Statement symbol="grouping">
+      <Token symbol="groupingBegin">(</Token>
+      <Token symbol="groupingEnd">)</Token>
+    </Statement>
+    <Statement syntax="suffix" symbol="inversion">
+      <Token symbol="invertor">&apos; -</Token>
+    </Statement>
+    <Statement syntax="suffix" symbol="reflection">
+      <Token symbol="reflector">*</Token>
+    </Statement>
+    <Statement syntax="prefix" symbol="conjugation">
+      <Token symbol="conjugationBegin">&lt;</Token>
+      <Token symbol="conjugationEnd">&gt;</Token>
+    </Statement>
+    <Statement syntax="precircumfix" symbol="commutation">
+      <Token symbol="commutationBegin">[</Token>
+      <Token symbol="commutationEnd">]</Token>
+      <Token symbol="commutationDelim">,</Token>
+    </Statement>
+    <Statement syntax="prefix" symbol="rotation">
+      <Token symbol="rotationBegin">&lt;</Token>
+      <Token symbol="rotationEnd">&gt;&apos;</Token>
+    </Statement>
+    <Statement syntax="precircumfix" symbol="permutation">
+      <Token symbol="permR">r</Token>
+      <Token symbol="permU">u</Token>
+      <Token symbol="permF">f</Token>
+      <Token symbol="permL">l</Token>
+      <Token symbol="permD">d</Token>
+      <Token symbol="permB">b</Token>
+      <Token symbol="permPlus">+</Token>
+      <Token symbol="permMinus">-</Token>
+      <Token symbol="permPlusPlus">++</Token>
+      <Token symbol="permBegin">(</Token>
+      <Token symbol="permEnd">)</Token>
+      <Token symbol="permDelim">,</Token>
+    </Statement>
+    <Statement symbol="delimiter"/>
+    <Statement syntax="suffix" symbol="repetition"/>
+  </Notation>
+</CubeMarkup>

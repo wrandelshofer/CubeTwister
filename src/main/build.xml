@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Written to assume that classpath is rooted in the current directory. --><!-- So this should be OK if you make this script in the root of a filesystem. --><!-- If not, you may prefer to adjust the basedir, or move some directories around. --><!-- The idea is that both Ant and NetBeans have to know what the package root is --><!-- for the classes in your application. --><project basedir="." default="all" name="CubeTwister">
+
+    <!-- Don't worry if you don't know the Ant syntax completely or need help on some tasks! -->
+    <!-- The standard Ant documentation is bundled. See Help | Shortcuts | Ant 1.3 Documentation. -->
+
+    <target name="init">
+        <!-- You can set up any variables you want used throughout the script here. -->
+        <property name="build.dir" value="../build"/>
+        <property name="dest.dir" value="${build.dir}/classes"/>
+        <property name="dist.dir" value="../dist"/>
+        <property name="applets.dir" value="${dist.dir}/Applets"/>
+        <property name="javadoc.dir" value="${dist.dir}/javadoc"/>
+        <property name="lib.dir" value="../lib"/>
+        <property name="mylib" value="cubetwister.jar"/>
+        <property name="quaqua" value="${lib.dir}/quaqua.jar"/>
+        <property name="mrjadapter" value="${lib.dir}/MRJAdapter.jar"/>
+        <property name="swinglayout" value="${lib.dir}/swing-layout.jar"/>
+        <property name="javahelp" value="${lib.dir}/jh.jar"/>
+        <property name="nanoxml" value="${lib.dir}/nanoxml-lite.jar"/>
+        <property name="version" value="2.0 alpha 16"/>
+
+        <!-- To use e.g. Jikes, uncomment this line. -->
+        <!-- (Or make the same change in Tools | Options | Ant Settings | Properties.) -->
+        <!-- <property name="build.compiler" value="jikes"/> -->
+        <!-- You might like to set up some overridable paths, etc.: -->
+        <!-- <property name="mylib" value="../lib/mylib.jar"/> -->
+    </target>
+
+    <target depends="init" name="compile">
+        <mkdir dir="${dest.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+        <javac 
+         debug="true" deprecation="false" destdir="${dest.dir}" 
+         optimize="true" srcdir=".">
+             <classpath>
+             <pathelement location="${quaqua}"/>
+             <pathelement location="${mrjadapter}"/>
+             <pathelement location="${javahelp}"/>
+             <!--pathelement location="${nanoxml}"/-->
+             </classpath>
+            <!-- To exclude some files: -->
+                <exclude name="**/*Test.java"/>
+        </javac>
+        <copy todir="${dest.dir}">
+            <fileset dir=".">
+                <include name="**/*.properties"/>
+                <include name="**/*.png"/>
+                <include name="**/*.gif"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+        
+    </target>
+    <target depends="init,clean" name="applet PocketPlayer">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="true" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Volumes/Docs/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="PocketPlayerGeom3D.java"/>
+            <include name="PocketPlayer.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/media/images/**"/>
+               <include name="ch/randelshofer/rubik/applet/notations.xml"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/pocketplayer.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="PocketPlayerIdx3D"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/pocketplayer.jar.pack.gz"/>
+            <arg value="${applets.dir}/pocketplayer.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet RubikPlayer">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Volumes/Docs/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="RubikPlayerGeom3D.java"/>
+            <include name="RubikPlayer.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/media/images/**"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/rubikplayer.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="RubikPlayerIdx3D"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/rubikplayer.jar.pack.gz"/>
+            <arg value="${applets.dir}/rubikplayer.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet ProfessorPlayer">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Volumes/Docs/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="ProfessorPlayerGeom3D.java"/>
+            <include name="ProfessorPlayer.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/media/images/**"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/professorplayer.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="ProfessorPlayerIdx3D"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/professorplayer.jar.pack.gz"/>
+            <arg value="${applets.dir}/professorplayer.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet RevengePlayer">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Volumes/Docs/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="RevengePlayerGeom3D.java"/>
+            <include name="RevengePlayer.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/media/images/**"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/revengeplayer.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="RevengePlayerIdx3D"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/revengeplayer.jar.pack.gz"/>
+            <arg value="${applets.dir}/revengeplayer.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet BarrelPlayer">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="BarrelPlayerGeom3D.java"/>
+            <include name="BarrelPlayer.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/media/images/**"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/barrelplayer.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="BarrelPlayerIdx3D"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/barrelplayer.jar.pack.gz"/>
+            <arg value="${applets.dir}/barrelplayer.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet DiamondPlayer">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="DiamondPlayerGeom3D.java"/>
+            <include name="DiamondPlayer.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/media/images/**"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/diamondplayer.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="DiamondPlayerIdx3D"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/diamondplayer.jar.pack.gz"/>
+            <arg value="${applets.dir}/diamondplayer.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet CuboctahedronPlayer">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="CuboctahedronPlayerGeom3D.java"/>
+            <include name="CuboctahedronPlayer.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/media/images/**"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/octahedronplayer.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="CuboctahedronPlayerIdx3D"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/octahedronplayer.jar.pack.gz"/>
+            <arg value="${applets.dir}/octahedronplayer.jar"/>
+        </exec>
+    </target>
+
+    <target depends="init,compile" name="jar">
+        <unzip src="${quaqua}" dest="${dest.dir}"/>
+        <unzip src="${mrjadapter}" dest="${dest.dir}"/>
+        <unzip src="${javahelp}" dest="${dest.dir}"/>
+        <unzip src="${swinglayout}" dest="${dest.dir}"/>
+        <!-- To make a standalone app: -->
+        <!-- 1. Create a cubetwister.mf manifest somewhere. -->
+        <!-- 2. Put in it: -->
+        <!--    Manifest-Version: 1.0 -->
+        <!--    Main-Class: com.foo.Main -->
+        <!-- 3. Pass to <jar>: manifest="cubetwistermanifest.mf" -->
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${dist.dir}/CubeTwister.jar" 
+         >
+            <manifest>
+                <attribute name="Main-Class" value="ch.randelshofer.cubetwister.Main"/>
+                <!--attribute name="Name" value="CubeTwister"/-->
+                <attribute name="Specification-Title" value="CubeTwister"/>
+                <attribute name="Specification-Version" value="${version}"/>
+                <attribute name="Specification-Vendor" value="Werner Randelshofer"/>
+                <attribute name="Implementation-Title" value="CubeTwister"/>
+                <attribute name="Implementation-Version" value="${version}"/>
+                <attribute name="Implementation-Vendor" value="Werner Randelshofer"/>
+            </manifest>
+            <exclude name="**/*.java"/>
+            <exclude name="**/*.form"/>
+            <exclude name="**/Icon?"/>
+            <exclude name="**/.*"/>
+            <exclude name="build.xml"/>
+            <exclude name="**/*Test.class"/>
+            <exclude name="META-INF/**"/>
+        </jar>
+    </target>
+    <target depends="init,clean" name="jar Solver">
+        <mkdir dir="${dest.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." 
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="ch/randelshofer/rubik/solver/Main.java"/>
+       </javac>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${dist.dir}/rubiksolver.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="ch.randelshofer.rubik.solver.Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target 
+depends="init,applet BarrelPlayer,applet DiamondPlayer,applet CuboctahedronPlayer,applet PocketPlayer,applet ProfessorPlayer,applet RevengePlayer,applet RubikPlayer" description="Build everything." name="all">
+        <echo message="Application built. Hello ${hello}!"/>
+    </target>
+
+    <target depends="init,all" description="Try running it." name="try">
+        <java classname="ch.randelshofer.cubetwister.Main" failonerror="true" fork="true">
+            <jvmarg value="-Dcom.apple.macos.useScreenMenuBar=true"/>
+            <jvmarg value="-Dapple.laf.useScreenMenuBar=true"/>
+            <!-- Pass some args, perhaps: -->
+            <arg value="-myfile"/>
+            <!-- Will be given as an absolute path: -->
+            <arg file="myfile.txt"/>
+        </java>
+    </target>
+    <target depends="init,all" description="Try running it." name="testNoQuaqua">
+        <java classname="ch.randelshofer.cubetwister.Main"
+ classpath=".:../../../Quaqua/current/src:${lib}/jh.jar" failonerror="true" fork="true">
+            <arg value="-noQuaqua"/>
+        </java>
+    </target>
+    <target depends="init,all" description="Try running it." name="testCrossPlatformLAF">
+        <java classname="ch.randelshofer.cubetwister.Main"
+                failonerror="true" fork="true">
+            <arg value="-crossPlatformLAF"/>
+            <jvmarg value="-DQuaqua.noQuaqua=true"/>
+             <classpath>
+             <pathelement location="."/>
+             <pathelement location="${quaqua}"/>
+             <pathelement location="${mrjadapter}"/>
+             <pathelement location="${javahelp}"/>
+             <pathelement location="${nanoxml}"/>
+             </classpath>
+        </java>
+    </target>
+    
+   <target depends="all" description="Build a release." name="release">
+        <delete>
+            <fileset defaultexcludes="false" dir=".">
+                <include name="**/*.class"/>
+                <include name="**/*.java~"/>
+            </fileset>
+        </delete>
+    </target>
+
+    <target depends="init" description="Javadoc for my API." name="javadoc">
+        <delete dir="${javadoc.dir}"/>
+        <mkdir dir="${javadoc.dir}"/>
+        <javadoc destdir="${javadoc.dir}" doctitle="CubeTwister ${version}" 
+        footer="Copyright 2001-2006 Werner Randelshofer" 
+        header="Copyright 2001-2006 Werner Randelshofer" 
+        windowtitle="CubeTwister ${version}">
+            <sourcepath>
+                <pathelement location="."/>
+                <!--<pathelement location="/Users/Shared/Manuals/JavaSoft/jdk1.4.0/jdk1.4.0-src.zip"/>-->
+            </sourcepath>
+            <packageset dir=".">
+                <include name="ch/randelshofer/**"/>   
+            </packageset>
+            <classpath>
+             <pathelement location="${quaqua}"/>
+             <pathelement location="${mrjadapter}"/>
+             <pathelement location="${javahelp}"/>
+             <pathelement location="${nanoxml}"/>
+            </classpath>
+            
+        </javadoc>
+    </target>
+    <target depends="init" description="Javadoc for my API." name="index helpfiles">
+        
+    </target>
+
+    <target depends="init" description="Clean all build products." name="clean">
+        <delete dir="${dest.dir}"/>
+        <!--
+        <delete>
+            <fileset dir="${build.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </delete>
+        <delete file="${build}/lib/${mylib}"/>
+        <delete dir="${build}/javadoc"/>
+        -->
+    </target>
+
+    <target depends="init,clean" name="applet VirtualRubiksBarrel">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="VirtualRubiksBarrel.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/rubik/virtual/Labels*.properties"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/virtualrubiksbarrel.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="VirtualRubiksBarrel"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/virtualrubiksbarrel.jar.pack.gz"/>
+            <arg value="${applets.dir}/virtualrubiksbarrel.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet VirtualRubiksCube">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="VirtualRubiksCube.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/rubik/virtual/Labels*.properties"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/virtualrubikscube.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="VirtualRubiksCube"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/virtualrubikscube.jar.pack.gz"/>
+            <arg value="${applets.dir}/virtualrubikscube.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet VirtualRubiksDiamond">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="VirtualRubiksDiamond.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/rubik/virtual/Labels*.properties"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/virtualrubiksdiamond.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="VirtualRubiksDiamond"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/virtualrubiksdiamond.jar.pack.gz"/>
+            <arg value="${applets.dir}/virtualrubiksdiamond.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet VirtualRubiksCuboctahedron">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="VirtualRubiksCuboctahedron.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/rubik/virtual/Labels*.properties"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/virtualrubiksoctahedron.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="VirtualRubiksCuboctahedron"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/virtualrubiksoctahedron.jar.pack.gz"/>
+            <arg value="${applets.dir}/virtualrubiksoctahedron.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet VirtualPocketCube">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="VirtualPocketCube.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/rubik/virtual/Labels*.properties"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/virtualpocketcube.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="VirtualPocketCube"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/virtualpocketcube.jar.pack.gz"/>
+            <arg value="${applets.dir}/virtualpocketcube.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet VirtualProfessorCube">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="VirtualProfessorCube.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/rubik/virtual/Labels*.properties"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/virtualprofessorcube.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="VirtualProfessorCube"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/virtualprofessorcube.jar.pack.gz"/>
+            <arg value="${applets.dir}/virtualprofessorcube.jar"/>
+        </exec>
+    </target>
+    <target depends="init,clean" name="applet VirtualRevengeCube">
+        <mkdir dir="${dest.dir}"/>
+        <mkdir dir="${applets.dir}"/>
+        <!-- Both srcdir and destdir should be package roots. -->
+        <!-- They could be different of course; in that case NetBeans can also be set -->
+        <!-- up to compile to a different filesystem in the same way; see Compiler Types: -->
+  
+        <!--bootclasspath="D:/java/jdk1.1.8_010/lib/classes.zip"-->
+        <!--bootclasspath="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"-->
+        <!--<javac debug="true" deprecation="false" destdir="." srcdir="." target="1.1"-->
+        <javac debug="false" optimize="true" deprecation="false" 
+            destdir="${dest.dir}" srcdir="." target="1.1"
+            bootclasspath="/Users/Shared/Developer/JDK/jdk1.1.8/JDKClasses.zip"
+            source="1.3"
+        >
+            <!-- To add something to the classpath: -->
+            <!--<classpath>
+            <pathelement location="/Volumes/Mac OS 9/Systemordner/Systemerweiterungen/MRJ Libraries/MRJClasses/JDKClasses.zip"/>
+            </classpath>-->
+            <!-- To exclude some files: -->
+            <!-- <exclude name="com/foo/SomeFile.java"/><exclude name="com/foo/somepackage/"/> -->
+            <include name="VirtualRevengeCube.java"/>
+       </javac>
+       <copy todir="${dest.dir}">
+           <fileset dir=".">
+               <include name="ch/randelshofer/rubik/virtual/Labels*.properties"/>
+           </fileset>
+       </copy>
+        <jar basedir="${dest.dir}" compress="true"
+         jarfile="${applets.dir}/virtualrevengecube.jar" >
+            <manifest>
+                <attribute name="Main-Class" value="VirtualRevengeCube"/>
+            </manifest>
+        </jar>
+        <exec executable="pack200">
+            <arg value="${applets.dir}/virtualrevengecube.jar.pack.gz"/>
+            <arg value="${applets.dir}/virtualrevengecube.jar"/>
+        </exec>
+    </target>
+</project>

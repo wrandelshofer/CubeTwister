@@ -1,0 +1,294 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>${notation.name}</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="notationBody">
+<p class="byline">${document.name}</p>
+<h1>${notation.name}</h1>
+<table width="600" border="0" cellpadding="2" cellspacing="0">
+  
+  <tr>
+    <th width="100" scope="col">Move</th>
+    <th width="80" scope="col">Right</th>
+    <th width="80" scope="col">Up</th>
+    <th width="80" scope="col">Front</th>
+    <th width="80" scope="col">Left</th>
+    <th width="80" scope="col">Down</th>
+    <th width="80" scope="col">Back</th>
+  </tr>
+  ${FOR notation.movelayer}<tr>
+    <td width="100">${notation.move.layersymbol} ${notation.move.angle}</td>
+    <td width="80"><code>${notation.move.right}</code></td>
+    <td width="80"><code>${notation.move.up}</code></td>
+    <td width="80"><code>${notation.move.front}</code></td>
+    <td width="80"><code>${notation.move.left}</code></td>
+    <td width="80"><code>${notation.move.down}</code></td>
+    <td width="80"><code>${notation.move.back}</code></td>
+  </tr>${ENDFOR notation.movelayer}
+${IF notation.permutation}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <th width="100" scope="col">Permutation</th>
+    <th width="80" scope="col">Right</th>
+    <th width="80" scope="col">Up</th>
+    <th width="80" scope="col">Front</th>
+    <th width="80" scope="col">Left</th>
+    <th width="80" scope="col">Down</th>
+    <th width="80" scope="col">Back</th>
+  </tr>
+  <tr>
+    <td width="100">Faces</td>
+    <td width="80"><code>${notation.permR}</code></td>
+    <td width="80"><code>${notation.permU}</code></td>
+    <td width="80"><code>${notation.permF}</code></td>
+    <td width="80"><code>${notation.permL}</code></td>
+    <td width="80"><code>${notation.permD}</code></td>
+    <td width="80"><code>${notation.permB}</code></td>
+  </tr>
+  <tr>
+    <td width="100">Orientation</td>
+    <td colspan="2">Plus:</td>
+    <td width="80"><code>${notation.permPlus}</code></td>
+    <td colspan="2">Minus</td>
+    <td width="80"><code>${notation.permMinus}</code></td>
+  </tr>
+${IF notation.layerCount != 2}
+  <tr>
+    <td width="100">&nbsp;</td>
+    <td colspan="2">Plus Plus:</td>
+    <td width="80"><code>${notation.permPlusPlus}</code></td>
+    <td width="80">&nbsp;</td>
+    <td width="80">&nbsp;</td>
+    <td width="80">&nbsp;</td>
+  </tr>
+${ENDIF notation.layerCount != 2}
+  <tr>
+    <td width="100">Cycle</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.permBegin}</code></td>
+    <td colspan="2">End:</td>
+    <td width="80"><code>${notation.permEnd}</code></td>
+  </tr>
+  <tr>
+    <td width="100">Delimiter</td>
+    <td colspan="6"><code>${notation.permDelim}</code></td>
+  </tr>
+  <tr>
+    <td width="100">Syntax</td>
+    <td colspan="6">${notation.permutationSyntax}</td>
+  </tr>
+${ENDIF notation.permutation}
+${IF notation.grouping}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Grouping</th>
+  </tr>
+  <tr>
+    <td width="100">Grouping</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.groupingBegin}</code></td>
+    <td colspan="2">End:</td>
+    <td width="80"><code>${notation.groupingEnd}</code></td>
+  </tr>
+${ENDIF notation.grouping}
+${IF notation.repetition}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Repetition</th>
+  </tr>
+${IF notation.repetitionBegin!=""}
+  <tr>
+    <td width="100">Repetition</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.repetitionBegin}</code></td>
+    <td colspan="2">End:</td>
+    <td width="80"><code>${notation.repetitionEnd}</code></td>
+  </tr>
+${ENDIF notation.repetitionBegin}
+  <tr>
+    <td width="100">Syntax</td>
+    <td colspan="6">${notation.repetitionSyntax}</td>
+  </tr>
+${ENDIF notation.repetition}
+${IF notation.inversion}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Inversion</th>
+  </tr>
+  <tr>
+    <td width="100">Invertor</td>
+    <td colspan="6"><code>${notation.invertor}</code></td>
+  </tr>
+  <tr>
+    <td width="100">Syntax</td>
+    <td colspan="6">${notation.inversionSyntax}</td>
+  </tr>
+${ENDIF notation.inversion}
+${IF notation.reflection}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Reflection</th>
+  </tr>
+  <tr>
+    <td width="100">Reflector</td>
+    <td colspan="6"><code>${notation.reflector}</code></td>
+  </tr>
+  <tr>
+    <td width="100">Syntax</td>
+    <td colspan="6">${notation.reflectionSyntax}</td>
+  </tr>
+${ENDIF notation.reflection}
+${IF notation.conjugation}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Conjugation</th>
+  </tr>
+  <tr>
+    <td width="100">Conjugation</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.conjugationBegin}</code></td>
+    <td colspan="2">End:</td>
+    <td width="80"><code>${notation.conjugationEnd}</code></td>
+  </tr>
+${IF notation.conjugationSyntax="circumprefix"}
+  <tr>
+    <td width="100">Delimiter</td>
+    <td colspan="6"><code>${notation.conjugationDelim}</code></td>
+  </tr>
+${ENDIF notation.conjugationSyntax}
+  <tr>
+    <td width="100">Syntax</td>
+    <td colspan="6">${notation.conjugationSyntax}</td>
+  </tr>
+${ENDIF notation.conjugation}
+${IF notation.commutation}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Commutation</th>
+  </tr>
+  <tr>
+    <td width="100">Commutation</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.commutationBegin}</code></td>
+    <td colspan="2">End:</td>
+    <td width="80"><code>${notation.commutationEnd}</code></td>
+  </tr>
+${IF notation.commutationSyntax="precircumfix"}
+  <tr>
+    <td width="100">Delimiter</td>
+    <td colspan="6"><code>${notation.commutationDelim}</code></td>
+  </tr>
+${ENDIF notation.commutationSyntax}
+  <tr>
+    <td width="100">Syntax</td>
+    <td colspan="6">${notation.commutationSyntax}</td>
+  </tr>
+${ENDIF notation.commutation}
+${IF notation.rotation}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Rotation</th>
+  </tr>
+  <tr>
+    <td width="100">Rotation</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.rotationBegin}</code></td>
+    <td colspan="2">End:</td>
+    <td width="80"><code>${notation.rotationEnd}</code></td>
+  </tr>
+${IF notation.rotationSyntax="precircumfix"}
+  <tr>
+    <td width="100">Delimiter</td>
+    <td colspan="6"><code>${notation.rotationDelim}</code></td>
+  </tr>
+${ENDIF notation.rotationSyntax}
+  <tr>
+    <td width="100">Syntax</td>
+    <td colspan="6">${notation.rotationSyntax}</td>
+  </tr>
+${ENDIF notation.rotation}
+${IF notation.delimiters}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Delimiter</th>
+  </tr>
+${IF notation.delimiter!=""}
+  <tr>
+    <td width="100">Delimiter</td>
+    <td colspan="6"><code>${notation.delimiter}</code></td>
+  </tr>
+${ENDIF notation.delimiter}
+${IF notation.NOP!=""}
+  <tr>
+    <td width="100">NOP</td>
+    <td colspan="6"><code>${notation.NOP}</code></td>
+  </tr>
+${ENDIF notation.NOP}
+${ENDIF notation.delimiters}
+${IF notation.comment}
+  <tr>
+    <td colspan="7" class="rowspacer">&nbsp;</td>
+  </tr>
+  <tr>
+    <th colspan="7">Comment</th>
+  </tr>
+  <tr>
+    <td width="100">Multi-Line</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.commentMultiLineBegin}</code></td>
+    <td colspan="2">End:</td>
+    <td width="80"><code>${notation.commentMultiLineEnd}</code></td>
+  </tr>
+${IF notation.commentSingleLineBegin!=""}
+  <tr>
+    <td width="100">Single-Line</td>
+    <td colspan="2">Begin:</td>
+    <td width="80"><code>${notation.commentSingleLineBegin}</code></td>
+    <td colspan="3"></td>
+  </tr>
+${ENDIF notation.commentSingleLineBegin}
+${ENDIF notation.comment}
+</table>
+${IF notation.macro.count != 0}
+<table width="600" border="0" cellpadding="2" cellspacing="0">
+   <tr>
+    <th>Macro</th>
+    <th>Script</th>
+    <th>Description</th>
+  </tr>
+${FOR notation.macro}
+  <tr>
+    <td><code>${notation.macro.identifier}</code></td>
+    <td><code>${notation.macro.script}</code></td>
+    <td>${notation.macro.description}</td>
+  </tr>
+${ENDFOR notation.macro}
+</table>
+${ENDIF notation.macro.count}
+<p>${notation.description}</p>
+<p>${notation.author} ${notation.date}</p>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" HREF="../../../stylesheet.css"
+>
+<TITLE>CubeTwister - The Cube Editor - The &laquo;State&raquo; Tab</TITLE> <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<H1>The Script Editor - The <I>&laquo;State&raquo;</I> Tab<A NAME="top"></A></H1>
+<P>Use 
+the <I>&laquo;State&raquo;</I> tab to see information about the script and about
+the
+current
+state
+of the cube.</P>
+<H2>The <I>&laquo;Error&raquo;</I> line<A NAME="color"></A></H2>
+<P>This line shows information about errors in the script.</P>
+<P>This line is shown only, if the script contains error.</P>
+<H2>The <I>&laquo;Twists&raquo;</I> line<A NAME="name"></A></H2>
+<P>This line shows the twist count of the script. The twist count is shown in
+  three different metrics:</P>
+<ul>
+  <li>The &laquo;Layer Turn Metric&raquo; is denoted wit the letter &laquo;l&raquo;.<br>
+    In this metric,
+    90&deg; and 180&deg; layer turns are counted as 1.</li>
+  <li>The &laquo;Face Turn Metric&raquo; is denoted by the letter &laquo;f&raquo;.<br>
+    In this metric, 90&deg;
+    and 180&deg; face turns are counted as 1.<br>
+Turns affecting other layers than the face layers are counted by the number of
+equivalent face turns.  </li>
+  <li>The &laquo;Quarter Turn Metric&raquo; is denoted by the letter &laquo;q&raquo;.<br>
+    In this metric, 90&deg; face turns of the script are counted
+  as 1, 180&deg; face turns are counted as 2.<br>
+  Turns affecting other layers than the
+    face layers are counted by the number of equivalent face turns.</li>
+</ul>
+<P>This line is shown only, when the script has been checked successfully.</P>
+<H2>The <I>&laquo;Order&raquo;</I> line<A NAME="name"></A></H2>
+<P>This line shows the order of the current  permutation of the cube. The order tells us, how many distinct states of the cube can be achieved by applying the current permutation repeatedly.</P>
+<P>&nbsp;</P>
+<ul>
+  <li>The &laquo;Visual Order Metric&raquo; is denoted with the letter &laquo;v&raquo;.<br>
+  This metric ignores orientation changes of side parts.</li>
+  <li>The &laquo;Real Order Metric&raquo; is denoted by the letter &laquo;r&raquo;.<br>
+    This metric takes orientation changes of side parts into account.</li>
+</ul>
+<P>The <I>&laquo;Permutation&raquo;</I> line<A NAME="name"></A></P>
+<P>This line shows the current permutation of the cube.<br>
+  The permutation is shown using a sequence of disjoint
+cycles. For details, see the <a href="../../../concepts/notation_permutation.html">permutation
+notation</a>.</P>
+<P>The line appears only, when  the cube is in a state, that can be described
+  using a permutation.</P>
+<P></P>
+<P><strong>Tip:</strong> If the current notation supports  permutations, you
+    can copy the contents of the permutation line into the script text field.</P>
+<P>&nbsp;</P>
+<P>The <I>&laquo;Stickers&raquo;</I> line<A NAME="name"></A></P>
+<P>This line shows the current position of the stickers on the cube.<br>
+  The stickers are displayed using the <a href="../../../concepts/notation_sticker.html">sticker
+notation</a>.</P>
+<P>The line appears only, when the cube is not in a state, that can be described
+using a permutation.</P>
+<P></P>
+</BODY>
+</HTML>

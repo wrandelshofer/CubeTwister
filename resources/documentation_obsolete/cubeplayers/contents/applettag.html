@@ -1,0 +1,796 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>PocketPlayer &middot; Applet Tag Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="style.css" rel="stylesheet" type="text/css">
+<link href="../../../../guide/applets/style.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" src="lib/listlogger.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="lib/cookies.js" type="text/JavaScript"></script>
+<script language="JavaScript" src="lib/collections.js" type="text/JavaScript"></script>
+<script src="lib/xpath.js" type="text/javascript"></script>
+<script src="lib/SpryData.js" type="text/javascript"></script>
+<script type="text/javascript">
+<!--
+var notationXMLDataSet = new Spry.Data.XMLDataSet("../../../../guide/applets/pocketplayer/contents/PocketCubeNotations.xml", "CubeMarkup/Notation");
+var cubeXMLDataSet = new Spry.Data.XMLDataSet("../../../../guide/applets/pocketplayer/contents/PocketCubeNotations.xml", "CubeMarkup/Cube");
+//-->
+</script>
+</head>
+
+<body id="noteBody" onLoad="loadForm();">
+
+<h3>CubePlayer</h3>
+<h1>Applet Tag Generator</h1>
+
+<p>With the form below you can generate the HTML code needed to embed the PocketPlayer applet in your web page. </p>
+<p>&nbsp;</p>
+<div id="cfg">
+  <form action="" method="post" name="cfg" id="cfg">
+  <p>Generated applet tag to be inserted into your web page: </p>
+  <p align="center">
+    <textarea name="appletTag" style="width:600px;" rows="10" id="appletTag"><applet code="PocketPlayer.class" archive="PocketPlayer.jar" width="300" height="300">
+</applet></textarea>
+  </p>
+  <p align="center">&nbsp;  </p>
+  <p align="center">
+    <input name="generate" type="button" id="generate" onClick="generateAppletTag()" value="Generate Applet Tag">
+    <input name="show" type="button" id="show" onClick="showApplet()" value="Show the Applet">
+    <input name="genAndShow" type="button" id="genAndShow" onClick="generateAndShow()" value="Generate and Show">
+<input type="reset" name="reset" value="Reset">
+  </p>
+  <p>&nbsp;</p>
+  <div style="float:right" class="info">
+    <input id="showDescriptionsBox" name="checkbox" type="checkbox" onClick="updateFields();" value="checkbox" checked>
+    Show descriptions
+  <input  id="showTipsBox" name="checkbox" type="checkbox" onClick="updateFields();" value="checkbox" checked>
+    Show tips </div>
+  <p>Applet Parameters:</p>
+  <table border="0" cellpadding="1" cellspacing="0" bgcolor="#999">
+    <tr>
+      <td><TABLE width="600" BORDER="0" cellpadding="1" CELLSPACING="0" bgcolor="#FFFFFF" style="margin-bottom:0px">
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200">&nbsp;</TD>
+      <TD class="info">&nbsp;</TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200"><div class="marginalia"><b>code</b> and <b>archive</b></div></TD>
+      <TD class="info"><p>
+        <select name="appletCode" id="appletCode"
+      onClick="updateFields();">
+          <option value="code=&quot;PocketPlayer.class&quot; archive=&quot;PocketPlayer.jar&quot;">code=&quot;PocketPlayer.class&quot; archive=&quot;PocketPlayer.jar&quot;</option>
+          <option value="code=&quot;PocketPlayerFlat.class&quot; archive=&quot;PocketPlayerFlat.jar&quot;">code=&quot;PocketPlayerFlat.class&quot; archive=&quot;PocketPlayerFlat.jar&quot;</option>
+        </select>
+      </p><div>
+        <p class="description">The name of the
+          applet class and the name of the archive file which contains the applet.</p>
+        <p class="description"><b>Values:</b><br/>
+              code="PocketPlayer.class" archive="PocketPlayer.jar"<br/>
+              code="PocketPlayerFlat.class" archive="PocketPlayerFlat.jar"<br>
+              code="RubikPlayer.class" archive="RubikPlayer.jar"<br/>
+code="RubikPlayerFlat.class" archive="RubikPlayerFlat.jar"<br>
+code="RevengePlayer.class" archive="RevengePlayer.jar"<br/>
+code="RevengePlayerFlat.class" archive="RevengePlayerFlat.jar"<br>
+code="ProfessorPlayer.class" archive="ProfessorPlayer.jar"<br/>
+code="ProfessorPlayerFlat.class" archive="ProfessorPlayerFlat.jar"<br>
+        </p>
+        </div><div>
+            <p class="tip"><b>Tips:</b> <br>
+              Use <b>PocketPlayer, </b>if you need to display an image on the stickers of the cube. Use <b>PocketPlayerFlat,</b> if you need to display many cubes on the same page.</p>
+            <p class="tip">Use pack200.php if your server supports PHP scripts. Using pack200.php, and by uploading the files with the extensiosn jar.gz and jar.pack.gz you can significantly reduce the download time of the applet.<br>
+            </p>
+        </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>width</b> and <b>height</b></div></TD>
+      <TD class="info">
+        <input name="appletWidth" type="text" id="appletWidth" value="300" size="8" maxlength="4">
+          <input name="appletHeight" type="text" id="appletHeight" value="300" size="8" maxlength="4">
+        <div><p class="description">The width and the height of the applet.</p>
+        <p class="description"><b>Range:</b> 1..9999</p></div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD class="info" colspan="2"><hr size="1"></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>resourceFile</b></div></TD>
+      <TD class="info"><label>
+      <input name="resourceFile" type="text" id="resourceFile" value="PocketCubeNotations.xml" onChange="resourceFileChanged();">
+      </label>
+<div>
+  <P class="description">The URL of a resource file. <br>
+    A resource file contains the notation and the cube used by the applet.  </P>
+</div>    </TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD class="info" colspan="2"><hr size="1"></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>notation</b></div></TD>
+      <TD class="info"><select name="notation" id="notation" spry:region="notationXMLDataSet" spry:repeatchildren="notationXMLDataSet" >
+        <option value="{Name}">{Name}</option>
+        </select>
+          <div><P class="description">Selects a notation from the resource file.
+            You can only specify a value here, if you also specify a resource file.
+            If you specify a resource file, and leave this field empty, the default
+            notation from the resource file is taken. </P></div>        </TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><a name="paramscripttype"></a><strong>scriptType</strong></div></TD>
+      <TD class="info"><select name="scriptType" id="scriptType">
+        <option value="Generator" selected>Generator</option>
+        <option value="Solver">Solver</option>
+              </select><div><p class="description">The type of the script.</p>
+              <p class="description"> A &quot;Generator&quot; transforms the cube from its solved state to
+                an unsolved state. <br>
+                A &quot;Solver&quot;  transforms the cube from an unsolved state to the solved state.</p>
+              <p class="description"><b>Choice of:</b> &quot;Generator&quot;, &quot;Solver&quot;<br>
+                  <b>Default value:</b> &quot;Generator&quot;</p></div><div>
+              <p class="tip"><b>Tip:</b> Use generators to describe pretty patterns, use
+          solvers to describe maneuvers.</p></div>
+      </TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramscript"></A>script</b></div></TD>
+      <TD ><textarea name="script" rows="3" wrap="virtual" id="script" style="width:460px;"></textarea>        
+      <P align="right">
+        <input name="Button" type="button" onClick="insertRandomScript('script')" value="Insert Random Script">
+</P><div>
+      <P class="description">The script.</P>
+      <P class="description"><strong>Default value:</strong> no script. </P></div>
+      </TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramscriptprogress"></A>scriptProgress<span class="info"></span></b></div></TD>
+      <TD class="info"><input name="scriptProgress" type="text" id="scriptProgress" value="-1" size="8">      <div>  
+      <P class="description">Position of the progress bar. Positive values are offsets from the
+            start of the script, negative values are offsets from the end of the
+            script.<BR>
+            <b>Range:</b> -9999..9999<BR>
+          <b>Default value: </b>-1 for generators, 0 for solvers, 0
+          when <a href="#paramAutoPlay">autoPlay</a> is set to true.</P></div>
+        </TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><a name="paraminitscript"></a>initScript</b></div></TD>
+      <TD >
+        <textarea name="initScript" style="width:460px;"rows="3" wrap="virtual" id="initScript"></textarea>
+        <p align="right">
+          <input name="Button2" type="button" onClick="insertRandomScript('initScript')" value="Insert Random Script">    
+              </p>
+       <div><p class="description">An initScript is used to set up the initial position of the cube.<br>
+        If you don't specify an initScript, the solved state of the cube is used.</p>        
+        <p class="description"><b>Default
+        value:</b> no script</p></div>
+        </TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramdisplaylines"></A>displayLines</b></div></TD>
+      <TD class="info">
+        <input name="displayLines" type="text" id="displayLines" value="1" size="8">        
+        <div><P class="description">Number of lines of the script to display.<BR>
+          Set to 0 to switch the display off.<BR>
+          <b>Default value:</b> 1</P></div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramAutoPlay" id="paramAutoPlay"></A>autoPlay</b></div>      </TD>
+      <TD class="info">
+        <select name="autoPlay" id="autoPlay">
+          <option value="false" selected>false</option>
+          <option value="true">true</option>
+        </select><div>
+          <P class="description">Turns automatic playback of the script on
+            or off.<BR>
+                  <b>Values:</b> true, false<BR>
+                  <b>Default value:</b> false</P></div>      </TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD colspan="2" class="info"><div class="marginalia">
+        <hr size="1">
+      </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>cube</b></div></TD>
+      <TD class="info"><select name="cube" id="cube" spry:region="cubeXMLDataSet cubeXMLDataSet" spry:repeatchildren="cubeXMLDataSet" >
+          <option value="{cubeXMLDataSet::Name}">{cubeXMLDataSet::Name}</option>
+        </select>
+          <div><P class="description">Selects a cube from the resource file.
+            You can only specify a value here, if you also specify a resource file.
+            If you specify a resource file, and leave this field empty, the default
+            cube from the resource file is taken.</P></div></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramcolortable"></A>colorTable</b></div></TD>
+      <TD class="info"><textarea name="colorTable" style="width:460px;" rows="3" wrap="VIRTUAL" id="colorTable">0x003373,0xff4600,0xf8f8f8,0x00732f,0x8c000f,0xffd200</textarea> <div>       
+      <P class="description">RGB color look up table. The colors in this table can be referenced
+            by the faces and the stickers attribute. The table may contain up to
+            54 different values.<BR>
+          The default values represent the colors of the Arxon cube: blue, orange,
+          white, green, red and yellow.<BR>
+          This results into the following color scheme:</P>        <TABLE BORDER="0" class="description">
+            <TR>
+              <TD>&nbsp;</TD>
+              <TD BGCOLOR="#003373" class="info"><FONT COLOR="#FFFFFF">&nbsp;5&nbsp;</FONT></TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+            </TR>
+            <TR>
+              <TD BGCOLOR="#f8f8f8" class="info">&nbsp;4&nbsp;</TD>
+              <TD BGCOLOR="#8c000f" class="info">&nbsp;<FONT COLOR="#FFFFFF">0&nbsp;</FONT></TD>
+              <TD BGCOLOR="#ffd200" class="info">&nbsp;1&nbsp;</TD>
+              <TD BGCOLOR="#ff4600" class="info">&nbsp;<FONT COLOR="#FFFFFF">3</FONT>&nbsp;</TD>
+            </TR>
+            <TR>
+              <TD>&nbsp;</TD>
+              <TD BGCOLOR="#00732f" class="info">&nbsp;<FONT COLOR="#FFFFFF">2</FONT>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+            </TR>
+          </TABLE>        <P class="description"><b>Range:</b> 0x000000..0xffffff<BR>
+              <b>Default value:</b> 0x003373,0xff4600,0xf8f8f8,0x00732f,0x8c000f,0xffd200</P>
+              </div><div><p class="tip"><b>Tip:</b> For ease of use, you can assign names to the
+            colors.<br>
+        Instead of writing 0x003373 you can write blue=0x003373 or b=0x003373.</p></div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramfaces"></A>faces</b></div></TD>
+      <TD class="info"><input name="faces" type="text" id="faces" value="0,1,2,3,4,5" size="30">
+        <div><P class="description">Maps colors from the color table to the faces of the cube.<BR>
+          6 integer values: front, right, down, back, left, up.<BR>
+          The values of the faces parameter are overriden by the stickers parameter
+          if present.<BR>
+          <b>Range:</b> 0..54<BR>
+          <b>Default value:</b> 0,1,2,3,4,5</P>        <P class="description">The face values are organized like this:</P> </div>       
+          <TABLE BORDER="0" class="description">
+            <TR>
+              <TD>&nbsp;</TD>
+              <TD BGCOLOR="#CCCCCC" class="info">&nbsp;5&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+            </TR>
+            <TR BGCOLOR="#CCCCCC">
+              <TD class="info">&nbsp;4&nbsp;</TD>
+              <TD class="info">&nbsp;0&nbsp;</TD>
+              <TD class="info">&nbsp;1&nbsp;</TD>
+              <TD class="info">&nbsp;3&nbsp;</TD>
+            </TR>
+            <TR>
+              <TD>&nbsp;</TD>
+              <TD BGCOLOR="#CCCCCC" class="info">&nbsp;2&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+            </TR>
+        </TABLE>        <P class="tip"><b>Tip: </b>You can reference a color
+            defined in &quot;colorsTable&quot; by
+        its index or by its name.</P></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD colspan="2" class="info"><div class="marginalia">&nbsp;</div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><a name="paramstickers"></a>stickersFront</b></div></TD>
+      <TD class="info"><input name="stickersFront" type="text" id="stickersFront" value="0,0,0,0" size="20"></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>stickersRight</b></div></TD>
+      <TD class="info"><input name="stickersRight" type="text" id="stickersRight" value="1,1,1,1" size="20"></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>stickersDown</b></div></TD>
+      <TD class="info"><input name="stickersDown" type="text" id="stickersDown" value="2,2,2,2" size="20"></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>stickersBack</b></div></TD>
+      <TD class="info"><input name="stickersBack" type="text" id="stickersBack" value="3,3,3,3" size="20"></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>stickersLeft</b></div></TD>
+      <TD class="info"><input name="stickersLeft" type="text" id="stickersLeft" value="4,4,4,4" size="20"></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b>stickersUp</b></div></TD>
+      <TD class="info"><input name="stickersUp" type="text" id="stickersUp" value="5,5,5,5" size="20"></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"></div></TD>
+      <TD class="info"><P class="description">The stickers parameters map
+          colors from the color table to the stickers of the cube; <BR>
+          25 integer values for each of the 6 faces: front, right, down, back,
+              left, up.<BR>
+          The stickers parameters override the values of the faces parameter.<br>
+          <br>
+          <b>Default Values</b></P>        
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tr class="description">
+              <td class="description">Front:&nbsp;</td>
+              <td class="description">0,0,0,0</td>
+            </tr>
+            <tr class="description">
+              <td class="description">Right:</td>
+              <td class="description">1,1,1,1</td>
+            </tr>
+            <tr class="description">
+              <td class="description">Down:</td>
+              <td class="description">2,2,2,2</td>
+            </tr>
+            <tr class="description">
+              <td class="description">Back:</td>
+              <td class="description">3,3,3,3</td>
+            </tr>
+            <tr class="description">
+              <td class="description">Left:</td>
+              <td class="description">4,4,4,4</td>
+            </tr>
+            <tr class="description">
+              <td class="description">Up:</td>
+              <td class="description">5,5,5,5</td>
+            </tr>
+          </table>          
+        <P class="description">The sticker values are organized like this:</P>
+<TABLE BORDER="0" class="description">
+            <TR ALIGN="CENTER" class="info">
+              <TD colspan="2">Up:</TD>
+              <TD BGCOLOR="#CCCCCC">1</TD>
+              <TD BGCOLOR="#CCCCCC">2</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              </TR>
+            <TR ALIGN="CENTER" class="info">
+              <TD colspan="2">Left</TD>
+              <TD BGCOLOR="#CCCCCC">3</TD>
+              <TD BGCOLOR="#CCCCCC">4</TD>
+              <TD colspan="2">Right</TD>
+              <TD colspan="2">Back</TD>
+            </TR>
+            <TR ALIGN="CENTER" BGCOLOR="#CCCCCC" class="info">
+              <TD>1</TD>
+              <TD>2</TD>
+              <TD>1</TD>
+              <TD>2</TD>
+              <TD>1</TD>
+              <TD>2</TD>
+              <TD>1</TD>
+              <TD>2</TD>
+              </TR>
+            <TR ALIGN="CENTER" BGCOLOR="#CCCCCC" class="info">
+              <TD>3</TD>
+              <TD>4</TD>
+              <TD>3</TD>
+              <TD>4</TD>
+              <TD>3</TD>
+              <TD>4</TD>
+              <TD>3</TD>
+              <TD>4</TD>
+              </TR>
+            <TR ALIGN="CENTER" class="info">
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD BGCOLOR="#CCCCCC">1</TD>
+              <TD BGCOLOR="#CCCCCC">2</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              </TR>
+            <TR ALIGN="CENTER" class="info">
+              <TD colspan="2">Down:</TD>
+              <TD BGCOLOR="#CCCCCC">3</TD>
+              <TD BGCOLOR="#CCCCCC">4</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              <TD>&nbsp;</TD>
+              </TR>
+          </TABLE>        
+<p class="tip"><b>Tip: </b>You can reference a color
+              defined in &quot;colorsTable&quot; by
+          its index or by its name.</p></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramstickersimage"></A>stickersImage</b></div></TD>
+      <TD class="info">
+          <select name="stickersImage" id="stickersImage">
+              <option value="" selected>None</option>
+              <option value="SignedCube.gif">SignedCube.gif</option>
+          </select><div>
+        <P class="description">Specifies the url of the stickers image.<BR>
+            This parameter only works for the <b>PocketPlayer.jar</b> applet.<BR>
+          <b>Default value:</b> no stickers image</P></div>
+        </TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD colspan="2" class="info"><div class="marginalia">
+        <hr size="1">
+      </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="parambackgroundcolor"></A>backgroundColor</b></div></TD>
+      <TD class="info"><input name="backgroundColor" type="text" id="backgroundColor" value="0xfffff" size="8"><div>        <P class="description">Specifies the background color of the applet.<BR>
+          <b>Range:</b> 0x000000..0xffffff<BR>
+          <b>Default value:</b> 0xffffff</P>
+        </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="parambackgroundimage"></A>backgroundImage</b></div></TD>
+      <TD class="info">
+          <select name="backgroundImage" id="backgroundImage">
+              <option value="" selected>None</option>
+              <option value="Shadow.jpg">Shadow.jpg</option>
+          </select><div>
+      <P class="description">Specifies the url of the background image.<BR>
+          <b>Default value:</b> no background image</P>
+        </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD colspan="2"><div class="marginalia">
+          <hr size="1">
+        </div>      </TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top">
+      <TD width="200" class="info"><div class="marginalia"><A NAME="paramalpha"></A><b>alpha</b> and <b>beta</b></div>      </TD>
+      <TD class="info"><p>
+          <input name="alpha" type="text" id="alpha" value="-25" size="8">
+          <input name="beta" type="text" id="beta" value="45" size="8">
+       </p><div>
+          <p class="description">Alpha and Beta view angles of the cube. Tilt the cube
+            along the X-axis and the Y-Axis. Positive values tilt in clockwise direction, negative
+            values in anticlockwise direction.<BR>
+              <b>Range:</b> -90..90<BR>
+              <b>Default value:</b> -25</p>
+          </div>     </TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top" class="flatOnly" style="display:none">
+      <TD colspan="2" class="info"><div class="marginalia">
+        <hr size="1">
+      </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top" class="flatOnly" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramambientlightintensity"></A>ambientLightIntensity</b></div></TD>
+      <TD class="info">
+        <input name="ambientLightIntensity" type="text" id="ambientLightIntensity" value="0.6" size="8">        <div>
+            <P class="description">Specifies the intensity of the ambient light.<BR>
+        This parameter only works for the <b>PocketPlayerFlat.jar</b> applet.<BR>
+            <b>Range:</b> 0.0..1.0<BR>
+            <b>Default value:</b> 0.6</P>
+        </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top" class="flatOnly" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramambientlightintensity"></A>lightSourceIntensity</b></div></TD>
+      <TD class="info"><input name="lightSourceIntensity" type="text" id="lightSourceIntensity" value="1.0" size="8">   <div>     
+      <P class="description">Specifies the intensity of the light source.<BR>
+        This parameter only works for the <b>PocketPlayerFlat.jar</b> applet.<BR>
+          <b>Range:</b> 0.0..1.0<BR>
+          <b>Default value:</b> 1.0</P>
+        </div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top" class="flatOnly" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramlightsourcelocation"></A>lightSourceLocation</b></div></TD>
+      <TD class="info"><input name="lightSourceLocation" type="text" id="lightSourceLocation" value="-500,500,1000" size="30"> <div>       
+      <P class="description">Specifies the location of the light source using
+        a right-handed X, Y, Z coordinate system. +X is horizontal to the right,
+        +Y is the
+            local gravitational up, +Z is directly toward the viewer.<BR>
+        This parameter only works for the <b>PocketPlayerFlat.jar</b> applet.<BR>
+            <b>Values:</b> X, Y, Z<BR>
+            <b>Default value:</b> -500, 500, 1000</P></div></TD>
+      </TR>
+    <TR ALIGN="left" VALIGN="top" style="display:none">
+      <TD colspan="2" class="info"><div class="marginalia">
+          <hr size="1">
+        </div>      </TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramambientlightintensity"></A>rearView</b></div>      </TD>
+      <TD class="info"><span class="description">        
+        <select name="rearView" id="rearView">
+        <option value="false" selected>false</option>
+        <option value="true">true</option>
+        </select>
+</span><div>
+          <P class="description">Turns rear view on or off.<BR>
+              <b>Values:</b> true, false<BR>
+              <b>Default value:</b> false</P>
+          <P class="description">&nbsp;</P> </div>     </TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramambientlightintensity"></A>rearViewBackgroundColor</b></div>      </TD>
+      <TD class="info"><input name="rearViewBackgroundColor" type="text" id="rearViewBackgroundColor" size="8">
+          <P class="description">Background color of the rear view.<BR>
+              <b>Range:</b> 0x00000 (black) .. 0xffffff (white)<BR>
+              <b>Default value:</b> undefined (uses value of parameter
+              backgroundColor)</P>
+          <P class="description">&nbsp;</P>      </TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b><A NAME="paramlightsourcelocation"></A>rearViewBackgroundImage</b></div>      </TD>
+      <TD class="info"><input name="rearViewBackgroundImage" type="text" id="rearViewBackgroundImage" size="30">                <P class="description">Specifies the URL of the background image
+            for the rear view.<BR>
+                  <b>Default value:</b> undefined (uses value of parameter
+                  backgroundImage) </P>
+        <P class="description">&nbsp;</P></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b><a name="paramrearviewscalefactor" id="paramrearviewscalefactor"></a>rearViewScaleFactor</b></div></TD>
+      <TD class="info"><input name="rearViewScaleFactor" type="text" id="rearViewScaleFactor" value="0.75" size="8">
+        <p class="description">Specifies the scale factor of the rear view
+          relative to the front view.<br>
+            <b>Range:</b> 0.1..1.0<br>
+            <b>Default value:</b> 0.75</p></TD>
+    </TR>
+    <TR ALIGN="left" VALIGN="top" style="display:none">
+      <TD width="200" class="info"><div class="marginalia"><b>rearViewRotation<span class="info"></span></b></div>      </TD>
+      <TD class="info"><p>
+          <input name="rearViewRotation" type="text" id="rearViewRotation" value="180,0,0" size="30">
+        </p>
+          <p class="description">Specifies the rotation of the rear view along
+            the X, Y and Z axis in degrees.<br>
+                  <b>Values:</b> X, Y, Z<BR>
+                  <b>Default value:</b> 180, 0, 0</p>      </TD>
+    </TR>
+  </TABLE></td>
+    </tr>
+  </table>
+  <p align="center">
+      <input name="Generate" type="button" id="Generate" onClick="generateAppletTag()" value="Generate Applet Tag">
+       <input name="Show" type="button" id="Show" onClick="showApplet()" value="Show the Applet">
+       <input name="generateAndShow2" type="button" id="generateAndShow2" onClick="generateAndShow()" value="Generate and Show">
+       <input type="reset" name="Submit3" value="Reset">
+  </p>
+  </form>
+</div>
+<script language="JavaScript">
+/* Updates the visibility and the enabled state of the form fields depending on the
+ * values on the fields of the form.
+ */ 
+function updateFields() {
+	showHideByClass('description', 
+		document.getElementById('showDescriptionsBox').checked
+	);
+	
+	showHideByClass('flatOnly',
+		document.getElementById('appletCode').value.indexOf('PocketPlayerFlat')>0
+	);
+	
+	showHideByClass('tip',document.getElementById('showTipsBox').checked);
+	
+	notation.disabled=(resourceFile.value=='');
+	cube.disabled=(resourceFile.value=='');
+	
+	saveForm();
+}
+
+function showApplet() {
+  var title = "PocketPlayer";     
+  var c = "<html><head><title>" + title + "</title></head>\n";
+  c += "<body bgcolor=\"#ffffff\" leftmargin=\"0\" topmargin=\"0\">\n";
+  c += document.forms[0].appletTag.value;
+  c += "</body>\n";
+  c += "</html>\n";
+  var w = Number(document.forms[0].appletWidth.value) + 20;
+  var h = Number(document.forms[0].appletHeight.value) + 20;
+  var features = "left=0,screenX=0,width=" + w + ",height=" + h + ",dependent";
+  var appletWindow = window.open("",title,features);
+  appletWindow.document.write(c);
+  appletWindow.document.close();
+}
+  // p holds all applet parameter fields of the form as well as their default values
+  var appletParameters = [
+     [ "resourceFile", "" ],
+     [ "notation", "" ],
+     [ "cube", "" ],
+     [ "scriptType", "Generator" ],
+     [ "script", "" ],
+     [ "scriptProgress", "-1" ],
+     [ "initScript", "" ],
+     [ "displayLines", "1" ],
+     [ "autoPlay", "false" ],
+     [ "alpha", "-25" ],
+     [ "beta", "45" ],
+     [ "colorTable", "0x003373,0xff4600,0xf8f8f8,0x00732f,0x8c000f,0xffd200" ],
+     [ "faces", "0,1,2,3,4,5" ],
+     [ "stickersFront",  "0,0,0,0" ],
+     [ "stickersRight",  "1,1,1,1" ],
+     [ "stickersDown", "2,2,2,2" ],
+     [ "stickersBack",   "3,3,3,3" ],
+     [ "stickersLeft",   "4,4,4,4" ],
+     [ "stickersUp",     "5,5,5,5" ],
+     [ "backgroundColor", "0xfffff" ],
+     [ "backgroundImage", "" ],
+     [ "stickersImage", "" ],
+     [ "ambientLightIntensity", "0.6" ],
+     [ "lightSourceIntensity", "1.0" ],
+     [ "lightSourceLocation", "-500,500,1000" ],
+     [ "rearView", "false" ],
+     [ "rearViewBackgroundColor", "" ],
+     [ "rearViewBackgroundImage", "" ],
+     [ "rearViewScaleFactor", "0.75" ],
+     [ "rearViewRotation", "180,0,0" ]
+  ];
+    
+function generateAppletTag() {
+  saveForm();
+
+  document.forms[0].appletTag.value = "";   
+  var s = "<applet "+document.forms[0].appletCode.value+" ";
+  s += "width=\""+document.forms[0].appletWidth.value+"\" ";
+  s += "height=\""+document.forms[0].appletHeight.value+"\">\n";
+  // Add parameters to applet tag if they are not on their default value
+  var i, j;
+
+  for (i = 0; i < appletParameters.length; i++) {
+    for (j = 0; j < document.forms[0].elements.length; j++) {
+      var field = document.forms[0].elements[j];
+      if (field.id == appletParameters[i][0]) {
+	  
+        if (field.value != appletParameters[i][1]) {
+			// if the resource file is not specified, skip the notation field and the cube field
+		  	if (document.forms[0].resourceFile.value.length > 1 || 
+					appletParameters[i][0] != "notation" &&
+					appletParameters[i][0] != "cube") {
+          		s += "  <param name=\""+appletParameters[i][0]+"\" value=\""+field.value+"\">\n";
+        	}
+		}
+        break;
+      }
+    } 
+  }
+  s += "</applet>\n";
+  document.forms[0].appletTag.value = s;
+}
+  
+function generateAndShow() {
+  generateAppletTag();
+  showApplet();
+}
+
+function insertRandomScript(fieldName) {
+	// get a list of tokens depending on the current script language
+	var tokens;
+	switch (document.forms[0].elements["notation"].value) {
+		default :
+		case "BandelowENG" :
+			tokens = [
+			"R","U","F","L","D","B","R'","U'","F'","L'","D'","B'","R2","U2","F2","L2","D2","B2",
+			"CR","CU","CF","CL","CD","CB","CR'","CU'","CF'","CL'","CD'","CB'","CR2","CU2","CF2","CL2","CD2","CB2"
+			//,
+			//"CFU","CUB","CRU","CUL","CRF",
+			//"CUFL","CURF","CRUB","CBUL","CLFU","CFRU","CBUR","CLUB"
+			];
+			break;
+		case "HarrisENG" :
+			tokens = [
+			"R","U","F","L","D","B","R'","U'","F'","L'","D'","B'","R2","U2","F2","L2","D2","B2",
+			"r","u","f","l","d","b","r'","u'","f'","l'","d'","b'","r2","u2","f2","l2","d2","b2",
+			"x","y","z","x'","y'","z'","x2","y2","z2'"
+			];
+			break;
+		case "RandelshoferGER" :
+			tokens = [
+			"R","O","V","L","U","H","R-","O-","V-","L-","U-","H-","R2","O2","V2","L2","U2","H2",
+			"BR","BO","BV","BL","BU","BH","BR-","BO-","BV-","BL-","BU-","BH-","BR2","BO2","BV2","BL2","BU2","BH2"
+			];
+			break;
+		case "ScriptFRA" :
+			tokens = [
+			"Dh","Hg","Fm","Gb","Bd","Am","Db","Hd","F","Gh","Bg","A","DD","HH","FF","GG","BB","AA",
+			"Ch","Cg","CRd","Cb","Cd","CRg","CC","CGG","CRR"
+			];
+			break;
+		case "SupersetENG" :
+			tokens = [
+			"R","U","F","L","D","B","R'","U'","F'","L'","D'","B'","R2","U2","F2","L2","D2","B2",
+			"CR","CU","CF","CL","CD","CB","CR'","CU'","CF'","CL'","CD'","CB'","CR2","CU2","CF2","CL2","CD2","CB2"
+			];
+			break;
+		case "TouchardDeledicqFRA" :
+			tokens = [
+			"D","H","A","G","B","P","D-","H-","A-","G-","B-","P-","D2","H2","A2","G2","B2","P2",
+			"Ds","Hs","As","Gs","Bs","Ps","D2s","H2s","A2s","G2s","B2s","P2s"
+			];
+			break;
+		case "Castella" :
+			tokens = [
+			"R","O","F","L","U","D","Ri","Oi","Fi","Li","Ui","Di","R2","O2","F2","L2","U2","D2",
+			"r","o","f","l","u","d","ri","oi","fi","li","ui","di","r2","o2","f2","l2","u2","d2",
+			"x","y","z","xi","yi","zi","x2","y2","z2'"
+			];
+			break;
+	}
+	
+	var script = "";
+	var i;
+	var n = 3 + Math.round(18*Math.random());
+	var previousToken = "";
+	var randomToken;
+	for (i = 0; i < n; i++) {
+		if (i != 0) script += " ";
+		while (previousToken == (randomToken = tokens[Math.round((tokens.length - 1)*Math.random())])) {}
+ 		script += randomToken;
+		previousToken = randomToken;
+	}
+	
+	document.forms[0].elements[fieldName].value = script;
+}
+function getElementsByClassName(className, tag, elm){
+	var testClass = new RegExp("(^|\\s)" + className + "(\\s|$)");
+	var tag = tag || "*";
+	var elm = elm || document;
+	var elements = (tag == "*" && elm.all)? elm.all : elm.getElementsByTagName(tag);
+	var returnElements = [];
+	var current;
+	var length = elements.length;
+	for(var i=0; i<length; i++){
+		current = elements[i];
+		if(testClass.test(current.className)){
+			returnElements.push(current);
+		}
+	}
+	return returnElements;
+}
+
+function showHideByClass(cssClass, makeVisible, displayType) {
+	/*alert("cssClass="+cssClass+" "+makeVisible);*/
+	var elems = getElementsByClassName(cssClass);
+	for (var i=0; i < elems.length; i++) {
+            if (makeVisible) {
+                elems[i].style.display = (elems[i].name = 'TR') ? 'table-row' : 'block';
+            } else {
+    		elems[i].style.display = "none";
+            }
+	}
+	
+	saveForm();
+}
+
+/**
+ * Loads the form from a cookie.
+ */
+function loadForm() {
+	var cookie = getCookie("pocketparms");
+	
+	if (cookie != null) {
+		var map = new Map();
+		map.importFromString(cookie);
+		
+		document.getElementById("showDescriptionsBox").checked = map.get("showDesc", "t") == "t";
+		document.getElementById("showTipsBox").checked = map.get("showTips", "t") == "t";
+	
+		
+  		document.forms[0].appletCode.value = map.get("appletCode", 'code="PocketPlayer.class" archive="PocketPlayer.jar"');
+  		document.forms[0].appletWidth.value = map.get("appletWidth", '300');
+  		document.forms[0].appletHeight.value = map.get("appletHeight", '300');
+		
+		updateFields();
+	}
+}
+/**
+ * Saves the form in a cookie.
+ */
+function saveForm() {
+	var map = new Map();
+	
+	map.put("showDesc", document.getElementById("showDescriptionsBox").checked ? "t" : "f");
+	map.put("showTips", document.getElementById("showTipsBox").checked ? "t" : "f");
+	
+	map.put("appletCode", document.forms[0].appletCode.value);
+  	map.put("appletWidth", document.forms[0].appletWidth.value);
+  	map.put("appletHeight", document.forms[0].appletHeight.value);
+	
+		
+	var cookie = map.exportToString();
+	setCookie("pocketparms", cookie);
+	//alert("cookie="+cookie);
+}
+
+function resourceFileChanged() {
+	notationXMLDataSet.setURL(document.getElementById("resourceFile").value);
+	notationXMLDataSet.loadData();
+	cubeXMLDataSet.setURL(document.getElementById("resourceFile").value);
+	cubeXMLDataSet.loadData();
+	updateFields();
+}
+</script>
+</body>
+</html>

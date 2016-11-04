@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CubePlayer Applets · iWeb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>CubePlayer Applets</h3>
+<h1>Usage in iWeb</h1>
+<p align="center">You can use the following HTML Snippet to integrate a CubePlayer applet into an iWeb page:</p>
+<pre><tt>
+<code>&lt;script type=&quot;text/javascript&quot;&gt;
+  var script=&quot;R-U2BL-FU-BDFUD-LD2F-RB-DF-U-B-UD-&quot;;
+  if (navigator.userAgent.indexOf('iWeb')!=-1) {
+    document.write('&lt;div style=&quot;border:1px solid;width:270px;height:300px&quot;&gt;'+script+'&lt;/div&gt;');
+  } else {
+    document.write(
+    '&lt;applet mayscript=&quot;mayscript&quot; '+
+    '    codebase=&quot;http://www.randelshofer.ch/cube/lib&quot; '+
+    '    archive=&quot;RubikPlayerFlat.jar&quot; code=&quot;RubikPlayerFlat&quot; '+
+    '    width=&quot;270&quot; height=&quot;300&quot;&gt; '+
+    '  &lt;param name=&quot;script&quot; value=&quot;'+script+'&quot; /&gt; '+
+    '  &lt;param name=&quot;codebase_lookup&quot; value=&quot;false&quot; /&gt; '+
+    '  &lt;param name=&quot;classloader_cache&quot; value=&quot;false&quot; /&gt; '+
+    '  &lt;param name=&quot;java_arguments&quot; value=&quot;-Djnlp.packEnabled=true&quot; /&gt; '+
+    '  &lt;param name=&quot;permissions&quot; value=&quot;sandbox&quot; /&gt;'+
+    '  &lt;p&gt;Install Java to see the cube.&lt;/p&gt; '+
+    '&lt;/applet&gt;'
+    );
+  }
+&lt;/script&gt;</code>
+</tt></pre>
+</body>
+</html>

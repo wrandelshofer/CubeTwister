@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CubePlayer Applets · Applet Tag</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+function fixSelection() {
+	// We have to fix the selection once the page is loaded because the autocomplete-feature
+	// of the browser gets into our way.
+
+	// Determine which applet to select
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "RubikPlayer";
+	}
+	
+	// Select the applet
+	var choice = document.getElementById("theChoice");
+	for (i in choice.options) {
+		if (choice.options[i].value == whichApplet) {
+			choice.selectedIndex = i;
+			break;
+		}
+	}
+	
+}
+function openPage(name) {
+	if (name.charAt(0) != '-') {
+
+	// Opens the page again for the specified applet
+	var newLocation = window.location.href;
+	
+	// Remove fragment from URI
+	var p = newLocation.indexOf('#');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	// Remove query string from URI
+	p = newLocation.indexOf('?');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	
+	// Append applet name to URI	
+	newLocation += '?'+name;
+	window.location.href = newLocation;
+	}
+}
+</script></head>
+
+<body onload="fixSelection();">
+<h3>CubePlayer Applets</h3>
+<h1>Applet Tag</h1>
+<p>You can include a CubePlayer applet into your web-page using the applet tag shown below.</p>
+<form id="form1" method="post" action="">
+  <label>Select a cube:
+  <select name="theChoice" id="theChoice" onchange="openPage(this.value);">
+    <option value="PocketPlayer">2x2 Pocket Cube</option>
+    <option value="PocketPlayerFlat">2x2 Pocket Cube (flat)</option>
+    <option value="-1"></option>
+    <option value="RubikPlayer" selected="selected">3x3 Rubik's Cube</option>
+    <option value="RubikPlayerFlat">3x3 Rubik's Cube (flat)</option>
+    <option value="BarrelPlayer">3x3 Rubik's Barrel</option>
+    <option value="BarrelPlayerFlat">3x3 Rubik's Barrel (flat)</option>
+    <option value="DiamondPlayer">3x3 Rubik's Diamond</option>
+    <option value="DiamondPlayerFlat">3x3 Rubik's Diamond (flat)</option>
+    <option value="CuboctahedronPlayer">3x3 Rubik's Cuboctahedron</option>
+    <option value="CuboctahedronPlayerFlat">3x3 Rubik's Cuboctahedron (flat)</option>
+    <option value="-2"></option>
+    <option value="RevengePlayer">4x4 Revenge Cube</option>
+    <option value="RevengePlayerFlat">4x4 Revenge Cube (flat)</option>
+    <option value="-3"></option>
+    <option value="ProfessorPlayer">5x5 Professor Cube</option>
+    <option value="ProfessorPlayerFlat">5x5 Professor Cube (flat)</option>
+    <option value="-4"></option>
+    <option value="Cube6Player">6x6 Cube 6</option>
+    <option value="Cube6PlayerFlat">6x6 Cube 6 (flat)</option>
+    <option value="VCube6Player">6x6 V-Cube 6</option>
+    <option value="VCube6PlayerFlat">6x6 V-Cube 6 (flat)</option>
+    <option value="-5"></option>
+    <option value="Cube7Player">7x7 Cube 7</option>
+    <option value="Cube7PlayerFlat">7x7 Cube 7 (flat)</option>
+    <option value="VCube7Player">7x7 V-Cube 7r</option>
+    <option value="VCube7PlayerFlat">7x7 V-Cube 7 (flat)</option>
+  </select>
+  </label>
+  <br />
+</form>
+<p class="tip">&nbsp;</p>
+<p>
+  <script type="text/javascript">
+	// Determine which applet to show
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "RubikPlayer";
+	}
+	
+	// Write the applet tag for the specified applet
+	document.write('<applet id="theApplet" name="theApplet" archive="applets/'+whichApplet+'.jar" codebase = "../.."');
+	document.write('code="'+whichApplet+'" width="160" height="150" mayscript="mayscript">');
+  document.write('<param name="permissions" value="sandbox" />');
+  document.write('</applet>');
+  </script>
+</p>
+<p>&nbsp;</p>
+<pre class="listing"><script type="text/javascript">
+	// Determine which applet to show
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "RubikPlayer";
+	}
+	
+	// Write the applet tag for the specified applet
+	document.write('&lt;applet <a href="#id">id</a>=&quot;theApplet&quot; <a href="#mayscript">mayscript</a>=&quot;mayscript&quot;<br />');
+	document.write('        <a href="#codebase">codebase</a>=&quot;.&quot; <a href="#archive">archive</a>=&quot;'+whichApplet+'.jar&quot; <a href="#code">code</a>=&quot;'+whichApplet+'&quot;<br/>');
+	document.write('        <a href="#width">width</a>=&quot;120&quot; <a href="#height">height</a>=&quot;120&quot;&gt;<br/>');
+   document.write('<br/>');
+   document.write('     &lt;-- Set applet parameters here: --&gt;<br/>');
+   document.write('     &lt;param name=&quot;...&quot; value=&quot;...&quot; /&gt;<br/>');
+   document.write('<br/>');
+   document.write('     &lt;-- Set recommended parameters for Sun Java plug in here: --&gt;<br/>');
+   document.write('     &lt;param name=&quot;codebase_lookup&quot; value=&quot;false&quot; /&gt;<br/>');
+   document.write('     &lt;param name=&quot;classloader_cache" value=&quot;false&quot; /&gt;<br/>');
+   document.write('     &lt;param name=&quot;java_arguments" value=&quot;-Djnlp.packEnabled=true&quot; /&gt;<br/>');
+   document.write('     &lt;param name=&quot;image&quot; value=&quot;Splash.gif&quot; /&gt;<br/>');
+   document.write('     &lt;param name=&quot;boxborder&quot; value=&quot;false&quot; /&gt;<br/>');
+   document.write('     &lt;param name=&quot;centerimage&quot; value=&quot;true&quot; /&gt;<br/>');
+   document.write('<br/>');
+   document.write('     &lt;-- Set mandatory parameters for Appplet security in here: --&gt;<br/>');
+   document.write('     &lt;param name=&quot;permissions&quot; value=&quot;sandbox&quot; /&gt;<br/>');
+   document.write('&lt;/applet&gt;');
+  </script></pre>
+<p>The applet supports a large number of <a href="cubeplayer_parameters.html">parameters</a> and provides a <a href="cubeplayer_api.html">JavaScript API</a>.</p>
+<p>Description of the applet tag:</p>
+<table class="paramTable" id="theTable">
+  <tr>
+    <th scope="col">Attribute</th>
+    <th scope="col">Required</th>
+    <th scope="col">Description</th>
+  </tr>
+  <tr>
+    <td scope="col"><a name="id" id="id"></a>id</td>
+    <td scope="col">no
+  <td scope="col">You only need to specify an id, if you want to access the applet from JavaScript. I used the value &quot;theApplet&quot; here, but you can use any id that suits you.  </tr>
+  <tr>
+    <td scope="col"><a name="mayscript" id="mayscript"></a>mayscript</td>
+    <td scope="col">yes</td>
+    <td scope="col">With this attribute you give the applet the permission to interact with your web-page. If you omit this attribute, the applet may not function properly.</td>  
+  </tr>
+  <tr>
+    <td scope="col"><a name="codebase" id="codebase"></a>codebase</td>
+    <td scope="col">no</td>
+    <td scope="col">This attribute tells the browser where to look for the applet files. This is a path value. The default value is &quot;.&quot;.</td>  
+  </tr>
+  <tr>
+    <td scope="col"><a name="archive" id="archive"></a>archive</td>
+    <td scope="col">yes</td>
+  <td scope="col"><p>This attribute specifies the name of the applet .jar file. This is a path value. The path is relative to the codebase.</p>
+    <p>Possible values are: <br />      
+    <ul>
+      <li>2x2 cubes: &quot;PocketPlayer.jar&quot;, &quot;PocketPlayerFlat.jar&quot;</li>
+    <li>3x3 cubes: &quot;RubikPlayer.jar&quot;, &quot;RubikPlayerFlat.jar&quot;,  &quot;BarrelPlayer.jar&quot;, &quot;BarrelPlayerFlat.jar&quot;,  &quot;CuboctahedronPlayer.jar&quot;, &quot;CuboctahedronPlayerFlat.jar&quot;,  &quot;DiamondPlayer.jar&quot;, &quot;DiamondPlayerFlat.jar&quot;</li>
+    <li>4x4 cubes: &quot;RevengePlayer.jar&quot;, &quot;RevengePlayerFlat.jar&quot;</li>
+    <li>5x5 cubes: &quot;ProfessorPlayer.jar&quot;, &quot;ProfessorPlayerFlat.jar&quot;</li>
+    <li>6x6 cubes: &quot;Cube6Player.jar&quot;, &quot;Cube6PlayerFlat.jar&quot;, &quot;VCube6Player.jar&quot;, &quot;VCube6PlayerFlat.jar&quot;</li>
+    </ul>
+    <ul><li>7x7 cubes: &quot;Cube7Player.jar&quot;, &quot;Cube7PlayerFlat.jar&quot;, &quot;VCube7Player.jar&quot;, &quot;VCube7PlayerFlat.jar&quot;</li>
+      </ul>    
+    <p>Since this is a path value, you can prepend a path to this, for example, if your &quot;RubikPlayer.jar&quot; file is stored in the sub-directory &quot;lib&quot; of your codebase, you can write &quot;lib/RubikPlayer.jar&quot;.</p>    
+    <p class="tip"><strong>Note:</strong> Altough you only specify the .jar archive with this parameter, you also have to upload the corresponding  .jar.pack.gz archive to your web-server.</p></td>  
+  </tr>
+  <tr>
+    <td scope="col"><a name="code" id="code"></a>code</td>
+    <td scope="col">yes</td>
+  <td scope="col">This applet specifies the name of the Java class. This is the same name as the .jar file, but without the .jar suffix. For example, if you use PocketPlayerFlat.jar, you specify &quot;PocketPlayerFlat&quot;.</td>  
+  </tr>
+  <tr>
+    <td scope="col"><a name="width" id="width"></a>width </td> 
+    <td scope="col">yes</td>
+    <td scope="col">Specifies the width of the applet. </td> 
+  </tr>
+  <tr>
+    <td scope="col"><a name="height" id="height"></a>height</td>
+    <td scope="col">yes</td>
+  <td scope="col">Specifies the height of the applet. </td>  
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

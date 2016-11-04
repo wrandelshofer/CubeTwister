@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="MemoryMonitor.java">
+        <attr name="class_dependency_java.lang.Runnable" stringvalue="MemoryMonitor.Surface"/>
+        <attr name="class_dependency_javax.swing.JPanel" stringvalue="MemoryMonitor.Surface;MemoryMonitor"/>
+    </fileobject>
+    <fileobject name="UIDefaultsCellRenderer.java">
+        <attr name="class_dependency_javax.swing.table.DefaultTableCellRenderer" stringvalue="UIDefaultsCellRenderer"/>
+    </fileobject>
+    <fileobject name="UIDefaultsInspector.java">
+        <attr name="class_dependency_javax.swing.JPanel" stringvalue="UIDefaultsInspector"/>
+    </fileobject>
+    <fileobject name="UIDefaultsTableModel.java">
+        <attr name="class_dependency_javax.swing.table.AbstractTableModel" stringvalue="UIDefaultsTableModel"/>
+    </fileobject>
+</attributes>

@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PocketPlayer &middot; Read Me</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="noteBody">
+  <h3>CubePlayer</h3>
+<h1>Read Me</h1>
+  <h2>Purpose </h2>
+  <p>The PocketPlayer applet  can be use to display an interactive model
+  of Rubik's Pocket Cube&#8482; on a web page.</p>
+<h2 class="paddingdouble">Features</h2>
+<ul>
+    <li>
+      <p><strong>Interactive 3D model</strong>      <br />
+      The applet renders realistically looking 3D models of a PocketCube. You can rotate and twist the cube using the mouse pointer.</p>
+    </li>
+    <li>
+      <p><strong>Animation</strong><br />
+        The applet can play back a sequence of moves. You can control playback using a Quicktime-like user interface.      </p>
+    </li>
+    <li>
+      <p><strong>Customizability</strong><br />
+        Many aspects of the applet can be controlled by parameters and/or by specifying an external XML resource file. You can change the colors of the cube and apply a picture to the background and its stickers. You can even define your own notation for scripts.</p>
+    </li>
+  </ul>
+  <h2 class="paddingdouble">License Fee </h2>
+<p>PocketPlayer is free of a charge for non-commercial
+    use.</p>
+  <p>If you have a feature request or if you want to honour my work on this
+    applet, send a bottle of good wine to me.</p>
+  <h2 class="paddingdouble">System Requirements</h2>
+<ul>
+    <li>
+      <p>PocketPlayer needs a browser supporting Java 1.3.</p>
+    </li>
+  </ul>
+  <h2 class="paddingdouble">Applet Tag </h2>
+<p>You can embed the applet into your HTML document using the
+  applet tag shown below. </p>
+<p>You can customize the applet using these parameters or by specyfing an <a href="#XMLResourceFile">XML resource file</a>. You can even do both, for example, you could specify the notation and the color scheme of the cube using an XML resource file, and then override some of the values using parameters in the applet tag.</p>
+  <p>The following listings shows the supported parameters and their default values:</p>
+  <p class="listingTopFragment">&lt;applet<br />
+&nbsp;&nbsp;&nbsp;&nbsp;code=&quot;PocketPlayer.class&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;archive=&quot;PocketPlayer.jar&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;width=&quot;264&quot; height=&quot;245&quot;&gt; </p>
+  <p>or</p>
+  <p class="listingTopFragment">&lt;applet<br />
+&nbsp;&nbsp;&nbsp;&nbsp;code=&quot;PocketPlayerFlat.class&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;archive=&quot;PocketPlayerFlat.jar&quot;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;width=&quot;264&quot; height=&quot;245&quot;&gt;</p>
+  <p>&nbsp;</p>
+  <p class="listingBottomFragment">&lt;param name=&quot;resourceFile&quot; value=&quot;&quot;&gt;  <br />
+&lt;param name=&quot;notation&quot; value=&quot;&quot;&gt;<br />&lt;param name=&quot;scriptType&quot; value=&quot;Generator&quot;&gt;<br />
+&lt;param name=&quot;script&quot; value=&quot;&quot;&gt;<br />
+&lt;param name=&quot;scriptProgress&quot; value=&quot;-1&quot;&gt;<br />&lt;param name=&quot;initScript&quot; value=&quot;&quot;&gt;<br />&lt;param name=&quot;displayLines&quot; value=&quot;&quot;&gt;<br />
+<br />
+&lt;param name=&quot;autoPlay&quot; value=&quot;true&quot;&gt;<br />
+&lt;param name=&quot;showPlayer&quot; value=&quot;true&quot;&gt;<br />
+&lt;param name=&quot;showInfo&quot; value=&quot;false&quot;&gt;<br />
+<br />
+&lt;param name=&quot;cube&quot; value=&quot;&quot;&gt;<br />
+&lt;param name=&quot;visibleCornerParts&quot; value=&quot;urf,dfr,ubr,drb,ulb,dbl,ufl,dlf&quot;&gt;<br />
+&lt;param name=&quot;visibleEdgeParts&quot; value=&quot;ur,rf,dr,bu,rb,bd,ul,lb,dl,fu,lf,fd&quot;&gt;<br />
+&lt;param name=&quot;visibleSideParts&quot; value=&quot;r,u,f,l,d,b&quot;&gt;<br />
+<br />
+&lt;param name=&quot;colorMap&quot; value=&quot;r=#ff4600,u=#ffd200,f=#003373,l=#8c000f,d=#f8f8f8,b=#00732f&quot;&gt;<br />
+&lt;param name=&quot;faceList&quot; value=&quot;0,1,2,3,4,5&quot;&gt;<br />
+&lt;param name=&quot;stickerList&quot; value=&quot;0,0,0,0, 1,1,1,1, 2,2,2,2, 3,3,3,3, 4,4,4,4, 5,5,5,5&quot;&gt;<br />
+&lt;param name=&quot;stickerListFront&quot; value=&quot;0,0,0,0&quot;&gt;<br />
+&lt;param name=&quot;stickerListRight&quot; value=&quot;1,1,1,1&quot;&gt;<br />
+&lt;param name=&quot;stickerListDown&quot; value=&quot;2,2,2,2&quot;&gt;<br />
+&lt;param name=&quot;stickerListBack&quot; value=&quot;3,3,3,3&quot;&gt;<br />
+&lt;param name=&quot;stickerListLeft&quot; value=&quot;4,4,4,4&quot;&gt;<br />
+&lt;param name=&quot;stickerListUp&quot; value=&quot;5,5,5,5&quot;&gt;<br />&lt;param name=&quot;stickersImage&quot; value=&quot;&quot;&gt;<br />
+<br />
+&lt;param name=&quot;backgroundColor&quot; value=&quot;#ffffff&quot;&gt;<br />&lt;param name=&quot;backgroundImage&quot; value=&quot;&quot;&gt;<br />
+<br />
+&lt;param name=&quot;alpha&quot; value=&quot;-25&quot;&gt;<br />
+&lt;param name=&quot;beta&quot; &nbsp;value=&quot;45&quot;&gt;<br />
+<br />
+&lt;param name=&quot;ambientLightIntensity&quot; value=&quot;1.0&quot;&gt;<br />
+&lt;param name=&quot;lightSourceIntensity&quot; value=&quot;0.6&quot;&gt;<br />&lt;param name=&quot;lightSourcePosition&quot; value=&quot;-500,500,1000&quot;&gt;<br />
+<br />
+&lt;param name=&quot;twistDuration&quot; &nbsp;value=&quot;400&quot;&gt;<br />
+<br />
+&lt;param name=&quot;debug&quot; value=&quot;false&quot;&gt;<br />
+&lt;/applet&gt;</p>
+<h5 class="paddingdouble">Deprecated parameters</h5>
+  <p>The following parameters are supported for backwards compatibility. These  parameters are based on the faces listed in the order f-r-d-b-l-u.</p>
+  <p class="listingBottomFragment">&lt;param name=&quot;colorTable&quot; value=&quot;#003373,#ff4600,#f8f8f8,#00732f,#8c000f,#ffd200&quot;&gt;<br />
+    &lt;param name=&quot;faces&quot; value=&quot;0,1,2,3,red,5&quot;&gt;<br />
+&lt;param name=&quot;stickers&quot; value=&quot;0,0,0,0, 1,1,1,1, 2,2,2,2, 3,3,3,3, 4,4,4,4, 5,5,5,5&quot;&gt;<br />
+  &lt;param name=&quot;stickersFront&quot; value=&quot;0,0,0,0&quot;&gt;<br />
+  &lt;param name=&quot;stickersRight&quot; value=&quot;1,1,1,1&quot;&gt;<br />
+  &lt;param name=&quot;stickersDown&quot; value=&quot;2,2,2,2&quot;&gt;<br />
+  &lt;param name=&quot;stickersBack&quot; value=&quot;3,3,3,3&quot;&gt;<br />
+  &lt;param name=&quot;stickersLeft&quot; value=&quot;4,4,4,4&quot;&gt;<br />
+  &lt;param name=&quot;stickersUp&quot; value=&quot;5,5,5,5&quot;&gt;<br />
+  &lt;param name=&quot;stickersImage&quot; value=&quot;SignedCube.jpg&quot;&gt;<br />
+</p>
+  <h2 class="paddingdouble"><a name="XMLResourceFile" id="XMLResourceFile"></a>Resource File</h2>
+<p></p>
+  <p>Using a resource file, you can specify the following things:</p>
+  <ul>
+    <li>Script notations</li>
+    <li>Cube designs (color schemes, sticker images)</li>
+  </ul>
+  <p>&nbsp;</p>
+<p>You can reference your resource file using the parameter <code>resourceFile</code>.</p>
+<p>The applet picks up the default notation, and the default cube specified in the resource file.</p>
+  <p>You can explicitly refer a specific notation, cube and script from the XML file using the parameters <code>notation</code> and <code>cube</code>.</p>
+  <p>You will be able create the XML resource file using <a href="http://www.randelshofer.ch/cubetwister">CubeTwister 2</a>, once it is finished. For now, you can use the <a href="notation.html">XML Notation Tool</a>, to define your own notation.</p>
+  <p>The file PocketCubeNotations.xml is part of the PocketPlayer distribution. This file contains a number of example notations.</p>
+  <h2 class="paddingdouble">Deployment </h2>
+  <p>The directory <code>PocketPlayerApplet</code> contains the bundled applet files.</p>
+  <p></p>
+  <ul>
+    <li>
+      <p><strong>PocketPlayer.jar, .jar.gz, .jar.pack.gz<br />
+      </strong>Renders the cube using a realistically looking phong shader. Can apply a picture to the stickers of the cube and to the background of the applet. This applet needs lots of memory to run. Don't put more than a handful on a single web page.</p>
+    </li>
+    <li>
+      <p><strong>PocketPlayerFlat.jar, .jar.gz, .jar.pack.gz</strong><br />
+        Renders the cube using a resource friendly flat shader. Can only appy a picture to the background of the applet. 
+        This applet is resource friendly. You can put up to 50 on a single web page.</p>
+    </li>
+    <li><strong>PocketCubeNotations.xml</strong><br />
+      You need this file (or one made by yourself), if you want to use a different notation than <a href="notations/superset_eng_2x2.html">Superset ENG 2x2</a>.<br />
+      <br />
+    </li>
+  </ul>
+  <p>To make the applet work, you should at least upload the following files onto your webserver. You can put these files into the same directory which contains your HTML documents, or into a separate directory:</p>
+  <p class="listing">PocketPlayer.jar<br />
+    PocketPlayerFlat.jar<br />
+    PocketCubeNotations.xml<br />
+  </p>
+  <p>If your web-server supports PHP scripts, you can significantly improve the download-time of the applet, by uploading the following files to your web-server:</p>
+  <p class="listing">PocketPlayer.jar<br />
+    PocketPlayer.jar.gz<br />
+    PocketPlayer.jar.pack.gz<br />
+    PocketPlayerFlat.jar<br />
+    PocketPlayerFlat.jar.gz<br />
+    PocketPlayerFlat.jar.pack.gz<br />
+    PocketCubeNotations.xml<br />
+    pack200.php<br />
+  </p>
+  <p>The get the improved performance, reference the applet using the following archive tag: <code>archive=&quot;pack200.php/PocketPlayer.jar&quot;</code>. <br />
+      <br />
+    Alternatively, you can configure the web-server to automatically invoke the pack200.php script, when a .jar file is requested.</p>
+  <p>To get automatic invocation of the pack200.php script with an Apache web-server, you need to upload a <code>.htaccess</code> file into the  directory. Here is how the <code>.htaccess</code> file should look like, when you put all files into a web-directory named <code>/pocketplayer</code>:</p>
+  <div class="listing"> Options FollowSymLinks ExecCGI<br />
+    RewriteEngine on<br />
+    RewriteBase /pocketplayer<br />
+    RewriteRule ^(.*)\.jar$ pack200.php/$1.jar.pack.gz</div>
+  <h2 class="paddingdouble">Copyright</h2>
+<p> The PocketPlayer applet has been programmed by Werner Randelshofer.</p>
+  <p>PocketPlayer &copy; 2007<br />
+  Werner Randelshofer<br />
+  All Rights Reserved.</p>
+  <p>idx3d Engine &copy; 1999/2000<br />
+  Peter Walser<br />
+  All Rights Reserved.</p>
+  <h5 class="doubleparagraph">Contact info:</h5>
+<p> Werner Randelshofer, Harmettlenstr. 4, Goldau,
+    CH-6410, Switzerland<br />
+      <a href="mailto:werner.randelshofer@bluewin.ch">werner.randelshofer@bluewin.ch</a><br />
+  <a href="http://www.randelshofer.ch">www.randelshofer.ch </a></p>
+<p>Trademarks:</p>
+  <p><font size="-1">Java and all Java-based trademarks and logos are trademarks
+      or registered trademarks of Sun Microsystems, Inc. in the U.S. or other
+      countries, and are used under license. </font> </p>
+  <p><font size="-1">PocketPlayer is not derived from, is not associated with
+      and is not endorsed or sponsered by the owner of the RUBIK'S POCKET
+      CUBE Trademark. This owner is Seven Towns Limited, the manufacturer and
+      worldwide distributor of the RUBIK'S POCKET CUBE three dimensional puzzle
+      and provider of an electronic version of the puzzle via its <a href="http://www.rubiks.com">official
+      web site</a>.</font></p>
+</body>
+</html>

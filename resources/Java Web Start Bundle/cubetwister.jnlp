@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- JNLP File for CubeTwister -->
+<jnlp
+  spec="1.5.0+"
+  codebase="http://www.randelshofer.ch/cubetwister/jws"
+  href="cubetwister.jnlp">
+  <update check="background" policy="always"/>
+  <information>
+    <title>CubeTwister</title>
+    <vendor>Werner Randelshofer</vendor>
+    <homepage href="http://www.randelshofer.ch/cubetwister"/>
+    <description kind="short">CubeTwister is a companion for Rubik's Cube like puzzles.</description>
+    <description kind="one-line">A companion for Rubik's Cube like puzzles.</description>
+    <description kind="tooltip">CubeTwister</description>
+    <offline-allowed/>
+    <shortcut online="false">
+    	<desktop/>
+    	<menu submenu="CubeTwister"/>
+    </shortcut>
+    <icon width="128" height="128" href="http://www.randelshofer.ch/cubetwister/jws/icon128x128.png"></icon>
+    <icon kind="splash" width="500" height="300" href="http://www.randelshofer.ch/cubetwister/jws/splash.png"></icon>
+    <icon width="32" height="32" href="http://www.randelshofer.ch/cubetwister/jws/icon32x32.png"></icon>
+    <icon width="64" height="64" href="http://www.randelshofer.ch/cubetwister/jws/icon64x64.png"></icon>
+  </information>
+  <security> 
+      <all-permissions/> 
+  </security> 
+  <resources>
+        <!-- List of suitable J2SE configurations, most preferred first. -->
+        <java version="1.6+" initial-heap-size="64m" max-heap-size="600m" />
+        <java version="1.6+" />
+
+        <property name="jnlp.packEnabled" value="true"/>
+ 	<nativelib href="libquaqua.jnilib.jar"/> 
+ 	<nativelib href="libquaqua64.jnilib.jar"/> 
+ 	<jar href="CubeTwister.jar"/>
+        <jar href="htmltemplates.tar.bz.jar"/>
+  </resources>
+  <application-desc main-class="ch.randelshofer.cubetwister.Main"/>
+</jnlp> 

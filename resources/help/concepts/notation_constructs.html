@@ -1,0 +1,35 @@
+<HTML>
+<HEAD>
+<TITLE>Notation Conctructs</TITLE> <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+<LINK REL="stylesheet" HREF="../stylesheet.css"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<H1>  Constructs</H1>
+<P>A construct is a compound <a href="interpreter.html">statement.</a> Constructs can be built from other statements and from sequences of statements. </P>
+<P>In CubeTwister, a construct can be used wherever a statement can be used.</P>
+<h2>Grouping</h2>
+<p>Sequences of statements can be grouped to build a compound statement.</p>
+<p>In CubeTwister a sequence can be grouped 
+  by putting the sequence between a begin group <a href="interpreter.html">token</a> and an end group token. </p>
+<h2>Repetition</h2>
+<P>A statement can be repeated multiple times.</P>
+<P>In CubeTwister repetitions are specified by supplying a repetition count.</P>
+<h2>Inversion</h2>
+<p>An inversion inverts the effect of a statement. A statement followed by its inverted statement has no effect on the state of a cube.</p>
+<p>e.g. An inverted move affects the same layers by the same amount of degrees, but into the opposite direction. </p>
+<p>e.g. An inverted permutation cycle permutes the parts into the opposite direction of the cycle.</p>
+<p>e.g. Moves and permutation cycles in an inverted grouping are inverted each and performed in the opposite sequence from right to left.</p>
+<p>In CubeTwister a move or a grouping can be inverted using an invertor token.</p>
+<h2>Reflection</h2>
+<p>A reflection inverts the axis of a move statement.</p>
+<h2>Conjugation</h2>
+<p>A conjugation of two statements A and B has the same effect as performing the sequence A B followed by the inversion of A.</p>
+<h2>Commutation</h2>
+<p>A commutation of two statements A and B has the same effect as performing the sequence A B followed by the inversion of A and the inversion of B.</p>
+<h2>Rotation</h2>
+<p>A rotation of two statements A and B has the same effect as performing the inversion of A followed by the sequence B A.</p>
+<h2></h2>
+<h2></h2>
+<H2>&nbsp;</H2>
+</BODY>
+</HTML>

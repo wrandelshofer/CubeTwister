@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>CubePlayer Applets · JavaScript API</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+<script type="text/javascript">
+function fixSelection() {
+	// We have to fix the selection once the page is loaded because the autocomplete-feature
+	// of the browser gets into our way.
+
+	// Determine which applet to select
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "RubikPlayer";
+	}
+	
+	// Select the applet
+	var choice = document.getElementById("theChoice");
+	for (i in choice.options) {
+		if (choice.options[i].value == whichApplet) {
+			choice.selectedIndex = i;
+			break;
+		}
+	}
+	
+}
+function openPage(name) {
+	if (name.charAt(0) != '-') {
+
+	// Opens the page again for the specified applet
+	var newLocation = window.location.href;
+	
+	// Remove fragment from URI
+	var p = newLocation.indexOf('#');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	// Remove query string from URI
+	p = newLocation.indexOf('?');
+	if (p != -1) {
+		newLocation = newLocation.substring(0, p);
+	}
+	
+	// Append applet name to URI	
+	newLocation += '?'+name;
+	window.location.href = newLocation;
+	}
+}
+function printAPI() {
+	var applet = document.getElementById("theApplet");
+	var table = document.getElementById("theTable");
+	var info = applet.getAPIInfo();
+	for (var i=0; i < info.length; i++) {
+		var tr;
+		var td;
+		
+		tr = document.createElement("tr");
+		table.tBodies[0].appendChild(tr);
+		td = document.createElement("td");
+		td.appendChild(document.createTextNode(info[i][0]));
+		tr.appendChild(td);
+		td = document.createElement("td");
+		td.appendChild(document.createTextNode(info[i][1]));
+		tr.appendChild(td);
+	}
+}
+</script>
+<body bgcolor="#FFFFFF" onload="javascript:fixSelection();printAPI();">
+<h3>CubePlayer Applets</h3>
+<h1>JavaScript API</h1>
+<p>The CubePlayer applets provide the JavaScript API shown in the table below.</p>
+<form id="form1" method="post" action="">
+  <label>Select a cube:
+  <select name="theChoice" id="theChoice" onchange="openPage(this.value);">
+    <option value="PocketPlayer">2x2 Pocket Cube</option>
+    <option value="PocketPlayerFlat">2x2 Pocket Cube (flat)</option>
+    <option value="-1"></option>
+    <option value="RubikPlayer" selected="selected">3x3 Rubik's Cube</option>
+    <option value="RubikPlayerFlat">3x3 Rubik's Cube (flat)</option>
+    <option value="BarrelPlayer">3x3 Rubik's Barrel</option>
+    <option value="BarrelPlayerFlat">3x3 Rubik's Barrel (flat)</option>
+    <option value="DiamondPlayer">3x3 Rubik's Diamond</option>
+    <option value="DiamondPlayerFlat">3x3 Rubik's Diamond (flat)</option>
+    <option value="CuboctahedronPlayer">3x3 Rubik's Cuboctahedron</option>
+    <option value="CuboctahedronPlayerFlat">3x3 Rubik's Cuboctahedron (flat)</option>
+    <option value="-2"></option>
+    <option value="RevengePlayer">4x4 Revenge Cube</option>
+    <option value="RevengePlayerFlat">4x4 Revenge Cube (flat)</option>
+    <option value="-3"></option>
+    <option value="ProfessorPlayer">5x5 Professor Cube</option>
+    <option value="ProfessorPlayerFlat">5x5 Professor Cube (flat)</option>
+    <option value="-4"></option>
+    <option value="Cube6Player">6x6 Cube 6</option>
+    <option value="Cube6PlayerFlat">6x6 Cube 6 (flat)</option>
+    <option value="VCube6Player">6x6 V-Cube 6</option>
+    <option value="VCube6PlayerFlat">6x6 V-Cube 6 (flat)</option>
+    <option value="-5"></option>
+    <option value="Cube7Player">7x7 Cube 7</option>
+    <option value="Cube7PlayerFlat">7x7 Cube 7 (flat)</option>
+    <option value="VCube7Player">7x7 V-Cube 7</option>
+    <option value="VCube7PlayerFlat">7x7 V-Cube 7 (flat)</option>
+  </select>
+  </label>
+</form>
+<p>
+  <script type="text/javascript">
+	// Determine which applet to show
+	var whichApplet = decodeURIComponent(window.location.search.substring(1));
+	if (whichApplet == null || whichApplet.length == 0) {
+		whichApplet = "RubikPlayer";
+	}
+	
+	// Write the applet tag for the specified applet
+	document.write('<applet id="theApplet" name="theApplet" archive="applets/'+whichApplet+'.jar" codebase = "../.."');
+	document.write('code="'+whichApplet+'" width="120" height="120" mayscript="mayscript">');
+  document.write('<param name="permissions" value="sandbox" />');
+	document.write('</applet>');
+  </script>
+</p>
+<p>&nbsp;</p>
+<table width="600" border="0" cellpadding="0" cellspacing="0" id="theTable" class="paramTable">
+  <tr>
+    <th scope="col">API</th>
+    <th scope="col">Description</th>
+  </tr>
+</table>
+<p class="tip"><strong>Note:</strong> If you don't see the API listed in the table, you might want to open this page with a different browser. For example with Firefox. Make sure that Java and JavaScript is installed and activated.</p>
+<p class="tip">&nbsp;</p>
+</body>
+</html>

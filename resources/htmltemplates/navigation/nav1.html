@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Navigation 1</title>
+<link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="nav1">
+<h4>Categories</h4>
+<ul>
+${IF cube.count!=0}
+  <li><a href="nav2_cubes.html" target="nav2Frame">${cubes.title}</a></li>
+${ENDIF}
+${IF notation.count!=0}
+  <li><a href="nav2_notations.html" target="nav2Frame">${notations.title}</a></li>
+${ENDIF}
+${IF script.count!=0}
+  <li><a href="nav2_scripts.html" target="nav2Frame">${scripts.title}</a></li>
+${ENDIF}
+${IF note.count!=0}
+  <li><a href="nav2_notes.html" target="nav2Frame">${notes.title}</a></li>
+${ENDIF}
+</ul>
+</body>
+</html>

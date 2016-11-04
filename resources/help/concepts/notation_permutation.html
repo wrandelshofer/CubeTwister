@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<TITLE>Permutation Notation</TITLE> <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1"> 
+<LINK REL="stylesheet" HREF="../stylesheet.css"></HEAD>
+
+<BODY BGCOLOR="#FFFFFF">
+<H1>Permutation Notation</H1>
+<P>The permutation notation is used to 
+describe location and orientation changes of cube parts.</P><H2>Components of 
+a Rubik's Cube:</H2><P>A Rubik's Cube has 6 faces.</P><P>It has 6 side parts, 
+8 corner parts and 12 edge parts.</P><P>Side parts have 1 sticker, edge parts 
+have 2 stickers, corner parts have 3 stickers.</P><H2>Describing the location 
+of a part:</H2><P>The location of a part can be described by listing the faces 
+on which the stickers of the part can be seen.</P>
+<P> e.g. The faces can be denoted by 
+the letters: &laquo;r&raquo;, &laquo;u&raquo;, &laquo;f&raquo;, &laquo;l&raquo;, 
+&laquo;d&raquo;, &laquo;b&raquo; (right, up, front, left, down, back).</P>
+<P> 
+e.g. &laquo;r&raquo; describes that the sticker
+of
+a
+side
+part
+can
+be
+seen
+from 
+the right of the cube.</P>
+<P>e.g. &laquo;fu&raquo; describes that the stickers 
+of an edge part can be seen at the front and upper faces of the cube.</P>
+<P>e.g. 
+&laquo;frd&raquo; describes that the stickers of a corner part can be seen at
+
+the front, right, and down faces of the cube.</P>
+<H2>Describing location changes 
+of parts:</H2><P>Location changes always happen in cycles. If a part moves into 
+the location of another part, then that part must move as well. This may trigger 
+more location changes until one part closes the cycle by moving into the start 
+location of the cycle.</P><P>To describe a cycle, we list the location of the 
+parts in the sequence of the change. Each cycle is enclosed in brackets. Each 
+location description is separated by a comma.</P>
+<P>e.g. &laquo;(fu,fr,fd,fl)&raquo; 
+describes, that the edge part at &laquo;fu&raquo; moves to &laquo;fr&raquo;, 
+&laquo;fr&raquo; moves to &laquo;fd&raquo;, &laquo;fd&raquo; moves to &laquo;fl&raquo;,
+
+and &laquo;fl&raquo; moves to &laquo;(fu)&raquo;.</P>
+<P>e.g. &laquo;(fu,fd) 
+(lf,rf)&raquo; denotes two disjoint cycles. &laquo;fu&raquo; and &laquo;fd&raquo; 
+are swapping their locations, and &laquo;lf&raquo; and &laquo;rf&raquo; are
+
+swapping their locations as well.</P>
+<H2>Describing orientation changes of parts:</H2><P>When 
+the orientation of a part changes, then it stickers can be seen in a different 
+sequence on the faces of the cube.</P><P>The face names in a cycle can be used 
+to describe orientation changes as well. The first face name in a location description 
+denotes where the first sticker goes. The second face name in a location description 
+denotes where the second sticker goes, and so on.</P><P>e.g. &laquo;(fu,fr,...)&raquo; 
+describes, that the first sticker on face &laquo;f&raquo; at edge location &laquo;<U>f</U>u&raquo; 
+goes to face &laquo;f&raquo; at edge location &laquo;<U>f</U>r&raquo;, and the 
+second sticker on face &laquo;u&raquo; at location &laquo;f<U>u</U>&raquo; goes 
+to face &laquo;r&raquo; at location &laquo;f<U>r</U>&raquo;.</P><P>e.g. &laquo;(ufl,rfu,...)&raquo; 
+describes, that the first sticker on face &laquo;u&raquo; at corner location &laquo;<U>u</U>fl&raquo; 
+goes to face &laquo;r&raquo; at corner location &laquo;<U>r</U>fu&raquo;, the 
+second sticker on face &laquo;f&raquo; at corner location &laquo;u<U>f</U>l&raquo; 
+goes to face &laquo;f&raquo; at &laquo;r<U>f</U>u&raquo;, and the third sticker 
+on &laquo;l&raquo; at &laquo;uf<U>l</U>&raquo; goes to &laquo;u&raquo; at &laquo;rf<U>u</U>&raquo;.</P><H2>Describing 
+the orientation change of the last part in a cycle</H2><P>To denote an orientation 
+change of the last edge part in a cycle, we prepend a &laquo;+&raquo; to the location 
+description of the first part of the cycle.</P><P>To denote an orientation change 
+in clockwise direction of the last corner part in a cycle, we prepend a &laquo;+&raquo; 
+to the location description of the first part in the cycle. To denote an orientation 
+change in anticlockwise direction, we prepend a &laquo;-&raquo;.</P><P>e.g. &laquo;(+fu,fr)&raquo; 
+describes that the sticker on face &laquo;f&raquo; of the last part &laquo;<U>f</U>r&raquo; 
+goes to face &laquo;u&raquo; of the first part &laquo;f<U>u</U>&raquo;, and the 
+sticker &laquo;r&raquo; of &laquo;f<U>r</U>&raquo; goes to &laquo;f&raquo; at 
+&laquo;<u>f</u>u&raquo;.</P>
+<H2>Describing orientation changes of side parts:</H2><P>A 
+side part can have four different orientations. Since we can not tell the orientation 
+of a side part from its location name, we have to use a prefix. No prefix denotes 
+that the side part is in its default orientation. &laquo;+&raquo; denotes that 
+the side part is oriented at 90&deg; in clockwise direction. &laquo;++&raquo; 
+denotes that the side part is oriented at 180&deg;. &laquo;-&raquo; denotes that 
+the side part is oriented at 90&deg; in anticlockwise direction.</P><P>An orientation 
+change is denoted by the difference between the orientation of the part at the 
+current location and the orientation of the part at the next location.</P><P>To 
+describe the orientation change of the last part in a cycle, we prepend an orientation 
+token to the first part in the cycle.</P><P>e.g. &laquo;(f,+r)&raquo; describes 
+that the side part at location &laquo;f&raquo; moves to &laquo;r&raquo; and changes 
+its orientation by 90&deg; in clockwise direction. The side part at &laquo;r&raquo; 
+moves to &laquo;f&raquo; and changes its orientation by 90&deg; in anticlockwise 
+direction.</P><P>e.g. &laquo;(+f,+r)&raquo; describes that the side part at location 
+&laquo;f&raquo; moves to &laquo;r&raquo; and changes its orientation by 90&deg; 
+in clockwise direction. The side part at &laquo;r&raquo; moves to &laquo;f&raquo; 
+without changing its orientation.</P><H2></H2><H2></H2>
+</BODY>
+</HTML>

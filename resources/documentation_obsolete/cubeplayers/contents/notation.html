@@ -1,0 +1,801 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>PocketPlayer &middot; Notation Tool</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="../../../../guide/applets/style.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+.style1 {font-weight: bold}
+-->
+</style>
+</head>
+
+<body id="noteBody">
+
+<h3>CubePlayer</h3>
+<h1>  Notation Tool</h1>
+
+<p>With the form below you can generate the XML code  needed to embed the PocketPlayer applet in your web page. </p>
+<p>You can save the generated XML code into a file, and then use the Applet parameter <code>resourceFile</code> to reference it. For example <code>&lt;param name=&quot;resourceFile&quot; value=&quot;mynotation.xml&quot;/&gt;</code></p>
+<p>&nbsp;</p>
+
+<form action="" method="post" id="cfg">
+  <p>Generated XML code to be referenced by the PocketPlayer applet tag: 
+    <textarea name="appletTag" style="width:600px;" rows="10" id="appletTag">    </textarea>
+  </p>
+  <p align="center">&nbsp;  </p>
+  <p align="center">
+    <input name="generate2" type="button" id="generate2" onclick="generateXML()" value="Generate XML" />
+  </p>
+  <p>&nbsp;</p>
+  <p>Notation Parameters:</p>
+  <table border="0" cellpadding="1" cellspacing="0" bgcolor="#999999">
+    <tr>
+      <td><table width="600" border="0" cellpadding="1" cellspacing="0" bgcolor="#FFFFFF">
+    <tr align="left" valign="top">
+      <td><div class="marginalia"><span class="info"><b>Notation Name</b></span></div></td>
+      <td class="info"><label>
+        <input name="name" type="text" id="name" value="My PocketCube Notation" />
+      </label></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td><div class="marginalia"><span class="info"><b>Moves</b></span></div></td>
+      <td class="info"><table border="0" cellspacing="0" cellpadding="2">
+        <tr>
+          <th scope="col">Layers</th>
+          <th scope="col">Angle</th>
+          <th scope="col">R</th>
+          <th scope="col">U</th>
+          <th scope="col">F</th>
+          <th scope="col">L</th>
+          <th scope="col">D</th>
+          <th scope="col">B</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>+90&deg;</td>
+          <td><label>
+            <input name="R" type="text" id="R" value="R" size="6" />
+          </label></td>
+          <td><input name="U" type="text" id="U" value="U" size="6" /></td>
+          <td><input name="F" type="text" id="F" value="F" size="6" /></td>
+          <td><input name="Li" type="text" id="Li" value="L" size="6" /></td>
+          <td><input name="D" type="text" id="D" value="D" size="6" /></td>
+          <td><input name="B" type="text" id="B" value="B" size="6" /></td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>&ndash;90&deg;</td>
+          <td><input name="Ri" type="text" id="Ri" size="6" /></td>
+          <td><input name="Ui" type="text" id="Ui" size="6" /></td>
+          <td><input name="Fi" type="text" id="Fi" size="6" /></td>
+          <td><input name="Li" type="text" id="Li" size="6" /></td>
+          <td><input name="Di" type="text" id="Di" size="6" /></td>
+          <td><input name="Bi" type="text" id="Bi" size="6" /></td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>+180&deg;</td>
+          <td><input name="R2" type="text" id="R2" value="R2" size="6" /></td>
+          <td><input name="U2" type="text" id="U2" value="U2" size="6" /></td>
+          <td><input name="F2" type="text" id="F2" value="F2" size="6" /></td>
+          <td><input name="L2" type="text" id="L2" value="L2" size="6" /></td>
+          <td><input name="D2" type="text" id="D2" value="D2" size="6" /></td>
+          <td><input name="B2" type="text" id="B2" value="B2" size="6" /></td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>&ndash;180&deg;</td>
+          <td><input name="R2i" type="text" id="R2i" size="6" /></td>
+          <td><input name="U2i" type="text" id="U2i" size="6" /></td>
+          <td><input name="F2i" type="text" id="F2i" size="6" /></td>
+          <td><input name="L2i" type="text" id="L2i" size="6" /></td>
+          <td><input name="D2ii" type="text" id="D2ii" size="6" /></td>
+          <td><input name="B2i" type="text" id="B2i" size="6" /></td>
+        </tr>
+        <tr>
+          <td>1,2</td>
+          <td>90&deg;</td>
+          <td><input name="CR" type="text" id="CR" value="CR" size="6" /></td>
+          <td><input name="CU" type="text" id="CU" value="CU" size="6" /></td>
+          <td><input name="CF" type="text" id="CF" value="CF" size="6" /></td>
+          <td><input name="CL" type="text" id="CL" value="CL" size="6" /></td>
+          <td><input name="CD" type="text" id="CD" value="CD" size="6" /></td>
+          <td><input name="CB" type="text" id="CB" value="CB" size="6" /></td>
+        </tr>
+        <tr>
+          <td>1,2</td>
+          <td>180&deg;</td>
+          <td><input name="CR2" type="text" id="CR2" value="CR2" size="6" /></td>
+          <td><input name="CU2" type="text" id="CU2" value="CU2" size="6" /></td>
+          <td><input name="CF2" type="text" id="CF2" value="CF2" size="6" /></td>
+          <td><input name="CL2" type="text" id="CL2" value="CL2" size="6" /></td>
+          <td><input name="CD2" type="text" id="CD2" value="CD2" size="6" /></td>
+          <td><input name="CB2" type="text" id="CB2" value="CB2" size="6" /></td>
+        </tr>
+      </table>      
+      <p><br/>
+          <br />
+      </p></td>
+      </tr>
+    
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info">
+        <div class="marginalia"><label><strong>
+          <input name="permutationCheck" type="checkbox" class="info" id="permutationCheck" checked="checked" 
+          onclick="permutationDiv.style.display=(permutationCheck.checked) ? 'block' : 'none';" />
+          Permutation</strong>
+      </label></div></td>
+      <td class="info"><div id="permutationDiv">
+        <table border="0" cellspacing="0" cellpadding="2">
+          <tr>
+            <th scope="col">&nbsp;</th>
+            <th scope="col">R</th>
+            <th scope="col">U</th>
+            <th scope="col">F</th>
+            <th scope="col">L</th>
+            <th scope="col">D</th>
+            <th scope="col">B</th>
+          </tr>
+          <tr>
+            <td>Faces</td>
+            <td><label>
+              <input name="permR" type="text" id="permR" value="r" size="6" />
+            </label></td>
+            <td><input name="permU" type="text" id="permU" value="u" size="6" /></td>
+            <td><input name="permF" type="text" id="permF" value="f" size="6" /></td>
+            <td><input name="permL" type="text" id="permL" value="l" size="6" /></td>
+            <td><input name="permD" type="text" id="permD" value="d" size="6" /></td>
+            <td><input name="permB" type="text" id="permB" value="b" size="6" /></td>
+          </tr>
+          <tr>
+            <td>Orientation</td>
+            <td colspan="2">Plus:</td>
+            <td><input name="permPlus" type="text" id="permPlus" value="+" size="6" /></td>
+            <td colspan="2">Pus Plus:</td>
+            <td><input name="permPlusPlus" type="text" id="permPlusPlus" value="++" size="6" /></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td colspan="2">Minus:</td>
+            <td><input name="permMinus" type="text" id="permMinus" value="-" size="6" /></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Cycle</td>
+            <td colspan="2">Begin:</td>
+            <td><input name="permBegin" type="text" id="permBegin" value="(" size="6" /></td>
+            <td colspan="2">End:</td>
+            <td><input name="permEnd" type="text" id="permEnd" value=")" size="6" /></td>
+          </tr>
+          <tr>
+            <td>Delimiter</td>
+            <td><input name="permDelim" type="text" id="permDelim" value="," size="6" /></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td>Position:</td>
+            <td colspan="6"><label>
+              <select name="permPos" id="permPos">
+                <option value="prefix">Before Cycle Begin</option>
+                <option value="precircumfix">After Cycle Begin</option>
+                <option value="suffix">After Cycle End</option>
+                <option value="postcircumfix">Before Cycle End</option>
+              </select>
+            </label></td>
+            </tr>
+        </table>
+      </div>
+        <p>&nbsp;</p></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><div class="marginalia">
+        <strong>
+        <label><input name="grouping" type="checkbox" id="groupingCheck" checked="checked"
+        onclick="groupingDiv.style.display=(groupingCheck.checked) ? 'block' : 'none';" />Grouping</label>
+        </strong></div></td>
+      <td ><div id="groupingDiv">Begin:
+          <input name="groupingBegin" type="text" id="groupingBegin" value="(" size="6" />
+      End:
+      <input name="groupingEnd" type="text" id="groupingEnd" value=")" size="6" />
+      </div>       </td>
+      </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><div class="marginalia"><strong><label>
+        
+          <input name="repetition" type="checkbox" id="repetitionCheck" checked="checked"
+          onclick="repetitionDiv.style.display=(repetitionCheck.checked) ? 'block' : 'none';" />
+          Repetition
+        </label>
+      </strong></div></td>
+      <td ><div id="repetitionDiv">
+        Begin:
+      <input name="repetitionBegin" type="text" id="repetitionBegin" size="6" />
+      End:
+      <input name="repetitionEnd" type="text" id="repetitionEnd" size="6" />
+      Position:
+      <select name="repetitorPos" id="repetitorPos2">
+        <option value="prefix">Leading</option>
+        <option value="suffix" selected="selected">Trailing</option>
+      </select>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr align="right" size="1" class="style1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><div class="marginalia"><strong><label>
+        
+          <input name="inversion" type="checkbox" id="inversionCheck" checked="checked"
+          onclick="inversionDiv.style.display=(inversionCheck.checked) ? 'block' : 'none';" />
+          Inversion
+        </label>
+      </strong></div></td>
+      <td ><div id="inversionDiv">
+        Invertor:
+      <input name="invertor" type="text" id="invertor" value="'" size="6" />
+      Position:
+      <select name="invertorPos" id="invertorPos">
+        <option value="prefix">Leading</option>
+        <option value="suffix" selected="selected">Trailing</option>
+      </select>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr align="right" size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><div class="marginalia"><strong><label>
+       
+          <input name="reflection" type="checkbox" id="reflectionCheck" checked="checked"
+          onclick="reflectionDiv.style.display=(reflectionCheck.checked) ? 'block' : 'none';" />
+          Reflection
+        </label>
+      </strong></div></td>
+      <td ><div id="reflectionDiv">
+        Reflector:
+      <input name="reflector" type="text" id="reflector" value="*" size="6" />
+      Position:
+      <select name="reflectorPos" id="reflectorPos">
+        <option value="prefix">Leading</option>
+        <option value="suffix" selected="selected">Trailing</option>
+      </select>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr align="right" size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><div class="marginalia"><strong><label>
+      
+          <input name="conjugation" type="checkbox" id="conjugationCheck" checked="checked"
+          onclick="conjugationDiv.style.display=(conjugationCheck.checked) ? 'block' : 'none';" />
+          Conjugation
+        </label></strong></div>      </td>
+      <td class="info"><div id="conjugationDiv">
+        <table border="0" cellspacing="0" cellpadding="2">
+
+            <tr>
+              <td>Conjugation</td>
+              <td>Begin:</td>
+              <td><input name="conjugationBegin" type="text" id="conjugationBegin" value="&lt;" size="6" /></td>
+              <td colspan="2">End:</td>
+              <td><input name="conjugationEnd" type="text" id="conjugationEnd" value="&gt;" size="6" /></td>
+            </tr>
+            <tr>
+              <td><p>&nbsp;</p></td>
+              <td>Delimiter:</td>
+              <td><input name="conjugationDelim" type="text" id="conjugationDelim" size="6" /></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>Position:</td>
+              <td colspan="2"><label>
+                <select name="conjugatorPos" id="conjugatorPos">
+                  <option value="prefix" selected="selected">Leading</option>
+                  <option value="suffix">Trailing</option>
+                  <option value="precircumfix">Enclosing</option>
+                </select>
+              </label></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+              </table>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr align="right" size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><div class="marginalia"><strong><label>
+       
+          <input name="conjugation2" type="checkbox" id="commutationCheck" checked="checked"
+          onclick="commutationDiv.style.display=(commutationCheck.checked) ? 'block' : 'none';" />
+          Commutation
+        </label>
+      </strong></div></td>
+      <td class="info"><div id="commutationDiv">
+        <table border="0" cellspacing="0" cellpadding="2">
+
+            <tr>
+              <td colspan="2">Begin:</td>
+              <td><input name="commutationBegin" type="text" id="commutationBegin" value="[" size="6" /></td>
+              <td>End:</td>
+              <td><input name="commutationEnd" type="text" id="commutationEnd" value="]" size="6" /></td>
+            </tr>
+            <tr>
+              <td colspan="2">Delimiter:</td>
+              <td><input name="commutationDelim2" type="text" id="commutationDelim" value="," size="6" /></td>
+              <td colspan="2">&nbsp;</td>
+              </tr>
+            <tr>
+              <td>Position:</td>
+              <td colspan="4"><label>
+                <select name="commutatorPos" id="commutatorPos">
+                  <option value="prefix">Leading</option>
+                  <option value="suffix" selected="selected">Trailing</option>
+                  <option value="precircumfix">Enclosing</option>
+                </select>
+              </label></td>
+              </tr>
+              </table>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr align="right" size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><div class="marginalia"><strong><label>
+        
+          <input name="rotation" type="checkbox" id="rotationCheck" checked="checked"
+          onclick="rotationDiv.style.display=(rotationCheck.checked) ? 'block' : 'none';" />
+          Rotation
+        </label>
+      </strong></div></td>
+      <td class="info"><div id="rotationDiv">
+        <table border="0" cellspacing="0" cellpadding="2">
+
+            <tr>
+              <td colspan="2">Begin:</td>
+              <td><input name="rotationBegin" type="text" id="rotationBegin" value="&lt;" size="6" /></td>
+              <td>End:</td>
+              <td><input name="rotationEnd" type="text" id="rotationEnd" value="&gt;*" size="6" /></td>
+            </tr>
+            <tr>
+              <td colspan="2">Delimiter:</td>
+              <td><input name="rotationDelim" type="text" id="rotationDelim" size="6" /></td>
+              <td colspan="2">&nbsp;</td>
+              </tr>
+            <tr>
+              <td>Position:</td>
+              <td colspan="4"><label>
+                <select name="rotatorPos" id="rotatorPos">
+                  <option value="prefix" selected="selected">Leading</option>
+                  <option value="suffix">Trailing</option>
+                  <option value="precircumfix">Enclosing</option>
+                </select>
+              </label></td>
+              </tr>
+              </table>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr align="right" size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td height="17" class="info"><div class="marginalia"><strong><label>
+     
+          <input name="delimiter" type="checkbox" id="delimiterCheck" checked="checked"
+          onclick="delimiterDiv.style.display=(delimiterCheck.checked) ? 'block' : 'none';" />
+          Delimiter
+        </label>
+      </strong></div></td>
+      <td class="info"><div id="delimiterDiv">
+        <table border="0" cellspacing="0" cellpadding="2">
+
+            <tr>
+              <td>Statement Delimiter:</td>
+              <td><input name="delim" type="text" id="delim" size="6" /></td>
+              <td>NOP:</td>
+              <td><input name="nop" type="text" id="nop" value="." size="6" /></td>
+            </tr>
+              </table>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr size="1" /></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info"><label>
+        <div class="marginalia"><strong>
+          
+          <input name="comments" type="checkbox" id="commentsCheck" checked="checked"
+          onclick="commentsDiv.style.display=(commentsCheck.checked) ? 'block' : 'none';" />
+          Comments</strong></div>
+      </label></td>
+      <td class="info"><div id="commentsDiv">
+        <table border="0" cellspacing="0" cellpadding="2">
+
+            <tr>
+              <td><p>Multi-Line </p>
+                  <p>Comment Begin:</p></td>
+              <td><input name="commentMultiLineBegin" type="text" id="commentMultiLineBegin" value="/*" size="6" /></td>
+              <td colspan="2">End:</td>
+              <td><input name="commentMultiLineEnd" type="text" id="commentMultiLineEnd" value="*/" size="6" /></td>
+            </tr>
+            <tr>
+              <td><p>Single-Line </p>
+                  <p>Comment Begin:</p></td>
+              <td><input name="commentSingleLineBegin" type="text" id="commentSingleLineBegin" value="//" size="6" /></td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+              </table>
+      </div></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td class="info" colspan="2"><hr size="1" /></td>
+    </tr>
+  </table></td>
+    </tr>
+  </table>
+  <p align="center">&nbsp;</p>
+  <p>&nbsp;</p>
+  <p align="center">&nbsp;</p>
+  <p align="center">&nbsp;</p>
+  <p align="center">&nbsp;</p>
+</form>
+<h2>&nbsp;</h2>
+<p>&nbsp;</p>
+<script type="text/javascript">
+function showApplet() {
+	var title = "PocketPlayer";     
+	var c = "<html><head><title>" + title + "</title></head>\n";
+	c += "<body bgcolor=\"#ffffff\" leftmargin=\"0\" topmargin=\"0\">\n";
+	c += document.forms[0].appletTag.value;
+	c += "</body>\n";
+	c += "</html>\n";
+	var w = 320;/*Number(document.forms[0].appletWidth.value) + 20;*/
+	var h = 320;/*Number(document.forms[0].appletHeight.value) + 20;*/
+	var features = "left=0,screenX=0,width=" + w + ",height=" + h + ",dependent";
+	var appletWindow = window.open("",title,features);
+	appletWindow.document.write(c);
+	appletWindow.document.close();
+}
+function generateAppletTag() {
+	var s ='';
+	s += '<applet code="PocketPlayer.class" archive="PocketPlayer.jar" width="300" height="300">\n';
+	s += '<param name="resourceData" value=\'';
+	generateXML();
+	s += document.forms[0].appletTag.value;
+	s += '\'>';
+	s += '</applet>';
+	document.forms[0].appletTag.value = s;
+}
+function generateXML() {
+	var fields = document.forms[0].elements;
+	
+	// s holds the XML string which 
+	var s = '';
+	s += '<CubeMarkup version="3">\n';
+	s += '<Notation layerCount="2" default="true">\n';
+	s += '  <Name>'+ fields['name'].value+'</Name>\n';
+	
+	// m holds all move statements along with layers and angles
+	var m = [
+	[ "R", "1", "x", "90" ],
+	[ "U", "1", "y", "90" ],
+	[ "F", "1", "z", "90" ],
+	[ "L", "1", "x", "-90" ],
+	[ "D", "1", "y", "-90" ],
+	[ "B", "1", "z", "-90" ],
+	[ "Ri", "1", "x", "-90" ],
+	[ "Ui", "1", "y", "-90" ],
+	[ "Fi", "1", "z", "-90" ],
+	[ "Li", "1", "x", "90" ],
+	[ "Di", "1", "y", "90" ],
+	[ "Bi", "1", "z", "90" ],
+	[ "R2", "1", "x", "180" ],
+	[ "U2", "1", "y", "180" ],
+	[ "F2", "1", "z", "180" ],
+	[ "L2", "1", "x", "-180" ],
+	[ "D2", "1", "y", "-180" ],
+	[ "B2", "1", "z", "-180" ],
+	[ "R2i", "1", "x", "-180" ],
+	[ "U2i", "1", "y", "-180" ],
+	[ "F2i", "1", "z", "-180" ],
+	[ "L2i", "1", "x", "180" ],
+	[ "D2i", "1", "y", "180" ],
+	[ "B2i", "1", "z", "180" ],
+	[ "CR", "1,2", "x", "90" ],
+	[ "CU", "1,2", "y", "90" ],
+	[ "CF", "1,2", "z", "90" ],
+	[ "CL", "1,2", "x", "-90" ],
+	[ "CD", "1,2", "y", "-90" ],
+	[ "CB", "1,2", "z", "-90" ],
+	[ "CR2", "1,2", "x", "180" ],
+	[ "CU2", "1,2", "y", "180" ],
+	[ "CF2", "1,2", "z", "180" ],
+	[ "CL2", "1,2", "x", "-180" ],
+	[ "CD2", "1,2", "y", "-180" ],
+	[ "CB2", "1,2", "z", "-180" ]
+	];
+	
+	s += '  <Statement symbol="move">\n';    
+	document.forms[0].appletTag.value = "";   
+	var i, j;
+	for (i = 0; i < m.length; i++) {
+		for (j = 0; j < fields.length; j++) {
+		var field = fields[j];
+			if (field.id == m[i][0]) {
+				if (field.value != "") {
+					s += '    <Token layerList="'+m[i][1]+'" axis="'+m[i][2]+'" angle="'+m[i][3]+'">'+
+						field.value+
+						'</Token>\n';
+				}
+			break;
+			}
+		} 
+	}
+	s += '  </Statement>\n';  
+	
+	var t;
+	if (fields['permutationCheck'].checked) {
+		t = [ "permR", "permU", "permF", "permL", "permD", "permB", 
+			"permPlus", "permMinus", "permPlusPlus", 
+			"permBegin", "permEnd", "permDelim" ];
+		
+		s += '  <Statement symbol="permutation" syntax="'+fields['permPos'].value+'">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	
+	if (fields['groupingCheck'].checked) {
+		t = [ "groupingBegin", "groupingEnd" ];
+		
+		s += '  <Statement symbol="grouping">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['repetitionCheck'].checked) {
+		t = [ "repetitionBegin", "repetitionEnd" ];
+		
+		s += '  <Statement symbol="repetition" syntax="'+fields['repetitorPos'].value+'">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['inversionCheck'].checked) {
+		t = [ "invertor" ];
+		
+		s += '  <Statement symbol="inversion" syntax="'+fields['invertorPos'].value+'">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['reflectionCheck'].checked) {
+		t = [ "reflector" ];
+		
+		s += '  <Statement symbol="reflection" syntax="'+fields['reflectorPos'].value+'">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['conjugationCheck'].checked) {
+		t = [ "conjugationBegin", "conjugationEnd", "conjugationDelim" ];
+		
+		s += '  <Statement symbol="conjugation" syntax="'+fields['conjugatorPos'].value+'">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['commutationCheck'].checked) {
+		t = [ "commutationBegin", "commutationEnd", "commutationDelim" ];
+		
+		s += '  <Statement symbol="conjugation" syntax="'+fields['commutatorPos'].value+'">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['rotationCheck'].checked) {
+		t = [ "rotationBegin", "rotationEnd", "rotationDelim" ];
+		
+		s += '  <Statement symbol="conjugation" syntax="'+fields['rotatorPos'].value+'">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['delimiterCheck'].checked) {
+		t = [ "delim", "nop" ];
+		
+		s += '  <Statement symbol="delimiter">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	if (fields['commentsCheck'].checked) {
+		t = [ "multiLineBegin", "multiLineEnd", "singleLineBegin" ];
+		
+		s += '  <Statement symbol="comment">\n';    
+		for (j = 0; j < fields.length; j++) {
+			var field = fields[j];
+			for (i = 0; i < t.length; i++) {
+				if (field.id == t[i]) {
+					if (field.value != "") {
+						s += '    <Token symbol="'+t[i]+'">'+xmlentities(field.value)+'</Token>\n';
+					}
+					break;
+				}
+			} 
+		}
+		s += '  </Statement>\n';  
+	}
+	
+	
+	
+	s += '</Notation>\n';
+	s += '</CubeMarkup>\n';
+	document.forms[0].appletTag.value = s;
+}
+
+/**
+ * Escapes a string with XML entities.
+ */
+function xmlentities(s) {
+	s = s.replace(/&/g,'&amp;');
+	s = s.replace(/"/g,'&quot;');
+	//s = s.replace(/'/g,'&apos;');
+	s = s.replace(/'/g,'apos');
+	//s = s.replace(/'/g,'&#27;');
+	/*
+	s = s.replace(/\</g, '&lt;');
+	s = s.replace(/\>/g, '&gt;');
+	*/
+	s = s.replace(/\</g, 'lt');
+	s = s.replace(/\>/g, 'gt');
+	return s;
+}
+  
+function generateAndShow() {
+	generateAppletTag();
+	showApplet();
+}
+
+function getElementsByClassName(className, tag, elm){
+	var testClass = new RegExp("(^|\\s)" + className + "(\\s|$)");
+	var tag = tag || "*";
+	var elm = elm || document;
+	var elements = (tag == "*" && elm.all)? elm.all : elm.getElementsByTagName(tag);
+	var returnElements = [];
+	var current;
+	var length = elements.length;
+	for(var i=0; i<length; i++){
+		current = elements[i];
+		if(testClass.test(current.className)){
+			returnElements.push(current);
+		}
+	}
+	return returnElements;
+}
+
+function showHideByClass(cssClass, makeVisible, displayType) {
+	/*alert("cssClass="+cssClass+" "+makeVisible);*/
+	var elems = getElementsByClassName(cssClass);
+	for (var i=0; i < elems.length; i++) {
+		if (makeVisible) {
+			elems[i].style.display = (elems[i].name = 'TR') ? 'table-row' : 'block';
+		} else {
+			elems[i].style.display = "none";
+		}
+	}
+}
+</script>
+</body>
+</html>
