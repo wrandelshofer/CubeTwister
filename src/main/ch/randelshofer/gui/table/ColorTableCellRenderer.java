@@ -13,7 +13,7 @@ import javax.swing.table.*;
 /**
  * ColorTableCellRenderer.
  * @author  Werner Randelshofer
- * @version 1.0 2001-08-02
+ * @version $Id$
  */
 public class ColorTableCellRenderer extends DefaultTableCellRenderer {
     private final static long serialVersionUID = 1L;

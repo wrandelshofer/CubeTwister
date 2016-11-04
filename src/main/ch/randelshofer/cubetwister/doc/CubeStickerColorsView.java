@@ -17,7 +17,7 @@ import javax.swing.event.*;
  * Stickers View.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2008-12-23 Renamed from CubeStickersView to CubeStickerColorsView.
+ * @version $Id$
  * <br>1.2 2004-06-21 Made the table striped.
  * <br>1.1 2004-04-11 ComboBox is used as cell renderer where appropriate. 
  * <br>1.0 2001-08-02 Created.

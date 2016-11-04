@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
  * it observable.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2007-11-15 Upgraded to Java 1.4. 
+ * @version $Id$
  * <br>1.0 2002-05-09 Created.
  */
 public interface Transform3DModel {

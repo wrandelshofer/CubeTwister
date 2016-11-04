@@ -18,7 +18,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * the NetBeans GUI builder anymore.
  *
  * @author  Werner Randelshofer
- * @version 1.0 February 1, 2006 Created.
+ * @version $Id$
  */
 public class AbstractEntityView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;

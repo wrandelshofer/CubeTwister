@@ -13,7 +13,7 @@ import javax.swing.border.Border;
  * HUDBorder.
  *
  * @author Werner Randelshofer
- * @version 1.0 2009-07-18 Created.
+ * @version $Id$
  */
 public class HUDBorder implements Border {
  public void paintBorder(Component c, Graphics gr, int x, int y, int width, int height) {

@@ -14,7 +14,7 @@ import javax.swing.text.PlainDocument;
  * NotationMacrosView.
  *
  * @author Werner Randelshofer
- * @version 1.1.1 2010-03-28 Workaround for IllegaArgumentException in table
+ * @version $Id$
  * cell editor field.
  * <br>1.1 2004-06-21 Made the table striped.
  * <br>1.0.1 2004-03-15 Always show the vertical scroll bar.

@@ -14,7 +14,7 @@ import java.util.Map;
  * A NOP node has no side effect if applied to a cube.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2009-07-30 Added writeTokens method.
+ * @version $Id$
  * <br>1.0  01 February 2005  Created.
  */
 public class NOPNode extends Node {

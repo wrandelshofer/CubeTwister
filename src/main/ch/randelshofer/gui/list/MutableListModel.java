@@ -29,7 +29,7 @@ import java.util.*;
  *
  *
  * @author  Werner Randelshofer
- * @version 3.0 2004-05-16 Revised.
+ * @version $Id$
  * <br>1.0 2002-11-20 Created.
  */
 public interface MutableListModel

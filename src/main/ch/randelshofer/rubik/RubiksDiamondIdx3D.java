@@ -13,7 +13,7 @@ import java.util.Arrays;
  * RubiksDiamondIdx3D.
  *
  * @author  Werner Randelshofer
- * @version 3.0 2009-01-02 Added support for twisting the cube by swiping over
+ * @version $Id$
  * its faces.
  * <br>2.0 2008-01-03 Adapted to changes in AbstractCube.
  * <br>1.0 December 26, 2003 Created.

@@ -28,7 +28,7 @@ import javax.swing.undo.*;
  * Holds a Script and its attributes.
  *
  * @author Werner Randelshofer.
- * @version 2.2.1 2010-04-05 Removed dependencies to IBM Unicode normalizer.
+ * @version $Id$
  * <br>2.2 Normalize script to Unicode NFKC before parsing.
  * <br>2.1 2007-08-11 Moved "name" property into superclass.
  * <br>1.3 2006-09-24 Reworked.

@@ -17,7 +17,7 @@ import javax.swing.text.PlainDocument;
  * NotationMovesView.
  * 
  * @author Werner Randelshofer
- * @version 1.0.1 2010-03-28 Workaround for IllegaArgumentException in table
+ * @version $Id$
  * cell editor field.
  * <br>1.0  April 15, 2006  Created.
  */

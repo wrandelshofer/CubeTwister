@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.player.RubiksCuboctahedronGeom3DPlayerApplet;
  * 
  * 
  * @author Werner Randelshofer
- * @version 1.0 2006-04-13 Created.
+ * @version $Id$
  */
 public class CuboctahedronPlayerFlat extends RubiksCuboctahedronGeom3DPlayerApplet {
     private final static long serialVersionUID = 1L;

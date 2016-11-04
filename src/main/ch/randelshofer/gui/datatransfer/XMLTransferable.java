@@ -12,7 +12,7 @@ import java.io.*;
 /**
  *
  * @author  Werner Randelshofer
- * @version 1.0 2001-10-20
+ * @version $Id$
  */
 public class XMLTransferable implements java.awt.datatransfer.Transferable, java.awt.datatransfer.ClipboardOwner {
     private byte[] data;

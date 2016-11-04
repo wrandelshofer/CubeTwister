@@ -16,7 +16,7 @@ import java.util.*;
  * Supports UndoableEditListeners.
  *
  * @author  Werner Randelshofer
- * @version 1.0.1 2011-01-19 Removes unused imports.
+ * @version $Id$
  * <br>1.0 2001-10-09
  */
 public class DefaultUndoableTreeSelectionModel

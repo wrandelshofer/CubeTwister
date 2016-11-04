@@ -33,7 +33,7 @@ import javax.swing.tree.*;
  * insertion and removal.
  *
  * @author  werni
- * @version 1.1 2006-09-24 Revised.
+ * @version $Id$
  * <br>1.0 2001-10-05
  */
 public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable, UndoableEditListener {

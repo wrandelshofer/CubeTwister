@@ -14,7 +14,7 @@ import java.util.Arrays;
  * A default implementation of the {@link CubeAttributes} interface.
  *
  * @author  Werner Randelshofer
- * @version 2.2 2007-08-29 Added property partExplosion.
+ * @version $Id$
  * <br>2.1 2006-01-05 Background color and background image property added.
  * <br>2.0 2004-10-08 Renamed fro CubeColorModel3D to DefaultCubeAttributes.
  * <br>1.2 2002-05-05 Methods setAlpha and setBeta added.

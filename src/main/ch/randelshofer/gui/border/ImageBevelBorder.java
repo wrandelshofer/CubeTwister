@@ -27,7 +27,7 @@ import javax.swing.plaf.basic.*;
  * The inner area of the image is used to fill the inner area.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2003-07-19 Redesigned.
+ * @version $Id$
  * <br>1.1.1 2003-07-12 Class cast exception when filling a rectangle using
  * a texture.
  * <br>1.1 2002-05-29 Refactored.

@@ -12,7 +12,7 @@ package idx3d;
  * scene.
  *
 * @author  Werner Randelshofer
- * @version 1.0 December 25, 2003 Created.
+ * @version $Id$
  * Dependency note: The creation of this class changes the class hierarchy of
  * idx3d. This change also affects the following classes: idx3d_Material, 
  * Inspector, idx3d_MaterialInspector, idx3d_RenderPipeline, idx3d_Triangle,

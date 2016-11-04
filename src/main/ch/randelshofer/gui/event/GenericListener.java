@@ -55,7 +55,7 @@ import java.lang.reflect.*;
  * </pre>
  *
  * @author Werner Randelshofer
- * @version 1.1 2003-11-03 Support for parameterless target methods added.
+ * @version $Id$
  * <br>1.0 2003-11-02 Created.
  */
 public abstract class GenericListener {

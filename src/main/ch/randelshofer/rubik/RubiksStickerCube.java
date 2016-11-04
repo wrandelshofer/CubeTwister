@@ -24,7 +24,7 @@ package ch.randelshofer.rubik;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version 1.0 January 14, 2007 Created.
+ * @version $Id$
  */
 public class RubiksStickerCube {
 

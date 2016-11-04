@@ -22,7 +22,7 @@ package ch.randelshofer.geom3d;
  * </pre>
  * 
  * @author Werner Randelshofer
- * @version 1.3 2009-01-04 Added method fromToRotation.
+ * @version $Id$
  * <br>1.2 2006-01-05 Method hashCode added.
  * <br>1.1 2004-08-23 Workaround for VirtualPC removed.
  * <br>1.0 2002-05-06 Method setTransform added.

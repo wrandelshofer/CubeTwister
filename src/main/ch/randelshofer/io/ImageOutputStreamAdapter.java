@@ -15,7 +15,7 @@ import javax.imageio.stream.ImageOutputStream;
  * {@code OutputStream}.
  *
  * @author Werner Randelshofer
- * @version 1.1 2011-01-07 Fixes performance.
+ * @version $Id$
  * <br>1.0 2010-12-26 Created.
  */
 public class ImageOutputStreamAdapter extends OutputStream {

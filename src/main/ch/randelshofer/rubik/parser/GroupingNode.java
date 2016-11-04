@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * The resolved Enumeration of a grouping node is A.
  *
  * @author  werni
- * @version 5.0 2005-01-31 Reworked.
+ * @version $Id$
  * <br>2.1 2004-03-25 A grouping which has a grouping as its
  * only child does not need to be printed.
  * <br>2.0 2003-01-01 Renamed from SequenceNode to GroupingNode.

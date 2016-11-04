@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.player.RubiksDiamondPlayerIdx3DApplet;
  * DiamondPlayer.
  * 
  * @author Werner Randelshofer
- * @version 1.0 2006-04-13 Created.
+ * @version $Id$
  */
 public class DiamondPlayer extends RubiksDiamondPlayerIdx3DApplet {
     private final static long serialVersionUID = 1L;

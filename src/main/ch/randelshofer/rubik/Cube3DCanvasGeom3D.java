@@ -16,7 +16,7 @@ import java.awt.*;
  * rendering engine.
  * 
  * @author Werner Randelshofer
- * @version 2.2 2011-06-29 Sets swipeDelay to Integer.MAX_VALUE.
+ * @version $Id$
  * <br>2.1 2009-11-28 Added method flush.
  * <br>2.0 2007-11-15 Upgraded to Java 1.4.
  * <br>1.0  16 February 2005  Created.

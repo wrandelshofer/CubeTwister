@@ -47,7 +47,7 @@ import static java.lang.Math.*;
  * For surfaces with large textured triangles use
  * {@link idx3d_PerspectiveRasterizer}.
  *
- * @version 3.2.1 2004-08-31 Werner Randelshofer:
+ * @version $Id$
  * Minor bug fixes and speed improvements.
  * <br>3.2 2003-12-18 Werner Randelshofer:
  * Supports now lightmaps of different resolutions. Dependency note: This change

@@ -16,7 +16,7 @@ import javax.swing.event.ChangeListener;
  * PreferencesUtil.
  *
  * @author Werner Randelshofer
- * @version 1.1 2008-09-11 Added prefs handler for JTabbedPane.
+ * @version $Id$
  * <br>1.0 October 13, 2005 Created.
  */
 public class PreferencesUtil {

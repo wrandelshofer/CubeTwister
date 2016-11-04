@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
  * SwipeEvent.
  *
  * @author Werner Randelshofer
- * @version 1.1 2009-01-14 Use modifiersEx instead of modifiers.
+ * @version $Id$
  * <br>1.0 2008-12-31 Created.
  */
 public class SwipeEvent extends MouseEvent {

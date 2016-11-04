@@ -42,7 +42,7 @@ import java.util.Iterator;
 /**
  * Represents a three dimensional shape.
  *
- * @version 4.1 2006-02-21 Werner Randelshofer: Avoid unecessary object
+ * @version $Id$
  * creation.
  * <br>4.0 2004-08-29 Werner Randelshofer: Changed superclass to idx3d_Node.
  * Moved variables 'parent' and 'isDirty' to superclass.

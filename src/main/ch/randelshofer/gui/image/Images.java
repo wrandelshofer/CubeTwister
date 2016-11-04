@@ -16,7 +16,7 @@ import javax.swing.*;
  * Image processing methods.
  *
  * @author  Werner Randelshofer, Karl von Randow
- * @version 2.2 2008-04-19 Create graphiteFilter lazily. 
+ * @version $Id$
  * <br>2.1 2007-07-25 Added method toBufferedImage(RenderedImage).
  * <br>2.0 2006-12-24 by Karl von Randow: On the fly conversion from Aqua
  * Blue to Aqua Graphite appearance added.

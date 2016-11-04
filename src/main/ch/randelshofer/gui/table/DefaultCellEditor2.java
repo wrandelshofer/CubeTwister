@@ -18,7 +18,7 @@ import javax.swing.text.PlainDocument;
  * DefaultCellEditor2.
  *
  * @author Werner Randelshofer
- * @version 1.1 2010-04-09 Fixed IllegalArgumentException in LineBreakMeasurer.
+ * @version $Id$
  * <br>1.0 2010-01-23 Created.
  */
 public class DefaultCellEditor2 extends DefaultCellEditor {

@@ -23,7 +23,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * CubeTwisterApplicationModel.
  *
  * @author Werner Randelshofer
- * @version 1.0 January 11, 2007 Created.
+ * @version $Id$
  */
 public class CubeTwisterApplicationModel extends DefaultApplicationModel {
     public final static long serialVersionUID=1L;

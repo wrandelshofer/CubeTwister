@@ -10,7 +10,7 @@ package ch.randelshofer.rubik.solver;
  * {@code SolverPreferences}.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-11-12 Created.
+ * @version $Id$
  */
 public class SolverPreferences {
     /** Prevent instance creation. */

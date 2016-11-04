@@ -47,7 +47,7 @@ package ch.randelshofer.rubik.solver;
  * 
  *
  * @author Werner Randelshofer
- * @version 1.0 Mar 3, 2008 Created.
+ * @version $Id$
  */
 public class TripleSearchSolver {
 }

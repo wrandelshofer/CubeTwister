@@ -24,7 +24,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * Info view for notes, author and creation date of a document element. 
  *
  * @author  Werner Randelshofer
- * @version 1.0.2 2004-02-23 Method updateEnabled updates now the enabled state 
+ * @version $Id$
  * of all child components.
  * <br>1.0.1 2003-08-09 Line wrapping activated.
  * <br>1.0 2001-07-19 Created.

@@ -13,7 +13,7 @@ import java.awt.event.*;
  * 
  * 
  * @author Werner Randelshofer
- * @version 1.1 2009-01-09 Use modifiersEx instead of modifiersEx.
+ * @version $Id$
  * <br>1.0 25. August 2007 Created.
  */
 public class VirtualRubiksBarrelApplet extends AbstractVirtualCubeApplet {

@@ -14,7 +14,7 @@ import javax.swing.undo.*;
  * these edit events are coalesced.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2002-02-03 Supports now insignificant edits as well.
+ * @version $Id$
  * <br>1.0 2001-10-12
  */
 public abstract class UndoableBooleanEdit extends javax.swing.undo.AbstractUndoableEdit {

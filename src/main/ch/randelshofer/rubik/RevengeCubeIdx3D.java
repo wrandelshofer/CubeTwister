@@ -13,7 +13,7 @@ import java.util.Arrays;
  * RevengeCubeIdx3D.
  *
  * @author  Werner Randelshofer
- * @version 1.4 2010-08-18 Adds missing back faces to parts.
+ * @version $Id$
  * <br>1.3.1 2010-04-05 Removed debugging code.
  * <br>1.3 2010-04-04 Added swipe actions to edges adjacent to stickers.
  * <br>1.2.1 2008-12-19 Fixed UV-Values for the right-down edges.

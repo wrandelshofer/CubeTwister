@@ -32,7 +32,7 @@ import javax.swing.tree.*;
  * insertion and removal.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2007-08-11 Moved "name" property from subclasses up to
+ * @version $Id$
  * this class. 
  * <br>1.0 2001-10-05 Created
  */

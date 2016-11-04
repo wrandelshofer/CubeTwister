@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version 1.0.1 2009-01-04 Method computeTransformation did not properly
+ * @version $Id$
  * orient side parts.
  * <br>1.0 2008-08-17 Created.
  */

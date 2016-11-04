@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
  * This class Encapsulates two Enumerations.
  *
  * @author Werner Randelshofer
- * @version  1.0 2001-07-26
+ * @version $Id$
 */
 public class SequenceIterator<T> 
 implements Iterator<T> {

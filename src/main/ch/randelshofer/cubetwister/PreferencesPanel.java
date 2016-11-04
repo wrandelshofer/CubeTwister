@@ -11,7 +11,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * PreferencesPanel.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-08-12 Created.
+ * @version $Id$
  */
 public class PreferencesPanel extends javax.swing.JPanel {
 

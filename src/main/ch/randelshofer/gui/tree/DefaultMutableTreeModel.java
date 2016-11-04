@@ -26,7 +26,7 @@ import org.jhotdraw.beans.WeakPropertyChangeListener;
  * FIXME: Should override more methods in the superclass.
  *
  * @author Werner Randelshofer
- * @version 3.1 2011-01-22 Methods insertAllInto and importTransferable return the tree paths
+ * @version $Id$
  * of the inserted nodes. Adds undo support. Adds method insertNodesInto.
  * <br>3.0.1 2011-01-20 Method removeNodeFromParent was not properly overriden.
  * <br>3.0 2008-03-21 Rewrote default implementation of importTransferable.

@@ -11,7 +11,7 @@ import javax.swing.*;
 
 /**
  * Tracks Memory allocated and used, displayed in graph form.
- * @version 2.1 2010-11-24 Display max heap size.
+ * @version $Id$
  * <br>2.0 2006-01-09 Complete rewrite.
  */
 public class MemoryMonitor extends JPanel {

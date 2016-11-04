@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  * PreferencesCachesPanel.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-08-12 Created.
+ * @version $Id$
  */
 public class PreferencesCachesPanel extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

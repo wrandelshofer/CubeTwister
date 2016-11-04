@@ -20,7 +20,7 @@ import org.jhotdraw.gui.filechooser.ExtensionFileFilter;
  * ScriptExportVideoAccessoryPanel with file filters.
  *
  * @author Werner Randelshofer
- * @version 1.3 2011-04-20 Adds setter for ScriptModel. Adds QuickTime Animation.
+ * @version $Id$
  * <br>1.2 2009-08-29 Added support for RAW video encoding.
  * <br>1.1 2008-08-12 Added support for AVI video
  * <br>1.0 ScriptExportVideoAccessoryPanel Created.

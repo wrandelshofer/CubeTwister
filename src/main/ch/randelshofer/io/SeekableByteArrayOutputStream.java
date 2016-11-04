@@ -14,7 +14,7 @@ import static java.lang.Math.*;
  * {@code SeekableByteArrayOutputStream}.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-12-27 Created.
+ * @version $Id$
  */
 public class SeekableByteArrayOutputStream extends ByteArrayOutputStream {
 

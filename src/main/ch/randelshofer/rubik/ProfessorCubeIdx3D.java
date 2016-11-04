@@ -13,7 +13,7 @@ import java.util.Arrays;
  * ProfessorCubeIdx3D.
  *
  * @author  Werner Randelshofer
- * @version 2.2 2010-04-04 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>2.1 2008-08-17 Streamlined with code of class VCube7Idx3D.
  * <br>2008-03-19 Fixed UV values for "rd" edges.
  * <br>2008-01-01 Adapted to changes in AbstractCube. 

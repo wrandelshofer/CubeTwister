@@ -16,7 +16,7 @@ import javax.swing.tree.TreePath;
  * plus a list of the transferred paths.
  *
  * @author Werner Randelshofer
- * @version 1.1 2011-01-19 The source does not necessarily have to be a JTree.
+ * @version $Id$
  * <br>1.0 2010-01-09 Created.
  */
 public class MutableTreeTransferable implements Transferable {

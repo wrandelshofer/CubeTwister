@@ -12,7 +12,7 @@ import java.awt.datatransfer.*;
  * A Transferable which uses a char array or a byte array as its data source.
  *
  * @author  Werner Randelshofer
- * @version 2.1 2008-03-21 String constructor added.
+ * @version $Id$
  * <br>2.0 2003-11-02 Data representation is binary. Uset the charset
  * parameter of the mimetype for conversion or add our own charset parameter
  * (utf-8).

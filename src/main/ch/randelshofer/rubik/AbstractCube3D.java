@@ -18,7 +18,7 @@ import javax.swing.event.*;
  * interface.
  *
  * @author  Werner Randelshofer
- * @version 8.1.1 2009-01-09 Added workaround for http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6634290
+ * @version $Id$
  * <br>8.1 2008-04-28 Added method setAnimator.
  * <br>8.0 2007-11-15 Upgraded to Java 1.4. 
  * <br>7.1 2007-09-10 Use SplineInterpolator instead of linear Interpolator.

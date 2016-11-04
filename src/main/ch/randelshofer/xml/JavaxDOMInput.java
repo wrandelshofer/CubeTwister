@@ -18,7 +18,7 @@ import java.awt.*;
  * DOMInput.
  *
  * @author  Werner Randelshofer
- * @version 1.0 February 17, 2004 Created.
+ * @version $Id$
  */
 public class JavaxDOMInput implements DOMInput {
     /**

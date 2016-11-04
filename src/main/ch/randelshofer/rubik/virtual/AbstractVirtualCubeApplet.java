@@ -49,7 +49,7 @@ import nanoxml.XMLElement;
  * which can be taken apart.
  *
  * @author Werner Randelshofer
- * @version 2.10 2012-04-01 URI of images has changed to org.monte.media. 
+ * @version $Id$
  * <br>2.8 2010-05-02 Alt- or Ctrl-Click on reset button only resets
  * the canvas but not the cube.
  * <br>2.7.6 2010-04-06 Replaced Random2 class by java.util.Random.

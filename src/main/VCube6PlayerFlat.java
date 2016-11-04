@@ -9,7 +9,7 @@ import ch.randelshofer.rubik.player.*;
  * VCube6PlayerFlat.
  * 
  * @author Werner Randelshofer
- * @version 1.0 2008-09-16 Created.
+ * @version $Id$
  */
 public class VCube6PlayerFlat extends VCube6Geom3DPlayerApplet {
     private final static long serialVersionUID = 1L;

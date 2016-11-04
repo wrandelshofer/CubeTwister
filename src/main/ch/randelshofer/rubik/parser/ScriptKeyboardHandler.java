@@ -29,7 +29,7 @@ import javax.swing.Timer;
  * A handler which parses keyboard input from a Cube3DCanvas.
  *
  * @author Werner Randelshofer
- * @version 1.1 2010-10-17 Actively clear buffer on timeout.
+ * @version $Id$
  * <br>1.0 2010-05-02 Created.
  */
 public class ScriptKeyboardHandler extends AbstractBean {

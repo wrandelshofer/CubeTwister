@@ -13,7 +13,7 @@ package ch.randelshofer.gui.datatransfer;
  *
  * @serial exclude
  * @author  Werner Randelshofer
- * @version 1.0 November 2, 2003 Created.
+ * @version $Id$
  */
 public class MimeTypeParseException extends Exception {
     

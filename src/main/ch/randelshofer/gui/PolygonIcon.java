@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author Werner Randelshofer
  *
- * @version 1.4 2002-05-06 Polygon Icons are now cloneable.
+ * @version $Id$
  * <br>1.3.2 2001-08-14 Comments added.
  * <br>1.3.1 2001-08-02 Method setFillColor added.
  * <br>1.3 2001-07-24 Upgraded for JDK 1.3.

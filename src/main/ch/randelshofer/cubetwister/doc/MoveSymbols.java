@@ -13,7 +13,7 @@ import java.util.*;
  * 
  * 
  * @author Werner Randelshofer.
- * @version 1.1 2011-01-22 Use generics.
+ * @version $Id$
  * <br>1.0.1 2008-02-23 Added missing "2i" suffix.
  * <br>1.0 May 1, 2006 Created.
  */

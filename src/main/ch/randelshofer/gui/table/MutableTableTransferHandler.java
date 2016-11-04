@@ -21,7 +21,7 @@ import javax.swing.table.TableModel;
  * A transfer handler for JDnDList.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-01-09 Created.
+ * @version $Id$
  */
 public class MutableTableTransferHandler extends TransferHandler {
     private final static long serialVersionUID = 1L;

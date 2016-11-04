@@ -24,7 +24,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * operations cut, copy and paste.
  *
  * @author Werner Randelshofer
- * @version 2.0 2008-03-19 Streamlined naming of cut/copy/paste methods with
+ * @version $Id$
  * JTextComponent. 
  * <br>1.1.1 2006-01-04 Specifying Quaqua "tableHeader" button style for popup
  * button.

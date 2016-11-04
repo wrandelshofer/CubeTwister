@@ -20,7 +20,7 @@ import javax.swing.event.*;
  * Holds a description of a Cube.
  *
  * @author  Werner Randelshofer
- * @version 2.1.2 2010-04-05 Fixed names of side parts.
+ * @version $Id$
  * <br>2.1.1 2010-03-23 Method createCube is now able to create cubes
  * with 6 and 7 layers too.
  * <br>2.1 2007-08-11 Moved "name" property into superclass.

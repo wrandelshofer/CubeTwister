@@ -18,7 +18,7 @@ import javax.swing.JLayeredPane;
  * JLayeredPane.
  *
  * @author Werner Randelshofer
- * @version  2008-09-11 Added SOUTH_EAST.
+ * @version $Id$
  * <br>1.0 Jan 5, 2008 Created.
  */
 public class LayeredBorderLayout implements LayoutManager2 {

@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.virtual.*;
  * Virtual Cube 7.
  *
  * @author Werner Randelshofer
- * @version 1.0 2008-09-03 Created.
+ * @version $Id$
  */
 public class VirtualCube7 extends VirtualCube7Applet {
         private final static long serialVersionUID = 1L;

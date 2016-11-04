@@ -39,7 +39,7 @@ package idx3d;
 /**
  * idx3d_CoreObject.
  *
- * @version 4.0 2004-08-29 Werner Randelshofer: Method resetTransform() added.
+ * @version $Id$
  */
 public abstract class idx3d_CoreObject
 {

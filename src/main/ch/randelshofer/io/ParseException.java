@@ -11,7 +11,7 @@ import java.io.IOException;
  * encounters an invalid token.
  *
  * @author Werner Randelshofer
- * @version 1.0 2001-02-24
+ * @version $Id$
  */
 public class ParseException
 extends IOException {

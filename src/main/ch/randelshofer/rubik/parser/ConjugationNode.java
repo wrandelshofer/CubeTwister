@@ -15,7 +15,7 @@ import java.util.*;
  * The side effect of a conjugation node is A B A'.
  *
  * @author Werner Randelshofer
- * @version 2.0 2005-01-31 Reworked.
+ * @version $Id$
  * <br>1.1 2002-08-12 Fixed a problem where conjugator (X Y)
  * with child B was resolved into X Y B X' Y' instead of X Y B Y' X'.
  * <br>1.0 2001-07-25

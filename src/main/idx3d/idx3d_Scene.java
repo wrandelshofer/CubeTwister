@@ -42,7 +42,7 @@ import java.util.*;
 /**
  * Represents a scene in three dimensional space.
  *
- * @version 6.1.1 2011-04-05 Werner Randelshofer renamed private methods.
+ * @version $Id$
  * <br>6.1 2008-04-29 Wener Randelshofer made prepareForRendering public.
  * <br>6.0 2007-08-28 Werner Randelshofer: Added support for mouse listeners
  * on triangles.

@@ -17,7 +17,7 @@ import java.io.*;
  * orientation change the cube parts in the cycle.
  *
  * @author  werni
- * @version 5.2.1 2009-04-11 Fixed validation of side part number for cubes
+ * @version $Id$
  * with more than 5 layers.
  * <br>5.2 2009-01-05 Removed static method toPermutationString(), because
  * it is redundant with methods in class ch.randelshofer.rubik.Cubes.

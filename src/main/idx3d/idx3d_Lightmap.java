@@ -39,7 +39,7 @@ package idx3d;
 /**
  * Lightmap for faster rendering, assuming static light sources.
  *
- * @version 3.3 2006-02-22 Werner Randelshofer: Avoid unecessary object creation. 
+ * @version $Id$
  * <br>3.2 2003-12-18 Werner Randelshofer: Changed type of variable cos in
  * method rebuildLightMap from int to float. This greatly reduces band effects
  * of the specular map. 

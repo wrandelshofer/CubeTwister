@@ -19,7 +19,7 @@ import javax.swing.tree.TreeNode;
  * This class only allows nodes of type DefaultMutableTreeNodeEx.
  * 
  * @author Werner Randelshofer
- * @version 1.0 2013-12-02 Created.
+ * @version $Id$
  */
 public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeNode {
     private final static long serialVersionUID = 1L;

@@ -42,7 +42,7 @@ import java.net.URL;
 /**
  * Material description object. 
  *
- * @version 3.2 2003-12-18 Werner Randelshofer: 
+ * @version $Id$
  * Method clone() added.
  * Added a visible attribute. This change also affects idx3d_RenderPipeline.
  */

@@ -35,7 +35,7 @@ package ch.randelshofer.gui.text;
  * frame.setVisible(true);
  * </pre>
  * @author Werner Randelshofer
- * @version 1.0 2009-01-24 Created.
+ * @version $Id$
  */
 import java.awt.*;
 import javax.swing.*;

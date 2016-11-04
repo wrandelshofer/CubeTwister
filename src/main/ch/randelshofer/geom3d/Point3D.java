@@ -9,7 +9,7 @@ package ch.randelshofer.geom3d;
  * A point representing a location in (x, y, z) coordinate space.
  *
  * @author Werner Randelshofer
- * @version 1.0 2009-01-04 Added method planeEquation.
+ * @version $Id$
  *  0.2  1999-1-1  Package renamed.
  * <br>0.1  1998-12-15  Released.
  * <br>0.0  1998-02-15  Created.

@@ -10,7 +10,7 @@ package ch.randelshofer.rubik.parser;
  * The side effect of a script node to a Cube is A.
  *
  * @author Werner Randelshofer
- * @version 6.0 2009-01-24 Renamed from ScriptNode to SequenceNode.
+ * @version $Id$
  * <br>5.0 2005-01-31 Reworked.
  * <br>1.1 2004-02-25 Method overwritePositions added.
  * <br>1.0.1 2002-05-17 NPE in enumerateChildrenReversed fixed.

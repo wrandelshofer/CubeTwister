@@ -21,7 +21,7 @@ import javax.swing.*;
  * CSVExporter.
  *
  * @author  Werner Randelshofer
- * @version 1.0 April 12, 2004 Created.
+ * @version $Id$
  */
 public class CSVExporter extends AbstractExporter {
     private final static long serialVersionUID = 1L;

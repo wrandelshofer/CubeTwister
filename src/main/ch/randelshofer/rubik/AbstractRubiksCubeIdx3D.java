@@ -27,7 +27,7 @@ import javax.swing.SwingUtilities;
  * a child of the idx3d_Scene.
  *
  * @author  Werner Randelshofer
- * @version 3.0 2007-12-30 Adapted to changes in AbstractCube. 
+ * @version $Id$
  * <br>2.2 2007-09-09 Use SplineInterpolator for cube twists.
  * <br>2.1 2006-02-21 Avoid unecessary object creation.
  * <br>2.0 2004-08-29 Reflectivity of part fill color increased from 160

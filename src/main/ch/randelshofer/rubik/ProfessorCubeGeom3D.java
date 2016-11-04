@@ -14,7 +14,7 @@ import java.util.*;
  * three dimensions.
  *
  * @author Werner Randelshofer, Markus Pirzer
- * @version 6.3 2010-04-05 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>6.2 2009-01-04 Added support for twisting the cube by swiping over
  * its faces.
  * <br>6.1 2008-08-19 W. Randelshofer Streamlined with code of VCube7Geom3D.

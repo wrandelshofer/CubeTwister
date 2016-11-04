@@ -30,7 +30,7 @@ import javax.swing.undo.UndoableEdit;
  * </ul>
  *
  * @author Werner Randelshofer
- * @version 3.2 2011-01-23 Adds property change support.
+ * @version $Id$
  * <br>3.1 2009-12-22 Methods createNodeAt and importTransferable return
  * paths of inserted nodes. Use MutableTreeNode instead of MutableTreeNode.
  * Adds undo support.

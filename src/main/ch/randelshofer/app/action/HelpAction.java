@@ -19,7 +19,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * HelpAction.
  *
  * @author Werner Randelshofer
- * @version 1.1 2008-12-20 Fix JAR URL for JWS.
+ * @version $Id$
  * <br>1.0 2008-10-12 Created.
  */
 public class HelpAction extends AbstractAction {

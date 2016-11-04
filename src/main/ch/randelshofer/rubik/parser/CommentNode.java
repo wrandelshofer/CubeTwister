@@ -11,7 +11,7 @@ package ch.randelshofer.rubik.parser;
  * CommentNode's have no side effects on a Cube.
  *
  * @author  Werner Randelshofer
- * @version 1.0  01 February 2005  Created.
+ * @version $Id$
  */
 public class CommentNode extends Node {
         private final static long serialVersionUID = 1L;

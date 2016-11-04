@@ -13,7 +13,7 @@ import javax.swing.*;
  * Displays multiple lines of text.
  *
  * @author Werner Randelshofer
- * @version 2.0 2007-12-25 Refactored for Swing.
+ * @version $Id$
  * <br>1.0.2 2005-08-26 Call repaint after validating the parent to ensure
  * that the label is drawn. Methods setBorderColor/getBorderColor added.
  * <br>1.0.1 2004-11-01 Init variable "text" with an empty string. 

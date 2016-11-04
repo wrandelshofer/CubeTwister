@@ -15,7 +15,7 @@ import java.util.Vector;
  * ReverseListIteerator.
  *
  * @author Werner Randelshofer.
- * @version 0.0 2000-01-02 Draft.
+ * @version $Id$
  */
 public class ReverseListIterator<T>
         implements Iterator<T> {

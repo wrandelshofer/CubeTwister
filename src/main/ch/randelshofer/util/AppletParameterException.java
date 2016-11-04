@@ -9,7 +9,7 @@ package ch.randelshofer.util;
  * AppletParameterException.
  *
  * @author Werner Randelshofer
- * @version 1.2.2 2010-11-06 Fixes NPE when value is null.
+ * @version $Id$
  * <br>1.2.1 2010-02-18 Fixed NPE's when value is null.
  * <br>1.2 2009-01-04 Fixed message output.
  * <br>1.1 2008-12-28 Message contained wrong start and end position.

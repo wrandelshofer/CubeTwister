@@ -13,7 +13,7 @@ import javax.swing.*;
  * A JPanel with an interactive Rubik's Cube.
  *
  * @author Werner Randelshofer
- * @version 1.0 2009-07-25 Created.
+ * @version $Id$
  */
 public class RubiksCubePanelDemo extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

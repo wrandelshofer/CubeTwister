@@ -14,7 +14,7 @@ import javax.swing.border.*;
  * Quaqua14PlacardButtonBorder.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2006-01-04 Created.
+ * @version $Id$
  */
 public class PlacardButtonBorder implements Border {
 

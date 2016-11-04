@@ -15,7 +15,7 @@ import java.util.*;
  * The side effect of a commutation node is A B A' B'.
  *
  * @author Werner Randelshofer
- * @version 5.1 2010-11-11 Fixes inverse applyTo.
+ * @version $Id$
  * <br>5.0 2005-01-31 Reworked.
  * <br>1.0 2001-07-25
  * @see ScriptParser

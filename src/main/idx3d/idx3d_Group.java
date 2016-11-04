@@ -15,7 +15,7 @@ import java.util.*;
  * additional semantics.
  *
  * @author Werner Randelshofer
- * @version 1.0 August 29, 2004 Created.
+ * @version $Id$
  */
 public class idx3d_Group extends idx3d_Node {
 

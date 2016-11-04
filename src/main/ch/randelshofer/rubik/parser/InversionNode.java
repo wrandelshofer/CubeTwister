@@ -14,7 +14,7 @@ import java.io.*;
  * The side effect of an inversion node is A'.
  *
  * @author Werner Randelshofer
- * @version 5.1 2010-02-27 Special treatment of a single MoveNode child in
+ * @version $Id$
  * method toResolvedList.
  * end position of a single child Move node.
  * <br>5.0.1 2007-07-19 Implemented method applyTo.

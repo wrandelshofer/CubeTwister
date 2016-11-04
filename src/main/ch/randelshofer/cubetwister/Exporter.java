@@ -9,7 +9,7 @@ package ch.randelshofer.cubetwister;
  * Exporter.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-05-11 Created.
+ * @version $Id$
  */
 public interface Exporter {
 

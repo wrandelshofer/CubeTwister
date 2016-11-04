@@ -15,7 +15,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * PicturesView.
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 6, 2006 Created.
+ * @version $Id$
  */
 public class CubeStickersImageView extends AbstractEntityView implements PropertyChangeListener {
     private final static long serialVersionUID = 1L;

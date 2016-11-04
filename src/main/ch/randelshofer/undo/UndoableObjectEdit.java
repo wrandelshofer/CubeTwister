@@ -12,7 +12,7 @@ import javax.swing.undo.*;
  * This is an abstract class for undoable Object properties.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2001-10-12
+ * @version $Id$
  */
 public abstract class UndoableObjectEdit extends javax.swing.undo.AbstractUndoableEdit {
     private static final long serialVersionUID = 1L;

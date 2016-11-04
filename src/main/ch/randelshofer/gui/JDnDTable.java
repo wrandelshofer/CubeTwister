@@ -10,7 +10,7 @@ package ch.randelshofer.gui;
  * JDnDTable.
  *
  * @author  Werner Randelshofer
- * @version 1.0  May 16, 2004  Created.
+ * @version $Id$
  */
 public class JDnDTable extends MutableJTable {
         private final static long serialVersionUID = 1L;

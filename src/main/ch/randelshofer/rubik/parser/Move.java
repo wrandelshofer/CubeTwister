@@ -17,7 +17,7 @@ import java.util.List;
  * This class must be Java 1.1 compliant.
  *
  * @author Werner Randelshofer.
- * @version 2.0 2007-06-16 Renamed from Twist to Move.
+ * @version $Id$
  * <br>1.0 May 1, 2006 Created.
  */
 public class Move implements Comparable<Move> {

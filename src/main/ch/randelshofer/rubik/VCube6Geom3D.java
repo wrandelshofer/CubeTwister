@@ -16,7 +16,7 @@ import java.util.*;
  * bigger than the side parts.
  *
  * @author Werner Randelshofer
- * @version 1.2 2010-04-05 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>1.1 2009-01-04 Added support for twisting the cube by swiping over
  * its faces.
  * <br>1.0 2008-09-16 Created.

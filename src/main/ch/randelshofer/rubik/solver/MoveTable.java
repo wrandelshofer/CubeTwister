@@ -24,7 +24,7 @@ import javax.swing.*;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version 1.0.1 2003-03-16 Text provided to ProgressMonitor improved.
+ * @version $Id$
  * <br>1.0 2000-07-01
  */
 public abstract class MoveTable extends Object {

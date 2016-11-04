@@ -17,7 +17,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * redo operations.
  *
  * @author  Werner Randelshofer
- * @version 1.4 2004-03-25 Support for change listener added.
+ * @version $Id$
  * <br>1.3 2003-03-16 Texts and accelerator keys are now read from a
  * resource bundle.
  * <br>1.1.2 2003-03-12 Actions use now KeyStroke objects instead of

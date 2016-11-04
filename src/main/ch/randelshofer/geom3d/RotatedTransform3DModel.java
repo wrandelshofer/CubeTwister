@@ -17,7 +17,7 @@ import javax.swing.event.*;
  * the constructor of the model.
  *
  * @author Werner Randelshofer
- * @version 2.0 2007-11-15 Upgraded to Java 1.4.
+ * @version $Id$
  */
 public class RotatedTransform3DModel extends AbstractStateModel implements Transform3DModel, ChangeListener {
     private Transform3D rotator;

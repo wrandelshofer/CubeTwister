@@ -13,7 +13,7 @@ import javax.swing.*;
  * Main.
  *
  * @author Werner Randelshofer
- * @version 1.0 Apr 27, 2008 Created.
+ * @version $Id$
  */
 public class Main {
     

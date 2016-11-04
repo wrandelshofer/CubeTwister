@@ -18,7 +18,7 @@ import javax.swing.event.ChangeListener;
  * ModifierTracker.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-08-17 Created.
+ * @version $Id$
  */
 public class ModifierTracker {
 

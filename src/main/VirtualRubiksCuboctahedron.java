@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.virtual.*;
  * VirtualRubiksCuboctahedron.
  *
  * @author Werner Randelshofer
- * @version 1.0 25. August 2007 Created.
+ * @version $Id$
  */
 public class VirtualRubiksCuboctahedron extends VirtualRubiksCuboctahedronApplet {
     private final static long serialVersionUID = 1L;

@@ -13,7 +13,7 @@ import javax.swing.border.*;
  * ButtonStateBorder.
  *
  * @author  Werner Randelshofer
- * @version 1.2 2009-11-20 Added more constructors.
+ * @version $Id$
  * <br>1.1 2005-11-30 Method getBorderInsets() returns border insets from
  * variable borderInsets, if it is not null. This allows to defer image loading
  * until the border needs to be painted.

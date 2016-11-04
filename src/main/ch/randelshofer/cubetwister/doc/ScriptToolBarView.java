@@ -25,7 +25,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  *
  *
  * @author Werner Randelshofer
- * @version 1.1.1 2010-08-18 Preloads the correct "partial reset" icon now.
+ * @version $Id$
  * <br>1.1 2010-08-18 Changes icon of reset button when option key is
  * pressed.
  * <br>1.0  June 3, 2006  Created.

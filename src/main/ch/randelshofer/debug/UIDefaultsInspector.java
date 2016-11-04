@@ -16,7 +16,7 @@ import javax.swing.table.*;
  * Displays the current user interface defaults.
  *
  * @author  Werner Randelshofer
- * @version 1.1.1 2005-06-19 LookAndFeel must be initialized before we can get
+ * @version $Id$
  * the defaults from it.
  * <br>1.1 2003-03-16 Creates lazy values to show their contents.
  * <br>1.0 2003-03-15 Created.

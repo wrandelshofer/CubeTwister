@@ -16,7 +16,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * DebugAction.
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 6, 2006 Created.
+ * @version $Id$
  */
 public class DebugAction extends AbstractAction {
     private final static long serialVersionUID = 1L;

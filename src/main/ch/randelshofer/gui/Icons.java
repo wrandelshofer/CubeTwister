@@ -16,7 +16,7 @@ import javax.swing.*;
  * Provides constants for commonly used Icons.
  *
  * @author Werner Randelshofer
- * @version 2.0 2010-08-18 Rewritten.
+ * @version $Id$
  * <br>1.2 2008-01-05 Adds playerSettingsIcon.
  * <br>1.1 2007-06-06 Adds method getActionsIcon.
  * <br>1.0.1 2002-11-17 Changes appeareance of POPUP_ICON.

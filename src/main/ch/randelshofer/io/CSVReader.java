@@ -54,7 +54,7 @@ import java.util.*;
  * </pre>
  *
  * @author  Werner Randelshofer
- * @version 1.0.1 2011-10-13 New class comments. 
+ * @version $Id$
  * <br>1.0  2004-04-18  Created.
  */
 public class CSVReader {

@@ -10,7 +10,7 @@ package ch.randelshofer.rubik;
  * The listener interface for Cube3D events.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2007-08-28 Added mouseEntered and mouseExited methods.
+ * @version $Id$
  * <br>1.0 December 22, 2003 Created.
  */
 public interface Cube3DListener extends java.util.EventListener {

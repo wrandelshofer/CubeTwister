@@ -15,7 +15,7 @@ import java.beans.*;
  * Rubik's Cube-like puzzle.
  *
  * @author  Werner Randelshofer
- * @version 2.4 2008-01-03 Added methods clone and setTo. 
+ * @version $Id$
  * <br>2.3 2007-11-14 Added property twistDuration. Renamed property
  * constants.
  * <br>2.2 2007-08-29 Property partExplosion added. 

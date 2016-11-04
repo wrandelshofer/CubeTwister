@@ -17,7 +17,7 @@ import org.jhotdraw.gui.Worker;
  * lazy panel is showing.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-08-12 Created.
+ * @version $Id$
  */
 public class LazyPanel extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

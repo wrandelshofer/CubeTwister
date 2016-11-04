@@ -28,7 +28,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
 /**
  *
  * @author Werner Randelshofer
- * @version 2.4 2010-08-10 Toggles icon of reset button when option key is
+ * @version $Id$
  * pressed.
  * <br>2.3 2010-05-02 Option-Click on reset button only resets
  * the canvas but not the cube.

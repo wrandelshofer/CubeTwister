@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * RotatedList.
  *
- * @author Werner Randelshofer  @version 1.0 Jan 2, 2008 Created.
+ * @author Werner Randelshofer  @version $Id$
  */
 public class RotatedList extends AbstractList<Node> {
 

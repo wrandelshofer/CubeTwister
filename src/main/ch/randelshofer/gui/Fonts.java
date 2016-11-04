@@ -13,7 +13,7 @@ import javax.swing.*;
  * Fonts.
  *
  * @author Werner Randelshofer
- * @version 1.1.1 2007-06-07 Fixed small dialog font tag. 
+ * @version $Id$
  * <br>1.1 2004-04-04 Changed font settings to provide better fonts on
  * Mac OS X and on Windows.
  * <br>1.0 March 19, 2003 Created.

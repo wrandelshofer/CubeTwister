@@ -17,7 +17,7 @@ import javax.swing.event.*;
  *
  *
  * @author Werner Randelshofer
- * @version 2.2 2011-05-01 Added methods setPrint/isPrint.
+ * @version $Id$
  * <br>2.1 2010-01-03 Added method printf.
  * <br>2.0 2009-03-22 Made object creation thread save.
  * <br>1.6.1 2007-12-04 Added missing constructor.

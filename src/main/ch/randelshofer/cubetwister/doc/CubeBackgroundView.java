@@ -14,7 +14,7 @@ import org.jhotdraw.gui.Dialogs;
  * CubeBackgroundView is used in the "Options &gt; Background" panel of CubeTwister.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2006-01-31 Created.
+ * @version $Id$
  */
 public class CubeBackgroundView extends AbstractEntityView {
     private final static long serialVersionUID = 1L;

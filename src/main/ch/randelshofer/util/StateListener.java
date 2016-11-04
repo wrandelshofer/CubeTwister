@@ -10,7 +10,7 @@ import java.util.EventListener;
  * Event for state changes.
  *
  * @author Werner Randelshofer
- * @version    1.0  1999-10-19
+ * @version $Id$
  */
 public interface StateListener
 extends EventListener {

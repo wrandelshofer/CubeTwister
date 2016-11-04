@@ -20,7 +20,7 @@ import javax.swing.Timer;
  * BusyIcon.
  *
  * @author Werner Randelshofer
- * @version 1.1.1 2010-11-06 Fixes unclosed stream when reading BusyIcon.png.
+ * @version $Id$
  * <br>1.1 2010-01-04 Only use a single timer.
  * <br>1.0 2010-01-01 Created.
  */

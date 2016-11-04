@@ -20,7 +20,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * Wraps a CubeColorsModel into the swing TableModel interface.
  * 
  * @author  Werner Randelshofer
- * @version 2.0 2006-06-03 Reworked.  
+ * @version $Id$
  * <br>1.0 2001-07-19
  */
 public class CubeColorsTableModel

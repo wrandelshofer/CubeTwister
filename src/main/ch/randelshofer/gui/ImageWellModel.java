@@ -15,7 +15,7 @@ import javax.swing.event.*;
  * Model for JImageWell component.
  *
  * @author  Werner Randelshofer
- * @version 1.1. 2010-01-01 Added setImage(byte[],Image) method.
+ * @version $Id$
  * <br>1.0 January 6, 2006 Created.
  */
 public interface ImageWellModel {

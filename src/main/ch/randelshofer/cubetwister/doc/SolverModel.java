@@ -20,7 +20,7 @@ import javax.swing.undo.*;
  * SolverModel.
  *
  * @author Werner Randelshofer
- * @version 1.1 2009-01-09 Use modifiersEx instead of modifiers!
+ * @version $Id$
  * <br>1.0 2005-05-05 Created.
  */
 public class SolverModel extends AbstractBean implements CubeAttributes, PropertyChangeListener {

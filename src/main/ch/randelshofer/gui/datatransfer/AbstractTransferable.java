@@ -13,7 +13,7 @@ import java.io.*;
  * Base class for transferable objects.
  *
  * @author Werner Randelshofer
- * @version 1.0 22. August 2007 Created.
+ * @version $Id$
  */
 public abstract class AbstractTransferable implements Transferable {
     private DataFlavor[] flavors;

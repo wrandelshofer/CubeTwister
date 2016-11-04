@@ -42,7 +42,7 @@ import java.util.Enumeration;
 /**
  * Defines a triangle vertex.
  *
- * @version 3.3.1 2010-11-06 Werner Randelshofer: Adds equals(Object) and
+ * @version $Id$
  * hashCode() method.
  * <br>3.3 2006-02-22 Werner Randelshofer: Avoid unnecessary object creation.
  * 3.2 2003-12-21 Werner Randelshofer: Moved responsibility for texture

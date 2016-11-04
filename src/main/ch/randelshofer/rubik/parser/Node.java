@@ -20,7 +20,7 @@ import java.io.*;
  *
  *
  * @author Werner Randelshofer
- * @version 3.1.1 2014-06-23 Fixes NPE in childIterator() when children is null.
+ * @version $Id$
  * <br>3.1 2009-01-22 Fixed reflect() method.
  * <br>3.0 2007-11-15 Upgraded to Java 1.4.
  * <br>2.1 2007-11-04 Implemented method transformOrientation.

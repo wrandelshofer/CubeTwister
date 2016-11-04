@@ -50,7 +50,7 @@ import java.util.*;
  * </tt></pre>
  *
  * @author Werner Randelshofer
- * @version 1.4 2008-01-02 Added method join. 
+ * @version $Id$
  * <br>1.3 2002-05-15 Reworked.
  * <br>1.2 2001-09-24 Support for coalescing of events added.
  * <br>1.1 2001-08-24 Reworked for JDK 1.3.

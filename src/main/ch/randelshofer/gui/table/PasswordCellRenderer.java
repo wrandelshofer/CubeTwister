@@ -15,7 +15,7 @@ import java.io.Serializable;
  * PasswordCellRenderer.
  *
  * @author Werner Randelshofer
- * @version 1.0 August 24, 2003  Created.
+ * @version $Id$
  */
 public class PasswordCellRenderer extends JPasswordField 
 implements TableCellRenderer {

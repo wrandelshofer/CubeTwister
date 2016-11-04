@@ -13,7 +13,7 @@ import java.util.List;
  * InvertedList.
  *
  * @author Werner Randelshofer
- * @version 1.0 Jan 2, 2008 Created.
+ * @version $Id$
  */
 public class InvertedList extends AbstractList<Node> {
     private List<Node> list;

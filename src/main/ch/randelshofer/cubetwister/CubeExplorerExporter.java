@@ -17,7 +17,7 @@ package ch.randelshofer.cubetwister;
  * CubeExplorerExporter.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-05-11 Created.
+ * @version $Id$
  */
 public class CubeExplorerExporter implements Exporter {
 

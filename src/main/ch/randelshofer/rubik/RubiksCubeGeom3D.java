@@ -14,7 +14,7 @@ import java.util.*;
  * three dimensions.
  *
  * @author Werner Randelshofer
- * @version 3.1 2010-04-03 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>8.0 2009-01-04 Added support for twisting the cube by swiping over
  * its faces.
  * <br>7.0 2008-01-06 Adapted to changes in AbstractCube.

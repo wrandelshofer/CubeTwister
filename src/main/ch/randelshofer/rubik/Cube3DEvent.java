@@ -13,7 +13,7 @@ import java.awt.event.*;
  * in a Cube3D object.
  * 
  * @author Werner Randelshofer
- * @version 3.2 2010-08-14 Added methods getCube(), getLayerMask(), getAxis(),
+ * @version $Id$
  * getAngle().
  * <br>3.1 2009-01-19 Treat CTRL_DOWN_MASK like META_DOWN_MASK - except
  * on Mac OS X.

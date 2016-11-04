@@ -20,7 +20,7 @@ import javax.swing.tree.*;
  * A Model for Texts.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2007-08-11 Reworked. 
+ * @version $Id$
  * <br>1.0 2001-07-24 Created.
  */
 public class TextModel extends InfoModel {

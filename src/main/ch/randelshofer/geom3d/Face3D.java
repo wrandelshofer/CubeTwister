@@ -15,7 +15,7 @@ import javax.swing.event.EventListenerList;
  * Represents a planar and convex polygon in 3 dimensional space.
  *
  * @author Werner Randelshofer
- * @version 3.0 2009-01-03 Added support for swipe listeners.
+ * @version $Id$
  * <br>2.1 2004-08-21 Changed operation handleEvent(Event) to
  * handleEvent(MouseEvent).
  * <br>2.0 2004-08-03 Upgraded from Java 1.0 compliance to Java 1.1 

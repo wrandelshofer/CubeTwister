@@ -15,7 +15,7 @@ import java.util.*;
  * FIXME - This class is incomplete. It currently only works with a 3x3 Rubiks Cube.
  *
  * @author Werner Randelshofer
- * @version 0.4 2009-08-01 Improved compatibility with Superset ENG.
+ * @version $Id$
  * <br>0.3 2009-04-11 Added constructor with layerCount parameter.
  * <br>0.2 2008-11-24 Don't print "Null", if a symbol is not supported
  * by this notation.

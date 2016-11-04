@@ -12,7 +12,7 @@ import java.util.*;
  * SingleElementList.
  *
  * @author Werner Randelshofer
- * @version 1.0 Jan 2, 2008 Created.
+ * @version $Id$
  */
 public class SingleElementList<T> extends AbstractList<T> {
     private final T item;

@@ -19,7 +19,7 @@ import java.awt.*;
  * using the Idx3D engine.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2010-04-05 Added inStartedPlayer property.
+ * @version $Id$
  * <br>1.0.1 2008-04-27 Stickers were not always made visible.
  * <br>1.0 January 6, 2006 Created.
  */

@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version 7.1.2 2010-04-04 Reduction of side parts was too agressive.
+ * @version $Id$
  * <br>7.1.1 2009-01-04 Method computeTransformation did not properly
  * orient side parts.
  * <br>7.1 2008-08-17 Streamlined with code of class AbstractVCube6Geom3D.

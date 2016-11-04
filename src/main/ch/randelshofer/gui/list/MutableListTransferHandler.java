@@ -21,7 +21,7 @@ import javax.swing.*;
  * A transfer handler for JDnDList.
  *
  * @author Werner Randelshofer
- * @version 1.0 Mar 21, 2008 Created.
+ * @version $Id$
  */
 public class MutableListTransferHandler extends TransferHandler {
     private final static long serialVersionUID = 1L;

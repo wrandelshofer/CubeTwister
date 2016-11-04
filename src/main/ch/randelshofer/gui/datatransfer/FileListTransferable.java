@@ -13,7 +13,7 @@ import java.util.List;
  * Java File List Transferable.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2007-06-07 Created.
+ * @version $Id$
  */
 public class FileListTransferable
 implements Transferable {

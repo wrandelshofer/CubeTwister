@@ -18,7 +18,7 @@ import java.util.*;
  * the corner parts need to be larger than those on the center parts.
  *
  * @author Werner Randelshofer
- * @version 1.2 2010-04-04 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>1.1 2009-01-04 Added support for twisting the cube by swiping over
  * its faces.
  * <br>1.0 2008-08-17 Created.

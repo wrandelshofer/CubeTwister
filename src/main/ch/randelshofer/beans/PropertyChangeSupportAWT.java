@@ -11,7 +11,7 @@ import java.beans.*;
  * PropertyChangeSupportAWT.
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 5, 2006 Created.
+ * @version $Id$
  */
 public class PropertyChangeSupportAWT extends PropertyChangeSupport {
     private final static long serialVersionUID = 1L;

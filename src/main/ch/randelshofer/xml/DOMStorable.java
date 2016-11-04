@@ -10,7 +10,7 @@ package ch.randelshofer.xml;
  * DOMStorable.
  *
  * @author  Werner Randelshofer
- * @version 1.0 February 17, 2004 Create..
+ * @version $Id$
  */
 public interface DOMStorable {
     public void write(DOMOutput out);

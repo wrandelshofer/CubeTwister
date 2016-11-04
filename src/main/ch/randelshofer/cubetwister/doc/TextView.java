@@ -15,7 +15,7 @@ import javax.swing.event.*;
  * TextView.
  *
  * @author Werner Randelshofer
- * @version 1.0.3 2004-04-04 Font is now set explicitly for the body text area.
+ * @version $Id$
  * <br>1.0.2 2004-02-23 Method updateEnabled enables/disables now all
  * components of the TextView. 
  * <br>1.0.1 2003-08-10 Line wrapping activated.

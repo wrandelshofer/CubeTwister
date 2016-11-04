@@ -14,7 +14,7 @@ import ch.randelshofer.undo.*;
  * Presents an EntityModel in a JComponent.
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 5, 2006 Created.
+ * @version $Id$
  */
 public interface EntityView extends Undoable {
     public void setModel(EntityModel newValue);

@@ -16,7 +16,7 @@ import java.awt.Image;
  * Cube3DImageProducer.
  *
  * @author Werner Randelshofer
- * @version 1.1 2009-11-28 Added method flush.
+ * @version $Id$
  * <br>1.0 Apr 28, 2008 Created.
  */
 public class Cube3DImageProducer implements Cube3DCanvas {

@@ -38,7 +38,7 @@ import nanoxml.*;
  * a reference to an EntityModel in another DocumentModel.
  *
  * @author  Werner Randelshofer
- * @version 3.9 2011-01-22 Use TreeNodeImpl instead of TreeNodeImpl.
+ * @version $Id$
  * <br>3.8.1 2010-04-05 Removed dependencies to IBM Unicode normalizer.
  * <br>3.8 2010-04-05 Increased version number because the colors
  * are interpreted differently by V-Cube 7.

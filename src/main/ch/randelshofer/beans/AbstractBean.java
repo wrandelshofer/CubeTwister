@@ -13,7 +13,7 @@ import java.beans.*;
  * listeners.
  *
  * @author Werner Randelshofer
- * @version 1.1 2004-01-18
+ * @version $Id$
  * <br>1.0 2001-08-04
  */
 public abstract class AbstractBean extends Object implements java.io.Serializable {

@@ -13,7 +13,7 @@ import javax.swing.undo.*;
  * UndoableCubeEdit.
  *
  * @author Werner Randelshofer
- * @version 1.0 September 25, 2006 Created.
+ * @version $Id$
  */
 public class UndoableCubeEdit extends AbstractUndoableEdit {
     private final static long serialVersionUID = 1L;

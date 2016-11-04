@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  *
  * @author  werni
- * @version 1.0 2002-03-08
+ * @version $Id$
  */
 public class JVMLocalObjectTransferable
 implements Transferable {

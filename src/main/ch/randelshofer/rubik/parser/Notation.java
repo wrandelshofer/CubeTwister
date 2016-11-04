@@ -13,7 +13,7 @@ import java.io.*;
  * Notation describes the tokens and syntax used by the Parser.
  *
  * @author  Werner Randelshofer
- * @version 5.02 2008-06-22 Migraded from JDK 1.4 to 1.5. Added method getMacroModels.
+ * @version $Id$
  * <br>4.0 2008-01-03 Migrated from JDK 1.1 to 1.4.
  * <br>3.0 2007-06-16 Renamed "twist" to "move". 
  * <br>2.0 2005-01-31 Reworked.

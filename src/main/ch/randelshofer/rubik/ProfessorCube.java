@@ -135,7 +135,7 @@ package ch.randelshofer.rubik;
  * {@link AbstractCube}.
  *
  * @author  Werner Randelshofer
- * @version 3.0.1 2009-01-25 Fixed EDGE_SWIPE_TABLE.
+ * @version $Id$
  * <br>3.0 2009-01-01 Added support for twisting the cube by swiping over
  * its faces.
  * <br>2.0 2007-12-29 Adapted to changes in AbstractCube.

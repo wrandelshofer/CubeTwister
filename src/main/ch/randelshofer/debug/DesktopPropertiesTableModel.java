@@ -14,7 +14,7 @@ import java.util.*;
  * DesktopPropertiesTableModel.
  *
  * @author  Werner Randelshofer
- * @version 1.0  29 December 2004  Created.
+ * @version $Id$
  */
 public class DesktopPropertiesTableModel extends AbstractTableModel {
     private final static long serialVersionUID = 1L;

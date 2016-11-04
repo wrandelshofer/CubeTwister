@@ -17,7 +17,7 @@ import java.io.IOException;
  * thread (the supervising thread).
  *
  * @author Werner Randelshofer
- * @version 1.0.1 2003-04-25 Source code complies now to Java Code Conventions.
+ * @version $Id$
  * <br>1.0 1999-05-09  Created.
  */
 public class SuspendableInputStream

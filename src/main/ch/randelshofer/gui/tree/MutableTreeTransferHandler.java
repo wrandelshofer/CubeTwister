@@ -26,7 +26,7 @@ import javax.swing.tree.TreePath;
  * A transfer handler for MutableJTree.
  *
  * @author Werner Randelshofer
- * @version 1.1 2011-01-19 Component does not have to be an instance of of JTree.
+ * @version $Id$
  * <br>1.0 2010-01-09 Created.
  */
 public class MutableTreeTransferHandler extends TransferHandler {

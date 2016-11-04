@@ -16,7 +16,7 @@ import java.beans.*;
  * NumericDocument.
  *
  * @author Werner Randelshofer.
- * @version 1.0 June 3, 2006 Created.
+ * @version $Id$
  */
 public class NumericDocument extends PlainDocument  implements ChangeListener {
     private final static long serialVersionUID = 1L;

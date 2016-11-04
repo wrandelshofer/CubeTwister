@@ -13,7 +13,7 @@ import nanoxml.*;
  * XMLPreorderIterator.
  * 
  * @author Werner Randelshofer
- * @version 2.1 2007-12-25 Fixed ClassCastException.
+ * @version $Id$
  * <br>2.0 2007-11-16 Upgraded to Java 1.4. 
  * <br>1.0  05 February 2005  Created.
  */

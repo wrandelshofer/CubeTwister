@@ -23,7 +23,7 @@ import org.jhotdraw.util.prefs.PreferencesUtil;
  * PreferencesAction.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-08-12 Created.
+ * @version $Id$
  */
 public class PreferencesAction extends AbstractPreferencesAction {
     private final static long serialVersionUID = 1L;

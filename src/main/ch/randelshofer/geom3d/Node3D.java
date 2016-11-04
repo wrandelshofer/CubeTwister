@@ -10,7 +10,7 @@ import java.util.*;
  * Represents a node of a three dimensional universe.
  *
  * @author Werner Randelshofer
- * @version 2.0 2009-01-04 Migrated to Java 1.5.
+ * @version $Id$
  * <br>1.0 2008-09-16 Renamed from SceneNode to Node3D.
  * <br>0.1  2000-02-28      Created.
  */

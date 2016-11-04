@@ -28,7 +28,7 @@ import java.util.*;
  * FIXME: Implement cloning.
  *
  * @author  Werner Randelshofer
- * @version 3.0.1 2010-11-06 Fixes possible NPE in method getSupportedDragActions.
+ * @version $Id$
  * <br>3.0 2008-03-21 Reimplemented with TransferHandler. Renamed from
  * DnDJList to JDnDList.
  * <br>2.2.1 2007-06-07 On dropActionChanged, we need always to call accept

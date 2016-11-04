@@ -18,7 +18,7 @@ import org.jhotdraw.io.StreamPosTokenizer;
  * This class provides static utility methods for Cube objects.
  *
  * @author Werner Randelshofer
- * @version 2.4 2010-04-06 Added create-method.
+ * @version $Id$
  * <br>2.3 2008-09-03 Return a readable permutation string, even if
  * a notation does not support it.
  * <br>2.2 2008-02-23 Method getVisibleOrder returned incorrect

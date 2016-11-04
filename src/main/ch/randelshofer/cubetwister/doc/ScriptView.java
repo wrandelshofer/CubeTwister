@@ -60,7 +60,7 @@ import org.jhotdraw.util.prefs.PreferencesUtil;
  * info panel for entering comments.
  *
  * @author Werner Randelshofer
- * @version 2.2.1 2011-04-20 Sets current ScriptModel on accessory.
+ * @version $Id$
  * <br>2.2 2010-08-18 Changes icon of reset button when option button is
  * pressed.
  * <br>2.1 2010-05-02 Option-Click on reset button only resets

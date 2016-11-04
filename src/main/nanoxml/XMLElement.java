@@ -100,7 +100,7 @@ import java.util.*;
  * 
  * @author Marc De Scheemaecker
  *         &lt;<A href="mailto:cyberelf@mac.com">cyberelf@mac.com</A>&gt;
- * @version 2005-06-18 Werner Randelshofer: Adapted for Java 2 Collections API.
+ * @version $Id$
  * <br>$Name: RELEASE_2_2_1 $, $Revision: 1.4 $
  * @see nanoxml.XMLParseException
  */

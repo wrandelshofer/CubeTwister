@@ -17,7 +17,7 @@ import base64.*;
  * DefaultImageModel.
  *
  * @author  Werner Randelshofer
- * @version 1.2 2010-01-01 Added method setImage(byte[],Image).
+ * @version $Id$
  * <br>1.1 2008-01-03 Removed unnecessary code in method getImage().
  * <br>1.0 January 6, 2006 Created.
  */

@@ -35,7 +35,7 @@
 // | -----------------------------------------------------------------
 
 /*
- * @version 4.2 2006-02-21 Werner Randelshofer: Avoid unecessary object creation. 
+ * @version $Id$
  */
 package idx3d;
 
@@ -46,7 +46,7 @@ import java.util.Enumeration;
 /**
  * Renders a scene in a sequence of stages.
  *
- * @version 5.1.1 2010-11-06 Werner Randelshofer Fixes possible null pointer
+ * @version $Id$
  * dereference in method performResizing.
  * <br>5.1 2010-08-18 Werner Randelshofer Added support for screen sharing.
  * <br>5.0 2009-01-03 Werner Randelshofer Moved dynamic determination of

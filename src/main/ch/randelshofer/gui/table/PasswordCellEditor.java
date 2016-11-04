@@ -13,7 +13,7 @@ import javax.swing.*;
  * PassworCellEditor.
  *
  * @author Werner Randelshofer
- * @version 1.0 August 24, 2003  Created.
+ * @version $Id$
  */
 public class PasswordCellEditor extends DefaultCellEditor {
     private final static long serialVersionUID = 1L;

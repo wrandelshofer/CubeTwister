@@ -15,7 +15,7 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version 7.0.1 2009-01-04 Fixed rotation of side parts.
+ * @version $Id$
  * <br>7.0 2008-01-06 Adapted to changes in AbstractCube.
  * <br>6.1 2007-09-09 Use SplineInterpolator to animat twists. 
  * <br>6.0 2005-03-06 Reworked.

@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * This class contains various methods for manipulating arrays (such as
  * sorting and searching). 
  * 
- * @version 5.0 2008-01-01 Removed methods which are in class Arrays.
+ * @version $Id$
  */
 public class ArrayUtil {
 

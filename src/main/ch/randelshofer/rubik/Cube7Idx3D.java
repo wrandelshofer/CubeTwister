@@ -18,7 +18,7 @@ import java.util.Arrays;
  * different sizes and different aspect ratios.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2010-04-04 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>2008-08-15 Created.
  */
 public class Cube7Idx3D extends AbstractCube7Idx3D {

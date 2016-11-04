@@ -16,7 +16,7 @@ import java.io.InputStream;
  * Cube6Idx3DPlayerApplet.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2008-08-23 Created.
+ * @version $Id$
  */
 public class Cube6Idx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;

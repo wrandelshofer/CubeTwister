@@ -16,7 +16,7 @@ import javax.swing.undo.UndoableEdit;
  * Supports UndoableEditListeners.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2011-01-22 Turned class into an interface.
+ * @version $Id$
  * <br>1.0.1 2011-01-19 Removes unused imports.
  * <br>1.0 2001-10-09
  */

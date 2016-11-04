@@ -15,7 +15,7 @@ import java.io.*;
  * TreeModels.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2008-03-21 Support for TreeModel added.
+ * @version $Id$
  * <br>1.0 November 1, 2003 Created.
  */
 public class TreeModels {

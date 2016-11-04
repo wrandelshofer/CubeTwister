@@ -24,7 +24,7 @@ import java.io.*;
  * NotationModel.
  *
  * @author  Werner Randelshofer.
- * @version 2.2 2009-07-05 Added static method getUsefulLayers.
+ * @version $Id$
  * <br>2.1 2007-08-11 Moved "name" property into superclass.
  * <br>2.0 2004-04-03 Support for many new tokens and expressions added.
  * <br>1.1 2003-01-03 Only tokens marked as supported may be passed to the parser.

@@ -15,7 +15,7 @@ import javax.swing.tree.*;
  * of the JavaSoft Bug Parade.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2003-11-04 Created.
+ * @version $Id$
  */
 public class HTMLTreeCellRenderer extends DefaultTreeCellRenderer {
     private final static long serialVersionUID = 1L;

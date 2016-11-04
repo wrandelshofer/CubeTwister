@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.player.RevengeCubeIdx3DPlayerApplet;
  * RevengePlayer.
  * 
  * @author Werner Randelshofer
- * @version 1.0 2006-04-13 Created.
+ * @version $Id$
  */
 public class RevengePlayer extends RevengeCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;

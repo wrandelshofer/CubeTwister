@@ -21,7 +21,7 @@ import javax.swing.event.*;
  * idx3d_JCanvas.
  *
  * @author  Werner Randelshofer
- * @version 5.9 2014-04-27 Adds method getRasterizer();
+ * @version $Id$
  * <br>5.8 2011-06-29 Adds methods setSwipeTimeout and getSwipeTimeout.
  * <br>5.7 2010-08-18 Adds support for shared render pipelines.
  * <br>5.6 2010-08-08 Adds scroll wheel support.

@@ -16,7 +16,7 @@ import org.jhotdraw.util.prefs.PreferencesUtil;
  * The ProgressFrame holds all ProgressView's.
  *
  * @author Werner Randelshofer
- * @version 1.1 2002-07-28 ScrollPane added.
+ * @version $Id$
  * <br>1.0 2002-05-10 Created.
  */
 public class ProgressFrame extends javax.swing.JFrame {

@@ -26,7 +26,7 @@ import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
  * HTMLExporter exports a CubeTwister document to a directory.
  *
  * @author Werner Randelshofer
- * @version 2.3.1 2010-11-06 Removes unused main method.
+ * @version $Id$
  * <br>2.3 2010-02-08 Show more information about progress. Only export
  * applets which are needed by the document. Compress the resources.xml file.
  * <br>2.2.1 2009-01-25 Fixed NPE in method htmlencode.

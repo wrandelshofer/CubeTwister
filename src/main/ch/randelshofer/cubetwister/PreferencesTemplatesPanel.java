@@ -23,7 +23,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * PreferencesTemplatesPanel.
  *
  * @author Werner Randelshofer
- * @version 1.0 20. August 2007 Created.
+ * @version $Id$
  */
 public class PreferencesTemplatesPanel extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

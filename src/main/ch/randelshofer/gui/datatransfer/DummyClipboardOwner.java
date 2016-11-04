@@ -10,7 +10,7 @@ package ch.randelshofer.gui.datatransfer;
  * DummyClipboardOwner.
  *
  * @author  Werner Randelshofer
- * @version 1.0 November 1, 2003 Created.
+ * @version $Id$
  */
 public class DummyClipboardOwner implements java.awt.datatransfer.ClipboardOwner {
     private static DummyClipboardOwner instance;

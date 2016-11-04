@@ -21,7 +21,7 @@ package ch.randelshofer.rubik;
  * two layers and can have up to 32 layers.
  *
  * @author Werner Randelshofer.
- * @version 3.0 2009-01-01 Added support for twisting the cube by swiping over
+ * @version $Id$
  * its faces.
  * <br>2.0 2007-12-31 Renamed get...Side methods to get...Face methods
  * to clarify their intent. Added getUnsolvedParts method.

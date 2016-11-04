@@ -26,7 +26,7 @@ import javax.swing.table.TableModel;
  * </ul>
  *
  * @author Werner Randelshofer
- * @version 3.0 2004-05-16 Revised. 
+ * @version $Id$
  * <br>2.3 2002-11-26 Interface streamlined. Support for Transferables
  * added.
  * <br> 2.2 2001-08-28 Method for retrieving actions for rows added.

@@ -9,7 +9,7 @@ import ch.randelshofer.rubik.player.RevengeCubeGeom3DPlayerApplet;
  * RevengePlayerFlat.
  * 
  * @author Werner Randelshofer
- * @version 1.0 2006-04-13 Created.
+ * @version $Id$
  */
 public class RevengePlayerFlat extends RevengeCubeGeom3DPlayerApplet {
     private final static long serialVersionUID = 1L;

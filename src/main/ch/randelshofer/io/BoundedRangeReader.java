@@ -13,7 +13,7 @@ import javax.swing.event.*;
  * BoundedRangeReader.
  *
  * @author  Werner Randelshofer
- * @version 1.0  April 23, 2004  Created.
+ * @version $Id$
  */
 public class BoundedRangeReader 
 extends FilterReader 

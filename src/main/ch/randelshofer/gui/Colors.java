@@ -11,7 +11,7 @@ import java.awt.*;
  * Colors.
  *
  * @author  Werner Randelshofer
- * @version 1.0 8. April 2004  Created.
+ * @version $Id$
  */
 public class Colors {
     

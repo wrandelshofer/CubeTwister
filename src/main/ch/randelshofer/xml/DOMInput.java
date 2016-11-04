@@ -11,7 +11,7 @@ package ch.randelshofer.xml;
  * DOMInput.
  *
  * @author  Werner Randelshofer
- * @version 1.0 10. März 2004  Created.
+ * @version $Id$
  */
 public interface DOMInput {
     

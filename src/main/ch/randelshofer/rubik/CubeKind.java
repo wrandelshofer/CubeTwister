@@ -11,7 +11,7 @@ import java.util.*;
  * Typesafe enum of cube kinds used by CubeModel.
  *
  * @author Werner Randelshofer
- * @version 3.0 2013-12-15 Converted from class to enum.
+ * @version $Id$
  * <br>2.0 2008-12-20 Moved from ch.randelshofer.cubetwister into
  * ch.randelshofer.rubik package. Added method isNameOfKind.
  * <br>1.1 2008-01-03 Added method getLayerCount.

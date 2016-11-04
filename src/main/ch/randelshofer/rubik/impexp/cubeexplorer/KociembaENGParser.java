@@ -14,7 +14,7 @@ import java.util.*;
  * KociembaENGParser.
  *
  * @author  Werner Randelshofer
- * @version 1.0  April 17, 2004  Created.
+ * @version $Id$
  */
 public class KociembaENGParser extends ScriptParser {
 

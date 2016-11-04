@@ -21,7 +21,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * The NotationConstructsView is an editor for the expression tokens of a notation.
  * 
  * @author Werner Randelshofer
- * @version 3.0.1 2010-04-05 Removed dependencies to IBM Unicode normalizer.
+ * @version $Id$
  * <br>3.0 2009-01-22 Extended the syntax. Normalize tokens to Unicode NFKC.
  * <br>2.0.1 2007-08-05 Delimiter fields were not wired with model.
  * <br>2.0 2006-05-26 Reworked.

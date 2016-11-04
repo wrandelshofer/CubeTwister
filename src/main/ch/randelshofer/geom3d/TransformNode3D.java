@@ -10,7 +10,7 @@ import java.util.*;
  * This node applies its Transform3D to all its children.
  *
  * @author Werner Randelshofer
- * @version 2.0 2009-01-04 Migrated to Java 1.5.
+ * @version $Id$
  * <br>1.0 2008-09-16 Renamed from TransformNode to TransformNode3D.
  * <br>0.1  2000-02-28      Created.
  */

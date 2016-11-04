@@ -16,7 +16,7 @@ import java.net.*;
  * AbstractCubeGeom3DPlayerApplet.
  *
  * @author Werner Randelshofer
- * @version 1.0 November 15, 2007 Created.
+ * @version $Id$
  */
 public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApplet {
     

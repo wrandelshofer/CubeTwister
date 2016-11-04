@@ -14,7 +14,7 @@ import java.util.*;
  * arbitrary number of planar and convex vertices.
  *
  * @author Werner Randelshofer
- * @version 3.1 2010-01-04 Added method getFillColor.
+ * @version $Id$
  * <br>3.0 2009-01-03 Reuse array of transformed coordinates between
  * calls to addVisibleFacesTo(). Store face actions in Face3D rather than in
  * this object. Changed method names for clarification. Removed method setAction.

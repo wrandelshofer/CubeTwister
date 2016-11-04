@@ -9,7 +9,7 @@ package ch.randelshofer.math;
  * Utility class for integer arithmetic.
  * 
  * @author Werner Randelshofer
- * @version 1.1 2009-12-27 Added gcd(long,long).
+ * @version $Id$
  * <br>1.0  2002-05-01
  */
 public class IntMath {

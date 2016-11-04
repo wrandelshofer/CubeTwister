@@ -23,7 +23,7 @@ import javax.swing.event.*;
  * A canvas for rendering three dimensional geometry.
  *
  * @author Werner Randelshofer
- * @version 3.5 2011-06-29 Adds methods setSwipeDelay and getSwipeDelay.
+ * @version $Id$
  * <br>3.4.1 Removes synchronization from add/removePropertyChangeListener
  * methods.
  * <br>3.4 2010-04-04 Moves event listeners into internal class

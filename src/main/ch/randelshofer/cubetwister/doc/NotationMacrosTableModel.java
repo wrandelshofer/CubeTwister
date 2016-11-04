@@ -18,7 +18,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * accessible by a MutableJTable.
  *
  * @author  Werner Randelshofer
- * @version 1.2.1 2010-04-05 Removed dependencies to IBM Unicode normalizer.
+ * @version $Id$
  * <br>1.2 2009-01-24 Normalize macro identifiers and macro scripts to
  * Unicode NFKC.
  * <br>1.1 2004-07-03 Revised.

@@ -25,7 +25,7 @@ import org.jhotdraw.util.prefs.PreferencesUtil;
  * NotationView.
  *
  * @author  Werner Randelshofer
- * @version 1.0  April 14, 2006  Created.
+ * @version $Id$
  */
 public class NotationView extends JPanel
         implements PropertyChangeListener,

@@ -15,7 +15,7 @@ import javax.swing.tree.*;
  * DefaultCellRenderer.
  *
  * @author  Werner Randelshofer
- * @version 1.0 April 11, 2004 Created.
+ * @version $Id$
  */
 public class DefaultCellRenderer implements TableCellRenderer, ListCellRenderer {
     /** The Swing component being rendered. */

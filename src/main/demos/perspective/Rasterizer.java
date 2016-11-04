@@ -16,7 +16,7 @@ package demos.perspective;
  * Rasterizer.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-06-05 Created.
+ * @version $Id$
  */
 public class Rasterizer {
 

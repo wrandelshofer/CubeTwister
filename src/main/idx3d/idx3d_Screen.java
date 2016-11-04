@@ -45,7 +45,7 @@ import java.lang.ref.WeakReference;
 /**
  * Defines a virtual screen which is a server for rendered images.
  *
- * @version 3.4 2012-04-01 Werner Randelshofer: Use method getImage() from
+ * @version $Id$
  * idx3d_imageProducer.
  * <br>3.3 2003-12-19 Werner Randelshofer: Keep a weak reference to the
  * antialiased and the non-antialiased pixel arrays.

@@ -12,7 +12,7 @@ import java.awt.*;
  * Compares two files of equal size and content.
  *
  * @author Werner Randelshofer
- * @version 1.0 2000-07-03
+ * @version $Id$
  */
 public class CompareFiles extends Object {
 

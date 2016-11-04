@@ -15,7 +15,7 @@ import nanoxml.*;
  * NanoXMLDOMInput.
  *
  * @author  Werner Randelshofer
- * @version 1.0 February 17, 2004 Created.
+ * @version $Id$
  */
 public class NanoXMLDOMInput implements DOMInput {
     /**

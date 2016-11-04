@@ -10,7 +10,7 @@ package ch.randelshofer.geom3d;
  * Geom3D.
  *
  * @author Werner Randelshofer
- * @version 1.0 2008-12-31 Created.
+ * @version $Id$
  */
 public class Geom3D {
 

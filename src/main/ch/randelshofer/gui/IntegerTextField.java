@@ -36,7 +36,7 @@ import java.beans.*;
  * text field is out of bounds, it is set to the minimum or maximum
  * value of the boundary.
  *
- * @version 1.1 2006-04-09 Only set values within the bounded range of the model. 
+ * @version $Id$
  * <br>1.0 2002-11-14
  * @author Werner Randelshofer
  */

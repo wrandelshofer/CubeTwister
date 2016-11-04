@@ -14,7 +14,7 @@ import org.jhotdraw.app.*;
  * Main.
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 3, 2006 Created.
+ * @version $Id$
  */
 public class Main {
 

@@ -20,7 +20,7 @@ import javax.swing.table.*;
  * Displays the current system properties.
  *
  * @author  Werner Randelshofer
- * @version 1.0.1 2002-07-29 Font size changed.
+ * @version $Id$
  * <br>1.0 2002-05-10 Created.
  */
 public class SystemPropertiesInspector extends javax.swing.JPanel {

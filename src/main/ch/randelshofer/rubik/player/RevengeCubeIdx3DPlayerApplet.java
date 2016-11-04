@@ -15,7 +15,7 @@ import java.io.InputStream;
  * RevengeCubeIdx3DPlayerApplet.
  *
  * @author  Werner Randelshofer
- * @version 2.0 2007-11-15 Upgraded to Java 1.4.
+ * @version $Id$
  */
 public class RevengeCubeIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;

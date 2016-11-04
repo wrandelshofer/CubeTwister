@@ -41,7 +41,7 @@ import java.awt.image.*;
 /**
  * Produces an image.
  *
- * @version 3.4 2012-04-01 Werner Randelshofer: Adds method getImage(). 
+ * @version $Id$
  * <br>3.2 2003-12-18 Werner Randelshofer: The producer sends now 
  * ImageConsumer.STATICIMAGEDONE instead of ImageConsumer.SINGLEFRAMEDONE
  * when it has finished rendering. This prevents Components which draw

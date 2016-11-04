@@ -39,7 +39,7 @@ package idx3d;
 /**
  * Rasterizer stage of the render pipeline.
  *
- * @version 4.0 2010-06-01 Werner Randelshofer:
+ * @version $Id$
  * Turned this class into an abstract class. There are now two concrete
  * implementations available:
  * idx3d_LinearRasterizer and idx3d_PerspectiveRasterizer.

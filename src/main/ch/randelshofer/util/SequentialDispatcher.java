@@ -14,7 +14,7 @@ package ch.randelshofer.util;
  * Role in design pattern: EventCollector and EventProcessor
  *
  * @author  Werner Randelshofef
- * @version 1.0 2002-05-18 Created
+ * @version $Id$
  */
 public class SequentialDispatcher extends EventLoop implements Dispatcher {
     /**

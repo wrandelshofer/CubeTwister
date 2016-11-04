@@ -29,7 +29,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * operations cut, copy and paste.
  *
  * @author  Werner Randelshofer
- * @version 3.3 2011-01-22 Use DefaultMutableTreeNode instead of MutableTreeNode.
+ * @version $Id$
  * Displays node actions.
  * <br>3.2.1 2011-01-20 Method delete() did not remove all descendants.
  * <br>3.2 2010-01-09 Implemented duplicate() method.

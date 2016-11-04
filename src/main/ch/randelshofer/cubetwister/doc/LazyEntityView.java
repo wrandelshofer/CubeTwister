@@ -18,7 +18,7 @@ import org.jhotdraw.gui.Worker;
  * be drawn on screen.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2006-05-26 Changed to take a class name String as an argument
+ * @version $Id$
  * instead of a Class object.
  * <br>1.0 February 1, 2006 Created.
  */

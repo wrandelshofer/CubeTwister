@@ -70,7 +70,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * which means that it does not move around rows when its comparison function
  * returns 0 to denote that they are equivalent.
  *
- * @version 1.8 04/23/99
+ * @version $Id$
  * @author Philip Milne
  */
 public class TableSorter extends TableMap {

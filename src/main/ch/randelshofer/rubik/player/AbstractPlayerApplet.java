@@ -56,7 +56,7 @@ import javax.swing.text.*;
  * can play back scripts.
  *
  * @author Werner Randelshofer
- * @version 6.3.1 Fixes "images" path.
+ * @version $Id$
  * <br>6.3 2011-06-29 Adds setScriptType/getScriptType methods to JavaScript
  * API.
  * <br>6.2 2010-08-03 "stickersFront", "stickersLeft", ... parameters could only

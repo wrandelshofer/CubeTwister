@@ -15,7 +15,7 @@ import javax.swing.table.*;
  * The header renderer. All this does is make the text left aligned.
  *
  * @author  Werner Randelshofer
- * @version 1.0  June 21, 2004  Created.
+ * @version $Id$
  */
 public class LeftAlignedHeaderRenderer extends DefaultTableCellRenderer {
     private final static long serialVersionUID = 1L;

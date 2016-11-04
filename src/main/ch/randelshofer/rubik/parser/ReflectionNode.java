@@ -12,7 +12,7 @@ import java.util.*;
  * Represents a node of a parsed script.
  *
  * @author Werner Randelshofer
- * @version 5.1 2009-01-22 Override applyTo method. Fixed reflect() method.
+ * @version $Id$
  * <br>5.0 2005-01-31 Reworked.
  * <br>1.1 2004-03-28 Two nested reflections cancel each other out.
  * <br>1.0 2001-07-25

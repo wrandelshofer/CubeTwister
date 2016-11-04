@@ -10,7 +10,7 @@ package ch.randelshofer.rubik;
  * The listener interface for receiving cube events.
  *
  * @author  Werner Randelshofer
- * @version 1.0 December 21, 2003 Create..
+ * @version $Id$
  */
 public interface CubeListener extends java.util.EventListener {
     public void cubeTwisted(CubeEvent evt);

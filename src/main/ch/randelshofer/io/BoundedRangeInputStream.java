@@ -18,7 +18,7 @@ import javax.swing.event.*;
  * the observation of the input reading process.
  *
  *@author Werner Randelshofer
- * @version  1.1 2004-04-19  Reworked for JDK 1.3.
+ * @version $Id$
  * <br>1.0.2  09.05.1999  Transferred into package ch.randelshofer.io
  * <br>1.0.1  02.05.1999  #setMaximum overrides the size information
  * from the file.

@@ -259,7 +259,7 @@ import javax.swing.event.*;
  * </ul>
  * 
  * @author Werner Randelshofer
- * @version 5.0 2010-05-03 Added support for transform type.
+ * @version $Id$
  * <br>4.0.1 2008-01-06 Fixed twist angle of edge 'dl'.
  * <br>4.0 2007-12-27 Changed the location and orientation of the parts so 
  * that they are symmetric to the axis passing from the right-up-front corner

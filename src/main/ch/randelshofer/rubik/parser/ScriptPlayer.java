@@ -32,7 +32,7 @@ import javax.swing.plaf.ButtonUI;
  * ScriptPlayer.
  *
  * @author  Werner Randelshofer
- * @version 7.9.2 2011-02-17 Merged with Media project.
+ * @version $Id$
  * <br>7.9.1 2010-11-13 Fixes enabled state of reset and scramble button.
  * <br>7.9 2010-08-03 The Locale of the player can now be changed by
  * setting a new locale on its control panel component.

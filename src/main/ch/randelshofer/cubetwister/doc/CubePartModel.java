@@ -13,7 +13,7 @@ import javax.swing.undo.*;
  * Model for the properties of a cube part.
  *
  * @author  Werner Randelshofer
- * @version 1.0.1 2002-07-29 Removing an outline color which
+ * @version $Id$
  * is also the fill color of the part did not fire a change event.
  * <br>1.0 2001-10-12
  */

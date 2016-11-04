@@ -13,8 +13,8 @@ import java.util.NoSuchElementException;
  * EmptyEnumeration.
  *
  *@author Werner Randelshofer
- * @version 1.0  2001-02-25  Method <code>getInstance</code> added.
- * @version 0.0  2000-01-02  Draft.
+ * @version $Id$
+ * @version $Id$
  */
 public class EmptyEnumeration<T>
 implements Enumeration<T> {

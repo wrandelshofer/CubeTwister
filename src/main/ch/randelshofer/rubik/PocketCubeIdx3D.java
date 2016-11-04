@@ -13,7 +13,7 @@ import java.util.Arrays;
  * Represents the geometry of a PocketCube for the Idx3D rendering engine.
  *
  * @author  Werner Randelshofer
- * @version 3.2 2010-08-18 Adds missing back faces to parts.
+ * @version $Id$
  * <br>3.1 2010-04-01 Added swipe actions to edges adjacent to stickers.
  * <br>3.0 2009-01-01 Added support for twisting the cube by swiping over
  * its faces.

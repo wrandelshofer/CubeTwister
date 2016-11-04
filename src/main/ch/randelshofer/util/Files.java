@@ -11,7 +11,7 @@ import java.io.*;
  * Files.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2007-09-13 Added method stream. 
+ * @version $Id$
  * <br>1.0 13. Januar 2004  Created.
  */
 public class Files {

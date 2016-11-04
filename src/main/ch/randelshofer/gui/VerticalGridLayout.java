@@ -13,7 +13,7 @@ import java.awt.*;
  * A grid layout which lays out columns first.
  *
  * @author  Werner Randelshofer
- * @version 1.0 27. November 2003  Created.
+ * @version $Id$
  */
 public class VerticalGridLayout implements LayoutManager, java.io.Serializable {
     private final static long serialVersionUID = 1L;

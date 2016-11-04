@@ -18,7 +18,7 @@ import java.util.Arrays;
  * the corner parts need to be larger than those on the center parts.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2010-04-04 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>1.0.1 2008-12-19 Fixed UV-Values for the right-down edges.
  * <br>1.0 2008-10-14 Created.
  */

@@ -18,7 +18,7 @@ import javax.swing.event.*;
  * CubeStickersView.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2008-12-23 Created.
+ * @version $Id$
  */
 public class CubeStickersView extends JPanel implements EntityView, Undoable {
     private final static long serialVersionUID = 1L;

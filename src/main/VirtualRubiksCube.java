@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.virtual.*;
  * Virtual Rubik's Cube.
  *
  * @author Werner Randelshofer
- * @version 1.0 25. August 2007 Created.
+ * @version $Id$
  */
 public class VirtualRubiksCube extends VirtualRubiksCubeApplet {
     private final static long serialVersionUID = 1L;

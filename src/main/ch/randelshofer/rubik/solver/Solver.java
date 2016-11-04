@@ -80,7 +80,7 @@ import java.util.*;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version 1.0.2 2003-03-16 Text provided to progress monitor improved.
+ * @version $Id$
  * <br>1.0.1 2002-12-23 Text provided to progress monitor improved.
  * <br>1.0 2000-09-22
  */

@@ -25,7 +25,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * operations cut, copy and paste.
  *
  * @author Werner Randelshofer
- * @version 3.2 2010-01-09 Implemented duplicate() method.
+ * @version $Id$
  * Adapted for JHotDraw 7.3 rev604.
  * <br>2.5 2007-08-05 Enable pasting in more cases.
  * <br>2.4 2006-01-04 Specifying Quaqua "tableHeader" button style for

@@ -16,7 +16,7 @@ import javax.swing.undo.*;
  * Model for the properties of a cube part.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2010-01-01 Handle property changes of the CubeColorModel.
+ * @version $Id$
  * <br>1.0 2001-10-12
  */
 public class CubeStickerModel extends EntityModel {

@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.player.Cube7Idx3DPlayerApplet;
  * VCube7Player.
  * 
  * @author Werner Randelshofer
- * @version 1.0 2008-08-23 Created.
+ * @version $Id$
  */
 public class Cube7Player extends Cube7Idx3DPlayerApplet {
     private final static long serialVersionUID = 1L;

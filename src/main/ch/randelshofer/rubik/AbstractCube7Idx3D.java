@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
  * using the Idx3D engine.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2008-08-15 Created.
+ * @version $Id$
  */
 public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
 

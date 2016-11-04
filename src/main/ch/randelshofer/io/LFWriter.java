@@ -14,7 +14,7 @@ import java.io.*;
  * followed immediately by a linefeed.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2004-04-17 Constructor with lineSeparator parameter added. 
+ * @version $Id$
  * <br>1.0.1 2004-02-14 Method write accidentaly suppressed a line feed
  * if it was the last character in the supplied data.
  * <br>1.0 2002-02-13 Created.

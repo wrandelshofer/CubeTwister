@@ -16,7 +16,7 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version 6.1 2007-09-09 Use SplineInterpolator to animate twists. 
+ * @version $Id$
  * <br>1.0 2005-12-26 Created.
  */
 public abstract class AbstractPocketCubeGeom3D extends AbstractCubeGeom3D {

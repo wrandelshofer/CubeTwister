@@ -16,7 +16,7 @@ import javax.swing.table.*;
  * ObjectTableCellRenderer.
  *
  * @author Werner Randelshofer
- * @version 1.2 2004-12-29 Draw borders using BorderIcon.
+ * @version $Id$
  * <br>1.1 2003-03-16 Some Icon's may generate class cast exceptions in the Aqua LAF.
  * <br>1.0 March 15, 2003 Created.
  */

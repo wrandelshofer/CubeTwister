@@ -136,7 +136,7 @@ import ch.randelshofer.io.ParseException;
  *
  *
  * @author Werner Randelshofer
- * @version 10.0.1 2010-10-06 Fixes possible null pointer dereference in method
+ * @version $Id$
  * parseExpressionAffix.
  * <br>10.0 2009-07-31 Renamed EBNF elements to make intent clearer.
  * <br>9.1 2009-04-11 Added method getNotation(). Fixed parsing of permutations

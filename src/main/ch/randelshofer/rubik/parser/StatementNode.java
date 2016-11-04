@@ -13,7 +13,7 @@ import java.io.*;
  * The side effect of a statement node to a Cube is A.
  *
  * @author Werner Randelshofer
- * @version 6.0 2005-12-24 Reworked.
+ * @version $Id$
  * <br>5.0 2005-01-31 Reworked.
  * <br>1.0 2001-07-25
  * @see ScriptParser

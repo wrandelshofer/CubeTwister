@@ -10,7 +10,7 @@ import ch.randelshofer.undo.*;
 /**
  *
  * @author  werni
- * @version 1.0 2001-07-24
+ * @version $Id$
  */
 public class MacroModel extends InfoModel  {
     private final static long serialVersionUID = 1L;

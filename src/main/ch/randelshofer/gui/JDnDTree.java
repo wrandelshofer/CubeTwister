@@ -20,7 +20,7 @@ import javax.swing.tree.*;
  * JDnDTree.
  *
  * @author  Werner Randelshofer
- * @version 2.2 2011-01-22 Use DefaultMutableTreeNode instead of MutableTreeNode.
+ * @version $Id$
  * <br>2.1.1 2010-11-06 Fixes possible NPE in method getSupportedDragActions.
  * <br>2.1 2010-01-09 Moved transfer handler into super class.
  * <br>2.0.1 2008-12-25 Mostly fixed insertion point determination when

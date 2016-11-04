@@ -18,7 +18,7 @@ import javax.swing.event.*;
  * CubeOptionsView.
  *
  * @author  Werner Randelshofer
- * @version 3.0 2008-12-23 Moved CubeStickersImageView into CubeStickersView.
+ * @version $Id$
  * <br>2.0 2008-04-28 Added CubeAnimationView. Reworked lazy generation
  * of views. 
  * <br>1.0 January 31, 2006 Created.

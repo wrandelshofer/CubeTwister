@@ -12,7 +12,7 @@ import ch.randelshofer.rubik.*;
  *
  *
  * @author Werner Randelshofer
- * @version 1.0 2008-08-17 Created.
+ * @version $Id$
  */
 public class VirtualVCube6Applet extends AbstractVirtualCubeApplet {
 

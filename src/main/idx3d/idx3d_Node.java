@@ -16,7 +16,7 @@ import java.util.*;
  * and lights.
  *
  * @author  Werner Randelshofer
- * @version 1.0  August 29, 2004  Created.
+ * @version $Id$
  */
 public class idx3d_Node extends idx3d_CoreObject {
     /**

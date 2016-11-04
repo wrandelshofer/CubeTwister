@@ -18,7 +18,7 @@ import static java.lang.Math.*;
  * 
  * 
  * @author  Werner Randelshofer
- * @version 1.1 2010-04-04 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>2009-04-13 Fixed uv-map of drb corner.
  * <br>2008-08-15 Created.
  */

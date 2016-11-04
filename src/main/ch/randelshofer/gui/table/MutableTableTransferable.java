@@ -15,7 +15,7 @@ import javax.swing.JTable;
  * plus a list of indexes of the transferred rows.
  *
  * @author Werner Randelshofer
- * @version 1.0 2010-01-09 Created.
+ * @version $Id$
  */
 public class MutableTableTransferable implements Transferable {
     private JTable table;

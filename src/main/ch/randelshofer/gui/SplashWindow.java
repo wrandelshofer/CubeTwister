@@ -27,7 +27,7 @@ import java.util.*;
  * </pre>
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 31, 2004 Created.
+ * @version $Id$
  */
 public class SplashWindow extends Window {
     private final static long serialVersionUID = 1L;

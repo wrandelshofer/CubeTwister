@@ -15,7 +15,7 @@ import ch.randelshofer.beans.*;
  * CubeView.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2008-04-28
+ * @version $Id$
  */
 public class CubeAnimationView extends AbstractEntityView {
     private final static long serialVersionUID = 1L;

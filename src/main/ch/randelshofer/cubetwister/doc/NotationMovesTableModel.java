@@ -21,7 +21,7 @@ import javax.swing.table.*;
  * NotationMovesTableModel.
  * 
  * @author Werner Randelshofer.
- * @version 1.1.2 2010-04-05 Removed dependencies to IBM Unicode normalizer.
+ * @version $Id$
  * <br>1.1.1 2010-02-27 Fixed row change event in method importRowTransferable.
  * <br>1.1 2009-01-24 Normalize tokens to Unicode NFKC.
  * <br>1.0 April 15, 2006 Created.

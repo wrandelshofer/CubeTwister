@@ -16,7 +16,7 @@ import javax.imageio.stream.*;
  * ImageWellTransferable.
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 7, 2006 Created.
+ * @version $Id$
  */
 public class ImageWellTransferable implements Transferable {
     //private ImageWellModel model;

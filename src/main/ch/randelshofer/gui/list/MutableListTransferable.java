@@ -15,7 +15,7 @@ import javax.swing.JList;
  * plus a list of indexes of the transferred rows.
  *
  * @author Werner Randelshofer
- * @version 1.0 Mar 21, 2008 Created.
+ * @version $Id$
  */
 public class MutableListTransferable implements Transferable {
     private JList list;

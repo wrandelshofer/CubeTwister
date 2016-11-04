@@ -26,7 +26,7 @@ import netscape.javascript.JSObject;
  *
  *
  * @author Werner Randelshofer
- * @version 1.0 2009-04-11 Created.
+ * @version $Id$
  */
 public class Cookies extends Object {
     /**

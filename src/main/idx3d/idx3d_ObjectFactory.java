@@ -39,7 +39,7 @@ package idx3d;
 /**
  * Used to create instances of idx3d_Object for given object types.
  *
- * @version 3.3 2007-08-26 Werner Randelshofer:
+ * @version $Id$
  * The ROTATIONOBJECT factory method does now create rotation objects which
  * have no visible joint line anymore. Added parameter which allows to
  * specify an angle of the rotationobject.

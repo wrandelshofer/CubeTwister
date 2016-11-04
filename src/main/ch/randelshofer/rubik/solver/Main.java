@@ -25,7 +25,7 @@ import javax.swing.*;
  * command line.
  *
  * @author Werner Randelshofer
- * @version 0.0 2000-07-02 Created.
+ * @version $Id$
  */
 public class Main extends Object {
 

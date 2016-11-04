@@ -15,7 +15,7 @@ import javax.swing.border.*;
  * CubeColorsView is used to present the "Colors" page of CubeView.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2001-08-02
+ * @version $Id$
  */
 public class CubeColorsView extends AbstractEntityView {
     private final static long serialVersionUID = 1L;

@@ -39,7 +39,7 @@ package idx3d;
 /**
  * Defines a 3d triangle.
  *
- * @version 3.3 2006-02-22 Werner Randelshofer: Avoid unnecessary object creation. 
+ * @version $Id$
  * <br>3.2 2003-12-18 Werner Randelshofer: Methods setMaterial and
  * getMaterial added. These methods allows for individual materials
  * per triangle. Dependency note: This change also requires changes in

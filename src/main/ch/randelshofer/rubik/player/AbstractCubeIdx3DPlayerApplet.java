@@ -23,7 +23,7 @@ import javax.swing.JComponent;
  * AbstractCubeIdx3DPlayerApplet.
  *
  * @author Werner Randelshofer
- * @version 1.1 2010-08-18 Share renderer pipeline among instances to 
+ * @version $Id$
  * reduce memory consumption.
  * <br>1.0 2008-01-07 Created.
  */

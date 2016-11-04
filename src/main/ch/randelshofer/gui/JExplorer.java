@@ -22,7 +22,7 @@ import javax.swing.undo.*;
  * This panel acts like an Explorer Window as commonly used on Windows.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2011-02-02 Adds support for info panel. Replaces Dispatcher
+ * @version $Id$
  * by Executor.
  * <br>1.0.1 2011-01-22 UndoableTreeSelectionModel was renamed to DefaultUndoableTreeSelectionModel.
  * <br>1.0 2001-10-05

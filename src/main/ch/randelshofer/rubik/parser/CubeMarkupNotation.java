@@ -15,7 +15,7 @@ import java.util.*;
  * CubeMarkupNotation reads its notation definition from a CubeMarkup XML 3 file.
  *
  * @author  Werner Randelshofer
- * @version 3.2.1 2010-10-06 Fixes possible NPE in method readNotationXMLElement.
+ * @version $Id$
  * <br>3.2 2009-01-04 Disable permutation support if tokens are missing.
  * <br>3.1 2009-01-03 Added "getName" method.
  * <br>3.0.1 2008-08-25 Notation may support up to 32 layers instead of

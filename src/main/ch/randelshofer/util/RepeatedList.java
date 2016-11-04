@@ -12,7 +12,7 @@ import java.util.*;
  * RepeatedList.
  *
  * @author Werner Randelshofer
- * @version 2.0 2012-02-08 Adds generics support.
+ * @version $Id$
  * <br>1.0 Jan 2, 2008 Created.
  */
 public class RepeatedList<T> extends AbstractList<T> {

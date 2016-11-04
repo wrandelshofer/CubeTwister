@@ -17,7 +17,7 @@ import javax.swing.text.*;
  * support for JTextFields, which contain the path to a file.
  *
  * @author Werner Randelshofer
- * @version 1,3 2012-03-05 Moved file import into separate method.
+ * @version $Id$
  * <br>1.2 2010-10-03 Adds support for file filter.
  * <br>1.1 2008-12-03 Added file selection mode.
  * <br>1.0 September 8, 2007 Created.

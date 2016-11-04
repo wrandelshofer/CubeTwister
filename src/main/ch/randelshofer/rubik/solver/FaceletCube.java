@@ -20,7 +20,7 @@ package ch.randelshofer.rubik.solver;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version 0.0 2000-07-02
+ * @version $Id$
  */
 public class FaceletCube extends Object {
 

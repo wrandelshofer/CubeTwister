@@ -14,7 +14,7 @@ import java.io.*;
  * RepetitionNode.
  *
  * @author  werni
- * @version 5.1.1 Repetition node must not resolve to a single MoveNode if
+ * @version $Id$
  * result is an illegal move.
  * <br>5.1 2010-02-27 Special treatment of a single MoveNode child in
  * method toResolvedList.

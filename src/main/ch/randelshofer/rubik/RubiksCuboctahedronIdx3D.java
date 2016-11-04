@@ -14,7 +14,7 @@ import java.util.Arrays;
  * three dimensions using the Idx3D engine.
  *
  * @author  Werner Randelshofer
- * @version 3.1 2010-01-30 Completed color scheme.
+ * @version $Id$
  * <br>3.0 2009-01-02 Added support for twisting the cube by swiping over
  * its faces.
  * <br>1.0.1 2007-09-11 Fixed broken stickerToOrientationMap.

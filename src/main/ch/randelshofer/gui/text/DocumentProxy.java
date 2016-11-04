@@ -23,7 +23,7 @@ import java.lang.ref.*;
  * into a char array.
  *
  * @author Werner Randelshofer
- * @version 2.1 2004-04-04 Creates now a styled document with a proportional
+ * @version $Id$
  * font instead of with a fixed width font.
  * <br>2.0 2003-10-31 Use a char array instead of a String.
  * <br>1.0.2 2002-05-13 Clone did still not work properly.

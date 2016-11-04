@@ -12,7 +12,7 @@ import java.awt.*;
  * Calls object.toString() and displays this in a JLabel.
  *
  * @author  Werner Randelshofer
- * @version 1.0 2001-10-05
+ * @version $Id$
  */
 public class DefaultViewer 
 extends javax.swing.JPanel implements Viewer {

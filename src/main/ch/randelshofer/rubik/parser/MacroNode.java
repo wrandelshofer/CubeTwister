@@ -16,7 +16,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * The side effect of a macro node is A.
  *
  * @author  werni
- * @version 6.0 2007-11-15 Upgraded to Java 1.4. 
+ * @version $Id$
  * <br>5.0 2005-01-31 Reworked.
  * <br>1.0.1 2002-02-25 During expansion the expanded nodes did not
  * always get the right start and end positions.

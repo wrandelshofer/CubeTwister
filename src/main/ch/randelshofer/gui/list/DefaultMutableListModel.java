@@ -19,7 +19,7 @@ import javax.swing.*;
  * Default implementation of a MutableListModel.
  *
  * @author  Werner Randelshofer
- * @version 3.0 2007-07-06 Added setter for importable Flavors. Turned class
+ * @version $Id$
  * into a template.
  * <br>2.0 2003-11-01 Revised.
  * <br>1.0 2002-11-20 Created.

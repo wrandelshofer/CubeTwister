@@ -11,7 +11,7 @@ package ch.randelshofer.rubik;
  * in a Cube object.
  *
  * @author  Werner Randelshofer
- * @version 1.1 2007-12-31 Added getChangedParts method. 
+ * @version $Id$
  * <br>1.0 December 21, 2003 Created.
  */
 public class CubeEvent extends java.util.EventObject {

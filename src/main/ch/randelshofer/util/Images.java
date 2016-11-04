@@ -18,7 +18,7 @@ import javax.swing.*;
  * Image processing methods.
  *
  * @author  Werner Randelshofer, Karl von Randow
- * @version $Id: Images.java 90 2009-06-13 06:51:43Z wrandelshofer $
+ * @version $Id$
  */
 public class Images {
     

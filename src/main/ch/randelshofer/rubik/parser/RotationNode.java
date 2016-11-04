@@ -16,7 +16,7 @@ import java.util.*;
  * rotation node to a Cube is A' B A.
  *
  * @author Werner Randelshofer
- * @version 5.0 2005-01-31 Reworked.
+ * @version $Id$
  * <br>1.0 2002-02-24 Created.
  */
 public class RotationNode extends SequenceNode {

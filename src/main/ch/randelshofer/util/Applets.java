@@ -13,7 +13,7 @@ import java.util.*;
  * Usefull methods for applets.
  *
  * @author Werner Randelshofer
- * @version 3.0 2009-11-23 Added support for command line arguments.
+ * @version $Id$
  * <br>2.0 2004-12-27 Enhanced to support the special applet parameters
  * of Sun's Java plug in. See http://java.sun.com/j2se/1.5.0/docs/guide/plugin/developer_guide/special_attributes.html
  * <br>1.5 2008-06-14 Added debugging support.

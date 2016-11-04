@@ -13,7 +13,7 @@ import java.awt.*;
  * using the Geom3D engine.
  * 
  * @author Werner Randelshofer
- * @version 7.1 2010-04-05 Added inStartedPlayer property.
+ * @version $Id$
  * <br>6.1 2007-09-09 Animate twists using SplineInterpolator.
  * <br>1.0 January 1, 2006 Created.
  */

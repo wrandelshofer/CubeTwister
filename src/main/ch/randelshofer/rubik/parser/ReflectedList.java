@@ -13,7 +13,7 @@ import java.util.List;
  * ReflectedList.
  *
  * @author Werner Randelshofer
- * @version 1.1 2009-01-22 Fixed Node.reflect() method.
+ * @version $Id$
  * <br>1.0 Jan 2, 2008 Created.
  */
 public class ReflectedList extends AbstractList<Node> {

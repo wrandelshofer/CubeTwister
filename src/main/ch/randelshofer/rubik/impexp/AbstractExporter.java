@@ -21,7 +21,7 @@ import javax.swing.*;
  * AbstractExporter.
  *
  * @author  Werner Randelshofer
- * @version 1.0  April 18, 2004  Created.
+ * @version $Id$
  */
 public class AbstractExporter extends JPanel implements Exporter {
     private final static long serialVersionUID = 1L;

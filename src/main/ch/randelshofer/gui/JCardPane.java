@@ -13,7 +13,7 @@ import javax.swing.*;
  * JCardPane.
  *
  * @author  Werner Randelshofer
- * @version 1.0 January 10, 2006 Created.
+ * @version $Id$
  */
 public class JCardPane extends javax.swing.JPanel {
         private final static long serialVersionUID = 1L;

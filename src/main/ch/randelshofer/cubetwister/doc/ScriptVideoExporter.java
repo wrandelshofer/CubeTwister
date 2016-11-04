@@ -29,7 +29,7 @@ import org.monte.media.math.Rational;
  * ScriptVideoExporter.
  *
  * @author Werner Randelshofer
- * @version 2.1 2011-04-20 Uses AVIWriter instead of AVIOutputStream.
+ * @version $Id$
  * <br>2.0 2010-10-06 Uses QuickTimeWriter instead of QuickTimeOutputStream.
  * <br>1.0 Apr 28, 2008 Created.
  */

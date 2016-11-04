@@ -18,7 +18,7 @@ import static java.lang.Math.*;
  * permutation cycles caused by the rotation.
  * 
  * @author Werner Randelshofer
- * @version 6.2 2012-02-08 Fixes quarter turn count for angle values &gt; +/-3.
+ * @version $Id$
  * <br>6.0.1 2008-01-18 Fixed face turn countTurned for 3x3 cube.
  * <br>6.0 2007-06-16 Renamed from TwistNode to MoveNode. 
  * <br>5.0 2005-01-31 Reworked.

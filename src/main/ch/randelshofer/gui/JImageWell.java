@@ -47,7 +47,7 @@ import org.jhotdraw.util.Images;
  * JImageWell.
  *
  * @author Werner Randelshofer
- * @version 2.3.2 2010-01-10 Loading an image using the load menu did not work.
+ * @version $Id$
  * <br>2.3.1 2010-01-04 Don't excessively recreate thumbnail.
  * <br>2.2 2009-12-31 Added text property. Added busy icon.
  * <br>2.1.2 2009-12-30 Removed PictImageReader.

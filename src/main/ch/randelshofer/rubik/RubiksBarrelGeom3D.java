@@ -14,7 +14,7 @@ import java.util.*;
  * three dimensions.
  *
  * @author Werner Randelshofer
- * @version 2.0 2009-01-05 Added support for twisting the cube by swiping over
+ * @version $Id$
  * its faces.
  * <br>1.2 2002-07-29 Drawing of outlines optimized.
  * <br>1.1.2 2001-08-16 Inner faces which are never visible removed.

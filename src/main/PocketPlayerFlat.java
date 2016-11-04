@@ -10,7 +10,7 @@ import ch.randelshofer.rubik.player.PocketCubeGeom3DPlayerApplet;
  * PocketPlayerFlat.
  * 
  * @author Werner Randelshofer
- * @version 1.0 2006-04-13 Created.
+ * @version $Id$
  */
 public class PocketPlayerFlat extends PocketCubeGeom3DPlayerApplet {
     private final static long serialVersionUID = 1L;

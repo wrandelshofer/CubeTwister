@@ -43,7 +43,7 @@ import java.net.URL;
 /**
  * Defines a texture.
  *
- * @version 3.2 2003-12-18 Werner Randelshofer: Replaced busy wait in method
+ * @version $Id$
  * loadTexture by a MediaTracker.
  */
 public class idx3d_Texture {

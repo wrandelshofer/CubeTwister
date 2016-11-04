@@ -17,7 +17,7 @@ import java.util.Arrays;
  * A 3D model of a Rubik's Cube for the Idx3D rendering engine.
  *
  * @author  Werner Randelshofer
- * @version 3.1 2010-04-01 Added swipe actions to edges adjacent to stickers.
+ * @version $Id$
  * <br>3.0 2009-01-01 Added support for twisting the cube by swiping over
  * its faces.
  * <br>1.0.1 2004-09-26 Fixed orientation of sticker at corner part

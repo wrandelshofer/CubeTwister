@@ -14,7 +14,7 @@ import java.util.*;
  * three dimensions using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version 2.1 2010-01-30 Completed color scheme.
+ * @version $Id$
  * <br>2.0 2009-01-04 Added support for twisting the cube by swiping over
  * its faces.
  * <br>1.1.4 2002-07-14 Cube draws more border lines.
