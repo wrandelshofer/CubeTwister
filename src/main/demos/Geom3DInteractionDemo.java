@@ -16,7 +16,7 @@ import javax.swing.*;
 
 /**
  * Geom3DInteractionDemo.
- * @author werni
+ * @author Werner Randelshofer
  */
 public class Geom3DInteractionDemo extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

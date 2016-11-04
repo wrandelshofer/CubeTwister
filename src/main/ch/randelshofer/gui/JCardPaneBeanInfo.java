@@ -8,7 +8,7 @@ package ch.randelshofer.gui;
 import java.beans.*;
 
 /**
- * @author werni
+ * @author Werner Randelshofer
  */
 public class JCardPaneBeanInfo extends SimpleBeanInfo {
     

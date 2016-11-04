@@ -15,7 +15,7 @@ import javax.swing.*;
 
 /**
  *
- * @author werni
+ * @author Werner Randelshofer
  */
 @SuppressWarnings("deprecation")
 public class Idx3DPerspectiveRasterizerDemo extends javax.swing.JPanel {

@@ -16,7 +16,7 @@ import java.awt.RenderingHints;
 import javax.swing.border.*;
 /**
  *
- * @author werni
+ * @author Werner Randelshofer
  */
 public class RoundedLineBorder extends AbstractBorder
 {    private final static long serialVersionUID = 1L;

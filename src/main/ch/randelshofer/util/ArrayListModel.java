@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * A ListModel backed by an ArrayList.
  *
- * @author werni
+ * @author Werner Randelshofer
  * @param <E>
  */
 public class ArrayListModel<E> extends javax.swing.AbstractListModel

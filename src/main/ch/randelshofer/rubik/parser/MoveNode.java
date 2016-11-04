@@ -17,7 +17,7 @@ import static java.lang.Math.*;
  * The side effect of a MoveNode on a Cube is the concatenation of all 
  * permutation cycles caused by the rotation.
  * 
- * @author werni
+ * @author Werner Randelshofer
  * @version 6.2 2012-02-08 Fixes quarter turn count for angle values &gt; +/-3.
  * <br>6.0.1 2008-01-18 Fixed face turn countTurned for 3x3 cube.
  * <br>6.0 2007-06-16 Renamed from TwistNode to MoveNode. 
