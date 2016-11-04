@@ -1,9 +1,7 @@
 /*
  * @(#)AbstractCubeIdx3D.java  3.0  2007-12-30
- *
  * Copyright (c) 2003 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.rubik;
 

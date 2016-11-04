@@ -1,9 +1,7 @@
 /**
  * @(#)ScriptExportVideoAccessoryPanel.java  1.3  2011-04-20
- *
- * Copyright (c) 2008-2011 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2008 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.cubetwister.doc;
 

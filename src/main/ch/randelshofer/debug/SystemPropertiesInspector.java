@@ -1,9 +1,7 @@
 /*
  * @(#)SystemPropertiesInspector.java 1.0.1  2002-05-10
- *
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 
 

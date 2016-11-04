@@ -1,9 +1,7 @@
 /*
  * @(#)Cube3DCanvas.java  1.2  2009-11-28
- *
- * Copyright (c) 2005-2009 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2005 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.rubik;

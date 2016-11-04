@@ -1,9 +1,7 @@
 /*
  * @(#)Cube.java  0.0  2000-07-01
- *
  * Copyright (c) 2000 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  *
  * This software has been derived from the 'Kociemba
  * Cube Solver 1.0' (KCube) (c) Greg Schmidt.

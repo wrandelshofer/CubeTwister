@@ -1,9 +1,7 @@
 /*
  * @(#)SuspendableInputStream.java  1.0.1  2003-04-25
- *
- * Copyright (c) 1999-2003 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 1999 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.io;
 

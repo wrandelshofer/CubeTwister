@@ -1,7 +1,7 @@
 /*
- * PlafConstants.java
- *
- * Created on October 17, 2001, 1:04 PM
+ * @(#)PlafConstants.java
+ * Copyright (c) 2001 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui.plaf;
@@ -9,7 +9,7 @@ package ch.randelshofer.gui.plaf;
 import javax.swing.*;
 
 /**
- *
+ * PlafConstants.
  * @author  Werner Randelshofer
  * @version 1.0 2001-10-17
  */

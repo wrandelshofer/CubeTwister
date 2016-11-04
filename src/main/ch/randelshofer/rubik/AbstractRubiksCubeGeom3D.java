@@ -1,9 +1,7 @@
 /*
  * @(#)AbstractRubiksCubeFlat3D.java  7.0.1  2009-01-04
- *
- * Copyright (c) 2000-2009 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2000 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.rubik;
 

@@ -1,9 +1,7 @@
 /*
  * @(#)RubiksStickerCube.java  1.0  January 14, 2007
- *
  * Copyright (c) 2006 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  *
  * This class has been derived from facecube.cpp and facecube.h
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.

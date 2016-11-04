@@ -1,9 +1,8 @@
 /*
- * Exporter.java
- *
- * Created on July 2, 2003, 10:36 AM
+ * @(#)Exporter.java
+ * Copyright (c) 2003 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
-
 package ch.randelshofer.rubik.impexp;
 
 import ch.randelshofer.cubetwister.doc.*;
@@ -13,7 +12,7 @@ import java.util.*;
 import ch.randelshofer.gui.*;
 import ch.randelshofer.util.*;
 /**
- *
+ * Exporter.
  * @author  werni
  */
 public interface Exporter {

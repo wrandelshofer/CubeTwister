@@ -1,9 +1,7 @@
 /*
- * @(#)DefaultCellEditor2.java  1.1  2010-04-09
- * 
+ * @(#)DefaultCellEditor2.java
  * Copyright (c) 2010 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui.table;

@@ -1,6 +1,7 @@
 /*
- * @(#)JPopupButtonBeanInfo.java  1.0  11. November 2003
- *
+ * @(#)JPopupButtonBeanInfo.java
+ * Copyright (c) 2003 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.gui;
 
@@ -11,14 +12,14 @@ public class JPopupButtonBeanInfo extends SimpleBeanInfo {
     // Bean descriptor information will be obtained from introspection.//GEN-FIRST:BeanDescriptor
     private static BeanDescriptor beanDescriptor = null;
     private static BeanDescriptor getBdescriptor(){
-        //GEN-HEADEREND:BeanDescriptor
+//GEN-HEADEREND:BeanDescriptor
         
         // Here you can add code for customizing the BeanDescriptor.
          if (beanDescriptor == null) beanDescriptor = new BeanDescriptor(JPopupButtonBeanInfo.class);
          beanDescriptor.setValue("isContainer", Boolean.FALSE);
      beanDescriptor.setDisplayName("JPopupButton");
         
-        return beanDescriptor;     } //GEN-LAST:BeanDescriptor
+        return beanDescriptor;     }//GEN-LAST:BeanDescriptor
     
     
     // Properties information will be obtained from introspection.//GEN-FIRST:Properties
@@ -27,7 +28,7 @@ public class JPopupButtonBeanInfo extends SimpleBeanInfo {
         
         // Here you can add code for customizing the properties array.
         
-        return properties;     } //GEN-LAST:Properties
+        return properties;     }//GEN-LAST:Properties
     
     // Event set information will be obtained from introspection.//GEN-FIRST:Events
     private static EventSetDescriptor[] eventSets = null;
@@ -35,7 +36,7 @@ public class JPopupButtonBeanInfo extends SimpleBeanInfo {
         
         // Here you can add code for customizing the event sets array.
         
-        return eventSets;     } //GEN-LAST:Events
+        return eventSets;     }//GEN-LAST:Events
     
     // Method information will be obtained from introspection.//GEN-FIRST:Methods
     private static MethodDescriptor[] methods = null;
@@ -43,26 +44,26 @@ public class JPopupButtonBeanInfo extends SimpleBeanInfo {
         
         // Here you can add code for customizing the methods array.
         
-        return methods;     } //GEN-LAST:Methods
+        return methods;     }//GEN-LAST:Methods
     
-    private static java.awt.Image iconColor16 = null; //GEN-BEGIN:IconsDef
+    private static java.awt.Image iconColor16 = null;//GEN-BEGIN:IconsDef
     private static java.awt.Image iconColor32 = null;
     private static java.awt.Image iconMono16 = null;
-    private static java.awt.Image iconMono32 = null; //GEN-END:IconsDef
-    private static String iconNameC16 = null; //GEN-BEGIN:Icons
+    private static java.awt.Image iconMono32 = null;//GEN-END:IconsDef
+    private static String iconNameC16 = null;//GEN-BEGIN:Icons
     private static String iconNameC32 = null;
     private static String iconNameM16 = null;
-    private static String iconNameM32 = null; //GEN-END:Icons
+    private static String iconNameM32 = null;//GEN-END:Icons
     
-    private static int defaultPropertyIndex = -1; //GEN-BEGIN:Idx
-    private static int defaultEventIndex = -1; //GEN-END:Idx
+    private static int defaultPropertyIndex = -1;//GEN-BEGIN:Idx
+    private static int defaultEventIndex = -1;//GEN-END:Idx
     
     
-    //GEN-FIRST:Superclass
+//GEN-FIRST:Superclass
     
     // Here you can add code for customizing the Superclass BeanInfo.
     
-    //GEN-LAST:Superclass
+//GEN-LAST:Superclass
     
     /**
      * Gets the bean's <code>BeanDescriptor</code>s.

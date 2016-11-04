@@ -1,6 +1,7 @@
 /*
- * @(#)MutableJTableBeanInfo.java  1.0  11. November 2003
- *
+ * @(#)MutableJTableBeanInfo.java
+ * Copyright (c) 2003 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.gui;
 

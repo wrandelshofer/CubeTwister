@@ -1,7 +1,7 @@
 /*
- * UndoCoalescingBoundedRangeModel.java
- *
- * Created on November 14, 2002, 5:18 PM
+ * @(#)UndoCoalescingBoundedRangeModel.java
+ * Copyright (c) 2002 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.undo;
@@ -10,7 +10,7 @@ import javax.swing.event.*;
 import javax.swing.undo.*;
 
 /**
- *
+ * UndoCoalescingBoundedRangeModel.
  * @author  werni
  */
 public class UndoCoalescingBoundedRangeModel extends javax.swing.DefaultBoundedRangeModel {

@@ -1,7 +1,9 @@
 /*
- * PriorityQueue.java
+ * @(#)PriorityQueue.java
+ * Copyright (c) 2002 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  *
- * Created on August 22, 2002, 9:46 AM
+ * Original code is copyright by  JDCTechTips 2002-08-22. John Zukowski.
  */
 
 package ch.randelshofer.util;

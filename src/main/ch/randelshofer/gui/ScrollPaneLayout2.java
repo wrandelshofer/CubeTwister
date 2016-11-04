@@ -1,7 +1,7 @@
 /*
- * ScrollPaneLayout2.java
- *
- * Created on November 18, 2002, 7:12 AM
+ * @(#)ScrollPaneLayout2.java
+ * Copyright (c) 2006 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui;

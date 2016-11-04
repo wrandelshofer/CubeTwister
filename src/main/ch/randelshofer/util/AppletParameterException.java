@@ -1,15 +1,7 @@
-/**
- * @(#)AppletParameterException.java  1.2.2  2010-11-06
- *
- * Copyright (c) 1996-2010 by the original authors of JHotDraw
- * and all its contributors ("JHotDraw.org")
- * All rights reserved.
- *
- * This software is the confidential and proprietary information of
- * JHotDraw.org ("Confidential Information"). You shall not disclose
- * such Confidential Information and shall use it only in accordance
- * with the terms of the license agreement you entered into with
- * JHotDraw.org.
+/*
+ * @(#)AppletParameterException.java
+ * Copyright (c) 2008 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.util;
 

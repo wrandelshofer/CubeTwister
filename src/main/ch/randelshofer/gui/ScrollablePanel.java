@@ -1,7 +1,7 @@
 /*
- * ScrollablePanel.java
- *
- * Created on May 30, 2002, 1:32 PM
+ * @(#)JCardPaneBeanInfo.java
+ * Copyright (c) 2002 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui;

@@ -1,16 +1,7 @@
 /*
- * @(#)Idx3DPerspectiveRasterizerDemo.java  1.0  2010-05-29
- * 
+ * @(#)Idx3DPerspectiveRasterizerDemo.java
  * Copyright (c) 2010 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
- */
-
-/*
- * Idx3DPerspectiveRasterizerDemo.java
- *
- * @author Werner Randelshofer
- * @version 1.0 2010-05-29 Created.
+ * You may only use this software in accordance with the license terms.
  */
 package demos;
 

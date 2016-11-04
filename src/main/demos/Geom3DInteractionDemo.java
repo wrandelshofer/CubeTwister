@@ -1,15 +1,7 @@
 /*
- * @(#)Geom3DInteractionDemo.java  1.0  2009-01-03
- * 
+ * @(#)Geom3DInteractionDemo.java
  * Copyright (c) 2009 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
- */
-
-/*
- * Geom3DInteractionDemo.java
- *
- * Created on Jan 3, 2009, 9:44:06 PM
+ * You may only use this software in accordance with the license terms.
  */
 package demos;
 
@@ -23,7 +15,7 @@ import java.util.Vector;
 import javax.swing.*;
 
 /**
- *
+ * Geom3DInteractionDemo.
  * @author werni
  */
 public class Geom3DInteractionDemo extends javax.swing.JPanel {

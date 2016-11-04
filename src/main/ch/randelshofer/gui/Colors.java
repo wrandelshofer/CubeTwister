@@ -1,9 +1,7 @@
 /*
  * @(#)Colors.java  1.0  8. April 2004
- *
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui;

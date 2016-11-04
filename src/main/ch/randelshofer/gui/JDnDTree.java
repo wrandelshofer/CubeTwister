@@ -1,9 +1,7 @@
 /*
  * @(#)JDnDTree.java  2.2  2011-01-22
- *
- * Copyright (c) 2004-2011 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2004 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.gui;
 

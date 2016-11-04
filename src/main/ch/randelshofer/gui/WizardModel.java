@@ -1,7 +1,7 @@
 /*
- * WizardModel.java
- *
- * Created on February 27, 2004, 5:25 PM
+ * @(#)WizardModel.java
+ * Copyright (c) 2004 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui;

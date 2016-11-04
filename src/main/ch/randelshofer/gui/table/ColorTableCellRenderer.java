@@ -1,7 +1,7 @@
 /*
- * ColorModelCellRenderer.java
- *
- * Created on August 2, 2001, 7:05 PM
+ * @(#)ColorTableCellRenderer.java
+ * Copyright (c) 2001 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui.table;
@@ -11,8 +11,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
 /**
- *
- * @author  werni
+ * ColorTableCellRenderer.
+ * @author  Werner Randelshofer
  * @version 1.0 2001-08-02
  */
 public class ColorTableCellRenderer extends DefaultTableCellRenderer {

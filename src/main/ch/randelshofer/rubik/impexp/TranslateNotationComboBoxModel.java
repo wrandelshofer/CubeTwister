@@ -1,9 +1,8 @@
 /*
- * TranslateNotationComboBoxModel.java
- *
- * Created on July 2, 2003, 10:29 AM
+ * @(#)TranslateNotationComboBoxModel.java
+ * Copyright (c) 2003 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
-
 package ch.randelshofer.rubik.impexp;
 
 import ch.randelshofer.cubetwister.doc.*;

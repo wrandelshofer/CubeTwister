@@ -1,16 +1,15 @@
 /*
- * ColumnMappingCellRenderer.java
- *
- * Created on July 5, 2003, 3:28 PM
+ * @(#)ColumnMappingCellRenderer.java
+ * Copyright (c) 2003 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
-
 package ch.randelshofer.rubik.impexp.csv;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.*;
 /**
- *
+ * ColumnMappingCellRenderer.
  * @author  werni
  */
 public class ColumnMappingCellRenderer

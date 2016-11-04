@@ -1,9 +1,7 @@
 /*
- * @(#)SimpleRubikApplet.java  1.0  2009-05-09
- * 
+ * @(#)SimpleRubikApplet.java
  * Copyright (c) 2009 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.test;
 
@@ -11,7 +9,7 @@ import ch.randelshofer.rubik.*;
 import javax.swing.JApplet;
 
 /**
- *
+ * SimpleRubikApplet.
  * @author werni
  */
 public class SimpleRubikApplet extends JApplet {

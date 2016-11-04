@@ -1,9 +1,7 @@
 /*
- * @(#)JCanvas3D.java  3.5  2011-06-29
- *
- * Copyright (c) 2007-2010 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * @(#)JCanvas3D.java
+ * Copyright (c) 2007 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.geom3d;
 

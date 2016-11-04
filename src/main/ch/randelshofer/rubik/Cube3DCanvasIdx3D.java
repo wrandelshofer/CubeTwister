@@ -1,9 +1,7 @@
 /*
  * @(#)Idx3DAdapter.java  2.2  2011-06-29
- *
- * Copyright (c) 2005-2011 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2005 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.rubik;

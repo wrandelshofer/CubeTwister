@@ -1,7 +1,8 @@
 /*
+ * @(#)XMLTransferable.java
+ * Copyright (c) 2001 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  * XMLTransferable.java
- *
- * Created on October 20, 2001, 12:03 AM
  */
 
 package ch.randelshofer.gui.datatransfer;

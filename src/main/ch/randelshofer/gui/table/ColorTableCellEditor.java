@@ -1,7 +1,7 @@
 /*
- * ColorTableCellEditor.java
- *
- * Created on August 2, 2001, 5:00 PM
+ * @(#)ColorTableCellEditor.java
+ * Copyright (c) 2001 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui.table;
@@ -12,12 +12,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 /**
- * The editor button that brings up the dialog.
- * We extend DefaultCellEditor for convenience,
- * even though it mean we have to create a dummy
- * check box.  Another approach would be to copy
- * the implementation of TableCellEditor methods
- * from the source code for DefaultCellEditor.
+ * ColorTableCellEditor..
  */
 public class ColorTableCellEditor extends DefaultCellEditor {
     private final static long serialVersionUID = 1L;

@@ -1,7 +1,7 @@
 /*
- * PlafUtils.java
- *
- * Created on October 17, 2001, 11:11 AM
+ * @(#)PlafUtils.java
+ * Copyright (c) 2001 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.gui.plaf;
@@ -13,7 +13,7 @@ import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.plaf.*;
 /**
- * This is a dumping ground for random stuff we want to use in several places.
+ * PlafUtils.
  * @author  Werner Randelshofer
  * @version 1.0 2001-10-17
  */

@@ -1,9 +1,7 @@
 /*
- * @(#)PreferencesAction.java  1.0  2010-08-12
- * 
+ * @(#)PreferencesAction.java
  * Copyright (c) 2010 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.cubetwister;
 

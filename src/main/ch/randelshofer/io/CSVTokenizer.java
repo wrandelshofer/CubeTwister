@@ -1,9 +1,7 @@
 /*
  * @(#)CSVTokenizer.java  1.0.1  2011-10-13
- *
  * Copyright (c) 2004 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 
 package ch.randelshofer.io;

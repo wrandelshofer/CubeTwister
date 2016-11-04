@@ -1,3 +1,8 @@
+/*
+ * @(#)CubeDimensionsViewBeanInfo.java
+ * Copyright (c) 2001 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
+ */
 package ch.randelshofer.cubetwister.doc;
 
 import java.beans.*;

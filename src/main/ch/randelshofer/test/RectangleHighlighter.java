@@ -1,9 +1,10 @@
 /*
- * @(#)RectangleHighlighter.java  1.0  2009-01-24
- * 
- * Copyright (c) 2009 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * @(#)RectangleHighlighter.java
+ * Copyright (c) 2008 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
+ *
+ * The original code is copyright camickr as seen at
+ * http://forums.sun.com/thread.jspa?forumID=57&threadID=708866
  */
 package ch.randelshofer.test;
 

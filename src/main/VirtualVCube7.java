@@ -1,9 +1,7 @@
 /*
  * @(#)VirtualVCube7.java  1.0  2008-08-17
- *
  * Copyright (c) 2008 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * You may only use this software in accordance with the license terms.
  */
 import ch.randelshofer.rubik.virtual.*;
 

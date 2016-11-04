@@ -1,9 +1,7 @@
 /*
  * @(#)DefaultNotation.java  0.4  2009-08-01
- *
- * Copyright (c) 2006-2009 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2006 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.rubik.parser;
 

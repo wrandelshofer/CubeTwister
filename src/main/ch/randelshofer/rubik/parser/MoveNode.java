@@ -1,9 +1,7 @@
 /*
  * @(#)MoveNode.java  6.2  2012-02-08
- *
- * Copyright (c) 2001-2012 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2001 Werner Randelshofer, Switzerland.
+ * You may only use this software in accordance with the license terms.
  */
 package ch.randelshofer.rubik.parser;
 
