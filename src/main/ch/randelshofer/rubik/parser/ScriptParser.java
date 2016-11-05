@@ -913,7 +913,10 @@ public class ScriptParser extends Object {
             return nop;
 
             // Is it a Permutation sign token? Parse a permutation.
-        } else if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.PREFIX && (notation.isTokenFor(token, Symbol.PERMUTATION_PLUS) || notation.isTokenFor(token, Symbol.PERMUTATION_MINUS) || notation.isTokenFor(token, Symbol.PERMUTATION_PLUSPLUS))) {
+        } else if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.PREFIX
+                && (notation.isTokenFor(token, Symbol.PERMUTATION_PLUS) 
+                || notation.isTokenFor(token, Symbol.PERMUTATION_MINUS) 
+                || notation.isTokenFor(token, Symbol.PERMUTATION_PLUSPLUS))) {
             int startpos = t.getStartPosition();
             t.pushBack();
             Symbol sign = parsePermutationSign(t, parent);
@@ -1236,7 +1239,10 @@ public class ScriptParser extends Object {
                             if (notation.isTokenFor(token, Symbol.PERMUTATION_DELIMITER)) {
                                 t.consumeGreedy(token);
 
-                            } else if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.POSTCIRCUMFIX && (notation.isTokenFor(token, Symbol.PERMUTATION_PLUS) || notation.isTokenFor(token, Symbol.PERMUTATION_MINUS) || notation.isTokenFor(token, Symbol.PERMUTATION_PLUSPLUS))) {
+                            } else if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.POSTCIRCUMFIX 
+                                    && (notation.isTokenFor(token, Symbol.PERMUTATION_PLUS) 
+                                    || notation.isTokenFor(token, Symbol.PERMUTATION_MINUS) 
+                                    || notation.isTokenFor(token, Symbol.PERMUTATION_PLUSPLUS))) {
                                 t.pushBack();
                                 sign = parsePermutationSign(t, parent);
                                 if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
@@ -1279,7 +1285,8 @@ public class ScriptParser extends Object {
                 case 1:
                     break;
                 case 2:
-                    if (sign == Symbol.PERMUTATION_PLUSPLUS || sign == Symbol.PERMUTATION_MINUS) {
+                    if (sign == Symbol.PERMUTATION_PLUSPLUS 
+                            || sign == Symbol.PERMUTATION_MINUS) {
                         throw new ParseException(
                                 "Permutation: Illegal sign.", t.getStartPosition(), t.getEndPosition());
                     }
@@ -1475,7 +1482,9 @@ public class ScriptParser extends Object {
         } else {
             String token = fetchGreedy(t.sval);
             Symbol symbol = notation.getSymbolFor(token, Symbol.PERMUTATION);
-            if (symbol == Symbol.PERMUTATION_PLUS || symbol == Symbol.PERMUTATION_PLUSPLUS || symbol == Symbol.PERMUTATION_MINUS) {
+            if (symbol == Symbol.PERMUTATION_PLUS 
+                    || symbol == Symbol.PERMUTATION_PLUSPLUS
+                    || symbol == Symbol.PERMUTATION_MINUS) {
                 sign = symbol;
                 t.consumeGreedy(token);
             } else {
