@@ -1,5 +1,4 @@
-/*
- * @(#)ScriptParser.java  10.0.1  2010-11-06
+/* @(#)ScriptParser.java
  * Copyright (c) 2002 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */
@@ -137,33 +136,6 @@ import ch.randelshofer.io.ParseException;
  *
  * @author Werner Randelshofer
  * @version $Id$
- * parseExpressionAffix.
- * <br>10.0 2009-07-31 Renamed EBNF elements to make intent clearer.
- * <br>9.1 2009-04-11 Added method getNotation(). Fixed parsing of permutations
- * for 6x6 and 7x7 cubes.
- * <br>9.0 2009-01-22 Added support for infix syntax and for circumfix inversion
- * and circumfix reflection.
- * <br>8.0 2008-06-22 Added support for local macros.
- * <br>7.3 2008-01-08 Added support for numbered parts in permutations.
- * <br>7.2 2008-01-04 Added new constructor. Fixed parsing of permutations (in
- * progress).
- * <br>7.0 2007-06-16 Renamed "Twist" to "Move".
- * <br>6.0 2005-12-24 Reworked.
- * <br>3.1 2004-08-01 Permutations support now four different positions for the
- * sign of a disjoint cycle.
- * <br>3.0 2004-04-03 Support for Rotations, Two-Layer Twists, Slice Twists more
- * flexible Permutation Syntax and Comments added. Childrens of a GroupingNode
- * are now directly added to the GroupingNode instead of two a Node first.
- * <br>2.3 2003-01-02 Grouping renamed to Grouping. Bug fixed when conjugator
- * and/or commutator begin and end tokens are ambiguous with grouping begin and
- * end tokens.
- * <br>2.2 2002-12-26 EBNF ISO/IEC 14977 is now used to describe the supported
- * syntax. Additional constants added to describe tokens. Attribute
- * isPermutationSupporte added. Methode writeToken improved. Method
- * isTwistSupported added.
- * <br>2.1.1 2002-12-16 Method writeToken improved.
- * <br>2.1 2002-02-04 Methods getEdgeTwistSymbol and getSideTwistSymbol added.
- * 2.0 2001-07-25
  */
 public class ScriptParser extends Object {
 

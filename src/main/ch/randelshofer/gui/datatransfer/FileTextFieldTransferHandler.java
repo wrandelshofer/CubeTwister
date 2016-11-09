@@ -1,5 +1,4 @@
-/*
- * @(#)FileTextFieldTransferHandler.java  1.3  2012-03-05
+/* @(#)FileTextFieldTransferHandler.java
  * Copyright (c) 2007 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

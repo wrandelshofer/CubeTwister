@@ -1,5 +1,4 @@
-/*
- * @(#)DocumentModel.java 3.9  2011-02-22
+/* @(#)DocumentModel.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

@@ -1,5 +1,4 @@
-/*
- * @(#)DnDJList.java  3.0.1  2010-11-06
+/* @(#)DnDJList.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

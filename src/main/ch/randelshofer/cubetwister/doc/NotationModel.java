@@ -1,5 +1,4 @@
-/*
- * @(#)CubeNotation.java  2.2  2009-07-05
+/* @(#)CubeNotation.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

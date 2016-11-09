@@ -1,5 +1,4 @@
-/*
- * @(#)VirtualCube6Applet.java  1.0  2008-09-03
+/* @(#)VirtualCube6Applet.java
  * Copyright (c) 2008 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

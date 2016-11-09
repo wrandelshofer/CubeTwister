@@ -1,5 +1,4 @@
-/*
- * @(#)Cube3DListener.java  2.0  2007-08-28
+/* @(#)Cube3DListener.java
  * Copyright (c) 2003 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

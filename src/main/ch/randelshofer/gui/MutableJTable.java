@@ -1,5 +1,4 @@
-/*
- * @(#)MutableJTable.java  3.2  2010-01-10
+/* @(#)MutableJTable.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

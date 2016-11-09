@@ -1,5 +1,4 @@
-/*
- * @(#)ConcurrentDispatcher.java  1.1  2008-01-02
+/* @(#)ConcurrentDispatcher.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

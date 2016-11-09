@@ -1,5 +1,4 @@
-/*
- * @(#)Cubes.java  2.4  2010-04-06
+/* @(#)Cubes.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

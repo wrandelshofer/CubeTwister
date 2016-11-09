@@ -1,5 +1,4 @@
-/*
- * @(#)CubeAttributes.java  2.4  2008-01-03
+/* @(#)CubeAttributes.java
  * Copyright (c) 2003 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

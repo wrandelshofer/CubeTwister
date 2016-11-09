@@ -1,5 +1,4 @@
-/*
- * @(#)PolygonIcon.java   1.4  2002-05-06
+/* @(#)PolygonIcon.java
  * Copyright (c) 1999 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

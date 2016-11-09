@@ -1,5 +1,4 @@
-/*
- * @(#)RubiksCubeApplet.java  1.1  2009-01-09
+/* @(#)RubiksCubeApplet.java
  * Copyright (c) 2007 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

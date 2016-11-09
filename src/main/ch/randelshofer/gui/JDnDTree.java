@@ -1,5 +1,4 @@
-/*
- * @(#)JDnDTree.java  2.2  2011-01-22
+/* @(#)JDnDTree.java
  * Copyright (c) 2004 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

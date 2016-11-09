@@ -1,5 +1,4 @@
-/*
- * @(#)DefaultTransferable.java  2.1  2008-03-21
+/* @(#)DefaultTransferable.java
  * Copyright (c) 2002 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

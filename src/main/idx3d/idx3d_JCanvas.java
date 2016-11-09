@@ -1,5 +1,4 @@
-/*
- * @(#)idx3d_JCanvas.java  5.9  2014-04-27
+/* @(#)idx3d_JCanvas.java
  *
  * Copyright (c) 2005-2014 Werner Randelshofer, Switzerland.
  * You may not use, copy or modify this file, except in compliance with the

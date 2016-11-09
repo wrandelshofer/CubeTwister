@@ -1,6 +1,5 @@
 /*
-/*
- * @(#)CubeOptionsView.java  3.0  2008-12-23
+/* @(#)CubeOptionsView.java
  * Copyright (c) 2006 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

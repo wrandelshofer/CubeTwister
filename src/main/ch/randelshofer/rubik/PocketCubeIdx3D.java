@@ -1,5 +1,4 @@
-/*
- * @(#)PocketCubeIdx3D.java  3.2  2010-08-18
+/* @(#)PocketCubeIdx3D.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

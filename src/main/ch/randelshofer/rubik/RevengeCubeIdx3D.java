@@ -1,5 +1,4 @@
-/*
- * @(#)RevengeCubeIdx3D.java  1.4  2010-08-18
+/* @(#)RevengeCubeIdx3D.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

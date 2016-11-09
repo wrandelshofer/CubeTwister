@@ -1,5 +1,4 @@
-/*
- * @(#)Transform3D.java  1.3  2009-01-04
+/* @(#)Transform3D.java
  * Copyright (c) 1998 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

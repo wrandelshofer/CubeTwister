@@ -1,5 +1,4 @@
-/*
- * @(#)Icons.java  2.0 2010-08-18
+/* @(#)Icons.java
  * Copyright (c) 2002 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

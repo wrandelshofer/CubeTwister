@@ -1,5 +1,4 @@
-/*
- * @(#)ImageWellModel.java  1.1  2010-01-01
+/* @(#)ImageWellModel.java
  * Copyright (c) 2006 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

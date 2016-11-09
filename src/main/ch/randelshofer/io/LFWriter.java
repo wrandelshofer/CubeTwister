@@ -1,5 +1,4 @@
-/*
- * @(#)LFWriter.java  1.1  2004-04-17
+/* @(#)LFWriter.java
  * Copyright (c) 2002 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

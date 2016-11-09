@@ -1,5 +1,4 @@
-/*
- * @(#)BoundedRangeModelProxy.java  2.0  2007-11-15
+/* @(#)BoundedRangeModelProxy.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

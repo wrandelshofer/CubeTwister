@@ -1,5 +1,4 @@
-/*
- * @(#)ListModels.java  2.0  2008-03-21
+/* @(#)ListModels.java
  * Copyright (c) 2002 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

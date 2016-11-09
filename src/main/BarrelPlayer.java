@@ -1,5 +1,4 @@
-/*
- * @(#)BarrelPlayer.java  1.0  April 13, 2006
+/* @(#)BarrelPlayer.java
  * Copyright (c) 2006 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

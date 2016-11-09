@@ -1,5 +1,4 @@
-/*
- * @(#)StreamisTokenizer.java  1.2 2004-08-01
+/* @(#)StreamisTokenizer.java
  * !!ATTENTION!! LATEST VERSION IS IN MULTISHOW
  * Copyright (c) 1999 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.

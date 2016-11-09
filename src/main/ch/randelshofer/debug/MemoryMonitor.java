@@ -1,5 +1,4 @@
-/*
- * @(#)MemoryMonitor.java  2.1  2010-11-24
+/* @(#)MemoryMonitor.java
  * Copyright (c) 2010 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

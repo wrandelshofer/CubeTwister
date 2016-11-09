@@ -1,5 +1,4 @@
-/*
- * @(#)Polygon3D.java  0.2  1999-01-01
+/* @(#)Polygon3D.java
  * Copyright (c) 1999 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

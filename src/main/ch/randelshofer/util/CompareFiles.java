@@ -1,5 +1,4 @@
-/*
- * @(#)CompareFiles.java  1.0  2000-07-03
+/* @(#)CompareFiles.java
  * Copyright (c) 2000 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

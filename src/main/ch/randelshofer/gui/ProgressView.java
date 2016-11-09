@@ -1,5 +1,4 @@
-/*
- * @(#)ProgressView.java  2.1 2011-05-01
+/* @(#)ProgressView.java
  * Copyright (c) 2002 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

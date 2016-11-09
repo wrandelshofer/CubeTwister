@@ -1,5 +1,4 @@
-/*
- * @(#)AbstractStateModel.java  1.0  2002-05-09
+/* @(#)AbstractStateModel.java
  * Copyright (c) 1998 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

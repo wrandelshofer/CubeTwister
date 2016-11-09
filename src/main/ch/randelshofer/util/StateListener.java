@@ -1,5 +1,4 @@
-/*
- * @(#)StateListener.java  1.0  1999-10-19
+/* @(#)StateListener.java
  * Copyright (c) 1999 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

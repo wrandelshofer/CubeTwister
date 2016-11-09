@@ -1,5 +1,4 @@
-/*
- * @(#)SuspendableInputStream.java  1.0.1  2003-04-25
+/* @(#)SuspendableInputStream.java
  * Copyright (c) 1999 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

@@ -1,5 +1,4 @@
-/*
- * @(#)DefaultMutableTreeModel.java  3.1  2011-01-22
+/* @(#)DefaultMutableTreeModel.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

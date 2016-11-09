@@ -1,5 +1,4 @@
-/*
- * @(#)CubePartModel.java  1.0.1  2002-07-29
+/* @(#)CubePartModel.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

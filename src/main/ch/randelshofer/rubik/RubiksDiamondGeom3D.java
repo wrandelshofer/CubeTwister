@@ -1,5 +1,4 @@
-/*
- * @(#)RubiksDiamondFlat3D.java  2.0  2009-01-05
+/* @(#)RubiksDiamondFlat3D.java
  * Copyright (c) 2000 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

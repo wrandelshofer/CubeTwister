@@ -1,5 +1,4 @@
-/*
- * @(#)AbstractCubeIdx3D.java  3.0  2007-12-30
+/* @(#)AbstractCubeIdx3D.java
  * Copyright (c) 2003 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

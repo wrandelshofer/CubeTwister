@@ -1,5 +1,4 @@
-/*
- * @(#)Cube3DCanvas.java  1.2  2009-11-28
+/* @(#)Cube3DCanvas.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

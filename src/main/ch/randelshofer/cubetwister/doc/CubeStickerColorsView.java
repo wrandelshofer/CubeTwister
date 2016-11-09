@@ -1,5 +1,4 @@
-/*
- * @(#)CubeStickerColorsView.java  2.0  2008-12-23
+/* @(#)CubeStickerColorsView.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

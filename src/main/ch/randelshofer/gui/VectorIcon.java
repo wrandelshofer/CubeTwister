@@ -1,5 +1,4 @@
-/*
- * @(#)VectorIcon.java 1.1  2003-03-16
+/* @(#)VectorIcon.java
  * Copyright (c) 1999 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

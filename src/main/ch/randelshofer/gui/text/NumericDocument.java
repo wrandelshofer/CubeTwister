@@ -1,5 +1,4 @@
-/*
- * @(#)NumericDocument.java  1.0  June 3, 2006
+/* @(#)NumericDocument.java
  * Copyright (c) 2006 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

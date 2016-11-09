@@ -1,5 +1,4 @@
-/*
- * @(#)Fonts.java  1.1.1  2007-06-07
+/* @(#)Fonts.java
  * Copyright (c) 2002 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

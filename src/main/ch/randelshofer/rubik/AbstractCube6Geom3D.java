@@ -1,5 +1,4 @@
-/*
- * @(#)AbstractVCube6Geom3D.java  1.0.1  2009-01-04
+/* @(#)AbstractVCube6Geom3D.java
  * Copyright (c) 2008 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

@@ -1,5 +1,4 @@
-/*
- * @(#)SequenceIterator.java  1.0  2001-07-26
+/* @(#)SequenceIterator.java
  * Copyright (c) 1999 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

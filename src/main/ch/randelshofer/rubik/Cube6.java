@@ -1,5 +1,4 @@
-/*
- * @(#)Cube6.java  2.0.1  2009-09-25
+/* @(#)Cube6.java
  * 
  * Copyright (c) 2008-2009 Werner Randelshofer, Switzerland.
  * You may not use, copy or modify this file, except in compliance with the

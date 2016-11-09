@@ -1,6 +1,5 @@
 /*
-/*
- * @(#)CubeStickersView.java  1.0  2008-12-23
+/* @(#)CubeStickersView.java
  * Copyright (c) 2008 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

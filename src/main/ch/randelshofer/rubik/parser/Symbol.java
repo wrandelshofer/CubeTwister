@@ -1,5 +1,4 @@
-/*
- * @(#)Symbol.java  10.0  2013-12-15
+/* @(#)Symbol.java
  * Copyright (c) 2004 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

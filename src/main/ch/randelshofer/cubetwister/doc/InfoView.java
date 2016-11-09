@@ -1,5 +1,4 @@
-/*
- * @(#)InfoView.java  1.0.2  2004-02-23
+/* @(#)InfoView.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

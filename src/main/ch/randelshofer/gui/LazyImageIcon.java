@@ -1,5 +1,4 @@
-/*
- * @(#)LazyImageIcon.java  1.2 2011-02-02
+/* @(#)LazyImageIcon.java
  * Copyright (c) 2007 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

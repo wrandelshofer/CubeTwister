@@ -1,5 +1,4 @@
-/*
- * @(#)AbstractCubeGeom3D.java  7.1  2010-04-05
+/* @(#)AbstractCubeGeom3D.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

@@ -1,5 +1,4 @@
-/*
- * @(#)Shape3D.java  3.1  2010-01-04
+/* @(#)Shape3D.java
  * Copyright (c) 2000 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

@@ -1,5 +1,4 @@
-/*
- * @(#)Methods.java  1.0  September 24, 2005
+/* @(#)Methods.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

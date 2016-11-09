@@ -1,5 +1,4 @@
-/*
- * @(#)AbstractVirtualCubeApplet.java  2.10  2012-04-01
+/* @(#)AbstractVirtualCubeApplet.java
  * Copyright (c) 2007 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

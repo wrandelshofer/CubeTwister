@@ -1,5 +1,4 @@
-/*
- * @(#)UndoableIntEdit.java 1.0  2001-10-12
+/* @(#)UndoableIntEdit.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

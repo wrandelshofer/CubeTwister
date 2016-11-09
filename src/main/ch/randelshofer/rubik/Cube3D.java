@@ -1,5 +1,4 @@
-/*
- * @(#)Cube3D.java 5.0  2010-04-06
+/* @(#)Cube3D.java
  * Copyright (c) 2006 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

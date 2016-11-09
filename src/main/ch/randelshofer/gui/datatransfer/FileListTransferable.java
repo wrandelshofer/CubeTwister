@@ -1,5 +1,4 @@
-/*
- * @(#)FileListTransferable.java  1.0  2007-06-07
+/* @(#)FileListTransferable.java
  * Copyright (c) 2007 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

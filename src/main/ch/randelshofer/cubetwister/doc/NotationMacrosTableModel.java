@@ -1,5 +1,4 @@
-/*
- * @(#)CubeMacrosTableModel.java  1.2.1  2010-04-05
+/* @(#)CubeMacrosTableModel.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

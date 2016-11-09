@@ -1,6 +1,5 @@
 package ch.randelshofer.cubetwister;
-/*
- * @(#)HTMLExporter.java  2.3.1  2010-11-06
+/* @(#)HTMLExporter.java
  * Copyright (c) 2007 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

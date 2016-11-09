@@ -1,5 +1,4 @@
-/*
- * @(#)CubeStickerModel.java  1.1  2010-01-01
+/* @(#)CubeStickerModel.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

@@ -1,5 +1,4 @@
-/*
- * @(#)CommentNode.java  1.0  01 February 2005
+/* @(#)CommentNode.java
  * Copyright (c) 2004 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

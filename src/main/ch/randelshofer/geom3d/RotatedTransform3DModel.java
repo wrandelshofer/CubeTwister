@@ -1,5 +1,4 @@
-/*
- * @(#)RotatedTransform3DModel.java  2.0  2007-11-15
+/* @(#)RotatedTransform3DModel.java
  * Copyright (c) 1998 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

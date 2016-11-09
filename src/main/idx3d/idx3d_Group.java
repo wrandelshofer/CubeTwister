@@ -1,7 +1,6 @@
 package idx3d;
 
-/*
- * @(#)idx3d_Group.java  1.0  August 29, 2004
+/* @(#)idx3d_Group.java
  * Copyright (c) 2004 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

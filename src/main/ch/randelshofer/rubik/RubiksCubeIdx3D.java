@@ -1,5 +1,4 @@
-/*
- * @(#)RubiksCubeIdx3D.java  3.1  2010-04-01
+/* @(#)RubiksCubeIdx3D.java
  * Copyright (c) 2003 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

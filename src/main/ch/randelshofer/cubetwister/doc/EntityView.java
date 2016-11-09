@@ -1,5 +1,4 @@
-/*
- * @(#)EntityView.java  1.0  January 5, 2006
+/* @(#)EntityView.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

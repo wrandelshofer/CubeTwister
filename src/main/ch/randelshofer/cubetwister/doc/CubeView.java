@@ -1,5 +1,4 @@
-/*
- * @(#)CubeView.java  2.4  2010-08-18
+/* @(#)CubeView.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

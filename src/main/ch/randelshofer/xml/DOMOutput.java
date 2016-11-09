@@ -1,5 +1,4 @@
-/*
- * @(#)DOMOutput.java  1.0  10. März 2004
+/* @(#)DOMOutput.java
  * Copyright (c) 2001 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

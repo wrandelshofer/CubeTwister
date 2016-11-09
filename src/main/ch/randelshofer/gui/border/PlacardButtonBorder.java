@@ -1,5 +1,4 @@
-/*
- * @(#)Quaqua14PlacardButtonBorder.java  1.0  2006-01-04
+/* @(#)Quaqua14PlacardButtonBorder.java
  * Copyright (c) 2006 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

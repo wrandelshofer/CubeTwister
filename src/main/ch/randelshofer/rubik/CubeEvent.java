@@ -1,5 +1,4 @@
-/*
- * @(#)CubeEvent.java  1.1  2007-12-31
+/* @(#)CubeEvent.java
  * Copyright (c) 2003 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */

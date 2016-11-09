@@ -1,5 +1,4 @@
-/*
- * @(#)EmptyIterator.java  1.0  2013-12-14
+/* @(#)EmptyIterator.java
  * Copyright (c) 2013 Werner Randelshofer, Switzerland.
  * You may only use this software in accordance with the license terms.
  */
