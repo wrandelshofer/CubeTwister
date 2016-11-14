@@ -489,12 +489,12 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
                 speedSlider.setMinimum(-400);
                 speedSlider.setMaximum(400);
                 speedSlider.setValue(0);
-                Hashtable labelTable = new Hashtable();
+                Hashtable<Integer,SliderLabel> labelTable = new Hashtable<>();
                 ResourceBundle labels = ResourceBundle.getBundle("ch.randelshofer.rubik.player.Labels", getLocale());
                 labelTable.put(new Integer(-390), new SliderLabel(labels.getString("slow.text")));
                 labelTable.put(new Integer(390), new SliderLabel(labels.getString("fast.text")));
                 speedSlider.setLabelTable(labelTable);
-                for (Iterator i = labelTable.values().iterator(); i.hasNext();) {
+                for (Iterator<SliderLabel> i = labelTable.values().iterator(); i.hasNext();) {
                     JLabel label = (JLabel) i.next();
                     label.setFont(labelFont);
                     label.setForeground(Color.WHITE);
@@ -643,7 +643,6 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
         int[] deprecatedFaceMap = {2, 0, 3, 5, 4, 1}; // maps FRDBLU to RUFLDB
         String[] faceNames = {"f", "r", "d", "b", "l", "u"};
 
-        Hashtable scriptDefMap = new Hashtable();
         String value;
         String initScript;
 
