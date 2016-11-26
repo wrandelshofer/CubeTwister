@@ -23,7 +23,7 @@ import java.util.*;
 public class DefaultNotation implements Notation {
 
     private HashMap<Symbol, String> symbolToTokenMap = new HashMap<Symbol, String>();
-    private HashMap<String, HashSet<Symbol>> tokenToSymbolMap = new HashMap<String, HashSet<Symbol>>();
+    private HashMap<String, Set<Symbol>> tokenToSymbolMap = new HashMap<>();
     private HashMap<Move, String> moveToTokenMap = new HashMap<Move, String>();
     private HashMap<String, Move> tokenToMoveMap = new HashMap<String, Move>();
     private HashMap<Symbol, Syntax> symbolToSyntaxMap = new HashMap<Symbol, Syntax>();
@@ -56,6 +56,7 @@ public class DefaultNotation implements Notation {
         //addToken(Symbol.INVERSION_END ,")");
         //addToken(Symbol.INVERSION_DELIMITER ,"");
         addToken(Symbol.INVERTOR, "'");
+        addToken(Symbol.INVERTOR, "-");
         //addToken(Symbol.REFLECTION_BEGIN ,"(");
         //addToken(Symbol.REFLECTION_END ,")");
         //addToken(Symbol.REFLECTION_DELIMITER ,"");
@@ -92,20 +93,6 @@ public class DefaultNotation implements Notation {
         addMove(new Move(1, inner, -1), "D");
         addMove(new Move(2, inner, -1), "B");
 
-        addMove(new Move(0, outer, -1), "R'");
-        addMove(new Move(1, outer, -1), "U'");
-        addMove(new Move(2, outer, -1), "F'");
-        addMove(new Move(0, inner, 1), "L'");
-        addMove(new Move(1, inner, 1), "D'");
-        addMove(new Move(2, inner, 1), "B'");
-
-        addMove(new Move(0, outer, 2), "R2");
-        addMove(new Move(1, outer, 2), "U2");
-        addMove(new Move(2, outer, 2), "F2");
-        addMove(new Move(0, inner, -2), "L2");
-        addMove(new Move(1, inner, -2), "D2");
-        addMove(new Move(2, inner, -2), "B2");
-
         addMove(new Move(0, middle, 1), "MR");
         addMove(new Move(1, middle, 1), "MU");
         addMove(new Move(2, middle, 1), "MF");
@@ -113,6 +100,20 @@ public class DefaultNotation implements Notation {
         addMove(new Move(1, middle, -1), "MD");
         addMove(new Move(2, middle, -1), "MB");
 
+        addMove(new Move(0, outer|middle, 1), "TR");
+        addMove(new Move(1, outer|middle, 1), "TU");
+        addMove(new Move(2, outer|middle, 1), "TF");
+        addMove(new Move(0, inner|middle, -1), "TL");
+        addMove(new Move(1, inner|middle, -1), "TD");
+        addMove(new Move(2, inner|middle, -1), "TB");
+        
+        addMove(new Move(0, outer|inner, 1), "SR");
+        addMove(new Move(1, outer|inner, 1), "SU");
+        addMove(new Move(2, outer|inner, 1), "SF");
+        addMove(new Move(0, inner|outer, -1), "SL");
+        addMove(new Move(1, inner|outer, -1), "SD");
+        addMove(new Move(2, inner|outer, -1), "SB");
+        
         addMove(new Move(0, all, 1), "CR");
         addMove(new Move(1, all, 1), "CU");
         addMove(new Move(2, all, 1), "CF");
@@ -120,19 +121,13 @@ public class DefaultNotation implements Notation {
         addMove(new Move(1, all, -1), "CD");
         addMove(new Move(2, all, -1), "CB");
 
-        addMove(new Move(0, all, 2), "CR2");
-        addMove(new Move(1, all, 2), "CU2");
-        addMove(new Move(2, all, 2), "CF2");
-        addMove(new Move(0, all, -2), "CL2");
-        addMove(new Move(1, all, -2), "CD2");
-        addMove(new Move(2, all, -2), "CB2");
-
         symbolToSyntaxMap.put(Symbol.COMMUTATION, Syntax.PRECIRCUMFIX);
         symbolToSyntaxMap.put(Symbol.CONJUGATION, Syntax.PREFIX);
         symbolToSyntaxMap.put(Symbol.ROTATION, Syntax.PREFIX);
         symbolToSyntaxMap.put(Symbol.GROUPING, Syntax.CIRCUMFIX);
         symbolToSyntaxMap.put(Symbol.PERMUTATION, Syntax.PRECIRCUMFIX);
         symbolToSyntaxMap.put(Symbol.REPETITION, Syntax.SUFFIX);
+        symbolToSyntaxMap.put(Symbol.REFLECTION, Syntax.SUFFIX);
         symbolToSyntaxMap.put(Symbol.INVERSION, Syntax.SUFFIX);
     }
 
@@ -143,11 +138,7 @@ public class DefaultNotation implements Notation {
         }
 
         // Add to tokenToSymbolMap
-        HashSet<Symbol> symbols = tokenToSymbolMap.get(token);
-        if (symbols == null) {
-            symbols = new HashSet<Symbol>();
-            tokenToSymbolMap.put(token, symbols);
-        }
+        Set<Symbol> symbols = tokenToSymbolMap.compute(token,(key,value)->value==null?new LinkedHashSet<Symbol>():value);
         symbols.add(symbol);
         if (Symbol.PERMUTATION.isSubSymbol(symbol)) {
             symbols.add(Symbol.PERMUTATION);
@@ -158,20 +149,16 @@ public class DefaultNotation implements Notation {
         moveToTokenMap.put(move, token);
         tokenToMoveMap.put(token, move);
 
-        HashSet<Symbol> symbols = tokenToSymbolMap.get(token);
-        if (symbols == null) {
-            symbols = new HashSet<Symbol>();
-            tokenToSymbolMap.put(token, symbols);
-        }
+        Set<Symbol> symbols = tokenToSymbolMap.compute(token,(k,v)->v==null?new LinkedHashSet<Symbol>():v);
         symbols.add(Symbol.MOVE);
-
+System.out.println("DefaultNotation:"+tokenToSymbolMap);
     }
 
     public int getLayerCount() {
         return layerCount;
     }
 
-    public String getEquivalentMacro(Cube cube, Map localMacros) {
+    public String getEquivalentMacro(Cube cube, Map<String,MacroNode> localMacros) {
         return null;
     }
 
@@ -199,7 +186,7 @@ public class DefaultNotation implements Notation {
     }
 
     public boolean isTokenFor(String token, Symbol symbol) {
-        HashSet<Symbol> list = tokenToSymbolMap.get(token);
+        Set<Symbol> list = tokenToSymbolMap.get(token);
         return list != null && list.contains(symbol);
     }
 
@@ -208,7 +195,7 @@ public class DefaultNotation implements Notation {
     }
 
     public Symbol getSymbolFor(String token, Symbol compositeSymbol) {
-        HashSet<Symbol> list = tokenToSymbolMap.get(token);
+        Set<Symbol> list = tokenToSymbolMap.get(token);
         if (list != null) {
             for (Symbol s : list) {
                 if (compositeSymbol.isSubSymbol(s)) {

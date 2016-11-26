@@ -30,6 +30,7 @@ public interface Notation {
      *
      * @param cube A transformed cube.
      * @param localMacros A Map with local macros.
+     * @return equivalent macro or null
      */
     public String getEquivalentMacro(Cube cube, Map<String,MacroNode> localMacros);
 
