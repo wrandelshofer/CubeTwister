@@ -13,32 +13,44 @@ import static org.testng.Assert.*;
 
 /**
  * Tests for ScriptParser with DefaultNotation.
+ *
  * @author Wenrer Randelshofer
  */
 public class ScriptParserNGTest {
-    
+
     public ScriptParserNGTest() {
     }
 
     /**
      * Test of parse method, of class ScriptParser.
+     *
      * @param script the input script
+     * @throws java.lang.Exception on failure
      */
-    @Test(dataProvider="scripts")
+    @Test(dataProvider = "scripts")
     public void testParse(String script) throws Exception {
-        System.out.println("parse");
+        System.out.println("testParse "+script);
         ScriptParser instance = new ScriptParser(new DefaultNotation());
-        SequenceNode expResult = null;
-        SequenceNode result = instance.parse(script);
-        assertEquals(result, expResult);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        SequenceNode expected = null;
+        SequenceNode actual = instance.parse(script);
+        assertTrue(actual instanceof SequenceNode);
     }
 
     @DataProvider
     public static Object[][] scripts() {
-        return new Object[][] {
-            
-        };
+        return new Object[][]{
+            {"RUFLDB R'U'F'L'D'B' R2U2F2L2D2B2"},
+            {"TRTUTFTLTDTB TR'TU'TF'TL'TD'TB' TR2TU2TF2TL2TD2TB2"},
+            {"MRMUMFMLMDMB MR'MU'MF'ML'MD'MB' MR2MU2MF2ML2MD2MB2"},
+            {"SRSUSFSLSDSB SR'SU'SF'SL'SD'SB' SR2SU2SF2SL2SD2SB2"},
+            {"CRCUCFCLCDCB CR'CU'CF'CL'CD'CB' CR2CU2CF2CL2CD2CB2"},
+            {"R . U · F"},
+            {"(R U F)"},
+            {"(R U F)3 D1"},
+            {"(R- U F)- (R' U F)'"},
+            {"(R' U F)*"},
+            {"<R>U"},
+            {"[R,U]"},
+            {"(+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l)"},};
     }
- }
+}
