@@ -1,6 +1,5 @@
 /* @(#)ScriptToolBarView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
+ * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 

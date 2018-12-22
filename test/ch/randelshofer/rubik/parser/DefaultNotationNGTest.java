@@ -1,7 +1,6 @@
 /*
  * @(#)ScriptParser.java  10.0.1  2010-11-06
- * Copyright (c) 2002 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
+ * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.parser;
 

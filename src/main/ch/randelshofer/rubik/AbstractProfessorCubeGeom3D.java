@@ -1,6 +1,5 @@
 /* @(#)AbstractProfessorCubeGeom3D.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
+ * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
  *
  * Parts of the code are copyright (c) Markus Pirzer, Germany
  */

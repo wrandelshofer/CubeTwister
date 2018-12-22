@@ -1,7 +1,6 @@
 /* @(#)StreamisTokenizer.java
  * !!ATTENTION!! LATEST VERSION IS IN MULTISHOW
- * Copyright (c) 1999 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
+ * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.io;
 

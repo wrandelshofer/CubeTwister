@@ -1,7 +1,6 @@
 /* @(#)ArrayUtil.java
  *
- * Copyright (c) 2003 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
+ * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
  *
  * Implementation derived from Sun's Java 1.4 VM.
  */

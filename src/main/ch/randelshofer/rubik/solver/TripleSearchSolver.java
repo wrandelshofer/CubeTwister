@@ -1,7 +1,6 @@
 /**
  * @(#)TripleSearchSolver.java  1.0  Mar 3, 2008
- * Copyright (c) 2008 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
+ * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.solver;
 
