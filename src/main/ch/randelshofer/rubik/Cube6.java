@@ -1,8 +1,6 @@
 /* @(#)Cube6.java
  * 
- * Copyright (c) 2008-2009 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2008-2009 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik;
 

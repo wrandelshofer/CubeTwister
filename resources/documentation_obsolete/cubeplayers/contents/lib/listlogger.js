@@ -1,9 +1,7 @@
 /*
  * @(#)listlogger.js 1.2  2006-06-21
  *
- * Copyright (c) 2004-2006 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2004-2006 Werner Randelshofer, Switzerland. MIT License.
  *
  *
  * This software has been derived from lmsdebug.js 

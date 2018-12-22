@@ -1,9 +1,7 @@
 /*
  * @(#)collections.js 1.1  2007-08-05
  *
- * Copyright (c) 2003 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
  */
 
 /**
