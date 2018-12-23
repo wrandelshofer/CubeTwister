@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="13" passed="13">
+  <reporter-output>
+  </reporter-output>
+  <suite name="CubeTwister" duration-ms="204" started-at="2016-11-26T16:51:27Z" finished-at="2016-11-26T16:51:28Z">
+    <groups>
+    </groups>
+    <test name="TestNG tests" duration-ms="204" started-at="2016-11-26T16:51:27Z" finished-at="2016-11-26T16:51:28Z">
+      <class name="ch.randelshofer.rubik.parser.ScriptParserNGTest">
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="61" started-at="2016-11-26T17:51:27Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[RUFLDB R'U'F'L'D'B' R2U2F2L2D2B2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="4" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[TRTUTFTLTDTB TR'TU'TF'TL'TD'TB' TR2TU2TF2TL2TD2TB2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="3" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[MRMUMFMLMDMB MR'MU'MF'ML'MD'MB' MR2MU2MF2ML2MD2MB2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="11" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[SRSUSFSLSDSB SR'SU'SF'SL'SD'SB' SR2SU2SF2SL2SD2SB2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="14" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[CRCUCFCLCDCB CR'CU'CF'CL'CD'CB' CR2CU2CF2CL2CD2CB2]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="13" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[R . U · F]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="13" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[(R U F)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="13" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[(R U F)3 D1]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="13" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[(R- U F)- (R' U F)']]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="12" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[(R' U F)*]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="12" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[<R>U]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="12" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[R,U]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+        <test-method status="PASS" signature="testParse(java.lang.String)[pri:0, instance:ch.randelshofer.rubik.parser.ScriptParserNGTest@3339ad8e]" name="testParse" duration-ms="13" started-at="2016-11-26T17:51:28Z" data-provider="scripts" finished-at="2016-11-26T17:51:28Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[(+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l)]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testParse -->
+      </class> <!-- ch.randelshofer.rubik.parser.ScriptParserNGTest -->
+    </test> <!-- TestNG tests -->
+  </suite> <!-- CubeTwister -->
+</testng-results>

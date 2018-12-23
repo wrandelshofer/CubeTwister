@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<attributes version="1.0">
+   <fileobject name="XMLTransferable.java">
+      <attr name="class_dependency_java.awt.datatransfer.ClipboardOwner" stringvalue="XMLTransferable"/>
+      <attr name="class_dependency_java.awt.datatransfer.Transferable" stringvalue="XMLTransferable"/>
+   </fileobject>
+</attributes>

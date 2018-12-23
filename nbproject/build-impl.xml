@@ -128,9 +128,9 @@ is divided into following sections:
         </condition>
         <condition property="have.sources">
             <or>
-                <available file="${src.twophase.dir}"/>
+                <available file="../src/org.kociemba.twophase"/>
                 <available file="${src.main2.dir}"/>
-                <available file="${src.main.dir}"/>
+                <available file="../src/ch.randelshofer.cubetwister"/>
                 <available file="${src.jhotdraw7.dir}"/>
             </or>
         </condition>
@@ -936,9 +936,9 @@ is divided into following sections:
     <target depends="init,deps-jar,-pre-pre-compile,-pre-compile, -copy-persistence-xml,-compile-depend" if="have.sources" name="-do-compile">
         <j2seproject3:javac gensrcdir="${build.generated.sources.dir}"/>
         <copy todir="${build.classes.dir}">
-            <fileset dir="${src.twophase.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="../src/org.kociemba.twophase" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.main2.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
-            <fileset dir="${src.main.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="../src/ch.randelshofer.cubetwister" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.jhotdraw7.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
         </copy>
     </target>
@@ -1226,13 +1226,13 @@ is divided into following sections:
             <classpath>
                 <path path="${javac.classpath}"/>
             </classpath>
-            <fileset dir="${src.twophase.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
+            <fileset dir="../src/org.kociemba.twophase" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
             <fileset dir="${src.main2.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
-            <fileset dir="${src.main.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
+            <fileset dir="../src/ch.randelshofer.cubetwister" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
                 <filename name="**/*.java"/>
             </fileset>
             <fileset dir="${src.jhotdraw7.dir}" excludes="${bug5101868workaround},${excludes}" includes="${includes}">
@@ -1245,13 +1245,13 @@ is divided into following sections:
             <arg line="${javadoc.endorsed.classpath.cmd.line.arg}"/>
         </javadoc>
         <copy todir="${dist.javadoc.dir}">
-            <fileset dir="${src.twophase.dir}" excludes="${excludes}" includes="${includes}">
+            <fileset dir="../src/org.kociemba.twophase" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
             <fileset dir="${src.main2.dir}" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
-            <fileset dir="${src.main.dir}" excludes="${excludes}" includes="${includes}">
+            <fileset dir="../src/ch.randelshofer.cubetwister" excludes="${excludes}" includes="${includes}">
                 <filename name="**/doc-files/**"/>
             </fileset>
             <fileset dir="${src.jhotdraw7.dir}" excludes="${excludes}" includes="${includes}">

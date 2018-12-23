@@ -22,7 +22,7 @@
         <property name="classes" value="${build}/classes"/>
         <property name="appletclasses" value="${build}/appletclasses"/>
 
-        <property name="src" value="src/main"/>
+        <property name="src" value="src/ch.randelshofer.cubetwister"/>
         <property name="media.src" value="src/media/main"/>
         <property name="dist" value="dist"/>
         <property name="applets" value="${dist}/applets"/>

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="javax.help">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/hsviewer.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jh.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jhall.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

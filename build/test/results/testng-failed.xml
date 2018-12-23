@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [CubeTwister]">
+  <test name="TestNG tests(failed)">
+    <classes>
+      <class name="ch.randelshofer.rubik.parser.ScriptParserNGTest">
+        <methods>
+          <include name="testParse" invocation-numbers="12"/>
+        </methods>
+      </class> <!-- ch.randelshofer.rubik.parser.ScriptParserNGTest -->
+    </classes>
+  </test> <!-- TestNG tests(failed) -->
+</suite> <!-- Failed suite [CubeTwister] -->
