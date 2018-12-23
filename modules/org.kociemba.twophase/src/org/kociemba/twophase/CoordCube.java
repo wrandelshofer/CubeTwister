@@ -1,4 +1,4 @@
-package org.kociemba. twophase;
+package org.kociemba.twophase;
 
 /** Representation of the cube on the coordinate level. */
 public class CoordCube {

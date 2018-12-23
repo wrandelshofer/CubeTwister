@@ -1,4 +1,4 @@
-package org.kociemba. twophase;
+package org.kociemba.twophase;
 
 import static org.kociemba.twophase.Facelet.*;
 import static org.kociemba.twophase.Color.*;

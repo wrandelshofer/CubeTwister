@@ -1,4 +1,4 @@
-package org.kociemba. twophase;
+package org.kociemba.twophase;
 
 import static org.kociemba.twophase.Corner.*;
 import static org.kociemba.twophase.Edge.*;

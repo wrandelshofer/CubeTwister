@@ -1,4 +1,4 @@
-package org.kociemba. twophase;
+package org.kociemba.twophase;
 
 /**
  * <pre>
