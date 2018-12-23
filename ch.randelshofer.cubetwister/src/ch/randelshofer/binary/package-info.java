@@ -12,5 +12,5 @@
  * @author Werner Randelshofer
  * @version $Id: package-info.java 328 2013-12-07 16:42:19Z werner $
  */
-package org.monte.media.binary;
+package ch.randelshofer.binary;
 
