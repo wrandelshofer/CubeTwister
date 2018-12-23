@@ -3,7 +3,11 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import java.beans.*;
+import java.beans.BeanDescriptor;
+import java.beans.EventSetDescriptor;
+import java.beans.MethodDescriptor;
+import java.beans.PropertyDescriptor;
+import java.beans.SimpleBeanInfo;
 
 public class ScriptPlayerBeanInfo extends SimpleBeanInfo {
     

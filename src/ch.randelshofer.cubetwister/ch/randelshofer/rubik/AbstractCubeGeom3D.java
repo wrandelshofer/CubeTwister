@@ -4,8 +4,12 @@
 
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.geom3d.*;
-import java.awt.*;
+import ch.randelshofer.geom3d.Scene3D;
+import ch.randelshofer.geom3d.Shape3D;
+import ch.randelshofer.geom3d.Transform3D;
+import ch.randelshofer.geom3d.TransformNode3D;
+
+import java.awt.Color;
 /**
  * Abstract base class for the geometrical representation of a {@link Cube}
  * using the Geom3D engine.

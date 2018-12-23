@@ -4,8 +4,10 @@
 
 package ch.randelshofer.rubik.player;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.rubik.parser.*;
+import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
+import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.RubiksCubeIdx3D;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
 import idx3d.idx3d_JCanvas;
 
 /**

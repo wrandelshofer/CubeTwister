@@ -6,8 +6,9 @@ package ch.randelshofer.rubik;
 /** We use our own implementation of EventListenerListAWT, because this class must
  * be able to run on a Java 1.1 VM.
  */
+
+import javax.swing.event.EventListenerList;
 import java.util.Arrays;
-import javax.swing.event.*;
 
 /**
  * Abstract base class for classes which implement the {@link Cube} interface.

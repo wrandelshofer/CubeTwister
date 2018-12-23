@@ -3,9 +3,15 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import java.util.*;
-import java.io.*;
+import ch.randelshofer.rubik.Cube;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * An InversionNode holds one child A.
@@ -75,9 +81,9 @@ public class InversionNode extends Node {
             // We print the children of the inner inversion without having to invert
             // them.
             InversionNode nestedInversion = (InversionNode) getChildAt(0);
-            for (Enumeration<Node> enumer = nestedInversion.children(); enumer.hasMoreElements();) {
-                ((SequenceNode) enumer.nextElement()).writeTokens(w, p, macroMap);
-                if (enumer.hasMoreElements()) {
+            for (Iterator<Node> enumer = nestedInversion.getChildren().iterator(); enumer.hasNext();) {
+                ((SequenceNode) enumer.next()).writeTokens(w, p, macroMap);
+                if (enumer.hasNext()) {
                     p.writeToken(w, Symbol.DELIMITER);
                     w.write(' ');
                 }

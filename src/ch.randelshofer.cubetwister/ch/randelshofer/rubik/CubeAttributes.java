@@ -5,9 +5,10 @@
 package ch.randelshofer.rubik;
 
 //import ch.randelshofer.gui.event.*;
-import ch.randelshofer.util.*;
-import java.awt.*;
-import java.beans.*;
+
+import java.awt.Color;
+import java.awt.Image;
+import java.beans.PropertyChangeListener;
 /**
  * The interface for objects which describe the attributes of a 
  * Rubik's Cube-like puzzle.

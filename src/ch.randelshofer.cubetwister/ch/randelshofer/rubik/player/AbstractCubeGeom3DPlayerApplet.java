@@ -4,12 +4,21 @@
 
 package ch.randelshofer.rubik.player;
 
-import ch.randelshofer.geom3d.*;
 import ch.randelshofer.geom3d.JCanvas3D;
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import java.awt.*;
-import java.net.*;
+import ch.randelshofer.geom3d.Point3D;
+import ch.randelshofer.geom3d.RotatedTransform3DModel;
+import ch.randelshofer.rubik.Cube3D;
+import ch.randelshofer.rubik.Cube3DCanvas;
+import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
+import ch.randelshofer.rubik.DefaultCubeAttributes;
+import ch.randelshofer.util.AppletParameterException;
+import ch.randelshofer.util.Applets;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
+import java.net.MalformedURLException;
+import java.net.URL;
 /**
  * AbstractCubeGeom3DPlayerApplet.
  *

@@ -9,6 +9,9 @@ import ch.randelshofer.rubik.Cube3DCanvas;
 import ch.randelshofer.rubik.CubeEvent;
 import ch.randelshofer.rubik.CubeListener;
 import ch.randelshofer.rubik.Cubes;
+
+import javax.swing.JComponent;
+import javax.swing.Timer;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +22,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.util.LinkedList;
-import javax.swing.JComponent;
-import javax.swing.Timer;
 
 /**
  * A handler which parses keyboard input from a Cube3DCanvas.

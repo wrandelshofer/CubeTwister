@@ -5,8 +5,9 @@
  */
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.geom3d.*;
-import org.monte.media.*;
+import ch.randelshofer.geom3d.Scene3D;
+import ch.randelshofer.geom3d.Transform3D;
+import ch.randelshofer.geom3d.TransformNode3D;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 

@@ -3,14 +3,15 @@
  */
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.geom3d.*;
-import ch.randelshofer.gui.*;
-import org.monte.media.*;
+import ch.randelshofer.geom3d.Scene3D;
+import ch.randelshofer.geom3d.Shape3D;
+import ch.randelshofer.geom3d.Transform3D;
+import ch.randelshofer.geom3d.TransformNode3D;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 
-import java.awt.*;
 import javax.swing.SwingUtilities;
+import java.awt.Color;
 
 /**
  * Abstract base class for the geometrical representation of a {@link PocketCube}

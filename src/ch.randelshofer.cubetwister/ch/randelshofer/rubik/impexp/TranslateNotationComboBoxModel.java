@@ -3,7 +3,7 @@
  */
 package ch.randelshofer.rubik.impexp;
 
-import ch.randelshofer.cubetwister.doc.*;
+import ch.randelshofer.cubetwister.doc.DocumentModel;
 
 /**
  * A combo box model which lets the user choose a notation to translate

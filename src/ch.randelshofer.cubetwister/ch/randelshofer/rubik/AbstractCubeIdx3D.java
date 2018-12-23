@@ -10,7 +10,9 @@ import idx3d.idx3d_Matrix;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Texture;
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Image;
 
 /**
  * Abstract base class for the geometrical representation of a {@link Cube}

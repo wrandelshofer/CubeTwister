@@ -4,9 +4,7 @@
 
 package ch.randelshofer.rubik.impexp.cubeexplorer;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.rubik.parser.*;
-import java.util.*;
+import ch.randelshofer.rubik.parser.ScriptParser;
 
 /**
  * KociembaENGParser.

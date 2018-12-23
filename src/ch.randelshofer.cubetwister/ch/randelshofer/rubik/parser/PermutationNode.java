@@ -3,10 +3,19 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import java.util.*;
-import java.io.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.util.SingleElementList;
+import ch.randelshofer.util.SingletonIterator;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A PermutationNode holds a single permutation and orientation change cycle of

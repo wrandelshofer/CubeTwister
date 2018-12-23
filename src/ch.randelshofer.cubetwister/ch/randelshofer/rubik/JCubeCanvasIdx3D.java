@@ -5,7 +5,8 @@ package ch.randelshofer.rubik;
 
 import idx3d.idx3d_RenderPipeline;
 import idx3d.idx3d_Scene;
-import javax.swing.*;
+
+import javax.swing.JComponent;
 
 /**
  * Cube3DCanvas.

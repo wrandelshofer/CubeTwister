@@ -5,7 +5,7 @@ package ch.randelshofer.gui.tree;
 
 import ch.randelshofer.gui.datatransfer.*;
 import ch.randelshofer.gui.list.ListModels;
-import edu.umd.cs.findbugs.annotations.Nullable;
+import org.jhotdraw.annotation.Nullable;
 import java.awt.datatransfer.*;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

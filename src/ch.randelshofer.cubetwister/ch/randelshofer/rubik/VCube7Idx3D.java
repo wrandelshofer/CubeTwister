@@ -3,10 +3,16 @@
  */
 package ch.randelshofer.rubik;
 
-import idx3d.*;
-import java.awt.*;
+import idx3d.idx3d_InternalMaterial;
+import idx3d.idx3d_Object;
+import idx3d.idx3d_Scene;
+import idx3d.idx3d_Triangle;
+
+import java.awt.Color;
 import java.util.Arrays;
-import static java.lang.Math.*;
+
+import static java.lang.Math.abs;
+import static java.lang.Math.sqrt;
 
 /**
  * Geometrical representation of {@link Cube7} as a V-Cube 7 in three dimensions.

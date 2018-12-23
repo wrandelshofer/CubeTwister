@@ -4,9 +4,12 @@
 
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import java.util.*;
-import java.io.*;
+import ch.randelshofer.rubik.Cube;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+import java.util.Map;
 /**
  * Notation describes the tokens and syntax used by the Parser.
  *

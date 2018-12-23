@@ -3,9 +3,10 @@
  */
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.geom3d.*;
+import ch.randelshofer.geom3d.Shape3D;
+
 import java.awt.Color;
-import java.util.*;
+import java.util.Arrays;
 
 /**
  * Geometrical representation of {@link Cube6} as a V-Cube 6 in three dimensions.

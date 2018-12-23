@@ -3,12 +3,12 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import java.util.*;
-import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cubes;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
 /**
  * A GroupingNode holds a sequence of children A.
  * The resolved Enumeration of a grouping node is A.

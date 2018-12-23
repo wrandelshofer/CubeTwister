@@ -3,9 +3,14 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.util.*;
-import java.util.*;
-import java.io.*;
+import ch.randelshofer.util.ListOfLists;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 /**
  * A StatementNode is a structuring unit. It holds one child A.
  * The side effect of a statement node to a Cube is A.

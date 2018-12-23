@@ -3,9 +3,16 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.rubik.Cube;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * DefaultNotation supports Superset ENG.

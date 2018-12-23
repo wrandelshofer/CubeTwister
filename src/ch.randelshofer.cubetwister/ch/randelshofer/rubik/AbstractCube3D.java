@@ -5,16 +5,22 @@ package ch.randelshofer.rubik;
 
 import ch.randelshofer.gui.event.SwipeEvent;
 import ch.randelshofer.gui.event.SwipeListener;
-import org.monte.media.*;
-import java.beans.*;
-import java.awt.event.*;
-import ch.randelshofer.util.*;
+import ch.randelshofer.util.Dispatcher;
+import ch.randelshofer.util.PooledSequentialDispatcher;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 import org.monte.media.player.Animator;
 import org.monte.media.player.DefaultAnimator;
 
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.EventListenerList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * Abstract base class for classes which implement the {@link Cube3D}

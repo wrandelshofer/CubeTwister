@@ -3,9 +3,11 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
 import ch.randelshofer.util.SingleElementList;
-import java.io.*;
+
+import java.io.IOException;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
 import java.util.List;
 
 /**

@@ -3,11 +3,18 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import ch.randelshofer.gui.tree.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.util.ListOfLists;
+import ch.randelshofer.util.SequenceIterator;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 /**
  * A CommutationNode holds a commutator A and a single child B.
  * The side effect of a commutation node is A B A' B'.
@@ -74,8 +81,7 @@ public class CommutationNode extends Node {
     public void overwritePositions(int sp, int ep) {
         super.overwritePositions(sp, ep);
         if (commutator != null) {
-            for (Enumeration<Node> i = commutator.children(); i.hasMoreElements(); ) {
-                Node child = i.nextElement();
+            for (Node child : commutator.getChildren()) {
                 child.overwritePositions(sp, ep);
             }
         }
@@ -204,10 +210,10 @@ public class CommutationNode extends Node {
             p.writeToken(w, Symbol.NOP);
             w.write(' ');
             inv = new SequenceNode(layerCount);
-            Enumeration<Node> enumer = children();
-            while (enumer.hasMoreElements()) {
+            Iterator<Node> enumer = getChildren().iterator();
+            while (enumer.hasNext()) {
                 //inv.add((Node) enumer.nextElement());
-                inv.add( enumer.nextElement().cloneSubtree());
+                inv.add( enumer.next().cloneSubtree());
             }
             inv.inverse();
             inv.writeTokens(w, p, macroMap);
@@ -280,10 +286,10 @@ public class CommutationNode extends Node {
         if (macroName != null) {
             w.write(macroName);
         } else {
-            Enumeration<Node> enumer = children();
-            while (enumer.hasMoreElements()) {
-                enumer.nextElement().writeTokens(w, p, macroMap);
-                if (enumer.hasMoreElements()) {
+            Iterator<Node> enumer = getChildren().iterator();
+            while (enumer.hasNext()) {
+                enumer.next().writeTokens(w, p, macroMap);
+                if (enumer.hasNext()) {
                     p.writeToken(w, Symbol.DELIMITER);
                     w.write(' ');
                 }

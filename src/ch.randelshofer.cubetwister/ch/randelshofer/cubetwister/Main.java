@@ -3,6 +3,7 @@
  */
 package ch.randelshofer.cubetwister;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -45,7 +46,13 @@ public class Main {
         am.setCopyright("\u00a9 Werner Randelshofer. All Rights Reserved.");
         am.setName("CubeTwister");
         am.setVersion(getVersion());
-        am.setViewClassName("ch.randelshofer.cubetwister.CubeTwisterView");
+        am.setViewFactory(()->{
+            try {
+             return (View)   Class.forName("ch.randelshofer.cubetwister.CubeTwisterView").getConstructor().newInstance();
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+       });
 
         Application app;
         if (System.getProperty("os.name").toLowerCase().startsWith("mac")) {

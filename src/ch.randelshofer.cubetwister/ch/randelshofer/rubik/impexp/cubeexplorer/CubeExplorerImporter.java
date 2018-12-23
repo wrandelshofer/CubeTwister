@@ -4,18 +4,22 @@
 
 package ch.randelshofer.rubik.impexp.cubeexplorer;
 
-import ch.randelshofer.cubetwister.doc.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.util.*;
-import ch.randelshofer.io.*;
-import ch.randelshofer.rubik.impexp.*;
-import ch.randelshofer.rubik.parser.*;
-import java.awt.*;
-import java.beans.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.cubetwister.doc.DocumentModel;
+import ch.randelshofer.cubetwister.doc.ScriptModel;
+import ch.randelshofer.gui.ProgressObserver;
+import ch.randelshofer.io.BoundedRangeReader;
+import ch.randelshofer.rubik.impexp.Importer;
+import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.rubik.parser.SequenceNode;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import java.io.File;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import javax.swing.*;
 /**
  * CubeExplorer Importer.
  *

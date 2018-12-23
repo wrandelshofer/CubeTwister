@@ -3,11 +3,18 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import ch.randelshofer.gui.tree.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.util.ListOfLists;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
 /**
  * A RotationNode holds a rotator A and a single child B. The side effect of a
@@ -68,8 +75,8 @@ public class RotationNode extends SequenceNode {
     public void overwritePositions(int sp, int ep) {
         super.overwritePositions(sp, ep);
         if (rotator != null) {
-            for (Enumeration<Node> i = rotator.children(); i.hasMoreElements();) {
-                SequenceNode child = (SequenceNode) i.nextElement();
+            for (Iterator<Node> i = rotator.getChildren().iterator(); i.hasNext();) {
+                SequenceNode child = (SequenceNode) i.next();
                 child.overwritePositions(sp, ep);
             }
         }
@@ -324,14 +331,14 @@ for (Iterator<Node> i= rotators.iterator();i.hasNext();) {
         }
         if (isPureRotation) {
             @SuppressWarnings("unchecked")
-            List<Node> list = new RotatedList((children == null) ? Collections.EMPTY_LIST : children, rotators);
+            List<Node> list = new RotatedList((children == null) ? Collections.EMPTY_LIST :(List<Node>)(List<?>) children, rotators);
             return list;
         } else {
             ListOfLists<Node> list = new ListOfLists<Node>();
             @SuppressWarnings("unchecked")
             List<Node> a = (rotator == null) ? Collections.EMPTY_LIST : rotator.toResolvedList();
             @SuppressWarnings("unchecked")
-            List<Node> b = (children == null) ? Collections.EMPTY_LIST : children;
+            List<Node> b = (children == null) ? Collections.EMPTY_LIST : (List<Node>)(List<?>)children;
 
             list.addList(new InvertedList(a));
             list.addList(b);

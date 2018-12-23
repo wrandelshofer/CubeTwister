@@ -8,7 +8,8 @@
  */
 package ch.randelshofer.rubik.solver;
 
-import ch.randelshofer.rubik.parser.*;
+import ch.randelshofer.rubik.parser.Move;
+
 import java.util.Arrays;
 /**
  * A cube model containing basic cube definitions and

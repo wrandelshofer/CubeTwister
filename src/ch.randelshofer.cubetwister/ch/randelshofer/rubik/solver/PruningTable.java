@@ -8,9 +8,15 @@
  */
 package ch.randelshofer.rubik.solver;
 
-import ch.randelshofer.gui.*;
-import java.io.*;
-import javax.swing.*;
+import ch.randelshofer.gui.ProgressObserver;
+
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Constructs a pruning table from a pair of move mapping

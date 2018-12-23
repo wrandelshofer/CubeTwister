@@ -35,9 +35,6 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /** defines a 3d vector. */
 public class idx3d_Vector implements Cloneable {
     // F I E L D S

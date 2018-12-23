@@ -3,8 +3,15 @@
  */
 package ch.randelshofer.rubik;
 
-import org.monte.media.*;
-import idx3d.*;
+import idx3d.idx3d_Camera;
+import idx3d.idx3d_Group;
+import idx3d.idx3d_InternalMaterial;
+import idx3d.idx3d_Light;
+import idx3d.idx3d_Matrix;
+import idx3d.idx3d_Object;
+import idx3d.idx3d_ObjectFactory;
+import idx3d.idx3d_Scene;
+import idx3d.idx3d_Vector;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 

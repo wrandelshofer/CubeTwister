@@ -3,11 +3,21 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.xml.*;
-import ch.randelshofer.rubik.*;
-import nanoxml.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.xml.XMLPreorderIterator;
+import nanoxml.XMLElement;
+import nanoxml.XMLParseException;
+
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * CubeMarkupNotation reads its notation definition from a CubeMarkup XML 3 file.

@@ -3,17 +3,28 @@
  */
 package ch.randelshofer.rubik.impexp.csv;
 
-import ch.randelshofer.cubetwister.doc.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.util.*;
-import ch.randelshofer.io.*;
-import ch.randelshofer.rubik.impexp.*;
-import java.awt.*;
-import java.beans.*;
-import java.io.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import ch.randelshofer.cubetwister.doc.DocumentModel;
+import ch.randelshofer.cubetwister.doc.MacroModel;
+import ch.randelshofer.cubetwister.doc.ScriptModel;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.gui.ProgressObserver;
+import ch.randelshofer.io.BoundedRangeReader;
+import ch.randelshofer.io.CSVReader;
+import ch.randelshofer.rubik.impexp.Importer;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import java.awt.Font;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.util.ArrayList;
 
 /**
  * CSVImporter.

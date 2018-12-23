@@ -3,7 +3,7 @@
  */
 package ch.randelshofer.app.action;
 
-import edu.umd.cs.findbugs.annotations.Nullable;
+import org.jhotdraw.annotation.Nullable;
 import java.awt.Component;
 import java.awt.Window;
 import java.awt.event.ActionEvent;

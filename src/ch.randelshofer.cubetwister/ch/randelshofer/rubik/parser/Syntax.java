@@ -4,7 +4,9 @@
 
 package ch.randelshofer.rubik.parser;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Typesafe enum of Syntaxes for the Parser.

@@ -4,7 +4,9 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.gui.event.SwipeEvent;
-import java.awt.event.*;
+
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
 
 /**
  * Cube3DEvent is used to notify interested parties that an event has occured

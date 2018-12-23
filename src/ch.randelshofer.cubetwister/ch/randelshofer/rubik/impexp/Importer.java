@@ -3,12 +3,13 @@
  */
 package ch.randelshofer.rubik.impexp;
 
-import ch.randelshofer.cubetwister.doc.*;
-import javax.swing.*;
-import java.io.*;
-import java.util.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.util.*;
+import ch.randelshofer.cubetwister.doc.DocumentModel;
+import ch.randelshofer.gui.ProgressObserver;
+
+import javax.swing.JComponent;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 /**
  * Importer.
  * @author  werni

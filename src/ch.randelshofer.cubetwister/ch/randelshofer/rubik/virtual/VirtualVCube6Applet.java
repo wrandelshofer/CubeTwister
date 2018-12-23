@@ -3,7 +3,8 @@
  */
 package ch.randelshofer.rubik.virtual;
 
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.AbstractCubeIdx3D;
+import ch.randelshofer.rubik.VCube6Idx3D;
 
 /**
  * VirtualVCube6Applet.

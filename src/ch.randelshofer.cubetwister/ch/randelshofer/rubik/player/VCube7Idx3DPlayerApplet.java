@@ -5,9 +5,12 @@
 
 package ch.randelshofer.rubik.player;
 
-import idx3d.*;
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.rubik.parser.*;
+import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
+import ch.randelshofer.rubik.Cube7;
+import ch.randelshofer.rubik.VCube7Idx3D;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
+import idx3d.idx3d_JCanvas;
+
 import java.io.InputStream;
 
 /**

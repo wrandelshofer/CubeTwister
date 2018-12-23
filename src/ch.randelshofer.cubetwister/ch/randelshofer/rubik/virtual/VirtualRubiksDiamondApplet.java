@@ -3,8 +3,14 @@
  */
 package ch.randelshofer.rubik.virtual;
 
-import ch.randelshofer.rubik.*;
-import java.awt.event.*;
+import ch.randelshofer.rubik.AbstractCubeIdx3D;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.DefaultCubeAttributes;
+import ch.randelshofer.rubik.RubiksDiamondIdx3D;
+
+import java.awt.event.InputEvent;
 
 /**
  * RubiksCubeApplet.

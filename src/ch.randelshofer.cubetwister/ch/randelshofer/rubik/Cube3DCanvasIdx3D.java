@@ -4,11 +4,14 @@
 
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.beans.*;
+import ch.randelshofer.beans.AbstractBean;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_RenderPipeline;
 import idx3d.idx3d_Scene;
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
 
 /**
  * A Cube3DCanvas which can display a Cube3D which is built using the Idx3D 

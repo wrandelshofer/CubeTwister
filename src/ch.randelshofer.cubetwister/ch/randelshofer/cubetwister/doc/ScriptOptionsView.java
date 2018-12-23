@@ -3,18 +3,15 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
+import ch.randelshofer.gui.Fonts;
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.util.*;
-import ch.randelshofer.gui.*;
-import java.awt.*;
-import java.beans.*;
-import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.undo.*;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.event.UndoableEditListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 /**
  * The ScriptOptionsView is an editor for the following properties
  * of a ScriptModel: Generator.

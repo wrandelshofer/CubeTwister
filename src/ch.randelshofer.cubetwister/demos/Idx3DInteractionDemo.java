@@ -10,11 +10,12 @@
 package demos;
 
 import idx3d.*;
+import org.jhotdraw.geom.Geom;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
 import javax.swing.*;
-import org.jhotdraw.geom.Geom;
 
 /**
  *

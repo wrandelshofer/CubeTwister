@@ -5,17 +5,27 @@ package ch.randelshofer.cubetwister;
 
 import ch.randelshofer.app.action.DebugAction;
 import ch.randelshofer.app.action.HelpAction;
-import ch.randelshofer.quaqua.color.AlphaColorUIResource;
-import java.util.*;
-import javax.swing.*;
-import org.jhotdraw.app.*;
-import org.jhotdraw.app.action.file.ExportFileAction;
 import ch.randelshofer.app.action.ImportFileAction;
+import ch.randelshofer.gui.plaf.AlphaColorUIResource;
+import org.jhotdraw.app.Application;
+import org.jhotdraw.app.DefaultApplicationModel;
+import org.jhotdraw.app.DefaultMenuBuilder;
+import org.jhotdraw.app.MenuBuilder;
+import org.jhotdraw.app.View;
 import org.jhotdraw.app.action.edit.RedoAction;
 import org.jhotdraw.app.action.edit.UndoAction;
+import org.jhotdraw.app.action.file.ExportFileAction;
 import org.jhotdraw.gui.JFileURIChooser;
 import org.jhotdraw.gui.filechooser.ExtensionFileFilter;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.ActionMap;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JToolBar;
+import javax.swing.UIManager;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * CubeTwisterApplicationModel.
@@ -41,7 +51,7 @@ public class CubeTwisterApplicationModel extends DefaultApplicationModel {
     public void initApplication(Application a) {
         if ("Windows".equals(UIManager.getLookAndFeel().getID())) {
             UIManager.put("Tree.leafIcon", new ImageIcon(CubeTwisterApplicationModel.class.getResource("/ch/randelshofer/gui/images/WindowsFileIcon.png")));
-            UIManager.put("Tree.rowHeight", new Integer(20));
+            UIManager.put("Tree.rowHeight", 20);
             UIManager.put("Tree.textBackground", new AlphaColorUIResource(0x0));
         }
     }

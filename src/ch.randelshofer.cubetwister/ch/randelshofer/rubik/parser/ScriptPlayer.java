@@ -3,29 +3,46 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.gui.border.*;
+import ch.randelshofer.gui.border.BackdropBorder;
+import ch.randelshofer.gui.border.ButtonStateBorder;
+import ch.randelshofer.gui.border.ImageBevelBorder;
 import ch.randelshofer.gui.event.ModifierTracker;
 import ch.randelshofer.gui.plaf.CustomButtonUI;
-import ch.randelshofer.util.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cube3D;
+import ch.randelshofer.rubik.Cube3DCanvas;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.Cube3DListener;
+import ch.randelshofer.util.Images;
 import org.monte.media.player.AbstractPlayer;
 import org.monte.media.player.PlayerControl;
 import org.monte.media.swing.player.JPlayerControlAqua;
 
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.plaf.ButtonUI;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Insets;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.event.*;
-import javax.swing.plaf.ButtonUI;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.ResourceBundle;
 
 /**
  * ScriptPlayer.

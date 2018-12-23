@@ -4,10 +4,9 @@
 
 package ch.randelshofer.test;
 
-import javax.swing.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.list.*;
-import ch.randelshofer.quaqua.QuaquaManager;
+import ch.randelshofer.gui.list.DefaultMutableListModel;
+
+import javax.swing.UIManager;
 
 /**
  * A JFrame with two DnDJLists.
@@ -131,7 +130,6 @@ public class TestJDnDList extends javax.swing.JFrame {
         
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            UIManager.setLookAndFeel(QuaquaManager.getLookAndFeel());
         } catch (Throwable e) {
         }
         new TestJDnDList().setVisible(true);

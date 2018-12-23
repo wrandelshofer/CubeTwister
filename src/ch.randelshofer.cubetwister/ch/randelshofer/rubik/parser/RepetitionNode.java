@@ -3,10 +3,19 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import java.util.*;
-import java.io.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.util.EmptyIterator;
+import ch.randelshofer.util.RepeatedList;
+import ch.randelshofer.util.ReverseListIterator;
+import ch.randelshofer.util.SingletonIterator;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 /**
  * RepetitionNode.

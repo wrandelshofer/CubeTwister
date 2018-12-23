@@ -3,9 +3,12 @@
  */
 package ch.randelshofer.rubik.impexp.csv;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.ListCellRenderer;
+import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Component;
 /**
  * ColumnMappingCellRenderer.
  * @author  werni

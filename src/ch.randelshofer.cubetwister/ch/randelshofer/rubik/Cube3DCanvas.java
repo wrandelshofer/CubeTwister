@@ -5,7 +5,10 @@
 package ch.randelshofer.rubik;
 
 //import ch.randelshofer.geom3d.*;
-import java.awt.*;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
 
 /**
  * The interface of objects which can display a Cube3D.

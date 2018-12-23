@@ -4,9 +4,11 @@
 
 package ch.randelshofer.rubik.player;
 
-import ch.randelshofer.geom3d.*;
-import ch.randelshofer.rubik.parser.*;
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.geom3d.JCanvas3D;
+import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
+import ch.randelshofer.rubik.RubiksBarrelGeom3D;
+import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
 
 /**
  * RubiksBarrelGeom3DPlayerApplet.

@@ -8,10 +8,19 @@
  */
 package ch.randelshofer.rubik.solver;
 
-import ch.randelshofer.gui.*;
-import java.text.*;
-import java.io.*;
-import javax.swing.*;
+import ch.randelshofer.gui.ProgressObserver;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.text.MessageFormat;
 /**
  * An abstract base class used for creating move mapping
  * tables.  Functions for converting between an ordinal

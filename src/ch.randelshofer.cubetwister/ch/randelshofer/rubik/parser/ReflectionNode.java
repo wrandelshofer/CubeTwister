@@ -4,8 +4,13 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
-import java.io.*;
-import java.util.*;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 /**
  * Represents a node of a parsed script.
  *
@@ -48,10 +53,10 @@ public class ReflectionNode extends Node {
         // reflect them.
         if (getChildCount() == 1 && (getChildAt(0) instanceof ReflectionNode)) {
             ReflectionNode nestedInversion = (ReflectionNode) getChildAt(0);
-            Enumeration<Node> enumer = nestedInversion.children();
-            while (enumer.hasMoreElements()) {
-                enumer.nextElement().writeTokens(w, p, macroMap);
-                if (enumer.hasMoreElements()) {
+            Iterator<Node> enumer = nestedInversion.getChildren().iterator();
+            while (enumer.hasNext()) {
+                enumer.next().writeTokens(w, p, macroMap);
+                if (enumer.hasNext()) {
                     p.writeToken(w, Symbol.DELIMITER);
                     w.write(' ');
                 }
@@ -63,12 +68,11 @@ public class ReflectionNode extends Node {
             
             if (reflectorPos == null) {
                     ReflectionNode reflected = (ReflectionNode) cloneSubtree();
-                    Enumeration<Node> enumer = reflected.children();
-                    while (enumer.hasMoreElements()) {
-                        SequenceNode node = (SequenceNode) enumer.nextElement();
-                        node.reflect();
-                        node.writeTokens(w, p, macroMap);
-                    }
+                for (Node node1 : reflected.getChildren()) {
+                    SequenceNode node = (SequenceNode) node1;
+                    node.reflect();
+                    node.writeTokens(w, p, macroMap);
+                }
                     
                 } else if (reflectorPos == Syntax.PREFIX) { 
                     p.writeToken(w, Symbol.REFLECTOR);

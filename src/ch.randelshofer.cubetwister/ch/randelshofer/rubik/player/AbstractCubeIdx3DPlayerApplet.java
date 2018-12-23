@@ -12,11 +12,12 @@ import ch.randelshofer.rubik.JCubeCanvasIdx3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_RenderPipeline;
+
+import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import java.awt.Image;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.JComponent;
 /**
  * AbstractCubeIdx3DPlayerApplet.
  *

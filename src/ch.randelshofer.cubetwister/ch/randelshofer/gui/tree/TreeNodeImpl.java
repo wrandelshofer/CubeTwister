@@ -46,7 +46,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
 
             @Override
             public Iterator<T> iterator() {
-                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>) breadthFirstEnumeration();
+                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>)(Enumeration<?>) breadthFirstEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
             }
 
@@ -58,7 +58,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
         if (children == null) {
             return Collections.EMPTY_LIST;
         } else {
-            @SuppressWarnings("unchecked") List<T> treeNodeList = (List<T>) children;
+            @SuppressWarnings("unchecked") List<T> treeNodeList = (List<T>)(List<?>) children;
             return Collections.unmodifiableList(treeNodeList);
         }
     }
@@ -74,7 +74,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
 
             @Override
             public Iterator<T> iterator() {
-                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>) depthFirstEnumeration();
+                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>)(Enumeration<?>)  depthFirstEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
             }
 
@@ -223,7 +223,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked")
-                Enumeration<T> treeNodeEnumeration =(Enumeration<T>) postorderEnumeration();
+                Enumeration<T> treeNodeEnumeration =(Enumeration<T>)(Enumeration<?>)  postorderEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
             }
 
@@ -236,7 +236,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked")
-                Enumeration<T> treeNodeEnumeration =(Enumeration<T>) preorderEnumeration();
+                Enumeration<T> treeNodeEnumeration =(Enumeration<T>)(Enumeration<?>)  preorderEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
 
             }

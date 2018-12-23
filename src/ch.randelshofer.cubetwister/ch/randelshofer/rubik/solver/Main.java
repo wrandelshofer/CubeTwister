@@ -8,15 +8,15 @@
  */
 package ch.randelshofer.rubik.solver;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.rubik.parser.*;
+import ch.randelshofer.gui.ProgressObserver;
+import ch.randelshofer.gui.ProgressPrinter;
+import ch.randelshofer.gui.ProgressView;
+import ch.randelshofer.rubik.parser.DefaultNotation;
+import ch.randelshofer.rubik.parser.Notation;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import java.io.IOException;
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.*;
 
 /**
  * Main class of the solver. Use this class to invoke the solver from the

@@ -3,8 +3,12 @@
  */
 package ch.randelshofer.rubik.player;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.rubik.parser.*;
+import ch.randelshofer.rubik.Cube3DCanvas;
+import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
+import ch.randelshofer.rubik.ProfessorCube;
+import ch.randelshofer.rubik.ProfessorCubeIdx3D;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
+
 import java.io.InputStream;
 
 /**

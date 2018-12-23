@@ -4,10 +4,15 @@
 
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.beans.*;
-import ch.randelshofer.geom3d.*;
+import ch.randelshofer.beans.AbstractBean;
 import ch.randelshofer.geom3d.JCanvas3D;
-import java.awt.*;
+import ch.randelshofer.geom3d.Point3D;
+import ch.randelshofer.geom3d.Scene3D;
+import ch.randelshofer.geom3d.Transform3D;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
 
 /**
  * A Cube3DCanvas which can display a Cube3D which is built using the Geom3D 

@@ -3,9 +3,7 @@
  */
 package ch.randelshofer.rubik.impexp.csv;
 
-import javax.swing.*;
-import javax.swing.table.*;
-import java.util.*;
+import java.util.ArrayList;
 /**
  * ColumnMappingTableModel.
  * @author  werni

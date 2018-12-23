@@ -3,11 +3,19 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import ch.randelshofer.gui.tree.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.util.ListOfLists;
+import ch.randelshofer.util.ReverseListIterator;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 /**
  * A ConjugationNode holds a conjugator A and a single child B.
  * The side effect of a conjugation node is A B A'.
@@ -45,8 +53,7 @@ public class ConjugationNode extends Node {
     public void overwritePositions(int sp, int ep) {
         super.overwritePositions(sp, ep);
         if (conjugator != null) {
-            for (Enumeration<Node> i = conjugator.children(); i.hasMoreElements(); ) {
-                Node child = i.nextElement();
+            for (Node child : conjugator.getChildren()) {
                 child.overwritePositions(sp, ep);
             }
         }

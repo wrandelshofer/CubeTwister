@@ -9,7 +9,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import netscape.javascript.JSObject;
+//import netscape.javascript.JSObject;
 
 /**
  * Usefull methods for cookies.
@@ -53,7 +53,7 @@ public class Cookies extends Object {
      */
     public static String getEncodedCookie(Applet applet) {
         try {
-            String encodedCookie = (String) JSObject.getWindow(applet).eval("document.cookie");
+            String encodedCookie = null;//(String) JSObject.getWindow(applet).eval("document.cookie");
             return encodedCookie;
         } catch (Throwable e) {
             if (debug) {
@@ -107,7 +107,7 @@ public class Cookies extends Object {
             if (expires != null) {
                 encodedCookie += "; expires=" + dateFormat.format(expires);
             }
-            JSObject.getWindow(applet).eval("document.cookie ='" + encodedCookie + "';");
+            //JSObject.getWindow(applet).eval("document.cookie ='" + encodedCookie + "';");
 
         } catch (Throwable e) {
             if (debug) {

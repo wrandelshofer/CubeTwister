@@ -4,9 +4,13 @@
 
 package ch.randelshofer.rubik.player;
 
-import ch.randelshofer.geom3d.*;
-import ch.randelshofer.rubik.parser.*;
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.geom3d.JCanvas3D;
+import ch.randelshofer.rubik.Cube3D;
+import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
+import ch.randelshofer.rubik.ProfessorCube;
+import ch.randelshofer.rubik.ProfessorCubeGeom3D;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
+
 import java.io.InputStream;
 
 /**

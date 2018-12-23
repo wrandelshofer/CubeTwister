@@ -3,14 +3,16 @@
  */
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.math.*;
-import ch.randelshofer.rubik.parser.*;
+import ch.randelshofer.math.IntMath;
+import ch.randelshofer.rubik.parser.Notation;
+import ch.randelshofer.rubik.parser.Symbol;
+import ch.randelshofer.rubik.parser.Syntax;
+import org.jhotdraw.io.StreamPosTokenizer;
+
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
 import java.util.Arrays;
-import java.util.StringTokenizer;
-import org.jhotdraw.io.StreamPosTokenizer;
 
 /**
  * This class provides static utility methods for Cube objects.

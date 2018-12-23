@@ -8,7 +8,8 @@ import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
-import java.awt.*;
+
+import java.awt.Color;
 import java.util.Arrays;
 
 /**

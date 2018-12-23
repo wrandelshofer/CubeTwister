@@ -8,7 +8,6 @@
  */
 package ch.randelshofer.rubik.solver;
 
-import java.util.Arrays;
 /**
  * Rubik's Cube class definition
  * with extensions for Kociemba's algorithm

@@ -4,8 +4,11 @@
 package ch.randelshofer.rubik;
 
 //import ch.randelshofer.gui.event.*;
-import java.awt.*;
-import java.beans.*;
+
+import java.awt.Color;
+import java.awt.Image;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Arrays;
 
 /**

@@ -4,7 +4,6 @@
 
 package ch.randelshofer.gui;
 
-import ch.randelshofer.quaqua.util.Images;
 import java.awt.*;
 import java.awt.image.*;
 import java.net.URL;

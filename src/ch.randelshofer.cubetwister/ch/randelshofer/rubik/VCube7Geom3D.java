@@ -3,10 +3,13 @@
  */
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.geom3d.*;
+import ch.randelshofer.geom3d.Shape3D;
+
 import java.awt.Color;
-import java.util.*;
-import static java.lang.Math.*;
+import java.util.Arrays;
+
+import static java.lang.Math.abs;
+import static java.lang.Math.sqrt;
 
 /**
  * Geometrical representation of {@link Cube7} as a V-Cube 7 in three dimensions.

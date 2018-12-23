@@ -8,11 +8,15 @@
  */
 package ch.randelshofer.rubik.solver;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.rubik.parser.*;
-import javax.swing.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.gui.ProgressObserver;
+import ch.randelshofer.gui.ProgressView;
+import ch.randelshofer.rubik.parser.MoveNode;
+import ch.randelshofer.rubik.parser.NOPNode;
+import ch.randelshofer.rubik.parser.Notation;
+import ch.randelshofer.rubik.parser.SequenceNode;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
  * This class performs a two phase IDA* search for a solution

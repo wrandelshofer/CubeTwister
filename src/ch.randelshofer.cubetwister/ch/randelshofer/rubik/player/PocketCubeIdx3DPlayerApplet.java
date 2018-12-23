@@ -10,6 +10,7 @@ import ch.randelshofer.rubik.PocketCube;
 import ch.randelshofer.rubik.PocketCubeIdx3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import idx3d.idx3d_JCanvas;
+
 import java.io.InputStream;
 
 

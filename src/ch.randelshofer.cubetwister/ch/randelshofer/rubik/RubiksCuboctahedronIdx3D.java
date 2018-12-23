@@ -4,8 +4,13 @@
 
 package ch.randelshofer.rubik;
 
-import idx3d.*;
-import java.awt.*;
+import idx3d.idx3d_InternalMaterial;
+import idx3d.idx3d_Object;
+import idx3d.idx3d_ObjectFactory;
+import idx3d.idx3d_Scene;
+import idx3d.idx3d_Triangle;
+
+import java.awt.Color;
 import java.util.Arrays;
 /**
  * Geometrical representation of a Rubik's Cuboctahedron in

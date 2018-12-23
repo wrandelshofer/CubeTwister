@@ -4,8 +4,7 @@
 
 package ch.randelshofer.rubik;
 
-import org.monte.media.*;
-import ch.randelshofer.util.*;
+import ch.randelshofer.util.Dispatcher;
 import org.monte.media.player.Animator;
 
 import javax.swing.event.ChangeListener;

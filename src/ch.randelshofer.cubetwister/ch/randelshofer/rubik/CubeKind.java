@@ -3,7 +3,9 @@
  */
 package ch.randelshofer.rubik;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Typesafe enum of cube kinds used by CubeModel.

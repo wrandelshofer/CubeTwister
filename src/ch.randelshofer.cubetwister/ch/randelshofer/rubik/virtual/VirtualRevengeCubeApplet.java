@@ -4,7 +4,8 @@
 
 package ch.randelshofer.rubik.virtual;
 
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.AbstractCubeIdx3D;
+import ch.randelshofer.rubik.RevengeCubeIdx3D;
 /**
  * RubiksCubeApplet.
  * 

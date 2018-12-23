@@ -3,11 +3,15 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-import java.util.*;
-import java.io.*;
-import static java.lang.Math.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.util.SingleElementList;
+import ch.randelshofer.util.SingletonIterator;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A MoveNode holds one rotation of one or multiple layers in a specific 

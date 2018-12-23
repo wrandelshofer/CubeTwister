@@ -336,13 +336,13 @@ public class CubeModel
     }
     
     public Class<?> getSimpleCube3DClass() {
-        Enumeration<EntityModel> enumer = getParts().children();
-        while (enumer.hasMoreElements()) {
-            CubePartModel m = (CubePartModel) enumer.nextElement();
+        Iterator<EntityModel> enumer = getParts().getChildren().iterator();
+        while (enumer.hasNext()) {
+            CubePartModel m = (CubePartModel) enumer.next();
             if (! m.isVisible()) break;
         }
         
-        if (! enumer.hasMoreElements() && explode == 0) {
+        if (! enumer.hasNext() && explode == 0) {
             return simpleCube3DClass;
         } else {
             return cube3DClass;

@@ -7,7 +7,6 @@ package ch.randelshofer.test;
 import javax.swing.*;
 import ch.randelshofer.gui.*;
 import ch.randelshofer.gui.tree.*;
-import ch.randelshofer.quaqua.QuaquaManager;
 import javax.swing.tree.*;
 
 /**
@@ -122,7 +121,6 @@ public class TestJDnDTree extends javax.swing.JFrame {
         
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            UIManager.setLookAndFeel(QuaquaManager.getLookAndFeel());
         } catch (Throwable e) {
         }
         new TestJDnDTree().setVisible(true);

@@ -7,6 +7,7 @@ package ch.randelshofer.rubik;
 
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_Scene;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;

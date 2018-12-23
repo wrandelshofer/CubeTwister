@@ -3,9 +3,10 @@
  */
 package ch.randelshofer.rubik;
 
-import ch.randelshofer.geom3d.*;
+import ch.randelshofer.geom3d.Shape3D;
+
 import java.awt.Color;
-import java.util.*;
+import java.util.Arrays;
 
 /**
  * Simplified geometrical representation of {@link Cube7} in three dimensions.

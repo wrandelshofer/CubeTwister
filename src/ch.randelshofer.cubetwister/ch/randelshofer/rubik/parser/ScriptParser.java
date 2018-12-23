@@ -3,11 +3,16 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.gui.tree.TreeNodeImpl;
-import java.util.*;
-import java.io.*;
-import ch.randelshofer.io.StreamPosTokenizer;
 import ch.randelshofer.io.ParseException;
+import ch.randelshofer.io.StreamPosTokenizer;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StreamTokenizer;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Parser for rubik's cube scripts. The tokens and syntax-rules used by the

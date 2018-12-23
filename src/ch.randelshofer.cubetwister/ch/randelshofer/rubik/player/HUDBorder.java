@@ -4,8 +4,13 @@
 
 package ch.randelshofer.rubik.player;
 
-import java.awt.*;
 import javax.swing.border.Border;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.RenderingHints;
 
 /**
  * HUDBorder.

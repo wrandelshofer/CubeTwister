@@ -3,11 +3,15 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.io.*;
-import java.io.*;
-import java.util.*;
+import ch.randelshofer.io.ParseException;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cubes;
+
 import javax.swing.tree.DefaultMutableTreeNode;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringReader;
+import java.util.Map;
 /**
  * A MacroNode holds a macro identifier and an unparsed script String. 
  * The MacroNode can be expanded to hold the macro script as its child A.
