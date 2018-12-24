@@ -3,12 +3,16 @@
  */
 package ch.randelshofer.rubik;
 
+import ch.randelshofer.rubik.parser.DefaultNotation;
 import ch.randelshofer.rubik.parser.Move;
 import ch.randelshofer.rubik.parser.Notation;
+import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.rubik.parser.SequenceNode;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,19 +47,29 @@ public class CubesTest {
         fail("The test case is a prototype.");
     }
 
+    @TestFactory
+    public List<DynamicTest> testToVisualPermutationString_RubiksCube_Notation() {
+        return Arrays.asList(
+                dynamicTest("-",()->doToVisualPermutationString_RubiksCube_Notation("","()")),
+               dynamicTest("R", ()->doToVisualPermutationString_RubiksCube_Notation("R","(ubr,bdr,dfr,fur)\n" +
+                       "(ur,br,dr,fr)"))
+        );
+    }
+
     /**
      * Test of toVisualPermutationString method, of class Cubes.
      */
-    @Test
-    public void testToVisualPermutationString_RubiksCube_Notation() {
-        System.out.println("toVisualPermutationString");
-        RubiksCube cube = null;
-        Notation notation = null;
-        String expResult = "";
-        String result = Cubes.toVisualPermutationString(cube, notation);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    private void doToVisualPermutationString_RubiksCube_Notation(String input, String expected) throws IOException {
+        System.out.println("toVisualPermutationString input: "+input);
+        RubiksCube cube = new RubiksCube();
+        Notation notation = new DefaultNotation();
+        ScriptParser parser =new ScriptParser(notation);
+        SequenceNode ast = parser.parse(input);
+        ast.applyTo(cube,false);
+        String actual = Cubes.toVisualPermutationString(cube, notation);
+        System.out.println("  expected: "+expected);
+        System.out.println("  actual: "+actual);
+        assertEquals(expected, actual);
     }
 
     /**
@@ -163,25 +177,26 @@ public class CubesTest {
     @TestFactory
     public List<DynamicTest> testToPermutationString_Cube() {
       return  Arrays.asList(
-          dynamicTest("-",()->doToPermutationString_Cube(Collections.emptyList(),"")),
-              dynamicTest("R",()->doToPermutationString_Cube(Arrays.asList(new Move(0,4,1)),""))
+          dynamicTest("-",()->doToPermutationString_Cube("","()")),
+              dynamicTest("R",()->doToPermutationString_Cube("R","(ubr,bdr,dfr,fur)\n" +
+                      "(ur,br,dr,fr)\n" +
+                      "(+r)"))
         );
     }
     /**
      * Test of toPermutationString method, of class Cubes.
      */
-    public void doToPermutationString_Cube(List<Move> moves, String expected) {
-        System.out.println("toPermutationString");
+    public void doToPermutationString_Cube(String input, String expected) throws IOException {
+        System.out.println("toPermutationString input: "+input);
         Cube cube = new RubiksCube();
-        for (Move m:moves) {
-            cube.transform(m.getAxis(),m.getLayerMask(),m.getAngle());
-        }
+        Notation notation = new DefaultNotation();
+        ScriptParser parser =new ScriptParser(notation);
+        SequenceNode ast = parser.parse(input);
+        ast.applyTo(cube,false);
         String actual = Cubes.toPermutationString(cube);
-        System.out.println("expected: "+expected);
-        System.out.println("actual: "+actual);
+        System.out.println("  expected: "+expected);
+        System.out.println("  actual: "+actual);
         assertEquals(expected, actual);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
