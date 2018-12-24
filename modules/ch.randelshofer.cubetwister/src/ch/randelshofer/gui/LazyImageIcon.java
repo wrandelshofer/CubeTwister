@@ -6,6 +6,8 @@ package ch.randelshofer.gui;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import javax.swing.*;
 import org.jhotdraw.gui.Worker;
@@ -61,7 +63,24 @@ public class LazyImageIcon extends ImageIcon {
         };
         worker.start();
     }
-    
+    public LazyImageIcon(final InputStream image, int width, int height, int xOffset, int yOffset) {
+        this.width = width;
+        this.height = height;
+        this.xOffset=xOffset;
+        this.yOffset=yOffset;
+        worker = new Worker<BufferedImage>() {
+            @Override
+            public BufferedImage construct() {
+                try (image){
+                    return  Images.toBufferedImage(Toolkit.getDefaultToolkit().createImage(image.readAllBytes()));
+                } catch (IOException e) {
+                    return null;
+                }
+            }
+        };
+        worker.start();
+    }
+
     @Override
     public Image getImage() {
         if (bufferedImage == null) {

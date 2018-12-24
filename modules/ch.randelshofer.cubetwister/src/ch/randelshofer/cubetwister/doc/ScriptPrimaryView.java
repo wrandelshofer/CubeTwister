@@ -8,6 +8,7 @@ import ch.randelshofer.rubik.*;
 import ch.randelshofer.util.*;
 
 import java.beans.*;
+import java.util.ResourceBundle;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -64,7 +65,7 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
         //JCubeCanvasIdx3D cubeCanvas = new JCubeCanvasIdx3D();
         
         // Load the resource bundle
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         
         // Initialise the components as far as the IDE supports it.
         initComponents();

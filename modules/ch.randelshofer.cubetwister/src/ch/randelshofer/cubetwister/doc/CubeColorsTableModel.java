@@ -8,6 +8,7 @@ import ch.randelshofer.gui.table.*;
 import ch.randelshofer.util.*;
 import java.awt.*;
 import java.beans.*;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.table.*;
 import javax.swing.event.*;
@@ -47,7 +48,7 @@ implements PropertyChangeListener {
     }
     
     private void init() {
-        ResourceBundleUtil labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         for (int i=0; i < columnNames.length; i++) {
             columnNames[i] = labels.getString(columnNames[i]);
         }

@@ -26,6 +26,7 @@ import javax.swing.JToolBar;
 import javax.swing.UIManager;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * CubeTwisterApplicationModel.
@@ -79,7 +80,7 @@ m.put(PreferencesAction.ID, new PreferencesAction(a));
     @Override
     public JFileURIChooser createImportChooser(Application a, View v) {
             JFileURIChooser c = new JFileURIChooser();
-            ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.app.Labels");
+            ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels"));
             c.setApproveButtonText(labels.getString("import.button"));
             c.setDialogType(JFileChooser.OPEN_DIALOG);
             c.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -96,7 +97,7 @@ m.put(PreferencesAction.ID, new PreferencesAction(a));
     @Override
     public JFileURIChooser createExportChooser(Application a, View v) {
             JFileURIChooser c = new JFileURIChooser();
-            ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.app.Labels");
+            ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels"));
             c.setApproveButtonText(labels.getString("export.button"));
             c.setDialogType(JFileChooser.SAVE_DIALOG);
             c.setFileSelectionMode(JFileChooser.FILES_ONLY);

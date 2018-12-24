@@ -174,8 +174,8 @@ public class MutableJTree extends JTree
         }
 
         // get the locale and LAF specific resources
-        labels = ResourceBundleUtil.getBundle(
-                "ch.randelshofer.gui.Labels", locale);
+        labels =new ResourceBundleUtil(ResourceBundle.getBundle(
+                "ch.randelshofer.gui.Labels", locale));
 
         // install key strokes
         if (labels != null) {

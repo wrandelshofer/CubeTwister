@@ -11,6 +11,7 @@ import ch.randelshofer.undo.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.*;
@@ -39,7 +40,7 @@ public class InfoView extends javax.swing.JPanel implements Undoable, EntityView
     }
 
     private void init() {
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.doc.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.doc.Labels"));
         initComponents();
 
         Font applicationFont = Fonts.getApplicationFont();

@@ -5,6 +5,7 @@
 package ch.randelshofer.undo;
 
 import java.awt.event.*;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.undo.*;
@@ -122,7 +123,7 @@ public class UndoRedoManager extends UndoManager {
     
     /** Creates new UndoRedoManager */
     public UndoRedoManager() {
-        labels = ResourceBundleUtil.getBundle("org.jhotdraw.undo.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.undo.Labels"));
         undoAction = new UndoAction();
         redoAction = new RedoAction();
     }

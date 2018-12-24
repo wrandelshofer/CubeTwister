@@ -8,6 +8,7 @@ import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -37,7 +38,7 @@ public class PreferencesAction extends AbstractPreferencesAction {
     public void actionPerformed(ActionEvent e) {
         if (panel == null) {
             panel = new PreferencesPanel();
-            ResourceBundleUtil labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+            ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
             Component appComponent=getApplication().getComponent();
             dialog = new JDialog(appComponent==null?null:SwingUtilities.getWindowAncestor(appComponent));
             dialog.add(panel);

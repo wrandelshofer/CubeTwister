@@ -7,6 +7,7 @@ package ch.randelshofer.cubetwister.doc;
 import ch.randelshofer.gui.*;
 import ch.randelshofer.util.*;
 import java.beans.*;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import org.jhotdraw.util.ResourceBundleUtil;
 /**
@@ -26,7 +27,7 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
      * Creates a new instance.
      */
     public CubeStickersImageView() {
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         initComponents();
         scrollPane.getViewport().setOpaque(false);
         stickersImageInfoLabel.setFont(UIManager.getFont("SmallSystemFont"));

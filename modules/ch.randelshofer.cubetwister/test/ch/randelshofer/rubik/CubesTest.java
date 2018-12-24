@@ -35,7 +35,7 @@ public class CubesTest {
     @Test
     public void testCreate() {
         System.out.println("create");
-        int layerCount = 0;
+        int layerCount = 3;
         Cube expResult = null;
         Cube result = Cubes.create(layerCount);
         assertEquals(expResult, result);
@@ -163,8 +163,8 @@ public class CubesTest {
     @TestFactory
     public List<DynamicTest> testToPermutationString_Cube() {
       return  Arrays.asList(
-          dynamicTest("",()->doToPermutationString_Cube(Collections.emptyList(),"")),
-              dynamicTest("R",()->doToPermutationString_Cube(Arrays.asList(new Move(0,1,4)),""))
+          dynamicTest("-",()->doToPermutationString_Cube(Collections.emptyList(),"")),
+              dynamicTest("R",()->doToPermutationString_Cube(Arrays.asList(new Move(0,4,1)),""))
         );
     }
     /**

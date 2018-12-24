@@ -12,6 +12,7 @@ import ch.randelshofer.undo.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
+import java.util.ResourceBundle;
 import java.util.prefs.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -329,7 +330,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
         int selectedTab = prefs.getInt("CubeView.selectedTab", 0);
 
 
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
 
         initComponents();
 

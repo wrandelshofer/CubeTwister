@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="ch.randelshofer.cubetwister.Main" />
+    <module name="ch.randelshofer.cubetwister" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="ch.randelshofer.cubetwister.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

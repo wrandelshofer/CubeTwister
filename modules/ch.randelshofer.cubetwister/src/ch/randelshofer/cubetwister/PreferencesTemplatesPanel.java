@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -31,7 +32,8 @@ public class PreferencesTemplatesPanel extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;
 
     private Preferences userPrefs = Preferences.userNodeForPackage(PreferencesTemplatesPanel.class);
-    private ResourceBundleUtil labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+    private ResourceBundleUtil labels = new ResourceBundleUtil(
+            ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
     private JFileChooser importFileChooser;
     private JFileChooser exportFileChooser;
 

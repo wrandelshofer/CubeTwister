@@ -116,7 +116,7 @@ public class NotationConstructsView extends ScrollablePanel
         init();
     }
     private void init() {
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         
         initComponents();
 

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.net.*;
 import java.io.*;
 import java.security.Permission;
+import java.util.ResourceBundle;
 import javax.help.CSH;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
@@ -28,7 +29,7 @@ public class HelpAction extends AbstractAction {
     private static HelpBroker hb;
 
     public HelpAction() {
-        ResourceBundleUtil labels = ResourceBundleUtil.getBundle("ch.randelshofer.app.Labels");
+        ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.app.Labels"));
         labels.configureAction(this, ID);
     }
 

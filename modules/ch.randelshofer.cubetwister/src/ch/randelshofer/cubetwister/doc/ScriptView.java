@@ -37,6 +37,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -233,7 +234,7 @@ public class ScriptView
      */
     private void init() {
         prefs = Preferences.userNodeForPackage(getClass());
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
 
         // Initialise the components as far as the IDE supports it.
         initComponents();

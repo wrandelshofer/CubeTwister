@@ -154,9 +154,9 @@ public class MutableJTable
         }
         
         // get the locale and LAF specific resources
-        labels = ResourceBundleUtil.getBundle(
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle(
                 "ch.randelshofer.gui.Labels", locale
-                );
+                ));
         
         // install key strokes
         if (labels != null) {

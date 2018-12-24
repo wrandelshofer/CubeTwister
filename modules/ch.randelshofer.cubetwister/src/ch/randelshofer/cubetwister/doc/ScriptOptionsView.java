@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.event.UndoableEditListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
+
 /**
  * The ScriptOptionsView is an editor for the following properties
  * of a ScriptModel: Generator.
@@ -35,7 +37,7 @@ implements EntityView, PropertyChangeListener {
     
     /** Creates new form ScriptOptionsView */
     public ScriptOptionsView() {
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         initComponents();
         generatorLabel.setFont(Fonts.getEmphasizedDialogFont());
         generatorRadioButton.setFont(Fonts.getDialogFont());

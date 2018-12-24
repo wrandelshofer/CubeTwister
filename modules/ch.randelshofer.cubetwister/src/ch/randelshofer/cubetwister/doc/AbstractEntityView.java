@@ -9,6 +9,9 @@ import ch.randelshofer.util.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import java.util.ResourceBundle;
+
 /**
  * AbstractEntityView.
  * <p>
@@ -29,7 +32,7 @@ public class AbstractEntityView extends JPanel implements EntityView {
     
     /** Creates new form. */
     public AbstractEntityView() {
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         initComponents();
     }
     

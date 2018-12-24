@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
-<attributes version="1.0">
-    <fileobject name="Base64.java">
-        <attr name="class_dependency_java.io.FilterInputStream" stringvalue="Base64.InputStream"/>
-        <attr name="class_dependency_java.io.FilterOutputStream" stringvalue="Base64.OutputStream"/>
-    </fileobject>
-</attributes>

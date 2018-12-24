@@ -8,6 +8,7 @@ import ch.randelshofer.gui.event.*;
 import ch.randelshofer.util.*;
 import java.awt.*;
 import java.beans.*;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.event.*;
 import org.jhotdraw.util.ResourceBundleUtil;
@@ -52,7 +53,7 @@ implements PropertyChangeListener, ListSelectionListener {
         
         Font f;
         
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.gui.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.gui.Labels"));
         
         initComponents();
         

@@ -10,6 +10,7 @@ import ch.randelshofer.gui.plaf.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.plaf.ButtonUI;
@@ -106,7 +107,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
 
     private void init() {
         // Load the resource bundle
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.doc.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.doc.Labels"));
 
         // Initialise the components as far as the IDE supports it.
         initComponents();

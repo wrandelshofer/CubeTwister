@@ -5,6 +5,8 @@ package ch.randelshofer.cubetwister;
 
 import org.jhotdraw.util.ResourceBundleUtil;
 
+import java.util.ResourceBundle;
+
 /**
  * PreferencesPanel.
  *
@@ -20,7 +22,7 @@ public class PreferencesPanel extends javax.swing.JPanel {
      * Creates new form PreferencesPanel
      */
     public PreferencesPanel() {
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         initComponents();
         templatesPanel.setViewClassName("ch.randelshofer.cubetwister.PreferencesTemplatesPanel");
         cachesPanel.setViewClassName("ch.randelshofer.cubetwister.PreferencesCachesPanel");

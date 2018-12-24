@@ -9,6 +9,7 @@ import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.URI;
+import java.util.ResourceBundle;
 import javax.swing.*;
 import org.jhotdraw.app.Application;
 import org.jhotdraw.app.View;
@@ -68,7 +69,8 @@ public class ImportFileAction extends AbstractViewAction {
     /** Creates a new instance. */
     public ImportFileAction(Application app, @Nullable View view) {
         super(app, view);
-        ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.app.Labels");
+        ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels",
+                ModuleLayer.boot().findModule("org.jhotdraw7.application").get()));
         labels.configureAction(this, ID);
     }
     @Override
@@ -138,7 +140,7 @@ public class ImportFileAction extends AbstractViewAction {
             protected void failed(Throwable value) {
                 value.printStackTrace();
                 
-                ResourceBundleUtil labels = ResourceBundleUtil.getBundle("org.jhotdraw.app.Labels");
+                ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels"));
                 JSheet.showMessageSheet(view.getComponent(),
                         "<html>" + UIManager.getString("OptionPane.css")
                         + "<b>" + labels.getFormatted("file.load.couldntLoad.message", URIUtil.getName(uri)) + "</b><p>"

@@ -3,10 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/CubeTwister.iml" filepath="$PROJECT_DIR$/.idea/CubeTwister.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ch.randelshofer.cubetwister/ch.randelshofer.cubetwister.iml" filepath="$PROJECT_DIR$/ch.randelshofer.cubetwister/ch.randelshofer.cubetwister.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/ch.randelshofer.cubetwister.iml" filepath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/ch.randelshofer.cubetwister.iml" />
-      <module fileurl="file://$PROJECT_DIR$/org.kociemba.twophase/org.kociemba.twophase.iml" filepath="$PROJECT_DIR$/org.kociemba.twophase/org.kociemba.twophase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/src/org.kociemba.twophase/org.kociemba.twophase.iml" filepath="$PROJECT_DIR$/src/org.kociemba.twophase/org.kociemba.twophase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/ch.randelshofer.cubetwister.iml" filepath="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/ch.randelshofer.cubetwister.iml" />
+      <module fileurl="file://$PROJECT_DIR$/modules/org.kociemba.twophase/org.kociemba.twophase.iml" filepath="$PROJECT_DIR$/modules/org.kociemba.twophase/org.kociemba.twophase.iml" />
     </modules>
   </component>
 </project>

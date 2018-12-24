@@ -10,6 +10,7 @@ import ch.randelshofer.util.*;
 
 import java.awt.*;
 import java.beans.*;
+import java.util.ResourceBundle;
 import java.util.prefs.*;
 
 import javax.swing.*;
@@ -85,7 +86,7 @@ public class NotationView extends JPanel
     public void init() {
         prefs = Preferences.userNodeForPackage(getClass());
 
-        labels = ResourceBundleUtil.getBundle("ch.randelshofer.cubetwister.Labels");
+        labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         initComponents();
         layersComboBox.setModel(new LayersComboBoxModel());
 
