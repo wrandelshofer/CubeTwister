@@ -4,930 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/ch.randelshofer.cubetwister.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/base64/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/base64/Base64.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/base64/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/app/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/app/action/DebugAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/app/action/HelpAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/app/action/ImportFileAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/beans/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/beans/AbstractBean.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/beans/AbstractStateModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/beans/BoundedRangeModelBeanAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/beans/PropertyChangeSupportAWT.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/beans/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/BinaryModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/BinaryPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/ByteArrayBinaryModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/FileBasedBinaryModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/ParseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/StructPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/StructPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/StructParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/StructTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/binary/package-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/CubeExplorerExporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/CubeTwisterApplicationModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/CubeTwisterView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/CubeTwisterView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/Exporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/HTMLExporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesAction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesCachesPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesCachesPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesTemplatesPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesTemplatesPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/AbstractEntityView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/AbstractEntityView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeAnimationView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeAnimationView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeBackgroundView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeBackgroundView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorComboBoxModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorModelCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorsModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorsTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorsView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorsViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeDimensionsView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeDimensionsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeDimensionsViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeMarkupDOMFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeMarkupDTD.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeOptionsView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeOptionsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubePartModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubePartsTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubePartsView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubePartsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubePartsViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickerColorsView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickerColorsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickerModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersImageView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersImageView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/DocumentModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/DocumentModelTreeCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/EntityModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/EntityView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/InfoModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/InfoView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/InfoView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/InfoViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/LazyEntityView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/LazyEntityView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/LazyEntityViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/MacroModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/MoveSymbols.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationConstructsView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationConstructsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationConstructsViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMacrosTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMacrosView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMacrosView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMacrosViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMovesTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMovesView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMovesView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationMovesViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptExportVideoAccessoryPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptExportVideoAccessoryPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptMacrosTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptMacrosView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptMacrosView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptMacrosViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptOptionsView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptOptionsView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptOptionsViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptPrimaryView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptPrimaryView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptPrimaryViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptSecondaryView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptSecondaryView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptSecondaryViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptStateView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptStateView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptToolBarView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptToolBarView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptToolBarViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptVideoExporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/SolverModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/TextModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/TextView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/TextView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/TextViewBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/UndoableCubeEdit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/template.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/splash.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/ClipboardInspector.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/ClipboardInspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/ClipboardInspectorBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/Debugger.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/Debugger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/DesktopPropertiesInspector.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/DesktopPropertiesInspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/DesktopPropertiesInspectorBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/DesktopPropertiesTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/MemoryMonitor.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/MemoryMonitor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/MemoryMonitorBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/Sizeof.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/SystemColorsInspector.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/SystemColorsInspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/SystemColorsInspectorBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/SystemColorsTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/SystemPropertiesInspector.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/SystemPropertiesInspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/SystemPropertiesInspectorBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/UIDefaultsCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/UIDefaultsInspector.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/UIDefaultsInspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/UIDefaultsInspectorBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/UIDefaultsTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/debug/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/DefaultTransform3DModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Face3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Geom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/JCanvas3D.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/JCanvas3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/JCanvas3DBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Node3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Point3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Polygon3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/RotatedTransform3DModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Scene3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Shape3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Transform3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/Transform3DModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/TransformNode3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/geom3d/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/BoundedRangeModelProxy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Colors.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/DefaultCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/DefaultImageWellModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/DefaultViewer.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/DefaultViewer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/DefaultViewerBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Fonts.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Icons.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ImageWellModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ImageWellTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Images.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/IntegerTextField.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/IntegerTextField.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JCardPane.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JCardPane.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JCardPaneBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JDnDList.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JDnDList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JDnDTable.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JDnDTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JDnDTree.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JDnDTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JExplorer.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JExplorer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JExplorerBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JImageWell.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JImageWell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JMultilineLabel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JMultilineLabel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JPopupButton.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JPopupButton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/JPopupButtonBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/LayeredBorderLayout.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/LazyImageIcon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/LazyPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/LazyPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJList.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJTable.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJTableBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJTree.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/PaletteMenuItemUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/PolygonIcon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ProgressFrame.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ProgressFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ProgressObserver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ProgressPrinter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ProgressView.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ProgressView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ScrollPaneLayout2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ScrollablePanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ScrollablePanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/ScrollablePanels.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/SplashWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/SwingWorker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/VectorIcon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/VerticalGridLayout.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Viewer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/WholeNumberField.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Wizard.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Wizard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/WizardModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/BackdropBorder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/ButtonStateBorder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/FocusBorder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/ImageBevelBorder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/PlacardButtonBorder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/RoundedLineBorder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/AbstractTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/CharArrayReaderTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/CompositeTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/DefaultTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/DummyClipboardOwner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/FileListTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/FileTextFieldTransferHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/JVMLocalObjectTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/MimeType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/MimeTypeParameterList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/MimeTypeParseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/PlainTextTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/StringTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/XMLTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/datatransfer/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/DefaultDocumentEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/DocumentAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/GenericListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/ModifierTracker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/SwipeEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/SwipeListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/TimedButtonTrigger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/event/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/icon/BusyIcon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/image/Images.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/BusyIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/ImageWell.armedBorder.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/ImageWell.border.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/ProgressView.errorIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/ProgressView.warningIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/WindowsFileIcon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/Actions.placardIcon.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/Busy.gif.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/DefaultAnimator.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/EditAdd.placardIcon.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.actions.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.actionsD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.audio.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.audioD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.audioS.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.audioSD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.back.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.backD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.border.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.borderCenter.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.borderCenterP.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.borderEast.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.borderEastP.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.borderP.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.borderWest.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.borderWestP.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.colorCycling.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.colorCyclingD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.home.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.homeD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.next.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.nextD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.partialReset.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.partialResetD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.reset.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.resetD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.scramble.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.scrambleD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.start.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.startD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.startRecording.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.stop.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.stopD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.stopRecording.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.thumb.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.thumbD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.thumbP.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackCenter.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackCenterD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackEast.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackEastD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackUnloadedCenter.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackUnloadedCenterD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackUnloadedEast.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackUnloadedEastD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackUnloadedWest.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackUnloadedWestD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackWest.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MovieControl.trackWestD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MoviePlayer.partialReset.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/MoviePlayer.partialResetD.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/PlayerHome.icon.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/PlayerHome.placardIcon.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/PlayerHome.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/PlayerPartialReset.placardIcon.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/PlayerReset.placardIcon.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/PlayerSettings.icon.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images/_notes/ProgressBar.circular.png.mno" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/list/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/list/DefaultMutableListModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/list/ListModels.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/list/MutableListModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/list/MutableListTransferHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/list/MutableListTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/list/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/AlphaColorUIResource.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/CustomButtonUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/CustomSliderUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/CustomToggleButtonUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/PlafConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/PlafUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Bevel.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Bevel.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Bevel.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Bevel.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Bevel.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Bevel.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Bevel.7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelLeft.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelLeft.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelLeft.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelLeft.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelLeft.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelLeft.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelLeft.7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelNone.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelNone.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelNone.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelNone.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelNone.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelNone.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelNone.7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/BevelRight.test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Thumb.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Thumb.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Thumb.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Thumb2.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Thumb3.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/Thumb3.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/TrackHorizontal.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/TrackHorizontal.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/TrackVertical.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/TrackVertical.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Mac/test.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Bevel.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Bevel.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Bevel.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Bevel.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Bevel.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Bevel.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelLeft.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelLeft.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelLeft.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelLeft.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelLeft.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelLeft.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelNone.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelNone.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelNone.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelNone.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelNone.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelNone.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelRight.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelRight.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelRight.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelRight.4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelRight.5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/BevelRight.6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Thumb.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Thumb.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/Thumb.2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/TrackHorizontal.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/TrackHorizontal.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/TrackVertical.0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/images/Metal/TrackVertical.1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/plaf/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/ColorTableCellEditor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/ColorTableCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/DefaultCellEditor2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/DefaultMutableTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/LeftAlignedHeaderRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/MutableTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/MutableTableTransferHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/MutableTableTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/PasswordCellEditor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/PasswordCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/TableMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/TableModels.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/TableSorter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/TableSorterDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/TreeNodeTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/table/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/text/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/text/DocumentProxy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/text/NumericDocument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/text/StyledDocumentProxy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/text/WavyHighlighter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/text/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/DefaultMutableTreeModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/DefaultUndoableTreeSelectionModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/HTMLTreeCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/MutableTreeModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/MutableTreeTransferHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/MutableTreeTransferable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/TreeModels.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/TreeNodeImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/UndoableTreeSelectionModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/tree/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/BoundedRangeInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/BoundedRangeReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/ByteFilterInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/CSVReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/CSVTokenizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/CSVWriter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/ImageOutputStreamAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/LFWriter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/ParseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/SeekableByteArrayOutputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/StreamPosTokenizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/SuspendableInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/io/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/math/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/math/IntMath.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/math/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/reflect/Methods.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCube3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCube6Geom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCube6Idx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCube7Geom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCube7Idx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractPocketCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractPocketCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractProfessorCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractProfessorCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractRevengeCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractRevengeCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractRubiksCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/AbstractRubiksCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3DAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3DCanvas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3DCanvasGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3DCanvasIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3DEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3DImageProducer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube3DListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube6.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube6Geom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube6Idx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube7.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube7Geom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cube7Idx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/CubeAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/CubeEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/CubeKind.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/CubeListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/Cubes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/DefaultCubeAttributes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/JCubeCanvasIdx3D.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/JCubeCanvasIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/PocketCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/PocketCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/PocketCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/ProfessorCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/ProfessorCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/ProfessorCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RevengeCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RevengeCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RevengeCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksBarrelGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksBarrelIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksCubeGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksCubeIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksCuboctahedronGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksCuboctahedronIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksDiamondGeom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksDiamondIdx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/RubiksStickerCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/VCube6Geom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/VCube6Idx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/VCube7Geom3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/VCube7Idx3D.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/AbstractExporter.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/AbstractExporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/ExportWizardModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/Exporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/ImportWizardModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/Importer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/TranslateNotationComboBoxModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/CSVExporter.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/CSVExporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/CSVImporter.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/CSVImporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/ColumnMappingCellRenderer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/ColumnMappingTableModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/csv/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/CubeExplorerExporter.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/CubeExplorerExporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/CubeExplorerImporter.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/CubeExplorerImporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/KociembaENGParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/cubeexplorer.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/cubeexplorer/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/impexp/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/CommentNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/CommutationNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/ConjugationNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/CubeMarkupNotation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/DefaultNotation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/GroupingNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/InversionNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/InvertedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Labels_de.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Labels_fr.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Labels_it.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/MacroNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Move.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/MoveNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/NOPNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Notation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/PermutationNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/ReflectedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/ReflectionNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/RepetitionNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/RotatedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/RotationNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/ScriptKeyboardHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/ScriptParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/ScriptPlayer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/ScriptPlayerBeanInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/SequenceNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/StatementNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Symbol.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/Syntax.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/parser/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/AbstractCubeGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/AbstractCubeGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/AbstractCubeIdx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/AbstractCubeIdx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/AbstractPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/AbstractPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube6Geom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube6Geom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube6Idx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube6Idx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube7Geom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube7Geom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube7Idx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Cube7Idx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/HUDBorder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Labels_de.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Labels_fr.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/Labels_it.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/PocketCubeGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/PocketCubeGeom3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/PocketCubeGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/PocketCubeIdx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/PocketCubeIdx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/PocketCubeIdx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/PocketPlayerResources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/ProfessorCubeGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/ProfessorCubeGeom3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/ProfessorCubeGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/ProfessorCubeIdx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/ProfessorCubeIdx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/ProfessorCubeIdx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/ProfessorPlayerResources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RevengeCubeGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RevengeCubeGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RevengeCubeIdx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RevengeCubeIdx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RevengeCubeIdx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RevengePlayerResources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubikPlayerResources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksBarrelGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksBarrelGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksBarrelIdx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksBarrelIdx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksBarrelIdx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCubeGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCubeGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCubeIdx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCubeIdx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCubeIdx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCuboctahedronGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCuboctahedronGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCuboctahedronIdx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCuboctahedronIdx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksCuboctahedronIdx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksDiamondGeom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksDiamondGeom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksDiamondPlayerIdx3DApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksDiamondPlayerIdx3DApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/RubiksDiamondPlayerIdx3DApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube6Geom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube6Geom3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube6Geom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube6Idx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube6Idx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube6Idx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube6PlayerResources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube7Geom3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube7Geom3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube7Geom3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube7Idx3DPlayerApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube7Idx3DPlayerApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube7Idx3DPlayerApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/VCube7PlayerResources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/player/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/ChoiceMoveTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/Combinatorials.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/CornerPermutationMoveTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/Cube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/CubeParser.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/FaceletCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/FlipMoveTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/KociembaCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/MiddleSliceEdgePMvTbl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/MoveTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/NonMiddleSliceEdgePMvTbl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/PruningTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/Solver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/SolverPreferences.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/TripleSearchSolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/TwistMoveTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/solver/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/Labels_de.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/Labels_en.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/Labels_fr.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/Labels_it.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualCube6Applet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualCube6Applet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualCube7Applet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualCube7Applet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualPocketCubeApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualPocketCubeApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualPocketCubeApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualProfessorCubeApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualProfessorCubeApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualProfessorCubeApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRevengeCubeApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRevengeCubeApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRevengeCubeApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksBarrelApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksBarrelApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksCubeApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksCubeApplet.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksCubeApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksCuboctahedronApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksCuboctahedronApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksDiamondApplet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualRubiksDiamondApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualVCube6Applet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualVCube6Applet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualVCube7Applet.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/VirtualVCube7Applet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/rubik/virtual/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/RectangleHighlighter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/SimpleRubikApplet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/TestJDnDList.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/TestJDnDList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/TestJDnDTree.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/TestJDnDTree.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/TestMutableJTable.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/test/TestMutableJTable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/twophase/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/CompositeEdit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/Labels.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/Labels_Aqua.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/Labels_Mac.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/UndoCoalescingBoundedRangeModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/UndoRedoManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/Undoable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/UndoableBooleanEdit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/UndoableIntEdit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/UndoableObjectEdit.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/AppletParameterException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/Applets.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/ArrayListModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/ArrayUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/CompareFiles.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/ConcurrentDispatcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/Cookies.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/Dispatcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/EmptyEnumeration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/EmptyIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/EnumerationIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/EventLoop.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/Files.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/Images.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/ListOfLists.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/Methods.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/PooledSequentialDispatcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/PriorityQueue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/RepeatedList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/ReverseListIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/RunnableWorker.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/SequenceIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/SequentialDispatcher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/SingleElementList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/SingletonIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/StateEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/StateListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/StateModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/Strings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/prefs/PreferencesUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/util/prefs/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/DOMFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/DOMInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/DOMOutput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/DOMStorable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/JavaxDOMInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/JavaxDOMOutput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/NanoXMLDOMInput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/NanoXMLDOMOutput.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/XMLPreorderIterator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/xml/package.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/Geom3DInteractionDemo.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/Geom3DInteractionDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/Idx3DInteractionDemo.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/Idx3DInteractionDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/Idx3DPerspectiveRasterizerDemo.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/Idx3DPerspectiveRasterizerDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/RubiksCubePanelDemo.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/RubiksCubePanelDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/RubiksCubeSolverDemo.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/RubiksCubeSolverDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/perspective/Rasterizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/demos/perspective/Triangle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/fullscreen/DisplayModeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/fullscreen/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/fullscreen/MultiBufferTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/.nbattrs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/Hashtable_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/InspectorFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/InspectorFrameEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/ScrollList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/Vector_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Light_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Material_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Matrix_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Object_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Scene_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Texture_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Triangle_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Vector_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/debug/idx3d_Vertex_Inspector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_3ds_Exporter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_3ds_Importer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Camera.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_CoreObject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Edge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Environment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_FXLensFlare.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_FXPlugin.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Group.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_ImageProducer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_InternalMaterial.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_JCanvas.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_JCanvas.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Light.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Lightmap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_LinearRasterizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Material.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Math.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Matrix.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Node.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Object.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_ObjectFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_PerspectiveRasterizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_PerspectiveRasterizerUnoptimized.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Rasterizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_RenderPipeline.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Scene.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Screen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Texture.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_TextureFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_TextureProjector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_TextureSettings.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Triangle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Vector.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/idx3d/idx3d_Vertex.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/nanoxml/XMLElement.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/nanoxml/XMLParseException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/ArchiveEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/ArchiveException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/ArchiveInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/ArchiveOutputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarArchiveInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarBuffer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarConstants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarOutputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/CompressorInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/CompressorOutputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/BZip2CompressorInputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/BZip2CompressorOutputStream.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/BZip2Constants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/CRC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/test/ch/randelshofer/rubik/CubesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/test/ch/randelshofer/rubik/parser/DefaultNotationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/test/ch/randelshofer/rubik/parser/ScriptParserTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/org.kociemba.twophase.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/module-info.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/Color.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/CoordCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/Corner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/CubieCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/Edge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/FaceCube.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/Facelet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/Search.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophase/Tools.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophasep/CoordCubeP.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/org.kociemba.twophase/src/org/kociemba/twophasep/SearchP.java" beforeDir="false" />
-    </list>
+    <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -935,7 +12,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/build-cubetwister.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3691" />
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -1085,15 +170,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="ch.randelshofer.cubetwister" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CubeTwister" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CubeTwister" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ch.randelshofer.cubetwister" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CubeTwister" type="b2602c69:ProjectViewProjectNode" />
@@ -1308,7 +384,21 @@
       <option name="project" value="LOCAL" />
       <updated>1545653874763</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Reorganizes code.">
+      <created>1545654277833</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1545654277833</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Reorganizes code.">
+      <created>1545654296296</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1545654296296</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1345,27 +435,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="23" y="23" width="1499" height="1129" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.3397392" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.3397392" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Structure" order="1" sideWeight="0.50147057" visible="true" weight="0.34122288" />
+      <window_info anchor="bottom" id="Structure" order="1" sideWeight="0.50147057" weight="0.34122288" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32840237" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.32840237" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.39940828" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3510848" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.3510848" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32938856" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.36587772" />
       <window_info anchor="bottom" id="Run with VisualVM" order="12" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.24982841" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven" order="4" />
@@ -1402,6 +493,13 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="antWorkspaceConfiguration">
+    <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+    <option name="FILTER_TARGETS" value="false" />
+    <buildFile url="file://$PROJECT_DIR$/build-cubetwister.xml">
+      <expanded value="true" />
+    </buildFile>
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
       <expression>
@@ -1417,7 +515,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarInputStream.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarConstants.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java" />
@@ -1492,6 +589,11 @@
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/app/action/ImportFileAction.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/ImageBevelBorder.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptView.java" />
+    <entry file="file://$PROJECT_DIR$/build-cubetwister.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3691" />
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
@@ -1549,6 +651,7 @@
             <option name="proportions">
               <list>
                 <option value="0.24822696" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
