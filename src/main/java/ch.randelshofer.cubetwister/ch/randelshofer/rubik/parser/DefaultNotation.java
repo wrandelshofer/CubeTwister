@@ -157,7 +157,6 @@ public class DefaultNotation implements Notation {
 
         Set<Symbol> symbols = tokenToSymbolMap.compute(token,(k,v)->v==null?new LinkedHashSet<Symbol>():v);
         symbols.add(Symbol.MOVE);
-System.out.println("DefaultNotation:"+tokenToSymbolMap);
     }
 
     public int getLayerCount() {
