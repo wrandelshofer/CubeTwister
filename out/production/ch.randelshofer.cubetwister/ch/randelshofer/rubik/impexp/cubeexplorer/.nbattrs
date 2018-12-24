@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="CubeExplorerExporter.java">
+        <attr name="class_dependency_ch.randelshofer.rubik.impexp.Exporter" stringvalue="CubeExplorerExporter"/>
+        <attr name="class_dependency_javax.swing.JPanel" stringvalue="CubeExplorerExporter"/>
+    </fileobject>
+    <fileobject name="CubeExplorerImporter.java">
+        <attr name="class_dependency_ch.randelshofer.rubik.impexp.Importer" stringvalue="CubeExplorerImporter"/>
+        <attr name="class_dependency_javax.swing.JPanel" stringvalue="CubeExplorerImporter"/>
+    </fileobject>
+    <fileobject name="KociembaENGParser.java">
+        <attr name="class_dependency_ch.randelshofer.rubik.parser.ScriptParser" stringvalue="KociembaENGParser"/>
+    </fileobject>
+</attributes>
