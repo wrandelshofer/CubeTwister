@@ -282,26 +282,26 @@ public class ScriptPlayer extends AbstractPlayer {
         Border eastBorder = new BackdropBorder(
                 new ButtonStateBorder(
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEast.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEast.png"),
                 new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4)),
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEastP.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEastP.png"),
                 new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4))));
 
         Border westBorder = new BackdropBorder(
                 new ButtonStateBorder(
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderWest.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderWest.png"),
                 new Insets(1, 1, 1, 0), new Insets(0, 4, 1, 4)),
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderWestP.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderWestP.png"),
                 new Insets(1, 1, 1, 0), new Insets(0, 4, 1, 4))));
 
         resetButton = new JButton();
         resetButton.setName("Reset");
-        resetButton.setIcon(resetIcon = new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerReset.png")));
-        resetButton.setDisabledIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerReset.disabled.png")));
-        partialResetIcon = new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerPartialReset.png"));
+        resetButton.setIcon(resetIcon = new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerReset.png")));
+        resetButton.setDisabledIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerReset.disabled.png")));
+        partialResetIcon = new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerPartialReset.png"));
         resetButton.setUI((ButtonUI) CustomButtonUI.createUI(resetButton));
         resetButton.setBorder(westBorder);
         resetButton.setMargin(new Insets(0, 0, 0, 0));
@@ -311,8 +311,8 @@ public class ScriptPlayer extends AbstractPlayer {
 
         scrambleButton = new JButton();
         scrambleButton.setName("Scramble");
-        scrambleButton.setIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerScramble.png")));
-        scrambleButton.setDisabledIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerScramble.disabled.png")));
+        scrambleButton.setIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerScramble.png")));
+        scrambleButton.setDisabledIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerScramble.disabled.png")));
         scrambleButton.setUI((ButtonUI) CustomButtonUI.createUI(scrambleButton));
         scrambleButton.setBorder(westBorder);
         scrambleButton.setMargin(new Insets(0, 0, 0, 0));

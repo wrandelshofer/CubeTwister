@@ -418,25 +418,25 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         Border eastBorder = new BackdropBorder(
                 new ButtonStateBorder(
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEast.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEast.png"),
                 new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4)),
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEastP.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEastP.png"),
                 new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4))));
 
         Border westBorder = new BackdropBorder(
                 new ButtonStateBorder(
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderWest.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderWest.png"),
                 new Insets(1, 1, 1, 0), new Insets(0, 4, 1, 4)),
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderWestP.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderWestP.png"),
                 new Insets(1, 1, 1, 0), new Insets(0, 4, 1, 4))));
 /*
         ImageIcon resetIcon, partialResetIcon;
-        resetButton.setIcon(resetIcon = new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerReset.png")));
-        resetButton.setDisabledIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerReset.disabled.png")));
-        partialResetIcon = new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerPartialReset.png"));
+        resetButton.setIcon(resetIcon = new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerReset.png")));
+        resetButton.setDisabledIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerReset.disabled.png")));
+        partialResetIcon = new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerPartialReset.png"));
         resetButton.setUI((ButtonUI) CustomButtonUI.createUI(resetButton));
         resetButton.setBorder(westBorder);
         resetButton.setMargin(new Insets(0, 0, 0, 0));
@@ -444,8 +444,8 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         resetButton.setFocusable(false);
         resetButton.setToolTipText(resetButton.getText());
         resetButton.setText(null);
-        scrambleButton.setIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerScramble.png")));
-        scrambleButton.setDisabledIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerScramble.disabled.png")));
+        scrambleButton.setIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerScramble.png")));
+        scrambleButton.setDisabledIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerScramble.disabled.png")));
         scrambleButton.setUI((ButtonUI) CustomButtonUI.createUI(scrambleButton));
         scrambleButton.setBorder(westBorder);
         scrambleButton.setMargin(new Insets(0, 0, 0, 0));
@@ -453,8 +453,8 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         scrambleButton.setFocusable(false);
         scrambleButton.setToolTipText(scrambleButton.getText());
         scrambleButton.setText(null);
-       optionsButton.setIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerActions.png")));
-        optionsButton.setDisabledIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerActions.disabled.png")));
+       optionsButton.setIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerActions.png")));
+        optionsButton.setDisabledIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerActions.disabled.png")));
         optionsButton.setUI((ButtonUI) CustomButtonUI.createUI(optionsButton));
         optionsButton.setBorder(westBorder);
         optionsButton.setMargin(new Insets(0, 0, 0, 0));

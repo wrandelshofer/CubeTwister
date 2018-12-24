@@ -244,18 +244,18 @@ public class ScriptView
         Border eastBorder = new BackdropBorder(
                 new ButtonStateBorder(
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEast.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEast.png"),
                 new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4)),
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEastP.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEastP.png"),
                 new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4))));
         Border westBorder = new BackdropBorder(
                 new ButtonStateBorder(
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderWest.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderWest.png"),
                 new Insets(1, 1, 1, 0), new Insets(0, 4, 1, 4)),
                 new ImageBevelBorder(
-                Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderWestP.png"),
+                Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderWestP.png"),
                 new Insets(1, 1, 1, 0), new Insets(0, 4, 1, 4))));
 
         resetButton.setIcon(Icons.get(Icons.PLAYER_RESET));

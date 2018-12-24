@@ -4,7 +4,32 @@
     <bookmark url="file://$PROJECT_DIR$" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="" />
+    <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/compile/modulepath/montemedia/org.monte.media-src.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/compile/modulepath/montemedia/org.monte.media-src.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/compile/modulepath/montemedia/org.monte.media.jar" beforeDir="false" afterPath="$PROJECT_DIR$/lib/compile/modulepath/montemedia/org.monte.media.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView$27.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView$27.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/util/Images.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/util/Images.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/JImageWell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/JImageWell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/Images.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/Images.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,10 +38,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build-cubetwister.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-3691" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/border/ImageBevelBorder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="70" selection-start-line="70" selection-end-line="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="257" column="53" selection-start-line="257" selection-start-column="53" selection-end-line="257" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="190">
+              <caret line="284" column="29" selection-start-line="284" selection-start-column="29" selection-end-line="284" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/Images.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/JImageWell.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="186">
+              <caret line="298" column="21" selection-start-line="298" selection-start-column="21" selection-end-line="298" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="jar://$PROJECT_DIR$/lib/compile/modulepath/montemedia/org.monte.media-src.jar!/org/monte/media/swing/player/JPlayerControlAqua.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="72" column="74" selection-start-line="72" selection-start-column="74" selection-end-line="72" selection-end-column="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="199">
+              <caret line="69" selection-start-line="69" selection-end-line="78" selection-end-column="5" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -39,6 +127,8 @@
       <find>package</find>
       <find>new ResourceBundleUtil\(ResourceBundle.getBundle\(</find>
       <find>ResourceBundleUtil.getBundle\((&quot;.*&quot;)\)</find>
+      <find>/org/monte/media/gui/images/Player</find>
+      <find>createImage(getClass()</find>
     </findStrings>
     <replaceStrings>
       <replace>PlayerControl</replace>
@@ -47,12 +137,15 @@
       <replace>)),</replace>
       <replace>package org.kociemba.</replace>
       <replace>new ResourceBundleUtil(ResourceBundle.getBundle($1))</replace>
+      <replace>/org/monte/media/swing/player/images/Player</replace>
+      <replace>createImage(&quot;org.monte.media&quot;</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/ch.randelshofer.cubetwister</dir>
       <dir>$PROJECT_DIR$/org.kociemba.twophase/src/org/kociemba/twophase</dir>
       <dir>$PROJECT_DIR$/org.kociemba.twophase/src</dir>
       <dir>$PROJECT_DIR$/modules/ch.randelshofer.cubetwister</dir>
+      <dir>$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -61,11 +154,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" />
-        <option value="$PROJECT_DIR$/org.kociemba.twophase/src/org/kociemba/twophase/Color.java" />
-        <option value="$PROJECT_DIR$/org.kociemba.twophase/src/org/kociemba/twophasep/CoordCubeP.java" />
-        <option value="$PROJECT_DIR$/org.kociemba.twophase/src/org/kociemba/twophasep/SearchP.java" />
-        <option value="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/archivers/tar/TarArchiveEntry.java" />
         <option value="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/compressors/bzip2/BZip2CompressorInputStream.java" />
         <option value="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/CompressorInputStream.java" />
         <option value="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/CompressorOutputStream.java" />
@@ -112,13 +200,18 @@
         <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesAction.java" />
         <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationView.java" />
         <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/app/action/ImportFileAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/Images.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/JImageWell.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="23" />
     <option name="y" value="23" />
-    <option name="width" value="1499" />
+    <option name="width" value="1771" />
     <option name="height" value="1129" />
   </component>
   <component name="ProjectView">
@@ -398,7 +491,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545654296296</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Reorganizes code.">
+      <created>1545654413334</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1545654413334</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -434,10 +534,9 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="23" y="23" width="1499" height="1129" extended-state="0" />
-    <editor active="true" />
+    <frame x="23" y="23" width="1771" height="1129" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.3397392" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.28629264" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -445,18 +544,18 @@
       <window_info anchor="bottom" id="Structure" order="1" sideWeight="0.50147057" weight="0.34122288" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32840237" />
       <window_info anchor="bottom" id="Run" order="3" weight="0.32840237" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.39940828" />
+      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.39940828" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="8" visible="true" weight="0.3510848" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3510848" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32938856" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.36587772" />
       <window_info anchor="bottom" id="Run with VisualVM" order="12" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="13" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.24982841" />
+      <window_info anchor="right" id="Ant Build" order="1" visible="true" weight="0.21052632" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven" order="4" />
@@ -515,13 +614,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarConstants.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarArchiveOutputStream.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarArchiveEntry.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/archivers/tar/TarBuffer.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/BZip2CompressorInputStream.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/BZip2Constants.java" />
-    <entry file="file://$PROJECT_DIR$/out/production/ch.randelshofer.cubetwister/ch/randelshofer/app/Labels.properties" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/CRC.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/org/apache/commons/compress/compressors/bzip2/BZip2CompressorOutputStream.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/test/ch/randelshofer/rubik/CubesTest.java" />
@@ -592,6 +684,55 @@
     <entry file="file://$PROJECT_DIR$/build-cubetwister.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3691" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/border/ImageBevelBorder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="257" column="53" selection-start-line="257" selection-start-column="53" selection-end-line="257" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="284" column="29" selection-start-line="284" selection-start-column="29" selection-end-line="284" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="69" selection-start-line="69" selection-end-line="78" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/Images.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="26" column="17" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/JImageWell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="298" column="21" selection-start-line="298" selection-start-column="21" selection-end-line="298" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/lib/compile/modulepath/montemedia/org.monte.media-src.jar!/org/monte/media/swing/player/JPlayerControlAqua.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="72" column="74" selection-start-line="72" selection-start-column="74" selection-end-line="72" selection-end-column="74" />
+        </state>
       </provider>
     </entry>
   </component>

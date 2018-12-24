@@ -23,7 +23,18 @@ public class Images {
     /** Prevent instance creation. */
     private Images() {
     }
-    
+    public static Image createImage(InputStream resource) throws IOException {
+        Image image = Toolkit.getDefaultToolkit().createImage(resource.readAllBytes());
+        return image;
+    }
+    public static Image createImage(String moduleName, String location) {
+        try (InputStream resource = ModuleLayer.boot().findModule(moduleName).get().getResourceAsStream(location);) {
+            return createImage(resource);
+        } catch (IOException e) {
+            System.err.println("Warning: Images.createImage no resource found for "+moduleName+" "+location);
+            return null;
+        }
+    }
     public static Image createImage(Class<?> baseClass, String location) {
         URL url = baseClass.getResource(location);
         if (url == null) {

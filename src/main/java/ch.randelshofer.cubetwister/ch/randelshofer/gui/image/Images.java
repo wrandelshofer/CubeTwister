@@ -6,6 +6,8 @@ package ch.randelshofer.gui.image;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.*;
 
 import javax.swing.*;
@@ -38,7 +40,15 @@ public class Images {
         }
         return graphiteFilter;
     }*/
-    
+
+    public static Image createImage(String moduleName, String location) {
+        try (InputStream resource = ModuleLayer.boot().findModule(moduleName).get().getResourceAsStream(location);) {
+        return createImage(resource);
+        } catch (IOException e) {
+            System.err.println("Warning: Images.createImage no resource found for "+moduleName+" "+location);
+            return null;
+        }
+    }
     public static Image createImage(Class<?> baseClass, String location) {
         URL resource = baseClass.getResource(location);
         if (resource == null) {
@@ -49,6 +59,16 @@ public class Images {
     }
     public static Image createImage(URL resource) {
         Image image = Toolkit.getDefaultToolkit().createImage(resource);
+        /*
+        if ("6".equals(Preferences.getString("AppleAquaColorVariant"))) {
+            if (canGraphite(resource)) {
+                image = toGraphite(image);
+            }
+        }*/
+        return image;
+    }
+    public static Image createImage(InputStream resource) throws IOException {
+        Image image = Toolkit.getDefaultToolkit().createImage(resource.readAllBytes());
         /*
         if ("6".equals(Preferences.getString("AppleAquaColorVariant"))) {
             if (canGraphite(resource)) {

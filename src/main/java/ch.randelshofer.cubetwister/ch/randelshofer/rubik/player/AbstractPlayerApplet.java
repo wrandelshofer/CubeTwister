@@ -419,12 +419,12 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
             Border eastBorder = new BackdropBorder(
                     new ButtonStateBorder(
                             new ImageBevelBorder(
-                                    Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEast.png"),
+                                    Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEast.png"),
                                     new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4)),
                             new ImageBevelBorder(
-                                    Images.createImage(getClass(), "/org/monte/media/gui/images/Player.borderEastP.png"),
+                                    Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/Player.borderEastP.png"),
                                     new Insets(1, 1, 1, 1), new Insets(0, 4, 1, 4))));
-            settingsButton.setIcon(new ImageIcon(Images.createImage(getClass(), "/org/monte/media/gui/images/PlayerActions.png")));
+            settingsButton.setIcon(new ImageIcon(Images.createImage("org.monte.media", "/org/monte/media/swing/player/images/PlayerActions.png")));
             settingsButton.setUI((ButtonUI) CustomButtonUI.createUI(settingsButton));
             settingsButton.setBorder(eastBorder);
             settingsButton.setMargin(new Insets(0, 0, 0, 0));

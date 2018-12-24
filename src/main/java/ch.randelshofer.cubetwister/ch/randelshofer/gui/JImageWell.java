@@ -296,7 +296,7 @@ public class JImageWell extends JComponent implements EditableComponent {
          * Called when a drag operation is ongoing on the
          * <code>DropTarget</code>.
          * <P>
-         * @param dtde the <code>DropTargetDragEvent</code>
+         * @param evt the <code>DropTargetDragEvent</code>
          */
         public void dragOver(DropTargetDragEvent evt) {
             if (VERBOSE) {
