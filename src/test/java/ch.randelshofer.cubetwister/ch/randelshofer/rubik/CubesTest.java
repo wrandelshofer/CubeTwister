@@ -5,9 +5,12 @@ package ch.randelshofer.rubik;
 
 import ch.randelshofer.rubik.parser.DefaultNotation;
 import ch.randelshofer.rubik.parser.Move;
+import ch.randelshofer.rubik.parser.MutableNotation;
 import ch.randelshofer.rubik.parser.Notation;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.SequenceNode;
+import ch.randelshofer.rubik.parser.Symbol;
+import ch.randelshofer.rubik.parser.Syntax;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -176,24 +179,40 @@ public class CubesTest {
 
     @TestFactory
     public List<DynamicTest> testToPermutationString_Cube() {
+        MutableNotation precircumfixNotation = new MutableNotation();
+        precircumfixNotation.putSyntax(Symbol.PERMUTATION, Syntax.PRECIRCUMFIX);
+        MutableNotation prefixNotation = new MutableNotation();
+        prefixNotation.putSyntax(Symbol.PERMUTATION, Syntax.PREFIX);
+        MutableNotation postcircumfixNotation = new MutableNotation();
+        postcircumfixNotation.putSyntax(Symbol.PERMUTATION, Syntax.POSTCIRCUMFIX);
+        MutableNotation suffixNotation = new MutableNotation();
+        suffixNotation.putSyntax(Symbol.PERMUTATION, Syntax.SUFFIX);
       return  Arrays.asList(
-          dynamicTest("-",()->doToPermutationString_Cube("","()")),
-              dynamicTest("R",()->doToPermutationString_Cube("R","(ubr,bdr,dfr,fur)\n" +
+          dynamicTest(".",()->doToPermutationString_Cube(".",precircumfixNotation,"()")),
+              dynamicTest("R,precircumfix",()->doToPermutationString_Cube("R",precircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
                       "(ur,br,dr,fr)\n" +
-                      "(+r)"))
+                      "(+r)")),
+              dynamicTest("R,prefix",()->doToPermutationString_Cube("R",prefixNotation,"(ubr,bdr,dfr,fur)\n" +
+                      "(ur,br,dr,fr)\n" +
+                      "+(r)")),
+              dynamicTest("R,suffix",()->doToPermutationString_Cube("R",suffixNotation,"(ubr,bdr,dfr,fur)\n" +
+                      "(ur,br,dr,fr)\n" +
+                      "(r)+")),
+              dynamicTest("R,postcirfumcix",()->doToPermutationString_Cube("R",postcircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
+                      "(ur,br,dr,fr)\n" +
+                      "(r+)"))
         );
     }
     /**
      * Test of toPermutationString method, of class Cubes.
      */
-    public void doToPermutationString_Cube(String input, String expected) throws IOException {
+    public void doToPermutationString_Cube(String input,Notation notation, String expected) throws IOException {
         System.out.println("toPermutationString input: "+input);
         Cube cube = new RubiksCube();
-        Notation notation = new DefaultNotation();
         ScriptParser parser =new ScriptParser(notation);
         SequenceNode ast = parser.parse(input);
         ast.applyTo(cube,false);
-        String actual = Cubes.toPermutationString(cube);
+        String actual = Cubes.toPermutationString(cube, notation);
         System.out.println("  expected: "+expected);
         System.out.println("  actual: "+actual);
         assertEquals(expected, actual);

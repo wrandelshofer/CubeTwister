@@ -547,6 +547,13 @@ public class Cubes {
         return face - 1;
     }
 
+    /**
+     * Returns a String describing the state of the cube using
+     * Bandelow's English permutation notation.
+     *
+     * @param cube a cube
+     * @return a permutation String
+     */
     public static String toPermutationString(Cube cube) {
         return toPermutationString(cube, Syntax.PRECIRCUMFIX,
                 "r", "u", "f", "l", "d", "b",

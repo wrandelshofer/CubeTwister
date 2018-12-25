@@ -15,12 +15,12 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * DefaultNotation supports Superset ENG for the 3x3 cube.
+ * Mutable {@code Superset ENG} notation for testing.
  *
  * @author Werner Randelshofer
  * @version $Id$
  */
-public class DefaultNotation implements Notation {
+public class MutableNotation implements Notation {
 
     private HashMap<Symbol, String> symbolToTokenMap = new HashMap<Symbol, String>();
     private HashMap<String, Set<Symbol>> tokenToSymbolMap = new HashMap<>();
@@ -30,11 +30,11 @@ public class DefaultNotation implements Notation {
     private int layerCount;
 
     /** Creates a new instance. */
-    public DefaultNotation() {
+    public MutableNotation() {
         this(3);
     }
 
-    public DefaultNotation(int layerCount) {
+    public MutableNotation(int layerCount) {
         this.layerCount = layerCount;
 
         addToken(Symbol.NOP, "·");
@@ -106,14 +106,14 @@ public class DefaultNotation implements Notation {
         addMove(new Move(0, inner|middle, -1), "TL");
         addMove(new Move(1, inner|middle, -1), "TD");
         addMove(new Move(2, inner|middle, -1), "TB");
-        
+
         addMove(new Move(0, outer|inner, 1), "SR");
         addMove(new Move(1, outer|inner, 1), "SU");
         addMove(new Move(2, outer|inner, 1), "SF");
         addMove(new Move(0, inner|outer, -1), "SL");
         addMove(new Move(1, inner|outer, -1), "SD");
         addMove(new Move(2, inner|outer, -1), "SB");
-        
+
         addMove(new Move(0, all, 1), "CR");
         addMove(new Move(1, all, 1), "CU");
         addMove(new Move(2, all, 1), "CF");
@@ -129,6 +129,10 @@ public class DefaultNotation implements Notation {
         symbolToSyntaxMap.put(Symbol.REPETITION, Syntax.SUFFIX);
         symbolToSyntaxMap.put(Symbol.REFLECTION, Syntax.SUFFIX);
         symbolToSyntaxMap.put(Symbol.INVERSION, Syntax.SUFFIX);
+    }
+
+    public void putSyntax(Symbol symbol, Syntax syntax) {
+        symbolToSyntaxMap.put(symbol, syntax);
     }
 
     private void addToken(Symbol symbol, String token) {
@@ -157,7 +161,7 @@ public class DefaultNotation implements Notation {
         return layerCount;
     }
 
-    public String getEquivalentMacro(Cube cube, Map<String,MacroNode> localMacros) {
+    public String getEquivalentMacro(Cube cube, Map<String, MacroNode> localMacros) {
         return null;
     }
 
@@ -221,17 +225,6 @@ public class DefaultNotation implements Notation {
 
     @Override
     public List<MacroNode> getMacros() {
-        // FIXME - Implement me
         return Collections.emptyList();
     }
-    /*
-    public static void main(String[] args) {
-    ScriptParser p = new ScriptParser(new DefaultNotation());
-    try {
-    System.out.println( p.parse("(ur,lu,dl,rd)") );
-    } catch (IOException ex) {
-    ex.printStackTrace();
-    //Logger.getLogger(DefaultNotation.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    }*/
 }
