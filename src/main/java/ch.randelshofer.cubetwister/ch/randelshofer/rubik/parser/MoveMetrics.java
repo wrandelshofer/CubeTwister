@@ -21,7 +21,7 @@ import static java.lang.Math.abs;
  */
 public class MoveMetrics implements Consumer<Node> {
     /**
-     * Current node.
+     * Current move node.
      */
     private MoveNode current = null;
     /**
@@ -48,7 +48,7 @@ public class MoveMetrics implements Consumer<Node> {
     private int moveCount = 0;
 
     /**
-     * Gets the layer turn moveCount of the subtree starting
+     * Gets the layer turn count of the subtree starting
      * at this node.
      */
     public static int getLayerTurnCount(Node node) {
@@ -58,7 +58,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the block turn moveCount of the subtree starting
+     * Gets the block turn count of the subtree starting
      * at this node.
      */
     public static int getBlockTurnCount(Node node) {
@@ -68,7 +68,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the face turn moveCount of the subtree starting
+     * Gets the face turn count of the subtree starting
      * at this node.
      */
     public static int getFaceTurnCount(Node node) {
@@ -78,7 +78,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the quarter turn moveCount of the subtree starting
+     * Gets the quarter turn count of the subtree starting
      * at this node.
      */
     public static int getQuarterTurnCount(Node node) {
@@ -158,28 +158,28 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the current layer turn moveCount.
+     * Gets the current layer turn count.
      */
     public int getLayerTurnCount() {
         return current == null ? ltm : ltm + countLayerTurns(current);
     }
 
     /**
-     * Gets the current block turn moveCount.
+     * Gets the current block turn count.
      */
     public int getBlockTurnCount() {
         return current == null ? btm : btm + countBlockTurns(current);
     }
 
     /**
-     * Gets the current face turn moveCount.
+     * Gets the current face turn count.
      */
     public int getFaceTurnCount() {
         return current == null ? ftm : ftm + countFaceTurns(current);
     }
 
     /**
-     * Gets the current quarter turn moveCount.
+     * Gets the current quarter turn count.
      */
     public int getQuarterTurnCount() {
         return current == null ? qtm : qtm + countQuarterTurns(current);
@@ -193,7 +193,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the layer turn moveCount of the specified move node.
+     * Gets the layer turn count of the specified move node.
      */
     private int countLayerTurns(MoveNode move) {
         int layerCount = move.getLayerCount();
@@ -213,7 +213,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the block turn moveCount of the specified move node.
+     * Gets the block turn count of the specified move node.
      */
     private int countBlockTurns(MoveNode move) {
         int layerCount = move.getLayerCount();
@@ -241,7 +241,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the face turn moveCount of the specified node.
+     * Gets the face turn count of the specified node.
      */
     private int countFaceTurns(MoveNode move) {
         int layerCount = move.getLayerCount();
@@ -255,7 +255,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the face turn moveCount of the specified node.
+     * Gets the face turn count of the specified node.
      */
     private int countQuarterTurns(MoveNode move) {
         int qturns = abs(move.getAngle() % 4);
