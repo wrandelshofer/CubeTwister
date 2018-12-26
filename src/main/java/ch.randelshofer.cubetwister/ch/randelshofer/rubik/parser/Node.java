@@ -302,14 +302,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
     }
 
     public Iterable<Node> resolvedIterable(final boolean inverse) {
-        return new Iterable<Node>() {
-
-            @Override
-            public Iterator<Node> iterator() {
-                return resolvedIterator(inverse);
-            }
-
-        };
+        return () -> resolvedIterator(inverse);
     }
 
     @SuppressWarnings("unchecked")
