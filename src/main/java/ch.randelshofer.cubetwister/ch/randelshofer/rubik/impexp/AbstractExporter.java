@@ -12,6 +12,7 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.parser.MacroNode;
+import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.SequenceNode;
 
@@ -99,9 +100,9 @@ public class AbstractExporter extends JPanel implements Exporter {
             if (sr.isParsed) {
                 cube.reset();
                 parsedScript.applyTo(cube, false);
-                sr.ltm = parsedScript.getLayerTurnCount();
-                sr.ftm = parsedScript.getFaceTurnCount();
-                sr.qtm = parsedScript.getQuarterTurnCount();
+                sr.ltm = MoveMetrics.getLayerTurnCount(parsedScript);
+                sr.ftm = MoveMetrics.getFaceTurnCount(parsedScript);
+                sr.qtm = MoveMetrics.getQuarterTurnCount(parsedScript);
                 sr.visualOrder = Cubes.getVisibleOrder(cube);
                 sr.realOrder = Cubes.getOrder(cube);
                 sr.visualPermutation = Cubes.toVisualPermutationString(cube, parser.getNotation());
@@ -203,9 +204,9 @@ public class AbstractExporter extends JPanel implements Exporter {
                  */
                 cube.reset();
                 parsedScript.applyTo(cube, false);
-                sr.ltm = parsedScript.getLayerTurnCount();
-                sr.ftm = parsedScript.getFaceTurnCount();
-                sr.qtm = parsedScript.getQuarterTurnCount();
+                sr.ltm = MoveMetrics.getLayerTurnCount(parsedScript);
+                sr.ftm = MoveMetrics.getFaceTurnCount(parsedScript);
+                sr.qtm = MoveMetrics.getQuarterTurnCount(parsedScript);
                 sr.visualOrder = Cubes.getVisibleOrder(cube);
                 sr.realOrder = Cubes.getOrder(cube);
                 new InternalError("not implemented");
@@ -269,9 +270,9 @@ public class AbstractExporter extends JPanel implements Exporter {
                  
                 cube.reset();
                 parsedScript.applySubtreeTo(cube, false);
-                sr.ltm = parsedScript.getLayerTurnCount();
-                sr.ftm = parsedScript.getFaceTurnCount();
-                sr.qtm = parsedScript.getQuarterTurnCount();
+                sr.ltm = MoveMetrics.getLayerTurnCount(parsedScript);
+                sr.ftm = MoveMetrics.getFaceTurnCount(parsedScript);
+                sr.qtm = MoveMetrics.getQuarterTurnCount(parsedScript);
                 sr.visualOrder = cube.getVisibleOrder();
                 sr.realOrder = cube.getOrder();
                 sr.visualPermutation = cube.toVisualPermutationString(newParser);

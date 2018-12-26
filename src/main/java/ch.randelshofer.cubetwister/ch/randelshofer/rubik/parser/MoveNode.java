@@ -14,15 +14,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A MoveNode holds one rotation of one or multiple layers in a specific 
+ * A MoveNode holds one rotation of one or multiple layers in a specific
  * direction by a specific angle.
- * The side effect of a MoveNode on a Cube is the concatenation of all 
+ * The side effect of a MoveNode on a Cube is the concatenation of all
  * permutation cycles caused by the rotation.
- * 
+ *
  * @author Werner Randelshofer
  * @version $Id$
  * <br>6.0.1 2008-01-18 Fixed face turn countTurned for 3x3 cube.
- * <br>6.0 2007-06-16 Renamed from TwistNode to MoveNode. 
+ * <br>6.0 2007-06-16 Renamed from TwistNode to MoveNode.
  * <br>5.0 2005-01-31 Reworked.
  */
 public class MoveNode extends Node {
@@ -56,10 +56,14 @@ public class MoveNode extends Node {
 
     @Override
     public void applyTo(Cube cube, boolean inverse) {
-        int normalizedAngle=angle%4;
-        if (normalizedAngle==3) normalizedAngle=-1;
-        if (normalizedAngle==-3) normalizedAngle=1;
-        
+        int normalizedAngle = angle % 4;
+        if (normalizedAngle == 3) {
+            normalizedAngle = -1;
+        }
+        if (normalizedAngle == -3) {
+            normalizedAngle = 1;
+        }
+
         cube.transform(axis, layerMask, (inverse) ? -normalizedAngle : normalizedAngle);
     }
 
@@ -96,75 +100,6 @@ public class MoveNode extends Node {
     }
 
     /**
-     * Gets the layer turn countTurned of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getLayerTurnCount() {
-        if (angle == 0) {
-            return 0;
-        } else {
-            int count = 0;
-            for (int i = 0; i < layerCount; i++) {
-                if (((layerMask >>> i) & 1) == 1) {
-                    count++;
-                }
-            }
-            return Math.min(count, layerCount - count);
-        }
-    }
-
-    /**
-     * Gets the block turn countTurned of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getBlockTurnCount() {
-        if (angle == 0) {
-            return 0;
-        } else {
-            int previousTurnedLayer = 0;
-            int countTurned = 0;
-            int previousImmobileLayer = 1;
-            int countImmobile = 0;
-            for (int i = 0; i < layerCount; i++) {
-                int currentLayer = (layerMask >>> i) & 1;
-                if (currentLayer == 1 && currentLayer != previousTurnedLayer) {
-                    countTurned++;
-                }
-                if (currentLayer == 0 && currentLayer != previousImmobileLayer) {
-                    countImmobile++;
-                }
-                previousTurnedLayer = previousImmobileLayer = currentLayer;
-            }
-            return Math.min(countTurned, countImmobile);
-        }
-    }
-
-    /**
-     * Gets the face turn countTurned of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getFaceTurnCount() {
-        int count = getBlockTurnCount();
-        if (count != 0 && ((layerMask & (1 | (1 << (layerCount - 1)))) == 0
-                || (layerMask & (1 | (1 << (layerCount - 1)))) == (1 | (1 << (layerCount - 1))))) {
-            count++;
-        }
-        return count;
-    }
-
-    /**
-     * Gets the quarter turn countTurned of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getQuarterTurnCount() {
-        return getFaceTurnCount() * Math.abs(angle%4%3);
-    }
-
-    /**
      * Enumerate this symbol and all of its children.
      * Special operators (i. e. repeat and inverse) are
      * resolved before the children are returned.
@@ -189,11 +124,11 @@ public class MoveNode extends Node {
         if (layerMask == (2 << getLayerCount()) - 1) {
             // XXX - To be implemented
             if (axis != this.axis) {
-                boolean swapLayers=false;
+                boolean swapLayers = false;
                 switch (axis) {
                     case 0:
                         this.axis = ((this.axis - 1) + angle) % 2 + 1;
-                        swapLayers=this.axis==2&&angle>1;
+                        swapLayers = this.axis == 2 && angle > 1;
                         break;
                     case 1:
                         this.axis = ((this.axis / 2) + angle) % 2 * 2;
@@ -247,7 +182,8 @@ public class MoveNode extends Node {
     }
 
     public boolean isRotation() {
-        return getLayerTurnCount() % layerCount == 0;
+        int allLayers = layerCount >>> 1;
+        return layerMask == allLayers;
     }
 
     @Override

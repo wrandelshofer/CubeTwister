@@ -14,6 +14,7 @@ import ch.randelshofer.rubik.Cube3DListener;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.parser.MacroNode;
+import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import ch.randelshofer.rubik.parser.SequenceNode;
@@ -249,10 +250,10 @@ public class ScriptModel
                 parsedScript = p.parse(normalizedScript);
                 isChecked = true;
                 setStateInfo("Twists:\n" +
-                        parsedScript.getBlockTurnCount() + " btm, " +
-                        parsedScript.getLayerTurnCount() + " ltm, " +
-                        parsedScript.getFaceTurnCount() + " ftm, " +
-                        parsedScript.getQuarterTurnCount() + " qtm");
+                        MoveMetrics.getBlockTurnCount(parsedScript) + " btm, " +
+                        MoveMetrics.getLayerTurnCount(parsedScript) + " ltm, " +
+                        MoveMetrics.getFaceTurnCount(parsedScript) + " ftm, " +
+                        MoveMetrics.getQuarterTurnCount(parsedScript) + " qtm");
                 firePropertyChange(CHECKED_PROPERTY, false, true);
                 getPlayer().setScript(parsedScript);
                 if (isGenerator()) {

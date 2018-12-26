@@ -328,50 +328,6 @@ public abstract class Node extends TreeNodeImpl<Node> {
     }
 
     /**
-     * Gets the layer turn count of the subtree starting at this node.
-     */
-    public int getLayerTurnCount() {
-        int count = 0;
-        for (Node child : getChildren()) {
-            count += child.getLayerTurnCount();
-        }
-        return count;
-    }
-
-    /**
-     * Gets the block turn count of the subtree starting at this node.
-     */
-    public int getBlockTurnCount() {
-        int count = 0;
-        for (Node child : getChildren()) {
-            count += child.getBlockTurnCount();
-        }
-        return count;
-    }
-
-    /**
-     * Gets the face turn count of the subtree starting at this node.
-     */
-    public int getFaceTurnCount() {
-        int count = 0;
-        for (Node child : getChildren()) {
-            count += child.getFaceTurnCount();
-        }
-        return count;
-    }
-
-    /**
-     * Gets the quarter turn count of the subtree starting at this node.
-     */
-    public int getQuarterTurnCount() {
-        int count = 0;
-        for (Node child : getChildren()) {
-            count += child.getQuarterTurnCount();
-        }
-        return count;
-    }
-
-    /**
      * The resolved enumeration.
      */
     private static class ResolvedIterator

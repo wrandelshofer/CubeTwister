@@ -119,34 +119,6 @@ public class RotationNode extends SequenceNode {
     }
 
     /**
-     * Gets the layer turn count of the subtree starting at this node.
-     */
-    public int getLayerTurnCount() {
-        return super.getLayerTurnCount() + rotator.getLayerTurnCount() * 2;
-    }
-
-    /**
-     * Gets the block turn count of the subtree starting at this node.
-     */
-    public int getBlockTurnCount() {
-        return super.getBlockTurnCount() + rotator.getBlockTurnCount() * 2;
-    }
-
-    /**
-     * Gets the face turn count of the subtree starting at this node.
-     */
-    public int getFaceTurnCount() {
-        return super.getFaceTurnCount() + rotator.getFaceTurnCount() * 2;
-    }
-
-    /**
-     * Gets the quarter turn count of the subtree starting at this node.
-     */
-    public int getQuarterTurnCount() {
-        return super.getQuarterTurnCount() + rotator.getQuarterTurnCount() * 2;
-    }
-
-    /**
      * Enumerate this symbol and all of its children. Special operators (i. e.
      * repeat and inverse) are resolved before the children are returned.
      */

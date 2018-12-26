@@ -62,62 +62,6 @@ public class RepetitionNode extends Node {
     }
 
     /**
-     * Gets the face turn count of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getFaceTurnCount() {
-        //return super.getFaceTurnCount() * repeatCount;
-        int count = 0;
-        for (Node n : toResolvedList()) {
-            count += n.getFaceTurnCount();
-        }
-        return count;
-    }
-
-    /**
-     * Gets the layer turn count of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getLayerTurnCount() {
-        // return super.getLayerTurnCount() * repeatCount;
-        int count = 0;
-        for (Node n : toResolvedList()) {
-            count += n.getLayerTurnCount();
-        }
-        return count;
-    }
-
-    /**
-     * Gets the block turn count of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getBlockTurnCount() {
-        // return super.getBlockTurnCount() * repeatCount;
-        int count = 0;
-        for (Node n : toResolvedList()) {
-            count += n.getBlockTurnCount();
-        }
-        return count;
-    }
-
-    /**
-     * Gets the quarter turn count of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getQuarterTurnCount() {
-        ///return super.getQuarterTurnCount() * repeatCount;
-        int count = 0;
-        for (Node n : toResolvedList()) {
-            count += n.getQuarterTurnCount();
-        }
-        return count;
-    }
-
-    /**
      * Enumerate this symbol and all of its children.
      * Special operators (i. e. repeat and inverse) are
      * resolved before the children are returned.

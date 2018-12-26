@@ -26,24 +26,25 @@ public class DefaultNotationTest {
 
     /**
      * Test of isToken method, of class DefaultNotation.
-     * @param token a token
+     *
+     * @param token     a token
      * @param expResult expected result
      */
-  
-    public void doTokens(String token, boolean expResult) {
-        System.out.println("isToken:"+token);
+
+    private void doTokens(String token, boolean expResult) {
+        System.out.println("isToken:" + token);
         DefaultNotation instance = new DefaultNotation();
         boolean result = instance.isToken(token);
         assertEquals(result, expResult);
     }
-    
-        @TestFactory
+
+    @TestFactory
     public List<DynamicTest> testTokens() {
         return Arrays.asList(
-            // token, isToken
-            DynamicTest.dynamicTest("1",()-> doTokens("R",true)),
-            DynamicTest.dynamicTest("1",()-> doTokens("bla",false)),
-        DynamicTest.dynamicTest("1",()-> doTokens("TR",true))
-    );
-                }
+                // token, isToken
+                DynamicTest.dynamicTest("1", () -> doTokens("R", true)),
+                DynamicTest.dynamicTest("1", () -> doTokens("bla", false)),
+                DynamicTest.dynamicTest("1", () -> doTokens("TR", true))
+        );
+    }
 }

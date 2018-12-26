@@ -156,19 +156,19 @@ public class ScriptPlayer extends AbstractPlayer {
                         if (scriptIndex >= 0 || scriptIndex <= resolvedScript.size()) {
                             if (scriptIndex == newIndex - 1) {
                                 currentNode = activeNode = resolvedScript.get(scriptIndex);
-                                ftm += activeNode.getFaceTurnCount();
-                                btm += activeNode.getBlockTurnCount();
-                                ltm += activeNode.getLayerTurnCount();
-                                qtm += activeNode.getQuarterTurnCount();
+                                ftm += MoveMetrics.getFaceTurnCount(activeNode);
+                                btm += MoveMetrics.getBlockTurnCount(activeNode);
+                                ltm += MoveMetrics.getLayerTurnCount(activeNode);
+                                qtm += MoveMetrics.getQuarterTurnCount(activeNode);
                                 fireStateChanged();
                                 activeNode.applyTo(cube, false);
                                 scriptIndex++;
                             } else if (scriptIndex == newIndex + 1) {
                                 currentNode = activeNode = resolvedScript.get(--scriptIndex);
-                                ftm -= activeNode.getFaceTurnCount();
-                                btm -= activeNode.getBlockTurnCount();
-                                ltm -= activeNode.getLayerTurnCount();
-                                qtm -= activeNode.getQuarterTurnCount();
+                                ftm -= MoveMetrics.getFaceTurnCount(activeNode);
+                                btm -= MoveMetrics.getBlockTurnCount(activeNode);
+                                ltm -= MoveMetrics.getLayerTurnCount(activeNode);
+                                qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
                                 fireStateChanged();
                                 activeNode.applyTo(cube, true);
                             } else {
@@ -178,18 +178,18 @@ public class ScriptPlayer extends AbstractPlayer {
                                 while (scriptIndex < newIndex) {
                                     Node node = resolvedScript.get(scriptIndex++);
                                     node.applyTo(cube, false);
-                                    ftm += activeNode.getFaceTurnCount();
-                                    btm += activeNode.getBlockTurnCount();
-                                    ltm += activeNode.getLayerTurnCount();
-                                    qtm += activeNode.getQuarterTurnCount();
+                                    ftm += MoveMetrics.getFaceTurnCount(activeNode);
+                                    btm += MoveMetrics.getBlockTurnCount(activeNode);
+                                    ltm += MoveMetrics.getLayerTurnCount(activeNode);
+                                    qtm += MoveMetrics.getQuarterTurnCount(activeNode);
                                 }
                                 while (scriptIndex > newIndex) {
                                     Node node = resolvedScript.get(--scriptIndex);
                                     node.applyTo(cube, true);
-                                    ftm -= activeNode.getFaceTurnCount();
-                                    btm -= activeNode.getBlockTurnCount();
-                                    ltm -= activeNode.getLayerTurnCount();
-                                    qtm -= activeNode.getQuarterTurnCount();
+                                    ftm -= MoveMetrics.getFaceTurnCount(activeNode);
+                                    btm -= MoveMetrics.getBlockTurnCount(activeNode);
+                                    ltm -= MoveMetrics.getLayerTurnCount(activeNode);
+                                    qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
                                 }
                                 cube.setQuiet(false);
                             }
@@ -614,19 +614,19 @@ public class ScriptPlayer extends AbstractPlayer {
                 newIndex = progress.getValue() + 1;
                 if (scriptIndex == newIndex - 1) {
                     currentNode = activeNode = resolvedScript.get(scriptIndex);
-                    ftm += activeNode.getFaceTurnCount();
-                    btm += activeNode.getBlockTurnCount();
-                    ltm += activeNode.getLayerTurnCount();
-                    qtm += activeNode.getQuarterTurnCount();
+                    ftm += MoveMetrics.getFaceTurnCount(activeNode);
+                    btm += MoveMetrics.getBlockTurnCount(activeNode);
+                    ltm += MoveMetrics.getLayerTurnCount(activeNode);
+                    qtm += MoveMetrics.getQuarterTurnCount(activeNode);
                     fireStateChanged();
                     activeNode.applyTo(cube, false);
                     scriptIndex++;
                 } else if (scriptIndex == newIndex + 1) {
                     currentNode = activeNode = resolvedScript.get(--scriptIndex);
-                    ftm -= activeNode.getFaceTurnCount();
-                    btm -= activeNode.getBlockTurnCount();
-                    ltm -= activeNode.getLayerTurnCount();
-                    qtm -= activeNode.getQuarterTurnCount();
+                    ftm -= MoveMetrics.getFaceTurnCount(activeNode);
+                    btm -= MoveMetrics.getBlockTurnCount(activeNode);
+                    ltm -= MoveMetrics.getLayerTurnCount(activeNode);
+                    qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
                     fireStateChanged();
                     activeNode.applyTo(cube, true);
                 } else if (scriptIndex < newIndex - 1) {
@@ -636,10 +636,10 @@ public class ScriptPlayer extends AbstractPlayer {
                     while (scriptIndex < newIndex - 1) {
                         Node node = resolvedScript.get(scriptIndex++);
                         node.applyTo(cube, false);
-                        ftm += activeNode.getFaceTurnCount();
-                        btm += activeNode.getBlockTurnCount();
-                        ltm += activeNode.getLayerTurnCount();
-                        qtm += activeNode.getQuarterTurnCount();
+                        ftm += MoveMetrics.getFaceTurnCount(activeNode);
+                        btm += MoveMetrics.getBlockTurnCount(activeNode);
+                        ltm += MoveMetrics.getLayerTurnCount(activeNode);
+                        qtm += MoveMetrics.getQuarterTurnCount(activeNode);
                     }
                     cube.setQuiet(false);
                     currentNode = activeNode = resolvedScript.get(scriptIndex);
@@ -653,10 +653,10 @@ public class ScriptPlayer extends AbstractPlayer {
                     while (scriptIndex > newIndex - 1) {
                         Node node = resolvedScript.get(--scriptIndex);
                         node.applyTo(cube, true);
-                        ftm -= activeNode.getFaceTurnCount();
-                        btm -= activeNode.getBlockTurnCount();
-                        ltm -= activeNode.getLayerTurnCount();
-                        qtm -= activeNode.getQuarterTurnCount();
+                        ftm -= MoveMetrics.getFaceTurnCount(activeNode);
+                        btm -= MoveMetrics.getBlockTurnCount(activeNode);
+                        ltm -= MoveMetrics.getLayerTurnCount(activeNode);
+                        qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
                     }
                     newIndex--;
                     cube.setQuiet(false);

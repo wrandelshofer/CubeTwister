@@ -21,6 +21,7 @@ import ch.randelshofer.rubik.CubeListener;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.rubik.parser.CubeMarkupNotation;
+import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptKeyboardHandler;
 import ch.randelshofer.rubik.parser.ScriptParser;
@@ -1643,17 +1644,17 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
                             turnCountInfo = "";
                         } else {
                             turnCountInfo
-                                    = scr.getBlockTurnCount() + " btm, "
-                                    + scr.getLayerTurnCount() + " ltm, "
-                                    + scr.getFaceTurnCount() + " ftm, "
-                                    + scr.getQuarterTurnCount() + " qtm";
+                                    = MoveMetrics.getBlockTurnCount(scr) + " btm, "
+                                    + MoveMetrics.getLayerTurnCount(scr) + " ltm, "
+                                    + MoveMetrics.getFaceTurnCount(scr) + " ftm, "
+                                    + MoveMetrics.getQuarterTurnCount(scr) + " qtm";
                         }
 
                     }
 
                     StyledDocument doc = (StyledDocument) infoField.getDocument();
                     doc.getStyle(StyleContext.DEFAULT_STYLE).addAttribute(StyleConstants.FontFamily, Fonts.getSmallDialogFont().getFamily());
-                    doc.getStyle(StyleContext.DEFAULT_STYLE).addAttribute(StyleConstants.FontSize, new Integer(Fonts.getSmallDialogFont().getSize()));
+                    doc.getStyle(StyleContext.DEFAULT_STYLE).addAttribute(StyleConstants.FontSize, Fonts.getSmallDialogFont().getSize());
                     doc.remove(0, doc.getLength());
                     if (turnCountInfo.length() > 0) {
                         doc.insertString(doc.getLength(), "Twists: ", bold);

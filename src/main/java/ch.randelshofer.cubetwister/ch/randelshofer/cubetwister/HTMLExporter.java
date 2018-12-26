@@ -376,10 +376,10 @@ public class HTMLExporter implements Exporter {
         data.put("script.permutation", Cubes.toPermutationString(cube, m.getNotationModel()));
         data.put("script.order", Cubes.getOrder(cube));
         data.put("script.visibleOrder", Cubes.getVisibleOrder(cube));
-        data.put("script.faceTurnCount", parsedScript.getFaceTurnCount());
-        data.put("script.layerTurnCount", parsedScript.getLayerTurnCount());
-        data.put("script.blockTurnCount", parsedScript.getBlockTurnCount());
-        data.put("script.quarterTurnCount", parsedScript.getQuarterTurnCount());
+        data.put("script.faceTurnCount", MoveMetrics.getFaceTurnCount(parsedScript));
+        data.put("script.layerTurnCount", MoveMetrics.getLayerTurnCount(parsedScript));
+        data.put("script.blockTurnCount", MoveMetrics.getBlockTurnCount(parsedScript));
+        data.put("script.quarterTurnCount", MoveMetrics.getQuarterTurnCount(parsedScript));
         data.put("script.scriptType", m.isGenerator() ? "generator" : "solver");
 
         putNotationData(m.getNotationModel(), "script.");
@@ -545,7 +545,7 @@ public class HTMLExporter implements Exporter {
      *
      * @param filenameTemplate The template for the filenameTemplate. It must contain
      * the substring ${cube}
-     * @param in An input stream for reading the contents of the template.
+     * @param tokens An input stream for reading the contents of the template.
      */
     private void processCubeTemplate(String filenameTemplate, String[] tokens) throws IOException {
         String placeholder = "${cube}";
@@ -589,7 +589,7 @@ public class HTMLExporter implements Exporter {
      *
      * @param filenameTemplate The filenameTemplate of the template. The filenameTemplate must contain the substring
      * ${notation}
-     * @param in An input stream for reading the contents of the template.
+     * @param tokens An input stream for reading the contents of the template.
      */
     private void processNotationTemplate(String filenameTemplate, String[] tokens) throws IOException {
         String placeholder = "${notation}";
@@ -617,7 +617,7 @@ public class HTMLExporter implements Exporter {
      *
      * @param filename The filename of the template. The filename must contain the substring
      * ${script}
-     * @param in An input stream for reading the contents of the template.
+     * @param tokens An input stream for reading the contents of the template.
      */
     private void processScriptTemplate(String filename, String[] tokens) throws IOException {
         String placeholder = "${script}";
@@ -645,7 +645,7 @@ public class HTMLExporter implements Exporter {
      *
      * @param filename The filename of the template. The filename must contain the substring
      * ${note}
-     * @param in An input stream for reading the contents of the template.
+     * @param tokens An input stream for reading the contents of the template.
      */
     private void processNoteTemplate(String filename, String[] tokens) throws IOException {
         String placeholder = "${note}";
@@ -672,7 +672,7 @@ public class HTMLExporter implements Exporter {
      * Processes a HTML template.
      *
      * @param filename The filename of the template.
-     * @param in An input stream for reading the contents of the template.
+     * @param tokens An input stream for reading the contents of the template.
      */
     private void processHTMLTemplate(String filename, String[] tokens) throws IOException {
         p.setProgress(p.getProgress() + 1);
@@ -969,7 +969,7 @@ public class HTMLExporter implements Exporter {
     /**
      * Processes a binary template.
      *
-     * @param name The name of the template.
+     * @param filename The name of the template.
      * @param in An input stream for reading the contents of the template.
      */
     private void processBinaryTemplate(String filename, InputStream in) throws IOException {
@@ -990,7 +990,7 @@ public class HTMLExporter implements Exporter {
      * Processes a pack200 template, by writing it both as a pack200 file and
      * a Jar file to the output stream.
      *
-     * @param name The name of the template. Must end with ".jar.pack.gz".
+     * @param filename The name of the template. Must end with ".jar.pack.gz".
      * @param in An input stream for reading the contents of the template.
      */
     private void processPack200Template(String filename, InputStream in) throws IOException {

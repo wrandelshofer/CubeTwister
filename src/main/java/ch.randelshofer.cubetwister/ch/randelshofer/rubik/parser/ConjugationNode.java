@@ -109,36 +109,7 @@ public class ConjugationNode extends Node {
         that.conjugator = this.conjugator.cloneSubtree();
         return that;
     }
-    /**
-     * Gets the layer turn count of the subtree starting
-     * at this node.
-     */
-    public int getLayerTurnCount() {
-        return super.getLayerTurnCount() + conjugator.getLayerTurnCount() * 2;
-    }
-    /**
-     * Gets the block turn count of the subtree starting
-     * at this node.
-     */
-    public int getBlockTurnCount() {
-        return super.getBlockTurnCount() + conjugator.getBlockTurnCount() * 2;
-    }
-    /**
-     * Gets the face turn count of the subtree starting
-     * at this node.
-     */
-    public int getFaceTurnCount() {
-        return super.getFaceTurnCount() + conjugator.getFaceTurnCount() * 2;
-    }
-    /**
-     * Gets the quarter turn count of the subtree starting
-     * at this node.
-     */
-    @Override
-    public int getQuarterTurnCount() {
-        return super.getQuarterTurnCount() + conjugator.getQuarterTurnCount() * 2;
-    }
-    
+
     /**
      * Enumerate this symbol and all of its children.
      * Special operators (i. e. repeat and inverse) are
