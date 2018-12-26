@@ -5,8 +5,6 @@ package ch.randelshofer.cubetwister;
 
 import ch.randelshofer.cubetwister.doc.*;
 import ch.randelshofer.gui.ProgressObserver;
-import ch.randelshofer.gui.ProgressView;
-import ch.randelshofer.gui.tree.TreeNodeImpl;
 import ch.randelshofer.rubik.*;
 import ch.randelshofer.rubik.parser.*;
 import java.io.*;
@@ -15,7 +13,7 @@ import java.util.jar.JarOutputStream;
 import java.util.jar.Pack200;
 import java.util.jar.Pack200.Unpacker;
 import java.util.zip.*;
-import javax.swing.tree.DefaultMutableTreeNode;
+
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;

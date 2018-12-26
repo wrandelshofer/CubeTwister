@@ -3,8 +3,6 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 import static java.lang.Math.abs;
@@ -44,7 +42,13 @@ public class MoveMetrics implements Consumer<Node> {
     private int ltm = 0;
 
     /**
-     * Gets the layer turn count of the subtree starting
+     * Counts the number of no-op moves.
+     * Includes the current node.
+     */
+    private int moveCount = 0;
+
+    /**
+     * Gets the layer turn moveCount of the subtree starting
      * at this node.
      */
     public static int getLayerTurnCount(Node node) {
@@ -54,7 +58,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the block turn count of the subtree starting
+     * Gets the block turn moveCount of the subtree starting
      * at this node.
      */
     public static int getBlockTurnCount(Node node) {
@@ -64,7 +68,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the face turn count of the subtree starting
+     * Gets the face turn moveCount of the subtree starting
      * at this node.
      */
     public static int getFaceTurnCount(Node node) {
@@ -74,7 +78,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the quarter turn count of the subtree starting
+     * Gets the quarter turn moveCount of the subtree starting
      * at this node.
      */
     public static int getQuarterTurnCount(Node node) {
@@ -96,34 +100,37 @@ public class MoveMetrics implements Consumer<Node> {
             int angle = moveNode.getAngle();
             int allLayers = (1 << layerCount) - 1;
             int axis = moveNode.getAxis();
-            if (current == null) {
+            if (layerMask == 0 || angle == 0) {
+                // skip nop, don't count
+            } else if (current == null) {
+                // cannot coalesce
                 current = moveNode;
+                moveCount++;
+            } else if (current.getAxis() == axis && layerMask == allLayers) {
+                // skip cube rotation over same axis
+                moveCount++;
+            } else if (current.getAxis() == axis && current.getLayerMask() == layerMask) {
+                // coalesce subsequent move on same axis and same layer
+                current = new MoveNode(layerCount, axis, layerMask, angle + current.getAngle(),
+                        current.getStartPosition(), moveNode.getEndPosition());
+                moveCount++;
+            } else if (current.getAxis() == axis && current.getAngle() == angle && (current.getLayerMask() ^ layerMask) == 0) {
+                // coalesce subsequent move on same axis and angle and different layers
+                current = new MoveNode(layerCount, axis, layerMask, angle + current.getAngle(),
+                        current.getStartPosition(), moveNode.getEndPosition());
+                moveCount++;
             } else {
-                if (layerMask == 0 || angle == 0) {
-                    // skip nop
-                } else if (current.getAxis() == axis && layerMask == allLayers) {
-                    // skip cube rotation over same axis
-
-                } else if (current.getAxis() == axis && current.getLayerMask() == layerMask) {
-                    // coalesce subsequent move on same axis and same layer
-                    current = new MoveNode(layerCount, axis, layerMask, angle + current.getAngle(),
-                            current.getStartPosition(), moveNode.getEndPosition());
-                } else if (current.getAxis() == axis && current.getAngle() == angle && (current.getLayerMask() ^ layerMask) == 0) {
-                    // coalesce subsequent move on same axis and angle and different layers
-                    current = new MoveNode(layerCount, axis, layerMask, angle + current.getAngle(),
-                            current.getStartPosition(), moveNode.getEndPosition());
-                } else {
-                    // cannot coalesce
-                    if (isTwistMove(current)) {
-                        addToMetrics(current);
-                    }
-                    current = moveNode;
+                // cannot coalesce
+                if (isTwistMove(current)) {
+                    addToTurnMetrics(current);
                 }
+                current = moveNode;
+                moveCount++;
             }
         }
     }
 
-    private void addToMetrics(MoveNode move) {
+    private void addToTurnMetrics(MoveNode move) {
         ltm += countLayerTurns(move);
         qtm += countQuarterTurns(move);
         ftm += countFaceTurns(move);
@@ -142,47 +149,56 @@ public class MoveMetrics implements Consumer<Node> {
         this.btm += that.btm;
         this.qtm += that.qtm;
         this.ftm += that.ftm;
+        int tmpCount = this.moveCount;
         if (that.current != null) {
             accept(that.current);
         }
+        this.moveCount = tmpCount + that.moveCount;
         return this;
     }
 
     /**
-     * Gets the current layer turn count.
+     * Gets the current layer turn moveCount.
      */
     public int getLayerTurnCount() {
         return current == null ? ltm : ltm + countLayerTurns(current);
     }
 
     /**
-     * Gets the current block turn count.
+     * Gets the current block turn moveCount.
      */
     public int getBlockTurnCount() {
         return current == null ? btm : btm + countBlockTurns(current);
     }
 
     /**
-     * Gets the current face turn count.
+     * Gets the current face turn moveCount.
      */
     public int getFaceTurnCount() {
         return current == null ? ftm : ftm + countFaceTurns(current);
     }
 
     /**
-     * Gets the current quarter turn count.
+     * Gets the current quarter turn moveCount.
      */
     public int getQuarterTurnCount() {
         return current == null ? qtm : qtm + countQuarterTurns(current);
     }
 
     /**
-     * Gets the layer turn count of the specified move node.
+     * Gets the number of no-op moves.
+     */
+    public int getMoveCount() {
+        return moveCount;
+    }
+
+    /**
+     * Gets the layer turn moveCount of the specified move node.
      */
     private int countLayerTurns(MoveNode move) {
         int layerCount = move.getLayerCount();
         int layerMask = move.getLayerMask();
-        int turns = abs(move.getAngle())%4;
+        int turns = abs(move.getAngle()) % 4;
         if (turns == 0) {
             return 0;
         } else {
@@ -197,12 +213,12 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the block turn count of the specified move node.
+     * Gets the block turn moveCount of the specified move node.
      */
     private int countBlockTurns(MoveNode move) {
         int layerCount = move.getLayerCount();
         int layerMask = move.getLayerMask();
-        int turns = abs(move.getAngle())%4;
+        int turns = abs(move.getAngle()) % 4;
         if (turns == 0) {
             return 0;
         } else {
@@ -225,7 +241,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the face turn count of the specified node.
+     * Gets the face turn moveCount of the specified node.
      */
     private int countFaceTurns(MoveNode move) {
         int layerCount = move.getLayerCount();
@@ -239,7 +255,7 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the face turn count of the specified node.
+     * Gets the face turn moveCount of the specified node.
      */
     private int countQuarterTurns(MoveNode move) {
         int qturns = abs(move.getAngle() % 4);
@@ -263,5 +279,16 @@ public class MoveMetrics implements Consumer<Node> {
 
         return turns != 0 && layerMask != 0 && layerMask != allLayers;
 
+    }
+
+    @Override
+    public String toString() {
+        return "MoveMetrics{" +
+                "ftm=" + ftm +
+                ", qtm=" + qtm +
+                ", btm=" + btm +
+                ", ltm=" + ltm +
+                ", moves=" + moveCount +
+                '}';
     }
 }

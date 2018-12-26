@@ -86,40 +86,44 @@ public class DefaultNotation implements Notation {
         int outer = 1<<(layerCount-1);
         int all = inner | middle | outer;
 
-        addMove(new Move(0, outer, 1), "R");
-        addMove(new Move(1, outer, 1), "U");
-        addMove(new Move(2, outer, 1), "F");
-        addMove(new Move(0, inner, -1), "L");
-        addMove(new Move(1, inner, -1), "D");
-        addMove(new Move(2, inner, -1), "B");
+        for (int i=1;i<=2;i++) {
+            String suffix=i==1?"":"2";
 
-        addMove(new Move(0, middle, 1), "MR");
-        addMove(new Move(1, middle, 1), "MU");
-        addMove(new Move(2, middle, 1), "MF");
-        addMove(new Move(0, middle, -1), "ML");
-        addMove(new Move(1, middle, -1), "MD");
-        addMove(new Move(2, middle, -1), "MB");
+            addMove(new Move(0, outer, 1*i), "R"+suffix);
+            addMove(new Move(1, outer, 1*i), "U"+suffix);
+            addMove(new Move(2, outer, 1*i), "F"+suffix);
+            addMove(new Move(0, inner, -1*i), "L"+suffix);
+            addMove(new Move(1, inner, -1*i), "D"+suffix);
+            addMove(new Move(2, inner, -1*i), "B"+suffix);
 
-        addMove(new Move(0, outer|middle, 1), "TR");
-        addMove(new Move(1, outer|middle, 1), "TU");
-        addMove(new Move(2, outer|middle, 1), "TF");
-        addMove(new Move(0, inner|middle, -1), "TL");
-        addMove(new Move(1, inner|middle, -1), "TD");
-        addMove(new Move(2, inner|middle, -1), "TB");
-        
-        addMove(new Move(0, outer|inner, 1), "SR");
-        addMove(new Move(1, outer|inner, 1), "SU");
-        addMove(new Move(2, outer|inner, 1), "SF");
-        addMove(new Move(0, inner|outer, -1), "SL");
-        addMove(new Move(1, inner|outer, -1), "SD");
-        addMove(new Move(2, inner|outer, -1), "SB");
-        
-        addMove(new Move(0, all, 1), "CR");
-        addMove(new Move(1, all, 1), "CU");
-        addMove(new Move(2, all, 1), "CF");
-        addMove(new Move(0, all, -1), "CL");
-        addMove(new Move(1, all, -1), "CD");
-        addMove(new Move(2, all, -1), "CB");
+            addMove(new Move(0, middle, 1*i), "MR"+suffix);
+            addMove(new Move(1, middle, 1*i), "MU"+suffix);
+            addMove(new Move(2, middle, 1*i), "MF"+suffix);
+            addMove(new Move(0, middle, -1*i), "ML"+suffix);
+            addMove(new Move(1, middle, -1*i), "MD"+suffix);
+            addMove(new Move(2, middle, -1*i), "MB"+suffix);
+
+            addMove(new Move(0, outer | middle, 1*i), "TR"+suffix);
+            addMove(new Move(1, outer | middle, 1*i), "TU"+suffix);
+            addMove(new Move(2, outer | middle, 1*i), "TF"+suffix);
+            addMove(new Move(0, inner | middle, -1*i), "TL"+suffix);
+            addMove(new Move(1, inner | middle, -1*i), "TD"+suffix);
+            addMove(new Move(2, inner | middle, -1*i), "TB"+suffix);
+
+            addMove(new Move(0, outer | inner, 1*i), "SR"+suffix);
+            addMove(new Move(1, outer | inner, 1*i), "SU"+suffix);
+            addMove(new Move(2, outer | inner, 1*i), "SF"+suffix);
+            addMove(new Move(0, inner | outer, -1*i), "SL"+suffix);
+            addMove(new Move(1, inner | outer, -1*i), "SD"+suffix);
+            addMove(new Move(2, inner | outer, -1*i), "SB"+suffix);
+
+            addMove(new Move(0, all, 1*i), "CR"+suffix);
+            addMove(new Move(1, all, 1*i), "CU"+suffix);
+            addMove(new Move(2, all, 1*i), "CF"+suffix);
+            addMove(new Move(0, all, -1*i), "CL"+suffix);
+            addMove(new Move(1, all, -1*i), "CD"+suffix);
+            addMove(new Move(2, all, -1*i), "CB"+suffix);
+        }
 
         symbolToSyntaxMap.put(Symbol.COMMUTATION, Syntax.PRECIRCUMFIX);
         symbolToSyntaxMap.put(Symbol.CONJUGATION, Syntax.PREFIX);
