@@ -114,9 +114,9 @@ public class MoveMetrics implements Consumer<Node> {
                 current = new MoveNode(layerCount, axis, layerMask, angle + current.getAngle(),
                         current.getStartPosition(), moveNode.getEndPosition());
                 moveCount++;
-            } else if (current.getAxis() == axis && current.getAngle() == angle && (current.getLayerMask() ^ layerMask) == 0) {
+            } else if (current.getAxis() == axis && current.getAngle() == angle && (current.getLayerMask() & layerMask) == 0) {
                 // coalesce subsequent move on same axis and angle and different layers
-                current = new MoveNode(layerCount, axis, layerMask, angle + current.getAngle(),
+                current = new MoveNode(layerCount, axis,current.getLayerMask()|layerMask, angle,
                         current.getStartPosition(), moveNode.getEndPosition());
                 moveCount++;
             } else {

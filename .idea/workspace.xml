@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/HTMLExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/HTMLExporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/TurnMetricsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="105" column="34" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="34" />
+            <state relative-caret-position="60">
+              <caret line="118" column="95" selection-start-line="118" selection-start-column="95" selection-end-line="118" selection-end-column="95" />
             </state>
           </provider>
         </entry>
@@ -64,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/TurnMetricsTest.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="36" column="83" selection-start-line="36" selection-start-column="83" selection-end-line="36" selection-end-column="83" />
+            <state relative-caret-position="391">
+              <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -135,6 +133,7 @@
       <find>toPermu</find>
       <find>activeNode.getFaceTurnCount()</find>
       <find>(\w+)\.(get\w+TurnCount)\(\)</find>
+      <find>moveCount</find>
     </findStrings>
     <replaceStrings>
       <replace>PlayerControl</replace>
@@ -146,6 +145,7 @@
       <replace>/org/monte/media/swing/player/images/Player</replace>
       <replace>createImage(&quot;org.monte.media&quot;</replace>
       <replace>MoveMetrics.$2($1)</replace>
+      <replace>count</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/src/ch.randelshofer.cubetwister</dir>
@@ -207,11 +207,11 @@
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/HTMLExporter.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotationTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/TurnMetrics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotation.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/TurnMetricsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java" />
       </list>
     </option>
   </component>
@@ -436,14 +436,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MoveMetricsTest">
+  <component name="RunManager" selected="JUnit.51 (1)">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CubesTest.testToPermutationString_Cube" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="51 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
@@ -451,11 +451,34 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.CubesTest" />
-      <option name="METHOD_NAME" value="testToPermutationString_Cube" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.MoveMetricsTest" />
+      <option name="METHOD_NAME" value="testMetrics" />
+      <option name="TEST_OBJECT" value="uniqueId" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#23]" />
+      </uniqueIds>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="51" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.MoveMetricsTest" />
+      <option name="METHOD_NAME" value="testMetrics" />
+      <option name="TEST_OBJECT" value="uniqueId" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#23]" />
+      </uniqueIds>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -488,26 +511,6 @@
       <option name="METHOD_NAME" value="testMetrics" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#5]" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.MoveMetricsTest" />
-      <option name="METHOD_NAME" value="testMetrics" />
-      <option name="TEST_OBJECT" value="uniqueId" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#5]" />
-      </uniqueIds>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -547,19 +550,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.CubesTest.testToPermutationString_Cube" />
       <item itemvalue="JUnit.MoveMetricsTest" />
       <item itemvalue="JUnit.MoveMetricsTest.testMetrics" />
-      <item itemvalue="JUnit.[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#5]" />
       <item itemvalue="JUnit.[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#6]" />
+      <item itemvalue="JUnit.51" />
+      <item itemvalue="JUnit.51 (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.51 (1)" />
+        <item itemvalue="JUnit.51" />
+        <item itemvalue="JUnit.MoveMetricsTest.testMetrics" />
         <item itemvalue="JUnit.MoveMetricsTest" />
         <item itemvalue="JUnit.[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#6]" />
-        <item itemvalue="JUnit.MoveMetricsTest.testMetrics" />
-        <item itemvalue="JUnit.[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#5]" />
-        <item itemvalue="JUnit.CubesTest.testToPermutationString_Cube" />
       </list>
     </recent_temporary>
   </component>
@@ -703,39 +706,60 @@
       <option name="project" value="LOCAL" />
       <updated>1545819505174</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Adds move count to MoveMetrics.&#10;Fixes moves in DefaultNotation.">
+      <created>1545820595220</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1545820595220</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Adds file header.">
+      <created>1545820931020</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1545820931020</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Fixes javadoc comments.">
+      <created>1545821570847</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1545821570847</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MoveMetricsTest - 2018.12.26 at 10h 45m 47s.xml">
-      <configuration name="MoveMetricsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveMetricsTest - 2018.12.26 at 10h 47m 03s.xml">
-      <configuration name="MoveMetricsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveMetricsTest - 2018.12.26 at 11h 11m 59s.xml">
-      <configuration name="MoveMetricsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="6 - 2018.12.26 at 11h 14m 18s.xml">
-      <configuration name="6" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveMetricsTest - 2018.12.26 at 11h 14m 31s.xml">
-      <configuration name="MoveMetricsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MoveMetricsTest - 2018.12.26 at 11h 15m 13s.xml">
-      <configuration name="MoveMetricsTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TurnMetricsTest - 2018.12.26 at 11h 28m 11s.xml">
+    <history-entry file="TurnMetricsTest - 2018.12.26 at 11h 35m 30s.xml">
       <configuration name="TurnMetricsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TurnMetricsTest - 2018.12.26 at 11h 28m 35s.xml">
+    <history-entry file="TurnMetricsTest - 2018.12.26 at 11h 35m 44s.xml">
       <configuration name="TurnMetricsTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TurnMetricsTest - 2018.12.26 at 11h 30m 24s.xml">
-      <configuration name="TurnMetricsTest" configurationId="JUnit" />
+    <history-entry file="MoveMetricsTest_testMetrics - 2018.12.26 at 14h 50m 50s.xml">
+      <configuration name="MoveMetricsTest.testMetrics" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TurnMetricsTest - 2018.12.26 at 11h 32m 32s.xml">
-      <configuration name="TurnMetricsTest" configurationId="JUnit" />
+    <history-entry file="51 - 2018.12.26 at 14h 51m 17s.xml">
+      <configuration name="51" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="51 - 2018.12.26 at 14h 51m 44s.xml">
+      <configuration name="51" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="51 - 2018.12.26 at 14h 53m 15s.xml">
+      <configuration name="51" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="51 - 2018.12.26 at 14h 53m 28s.xml">
+      <configuration name="51" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="51_(1) - 2018.12.26 at 14h 53m 53s.xml">
+      <configuration name="51 (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="51_(1) - 2018.12.26 at 14h 54m 32s.xml">
+      <configuration name="51 (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="51_(1) - 2018.12.26 at 14h 55m 26s.xml">
+      <configuration name="51 (1)" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -749,8 +773,8 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Structure" order="1" sideWeight="0.50147057" weight="0.34100878" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32785088" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32785088" />
-      <window_info anchor="bottom" id="Debug" order="4" weight="0.3991228" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.32785088" />
+      <window_info active="true" anchor="bottom" id="Debug" order="4" visible="true" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
@@ -790,7 +814,10 @@
     <MESSAGE value="Fixes class references from other modules." />
     <MESSAGE value="Moves move metrics out from AST nodes into class MoveMetrics.&#10;Coalesces moves now before computing the metrics." />
     <MESSAGE value="MoveMetrics can now be used with streams." />
-    <option name="LAST_COMMIT_MESSAGE" value="MoveMetrics can now be used with streams." />
+    <MESSAGE value="Adds move count to MoveMetrics.&#10;Fixes moves in DefaultNotation." />
+    <MESSAGE value="Adds file header." />
+    <MESSAGE value="Fixes javadoc comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes javadoc comments." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -812,6 +839,18 @@
           <line>346</line>
           <properties />
           <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java</url>
+          <line>118</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java</url>
+          <line>102</line>
+          <properties />
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1117,13 +1156,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="105" column="34" selection-start-line="105" selection-start-column="34" selection-end-line="105" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="498">
@@ -1131,10 +1163,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/TurnMetricsTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="36" column="83" selection-start-line="36" selection-start-column="83" selection-end-line="36" selection-end-column="83" />
+        <state relative-caret-position="391">
+          <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="118" column="95" selection-start-line="118" selection-start-column="95" selection-end-line="118" selection-end-column="95" />
         </state>
       </provider>
     </entry>

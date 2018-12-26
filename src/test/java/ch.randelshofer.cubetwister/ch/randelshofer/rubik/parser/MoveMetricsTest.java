@@ -38,7 +38,8 @@ class MoveMetricsTest {
                 DynamicTest.dynamicTest("42", () -> doMetrics("(R)2", 1, 1, 1, 2, 2)),
                 DynamicTest.dynamicTest("43", () -> doMetrics("(R)3", 1, 1, 1, 1, 3)),
                 DynamicTest.dynamicTest("44", () -> doMetrics("(R)4", 0, 0, 0, 0, 4)),
-                DynamicTest.dynamicTest("51", () -> doMetrics("MR2 MF2 MU2", 3, 3, 6, 12, 3))
+                DynamicTest.dynamicTest("51", () -> doMetrics("R MR L'", 0, 0, 0, 0, 3)),
+                DynamicTest.dynamicTest("101", () -> doMetrics("MR2 MF2 MU2", 3, 3, 6, 12, 3))
         );
     }
 
