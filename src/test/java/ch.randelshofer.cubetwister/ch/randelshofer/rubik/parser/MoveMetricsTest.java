@@ -1,3 +1,6 @@
+/* @(#)MoveMetricsTest.java
+ * Copyright (c) 2018 Werner Randelshofer, Switzerland. MIT License.
+ */
 package ch.randelshofer.rubik.parser;
 
 import org.junit.jupiter.api.DynamicTest;
