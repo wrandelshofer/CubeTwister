@@ -270,4 +270,22 @@ public class CommutationNode extends Node {
             }
         }
     }
+
+
+    @Override
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        b.append(getClass().getSimpleName());
+        b.append("{");
+        b.append(' ');
+        b.append(commutator);
+        b.append(",");
+        for (Node n : getChildren()) {
+            b.append(' ');
+            b.append(n.toString());
+        }
+        b.append(' ');
+        b.append("}");
+        return b.toString();
+    }
 }

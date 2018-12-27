@@ -176,11 +176,18 @@ public abstract class Node extends TreeNodeImpl<Node> {
         }
     }
 
-    /**
-     * Returns a string representation of this node. Use for debugging only.
-     */
+    @Override
     public String toString() {
-        return getClass().getName() + " " + startpos + ".." + endpos;
+        StringBuilder b = new StringBuilder();
+        b.append(getClass().getSimpleName());
+        b.append("{");
+        for (Node n : getChildren()) {
+            b.append(' ');
+            b.append(n.toString());
+        }
+        b.append(' ');
+        b.append("}");
+        return b.toString();
     }
 
     /**
@@ -299,7 +306,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
     }
 
     public List<Node> toResolvedList(boolean inverse) {
-        List<Node> list=new ArrayList<>();
+        List<Node> list = new ArrayList<>();
         resolvedIterator(inverse).forEachRemaining(list::add);
         return list;
     }

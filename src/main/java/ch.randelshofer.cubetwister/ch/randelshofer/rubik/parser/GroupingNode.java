@@ -57,13 +57,4 @@ public class GroupingNode extends Node {
             }
         }
     }
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder("GroupingNode[");
-        for (Node n : getChildren()) {
-            b.append(n.toString());
-        }
-        b.append("]");
-        return b.toString();
-    }
 }

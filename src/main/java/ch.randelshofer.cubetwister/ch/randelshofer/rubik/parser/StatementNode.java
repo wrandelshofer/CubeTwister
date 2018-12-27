@@ -53,14 +53,4 @@ public class StatementNode extends Node {
             }
         }
     }
-
-    @Override
-        public String toString() {
-        StringBuilder b= new StringBuilder( "StatementNode[");
-        for (Node n:getChildren()) {
-            b.append(n.toString());
-        }
-        b.append("]");
-        return b.toString();
-    }
 }

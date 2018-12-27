@@ -229,4 +229,21 @@ public class ConjugationNode extends Node {
             p.writeToken(w, Symbol.CONJUGATION_END);
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder b = new StringBuilder();
+        b.append(getClass().getSimpleName());
+        b.append("{");
+        b.append(' ');
+        b.append(conjugator);
+        b.append(",");
+        for (Node n : getChildren()) {
+            b.append(' ');
+            b.append(n.toString());
+        }
+        b.append(' ');
+        b.append("}");
+        return b.toString();
+    }
 }

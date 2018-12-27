@@ -37,15 +37,6 @@ public class SequenceNode extends Node {
         setAllowsChildren(true);
     }
     
-    @Override
-        public String toString() {
-        StringBuilder b= new StringBuilder( "SequenceNode[");
-        for (Node n:getChildren()) {
-            b.append(n.toString());
-        }
-        b.append("]");
-        return b.toString();
-    }
 
 
 }

@@ -181,7 +181,12 @@ public class MoveNode extends Node {
 
     @Override
     public String toString() {
-        return "MoveNode[ax:" + axis + ",l:" + layerMask + ",an:" + angle + ",pos:" + getStartPosition() + ".." + getEndPosition() + "]";
+        StringBuilder b= new StringBuilder( );
+        b.append(getClass().getSimpleName());
+        b.append("{");
+        b.append("ax:").append(axis).append(" lm:").append(layerMask).append(" an:").append(angle);
+        b.append("}");
+        return b.toString();
     }
 
     /**

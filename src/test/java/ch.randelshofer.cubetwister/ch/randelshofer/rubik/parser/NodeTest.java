@@ -110,8 +110,13 @@ class NodeTest {
                 DynamicTest.dynamicTest("1", () -> doApply("SD2", "(ulb,urf) (dbl,dfr) (ufl,ubr) (dlf,drb)\n(ur,ul) (dr,dl) (bu,fu) (bd,fd)\n(++u) (++d)")),
                 DynamicTest.dynamicTest("1", () -> doApply("SB2", "(dlf,urf) (ufl,dfr) (dbl,ubr) (ulb,drb)\n(rf,lf) (bu,bd) (rb,lb) (fu,fd)\n(++f) (++b)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R U F)", "(dfr,urf) (drb,fdl,flu,lbu,bru)\n(+ur,br,dr,fd,fl,fu,lu,bu) (+rf)\n(+r) (+u) (+f)")),
+                DynamicTest.dynamicTest("1", () -> doApply("(R U F)'", "(dfr,urf) (ulb,ufl,lfd,bdr,ubr)\n(+ur,ub,ul,uf,lf,df,rd,rb) (+rf)\n(-r) (-u) (-f)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R)2", "(drb,urf) (ubr,dfr)\n(ur,dr) (rf,rb)\n(++r)")),
-                DynamicTest.dynamicTest("1", () -> doApply("(R U F)3 D1", "(-drb,lbu,rdf,fur) (+ufl,ldb,fdl,bru)\n(ur,rd,uf) (+rf) (+bu,bd,ld,fd,lu,rb,lf)\n(-r) (-u) (-f) (+d)")),
+                DynamicTest.dynamicTest("1", () -> doApply("(R U F)3", "(dfr,urf) (ufl,bdr,ulb,lfd,ubr)\n(+ur,fd,lu,rb,lf,ub,dr,fu) (+rf)\n(-r) (-u) (-f)")),
+                DynamicTest.dynamicTest("1", () -> doApply("(R U F)'3", "(dfr,urf) (dlf,bul,rbd,luf,rub)\n(+ur,uf,rd,bu,fl,br,ul,df) (+rf)\n(+r) (+u) (+f)")),
+                DynamicTest.dynamicTest("1", () -> doApply("(R U F)3'", "(dfr,urf) (dlf,bul,rbd,luf,rub)\n(+ur,uf,rd,bu,fl,br,ul,df) (+rf)\n(+r) (+u) (+f)")),
+                DynamicTest.dynamicTest("1", () -> doApply("(R U F)3''", "(dfr,urf) (ufl,bdr,ulb,lfd,ubr)\n(+ur,fd,lu,rb,lf,ub,dr,fu) (+rf)\n(-r) (-u) (-f)")),
+                DynamicTest.dynamicTest("1", () -> doApply("(R U F)3'4", "(ufl,bdr,ulb,lfd,ubr)\n(+ur,fl) (+dr,lu) (+bu,df) (+rb,uf)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R)'", "(dfr,bdr,ubr,fur)\n(ur,fr,dr,br)\n(-r)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R F)'", "(+ufl,lfd,bdr,ubr,fur) (-dfr)\n(ur,fr,fu,fl,fd,dr,br)\n(-r) (-f)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R- U F)- (R' U F)'", "(+ulb,lfd,rub,luf,rfu) (+dfr) (+drb)\n(+ur,ul,lf) (rf,dr,rb) (+bu,fu,fd)\n(++r) (++u) (++f)")),
@@ -135,8 +140,8 @@ class NodeTest {
 
     void doApply(String script, String expected) throws Exception {
         if (!html) {
-                System.out.println("doApply script: " + script);
-                System.out.println("  expected: " + expected);
+              //  System.out.println("doApply script: " + script);
+              //  System.out.println("  expected: " + expected);
         }
 
         DefaultNotation notation = new DefaultNotation();
@@ -156,7 +161,7 @@ class NodeTest {
             System.out.println("    </section>");
             System.out.println("  </article>");
         } else {
-            System.out.println("  actual: " + actual);
+            //System.out.println("  actual: " + actual);
             //System.out.println(" DynamicTest.dynamicTest(\"1\", () -> doApply(\"" + script + "\", \"" + actual.replaceAll("\n", "\\\\n") + "\")),");
         }
 
