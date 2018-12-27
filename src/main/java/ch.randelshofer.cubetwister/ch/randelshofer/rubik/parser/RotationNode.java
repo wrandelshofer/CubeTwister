@@ -59,7 +59,7 @@ public class RotationNode extends SequenceNode {
     /**
      * Applies the symbol represented by this node to the cube.
      *
-     * @param cube A cube to be transformed by this symbol.
+     * @param cube    A cube to be transformed by this symbol.
      * @param inverse If true, the transform will be done in inverse order.
      */
     public void applyTo(Cube cube, boolean inverse) {
@@ -75,7 +75,7 @@ public class RotationNode extends SequenceNode {
     public void overwritePositions(int sp, int ep) {
         super.overwritePositions(sp, ep);
         if (rotator != null) {
-            for (Iterator<Node> i = rotator.getChildren().iterator(); i.hasNext();) {
+            for (Iterator<Node> i = rotator.getChildren().iterator(); i.hasNext(); ) {
                 SequenceNode child = (SequenceNode) i.next();
                 child.overwritePositions(sp, ep);
             }
@@ -198,7 +198,7 @@ public class RotationNode extends SequenceNode {
             // Break the loop, if other symbols than rotators are encountered.
             boolean isPureRotation = true;
             Vector<Node> rotators = new Vector<Node>();
-            for (Iterator<Node> i = rotator.resolvedIterator(false);i.hasNext();) {
+            for (Iterator<Node> i = rotator.resolvedIterator(false); i.hasNext(); ) {
                 Node node = i.next();
                 if (node instanceof MoveNode) {
                     MoveNode transform = (MoveNode) node;
@@ -233,11 +233,11 @@ public class RotationNode extends SequenceNode {
                 RotationNode rotated = (RotationNode) cloneSubtree();
                 rotated.rotator.removeAllChildren();
 
-for (Iterator<Node> i= rotators.iterator();i.hasNext();) {
+                for (Iterator<Node> i = rotators.iterator(); i.hasNext(); ) {
                     MoveNode rotator_ = (MoveNode) i.next();
                     rotated.transform(rotator_, false);
                 }
-                for (Iterator<Node> i = rotated.childIterator();i.hasNext();) {
+                for (Iterator<Node> i = rotated.childIterator(); i.hasNext(); ) {
                     ((SequenceNode) i.next()).writeTokens(w, p, macroMap);
                     if (i.hasNext()) {
                         p.writeToken(w, Symbol.DELIMITER);
@@ -280,42 +280,6 @@ for (Iterator<Node> i= rotators.iterator();i.hasNext();) {
             p.writeToken(w, Symbol.ROTATION_DELIMITER);
             super.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.ROTATION_END);
-        }
-    }
-
-    public List<Node> toResolvedList() {
-        boolean isPureRotation = true;
-        Vector<Node> rotators = new Vector<Node>();
-        for (Iterator<Node> i = rotator.resolvedIterator(false);i.hasNext();) {
-            Node node = i.next();
-            if (node instanceof MoveNode) {
-                MoveNode transform = (MoveNode) node;
-                if (transform.isRotation()) {
-                    rotators.addElement(transform);
-                } else {
-                    isPureRotation = false;
-                    break;
-                }
-            } else if (node instanceof PermutationNode) {
-                isPureRotation = false;
-                break;
-            }
-        }
-        if (isPureRotation) {
-            @SuppressWarnings("unchecked")
-            List<Node> list = new RotatedList((children == null) ? Collections.EMPTY_LIST :(List<Node>)(List<?>) children, rotators);
-            return list;
-        } else {
-            ListOfLists<Node> list = new ListOfLists<Node>();
-            @SuppressWarnings("unchecked")
-            List<Node> a = (rotator == null) ? Collections.EMPTY_LIST : rotator.toResolvedList();
-            @SuppressWarnings("unchecked")
-            List<Node> b = (children == null) ? Collections.EMPTY_LIST : (List<Node>)(List<?>)children;
-
-            list.addList(new InvertedList(a));
-            list.addList(b);
-            list.addList(a);
-            return list;
         }
     }
 }

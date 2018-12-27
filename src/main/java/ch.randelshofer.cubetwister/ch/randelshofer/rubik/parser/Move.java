@@ -3,8 +3,6 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.util.SingleElementList;
-
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
@@ -139,7 +137,7 @@ public class Move implements Comparable<Move> {
     }
 
     public List<Move> getResolvedList() {
-        return new SingleElementList<Move>(this);
+        return List.of(this);
     }
 
     public int compareTo(Move that) {

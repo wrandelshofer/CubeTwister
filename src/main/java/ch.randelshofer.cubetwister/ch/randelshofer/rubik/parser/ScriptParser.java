@@ -316,7 +316,7 @@ public class ScriptParser extends Object {
         if (VERBOSE) {
             System.out.println("END PARSE");
             System.out.println("script:" + script);
-            System.out.println("resolved:" + script.toResolvedList());
+            System.out.println("resolved:" + script.toResolvedList(false));
         }
         return script;
     }

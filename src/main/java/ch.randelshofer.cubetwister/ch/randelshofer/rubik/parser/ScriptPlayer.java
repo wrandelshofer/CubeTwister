@@ -430,7 +430,7 @@ public class ScriptPlayer extends AbstractPlayer {
         }
         }*/
         List<Node> empty = Collections.emptyList();
-        resolvedScript = (script == null) ? empty : script.toResolvedList();
+        resolvedScript = (script == null) ? empty : script.toResolvedList(false);
         scriptIndex = 0;
         ftm = btm = ltm = qtm = 0;
         progress.setValue(0);

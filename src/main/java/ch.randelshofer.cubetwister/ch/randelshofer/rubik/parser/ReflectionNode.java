@@ -126,8 +126,4 @@ public class ReflectionNode extends Node {
             throw new UnsupportedOperationException("Not supported yet."); 
         }
     }
-    @Override
-    public List<Node> toResolvedList() {
-        return new ReflectedList(super.toResolvedList());
-    }
 }

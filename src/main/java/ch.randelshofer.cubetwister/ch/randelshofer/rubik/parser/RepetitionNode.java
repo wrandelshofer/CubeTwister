@@ -7,10 +7,10 @@ import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.util.EmptyIterator;
 import ch.randelshofer.util.RepeatedList;
 import ch.randelshofer.util.ReverseListIterator;
-import ch.randelshofer.util.SingletonIterator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 /**
  * RepetitionNode.
  *
- * @author  werni
+ * @author werni
  * @version $Id$
  * result is an illegal move.
  * <br>5.1 2010-02-27 Special treatment of a single MoveNode child in
@@ -37,7 +37,9 @@ public class RepetitionNode extends Node {
 
     int repeatCount = 1;
 
-    /** Creates new RepetitionNode */
+    /**
+     * Creates new RepetitionNode
+     */
     public RepetitionNode(int layerCount) {
         this(layerCount, -1, -1);
     }
@@ -72,11 +74,11 @@ public class RepetitionNode extends Node {
     }
 
     @Override
-    @SuppressWarnings({"rawtypes","unchecked"})
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public Iterator<Node> reversedChildIterator() {
         return (children == null)
-                ?  EmptyIterator.getInstance()
-                :  new ReverseListIterator(children);
+                ? EmptyIterator.getInstance()
+                : new ReverseListIterator(children);
     }
 
     @Override
@@ -106,18 +108,18 @@ public class RepetitionNode extends Node {
     private static class ResolvedIterator
             implements Iterator<Node> {
 
-        protected RepetitionNode root;
-        protected Iterator<Node> children;
-        protected Iterator<Node> subtree;
-        boolean inverse;
-        int repeatCount;
+        private final RepetitionNode root;
+        private Iterator<Node> children;
+        private Iterator<Node> subtree;
+        private boolean inverse;
+        private int repeatCount;
 
-        public ResolvedIterator(RepetitionNode rootNode, boolean inverse, int repeat) {
-            root = rootNode;
+        public ResolvedIterator(RepetitionNode root, boolean inverse, int repeat) {
+            this.root = root;
             this.inverse = inverse;
-            this.repeatCount = (rootNode.getChildCount() == 0) ? 0 : repeat;
+            this.repeatCount = (root.getChildCount() == 0) ? 0 : repeat;
             children = (inverse) ? root.reversedChildIterator() : root.childIterator();
-            subtree = new SingletonIterator<Node>(root.clone());
+            subtree = Collections.emptyIterator();
         }
 
         @Override
@@ -148,28 +150,7 @@ public class RepetitionNode extends Node {
 
         @Override
         public void remove() {
-            throw new UnsupportedOperationException("Not supported yet."); 
-        }
-    }
-
-    @Override
-    public List<Node> toResolvedList() {
-        if (getChildCount() == 1 && (getChildAt(0) instanceof MoveNode) //
-                /*&& Math.abs(((MoveNode) getChildAt(0)).getAngle() * repeatCount) <= 2*/) {
-            // Our only child is a +/-90° MoveNode:
-            //      We add a +/-180° MoveNode to the list which includes the
-            //      start and end position of the repetitoro.
-            MoveNode moveNode = (MoveNode) ((MoveNode) getChildAt(0)).clone();
-            moveNode.setAngle((repeatCount * moveNode.getAngle())%4);
-            moveNode.setStartPosition(Math.min(getStartPosition(), moveNode.getStartPosition()));
-            moveNode.setEndPosition(Math.max(getEndPosition(), moveNode.getEndPosition()));
-            LinkedList<Node> l = new LinkedList<Node>();
-            l.add(moveNode);
-            return l;
-        } else {
-            // We have more than one child or our only child is not a MoveNode,
-            //  or it is already a double turn node:
-            return new RepeatedList<Node>(super.toResolvedList(), repeatCount);
+            throw new UnsupportedOperationException("Not supported yet.");
         }
     }
 

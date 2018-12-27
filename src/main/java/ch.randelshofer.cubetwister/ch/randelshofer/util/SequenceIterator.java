@@ -4,58 +4,64 @@
 
 package ch.randelshofer.util;
 
-import java.util.Enumeration;
+import java.util.Collections;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.List;
 
-/** 
- * This class Encapsulates two Enumerations.
+/**
+ * This class Encapsulates a sequence of iterators.
  *
  * @author Werner Randelshofer
  * @version $Id$
-*/
-public class SequenceIterator<T> 
-implements Iterator<T> {
-    /** The first enumeration. */
-    private Iterator<T> first;
-    /** The second enumeration. */
-    private Iterator<T> second;
-
-    /** 
-     * @param first The first enumeration.
-     * @param second The second enumeration.
+ */
+public class SequenceIterator<T>
+        implements Iterator<T> {
+    /**
+     * The current iterator.
      */
+    private Iterator<T> current;
+    /**
+     * The remaining iterators.
+     */
+    private Iterator<Iterator<T>> iterators;
+
     public SequenceIterator(Iterator<T> first, Iterator<T> second) {
-        this.first = first;
-        this.second = second;
+        this(List.of(first, second).iterator());
     }
 
-    /** 
-     * Tests if this enumeration contains next element.
-     * @return  <code>true</code> if this enumeration contains it
-     *           <code>false</code> otherwise.
-     */ 
+    public SequenceIterator(Iterable<Iterator<T>> iterators) {
+        this(iterators.iterator());
+    }
+    public SequenceIterator(Iterator<Iterator<T>> iterators) {
+        this.current = Collections.emptyIterator();
+        this.iterators = iterators;
+    }
+
+    private boolean move() {
+        if (!current.hasNext()) {
+            while (iterators.hasNext()) {
+                current = iterators.next();
+                if (current.hasNext()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
     public boolean hasNext() {
-        return first.hasNext() || second.hasNext();
+        return current.hasNext()|| move();
     }
 
-    /** 
-     * Returns the next element of this enumeration.
-     * @return     the next element of this enumeration.
-     * @exception  NoSuchElementException  if no more elements exist.
-     */
     @Override
-    public synchronized T next() {
-        if (first.hasNext()) {
-            return first.next();
-        } else {
-            return second.next();
-        }
+    public T next() {
+        move();
+        return current.next();
     }
 
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException();
     }
 }

@@ -4,8 +4,6 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.util.SingleElementList;
-import ch.randelshofer.util.SingletonIterator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -99,19 +97,14 @@ public class MoveNode extends Node {
         layerCount = newValue;
     }
 
-    /**
-     * Enumerate this symbol and all of its children.
-     * Special operators (i. e. repeat and inverse) are
-     * resolved before the children are returned.
-     */
     @Override
     public Iterator<Node> resolvedIterator(boolean isInverse) {
         if (isInverse) {
             MoveNode inversedNode = ((MoveNode) clone());
             inversedNode.inverse();
-            return new SingletonIterator<Node>(inversedNode);
+            return List.<Node>of(inversedNode).iterator();
         } else {
-            return new SingletonIterator<Node>(this);
+            return List.<Node>of(this).iterator();
         }
     }
 
@@ -254,10 +247,5 @@ public class MoveNode extends Node {
             return this.layerMask == that.layerMask && this.angle == that.angle && this.axis == that.axis;
         }
         return false;
-    }
-
-    @Override
-    public List<Node> toResolvedList() {
-        return new SingleElementList<Node>(this);
     }
 }

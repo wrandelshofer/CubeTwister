@@ -5,9 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NOPNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NOPNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ReflectionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ReflectionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/StatementNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/StatementNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SequenceIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SequenceIterator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SingleElementList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SingletonIterator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,50 +39,31 @@
     </SUITE>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.585214">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-2505">
-                  <caret line="252" column="32" selection-start-line="252" selection-start-column="32" selection-end-line="252" selection-end-column="32" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="162">
-                  <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
+                <state relative-caret-position="367">
+                  <caret line="250" selection-start-line="250" selection-end-line="250" />
+                  <folding>
+                    <element signature="e#2735#2741#0" expanded="true" />
+                    <element signature="e#2811#2817#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationNode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="57">
-                  <caret line="92" column="45" selection-start-line="92" selection-start-column="45" selection-end-line="92" selection-end-column="45" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/DoubleSummaryStatistics.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="829">
-                  <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
+                <state relative-caret-position="352">
+                  <caret line="992" column="5" selection-start-line="992" selection-start-column="5" selection-end-line="992" selection-end-column="5" />
+                  <folding>
+                    <element signature="e#27373#27379#0" expanded="true" />
+                    <element signature="e#27449#27455#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -72,44 +71,71 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="75">
+                <state relative-caret-position="265">
                   <caret line="303" column="20" selection-start-line="303" selection-start-column="20" selection-end-line="303" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="157">
+                  <caret line="318" column="59" selection-start-line="318" selection-start-column="59" selection-end-line="318" selection-end-column="59" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="157">
+                  <caret line="432" column="79" selection-start-line="432" selection-start-column="79" selection-end-line="432" selection-end-column="79" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="235">
-                  <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+                <state relative-caret-position="250">
+                  <caret line="39" column="209" selection-start-line="39" selection-start-column="209" selection-end-line="39" selection-end-column="209" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="52">
+                  <caret line="707" column="26" selection-start-line="707" selection-start-column="26" selection-end-line="707" selection-end-column="26" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotation.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-226">
-                  <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+                <state relative-caret-position="276">
+                  <caret line="1700" column="49" selection-start-line="1700" selection-start-column="49" selection-end-line="1700" selection-end-column="49" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/ArrayList.java">
+            <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="188">
-                  <caret line="1539" selection-start-line="1539" selection-end-line="1539" />
+                <state relative-caret-position="168">
+                  <caret line="316" column="41" lean-forward="true" selection-start-line="316" selection-start-column="41" selection-end-line="316" selection-end-column="41" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="58">
-                  <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+                <state relative-caret-position="520">
+                  <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
                 </state>
               </provider>
             </entry>
@@ -118,11 +144,92 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="506">
-                  <caret line="50" lean-forward="true" selection-start-line="48" selection-end-line="50" />
+                <state relative-caret-position="585">
+                  <caret line="147" column="26" selection-start-line="147" selection-start-column="26" selection-end-line="147" selection-end-column="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="367">
+                  <caret line="231" selection-start-line="231" selection-end-line="231" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="374">
+                  <caret line="283" column="5" selection-start-line="283" selection-start-column="5" selection-end-line="283" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotatedList.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="285">
+                  <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/StatementNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="217">
+                  <caret line="55" selection-start-line="55" selection-end-line="55" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/GroupingNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="164">
+                  <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="367">
+                  <caret line="126" selection-start-line="126" selection-end-line="126" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="708">
+                  <caret line="271" column="5" selection-start-line="271" selection-start-column="5" selection-end-line="271" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/ImmutableCollections.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="183">
+                  <caret line="417" column="8" selection-start-line="417" selection-start-column="8" selection-end-line="417" selection-end-column="8" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ReflectionNode.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="375">
+                  <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
                 </state>
               </provider>
             </entry>
@@ -135,8 +242,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="module-info" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -156,6 +263,8 @@
       <find>activeNode.getFaceTurnCount()</find>
       <find>(\w+)\.(get\w+TurnCount)\(\)</find>
       <find>moveCount</find>
+      <find>FilterIterato</find>
+      <find>ResolvedI</find>
     </findStrings>
     <replaceStrings>
       <replace>PlayerControl</replace>
@@ -183,17 +292,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJTree.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJTable.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/MutableJList.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Icons.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptView.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeColorsTableModel.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubePartsTableModel.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersImageView.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersTableModel.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/CubeTwisterApplicationModel.java" />
-        <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeView.java" />
         <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/AbstractEntityView.java" />
         <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/InfoView.java" />
         <option value="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptPrimaryView.java" />
@@ -216,12 +314,6 @@
         <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MutableNotation.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/MoveMetrics.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/impexp/AbstractExporter.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/HTMLExporter.java" />
@@ -231,16 +323,33 @@
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotation.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/TurnMetricsTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/FilteringIterator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/FilterIterator.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SequenceIterator.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Move.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NOPNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ReflectionNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/StatementNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="229" />
-    <option name="y" value="91" />
-    <option name="width" value="1680" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="440" />
+    <option name="y" value="1175" />
+    <option name="width" value="1700" />
     <option name="height" value="1027" />
   </component>
   <component name="ProjectView">
@@ -248,21 +357,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="CubeTwister" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ch.randelshofer.cubetwister" type="616d4139:PackageViewModuleNode" />
-            </path>
-            <path>
-              <item name="CubeTwister" type="58d84e3e:PackageViewProjectNode" />
-              <item name="org.kociemba.twophase" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -359,6 +454,15 @@
               <item name="CubeTwister" type="b2602c69:ProjectViewProjectNode" />
               <item name="CubeTwister" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="ch.randelshofer.cubetwister" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CubeTwister" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CubeTwister" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -406,7 +510,21 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="CubeTwister" type="58d84e3e:PackageViewProjectNode" />
+              <item name="ch.randelshofer.cubetwister" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="CubeTwister" type="58d84e3e:PackageViewProjectNode" />
+              <item name="org.kociemba.twophase" type="616d4139:PackageViewModuleNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -458,49 +576,18 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.NodeTest.testResolvedIterable">
+  <component name="RunManager" selected="JUnit.All in ch.randelshofer.cubetwister">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="51 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in ch.randelshofer.cubetwister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.MoveMetricsTest" />
-      <option name="METHOD_NAME" value="testMetrics" />
-      <option name="TEST_OBJECT" value="uniqueId" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#23]" />
-      </uniqueIds>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="51" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.MoveMetricsTest" />
-      <option name="METHOD_NAME" value="testMetrics" />
-      <option name="TEST_OBJECT" value="uniqueId" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.MoveMetricsTest]/[test-factory:testMetrics()]/[dynamic-test:#23]" />
-      </uniqueIds>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -520,7 +607,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MoveMetricsTest.testAccept" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Move.1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
@@ -529,9 +616,27 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.MoveMetricsTest" />
-      <option name="METHOD_NAME" value="testAccept" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.NodeTest" />
+      <option name="METHOD_NAME" value="testResolvedIterable" />
+      <option name="TEST_OBJECT" value="uniqueId" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.NodeTest]/[test-factory:testResolvedIterable()]/[dynamic-test:#1]" />
+      </uniqueIds>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NodeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.NodeTest" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -570,19 +675,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.MoveMetricsTest" />
-      <item itemvalue="JUnit.MoveMetricsTest.testAccept" />
-      <item itemvalue="JUnit.51" />
-      <item itemvalue="JUnit.51 (1)" />
       <item itemvalue="JUnit.NodeTest.testResolvedIterable" />
+      <item itemvalue="JUnit.Move.1" />
+      <item itemvalue="JUnit.MoveMetricsTest" />
+      <item itemvalue="JUnit.NodeTest" />
+      <item itemvalue="JUnit.All in ch.randelshofer.cubetwister" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NodeTest.testResolvedIterable" />
-        <item itemvalue="JUnit.MoveMetricsTest.testAccept" />
-        <item itemvalue="JUnit.51 (1)" />
-        <item itemvalue="JUnit.51" />
+        <item itemvalue="JUnit.All in ch.randelshofer.cubetwister" />
+        <item itemvalue="JUnit.NodeTest" />
         <item itemvalue="JUnit.MoveMetricsTest" />
+        <item itemvalue="JUnit.Move.1" />
+        <item itemvalue="JUnit.NodeTest.testResolvedIterable" />
       </list>
     </recent_temporary>
   </component>
@@ -761,71 +866,112 @@
       <option name="project" value="LOCAL" />
       <updated>1545832733354</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Adds NodeTest.">
+      <created>1545835120457</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1545835120457</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Fixes comments.">
+      <created>1545920311209</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1545920311209</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 32m 05s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 04m 11s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 33m 35s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 04m 46s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 34m 14s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 06m 11s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 34m 31s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 08m 35s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 34m 56s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 18m 54s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 35m 15s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 31m 05s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 36m 30s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 31m 58s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 36m 44s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 35m 31s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 37m 04s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="NodeTest - 2018.12.27 at 16h 57m 28s.xml">
+      <configuration name="NodeTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="NodeTest_testResolvedIterable - 2018.12.26 at 15h 37m 59s.xml">
-      <configuration name="NodeTest.testResolvedIterable" configurationId="JUnit" />
+    <history-entry file="All_in_ch_randelshofer_cubetwister - 2018.12.27 at 17h 10m 46s.xml">
+      <configuration name="All in ch.randelshofer.cubetwister" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="229" y="91" width="1680" height="1027" extended-state="0" />
+    <frame x="480" y="1175" width="1680" height="1027" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.21550672" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.21733822" />
       <window_info id="Designer" order="1" />
       <window_info id="UI Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Structure" order="1" sideWeight="0.50147057" weight="0.34100878" />
+      <window_info active="true" anchor="bottom" id="Structure" order="1" sideWeight="0.50147057" visible="true" weight="0.34100878" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32785088" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.32785088" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.32785088" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.3991228" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.39035088" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.28618422" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.32938856" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.3651316" />
       <window_info anchor="bottom" id="Run with VisualVM" order="12" />
       <window_info anchor="bottom" id="Debug with VisualVM" order="13" />
-      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32967034" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.22222222" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Maven" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Coverage" order="6" side_tool="true" weight="0.32967034" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985294" visible="true" weight="0.2177322" />
+      <window_info id="Designer" order="1" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Structure" order="1" sideWeight="0.50147057" weight="0.34100878" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.32785088" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.32785088" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.3991228" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.28618422" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32938856" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.3651316" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="12" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="13" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.22222222" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Coverage" order="6" side_tool="true" weight="0.32967034" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -854,7 +1000,9 @@
     <MESSAGE value="Fixes javadoc comments." />
     <MESSAGE value="Fixes MoveMetrics." />
     <MESSAGE value="Renames test methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="Renames test methods." />
+    <MESSAGE value="Adds NodeTest." />
+    <MESSAGE value="Fixes comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes comments." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -969,22 +1117,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersImageView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeStickersTableModel.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/CubeTwisterApplicationModel.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/CubeView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/AbstractEntityView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/InfoView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptPrimaryView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptToolBarView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptSecondaryView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesTemplatesPanel.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/undo/UndoRedoManager.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/Wizard.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptOptionsView.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesPanel.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/PreferencesAction.java" />
-    <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/NotationView.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/app/action/ImportFileAction.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/border/ImageBevelBorder.java" />
     <entry file="file://$PROJECT_DIR$/src/ch.randelshofer.cubetwister/src/ch/randelshofer/cubetwister/doc/ScriptView.java" />
@@ -1054,66 +1186,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8265">
-          <caret line="551" column="47" selection-start-line="551" selection-start-column="47" selection-end-line="551" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/gui/image/Images.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1035">
           <caret line="69" selection-start-line="69" selection-end-line="78" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="131" selection-start-line="131" selection-end-line="131" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="111" selection-start-line="111" selection-end-line="111" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="120" selection-start-line="120" selection-end-line="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="658" column="74" selection-start-line="658" selection-start-column="74" selection-end-line="658" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="1646" column="42" selection-start-line="1646" selection-start-column="42" selection-end-line="1646" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -1143,73 +1219,249 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="1539" selection-start-line="1539" selection-end-line="1539" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2505">
+        <state relative-caret-position="3780">
           <caret line="252" column="32" selection-start-line="252" selection-start-column="32" selection-end-line="252" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/DoubleSummaryStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
+        <state relative-caret-position="945">
           <caret line="63" column="13" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="92" column="45" selection-start-line="92" selection-start-column="45" selection-end-line="92" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="107" column="26" selection-start-line="107" selection-start-column="26" selection-end-line="107" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="829">
-          <caret line="66" column="5" lean-forward="true" selection-start-line="66" selection-start-column="5" selection-end-line="66" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="303" column="20" selection-start-line="303" selection-start-column="20" selection-end-line="303" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/DefaultNotation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-226">
+        <state relative-caret-position="480">
           <caret line="32" column="11" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/ArrayList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23085">
+          <caret line="1539" selection-start-line="1539" selection-end-line="1539" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="90" column="16" selection-start-line="90" selection-start-column="16" selection-end-line="90" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="56" selection-start-line="43" selection-end-line="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/Files.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/FilterIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="51" column="14" lean-forward="true" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetricsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SequenceIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/List.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="1039" column="50" lean-forward="true" selection-start-line="1039" selection-start-column="50" selection-end-line="1039" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/util/ImmutableCollections.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="417" column="8" selection-start-line="417" selection-start-column="8" selection-end-line="417" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SingleElementList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/util/SingletonIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Move.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NOPNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="250" selection-start-line="250" selection-end-line="250" />
+          <folding>
+            <element signature="e#2735#2741#0" expanded="true" />
+            <element signature="e#2811#2817#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="318" column="59" selection-start-line="318" selection-start-column="59" selection-end-line="318" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="303" column="20" selection-start-line="303" selection-start-column="20" selection-end-line="303" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="992" column="5" selection-start-line="992" selection-start-column="5" selection-end-line="992" selection-end-column="5" />
+          <folding>
+            <element signature="e#27373#27379#0" expanded="true" />
+            <element signature="e#27449#27455#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="432" column="79" selection-start-line="432" selection-start-column="79" selection-end-line="432" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RepetitionNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="708">
+          <caret line="271" column="5" selection-start-line="271" selection-start-column="5" selection-end-line="271" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ReflectionNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="127" column="5" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/StatementNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/GroupingNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="367">
+          <caret line="231" selection-start-line="231" selection-end-line="231" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotatedList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="11" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="283" column="5" selection-start-line="283" selection-start-column="5" selection-end-line="283" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+        <state relative-caret-position="250">
+          <caret line="39" column="209" selection-start-line="39" selection-start-column="209" selection-end-line="39" selection-end-column="209" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="316" column="41" lean-forward="true" selection-start-line="316" selection-start-column="41" selection-end-line="316" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="1700" column="49" selection-start-line="1700" selection-start-column="49" selection-end-line="1700" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="707" column="26" selection-start-line="707" selection-start-column="26" selection-end-line="707" selection-end-column="26" />
         </state>
       </provider>
     </entry>

@@ -5,8 +5,6 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.Cubes;
-import ch.randelshofer.util.SingleElementList;
-import ch.randelshofer.util.SingletonIterator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,10 +18,10 @@ import java.util.Map;
 /**
  * A PermutationNode holds a single permutation and orientation change cycle of
  * cube parts of a single type.
- * The side effect of a permutation node to a Cube is a permutation and 
+ * The side effect of a permutation node to a Cube is a permutation and
  * orientation change the cube parts in the cycle.
  *
- * @author  werni
+ * @author werni
  * @version $Id$
  * with more than 5 layers.
  * <br>5.2 2009-01-05 Removed static method toPermutationString(), because
@@ -76,18 +74,20 @@ public class PermutationNode extends Node implements Cloneable {
         public int orientation;
         /**
          * The location of the part.
+         *
          * @see ch.randelshofer.rubik.Cube
          */
         public int location;
 
         public PermutationItem clone() {
             try {
-                return (PermutationItem)super.clone();
+                return (PermutationItem) super.clone();
             } catch (CloneNotSupportedException e) {
                 throw new InternalError(e.getMessage());
             }
         }
     }
+
     public final static int SIDE_PERMUTATION = 1;
     public final static int EDGE_PERMUTATION = 2;
     public final static int CORNER_PERMUTATION = 3;
@@ -99,14 +99,18 @@ public class PermutationNode extends Node implements Cloneable {
      */
     private int type = UNDEFINED_PERMUTATION;
 
-    /** Creates a new PermutationNode. */
+    /**
+     * Creates a new PermutationNode.
+     */
     public PermutationNode(int layerCount) {
         this(layerCount, -1, -1);
     }
 
-    /** Creates a new PermutationNode.
+    /**
+     * Creates a new PermutationNode.
+     *
      * @param startpos The start position of the node in the source code.
-     * @param endpos The end position of the node in the source code.
+     * @param endpos   The end position of the node in the source code.
      */
     public PermutationNode(int layerCount, int startpos, int endpos) {
         super(Symbol.PERMUTATION, layerCount, startpos, endpos);
@@ -161,10 +165,10 @@ public class PermutationNode extends Node implements Cloneable {
      * permutation already has permutation items
      * of a different type.
      *
-     * @param type PermutationNode.SIDE, .EDGE, .CORNER
-     * @param signSymbol Symbol.PERMUTATION_PLUS, .PMINUS or  .PPLUSPLUS or (0 if no sign symbol).
+     * @param type        PermutationNode.SIDE, .EDGE, .CORNER
+     * @param signSymbol  Symbol.PERMUTATION_PLUS, .PMINUS or  .PPLUSPLUS or (0 if no sign symbol).
      * @param faceSymbols Array of 1, 2, or 3 entries of
-     *                   Symbol.FACE_R, .PU, .PB, .PL, .PD or .PF.
+     *                    Symbol.FACE_R, .PU, .PB, .PL, .PD or .PF.
      */
     public void addPermItem(int type, Symbol signSymbol, Symbol[] faceSymbols) {
         addPermItem(type, signSymbol, faceSymbols, 0, 3);
@@ -175,13 +179,13 @@ public class PermutationNode extends Node implements Cloneable {
      * permutation already has permutation items
      * of a different type.
      *
-     * @param type PermutationNode.SIDE, .EDGE, .CORNER
-     * @param signSymbol Symbol.PERMUTATION_PLUS, .PMINUS or  .PPLUSPLUS or (0 if no sign symbol).
+     * @param type        PermutationNode.SIDE, .EDGE, .CORNER
+     * @param signSymbol  Symbol.PERMUTATION_PLUS, .PMINUS or  .PPLUSPLUS or (0 if no sign symbol).
      * @param faceSymbols Array of 1, 2, or 3 entries of
-     *                   Symbol.FACE_R, .PU, .PB, .PL, .PD or .PF.
-     * @param partNumber A value &gt;= 0 used to disambiguate multiple edge parts
-     *                   and multiple side parts in 4x4 cubes and 5x5 cubes.
-     * @param layerCount The number of layers of the cube.
+     *                    Symbol.FACE_R, .PU, .PB, .PL, .PD or .PF.
+     * @param partNumber  A value &gt;= 0 used to disambiguate multiple edge parts
+     *                    and multiple side parts in 4x4 cubes and 5x5 cubes.
+     * @param layerCount  The number of layers of the cube.
      */
     public void addPermItem(int type, Symbol signSymbol, Symbol[] faceSymbols, int partNumber, int layerCount) {
         if (this.type == UNDEFINED_PERMUTATION) {
@@ -427,7 +431,7 @@ public class PermutationNode extends Node implements Cloneable {
                 permItem.orientation = rotation;
 
                 for (int i = 0; i < sequence.size(); i++) {
-                    PermutationItem existingItem =  sequence.get(i);
+                    PermutationItem existingItem = sequence.get(i);
                     if (existingItem.orientation / 3 != permItem.orientation / 3) {
                         throw new IllegalArgumentException("Corner permutation cannot be clockwise and anticlockwise at the same time.");
                     }
@@ -679,9 +683,9 @@ public class PermutationNode extends Node implements Cloneable {
         if (inverse) {
             PermutationNode inversedNode = clone();
             inversedNode.inverse();
-            return new SingletonIterator<Node>(inversedNode);
+            return List.<Node>of(inversedNode).iterator();
         } else {
-            return new SingletonIterator<Node>(this);
+            return List.<Node>of(this).iterator();
         }
     }
 
@@ -808,37 +812,38 @@ public class PermutationNode extends Node implements Cloneable {
         }
         return theClone;
     }
+
     private final static Symbol[][] SIDE_SYMBOLS = {
-        {Symbol.FACE_R},
-        {Symbol.FACE_U},//
-        {Symbol.FACE_F},
-        {Symbol.FACE_L},
-        {Symbol.FACE_D},
-        {Symbol.FACE_B},//
+            {Symbol.FACE_R},
+            {Symbol.FACE_U},//
+            {Symbol.FACE_F},
+            {Symbol.FACE_L},
+            {Symbol.FACE_D},
+            {Symbol.FACE_B},//
     };
     Symbol[][] EDGE_SYMBOLS = {
-        {Symbol.FACE_U, Symbol.FACE_R}, //"ur"
-        {Symbol.FACE_R, Symbol.FACE_F}, //"rf"
-        {Symbol.FACE_D, Symbol.FACE_R}, //"dr"
-        {Symbol.FACE_B, Symbol.FACE_U}, //"bu"
-        {Symbol.FACE_R, Symbol.FACE_B}, //"rb"
-        {Symbol.FACE_B, Symbol.FACE_D}, //"bd"
-        {Symbol.FACE_U, Symbol.FACE_L}, //"ul"
-        {Symbol.FACE_L, Symbol.FACE_B}, //"lb"
-        {Symbol.FACE_D, Symbol.FACE_L}, //"dl"
-        {Symbol.FACE_F, Symbol.FACE_U}, //"fu"
-        {Symbol.FACE_L, Symbol.FACE_F}, //"lf"
-        {Symbol.FACE_F, Symbol.FACE_D} //"fd"
+            {Symbol.FACE_U, Symbol.FACE_R}, //"ur"
+            {Symbol.FACE_R, Symbol.FACE_F}, //"rf"
+            {Symbol.FACE_D, Symbol.FACE_R}, //"dr"
+            {Symbol.FACE_B, Symbol.FACE_U}, //"bu"
+            {Symbol.FACE_R, Symbol.FACE_B}, //"rb"
+            {Symbol.FACE_B, Symbol.FACE_D}, //"bd"
+            {Symbol.FACE_U, Symbol.FACE_L}, //"ul"
+            {Symbol.FACE_L, Symbol.FACE_B}, //"lb"
+            {Symbol.FACE_D, Symbol.FACE_L}, //"dl"
+            {Symbol.FACE_F, Symbol.FACE_U}, //"fu"
+            {Symbol.FACE_L, Symbol.FACE_F}, //"lf"
+            {Symbol.FACE_F, Symbol.FACE_D} //"fd"
     };
     private final static Symbol[][] CORNER_SYMBOLS = {
-        {Symbol.FACE_U, Symbol.FACE_R, Symbol.FACE_F},// urf
-        {Symbol.FACE_D, Symbol.FACE_F, Symbol.FACE_R},// dfr
-        {Symbol.FACE_U, Symbol.FACE_B, Symbol.FACE_R},// ubr
-        {Symbol.FACE_D, Symbol.FACE_R, Symbol.FACE_B},// drb
-        {Symbol.FACE_U, Symbol.FACE_L, Symbol.FACE_B},// ulb
-        {Symbol.FACE_D, Symbol.FACE_B, Symbol.FACE_L},// dbl
-        {Symbol.FACE_U, Symbol.FACE_F, Symbol.FACE_L},// ufl
-        {Symbol.FACE_D, Symbol.FACE_L, Symbol.FACE_F}// dlf
+            {Symbol.FACE_U, Symbol.FACE_R, Symbol.FACE_F},// urf
+            {Symbol.FACE_D, Symbol.FACE_F, Symbol.FACE_R},// dfr
+            {Symbol.FACE_U, Symbol.FACE_B, Symbol.FACE_R},// ubr
+            {Symbol.FACE_D, Symbol.FACE_R, Symbol.FACE_B},// drb
+            {Symbol.FACE_U, Symbol.FACE_L, Symbol.FACE_B},// ulb
+            {Symbol.FACE_D, Symbol.FACE_B, Symbol.FACE_L},// dbl
+            {Symbol.FACE_U, Symbol.FACE_F, Symbol.FACE_L},// ufl
+            {Symbol.FACE_D, Symbol.FACE_L, Symbol.FACE_F}// dlf
     };
 
     @Override
@@ -935,7 +940,7 @@ public class PermutationNode extends Node implements Cloneable {
                     if (permutationPosition == Syntax.PREFIX //
                             || permutationPosition == Syntax.PRECIRCUMFIX//
                             || permutationPosition == Syntax.POSTCIRCUMFIX
-                            ) {
+                    ) {
                         switch (item.orientation) {
                             case 1:
                                 p.writeToken(w, Symbol.PERMUTATION_MINUS);
@@ -949,7 +954,7 @@ public class PermutationNode extends Node implements Cloneable {
                         }
                     }
                     p.writeToken(w, symbols[item.location][0]);
-                    if ( permutationPosition == Syntax.SUFFIX) {
+                    if (permutationPosition == Syntax.SUFFIX) {
                         switch (item.orientation) {
                             case 1:
                                 p.writeToken(w, Symbol.PERMUTATION_MINUS);
@@ -985,11 +990,5 @@ public class PermutationNode extends Node implements Cloneable {
                 p.writeToken(w, s);
             }
         }
-    }
-
-   
-    @Override
-    public List<Node> toResolvedList() {
-        return new SingleElementList<Node>(this);
     }
 }

@@ -43,9 +43,25 @@ class MoveMetricsTest {
         );
     }
 
+    /**
+     * Set this to true to generate HTML output for the JavaScript
+     * version of this test.
+     */
+    private static boolean html=false;
+
     private void doAccept(String script, int expectedBtm, int expectedLtm, int expectedFtm, int expectedQtm, int expectedCount) throws IOException {
-        System.out.println("doMetrics script: "+script);
-        System.out.println("  expected: "+expectedBtm+"btm, "+expectedLtm+"ltm, "+expectedFtm+"ftm, "+expectedQtm+"qtm, "+expectedCount+" moves");
+        if (html) {
+            System.out.println("  <article>");
+            System.out.println("    <section class=\"unittest\">");
+            System.out.println("      <p class=\"input\">" + script + "</p>");
+            System.out.println("      <p class=\"expected\">" + expectedBtm + "btm, " + expectedLtm + "ltm, " + expectedFtm + "ftm, " + expectedQtm + "qtm, " + expectedCount + " moves" + "</p>");
+            System.out.println("      <p class=\"actual\">" + "</p>");
+            System.out.println("    </section>");
+            System.out.println("  </article>");
+        } else {
+            System.out.println("doMetrics script: " + script);
+            System.out.println("  expected: " + expectedBtm + "btm, " + expectedLtm + "ltm, " + expectedFtm + "ftm, " + expectedQtm + "qtm, " + expectedCount + " moves");
+        }
         ScriptParser parser = new ScriptParser(new DefaultNotation());
         SequenceNode ast = parser.parse(script);
 
@@ -57,8 +73,9 @@ class MoveMetricsTest {
         int qtm = instance.getQuarterTurnCount();
         int btm = instance.getBlockTurnCount();
         int count = instance.getMoveCount();
-        System.out.println("  actual  : "+btm+"btm, "+ltm+"ltm, "+ftm+"ftm, "+qtm+"qtm, "+count+" moves");
-
+        if (!html) {
+            System.out.println("  actual  : " + btm + "btm, " + ltm + "ltm, " + ftm + "ftm, " + qtm + "qtm, " + count + " moves");
+        }
         assertEquals(expectedBtm,btm);
         assertEquals(expectedFtm,ftm);
         assertEquals(expectedLtm,ltm);

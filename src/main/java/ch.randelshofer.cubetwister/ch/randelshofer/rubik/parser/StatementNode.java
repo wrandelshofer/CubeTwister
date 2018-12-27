@@ -53,19 +53,7 @@ public class StatementNode extends Node {
             }
         }
     }
-    @Override
-    public List<Node> toResolvedList() {
-        if (children == null) {
-            return Collections.emptyList();
-        } else {
-            ListOfLists<Node> list = new ListOfLists<Node>();
-            for (int i=0; i < getChildCount(); i++) {
-                list.addList(getChildAt(i).toResolvedList());
-            }
-            return list;
-        }
-    }
-     
+
     @Override
         public String toString() {
         StringBuilder b= new StringBuilder( "StatementNode[");

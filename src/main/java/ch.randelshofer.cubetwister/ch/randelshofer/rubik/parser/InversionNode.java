@@ -124,23 +124,4 @@ public class InversionNode extends Node {
             }
         }
     }
-
-    @Override
-    public List<Node> toResolvedList() {
-        if (getChildCount() == 1 && (getChildAt(0) instanceof MoveNode)) {
-            // Our only child is a MoveNode:
-            //      We add an inverted MoveNode to the list which includes the
-            //      start and end position of the invertor.
-            MoveNode moveNode = (MoveNode) ((MoveNode) getChildAt(0)).clone();
-            moveNode.setAngle(-moveNode.getAngle());
-            moveNode.setStartPosition(Math.min(getStartPosition(), moveNode.getStartPosition()));
-            moveNode.setEndPosition(Math.max(getEndPosition(), moveNode.getEndPosition()));
-            LinkedList<Node> l = new LinkedList<Node>();
-            l.add(moveNode);
-            return l;
-        } else {
-            // We have more than one child or our only child is not a MoveNode,
-            return new InvertedList(super.toResolvedList());
-        }
-    }
 }
