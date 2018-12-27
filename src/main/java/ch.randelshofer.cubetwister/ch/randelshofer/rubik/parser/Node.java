@@ -289,11 +289,6 @@ public abstract class Node extends TreeNodeImpl<Node> {
      * Enumerates a resolved version of the subtree starting at this node. All
      * elements of the enumeration except of MoveNode's and PermutationNode's
      * may be safely ignored.
-     * <p>
-     * All nodes of the enumeration must be temporary, that is are explicitly
-     * created for this enumeration.
-     * <p>
-     * The enumeration must not be empty!
      *
      * @param inverse Set to true if you wish to get an inverted enumeration.
      */
