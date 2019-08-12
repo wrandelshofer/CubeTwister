@@ -96,8 +96,7 @@ public abstract class AbstractNotation implements Notation {
 
     @Override
     public Symbol getSymbolFor(String token, Symbol compositeSymbol) {
-        List<Symbol> symbols = tokenToSymbolsMap.getOrDefault(token, Collections.emptyList());
-        for (Symbol s : symbols) {
+        for (Symbol s : getSymbolsFor(token)) {
             if (compositeSymbol.isSubSymbol(s)) {
                 return s;
             }
@@ -121,7 +120,7 @@ public abstract class AbstractNotation implements Notation {
 
     @Override
     public List<Symbol> getSymbolsFor(String token) {
-        return tokenToSymbolsMap.get(token);
+        return tokenToSymbolsMap.getOrDefault(token, Collections.emptyList());
     }
 
 

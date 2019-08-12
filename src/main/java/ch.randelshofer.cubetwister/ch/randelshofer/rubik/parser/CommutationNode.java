@@ -20,10 +20,6 @@ import java.util.Map;
  * The side effect of a commutation node is A B A' B'.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>5.0 2005-01-31 Reworked.
- * <br>1.0 2001-07-25
- * @see ScriptParser
  */
 public class CommutationNode extends Node {
     private final static long serialVersionUID = 1L;

@@ -32,20 +32,6 @@ public class CubesTest {
     public CubesTest() {
     }
 
-    /**
-     * Test of create method, of class Cubes.
-     */
-    @Test
-    public void testCreate() {
-        System.out.println("create");
-        int layerCount = 3;
-        Cube expResult = null;
-        Cube result = Cubes.create(layerCount);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
     @TestFactory
     public List<DynamicTest> testToVisualPermutationString_RubiksCube_Notation() {
         return Arrays.asList(
@@ -72,7 +58,7 @@ public class CubesTest {
     }
 
     @TestFactory
-    public List<DynamicTest> testToPermutationString_Cube_Notatio() {
+    public List<DynamicTest> testToPermutationString_Cube_Notation() {
         DefaultNotation precircumfixNotation = new DefaultNotation();
         precircumfixNotation.putSyntax(Symbol.PERMUTATION, Syntax.PRECIRCUMFIX);
         DefaultNotation prefixNotation = new DefaultNotation();
@@ -92,7 +78,7 @@ public class CubesTest {
               dynamicTest("R,suffix",()-> doToPermutationString_Cube_Notation("R",suffixNotation,"(ubr,bdr,dfr,fur)\n" +
                       "(ur,br,dr,fr)\n" +
                       "(r)+")),
-              dynamicTest("R,postcirfumcix",()-> doToPermutationString_Cube_Notation("R",postcircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
+              dynamicTest("R,postcirfumix",()-> doToPermutationString_Cube_Notation("R",postcircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
                       "(ur,br,dr,fr)\n" +
                       "(r+)")),
 
@@ -123,12 +109,10 @@ public class CubesTest {
     @Test
     public void testToVisualPermutationString_Cube_Notation() {
         System.out.println("toVisualPermutationString");
-        Cube cube = null;
-        String expResult = "";
+        Cube cube = new RubiksCube();
+        String expResult = "()";
         String result = Cubes.toVisualPermutationString(cube);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 

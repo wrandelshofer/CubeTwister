@@ -59,7 +59,7 @@ public class NotationModel extends InfoModel implements Notation {
      */
     private HashMap<String, Move> tokenToTwistMap = null;
     /**
-     * A map with composity symbol syntaxes.
+     * A map with symbol syntaxes.
      * Key = Symbol
      * Value = Syntax
      */

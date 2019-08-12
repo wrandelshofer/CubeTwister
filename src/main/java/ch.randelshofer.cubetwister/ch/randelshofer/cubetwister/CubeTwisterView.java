@@ -303,20 +303,8 @@ public class CubeTwisterView extends AbstractView implements Viewer {
 
         final DocumentModel newModel = new DocumentModel();
 
-        InputStream in = null;
-        try {
-            in = new FileInputStream(f);
-            in = new BufferedInputStream(in);
-
+        try (InputStream in =new BufferedInputStream(new FileInputStream(f))) {
             newModel.addSerializedNode(in);
-
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                }
-            }
         }
         // We need a worker here, because we must avoid race conditions
         // with initFromTemplate().

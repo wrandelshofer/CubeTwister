@@ -118,7 +118,7 @@ public enum Symbol {
             PERMUTATION_FACE_B
     }),
 
-    PERMUTATION_SIGNS("permutationSigns", new Symbol[]{
+    PERMUTATION_SIGN("permutationSign", new Symbol[]{
             PERMUTATION_PLUS,
             PERMUTATION_MINUS,
             PERMUTATION_PLUSPLUS,

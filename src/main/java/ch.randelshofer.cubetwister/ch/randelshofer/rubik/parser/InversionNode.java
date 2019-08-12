@@ -56,20 +56,6 @@ public class InversionNode extends Node {
      */
     @Override
     public Iterator<Node> resolvedIterator(boolean inverse) {
-        /*
-        if (getChildCount() == 1) {
-        // If we have only one child, it looks better, if
-        // the selection includes the invertor
-        Node child = (Node) getChildAt(0).clone();
-        child.setStartPosition(this.getStartPosition());
-        child.setEndPosition(this.getEndPosition());
-        child.inverse();
-        Vector v = new Vector();
-        v.addElement(child);
-        return v.elements();
-        } else {
-        return super.resolvedEnumeration(!inverse);
-        }*/
         return super.resolvedIterator(!inverse);
     }
 

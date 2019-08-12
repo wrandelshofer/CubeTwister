@@ -72,7 +72,7 @@ m.put(PreferencesAction.ID, new PreferencesAction(a));
 
     @Override
     protected MenuBuilder createMenuBuilder() {
-        DefaultMenuBuilder mb= (DefaultMenuBuilder) super.createMenuBuilder();
+        CubeTwisterMenuBuilder mb= new CubeTwisterMenuBuilder();
         mb.setSuppressIcons(true);
         return mb;
     }
@@ -80,11 +80,11 @@ m.put(PreferencesAction.ID, new PreferencesAction(a));
     @Override
     public JFileURIChooser createImportChooser(Application a, View v) {
             JFileURIChooser c = new JFileURIChooser();
-            ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels"));
+            ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.app.Labels"));
             c.setApproveButtonText(labels.getString("import.button"));
             c.setDialogType(JFileChooser.OPEN_DIALOG);
             c.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            c.setDialogTitle(labels.getString("exportAsHTML.title"));
+            c.setDialogTitle(labels.getString("import.title"));
             c.setAcceptAllFileFilterUsed(false);
         ExtensionFileFilter ff = new ExtensionFileFilter("CSV","csv");
         c.addChoosableFileFilter(ff);

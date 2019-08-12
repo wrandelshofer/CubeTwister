@@ -11,10 +11,10 @@ import org.junit.jupiter.api.TestFactory;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
-class ScriptParser0Test {
+class ScriptParserTest {
     private static boolean html = false;
 
     @TestFactory
@@ -210,8 +210,8 @@ class ScriptParser0Test {
                 dynamicTest("defaultNotation (R U F)3'4", ()->doParse(defaultNotation,"(R U F)3'4", "0..10ScriptNode{ 0..10RepetitionNode{ 4, 0..9InversionNode{ 0..8RepetitionNode{ 3, 0..7GroupingNode{ 1..2MoveNode{ax:0 lm:4 an:1} 3..4MoveNode{ax:1 lm:4 an:1} 5..6MoveNode{ax:2 lm:4 an:1} } } } } }")),
                 dynamicTest("defaultNotation (R)'", ()->doParse(defaultNotation,"(R)'", "0..4ScriptNode{ 0..4InversionNode{ 0..3GroupingNode{ 1..2MoveNode{ax:0 lm:4 an:1} } } }")),
                 dynamicTest("defaultNotation (R F)'", ()->doParse(defaultNotation,"(R F)'", "0..6ScriptNode{ 0..6InversionNode{ 0..5GroupingNode{ 1..2MoveNode{ax:0 lm:4 an:1} 3..4MoveNode{ax:2 lm:4 an:1} } } }")),
-                t(defaultNotation, "(R- U F)- (R' U F)'",
-                        "0..19ScriptNode{ 0..9InversionNode{ 0..8GroupingNode{ 1..3InversionNode{ 1..2MoveNode{ax:0 lm:4 an:1} } 4..5MoveNode{ax:1 lm:4 an:1} 6..7MoveNode{ax:2 lm:4 an:1} } } 10..19InversionNode{ 10..18GroupingNode{ 11..13InversionNode{ 11..12MoveNode{ax:0 lm:4 an:1} } 14..15MoveNode{ax:1 lm:4 an:1} 16..17MoveNode{ax:2 lm:4 an:1} } } }"),
+                dynamicTest("defaultNotation (R- U F)- (R' U F)'", ()->doParse(defaultNotation,"(R- U F)- (R' U F)'",
+                        "0..19ScriptNode{ 0..9InversionNode{ 0..8GroupingNode{ 1..3InversionNode{ 1..2MoveNode{ax:0 lm:4 an:1} } 4..5MoveNode{ax:1 lm:4 an:1} 6..7MoveNode{ax:2 lm:4 an:1} } } 10..19InversionNode{ 10..18GroupingNode{ 11..13InversionNode{ 11..12MoveNode{ax:0 lm:4 an:1} } 14..15MoveNode{ax:1 lm:4 an:1} 16..17MoveNode{ax:2 lm:4 an:1} } } }")),
                 dynamicTest("defaultNotation <CU>R", ()->doParse(defaultNotation,"<CU>R", "0..5ScriptNode{ 0..5ConjugationNode{ 1..3ScriptNode{ 1..3MoveNode{ax:1 lm:7 an:1} }, 4..5MoveNode{ax:0 lm:4 an:1} } }")),
                 dynamicTest("defaultNotation <CU CF>(R)", ()->doParse(defaultNotation,"<CU CF>(R)", "0..10ScriptNode{ 0..10ConjugationNode{ 1..6ScriptNode{ 1..3MoveNode{ax:1 lm:7 an:1} 4..6MoveNode{ax:2 lm:7 an:1} }, 7..10GroupingNode{ 8..9MoveNode{ax:0 lm:4 an:1} } } }")),
                 dynamicTest("defaultNotation <CU CF>(R B)", ()->doParse(defaultNotation,"<CU CF>(R B)", "0..12ScriptNode{ 0..12ConjugationNode{ 1..6ScriptNode{ 1..3MoveNode{ax:1 lm:7 an:1} 4..6MoveNode{ax:2 lm:7 an:1} }, 7..12GroupingNode{ 8..9MoveNode{ax:0 lm:4 an:1} 10..11MoveNode{ax:2 lm:1 an:-1} } } }")),
@@ -312,16 +312,31 @@ class ScriptParser0Test {
                 dynamicTest("defaultNotation R . U · F", ()->doParse(defaultNotation,"R . U · F", "0..9ScriptNode{ 0..1MoveNode{ax:0 lm:4 an:1} 2..3NOPNode{ } 4..5MoveNode{ax:1 lm:4 an:1} 6..7NOPNode{ } 8..9MoveNode{ax:2 lm:4 an:1} }")),
                 dynamicTest("defaultNotation ", ()->doParse(defaultNotation,"", "0..0ScriptNode{ }")),
 
+                dynamicTest("precircumfixNotation R as permutation", ()->doParse(precircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "(+r)",
+                        "0..36ScriptNode{ 0..17CornerPermutation{sign:0 2:0,3:1,1:0,0:1} 18..31EdgePermutation{sign:0 0:0,4:1,2:0,1:1} 32..36SidePermutation{sign:3 0:0} }")),
+                dynamicTest("prefixNotation R as permutation", ()->doParse(prefixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "+(r)",
+                        "0..36ScriptNode{ 0..17CornerPermutation{sign:0 2:0,3:1,1:0,0:1} 18..31EdgePermutation{sign:0 0:0,4:1,2:0,1:1} 32..36SidePermutation{sign:3 0:0} }")),
+                dynamicTest("suffixNotation R as permutation", ()->doParse(suffixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "(r)+",
+                        "0..36ScriptNode{ 0..19CornerPermutation{sign:0 2:0,3:1,1:0,0:1} 18..33EdgePermutation{sign:0 0:0,4:1,2:0,1:1} 32..36SidePermutation{sign:3 0:0} }")),
+                dynamicTest("postcircumfixNotation R as permutation", ()->doParse(postcircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "(r+)",
+                        "0..36ScriptNode{ 0..17CornerPermutation{sign:0 2:0,3:1,1:0,0:1} 18..31EdgePermutation{sign:0 0:0,4:1,2:0,1:1} 32..36SidePermutation{sign:3 0:0} }")),
+
+
                 dynamicTest("defaultNotation R /*comment*/ U F", ()->doParse(defaultNotation,"R /*comment*/ U F", "0..17ScriptNode{ 0..1MoveNode{ax:0 lm:4 an:1} 14..15MoveNode{ax:1 lm:4 an:1} 16..17MoveNode{ax:2 lm:4 an:1} }"))
         );
 
     }
     
 
-    private DynamicTest t(Notation notation, String script, String expected) {
-        return dynamicTest(notation.getName()+" "+script,()->doParse(notation,script,expected));
-    }
-    
+
     
     /**
      * Test of parse method, of class ScriptParser.
@@ -332,8 +347,7 @@ class ScriptParser0Test {
      */
 
     public void doParse(Notation notation, String script, String expected) throws Exception {
-        ScriptParser0 instance = new ScriptParser0(notation);
-        try {
+        ScriptParser instance = new ScriptParser(notation);
             Node node = instance.parse(script);
             String actual = node.toString();
             if (html) {
@@ -349,10 +363,10 @@ class ScriptParser0Test {
                 // System.out.println("  actual: " + actual);
                 System.out.println(" DynamicTest.dynamicTest(\"" + notation.getName() + "\", () -> doParse(" + notation.getName() + ", \"" + script + "\", \"" + actual.replaceAll("\n", "\\\\n") + "\")),");
             }
-            // assertEquals(expected,actual);
-        } catch(ParseException t) {
-            System.out.println(" DynamicTest.dynamicTest(\"" + notation.getName() + "\", () -> doParse(" + notation.getName() + ", \"" + script + "\", \"" + expected.replaceAll("\n", "\\\\n") + "\")),");
-        }
+            System.out.println("expected: "+expected);
+            System.out.println("actual:   "+actual);
+            assertEquals(expected,actual);
+
     }
 
     private String htmlEscape(String actual) {
