@@ -4,11 +4,13 @@
 package ch.randelshofer.gui.tree;
 
 import ch.randelshofer.util.EnumerationIterator;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreeNode;
@@ -46,7 +48,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
 
             @Override
             public Iterator<T> iterator() {
-                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>)(Enumeration<?>) breadthFirstEnumeration();
+                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>) (Enumeration<?>) breadthFirstEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
             }
 
@@ -54,13 +56,13 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
     }
 
     @SuppressWarnings("unchecked")
+    @Nonnull
     public List<T> getChildren() {
         if (children == null) {
-            return Collections.EMPTY_LIST;
-        } else {
-            @SuppressWarnings("unchecked") List<T> treeNodeList = (List<T>)(List<?>) children;
-            return Collections.unmodifiableList(treeNodeList);
+            children = new Vector<>();
         }
+        @SuppressWarnings("unchecked") List<T> treeNodeList = (List<T>) (List<?>) children;
+        return Collections.unmodifiableList(treeNodeList);
     }
 
     @Override
@@ -74,7 +76,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
 
             @Override
             public Iterator<T> iterator() {
-                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>)(Enumeration<?>)  depthFirstEnumeration();
+                @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>) (Enumeration<?>) depthFirstEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
             }
 
@@ -223,7 +225,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked")
-                Enumeration<T> treeNodeEnumeration =(Enumeration<T>)(Enumeration<?>)  postorderEnumeration();
+                Enumeration<T> treeNodeEnumeration = (Enumeration<T>) (Enumeration<?>) postorderEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
             }
 
@@ -236,7 +238,7 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked")
-                Enumeration<T> treeNodeEnumeration =(Enumeration<T>)(Enumeration<?>)  preorderEnumeration();
+                Enumeration<T> treeNodeEnumeration = (Enumeration<T>) (Enumeration<?>) preorderEnumeration();
                 return new EnumerationIterator<T>(treeNodeEnumeration);
 
             }

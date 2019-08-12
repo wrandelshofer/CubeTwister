@@ -5,6 +5,7 @@ package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.beans.*;
 import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.parser.*;
 import ch.randelshofer.undo.*;
 

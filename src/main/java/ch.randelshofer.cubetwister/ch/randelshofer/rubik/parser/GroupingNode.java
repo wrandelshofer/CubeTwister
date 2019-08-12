@@ -3,8 +3,8 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,29 +24,16 @@ public class GroupingNode extends Node {
         private final static long serialVersionUID = 1L;
 
     /** Creates new SequenceNode */
-    public GroupingNode(int layerCount) {
-        this(layerCount, -1,-1);
+    public GroupingNode() {
+        this(-1,-1);
     }
-    public GroupingNode(int layerCount, int startpos, int endpos) {
-        super(Symbol.GROUPING, layerCount, startpos, endpos);
+    public GroupingNode(int startpos, int endpos) {
+        super(Symbol.GROUPING, startpos, endpos);
     }
     
     @Override
     public void writeTokens(PrintWriter w, Notation p, Map<String,MacroNode> macroMap)
     throws IOException {
-        if (getChildCount() <= 1) {
-            // Short cut: If a grouping has only one or no
-            // child, it does not need to be printed.
-            Node child = getChildAt(0);
-            child.writeTokens(w, p, macroMap);
-        } else {
-            // FIXME - Add support for more cube types
-            Cube cube = Cubes.create(layerCount);
-            applyTo(cube, false);
-            String macroName = p.getEquivalentMacro(cube, macroMap);
-            if (macroName != null) {
-                w.write(macroName);
-            } else {
                 if (p.isSupported(Symbol.GROUPING)) {
                     p.writeToken(w, Symbol.GROUPING_BEGIN);
                     super.writeTokens(w, p, macroMap);
@@ -54,7 +41,6 @@ public class GroupingNode extends Node {
                 } else {
                     super.writeTokens(w, p, macroMap);
                 }
-            }
-        }
+
     }
 }

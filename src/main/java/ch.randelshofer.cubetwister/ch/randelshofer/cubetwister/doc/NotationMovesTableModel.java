@@ -6,7 +6,7 @@ package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.datatransfer.*;
 import ch.randelshofer.gui.table.*;
-import ch.randelshofer.rubik.parser.Move;
+import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.util.*;
 import java.awt.datatransfer.*;
 import java.awt.dnd.DnDConstants;
@@ -87,12 +87,12 @@ public class NotationMovesTableModel extends AbstractTableModel
                     backboneRows[rowCount][1] = layers;
                     backboneRows[rowCount][2] = (j == 0) ? "+90°" : "+180°";
                     int angle = (j == 0) ? 1 : 2;
-                    backboneRows[rowCount][3] = new Move(0, reverseLayerMask, angle);
-                    backboneRows[rowCount][4] = new Move(1, reverseLayerMask, angle);
-                    backboneRows[rowCount][5] = new Move(2, reverseLayerMask, angle);
-                    backboneRows[rowCount][6] = new Move(0, layerMask, -angle);
-                    backboneRows[rowCount][7] = new Move(1, layerMask, -angle);
-                    backboneRows[rowCount][8] = new Move(2, layerMask, -angle);
+                    backboneRows[rowCount][3] = new Move(3, 0, reverseLayerMask, angle);
+                    backboneRows[rowCount][4] = new Move(3, 1, reverseLayerMask, angle);
+                    backboneRows[rowCount][5] = new Move(3, 2, reverseLayerMask, angle);
+                    backboneRows[rowCount][6] = new Move(3, 0, layerMask, -angle);
+                    backboneRows[rowCount][7] = new Move(3, 1, layerMask, -angle);
+                    backboneRows[rowCount][8] = new Move(3, 2, layerMask, -angle);
                     rowCount++;
                 }
             } else {
@@ -118,12 +118,12 @@ public class NotationMovesTableModel extends AbstractTableModel
                             angle = -2;
                             break;
                     }
-                    backboneRows[rowCount][3] = new Move(0, reverseLayerMask, angle);
-                    backboneRows[rowCount][4] = new Move(1, reverseLayerMask, angle);
-                    backboneRows[rowCount][5] = new Move(2, reverseLayerMask, angle);
-                    backboneRows[rowCount][6] = new Move(0, layerMask, -angle);
-                    backboneRows[rowCount][7] = new Move(1, layerMask, -angle);
-                    backboneRows[rowCount][8] = new Move(2, layerMask, -angle);
+                    backboneRows[rowCount][3] = new Move(3, 0, reverseLayerMask, angle);
+                    backboneRows[rowCount][4] = new Move(3, 1, reverseLayerMask, angle);
+                    backboneRows[rowCount][5] = new Move(3, 2, reverseLayerMask, angle);
+                    backboneRows[rowCount][6] = new Move(3, 0, layerMask, -angle);
+                    backboneRows[rowCount][7] = new Move(3, 1, layerMask, -angle);
+                    backboneRows[rowCount][8] = new Move(3, 2, layerMask, -angle);
                     rowCount++;
                 }
             }

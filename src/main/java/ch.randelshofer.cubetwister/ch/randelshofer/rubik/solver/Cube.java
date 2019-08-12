@@ -8,7 +8,7 @@
  */
 package ch.randelshofer.rubik.solver;
 
-import ch.randelshofer.rubik.parser.Move;
+import ch.randelshofer.rubik.notation.Move;
 
 import java.util.Arrays;
 /**

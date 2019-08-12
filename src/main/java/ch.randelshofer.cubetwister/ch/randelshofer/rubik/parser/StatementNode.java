@@ -3,13 +3,12 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.util.ListOfLists;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 /**
  * A StatementNode is a structuring unit. It holds one child A.
@@ -28,7 +27,7 @@ public class StatementNode extends Node {
     }
 
     public StatementNode(int layerCount, int startpos, int endpos) {
-        super(Symbol.STATEMENT, layerCount, startpos, endpos);
+        super(Symbol.STATEMENT, startpos, endpos);
     }
     /**
      * Writes the token(s) represented by the subtree starting

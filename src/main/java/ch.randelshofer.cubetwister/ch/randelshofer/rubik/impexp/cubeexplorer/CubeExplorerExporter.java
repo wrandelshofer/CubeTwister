@@ -10,8 +10,8 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.io.LFWriter;
 import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.impexp.Exporter;
+import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.SequenceNode;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -87,7 +87,7 @@ implements Exporter {
                 p.setProgress(++progress);
                 p.setNote("Exporting "+item.getName());
                 
-                SequenceNode parsedScript = item.getParsedScript();
+                Node parsedScript = item.getParsedScript();
                 if (parsedScript == null) {
                     throw new IOException("Can not parse script \""+item.getName()+"\".");
                 }

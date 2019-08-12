@@ -4,18 +4,14 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.rubik.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.text.*;
-import ch.randelshofer.gui.tree.TreeNodeImpl;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.rubik.parser.*;
-import ch.randelshofer.rubik.parser.Move;
+import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.undo.*;
-import ch.randelshofer.math.*;
-import java.beans.*;
+
 import java.util.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
-import javax.swing.text.*;
 import java.io.*;
 
 /**
@@ -168,7 +164,7 @@ public class NotationModel extends InfoModel implements Notation {
             MacroModel mm = (MacroModel) macroModels.getChildAt(i);
             StringTokenizer st = new StringTokenizer(mm.getIdentifier());
             while (st.hasMoreTokens()) {
-                macros.add(new MacroNode(getLayerCount(), st.nextToken(), mm.getScript(), 0, 0));
+                macros.add(new MacroNode(st.nextToken(), mm.getScript(), 0, 0));
             }
         }
         return macros;
@@ -340,7 +336,7 @@ public class NotationModel extends InfoModel implements Notation {
      * Writes a token for the specified transformation to the print writer.
      */
     @Override
-    public void writeToken(PrintWriter w, int axis, int layerMask, int angle)
+    public void writeMoveToken(PrintWriter w, int axis, int layerMask, int angle)
             throws IOException {
         // XXX - Implement me
     }
@@ -447,17 +443,32 @@ public class NotationModel extends InfoModel implements Notation {
         return null;
     }
 
+    @Override
+    public Move getMoveFromToken(String moveToken) {
+        return getTokenToTwistMap().get(moveToken);
+    }
+
+    @Override
+    public Collection<String> getTokens() {
+       return getTokenToSymbolMap().keySet();
+    }
+
+    @Override
+    public List<Symbol> getSymbolsFor(String token) {
+       return new ArrayList<>(tokenToSymbolMap.get(token));
+    }
+
     /**
      * Configures a MoveNode from the specified twist token.
      */
-    public void configureMoveFromToken(MoveNode twist, String twistToken) {
-        Move tw = getTokenToTwistMap().get(twistToken);
+    public void configureMoveFromToken(MoveNode twist, String moveToken) {
+        Move tw = getTokenToTwistMap().get(moveToken);
         if (tw != null) {
             twist.setAxis(tw.getAxis());
             twist.setAngle(tw.getAngle());
             twist.setLayerMask(tw.getLayerMask());
         } else {
-            throw new IllegalArgumentException("unknown twist token " + twistToken);
+            throw new IllegalArgumentException("unknown twist token " + moveToken);
         /*
         twist.setAxis(0);
         twist.setAngle(0);

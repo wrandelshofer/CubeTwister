@@ -4,13 +4,12 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.StringReader;
 import java.util.Map;
 /**
  * A MacroNode holds a macro identifier and an unparsed script String. 
@@ -40,8 +39,11 @@ public class MacroNode extends Node {
     private ScriptParser parser;
     
     /** Creates new MacroNode */
-    public MacroNode(int layerCount, String identifier, String script, int startpos, int endpos) {
-        super(Symbol.MACRO, layerCount, startpos, endpos);
+    public MacroNode(String identifier, String script) {
+        this(identifier,script,-1,-1);
+    }
+    public MacroNode(String identifier, String script, int startpos, int endpos) {
+        super(Symbol.MACRO, startpos, endpos);
         this.identifier = identifier;
         this.script = script;
         setAllowsChildren(true);
@@ -61,7 +63,11 @@ public class MacroNode extends Node {
     public String getIdentifier() {
         return identifier;
     }
-    
+
+    public String getScript() {
+        return script;
+    }
+
     public void expand(ScriptParser parser)
     throws IOException {
         // Don't expand if already expanded
@@ -80,7 +86,7 @@ public class MacroNode extends Node {
         // Expand the macro
         int sp = getStartPosition();
         int ep = getEndPosition();
-        parser.parse(new StringReader(script), this);
+        add(parser.parse(script));
         
         // Overwrite start and end positions
         overwritePositions(sp, ep);
@@ -89,25 +95,8 @@ public class MacroNode extends Node {
     @Override
     public void writeTokens(PrintWriter w, Notation p, Map<String,MacroNode> macroMap)
     throws IOException {
-        // FIXME - Implement macro expansion
-        if (false && macroMap.containsKey(identifier)) { 
+        if (macroMap.containsKey(identifier)) {
             w.write(identifier);
-        } else {
-            // XXX - Add support for more cube types
-            Cube cube = Cubes.create(layerCount);
-            applyTo(cube, false);
-            String macroName = p.getEquivalentMacro(cube, macroMap);
-            if (macroName != null) {
-                w.write(macroName);
-            } else {
-                if (p.isSupported(Symbol.GROUPING)) {
-                    p.writeToken(w, Symbol.GROUPING_BEGIN);
-                    super.writeTokens(w, p, macroMap);
-                    p.writeToken(w, Symbol.GROUPING_END);
-                } else {
-                    super.writeTokens(w, p, macroMap);
-                }
-            }
         }
     }
 }

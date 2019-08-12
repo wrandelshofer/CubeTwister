@@ -15,10 +15,11 @@ import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.rubik.parser.MoveMetrics;
+import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
-import ch.randelshofer.rubik.parser.SequenceNode;
-import ch.randelshofer.rubik.parser.Symbol;
+import ch.randelshofer.rubik.parser.ScriptNode;
+import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.undo.CompositeEdit;
 import ch.randelshofer.undo.UndoableObjectEdit;
 import org.monte.media.swing.player.JPlayerControlAqua;
@@ -80,7 +81,7 @@ public class ScriptModel
     private CubeModel cubeModel;
     private transient boolean isGenerator = true;
     // Non-persistent attributes
-    private SequenceNode parsedScript;
+    private Node parsedScript;
     private transient boolean isChecked;
     private transient String stateInfo;
     private ParseException parseException;
@@ -220,7 +221,7 @@ public class ScriptModel
             MacroModel mm = (MacroModel) macros.getChildAt(i);
             StringTokenizer st = new StringTokenizer(mm.getIdentifier());
             while (st.hasMoreTokens()) {
-                localMacros.add(new MacroNode(getNotationModel().getLayerCount(), st.nextToken(), mm.getScript(), 0, mm.getScript().length()));
+                localMacros.add(new MacroNode(st.nextToken(), mm.getScript(), 0, mm.getScript().length()));
             }
         }
         return getNotationModel().getParser(localMacros);
@@ -266,13 +267,13 @@ public class ScriptModel
                 }
             } catch (ParseException e) {
                 // FIXME should look better
-                getPlayer().setScript(new SequenceNode(getNotationModel().getLayerCount()));
+                getPlayer().setScript(new ScriptNode());
                 getPlayer().setResetCube(null);
                 parseException = e;
                 setStateInfo("Error:\n" + e.getMessage() + " @" + e.getStartPosition() + ".." + e.getEndPosition());
                 throw e;
             } catch (Exception e) {
-                getPlayer().setScript(new SequenceNode(notationModel.getLayerCount()));
+                getPlayer().setScript(new ScriptNode());
                 getPlayer().setResetCube(null);
                 parseException = null;
                 setStateInfo("Error:\n" + e);
@@ -332,13 +333,13 @@ public class ScriptModel
      * Returns a parsed version of the script.
      * Returns an empty script, if the parsing failed - never returns null.
      */
-    public SequenceNode getParsedScript() {
+    public Node getParsedScript() {
         try {
             check();
         } catch (ParseException e) {
             // Set parsed script to empty, if parsing failed.
             // FIXME - We should fire property change if the parsed script changes!!!
-            parsedScript = new SequenceNode(notationModel.getLayerCount());
+            parsedScript = new ScriptNode();
         }
         return parsedScript;
     }
@@ -350,7 +351,7 @@ public class ScriptModel
             MacroModel mm = (MacroModel) mms.getChildAt(i);
             StringTokenizer st = new StringTokenizer(mm.getIdentifier());
             while (st.hasMoreTokens()) {
-                MacroNode newMacro = new MacroNode(notationModel.getLayerCount(), st.nextToken(), mm.getScript(), 0, 0);
+                MacroNode newMacro = new MacroNode(st.nextToken(), mm.getScript(), 0, 0);
                 macros.add(newMacro);
             }
         }
@@ -372,7 +373,7 @@ public class ScriptModel
                 MacroModel mm = (MacroModel) macros.getChildAt(i);
                 StringTokenizer st = new StringTokenizer(mm.getIdentifier());
                 while (st.hasMoreTokens()) {
-                    oldLocalMacros.add(new MacroNode(notationModel.getLayerCount(), st.nextToken(), mm.getScript(), 0, mm.getScript().length()));
+                    oldLocalMacros.add(new MacroNode(st.nextToken(), mm.getScript(), 0, mm.getScript().length()));
                 }
             }
             NotationModel oldNotation = getNotationModel();
@@ -380,7 +381,7 @@ public class ScriptModel
             ScriptParser oldParser = getNotationModel().getParser(oldLocalMacros);
 
             // Parse the script
-            SequenceNode oldParsedScript = oldParser.parse(getScript());
+            Node oldParsedScript = oldParser.parse(getScript());
 
             // Parse the local macros
             for (MacroNode macroNode : oldLocalMacros) {
@@ -403,7 +404,7 @@ public class ScriptModel
             // Translate the macros and write them back
             for (int i = 0, m = macros.getChildCount(); i < m; i++) {
                 MacroModel mm = (MacroModel) macros.getChildAt(i);
-                MacroNode newMacro = new MacroNode(notationModel.getLayerCount(), mm.getIdentifier(), mm.getScript(), 0, 0);
+                MacroNode newMacro = new MacroNode(mm.getIdentifier(), mm.getScript(), 0, 0);
                 newMacro.expand(oldParser);
                 mm.setScript(newMacro.toString(newNotation, oldLocalMacros));
             }

@@ -4,16 +4,16 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.util.EmptyIterator;
-import ch.randelshofer.util.RepeatedList;
 import ch.randelshofer.util.ReverseListIterator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
@@ -40,12 +40,12 @@ public class RepetitionNode extends Node {
     /**
      * Creates new RepetitionNode
      */
-    public RepetitionNode(int layerCount) {
-        this(layerCount, -1, -1);
+    public RepetitionNode() {
+        this(-1, -1);
     }
 
-    public RepetitionNode(int layerCount, int startpos, int endpos) {
-        super(Symbol.REPETITION, layerCount, startpos, endpos);
+    public RepetitionNode(int startpos, int endpos) {
+        super(Symbol.REPETITION, startpos, endpos);
     }
 
     public void setRepeatCount(int r) {
@@ -157,6 +157,9 @@ public class RepetitionNode extends Node {
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
+        b.append(getStartPosition());
+        b.append("..");
+        b.append(getEndPosition());
         b.append(getClass().getSimpleName());
         b.append("{");
         b.append(' ');

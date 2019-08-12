@@ -4,13 +4,13 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,12 +30,12 @@ import java.util.Map;
 public class InversionNode extends Node {
     private final static long serialVersionUID = 1L;
 
-    public InversionNode(int layerCount) {
-        this(layerCount, -1, -1);
+    public InversionNode() {
+        this(-1, -1);
     }
 
-    public InversionNode(int layerCount, int startpos, int endpos) {
-        super(Symbol.INVERSION, layerCount, startpos, endpos);
+    public InversionNode(int startpos, int endpos) {
+        super(Symbol.INVERSION, startpos, endpos);
     }
 
     /**
@@ -82,7 +82,7 @@ public class InversionNode extends Node {
             // them.
             InversionNode nestedInversion = (InversionNode) getChildAt(0);
             for (Iterator<Node> enumer = nestedInversion.getChildren().iterator(); enumer.hasNext();) {
-                ((SequenceNode) enumer.next()).writeTokens(w, p, macroMap);
+                ((ScriptNode) enumer.next()).writeTokens(w, p, macroMap);
                 if (enumer.hasNext()) {
                     p.writeToken(w, Symbol.DELIMITER);
                     w.write(' ');
@@ -96,7 +96,7 @@ public class InversionNode extends Node {
             // print the inverse of the move node.
             InversionNode inverted = (InversionNode) cloneSubtree();
             for (Iterator<Node> i = inverted.reversedChildIterator(); i.hasNext();) {
-                SequenceNode node = (SequenceNode) i.next();
+                ScriptNode node = (ScriptNode) i.next();
                 node.inverse();
                 node.writeTokens(w, p, macroMap);
             }
@@ -108,17 +108,17 @@ public class InversionNode extends Node {
             if (invertorPos == null) {
                 InversionNode inverted = (InversionNode) cloneSubtree();
                 for (Iterator<Node> i = inverted.reversedChildIterator();i.hasNext();) {
-                    SequenceNode node = (SequenceNode) i.next();
+                    ScriptNode node = (ScriptNode) i.next();
                     node.inverse();
                     node.writeTokens(w, p, macroMap);
                 }
             } else if (invertorPos == Syntax.PREFIX) {
-                p.writeToken(w, Symbol.INVERTOR);
+                p.writeToken(w, Symbol.INVERSION_OPERATOR);
                 super.writeTokens(w, p, macroMap);
 
             } else if (invertorPos == Syntax.SUFFIX) {
                 super.writeTokens(w, p, macroMap);
-                p.writeToken(w, Symbol.INVERTOR);
+                p.writeToken(w, Symbol.INVERSION_OPERATOR);
             } else {
                 throw new InternalError("Syntax not implemented " + invertorPos);
             }

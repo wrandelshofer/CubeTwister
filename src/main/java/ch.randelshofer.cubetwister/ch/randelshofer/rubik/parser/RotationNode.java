@@ -4,15 +4,14 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.util.ListOfLists;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
@@ -24,24 +23,24 @@ import java.util.Vector;
  * @version $Id$
  * <br>1.0 2002-02-24 Created.
  */
-public class RotationNode extends SequenceNode {
+public class RotationNode extends ScriptNode {
 
     private final static long serialVersionUID = 1L;
 
     private Node rotator;
 
-    public RotationNode(int layerCount) {
-        this(layerCount, 0, 0);
+    public RotationNode() {
+        this(0, 0);
     }
 
-    public RotationNode(int layerCount, int startpos, int endpos) {
-        super(layerCount, startpos, endpos);
-        rotator = new SequenceNode(layerCount);
+    public RotationNode(int startpos, int endpos) {
+        super(startpos, endpos);
+        rotator = new ScriptNode();
         rotator.setParent(this);
     }
 
-    public RotationNode(int layerCount, Node rotator, Node rotatee, int startpos, int endpos) {
-        super(layerCount, startpos, endpos);
+    public RotationNode(Node rotator, Node rotatee, int startpos, int endpos) {
+        super(startpos, endpos);
         rotator.removeFromParent();
         rotator.setParent(this);
         this.rotator = rotator;
@@ -76,7 +75,7 @@ public class RotationNode extends SequenceNode {
         super.overwritePositions(sp, ep);
         if (rotator != null) {
             for (Iterator<Node> i = rotator.getChildren().iterator(); i.hasNext(); ) {
-                SequenceNode child = (SequenceNode) i.next();
+                ScriptNode child = (ScriptNode) i.next();
                 child.overwritePositions(sp, ep);
             }
         }
@@ -148,7 +147,7 @@ public class RotationNode extends SequenceNode {
         if (rotators.size() > 0 && twisters.size() > 0) {
             //for (int i = 0; i < twisters.size(); i++) {
             for (int i = twisters.size() - 1; i > -1; i--) {
-                SequenceNode rotated = (SequenceNode) ((SequenceNode) twisters.get(i)).clone();
+                ScriptNode rotated = (ScriptNode) ((ScriptNode) twisters.get(i)).clone();
                 //for (int j = 0; j < rotators.size(); j++) {
                 for (int j = rotators.size() - 1; j > -1; j--) {
                     MoveNode rotate = (MoveNode) rotators.get(j);
@@ -238,7 +237,7 @@ public class RotationNode extends SequenceNode {
                     rotated.transform(rotator_, false);
                 }
                 for (Iterator<Node> i = rotated.childIterator(); i.hasNext(); ) {
-                    ((SequenceNode) i.next()).writeTokens(w, p, macroMap);
+                    ((ScriptNode) i.next()).writeTokens(w, p, macroMap);
                     if (i.hasNext()) {
                         p.writeToken(w, Symbol.DELIMITER);
                         w.write(' ');
@@ -277,7 +276,7 @@ public class RotationNode extends SequenceNode {
         } else if (pos == Syntax.PRECIRCUMFIX) {
             p.writeToken(w, Symbol.ROTATION_BEGIN);
             rotator.writeTokens(w, p, macroMap);
-            p.writeToken(w, Symbol.ROTATION_DELIMITER);
+            p.writeToken(w, Symbol.ROTATION_OPERATOR);
             super.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.ROTATION_END);
         }

@@ -5,7 +5,9 @@ package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.*;
 import ch.randelshofer.gui.event.*;
-import ch.randelshofer.rubik.parser.*;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
@@ -315,12 +317,12 @@ public class NotationConstructsView extends ScrollablePanel
         new SyntaxAdapter(Symbol.ROTATION, Syntax.PRECIRCUMFIX, rotationPrecircumfixRadioButton);
         new SyntaxAdapter(Symbol.ROTATION, Syntax.PREINFIX, rotationInfixRadioButton);
 
-        new TokenAdapter(Symbol.FACE_R, permRField);
-        new TokenAdapter(Symbol.FACE_U, permUField);
-        new TokenAdapter(Symbol.FACE_F, permFField);
-        new TokenAdapter(Symbol.FACE_L, permLField);
-        new TokenAdapter(Symbol.FACE_D, permDField);
-        new TokenAdapter(Symbol.FACE_B, permBField);
+        new TokenAdapter(Symbol.PERMUTATION_FACE_R, permRField);
+        new TokenAdapter(Symbol.PERMUTATION_FACE_U, permUField);
+        new TokenAdapter(Symbol.PERMUTATION_FACE_F, permFField);
+        new TokenAdapter(Symbol.PEMRUTATION_FACE_L, permLField);
+        new TokenAdapter(Symbol.PERMUTATION_FACE_D, permDField);
+        new TokenAdapter(Symbol.PERMUTATION_FACE_B, permBField);
         new TokenAdapter(Symbol.PERMUTATION_PLUS, permPlusField);
         new TokenAdapter(Symbol.PERMUTATION_MINUS, permMinusField);
         new TokenAdapter(Symbol.PERMUTATION_PLUSPLUS, permPlusPlusField);
@@ -331,11 +333,11 @@ public class NotationConstructsView extends ScrollablePanel
         new TokenAdapter(Symbol.INVERSION_BEGIN, inversionBeginField);
         new TokenAdapter(Symbol.INVERSION_END, inversionEndField);
         //new TokenAdapter(Symbol.INVERSION_DELIMITER, inversionDelimField);
-        new TokenAdapter(Symbol.INVERTOR, invertorField);
+        new TokenAdapter(Symbol.INVERSION_OPERATOR, invertorField);
         new TokenAdapter(Symbol.REFLECTION_BEGIN, reflectionBeginField);
         new TokenAdapter(Symbol.REFLECTION_END, reflectionEndField);
         //new TokenAdapter(Symbol.REFLECTION_DELIMITER, reflectionDelimField);
-        new TokenAdapter(Symbol.REFLECTOR, reflectorField);
+        new TokenAdapter(Symbol.REFLECTION_OPERATOR, reflectorField);
         new TokenAdapter(Symbol.GROUPING_BEGIN, groupingBeginField);
         new TokenAdapter(Symbol.GROUPING_END, groupingEndField);
         new TokenAdapter(Symbol.REPETITION_BEGIN, repetitionBeginField);
@@ -349,7 +351,7 @@ public class NotationConstructsView extends ScrollablePanel
         new TokenAdapter(Symbol.CONJUGATION_DELIMITER, conjugationDelimField);
         new TokenAdapter(Symbol.ROTATION_BEGIN, rotationBeginField);
         new TokenAdapter(Symbol.ROTATION_END, rotationEndField);
-        new TokenAdapter(Symbol.ROTATION_DELIMITER, rotationDelimField);
+        new TokenAdapter(Symbol.ROTATION_OPERATOR, rotationDelimField);
         //new TokenAdapter(Symbol.MACRO, macroField);
         
         

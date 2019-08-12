@@ -167,7 +167,7 @@ public class ScriptVideoExporter {
         }
         openExportStream();
         try {
-            SequenceNode script = model.getParsedScript();
+            Node script = model.getParsedScript();
             ScriptPlayer player = new ScriptPlayer();
 
             Cube3D cube3D = null;

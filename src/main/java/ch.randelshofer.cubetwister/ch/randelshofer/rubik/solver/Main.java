@@ -11,8 +11,8 @@ package ch.randelshofer.rubik.solver;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.ProgressPrinter;
 import ch.randelshofer.gui.ProgressView;
-import ch.randelshofer.rubik.parser.DefaultNotation;
-import ch.randelshofer.rubik.parser.Notation;
+import ch.randelshofer.rubik.notation.DefaultNotation;
+import ch.randelshofer.rubik.notation.Notation;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

@@ -15,12 +15,11 @@ import ch.randelshofer.gui.event.ModifierTracker;
 import ch.randelshofer.gui.image.Images;
 import ch.randelshofer.gui.plaf.CustomButtonUI;
 import ch.randelshofer.gui.text.WavyHighlighter;
-import ch.randelshofer.gui.tree.TreeNodeImpl;
 import ch.randelshofer.io.ParseException;
 import ch.randelshofer.rubik.*;
 import ch.randelshofer.rubik.parser.MoveNode;
 import ch.randelshofer.rubik.parser.Node;
-import ch.randelshofer.rubik.parser.SequenceNode;
+import ch.randelshofer.rubik.parser.ScriptNode;
 import ch.randelshofer.rubik.solver.CubeParser;
 import ch.randelshofer.rubik.solver.FaceletCube;
 import ch.randelshofer.rubik.solver.KociembaCube;
@@ -601,14 +600,14 @@ public class ScriptView
             model.translateInto(n);
             check(null);
         } catch (ch.randelshofer.io.ParseException e) {
-            model.getPlayer().setScript(new SequenceNode(model.getCube().getLayerCount()));
+            model.getPlayer().setScript(new ScriptNode());
             scriptTextArea.setToolTipText(e.getMessage() + "@" + e.getStartPosition() + ".." + e.getEndPosition());
             scriptTextArea.setCaretPosition(e.getStartPosition());
             scriptTextArea.moveCaretPosition(e.getEndPosition() + 1);
             JOptionPane.showMessageDialog(this, e.getMessage(), "Translation failed", JOptionPane.INFORMATION_MESSAGE);
             scriptTextArea.requestFocus();
         } catch (IOException e) {
-            model.getPlayer().setScript(new SequenceNode(model.getCube().getLayerCount()));
+            model.getPlayer().setScript(new ScriptNode());
             scriptTextArea.setToolTipText(e.getMessage());
             JOptionPane.showMessageDialog(this, e.getMessage(), "Translation failed", JOptionPane.INFORMATION_MESSAGE);
             scriptTextArea.requestFocus();
@@ -1150,9 +1149,9 @@ public class ScriptView
                             if (result == Solver.ABORT) {
                                 return null;
                             } else {
-                                SequenceNode solution = solver.getSolution();
+                                ScriptNode solution = solver.getSolution();
                                 solution.inverse();
-                                solution.transformOrientation(rcube.getCubeOrientation(), false);
+                                solution.transformOrientation(rcube.getLayerCount(), rcube.getCubeOrientation(), false);
                                 return solution.toString(model.getNotationModel());
                             }
                         } catch (Throwable e) {
@@ -1283,8 +1282,8 @@ public class ScriptView
                             if (result == Solver.ABORT) {
                                 return null;
                             } else {
-                                SequenceNode solution = solver.getSolution();
-                                solution.transformOrientation(rcube.getCubeOrientation(), true);
+                                ScriptNode solution = solver.getSolution();
+                                solution.transformOrientation(rcube.getLayerCount(), rcube.getCubeOrientation(), true);
                                 return solution.toString(model.getNotationModel());
                             }
                         } catch (Throwable e) {
@@ -1492,7 +1491,7 @@ public class ScriptView
 
     private void transformScript(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transformScript
         Object src = evt.getSource();
-        SequenceNode sn = model.getParsedScript();
+        Node sn = model.getParsedScript();
         int layerMask = (2 << model.getCube().getLayerCount()) - 1;
         if (src == CRItem) {
             sn.transform(0, layerMask, 1);

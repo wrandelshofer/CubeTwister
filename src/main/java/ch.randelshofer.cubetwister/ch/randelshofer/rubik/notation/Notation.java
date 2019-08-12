@@ -2,16 +2,18 @@
  * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
  */
 
-package ch.randelshofer.rubik.parser;
+package ch.randelshofer.rubik.notation;
 
 import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.parser.MacroNode;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 /**
- * Notation describes the tokens and syntax used by the Parser.
+ * Defines the syntax and tokens of a rubik's cube script.
  *
  * @author  Werner Randelshofer
  * @version $Id$
@@ -24,7 +26,7 @@ public interface Notation {
     /**
      * Returns the number of layers supported by this notation.
      */
-    public int getLayerCount();
+    int getLayerCount();
     
     /**
      * Returns a macro which performs the same transformation as the cube 
@@ -34,48 +36,56 @@ public interface Notation {
      * @param localMacros A Map with local macros.
      * @return equivalent macro or null
      */
-    public String getEquivalentMacro(Cube cube, Map<String,MacroNode> localMacros);
+    String getEquivalentMacro(Cube cube, Map<String, MacroNode> localMacros);
 
     /**
      * Returns the macros defined by this notation.
      * 
      * @return macros.
      */
-    public List<MacroNode> getMacros();
-    
+    List<MacroNode> getMacros();
+
+    default String getMacro(String identifier) {
+        for (MacroNode macro : getMacros()) {
+            if (identifier.equals(macro.getIdentifier())) return macro.getScript();
+        }
+        return null;
+    }
+
+    String getName();
+
     /**
      * Writes a token for the specified symbol to the print writer.
      *
      * @exception IOException If the symbol is not supported by the notation, 
      * and if no alternative symbols could be found.
      */
-    public void writeToken(PrintWriter w, Symbol symbol) throws IOException;
+    void writeToken(PrintWriter w, Symbol symbol) throws IOException;
     
     /**
      * Writes a token for the specified transformation to the print writer.
      */
-    public void writeToken(PrintWriter w, int axis, int layerMask, int angle) throws IOException;
-    
+    void writeMoveToken(PrintWriter w, int axis, int layerMask, int angle) throws IOException;
+
     /**
      * Returns true, if this notation supports the specified symbol.
      */
-    public boolean isSupported(Symbol s);
+    boolean isSupported(Symbol s);
     
     /**
      * Returns the syntax for the specified symbol.
-     * Note: This makes only sense for composite symbols.
      */
-    public Syntax getSyntax(Symbol s);
+    Syntax getSyntax(Symbol s);
 
     /**
      * Returns true, if the specified String is a token of this notation.
      */
-    public boolean isToken(String token);
+    boolean isToken(String token);
     
     /**
      * Returns true, if the specified String is a token for the specified symbol.
      */
-    public boolean isTokenFor(String token, Symbol symbol);
+    boolean isTokenFor(String token, Symbol symbol);
     
     /**
      * Returns a token for the specified symbol.
@@ -83,14 +93,14 @@ public interface Notation {
      *
      * Returns null, if symbol is not supported.
      */
-    public String getToken(Symbol s);
+    String getToken(Symbol s);
     /**
      * Returns a token for the specified move.
      * If the move has more than one token, the first token is returned.
      *
      * Returns null, if move is not supported.
      */
-    public String getToken(Move s);
+    String getToken(Move s);
     
     /**
      * Returns a symbol for the specified token.
@@ -99,10 +109,20 @@ public interface Notation {
      *
      * Returns null, if the token is not a token for the specified compositeSymbol.
      */
-    public Symbol getSymbolFor(String token, Symbol compositeSymbol);
+    Symbol getSymbolFor(String token, Symbol compositeSymbol);
     
     /**
-     * Configures a MoveNode from the specified move token.
+     * Returns the a move from the given move token.
+     * @return a move
      */
-    public void configureMoveFromToken(MoveNode move, String twistToken);
+    Move getMoveFromToken(String moveToken);
+
+    /**
+     * Gets all tokens defined for this notation.
+     *
+     * @return the tokens.
+     */
+    Collection<String> getTokens();
+
+    List<Symbol> getSymbolsFor(String token);
 }

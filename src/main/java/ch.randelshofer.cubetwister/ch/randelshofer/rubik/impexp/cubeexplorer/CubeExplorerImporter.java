@@ -9,8 +9,8 @@ import ch.randelshofer.cubetwister.doc.ScriptModel;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.io.BoundedRangeReader;
 import ch.randelshofer.rubik.impexp.Importer;
+import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.SequenceNode;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -107,7 +107,7 @@ public class CubeExplorerImporter extends JPanel implements Importer {
             script = line.substring(0, pbr).trim();
             scriptModel.setName(line.substring(pss+2).trim());
         }
-        SequenceNode node = kociembaParser.parse(script);
+        Node node = kociembaParser.parse(script);
         if (true) throw new InternalError("not implemented");
  //       scriptModel.setScript(defaultParser.toString(node));
         

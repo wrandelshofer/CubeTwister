@@ -4,15 +4,17 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.io.StreamPosTokenizer;
+import ch.randelshofer.rubik.notation.Move;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
+import ch.randelshofer.rubik.tokenizer.Tokenizer;
 
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StreamTokenizer;
-import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Parser for rubik's cube scripts. The tokens and syntax-rules used by the
@@ -141,7 +143,7 @@ import java.util.List;
  * @author Werner Randelshofer
  * @version $Id$
  */
-public class ScriptParser extends Object {
+public class ScriptParser {
 
     private static boolean VERBOSE = false;
     private final static int UNKNOWN_MASK = 0;
@@ -201,1040 +203,254 @@ public class ScriptParser extends Object {
     public Notation getNotation() {
         return notation;
     }
-
-    /**
-     * Extracts the token at the beginning of the String.
-     *
-     * This method tries to assign as many characters as possible to the token.
-     *
-     * @param string A string which contains one ore more concatenated tokens.
-     * @return Returns the token at the beginning of the string, or null, if the
-     * string does not start with a known token.
-     */
-    private String fetchGreedy(String string) {
-        if (notation.isToken(string) || macros.containsKey(string)) {
-            return string;
-        } else if (string.length() > 1) {
-            return fetchGreedy(string.substring(0, string.length() - 1));
-        }
-        return null;
+    private Tokenizer createTokenizer(String input) {
+            Tokenizer tt = new Tokenizer();
+            tt.skipWhitespace();
+            tt.addNumbers();
+            Collection<String> tokenToSymbolMap = this.notation.getTokens();
+            for (String i : tokenToSymbolMap) {
+                tt.addKeyword(i);
+            }
+            tt.setInput(input);
+            return tt;
     }
 
     /**
-     * Extracts the first numeric token out of a grouping of concatenated
-     * tokens. This method is greedy. It tries to assign as many characters as
-     * possible to the numeric token.
-     *
-     * @param string A string which contains one token or several concatenated
-     * tokens.
-     * @return Returns the first token or null, if the string does not start
-     * with a known token.
+     * Parses the specified string.
+     * @param str string
+     * @return Node the parsed abstract syntax tree node
+     * @throws ParseException if the parsing fails.
      */
-    private String fetchGreedyNumber(String string) {
-        try {
-            Integer.parseInt(string);
-            return string;
-        } catch (NumberFormatException e) {
-            if (string.length() > 1) {
-                return fetchGreedyNumber(string.substring(0, string.length() - 1));
-            } else {
-                return null;
+    public Node parse(String str) throws ParseException {
+        Tokenizer tt = this.createTokenizer(str);
+        ScriptNode root = new ScriptNode();
+        int guard = str.length();
+        while (tt.nextToken() != Tokenizer.TT_EOF) {
+            tt.pushBack();
+            this.parseExpression(tt, root);
+            guard = guard - 1;
+            if (guard < 0) {
+                throw new ParseException("Too many iterations! " + tt.getTokenType() , tt.getStartPosition(),tt.getEndPosition());
             }
         }
+        return root;
     }
 
     /**
-     * Parses a Script.
-     * <pre>
-     * Script = {Statement} ;
-     * </pre>.
+     * Returns true if the array contains a symbol of the specified symbol type
+     * @param symbols array of symbols
+     * @param type compound symbol
+     * @return true if array contains a symbol of the specified type
      */
-    public SequenceNode parse(String s)
-            throws IOException {
-        return parse(new StringReader(s), null);
-    }
-
-    /**
-     * Parses a script.
-     * <pre>
-     * Script = {Statement} ;
-     * </pre>.
-     */
-    public SequenceNode parse(Reader r)
-            throws IOException {
-        return parse(r, null);
-    }
-
-    /**
-     * Parses a script.
-     * <pre>
-     * Script = {Statement} ;
-     * </pre>.
-     */
-    public SequenceNode parse(Reader r, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            System.out.println("BEGIN PARSE");
-        }
-
-        // Configure the tokenizer
-        // -----------------------
-        StreamPosTokenizer t = new StreamPosTokenizer(r);
-        t.resetSyntax();
-        t.wordChars('\u0021', '\uffff');
-        t.whitespaceChars('\u0000', '\u0020');
-        t.eolIsSignificant(false);
-
-        if (notation.isSupported(Symbol.COMMENT)
-                && notation.getToken(Symbol.MULTILINE_COMMENT_BEGIN) != null
-                && notation.getToken(Symbol.MULTILINE_COMMENT_END) != null) {
-            t.slashStarComments(true);
-            t.setSlashStarTokens(
-                    notation.getToken(Symbol.MULTILINE_COMMENT_BEGIN),
-                    notation.getToken(Symbol.MULTILINE_COMMENT_END));
-        }
-        if (notation.isSupported(Symbol.COMMENT)
-                && notation.getToken(Symbol.SINGLELINE_COMMENT_BEGIN) != null) {
-            t.slashSlashComments(true);
-            t.setSlashSlashToken(notation.getToken(Symbol.SINGLELINE_COMMENT_BEGIN));
-        }
-
-        SequenceNode script = new SequenceNode(notation.getLayerCount());
-        if (parent != null) {
-            parent.add(script);
-        }
-        script.setStartPosition(0);
-
-        // Evaluate: {Expression}
-        // ----------------------
-        while (t.nextToken() != StreamPosTokenizer.TT_EOF) {
-            t.pushBack();
-            parseExpression(t, script);
-        }
-
-        script.setEndPosition(t.getEndPosition());
-        if (VERBOSE) {
-            System.out.println("END PARSE");
-            System.out.println("script:" + script);
-            System.out.println("resolved:" + script.toResolvedList(false));
-        }
-        return script;
-    }
-
-    private void printVerbose(StreamPosTokenizer t, String msg, Node parent)
-            throws IOException {
-        int i = parent.getLevel();
-        StringBuilder buf = new StringBuilder();
-        while (i-- > 0) {
-            buf.append('.');
-        }
-        buf.append(msg);
-        buf.append(' ');
-        buf.append(t.sval);
-        System.out.println(buf.toString());
-    }
-
-    /**
-     * Parses an Expression.
-     */
-    private Node parseExpression(StreamPosTokenizer t, Node parent) throws IOException {
-        Node expression = parseConstruct(t, parent);
-
-        String token;
-        int ttype = t.nextToken();
-        if (ttype == StreamPosTokenizer.TT_WORD) {
-            if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.PREINFIX
-                    && //
-                    notation.isTokenFor(token = fetchGreedy(t.sval), Symbol.COMMUTATION_DELIMITER)) {
-                t.consumeGreedy(token);
-                Node exp2 = parseExpression(t, parent);
-                expression = new CommutationNode(notation.getLayerCount(), expression, exp2, expression.getStartPosition(), exp2.getEndPosition());
-            } else if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.PREINFIX
-                    && //
-                    notation.isTokenFor(token = fetchGreedy(t.sval), Symbol.CONJUGATION_DELIMITER)) {
-                t.consumeGreedy(token);
-                Node exp2 = parseExpression(t, parent);
-                expression = new ConjugationNode(notation.getLayerCount(), expression, exp2, expression.getStartPosition(), exp2.getEndPosition());
-
-            } else if (notation.getSyntax(Symbol.ROTATION) == Syntax.PREINFIX
-                    && //
-                    notation.isTokenFor(token = fetchGreedy(t.sval), Symbol.ROTATION_DELIMITER)) {
-                t.consumeGreedy(token);
-                Node exp2 = parseExpression(t, parent);
-                expression = new RotationNode(notation.getLayerCount(), expression, exp2, expression.getStartPosition(), exp2.getEndPosition());
-
-            } else if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.POSTINFIX
-                    && //
-                    notation.isTokenFor(token = fetchGreedy(t.sval), Symbol.COMMUTATION_DELIMITER)) {
-                t.consumeGreedy(token);
-                Node exp2 = parseExpression(t, parent);
-                expression = new CommutationNode(notation.getLayerCount(), exp2, expression, expression.getStartPosition(), exp2.getEndPosition());
-            } else if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.POSTINFIX
-                    && //
-                    notation.isTokenFor(token = fetchGreedy(t.sval), Symbol.CONJUGATION_DELIMITER)) {
-                t.consumeGreedy(token);
-                Node exp2 = parseExpression(t, parent);
-                expression = new ConjugationNode(notation.getLayerCount(), exp2, expression, expression.getStartPosition(), exp2.getEndPosition());
-
-            } else if (notation.getSyntax(Symbol.ROTATION) == Syntax.POSTINFIX
-                    && //
-                    notation.isTokenFor(token = fetchGreedy(t.sval), Symbol.ROTATION_DELIMITER)) {
-                t.consumeGreedy(token);
-                Node exp2 = parseExpression(t, parent);
-                expression = new RotationNode(notation.getLayerCount(), exp2, expression, expression.getStartPosition(), exp2.getEndPosition());
-            } else {
-                t.pushBack();
-            }
-        } else {
-            t.pushBack();
-        }
-
-        parent.add(expression);
-        return expression;
-    }
-
-    /**
-     * Parses a Construct.
-     */
-    private StatementNode parseConstruct(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "construct", parent);
-        }
-
-        String token;
-        Symbol symbol;
-        StatementNode statement;
-
-        if (t.nextToken() == StreamPosTokenizer.TT_WORD
-                && //
-                notation.isTokenFor(token = fetchGreedy(t.sval), Symbol.DELIMITER)) {
-            // Evaluate: StmtDelimiter
-            // -----------------------
-            t.consumeGreedy(token);
-
-            // We discard StmtDelimiter's
-            statement = null;
-        } else {
-            statement = new StatementNode(notation.getLayerCount());
-            parent.add(statement);
-            statement.setStartPosition(t.getStartPosition());
-
-            t.pushBack();
-
-            // Evaluate: {Prefix}
-            Node prefix = statement;
-            Node lastPrefix = statement;
-            while ((prefix = parsePrefix(t, prefix)) != null) {
-                lastPrefix = prefix;
-            }
-
-            // Evaluate: Statement
-            Node innerStatement = parseStatement(t, lastPrefix);
-            statement.setEndPosition(innerStatement.getEndPosition());
-
-            // Evaluate: {Suffix}
-            Node child = statement.getChildAt(0);
-            Node suffix = statement;
-            while ((suffix = parseSuffix(t, statement)) != null) {
-                suffix.add(child);
-                child = suffix;
-                statement.setEndPosition(suffix.getEndPosition());
+    private boolean containsType(List<Symbol> symbols, Symbol type) {
+        for (int i = 0; i < symbols.size(); i++) {
+            Symbol s = symbols.get(i);
+            if (type.equals(s)) {
+                return true;
             }
         }
-        return statement;
+        return false;
     }
 
     /**
-     * Parses a Prefix.
+     * Returns true if the array contains a symbol of the specified symbol type
+     * @param symbols array of symbols
+     * @param types type desired type
+     * @return true if array contains a symbol of the specified type
      */
-    private Node parsePrefix(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "prefix", parent);
-        }
-
-        String token;
-        String numericToken = null;
-
-        // Fetch the next token
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            t.pushBack();
-            return null;
-        }
-        if ((token = fetchGreedy(t.sval)) == null) {
-            numericToken = fetchGreedyNumber(t.sval);
-        }
-        // We push back, because we do only decisions in this production
-        t.pushBack();
-
-        // If the symbol is neither a symbol or an integer,
-        // then it can't match any of the prefix productions.
-        if (token == null && numericToken == null) {
-            return null;
-        }
-
-        // If the token is numeric, we have encountered
-        // a repetition prefix.
-        if (numericToken != null) {
-            if (notation.getSyntax(Symbol.REPETITION) == Syntax.PREFIX) {
-                return parseRepetitor(t, parent);
-            } else {
-                return null;
+    boolean intersectsTypes(List<Symbol> symbols, Set<Symbol> types) {
+        for (Symbol s : symbols) {
+            if (types.contains(s)){
+                    return true;
             }
         }
-
-        // Is it a commutator?
-        if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.PREFIX
-                && notation.isTokenFor(token, Symbol.COMMUTATION_BEGIN)) {
-            return parseExpressionAffix(t, parent);
-        }
-
-        // Is it a conjugator?
-        if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.PREFIX
-                && notation.isTokenFor(token, Symbol.CONJUGATION_BEGIN)) {
-            return parseExpressionAffix(t, parent);
-        }
-
-        // Is it a rotator?
-        if (notation.getSyntax(Symbol.ROTATION) == Syntax.PREFIX
-                && notation.isTokenFor(token, Symbol.ROTATION_BEGIN)) {
-            return parseExpressionAffix(t, parent);
-        }
-
-        // Is it an Inversion?
-        if (notation.getSyntax(Symbol.INVERSION) == Syntax.PREFIX
-                && notation.isTokenFor(token, Symbol.INVERTOR)) {
-            return parseInvertor(t, parent);
-        }
-
-        // Is it a repetition?
-        if (notation.getSyntax(Symbol.REPETITION) == Syntax.PREFIX
-                && notation.isTokenFor(token, Symbol.REPETITION_BEGIN)) {
-            return parseRepetitor(t, parent);
-        }
-
-        // Is it a reflection?
-        if (notation.getSyntax(Symbol.REFLECTION) == Syntax.PREFIX
-                && notation.isTokenFor(token, Symbol.REFLECTOR)) {
-            return parseReflector(t, parent);
-        }
-
-        // Or is it no prefix at all?
-        return null;
+        return false;
     }
 
     /**
-     * Parses a Suffix.
+     * Returns the first intersecting symbol of symbols with types.
+     * @param symbols array of symbols
+     * @param types type desired type
+     * @return the first symbol that is of the desired type or null
      */
-    private Node parseSuffix(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "suffix", parent);
-        }
-
-        String token;
-        String numericToken = null;
-
-        // Fetch the next token.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            t.pushBack();
-            return null;
-        }
-        token = fetchGreedy(t.sval);
-        if (token == null) {
-            numericToken = fetchGreedyNumber(t.sval);
-        }
-
-        // We push back, because we do just decisions in this production
-        t.pushBack();
-
-        // If the token is neither alphanumeric nor numeric
-        // then it can't match any of the suffix productions.
-        if (token == null && numericToken == null) {
-            return null;
-        }
-
-        // If the token is numeric, we have encountered
-        // a repetition suffix.
-        if (token == null) {
-            if (notation.getSyntax(Symbol.REPETITION) == Syntax.SUFFIX) {
-                return parseRepetitor(t, parent);
-            } else {
-                return null;
-            }
-        }
-
-        // Is it a commutator?
-        if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.SUFFIX
-                && notation.isTokenFor(token, Symbol.COMMUTATION_BEGIN)) {
-            return parseExpressionAffix(t, parent);
-        }
-
-        // Is it a conjugator?
-        if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.SUFFIX
-                && notation.isTokenFor(token, Symbol.CONJUGATION_BEGIN)) {
-            return parseExpressionAffix(t, parent);
-        }
-
-        // Is it a rotator?
-        if (notation.getSyntax(Symbol.ROTATION) == Syntax.SUFFIX
-                && notation.isTokenFor(token, Symbol.ROTATION_BEGIN)) {
-            return parseExpressionAffix(t, parent);
-        }
-
-        // Is it an Inversion?
-        if (notation.getSyntax(Symbol.INVERSION) == Syntax.SUFFIX
-                && notation.isTokenFor(token, Symbol.INVERTOR)) {
-            return parseInvertor(t, parent);
-        }
-
-        // Is it a repetition?
-        if (notation.getSyntax(Symbol.REPETITION) == Syntax.SUFFIX
-                && notation.isTokenFor(token, Symbol.REPETITION_BEGIN)) {
-            return parseRepetitor(t, parent);
-        }
-
-        // Is it a reflection?
-        if (notation.getSyntax(Symbol.REFLECTION) == Syntax.SUFFIX
-                && notation.isTokenFor(token, Symbol.REFLECTOR)) {
-            return parseReflector(t, parent);
-        }
-
-        // Or is it no prefix at all?
-        return null;
-    }
-
-    /**
-     * Parses an affix which consists of an expression surrounded by a begin
-     * token and an end token. Either the begin or the end token is mandatory.
-     */
-    private Node parseExpressionAffix(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "affix", parent);
-        }
-
-        String token;
-
-        //ConjugationNode conjugation = new ConjugationNode();
-        //parent.add(conjugation);
-        //conjugation.setStartPosition(t.getStartPosition());
-        int startPosition = t.getStartPosition();
-
-        // Fetch the next token.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            throw new ParseException("Affix: Invalid begin.", t.getStartPosition(), t.getEndPosition());
-        }
-        if ((token = fetchGreedy(t.sval)) == null) {
-            throw new ParseException("Affix: Invalid begin " + t.sval, t.getStartPosition(), t.getEndPosition());
-        }
-
-        // Parse the BEGIN token and collect all potential end nodes
-        ArrayList<Symbol> endSymbols = new ArrayList<Symbol>();
-        if (notation.isTokenFor(token, Symbol.CONJUGATION_BEGIN)
-                && (notation.getSyntax(Symbol.CONJUGATION) == Syntax.PREFIX
-                || notation.getSyntax(Symbol.CONJUGATION) == Syntax.SUFFIX)) {
-            endSymbols.add(Symbol.CONJUGATION_END);
-        }
-        if (notation.isTokenFor(token, Symbol.COMMUTATION_BEGIN)
-                && (notation.getSyntax(Symbol.COMMUTATION) == Syntax.PREFIX
-                || notation.getSyntax(Symbol.COMMUTATION) == Syntax.SUFFIX)) {
-            endSymbols.add(Symbol.COMMUTATION_END);
-        }
-        if (notation.isTokenFor(token, Symbol.ROTATION_BEGIN)
-                && (notation.getSyntax(Symbol.ROTATION) == Syntax.PREFIX
-                || notation.getSyntax(Symbol.ROTATION) == Syntax.SUFFIX)) {
-            endSymbols.add(Symbol.ROTATION_END);
-        }
-        if (endSymbols.isEmpty()) {
-            // Or else?
-            throw new ParseException("Affix: Invalid begin " + t.sval, t.getStartPosition(), t.getEndPosition());
-        }
-        t.consumeGreedy(token);
-
-        // Is it a CngrBegin Statement {Statement} CngrEnd thingy?
-        Node operator = new SequenceNode(notation.getLayerCount());
-        Symbol endSymbol = null;
-        Loop:
-        do {
-            parseExpression(t, operator);
-            if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-                throw new ParseException("Affix: Statement missing.", t.getStartPosition(), t.getEndPosition());
-            }
-            token = fetchGreedy(t.sval);
-            for (int i = 0; i < endSymbols.size(); i++) {
-                endSymbol = endSymbols.get(i);
-                if (notation.isTokenFor(token, endSymbol)) {
-                    t.consumeGreedy(token);
-                    break Loop;
+    private Symbol getFirstIntersectingType(List<Symbol> symbols, Set<Symbol> types) {
+        for (Symbol s : symbols) {
+            for (Symbol type : types) {
+                if (s == type) {
+                    return s;
                 }
             }
-            t.pushBack();
-        } while (token != null);
-        //t.nextToken();
-
-        Node affix = null;
-        if (endSymbol == Symbol.CONJUGATION_END) {
-            ConjugationNode cNode = new ConjugationNode(notation.getLayerCount());
-            cNode.setConjugator(operator);
-            affix = cNode;
-        } else if (endSymbol == Symbol.COMMUTATION_END) {
-            CommutationNode cNode = new CommutationNode(notation.getLayerCount());
-            cNode.setCommutator(operator);
-            affix = cNode;
-        } else if (endSymbol == Symbol.ROTATION_END) {
-            RotationNode cNode = new RotationNode(notation.getLayerCount());
-            cNode.setRotator(operator);
-            affix = cNode;
-        } else {
-            throw new ParseException("Affix: Invalid end symbol " + t.sval, t.getStartPosition(), t.getEndPosition());
         }
-        affix.setStartPosition(startPosition);
-        affix.setEndPosition(t.getStartPosition() + token.length() - 1);
-        if (VERBOSE) {
-            printVerbose(t, "end " + affix + "=>" + token, parent);
-        }
-        parent.add(affix);
-        return affix;
-
+        return null;
     }
-
     /**
-     * Parses an invertor.
+     * Returns true if the array contains at least one symbol, and
+     * only symbols of the specified symbol type.
+     *
+     * @param {type} array of symbols
+     * @param {type} type desired type
+     * @return true if array contains a symbol of the specified type
      */
-    private Node parseInvertor(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "invertor", parent);
+    boolean isType(List<Symbol> symbols, Symbol type) {
+        for (Symbol s : symbols) {
+            if (s != type) {
+                return false;
+            }
         }
-
-        String token;
-
-        InversionNode inversion = new InversionNode(notation.getLayerCount());
-        parent.add(inversion);
-        inversion.setStartPosition(t.getStartPosition());
-
-        // Fetch the next token.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            throw new ParseException("Invertor: Invalid begin.", t.getStartPosition(), t.getEndPosition());
-        }
-        if ((token = fetchGreedy(t.sval)) == null) {
-            throw new ParseException("Invertor: Invalid begin " + t.sval, t.getStartPosition(), t.getEndPosition());
-        }
-
-        if (token != null && notation.isTokenFor(token, Symbol.INVERTOR)) {
-            inversion.setEndPosition(t.getStartPosition() + token.length() - 1);
-            t.consumeGreedy(token);
-            return inversion;
-        }
-
-        // Or else?
-        throw new ParseException("Invertor: Invalid invertor " + t.sval, t.getStartPosition(), t.getEndPosition());
-    }
-
-    /**
-     * Parses a repetitor.
-     */
-    private Node parseRepetitor(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "repetitor", parent);
-        }
-        // Only parse if supported
-        if (!notation.isSupported(Symbol.REPETITION)) {
-            return null;
-        }
-
-        String token;
-        String numericToken;
-        int intValue;
-
-        RepetitionNode repetition = new RepetitionNode(notation.getLayerCount());
-        parent.add(repetition);
-        repetition.setStartPosition(t.getStartPosition());
-
-        // Evaluate [RptrBegin] token.
-        // ---------------------------
-        // Only word tokens are legit.
-        // Fetch the next token.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            throw new ParseException("Repetitor: Invalid begin.", t.getStartPosition(), t.getEndPosition());
-        }
-
-        // Is it a [RptrBegin] token? Consume it.
-        token = fetchGreedy(t.sval);
-        if (token != null && notation.isTokenFor(token, Symbol.REPETITION_BEGIN)) {
-            t.consumeGreedy(token);
-        } else {
-            t.pushBack();
-        }
-        // The [RptrBegin] token is now done.
-
-        // Evaluate Integer token.
-        // ---------------------------
-        // Only word tokens are legit.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            throw new ParseException("Repetitor: Repeat count missing.", t.getStartPosition(), t.getEndPosition());
-        }
-
-        // Lets be greedy.
-        if ((numericToken = fetchGreedyNumber(t.sval)) == null) {
-            throw new ParseException("Repetitor: Invalid repeat count " + t.sval, t.getStartPosition(), t.getEndPosition());
-        }
-        try {
-            intValue = Integer.parseInt(numericToken);
-        } catch (NumberFormatException e) {
-            throw new ParseException("Repetitor: Internal Error " + e.getMessage(), t.getStartPosition(), t.getEndPosition());
-        }
-        if (intValue < 1) {
-            throw new ParseException("Repetitor: Invalid repeat count " + intValue, t.getStartPosition(), t.getEndPosition());
-        }
-        repetition.setRepeatCount(intValue);
-        repetition.setEndPosition(t.getStartPosition() + numericToken.length() - 1);
-        t.consumeGreedy(numericToken);
-        // The Integer token is now done.
-
-        // Evaluate [RptrEnd] token.
-        // ---------------------------
-        // Only word tokens are of interest.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            t.pushBack();
-            return repetition;
-        }
-
-        // Lets be greedy.
-        token = fetchGreedy(t.sval);
-
-        if (token == null) {
-            t.pushBack();
-            return repetition;
-        }
-
-        // Is it a [RptrEnd] token? Consume it.
-        if (notation.isTokenFor(token, Symbol.REPETITION_END)) {
-            t.consumeGreedy(token);
-        } else {
-            t.pushBack();
-        }
-        return repetition;
-    }
-
-    /**
-     * Parses a reflector.
-     */
-    private Node parseReflector(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "reflector", parent);
-        }
-        String token;
-
-        ReflectionNode reflection = new ReflectionNode(notation.getLayerCount());
-        parent.add(reflection);
-        reflection.setStartPosition(t.getStartPosition());
-
-        // Fetch the next token.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            throw new ParseException("Reflector: Invalid begin.", t.getStartPosition(), t.getEndPosition());
-        }
-        token = fetchGreedy(t.sval);
-
-        if (token != null && notation.isTokenFor(token, Symbol.REFLECTOR)) {
-            reflection.setEndPosition(t.getStartPosition() + token.length() - 1);
-            t.consumeGreedy(token);
-            return reflection;
-        }
-
-        // Or else?
-        throw new ParseException("Reflector: Invalid reflector " + t.sval, t.getStartPosition(), t.getEndPosition());
+        return !symbols.isEmpty();
     }
 
     /**
      * Parses a Statement.
+     *
+     * @param {
+    Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed statement
+     * @throws ParseException parse exception
      */
-    private Node parseStatement(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "statement", parent);
-        }
-        String token;
-        String numericToken;
-        int intValue;
-
+    Node parseStatement(Tokenizer t, Node parent) throws ParseException {
         // Fetch the next token.
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            throw new ParseException("Statement: Invalid begin.", t.getStartPosition(), t.getEndPosition());
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+            throw new ParseException("Statement: \"" + t.getStringValue() + "\" is a " + t.getTokenType() + " but not a keyword.", t.getStartPosition(), t.getEndPosition());
         }
-        token = fetchGreedy(t.sval);
 
+        int startPos = t.getStartPosition();
+        List<Symbol> candidates = notation.getSymbolsFor(t.getStringValue());
         // Evaluate: Macro
-        if (token == null) {
-            throw new ParseException("Statement: Unknown statement " + t.sval, t.getStartPosition(), t.getEndPosition());
-        } else if (macros.get(token) != null) {
-            t.pushBack();
-            return parseMacro(t, parent);
+        if (candidates.isEmpty()) {
+            throw new ParseException("Statement: Unknown statement " + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
         }
 
-        // Is it a Move token? Parse it.
-        if (notation.isTokenFor(token, Symbol.MOVE)) {
+        // Is it a Macro?
+        if (this.containsType(candidates, Symbol.MACRO)) {
             t.pushBack();
-            return parseMove(t, parent);
+            return this.parseMacro(t, parent);
+        }
 
-            // Is it a NOP token? Parse it.
-        } else if (notation.isTokenFor(token, Symbol.NOP)) {
-            t.consumeGreedy(token);
-            NOPNode nop = new NOPNode(notation.getLayerCount(), t.getStartPosition(), t.getEndPosition());
-            parent.add(nop);
-            return nop;
+        // Is it a Move?
+        if (this.containsType(candidates, Symbol.MOVE)) {
+            t.pushBack();
+            return this.parseMove(t, parent);
+        }
 
-            // Is it a Permutation sign token? Parse a permutation.
-        } else if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.PREFIX
-                && (notation.isTokenFor(token, Symbol.PERMUTATION_PLUS) 
-                || notation.isTokenFor(token, Symbol.PERMUTATION_MINUS) 
-                || notation.isTokenFor(token, Symbol.PERMUTATION_PLUSPLUS))) {
+        // Is it a NOP?
+        if (this.containsType(candidates, Symbol.NOP)) {
+            t.pushBack();
+            return this.parseNOP(t, parent);
+        }
+
+
+        // Is it a Permutation token? Parse a permutation.
+        if ((notation.getSyntax(Symbol.PERMUTATION)== Syntax.PREFIX
+                ||notation.getSyntax(Symbol.PERMUTATION)== Syntax.PRECIRCUMFIX)
+                &&  this.intersectsTypes(candidates,Symbol.PERMUTATION_SIGNS.getSubSymbols())) {
             int startpos = t.getStartPosition();
-            t.pushBack();
-            Symbol sign = parsePermutationSign(t, parent);
-            if (sign != null) {
-                if (t.nextToken() != StreamTokenizer.TT_WORD) {
-                    throw new ParseException(
-                            "Permutation: Unexpected token - expected a word.", t.getStartPosition(), t.getEndPosition());
-                }
-                token = fetchGreedy(t.sval);
-                if (!notation.isTokenFor(token, Symbol.PERMUTATION_BEGIN)) {
-                    throw new ParseException(
-                            "Permutation: Unexpected token - expected permutation begin.", t.getStartPosition(), t.getEndPosition());
-                }
-                t.consumeGreedy(token);
-
-                PermutationNode pnode = (PermutationNode) parsePermutation(t, parent, startpos, sign);
-                return pnode;
+            List<Symbol> sign=candidates;
+            t.nextToken();
+            candidates = notation.getSymbolsFor(t.getStringValue());
+            if (!this.containsType(candidates, Symbol.PERMUTATION_BEGIN)) {
+                throw new ParseException(
+                        "Permutation: Unexpected token - expected permutation begin.", t.getStartPosition(), t.getEndPosition());
             }
-        }
 
+            PermutationNode pnode = this.parsePermutation(t, parent, startpos, sign.get(0));
+            return pnode;
+        }
         // Okay, it's not a move and not a permutation sign.
         // Since we allow for some ambiguity of the
         // tokens used by the grouping, conjugation, commutation and permutation
         // statement it gets a little bit complicated here.
         // Create a bit mask with a bit for each expected statement.
-        int expressionMask
-                = ((notation.isTokenFor(token, Symbol.GROUPING_BEGIN)) ? GROUPING_MASK : UNKNOWN_MASK)
-                | //
-                ((notation.getSyntax(Symbol.CONJUGATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.CONJUGATION_BEGIN)) ? CONJUGATION_MASK : UNKNOWN_MASK)
-                | //
-                ((notation.getSyntax(Symbol.COMMUTATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.COMMUTATION_BEGIN)) ? COMMUTATION_MASK : UNKNOWN_MASK)
-                | //
-                ((notation.getSyntax(Symbol.ROTATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.ROTATION_BEGIN)) ? ROTATION_MASK : UNKNOWN_MASK)
-                | //
-                ((notation.getSyntax(Symbol.INVERSION) == Syntax.CIRCUMFIX && notation.isTokenFor(token, Symbol.INVERSION_BEGIN)) ? INVERSION_MASK : UNKNOWN_MASK)
-                | //
-                ((notation.getSyntax(Symbol.REFLECTION) == Syntax.CIRCUMFIX && notation.isTokenFor(token, Symbol.REFLECTION_BEGIN)) ? REFLECTION_MASK : UNKNOWN_MASK)
-                | //
-                ((notation.isSupported(Symbol.PERMUTATION) && notation.isTokenFor(token, Symbol.PERMUTATION_BEGIN)) ? PERMUTATION_MASK : UNKNOWN_MASK);
-
+       int expressionMask =
+               ((this.containsType(candidates, Symbol.GROUPING_BEGIN)) ? GROUPING_MASK : UNKNOWN_MASK) | //
+                ((notation.getSyntax(Symbol.CONJUGATION) == Syntax.PRECIRCUMFIX && this.containsType(candidates, Symbol.CONJUGATION_BEGIN)) ? CONJUGATION_MASK : UNKNOWN_MASK) | //
+                ((notation.getSyntax(Symbol.COMMUTATION) == Syntax.PRECIRCUMFIX && this.containsType(candidates, Symbol.COMMUTATION_BEGIN)) ? COMMUTATION_MASK : UNKNOWN_MASK) | //
+                ((notation.getSyntax(Symbol.ROTATION) == Syntax.PRECIRCUMFIX && this.containsType(candidates, Symbol.ROTATION_BEGIN)) ? ROTATION_MASK : UNKNOWN_MASK) | //
+                ((notation.getSyntax(Symbol.INVERSION) == Syntax.CIRCUMFIX && this.containsType(candidates, Symbol.INVERSION_BEGIN)) ? INVERSION_MASK : UNKNOWN_MASK) | //
+                ((notation.getSyntax(Symbol.REFLECTION) == Syntax.CIRCUMFIX && this.containsType(candidates, Symbol.REFLECTION_BEGIN)) ? REFLECTION_MASK : UNKNOWN_MASK) | //
+                ((notation.isSupported(Symbol.PERMUTATION) && this.containsType(candidates, Symbol.PERMUTATION_BEGIN)) ? PERMUTATION_MASK : UNKNOWN_MASK);
         // Is it a Permutation Begin token without any ambiguity?
         if (expressionMask == PERMUTATION_MASK) {
-            int p = t.getStartPosition();
-            t.consumeGreedy(token);
-            return parsePermutation(t, parent, p, null);
+            return this.parsePermutation(t, parent, startPos, null);
+        }
 
-            // Is it an ambiguous permutation begin token?
-        } else if ((expressionMask & PERMUTATION_MASK) == PERMUTATION_MASK) {
-            int p = t.getStartPosition();
-            t.consumeGreedy(token);
-
+        // Is it an ambiguous permutation begin token?
+        if ((expressionMask & PERMUTATION_MASK) == PERMUTATION_MASK) {
+             startPos = t.getStartPosition();
             // Look ahead
-            if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-                throw new ParseException("Statement: Word missing.", t.getStartPosition(), t.getEndPosition());
+            if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+                throw new ParseException("Statement: keyword expected.", t.getStartPosition(), t.getEndPosition());
             }
-            // Lets be greedy.
-            token = fetchGreedy(t.sval);
+            candidates = notation.getSymbolsFor( t.getStringValue());
             t.pushBack();
-            if (token != null
-                    && notation.isTokenFor(token, Symbol.PERMUTATION)
-                    && !notation.isTokenFor(token, Symbol.GROUPING_BEGIN)) {
-                return parsePermutation(t, parent, p, null);
+            if (candidates != null && this.intersectsTypes(candidates, Symbol.PERMUTATION.getSubSymbols())) {
+                return this.parsePermutation(t, parent, startPos, null);
             } else {
-                return parseCompoundStatement(t, parent, p, expressionMask);
-            }
-
-            // Is it one of the other Begin tokens?
-        } else if (expressionMask != UNKNOWN_MASK) {
-            int p = t.getStartPosition();
-            t.consumeGreedy(token);
-            return parseCompoundStatement(t, parent, p, expressionMask);
-        }
-
-        throw new ParseException("Statement: Invalid Statement " + t.sval, t.getStartPosition(), t.getEndPosition());
-    }
-
-    /**
-     * Parse a compound statement.
-     */
-    private Node parseCompoundStatement(StreamPosTokenizer t, Node parent, int startPos, int beginTypeMask)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "compount statement", parent);
-        }
-        Node seq1 = new SequenceNode(notation.getLayerCount());
-        seq1.setStartPosition(startPos);
-        parent.add(seq1);
-        Node seq2 = null;
-        Node grouping = seq1;
-
-        // The final type mask reflects the final type that we have determined
-        // after parsing all of the grouping.
-        int finalTypeMask = beginTypeMask & (GROUPING_MASK | CONJUGATION_MASK | COMMUTATION_MASK | ROTATION_MASK | REFLECTION_MASK | INVERSION_MASK);
-
-        // Evaluate: {Statement} , (GROUPING_END | COMMUTATION_END | CONJUGATION_END | ROTATION_END) ;
-        TheGrouping:
-        while (true) {
-            switch (t.nextToken()) {
-                case StreamPosTokenizer.TT_WORD:
-                    // Look ahead the nextElement token.
-                    String token = fetchGreedy(t.sval);
-                    if (token == null) {
-                        t.pushBack();
-                        break TheGrouping;
-                    }
-
-                    int endTypeMask
-                            = ((notation.isTokenFor(token, Symbol.GROUPING_END)) ? GROUPING_MASK : UNKNOWN_MASK)
-                            | //
-                            ((notation.getSyntax(Symbol.CONJUGATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.CONJUGATION_END)) ? CONJUGATION_MASK : UNKNOWN_MASK)
-                            | //
-                            ((notation.getSyntax(Symbol.COMMUTATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.COMMUTATION_END)) ? COMMUTATION_MASK : UNKNOWN_MASK)
-                            | //
-                            ((notation.getSyntax(Symbol.INVERSION) == Syntax.CIRCUMFIX && notation.isTokenFor(token, Symbol.INVERSION_END)) ? INVERSION_MASK : UNKNOWN_MASK)
-                            | //
-                            ((notation.getSyntax(Symbol.REFLECTION) == Syntax.CIRCUMFIX && notation.isTokenFor(token, Symbol.REFLECTION_END)) ? REFLECTION_MASK : UNKNOWN_MASK)
-                            | //
-                            ((notation.getSyntax(Symbol.ROTATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.ROTATION_END)) ? ROTATION_MASK : UNKNOWN_MASK);
-                    int delimiterTypeMask
-                            = ((notation.getSyntax(Symbol.CONJUGATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.CONJUGATION_DELIMITER)) ? CONJUGATION_MASK : 0) 
-                            | ((notation.getSyntax(Symbol.COMMUTATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.COMMUTATION_DELIMITER)) ? COMMUTATION_MASK : 0)
-                            | ((notation.getSyntax(Symbol.ROTATION) == Syntax.PRECIRCUMFIX && notation.isTokenFor(token, Symbol.ROTATION_DELIMITER)) ? ROTATION_MASK : 0);
-
-                    if (endTypeMask != 0) {
-                        finalTypeMask &= endTypeMask;
-                        grouping.setEndPosition(t.getStartPosition() + token.length() - 1);
-                        t.consumeGreedy(token);
-
-                        break TheGrouping;
-
-                    } else if (delimiterTypeMask != 0) {
-                        finalTypeMask &= delimiterTypeMask;
-                        if (finalTypeMask == 0) {
-                            throw new ParseException("Grouping: Invalid delimiter.", t.getStartPosition(), t.getEndPosition());
-                        }
-                        if (seq2 == null) {
-                            seq1.setEndPosition(t.getStartPosition());
-                            seq2 = new SequenceNode(notation.getLayerCount());
-                            seq2.setStartPosition(t.getEndPosition());
-                            parent.add(seq2);
-                            grouping = seq2;
-                        } else {
-                            throw new ParseException("Grouping: Delimiter must occur only once", t.getStartPosition(), t.getEndPosition());
-                        }
-                        t.consumeGreedy(token);
-
-                    } else {
-                        t.pushBack();
-                        parseExpression(t, grouping);
-                    }
-                    break;
-                case StreamPosTokenizer.TT_EOF:
-                    throw new ParseException(
-                            "Grouping: End missing.", t.getStartPosition(), t.getEndPosition());
-                default:
-                    throw new ParseException(
-                            "Grouping: Internal error.", t.getStartPosition(), t.getEndPosition());
+                return this.parseCompoundStatement(t, parent, startPos, expressionMask ^ PERMUTATION_MASK);
             }
         }
 
-        seq1.removeFromParent();
-        if (seq2 == null) {
-            // There is no second sequence. 
-            // The compound statement can only be a grouping.
-            finalTypeMask &= GROUPING_MASK;
-        } else {
-            // There is a second sequence. Remove it from its parent, because we
-            // will integrate it into the compound statement.
-            seq2.removeFromParent();
-
-            // The compound statement can not be a grouping.
-            finalTypeMask &= -1 ^ GROUPING_MASK;
+        // Is it one of the other Begin tokens?
+        if (expressionMask != UNKNOWN_MASK) {
+            return this.parseCompoundStatement(t, parent, startPos, expressionMask);
         }
 
-        switch (finalTypeMask) {
-            case GROUPING_MASK:
-                if (seq2 != null) {
-                    throw new ParseException(
-                            "Grouping: Invalid Grouping.", startPos, t.getEndPosition());
-                } else {
-                    grouping = new GroupingNode(notation.getLayerCount(), startPos, t.getEndPosition());
-                    while (seq1.getChildCount() > 0) {
-                        grouping.add(seq1.getChildAt(0));
-                    }
-                }
-                break;
-
-            case INVERSION_MASK:
-                if (seq2 != null) {
-                    throw new ParseException(
-                            "Inversion: Invalid Inversion.", startPos, t.getEndPosition());
-                } else {
-                    grouping = new InversionNode(notation.getLayerCount(), startPos, t.getEndPosition());
-                    while (seq1.getChildCount() > 0) {
-                        grouping.add(seq1.getChildAt(0));
-                    }
-                }
-                break;
-
-            case REFLECTION_MASK:
-                if (seq2 != null) {
-                    throw new ParseException(
-                            "Reflection: Invalid Reflection.", startPos, t.getEndPosition());
-                } else {
-                    grouping = new ReflectionNode(notation.getLayerCount(), startPos, t.getEndPosition());
-                    while (seq1.getChildCount() > 0) {
-                        grouping.add(seq1.getChildAt(0));
-                    }
-                }
-                break;
-
-            case CONJUGATION_MASK:
-                if (seq2 == null) {
-                    throw new ParseException(
-                            "Conjugation: Conjugate missing.", startPos, t.getEndPosition());
-                } else {
-                    grouping = new ConjugationNode(notation.getLayerCount(), seq1, seq2, startPos, t.getEndPosition());
-                }
-                break;
-
-            case COMMUTATION_MASK:
-                if (seq2 == null) {
-                    if (seq1.getChildCount() == 2 && seq1.getSymbol() == Symbol.SEQUENCE) {
-                        grouping = new CommutationNode(notation.getLayerCount(), seq1.getChildAt(0), seq1.getChildAt(1), startPos, t.getEndPosition());
-                    } else {
-                        throw new ParseException(
-                                "Commutation: Commutee missing.", startPos, t.getEndPosition());
-                    }
-                } else {
-                    grouping = new CommutationNode(notation.getLayerCount(), seq1, seq2, startPos, t.getEndPosition());
-                }
-                break;
-
-            case ROTATION_MASK:
-                if (seq2 == null) {
-                    throw new ParseException(
-                            "Rotation: Rotatee missing.", startPos, t.getEndPosition());
-                } else {
-                    grouping = new RotationNode(notation.getLayerCount(), seq1, seq2, startPos, t.getEndPosition());
-                }
-                break;
-
-            default:
-                StringBuilder ambiguous = new StringBuilder();
-                if ((finalTypeMask & GROUPING_MASK) != 0) {
-                    ambiguous.append("Grouping");
-                }
-                if ((finalTypeMask & INVERSION_MASK) != 0) {
-                    if (ambiguous.length() != 0) {
-                        ambiguous.append(" or ");
-                    }
-                    ambiguous.append("Inversion");
-                }
-                if ((finalTypeMask & REFLECTION_MASK) != 0) {
-                    if (ambiguous.length() != 0) {
-                        ambiguous.append(" or ");
-                    }
-                    ambiguous.append("Reflection");
-                }
-                if ((finalTypeMask & CONJUGATION_MASK) != 0) {
-                    if (ambiguous.length() != 0) {
-                        ambiguous.append(" or ");
-                    }
-                    ambiguous.append("Conjugation");
-                }
-                if ((finalTypeMask & COMMUTATION_MASK) != 0) {
-                    if (ambiguous.length() != 0) {
-                        ambiguous.append(" or ");
-                    }
-                    ambiguous.append("Commutation");
-                }
-                if ((finalTypeMask & ROTATION_MASK) != 0) {
-                    if (ambiguous.length() != 0) {
-                        ambiguous.append(" or ");
-                    }
-                    ambiguous.append("Rotation");
-                }
-                throw new ParseException(
-                        "Compound Statement: Ambiguous compound statement, possibilities are " + ambiguous + ".", startPos, t.getEndPosition());
-        }
-
-        parent.add(grouping);
-        return grouping;
+        throw new ParseException("Statement: illegal Statement " + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
     }
 
-    /**
-     * Parses a permutation.
+    /** Parses the remainder of a permutation statement after its PERMUTATION_BEGIN token has been consumed.
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @param {int} startPos the start position of the PERMUTATION_BEGIN begin token
+     * @returns {unresolved} the parsed permutation
      */
-    private Node parsePermutation(StreamPosTokenizer t, Node parent, int startPos, Symbol sign)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "permutation", parent);
-        }
+    PermutationNode parsePermutation(Tokenizer t, Node parent, int startPos, Symbol sign) throws ParseException {
 
-        PermutationNode permutation = new PermutationNode(notation.getLayerCount());
+        PermutationNode permutation = new PermutationNode(startPos, startPos);
         parent.add(permutation);
-        permutation.setStartPosition(startPos);
 
         if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.PRECIRCUMFIX) {
-            sign = parsePermutationSign(t, parent);
+            sign = this.parsePermutationSign(t, parent);
         }
 
         ThePermutation:
         while (true) {
             switch (t.nextToken()) {
-                case StreamPosTokenizer.TT_WORD:
+                case Tokenizer.TT_KEYWORD:
 
                     // Evaluate PermEnd
-                    String token = fetchGreedy(t.sval);
-                    if (notation.isTokenFor(token, Symbol.PERMUTATION_END)) {
-                        permutation.setEndPosition(t.getStartPosition() + token.length() - 1);
-                        t.consumeGreedy(token);
+                    List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+                    if (this.containsType(symbols, Symbol.PERMUTATION_END)) {
+                        permutation.setEndPosition(t.getEndPosition());
                         break ThePermutation;
 
                     } else {
                         t.pushBack();
-                        parsePermutationItem(t, permutation);
-                        if (t.nextToken() == StreamPosTokenizer.TT_WORD) {
-                            token = fetchGreedy(t.sval);
-                            if (notation.isTokenFor(token, Symbol.PERMUTATION_DELIMITER)) {
-                                t.consumeGreedy(token);
+                        this.parsePermutationItem(t, permutation);
+                        if (t.nextToken() == Tokenizer.TT_KEYWORD) {
+                            symbols = notation.getSymbolsFor(t.getStringValue());
+                            if (this.containsType(symbols, Symbol.PERMUTATION_DELIMITER)) {
 
-                            } else if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.POSTCIRCUMFIX 
-                                    && (notation.isTokenFor(token, Symbol.PERMUTATION_PLUS) 
-                                    || notation.isTokenFor(token, Symbol.PERMUTATION_MINUS) 
-                                    || notation.isTokenFor(token, Symbol.PERMUTATION_PLUSPLUS))) {
+                            } else if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.POSTCIRCUMFIX
+                                    && (this.containsType(symbols, Symbol.PERMUTATION_PLUS)
+                                    || this.containsType(symbols, Symbol.PERMUTATION_MINUS)
+                                    || this.containsType(symbols, Symbol.PERMUTATION_PLUSPLUS))) {
                                 t.pushBack();
-                                sign = parsePermutationSign(t, parent);
-                                if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
+                                sign = this.parsePermutationSign(t, parent);
+                                if (t.nextToken() != Tokenizer.TT_WORD) {
                                     throw new ParseException(
                                             "Permutation: End expected.", t.getStartPosition(), t.getEndPosition());
                                 }
-                                token = fetchGreedy(t.sval);
-                                if (notation.isTokenFor(token, Symbol.PERMUTATION_END)) {
-                                    permutation.setEndPosition(t.getStartPosition() + token.length() - 1);
-                                    t.consumeGreedy(token);
+                                // FIXME check if current token is PERMUATION END
+                                if (this.containsType(symbols,Symbol.PERMUTATION_END)) {
+                                    permutation.setEndPosition(t.getEndPosition());
                                     break ThePermutation;
                                 } else {
                                     throw new ParseException(
                                             "Permutation: End expected.", t.getStartPosition(), t.getEndPosition());
                                 }
-
                             } else {
                                 t.pushBack();
                             }
@@ -1243,17 +459,17 @@ public class ScriptParser extends Object {
                         }
                     }
                     break;
-                case StreamPosTokenizer.TT_EOF:
+                case Tokenizer.TT_EOF:
                     throw new ParseException(
                             "Permutation: End missing.", t.getStartPosition(), t.getEndPosition());
                 default:
                     throw new ParseException(
-                            "Permutation: Internal error.", t.getStartPosition(), t.getEndPosition());
+                            "Permutation: Internal error. "+t.getTokenType(), t.getStartPosition(), t.getEndPosition());
             }
         }
 
         if (notation.getSyntax(Symbol.PERMUTATION) == Syntax.SUFFIX) {
-            sign = parsePermutationSign(t, parent);
+            sign = this.parsePermutationSign(t, parent);
         }
 
         if (sign != null) {
@@ -1261,7 +477,7 @@ public class ScriptParser extends Object {
                 case 1:
                     break;
                 case 2:
-                    if (sign == Symbol.PERMUTATION_PLUSPLUS 
+                    if (sign == Symbol.PERMUTATION_PLUSPLUS
                             || sign == Symbol.PERMUTATION_MINUS) {
                         throw new ParseException(
                                 "Permutation: Illegal sign.", t.getStartPosition(), t.getEndPosition());
@@ -1282,18 +498,41 @@ public class ScriptParser extends Object {
     }
 
     /**
-     * Parses a permutation item.
+     * Parses a permutation sign and returns null or one of the three sign
+     * symbols.
      */
-    private void parsePermutationItem(StreamPosTokenizer t, PermutationNode parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "permutationItem", parent);
-        }
-        int startpos = t.getStartPosition();
+    Symbol parsePermutationSign(Tokenizer t,  Node parent)  {
+
         Symbol sign = null;
-        String token;
-        Symbol symbol;
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+            t.pushBack();
+            sign = null;
+        } else {
+            List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+            if (this.containsType(symbols, Symbol.PERMUTATION_PLUS)
+                    || this.containsType(symbols, Symbol.PERMUTATION_PLUSPLUS)
+                    || this.containsType(symbols, Symbol.PERMUTATION_MINUS)) {
+                sign = symbols.get(0);
+            } else {
+                sign = null;
+                t.pushBack();
+            }
+        }
+        return sign;
+    }
+
+    /**
+     * Parses a permutation item.
+     *
+     * @param {Tokenizer} t
+     * @param {PermutationNode} parent
+     */
+   Node parsePermutationItem(Tokenizer t, PermutationNode parent) throws ParseException {
+
+    int startpos = t.getStartPosition();
+        Symbol sign = null;
         int leadingSignStartPos = -1, leadingSignEndPos = -1;
+        String partName = "";
 
         // Evaluate [sign]
         Syntax syntax = notation.getSyntax(Symbol.PERMUTATION);
@@ -1302,31 +541,26 @@ public class ScriptParser extends Object {
                 || syntax == Syntax.POSTCIRCUMFIX) {
             leadingSignStartPos = t.getStartPosition();
             leadingSignEndPos = t.getEndPosition();
-            sign = parsePermutationSign(t, parent);
+            sign = this.parsePermutationSign(t, parent);
         }
         // Evaluate PermFace [PermFace] [PermFace]
-        Symbol[] faceSymbols = new Symbol[3];
+        List<Symbol> faceSymbols = new ArrayList<>(3);
         int type = 0;
 
-        StringBuilder partName = new StringBuilder();
         while (type < 3) {
-            if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
+            if (t.nextToken() != Tokenizer.TT_KEYWORD) {
                 throw new ParseException("PermutationItem: Face token missing.", t.getStartPosition(), t.getEndPosition());
             }
-            token = fetchGreedy(t.sval);
-            symbol = notation.getSymbolFor(token, Symbol.PERMUTATION);
-            if (symbol == null) {
+            List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+            if (!this.containsType(symbols, Symbol.PERMUTATION)) {
                 t.pushBack();
                 break;
             }
-            if (Symbol.FACE_R.compareTo(symbol) <= 0
-                    && symbol.compareTo(Symbol.FACE_B) <= 0) {
-                if (VERBOSE) {
-                    printVerbose(t, "permutationItem Face:" + token, parent);
-                }
-                partName.append(token);
-                faceSymbols[type++] = symbol;
-                t.consumeGreedy(token);
+            Symbol symbol = this.getFirstIntersectingType(symbols, Symbol.PERMUTATION_FACES.getSubSymbols());
+            if (symbol != null) {
+                partName = partName + t.getStringValue();
+                faceSymbols.add(symbol);
+                type++;
             } else {
                 t.pushBack();
                 break;
@@ -1343,18 +577,8 @@ public class ScriptParser extends Object {
 
         // Evaluate [Integer]
         int partNumber = 0;
-        if (t.nextToken() == StreamPosTokenizer.TT_WORD
-                && (token = fetchGreedyNumber(t.sval)) != null) {
-            if (type == 3) {
-                throw new ParseException("PermutationItem: Corner parts must not have a number " + partNumber, t.getStartPosition(), t.getEndPosition());
-            }
-
-            try {
-                partNumber = Integer.parseInt(token);
-            } catch (NumberFormatException e) {
-                throw new ParseException("PermutationItem: Internal Error " + e.getMessage(), t.getStartPosition(), t.getEndPosition());
-            }
-            t.consumeGreedy(token);
+        if (t.nextToken() == Tokenizer.TT_NUMBER) {
+                partNumber = t.getNumericValue();
         } else {
             t.pushBack();
         }
@@ -1434,122 +658,646 @@ public class ScriptParser extends Object {
             sign = parsePermutationSign(t, parent);
         }
 
-        try {
-            parent.addPermItem(type, sign, faceSymbols, partNumber, notation.getLayerCount());
-        } catch (IllegalArgumentException e) {
-            ParseException pe = new ParseException(e.getMessage(), startpos, t.getEndPosition());
-            pe.initCause(e);
-            throw pe;
+            parent.addPermItem(type, sign, faceSymbols.toArray(new Symbol[faceSymbols.size()]), partNumber, notation.getLayerCount());
+        return parent;
+    }
+
+    /** Parses a compound statement after its BEGIN token has been consumed.
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @param {int} startPos the start position of the XXX_BEGIN begin token
+     * @param {int} beginTypeMask the mask indicating which XXX_BEGIN token was consumed
+     * @returns {unresolved} the parsed compound statement
+     */
+   Node parseCompoundStatement(Tokenizer t, Node parent, int startPos, int beginTypeMask) throws ParseException{
+        ScriptNode seq1 = new ScriptNode();
+        seq1.setStartPosition(startPos);
+        parent.add(seq1);
+        ScriptNode seq2 = null;
+        Node grouping = seq1;
+        // The final type mask reflects the final type that we have determined
+        // after parsing all of the grouping.
+        int finalTypeMask = beginTypeMask & (GROUPING_MASK | CONJUGATION_MASK | COMMUTATION_MASK | ROTATION_MASK | REFLECTION_MASK | INVERSION_MASK);
+        // Evaluate: {Statement} , (GROUPING_END | COMMUTATION_END | CONJUGATION_END | ROTATION_END) ;
+        int guard = t.getInputLength();
+        TheGrouping:
+        while (true) {
+            guard = guard - 1;
+            if (guard < 0) {
+                throw new Error("too many iterations");
+            }
+
+            switch (t.nextToken()) {
+                case Tokenizer.TT_KEYWORD:
+                    List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+                    // Look ahead the nextElement token.
+
+                    int endTypeMask
+                            = ((this.containsType(symbols, Symbol.GROUPING_END)) ? GROUPING_MASK : UNKNOWN_MASK) | //
+                            ((notation.getSyntax(Symbol.CONJUGATION) == Syntax.PRECIRCUMFIX && this.containsType(symbols, Symbol.CONJUGATION_END)) ? CONJUGATION_MASK : UNKNOWN_MASK) | //
+                            ((notation.getSyntax(Symbol.COMMUTATION) == Syntax.PRECIRCUMFIX && this.containsType(symbols, Symbol.COMMUTATION_END)) ? COMMUTATION_MASK : UNKNOWN_MASK) | //
+                            ((notation.getSyntax(Symbol.INVERSION) == Syntax.CIRCUMFIX && this.containsType(symbols, Symbol.INVERSION_END)) ? INVERSION_MASK : UNKNOWN_MASK) | //
+                            ((notation.getSyntax(Symbol.REFLECTION) == Syntax.CIRCUMFIX && this.containsType(symbols, Symbol.REFLECTION_END)) ? REFLECTION_MASK : UNKNOWN_MASK) | //
+                            ((notation.getSyntax(Symbol.ROTATION) == Syntax.PRECIRCUMFIX && this.containsType(symbols, Symbol.ROTATION_END)) ? ROTATION_MASK : UNKNOWN_MASK);
+                    int delimiterTypeMask
+                            = ((notation.getSyntax(Symbol.CONJUGATION) == Syntax.PRECIRCUMFIX && this.containsType(symbols, Symbol.CONJUGATION_DELIMITER)) ? CONJUGATION_MASK : 0)
+                            | ((notation.getSyntax(Symbol.COMMUTATION) == Syntax.PRECIRCUMFIX && this.containsType(symbols, Symbol.COMMUTATION_DELIMITER)) ? COMMUTATION_MASK : 0)
+                            | ((notation.getSyntax(Symbol.ROTATION) == Syntax.PRECIRCUMFIX && this.containsType(symbols, Symbol.ROTATION_OPERATOR)) ? ROTATION_MASK : 0);
+
+                    if (endTypeMask != 0) {
+                        finalTypeMask &= endTypeMask;
+                        grouping.setEndPosition(t.getEndPosition());
+                        break TheGrouping;
+                    } else if (delimiterTypeMask != 0) {
+                        finalTypeMask &= delimiterTypeMask;
+                        if (finalTypeMask == 0) {
+                            throw new ParseException("Grouping: illegal delimiter:" + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
+                        }
+                        if (seq2 == null) {
+                            seq1.setEndPosition(t.getStartPosition());
+                            seq2 = new ScriptNode();
+                            seq2.setStartPosition(t.getEndPosition());
+                            parent.add(seq2);
+                            grouping = seq2;
+                        } else {
+                            throw new ParseException("Grouping: Delimiter must occur only once", t.getStartPosition(), t.getEndPosition());
+                        }
+
+                    } else {
+                        t.pushBack();
+                        this.parseExpression(t, grouping);
+                    }
+                    break;
+                case Tokenizer.TT_EOF:
+                    throw new ParseException("Grouping: End missing.", t.getStartPosition(), t.getEndPosition());
+                default:
+                    throw new ParseException("Grouping: Internal error.", t.getStartPosition(), t.getEndPosition());
+            }
         }
+
+        seq1.removeFromParent();
+        if (seq2 == null) {
+            // There is no second sequence.
+            // The compound statement can only be a grouping.
+            finalTypeMask &= GROUPING_MASK;
+        } else {
+            // There is a second sequence. Remove it from its parent, because we
+            // will integrate it into the compound statement.
+            seq2.removeFromParent();
+            // The compound statement can not be a grouping.
+            finalTypeMask &= ~GROUPING_MASK;
+        }
+
+        switch (finalTypeMask) {
+            case GROUPING_MASK:
+                    grouping = new GroupingNode(startPos, t.getEndPosition());
+                    for (int i = seq1.getChildCount() - 1; i >= 0; i--) {
+                        grouping.add(seq1.getChildAt(0));
+                    }
+                break;
+            case INVERSION_MASK:
+                    grouping = new InversionNode(startPos, t.getEndPosition());
+                    for (int i = seq1.getChildCount() - 1; i >= 0; i--) {
+                        grouping.add(seq1.getChildAt(0));
+                    }
+                break;
+            case REFLECTION_MASK:
+                    grouping = new ReflectionNode(startPos, t.getEndPosition());
+                    for (int i = seq1.getChildCount() - 1; i >= 0; i--) {
+                        grouping.add(seq1.getChildAt(0));
+                    }
+                break;
+            case CONJUGATION_MASK:
+                    grouping = new ConjugationNode(seq1, seq2, startPos, t.getEndPosition());
+                break;
+            case COMMUTATION_MASK:
+                    grouping = new CommutationNode(seq1, seq2, startPos, t.getEndPosition());
+                break;
+            case ROTATION_MASK:
+                    grouping = new RotationNode(seq1, seq2, startPos, t.getEndPosition());
+                break;
+            default:
+                String ambiguous = "";
+                if ((finalTypeMask & GROUPING_MASK) != 0) {
+                    ambiguous += ("Grouping");
+                }
+                if ((finalTypeMask & INVERSION_MASK) != 0) {
+                    if (ambiguous.length() != 0) {
+                        ambiguous += (" or ");
+                    }
+                    ambiguous += ("Inversion");
+                }
+                if ((finalTypeMask & REFLECTION_MASK) != 0) {
+                    if (ambiguous.length() != 0) {
+                        ambiguous += (" or ");
+                    }
+                    ambiguous += ("Reflection");
+                }
+                if ((finalTypeMask & CONJUGATION_MASK) != 0) {
+                    if (ambiguous.length() != 0) {
+                        ambiguous += (" or ");
+                    }
+                    ambiguous+=("Conjugation");
+                }
+                if ((finalTypeMask & COMMUTATION_MASK) != 0) {
+                    if (ambiguous.length() != 0) {
+                        ambiguous += (" or ");
+                    }
+                    ambiguous += ("Commutation");
+                }
+                if ((finalTypeMask & ROTATION_MASK) != 0) {
+                    if (ambiguous.length() != 0) {
+                        ambiguous += (" or ");
+                    }
+                    ambiguous += ("Rotation");
+                }
+                throw new ParseException("Compound Statement: Ambiguous compound statement, possibilities are " + ambiguous + ".", startPos, t.getEndPosition());
+        }
+
+        parent.add(grouping);
+        return grouping;
+    }
+    /** Parses an expression.
+     */
+   private Node parseExpression(Tokenizer t, Node parent)throws ParseException {
+        Node expression = this.parseConstruct(t, parent);
+        int ttype = t.nextToken();
+        if (ttype == Tokenizer.TT_KEYWORD) {
+            List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+            if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.PREINFIX
+                    && this.containsType(symbols, Symbol.COMMUTATION_DELIMITER)) {
+                Node exp2 = this.parseExpression(t, parent);
+                expression = new CommutationNode(expression, exp2, expression.getStartPosition(), exp2.getEndPosition());
+            } else if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.PREINFIX
+                    && this.containsType(symbols, Symbol.CONJUGATION_DELIMITER)) {
+                Node exp2 = this.parseExpression(t, parent);
+                expression = new ConjugationNode(expression, exp2, expression.getStartPosition(), exp2.getEndPosition());
+            } else if (notation.getSyntax(Symbol.ROTATION) == Syntax.PREINFIX
+                    && this.containsType(symbols, Symbol.ROTATION_OPERATOR)) {
+                Node exp2 = parseExpression(t, parent);
+                expression = new RotationNode(expression, exp2, expression.getStartPosition(), exp2.getEndPosition());
+            } else if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.POSTINFIX
+                    && this.containsType(symbols, Symbol.COMMUTATION_DELIMITER)) {
+                Node exp2 = parseExpression(t, parent);
+                expression = new CommutationNode(exp2, expression, expression.getStartPosition(), exp2.getEndPosition());
+            } else if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.POSTINFIX
+                    && this.containsType(symbols, Symbol.CONJUGATION_DELIMITER)) {
+                Node exp2 = parseExpression(t, parent);
+                expression = new ConjugationNode(exp2, expression, expression.getStartPosition(), exp2.getEndPosition());
+            } else if (notation.getSyntax(Symbol.ROTATION) == Syntax.POSTINFIX
+                    && this.containsType(symbols, Symbol.ROTATION_OPERATOR)) {
+                Node exp2 = parseExpression(t, parent);
+                expression = new RotationNode(exp2, expression, expression.getStartPosition(), exp2.getEndPosition());
+            } else {
+                t.pushBack();
+            }
+        } else {
+            t.pushBack();
+        }
+
+        parent.add(expression);
+        return expression;
+    }
+    /** Parses a construct
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed macro
+     */
+   private Node parseConstruct(Tokenizer t, Node parent) throws ParseException {
+        Node statement = null;
+        int ttype = t.nextToken();
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        if (ttype == Tokenizer.TT_KEYWORD
+                && this.containsType(symbols, Symbol.DELIMITER)) {
+            // Evaluate: StmtDelimiter
+            // -----------------------
+
+            // We discard StmtDelimiter's
+            statement = null;
+        } else {
+            statement = new StatementNode(notation.getLayerCount());
+            parent.add(statement);
+            statement.setStartPosition(t.getStartPosition());
+            t.pushBack();
+            // Evaluate: {Prefix}
+            Node prefix = statement;
+            Node lastPrefix = statement;
+            int guard = t.getInputLength();
+            while ((prefix = this.parsePrefix(t, prefix)) != null) {
+
+                guard = guard - 1;
+                if (guard < 0) {
+                    throw new Error("too many iterations");
+                }
+                lastPrefix = prefix;
+            }
+
+            // Evaluate: Statement
+            Node innerStatement = this.parseStatement(t, lastPrefix);
+            statement.setEndPosition(innerStatement.getEndPosition());
+            // Evaluate: Suffix
+            Node child = statement.getChildAt(0);
+            Node suffix = statement;
+            guard = t.getInputLength();
+            while ((suffix = this.parseSuffix(t, statement)) != null) {
+                guard = guard - 1;
+                if (guard < 0) {
+                    throw new Error("too many iterations");
+                }
+                suffix.add(child);
+                child = suffix;
+                statement.setEndPosition(suffix.getEndPosition());
+            }
+        }
+        return statement;
+    }
+    /** Parses a prefix.
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed macro
+     */
+    private Node parsePrefix(Tokenizer t, Node parent) throws ParseException{
+        int ttype = t.nextToken();
+        if (ttype == Tokenizer.TT_EOF) {
+            return null;
+        }
+        Integer numericToken = null;
+        if (ttype == Tokenizer.TT_NUMBER) {
+            t.pushBack();
+            // If the token is numeric, we have encountered
+            // a repetition prefix.
+            if (notation.getSyntax(Symbol.REPETITION) == Syntax.PREFIX) {
+                return this.parseRepetitor(t, parent);
+            } else {
+                return null;
+            }
+        }
+        // the prefix must be a keyword, or it is not a prefix at all
+        if (ttype != Tokenizer.TT_KEYWORD) {
+            t.pushBack();
+            return null;
+        }
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        // We push back, because we do just decisions in this production
+        t.pushBack();
+        // Is it a commutator?
+        if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.PREFIX
+                && this.containsType(symbols, Symbol.COMMUTATION_BEGIN)) {
+            return this.parseExpressionAffix(t, parent);
+        }
+
+        // Is it a conjugator?
+        if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.PREFIX
+                && this.containsType(symbols, Symbol.CONJUGATION_BEGIN)) {
+            return this.parseExpressionAffix(t, parent);
+        }
+
+        // Is it a rotator?
+        if (notation.getSyntax(Symbol.ROTATION) == Syntax.PREFIX
+                && this.containsType(symbols, Symbol.ROTATION_BEGIN)) {
+            return this.parseExpressionAffix(t, parent);
+        }
+
+        // Is it an Inversion?
+        if (notation.getSyntax(Symbol.INVERSION) == Syntax.PREFIX
+                && this.containsType(symbols, Symbol.INVERSION_OPERATOR)) {
+            return this.parseInvertor(t, parent);
+        }
+
+        // Is it a repetition?
+        if (notation.getSyntax(Symbol.REPETITION) == Syntax.PREFIX
+                && this.containsType(symbols, Symbol.REPETITION_BEGIN)) {
+            return this.parseRepetitor(t, parent);
+        }
+
+        // Is it a reflection?
+        if (notation.getSyntax(Symbol.REFLECTION) == Syntax.PREFIX
+                && this.containsType(symbols,  Symbol.REFLECTION_OPERATOR)) {
+            return this.parseReflector(t, parent);
+        }
+
+        // Or is it no prefix at all?
+        return null;
+    }
+    /** Parses a suffix.
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed macro
+     */
+    private Node parseSuffix(Tokenizer t, Node parent)throws ParseException {
+        int ttype = t.nextToken();
+        if (ttype == Tokenizer.TT_EOF) {
+            return null;
+        }
+        Integer numericToken = null;
+        if (ttype == Tokenizer.TT_NUMBER) {
+            t.pushBack();
+            // If the token is numeric, we have encountered
+            // a repetition prefix.
+            if (notation.getSyntax(Symbol.REPETITION) == Syntax.SUFFIX) {
+                return this.parseRepetitor(t, parent);
+            } else {
+                return null;
+            }
+        }
+        // the prefix must be a keyword, or it is not a prefix at all
+        if (ttype != Tokenizer.TT_KEYWORD) {
+            t.pushBack();
+            return null;
+        }
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        // We push back, because we do just decisions in this production
+        t.pushBack();
+        // Is it a commutator?
+        if (notation.getSyntax(Symbol.COMMUTATION) == Syntax.SUFFIX
+                && this.containsType(symbols, Symbol.COMMUTATION_BEGIN)) {
+            return this.parseExpressionAffix(t, parent);
+        }
+
+        // Is it a conjugator?
+        if (notation.getSyntax(Symbol.CONJUGATION) == Syntax.SUFFIX
+                && this.containsType(symbols, Symbol.CONJUGATION_BEGIN)) {
+            return this.parseExpressionAffix(t, parent);
+        }
+
+        // Is it a rotator?
+        if (notation.getSyntax(Symbol.ROTATION) == Syntax.SUFFIX
+                && this.containsType(symbols, Symbol.ROTATION_BEGIN)) {
+            return this.parseExpressionAffix(t, parent);
+        }
+
+        // Is it an Inversion?
+        if (notation.getSyntax(Symbol.INVERSION) == Syntax.SUFFIX
+                && this.containsType(symbols, Symbol.INVERSION_OPERATOR)) {
+            return this.parseInvertor(t, parent);
+        }
+
+        // Is it a repetition?
+        if (notation.getSyntax(Symbol.REPETITION) == Syntax.SUFFIX
+                && this.containsType(symbols, Symbol.REPETITION_BEGIN)) {
+            return this.parseRepetitor(t, parent);
+        }
+
+        // Is it a reflection?
+        if (notation.getSyntax(Symbol.REFLECTION) == Syntax.SUFFIX
+                && this.containsType(symbols, Symbol.REFLECTION_OPERATOR)) {
+            return this.parseReflector(t, parent);
+        }
+
+        // Or is it no suffix at all?
+        return null;
+    }
+    /** Parses a macro.
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed macro
+     */
+    private Node parseMacro(Tokenizer t, Node parent) throws ParseException{
+        throw new ParseException("Macro: Not implemented " + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
+    }
+    /** Parses a repetitor
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed repetitor
+     */
+    private Node parseRepetitor(Tokenizer t, Node parent) throws ParseException {
+        // Only parse if supported
+        if (!notation.isSupported(Symbol.REPETITION)) {
+            return null;
+        }
+
+      RepetitionNode repetition = new RepetitionNode();
+        parent.add(repetition);
+        repetition.setStartPosition(t.getStartPosition());
+        // Evaluate [RptrBegin] token.
+        // ---------------------------
+        // Only word tokens are legit.
+        // Fetch the next token.
+        if (t.nextToken() != Tokenizer.TT_KEYWORD
+                && t.getTokenType() != Tokenizer.TT_NUMBER) {
+            throw new ParseException("Repetitor: illegal begin.", t.getStartPosition(), t.getEndPosition());
+        }
+
+        // Is it a [RptrBegin] token? Consume it.
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        if (symbols != null && this.isType(symbols, Symbol.REPETITION_BEGIN)) {
+            //consume
+        } else {
+            t.pushBack();
+        }
+        // The [RptrBegin] token is now done.
+
+        // Evaluate Integer token.
+        // ---------------------------
+        // Only number tokens are legit.
+        if (t.nextToken() != Tokenizer.TT_NUMBER) {
+            throw new ParseException("Repetitor: Repeat count missing.", t.getStartPosition(), t.getEndPosition());
+        }
+        int intValue = t.getNumericValue();
+        if (intValue < 1) {
+            throw new ParseException("Repetitor: illegal repeat count " + intValue, t.getStartPosition(), t.getEndPosition());
+        }
+        repetition.setRepeatCount(intValue);
+        repetition.setEndPosition(t.getEndPosition());
+        
+        // The Integer token is now done.
+        
+        // Evaluate [RptrEnd] token.
+        // ---------------------------
+        // Only keyword tokens are of interest.
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+           t.pushBack();
+            return repetition;
+        }
+
+        // Is it a [RptrEnd] token? Consume it.
+        symbols = notation.getSymbolsFor(t.getStringValue());
+        if (this.isType(symbols, Symbol.REPETITION_END)) {
+            //consume
+        } else {
+            t.pushBack();
+        }
+        return repetition;
+    }
+
+    /** Parses an invertor
+     *
+     * @param {    Tokenizer} t
+     * @param {Node} parent
+     * @returns the parsed node
+     */
+    private Node parseInvertor(Tokenizer t, Node parent) throws ParseException {
+    InversionNode inversion = new InversionNode();
+        parent.add(inversion);
+        inversion.setStartPosition(t.getStartPosition());
+        // Fetch the next token.
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+            throw new ParseException("Invertor: illegal begin.", t.getStartPosition(), t.getEndPosition());
+        }
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        if (this.containsType(symbols, Symbol.INVERSION_OPERATOR)) {
+            inversion.setEndPosition(t.getEndPosition());
+            return inversion;
+        }
+
+        // Or else?
+        throw new ParseException("Invertor: illegal invertor " + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
+    }
+
+    /** Parses a reflector
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed node
+     */
+    private Node parseReflector(Tokenizer t, Node parent) throws ParseException {
+      ReflectionNode reflection = new ReflectionNode();
+        parent.add(reflection);
+        reflection.setStartPosition(t.getStartPosition());
+        // Fetch the next token.
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+            throw new ParseException("Reflector: illegal begin.", t.getStartPosition(), t.getEndPosition());
+        }
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        if (this.containsType(symbols, Symbol.REFLECTION_OPERATOR)) {
+            reflection.setEndPosition(t.getEndPosition());
+            return reflection;
+        }
+
+        // Or else?
+        throw new ParseException("Reflector: illegal reflection " + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
     }
 
     /**
-     * Parses a permutation sign and returns null or one of the three sign
-     * symbols.
+     * Parses an affix which consists of an expression surrounded by a begin
+     * token and an end token. Either the begin or the end token is mandatory.
      */
-    private Symbol parsePermutationSign(StreamPosTokenizer t, Node parent) throws ParseException, IOException {
-        if (VERBOSE) {
-            printVerbose(t, "permutationItem Sign", parent);
+    private Node parseExpressionAffix(Tokenizer t, Node parent) throws ParseException {
+    int startPosition = t.getStartPosition();
+
+        // Fetch the next token.
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+            throw new ParseException("Affix: Invalid begin.", t.getStartPosition(), t.getEndPosition());
         }
-        Symbol sign;
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            t.pushBack();
-            sign = null;
-        } else {
-            String token = fetchGreedy(t.sval);
-            Symbol symbol = notation.getSymbolFor(token, Symbol.PERMUTATION);
-            if (symbol == Symbol.PERMUTATION_PLUS 
-                    || symbol == Symbol.PERMUTATION_PLUSPLUS
-                    || symbol == Symbol.PERMUTATION_MINUS) {
-                sign = symbol;
-                t.consumeGreedy(token);
-            } else {
-                sign = null;
-                t.pushBack();
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+
+        // Parse the BEGIN token and collect all potential end nodes
+    List<Symbol> endSymbols = new ArrayList<>();
+        if (this.containsType(symbols, Symbol.CONJUGATION_BEGIN)
+                && (notation.getSyntax(Symbol.CONJUGATION) == Syntax.PREFIX
+                || notation.getSyntax(Symbol.CONJUGATION) == Syntax.SUFFIX)) {
+            endSymbols.add(Symbol.CONJUGATION_END);
+        }
+        if (this.containsType(symbols, Symbol.COMMUTATION_BEGIN)
+                && (notation.getSyntax(Symbol.COMMUTATION) == Syntax.PREFIX
+                || notation.getSyntax(Symbol.COMMUTATION) == Syntax.SUFFIX)) {
+            endSymbols.add(Symbol.COMMUTATION_END);
+        }
+        if (this.containsType(symbols, Symbol.ROTATION_BEGIN)
+                && (notation.getSyntax(Symbol.ROTATION) == Syntax.PREFIX
+                || notation.getSyntax(Symbol.ROTATION) == Syntax.SUFFIX)) {
+            endSymbols.add(Symbol.ROTATION_END);
+        }
+        if (endSymbols.size() == 0) {
+            // Or else?
+            throw new ParseException("Affix: Invalid begin " + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
+        }
+
+        // Is it a CngrBegin Statement {Statement} CngrEnd thingy?
+      ScriptNode operator = new ScriptNode();
+        Symbol endSymbol = null;
+        Loop:
+        do {
+            this.parseExpression(t, operator);
+            if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+                throw new ParseException("Affix: Statement missing.", t.getStartPosition(), t.getEndPosition());
             }
+            symbols = notation.getSymbolsFor(t.getStringValue());
+            for (Symbol s : endSymbols) {
+                endSymbol = s;
+                if (this.containsType(symbols, endSymbol)) {
+                    break Loop;
+                }
+            }
+            t.pushBack();
+        } while (symbols != null);
+        //t.nextToken();
+
+        Node affix = null;
+        if (endSymbol == Symbol.CONJUGATION_END) {
+            ConjugationNode cNode = new ConjugationNode();
+            cNode.setConjugator(operator);
+            affix = cNode;
+        } else if (endSymbol == Symbol.COMMUTATION_END) {
+            CommutationNode cNode = new CommutationNode();
+            cNode.setCommutator(operator);
+            affix = cNode;
+        } else if (endSymbol == Symbol.ROTATION_END) {
+            RotationNode cNode = new RotationNode();
+            cNode.setRotator(operator);
+            affix = cNode;
+        } else {
+            throw new ParseException("Affix: Invalid end symbol " + t.getStringValue(), t.getStartPosition(), t.getEndPosition());
         }
-        return sign;
+        affix.setStartPosition(startPosition);
+        affix.setEndPosition(t.getEndPosition());
+        parent.add(affix);
+        return affix;
+    }
+
+    /** Parses a NOP.
+     *
+     * @param {Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed NOP
+     */
+    private Node parseNOP(Tokenizer t, Node parent) throws ParseException {
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+            throw new ParseException("NOP: \"" + t.getStringValue() + "\" is a " + t.getTokenType() + " but not a keyword.", t.getStartPosition(), t.getEndPosition());
+        }
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        if (!this.containsType(symbols, Symbol.NOP)) {
+            throw new ParseException("Move: \"" + t.getStringValue() + "\" is not a NOP", t.getStartPosition(), t.getEndPosition());
+        }
+
+        Node nop = new NOPNode(t.getStartPosition(), t.getEndPosition());
+        parent.add(nop);
+        return nop;
     }
 
     /**
      * Parses a move.
+     *
+     * @param { Tokenizer} t
+     * @param {Node} parent
+     * @returns {unresolved} the parsed move
      */
-    private Node parseMove(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "transformation", parent);
+    private Node parseMove(Tokenizer t, Node parent) throws ParseException {
+        if (t.nextToken() != Tokenizer.TT_KEYWORD) {
+            throw new ParseException("Move: \"" + t.getStringValue() + "\" is a " + t.getTokenType() + " but not a keyword.", t.getStartPosition(), t.getEndPosition());
         }
-        MoveNode move = new MoveNode(notation.getLayerCount());
+        List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+        Symbol symbol = null;
+        for (int i = 0; i < symbols.size(); i++) {
+            if (symbols.get(i) == Symbol.MOVE) {
+                symbol = symbols.get(i);
+                break;
+            }
+        }
+        if (symbol == null) {
+            throw new ParseException("Move: \"" + t.getStringValue() + "\" is not a Move", t.getStartPosition(), t.getEndPosition());
+        }
+
+        Move mv = notation.getMoveFromToken(t.getStringValue());
+        Node move = new MoveNode(mv.getLayerCount(),mv.getAxis(),mv.getLayerMask(),mv.getAngle(),t.getStartPosition(),t.getEndPosition());
         parent.add(move);
-
-        if (t.nextToken() != StreamPosTokenizer.TT_WORD) {
-            throw new ParseException(
-                    "Move: Symbol missing.", t.getStartPosition(), t.getEndPosition());
-        }
-        move.setStartPosition(t.getStartPosition());
-        String token = fetchGreedy(t.sval);
-        Symbol symbol = notation.getSymbolFor(token, Symbol.MOVE);
-
-        if (Symbol.MOVE == symbol) {
-            notation.configureMoveFromToken(move, token);
-            move.setEndPosition(t.getStartPosition() + token.length() - 1);
-            t.consumeGreedy(token);
-        } else {
-            throw new ParseException(
-                    "Move: Invalid token " + t.sval, t.getStartPosition(), t.getEndPosition());
-        }
         return move;
     }
 
-    /**
-     * Parses a macro.
-     */
-    private Node parseMacro(StreamPosTokenizer t, Node parent)
-            throws IOException {
-        if (VERBOSE) {
-            printVerbose(t, "macro", parent);
-        }
-        switch (t.nextToken()) {
-            case StreamPosTokenizer.TT_WORD:
-                String token = fetchGreedy(t.sval);
-                MacroNode macro = macros.get(token);
-                if (macro != null) {
-                    MacroNode node;
-                    node = (MacroNode) macro.cloneSubtree();
-                    for (Node child : node.preorderIterable()) {
-                        child.setStartPosition(t.getStartPosition());
-                        child.setEndPosition(t.getStartPosition() + token.length() - 1);
-                    }
-                    parent.add(node);
-                    try {
-                        node.expand(this);
-                    } catch (IOException e) {
-                        if (e instanceof ParseException) {
-                            ParseException pe = (ParseException) e;
-                            throw new ParseException(
-                                    "Macro '" + token + "': " + e.getMessage() + " @" + pe.getStartPosition() + ".." + pe.getEndPosition(), t.getStartPosition(), t.getStartPosition() + token.length() - 1);
-                        } else {
-                            throw new ParseException(
-                                    "Macro '" + token + "': " + e.getMessage(), t.getStartPosition(), t.getStartPosition() + token.length() - 1);
-                        }
-                    }
-
-                    t.consumeGreedy(token);
-                    return node;
-                } else {
-                    throw new ParseException(
-                            "Macro: Unexpected or unknown Symbol.",
-                            t.getStartPosition(),
-                            t.getStartPosition() + token.length() - 1);
-                }
-
-            //break;
-            case StreamPosTokenizer.TT_EOF:
-                throw new ParseException(
-                        "Macro: Symbol missing.", t.getStartPosition(), t.getEndPosition());
-            default:
-                throw new ParseException(
-                        "Macro: Internal error.", t.getStartPosition(), t.getEndPosition());
-        }
-    }
 }

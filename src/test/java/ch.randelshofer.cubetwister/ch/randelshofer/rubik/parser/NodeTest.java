@@ -2,8 +2,8 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.notation.DefaultNotation;
 import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
 import java.io.PrintWriter;

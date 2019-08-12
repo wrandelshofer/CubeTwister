@@ -1,9 +1,11 @@
 /* @(#)CubeMarkupNotation.java
  * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.parser;
+package ch.randelshofer.rubik.notation;
 
 import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.xml.XMLPreorderIterator;
 import nanoxml.XMLElement;
 import nanoxml.XMLParseException;
@@ -12,25 +14,22 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 /**
  * CubeMarkupNotation reads its notation definition from a CubeMarkup XML 3 file.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  * @version $Id$
- * <br>3.2 2009-01-04 Disable permutation support if tokens are missing.
- * <br>3.1 2009-01-03 Added "getName" method.
- * <br>3.0.1 2008-08-25 Notation may support up to 32 layers instead of
- * only 5. 
- * <br>3.0 2008-01-03 Migrated from JDK 1.1 to 1.4. 
- * <br>2.1 2007-09-10 Updated method isTokenFor.
- * <br>1.0  05 February 2005  Created.
  */
 public class CubeMarkupNotation implements Notation {
 
@@ -39,57 +38,58 @@ public class CubeMarkupNotation implements Notation {
         Symbol symbol;
         boolean isSupported;
         Syntax syntax;
-        String[] tokens;
+        List<String> tokens;
 
-        public SymbolInfo(Symbol symbol, boolean isSupported, Syntax syntax, String[] tokens) {
+        public SymbolInfo(Symbol symbol, boolean isSupported, Syntax syntax, List<String> tokens) {
             this.symbol = symbol;
             this.isSupported = isSupported;
             this.syntax = syntax;
-            this.tokens = tokens;
+            this.tokens = tokens == null ? new ArrayList<>() : tokens;
         }
 
         public SymbolInfo(Symbol symbol, boolean isSupported, Syntax syntax) {
             this(symbol, isSupported, syntax, null);
         }
     }
+
     /**
      * This map holds all the symbol infos.
-     *
+     * <p>
      * Key: Symbol
      * Value: SymbolInfo
      */
-    private HashMap<Symbol,SymbolInfo> symbolToInfoMap;
+    private HashMap<Symbol, SymbolInfo> symbolToInfoMap;
     /**
      * This map is used for parsing a script. Or more precisely for
      * associating tokens to symbols.
      * Tokens can be ambiguous. Therefore a token can have multiple symbols.
-     *
+     * <p>
      * Key: String
      * Value: ArrayList<Symbol>
      */
-    private HashMap<String,ArrayList<Symbol>> tokenToSymbolMap;
+    private HashMap<String, ArrayList<Symbol>> tokenToSymbolsMap;
     /**
      * This map is used for associating global macro identifiers of the notation
      * to macro scripts.
-     *
+     * <p>
      * Key: String
      * Value: String
      */
-    private HashMap<String,String> identifierToMacroMap;
+    private HashMap<String, String> identifierToMacroMap;
     /**
      * This map is used for pretty printing a MoveNode (aka a parsed twist).
-     *
+     * <p>
      * Key: Move
      * Value: String
      */
-    private HashMap<Move,String[]> moveToTokenMap;
+    private HashMap<Move, String[]> moveToTokenMap;
     /**
      * This map is used for associationg a move token to a MoveNode.
-     *
+     * <p>
      * Key: String
      * Value: Move
      */
-    private HashMap<String,Move> tokenToMoveMap;
+    private HashMap<String, Move> tokenToMoveMap;
     /**
      * Name of the notation.
      */
@@ -104,11 +104,19 @@ public class CubeMarkupNotation implements Notation {
     private Cube cube;
     private int layerCount = 3;
 
-    /** Creates a new instance. */
+    /**
+     * Creates a new instance.
+     */
+    public CubeMarkupNotation() {
+        this(new RubiksCube());
+    }
+    /**
+     * Creates a new instance.
+     */
     public CubeMarkupNotation(Cube cube) {
         this.cube = cube;
-        symbolToInfoMap = new HashMap<Symbol,SymbolInfo>();
-        identifierToMacroMap = new HashMap<String,String>();
+        symbolToInfoMap = new HashMap<>();
+        identifierToMacroMap = new HashMap<>();
     }
 
     /**
@@ -124,7 +132,7 @@ public class CubeMarkupNotation implements Notation {
         Search:
         while (i.hasNext()) {
             elem = (XMLElement) i.next();
-            if ("Notation".equals(elem.getName()) 
+            if ("Notation".equals(elem.getName())
                     && "true".equals(elem.getAttribute("default", "false"))) {
                 found = true;
                 break Search;
@@ -140,7 +148,7 @@ public class CubeMarkupNotation implements Notation {
     /**
      * Configures this CubeMarkupNotation by the first Notation element
      * found in the XMLElement which has the specified notation name.
-     *
+     * <p>
      * The CubeMarkup 4 DTD must be used.
      */
     public void readXML(XMLElement doc, String notationName) throws XMLParseException {
@@ -152,7 +160,7 @@ public class CubeMarkupNotation implements Notation {
         while (i.hasNext()) {
             elem = (XMLElement) i.next();
             if ("Notation".equals(elem.getName())) {
-                for (Iterator j = elem.getChildren().iterator(); j.hasNext();) {
+                for (Iterator j = elem.getChildren().iterator(); j.hasNext(); ) {
                     XMLElement notationElem = (XMLElement) j.next();
                     if ("Name".equals(notationElem.getName())) {
                         if (notationElem.getContent().equals(notationName)) {
@@ -174,7 +182,7 @@ public class CubeMarkupNotation implements Notation {
 
     /**
      * Configures this CubeMarkupNotation using the specified Notation element
-     *
+     * <p>
      * The CubeMarkup 4 DTD must be used.
      */
     private void readNotationXMLElement(XMLElement notationElem) throws XMLParseException {
@@ -182,28 +190,28 @@ public class CubeMarkupNotation implements Notation {
         name = notationElem.getStringAttribute("name");
 
         // Initialize syntax value set
-        HashMap<String,Syntax> syntaxValueSet = new HashMap<String,Syntax>();
+        HashMap<String, Syntax> syntaxValueSet = new HashMap<>();
         syntaxValueSet.put("precircumfix", Syntax.PRECIRCUMFIX);
         syntaxValueSet.put("postcircumfix", Syntax.POSTCIRCUMFIX);
         syntaxValueSet.put("prefix", Syntax.PREFIX);
         syntaxValueSet.put("suffix", Syntax.SUFFIX);
 
         // Axis value set
-        HashMap<String,Integer> axisValueSet = new HashMap<String,Integer>();
+        HashMap<String, Integer> axisValueSet = new HashMap<>();
         axisValueSet.put("x", 0);
         axisValueSet.put("y", 1);
         axisValueSet.put("z", 2);
 
         // Angle value set
-        HashMap<String,Integer> angleValueSet = new HashMap<String,Integer>();
+        HashMap<String, Integer> angleValueSet = new HashMap<>();
         angleValueSet.put("-180", -2);
         angleValueSet.put("-90", -1);
         angleValueSet.put("90", 1);
         angleValueSet.put("180", 2);
 
         // Initialize symbol to info map
-        symbolToInfoMap = new HashMap<Symbol,SymbolInfo>();
-        HashMap<String,Symbol> symbolValueSet = new HashMap<String,Symbol>();
+        symbolToInfoMap = new HashMap<>();
+        HashMap<String, Symbol> symbolValueSet = new HashMap<>();
         for (Symbol symbol : Symbol.values()) {
             symbolToInfoMap.put(symbol, new SymbolInfo(symbol, true, null));
             symbolValueSet.put(symbol.getName(), symbol);
@@ -219,13 +227,13 @@ public class CubeMarkupNotation implements Notation {
         symbolToInfoMap.put(Symbol.REPETITION, new SymbolInfo(Symbol.REPETITION, true, Syntax.SUFFIX));
 
         // Initialize move to token map
-        moveToTokenMap = new HashMap<Move,String[]>();
+        moveToTokenMap = new HashMap<>();
 
         // Read layer count
         layerCount = notationElem.getIntAttribute("layerCount", 2, 32, 3);
 
         // Read notation constructs
-        for (Iterator i = notationElem.getChildren().iterator(); i.hasNext();) {
+        for (Iterator i = notationElem.getChildren().iterator(); i.hasNext(); ) {
             XMLElement elem = (XMLElement) i.next();
             String name = elem.getName();
             if ("Statement".equals(name)) {
@@ -233,14 +241,14 @@ public class CubeMarkupNotation implements Notation {
                 SymbolInfo info = symbolToInfoMap.get(sym);
                 info.isSupported = elem.getBooleanAttribute("enabled", true);
                 info.syntax = elem.getAttribute("syntax", syntaxValueSet, "suffix", false);
-                for (Iterator i2 = elem.getChildren().iterator(); i2.hasNext();) {
+                for (Iterator i2 = elem.getChildren().iterator(); i2.hasNext(); ) {
                     XMLElement elem2 = (XMLElement) i2.next();
                     String name2 = elem2.getName();
                     if ("Token".equals(name2)) {
                         Symbol sym2 = elem2.getAttribute("symbol", symbolValueSet, "move", false);
                         if (sym2 == Symbol.MOVE) {
                             Move ts = new Move(
-                                    (elem2.getAttribute("axis", axisValueSet, "x", false)).intValue(),
+                                    3, (elem2.getAttribute("axis", axisValueSet, "x", false)).intValue(),
                                     Move.toLayerMask(elem2.getAttribute("layerList")),
                                     (elem2.getAttribute("angle", angleValueSet, "90", false)).intValue());
                             String tokenList = elem2.getContent();
@@ -256,9 +264,9 @@ public class CubeMarkupNotation implements Notation {
                             info2.syntax = elem2.getAttribute("syntax", syntaxValueSet, "suffix", false);
                             String tokenList = elem2.getContent();
                             StringTokenizer tt = new StringTokenizer(tokenList);
-                            String[] tokens = new String[tt.countTokens()];
-                            for (int ti = 0; ti < tokens.length; ti++) {
-                                tokens[ti] = tt.nextToken();
+                            List<String> tokens = new ArrayList<>();
+                            for (int ti = 0, tc = tt.countTokens(); ti < tc; ti++) {
+                                tokens.add(tt.nextToken());
                             }
                             info2.tokens = tokens;
                         }
@@ -266,7 +274,7 @@ public class CubeMarkupNotation implements Notation {
                 }
             } else if ("Macro".equals(name)) {
                 String macro = elem.getContent();
-                for (StringTokenizer tt = new StringTokenizer(elem.getContent()); tt.hasMoreTokens();) {
+                for (StringTokenizer tt = new StringTokenizer(elem.getContent()); tt.hasMoreTokens(); ) {
                     String identifier = tt.nextToken();
                     identifierToMacroMap.put(identifier, macro);
                 }
@@ -274,78 +282,40 @@ public class CubeMarkupNotation implements Notation {
         }
 
         // Fill token to symbol map
-        tokenToSymbolMap = new HashMap<String,ArrayList<Symbol>>();
-        for (Iterator i = symbolToInfoMap.keySet().iterator(); i.hasNext();) {
-            Symbol symbol = (Symbol) i.next();
+        tokenToSymbolsMap = new HashMap<>();
+        for (Symbol symbol : symbolToInfoMap.keySet()) {
             SymbolInfo info = symbolToInfoMap.get(symbol);
-            String[] tokens = info.tokens;
+            List<String> tokens = info.tokens;
             if (tokens != null) {
-                for (int ti = 0; ti < tokens.length; ti++) {
-                    ArrayList<Symbol> v;
-                    v = tokenToSymbolMap.get(tokens[ti]);
-                    if (v == null) {
-                        v = new ArrayList<Symbol>();
-                        tokenToSymbolMap.put(tokens[ti], v);
-                    }
-                    v.add(symbol);
+                for (String token : tokens) {
+                    tokenToSymbolsMap.computeIfAbsent(token, k -> new ArrayList<>())
+                            .add(symbol);
                 }
             }
         }
         // Fill token to move map
-        tokenToMoveMap = new HashMap<String,Move>();
-        for (Iterator i = moveToTokenMap.keySet().iterator(); i.hasNext();) {
-            Move moveSymbol = (Move) i.next();
+        tokenToMoveMap = new HashMap<>();
+        for (Move moveSymbol : moveToTokenMap.keySet()) {
             String[] tokens = moveToTokenMap.get(moveSymbol);
-            for (int ti = 0; ti < tokens.length; ti++) {
-                tokenToMoveMap.put(tokens[ti], moveSymbol);
+            for (String token : tokens) {
+                tokenToMoveMap.put(token, moveSymbol);
             }
         }
 
         // Disable permutation support, if tokens are missing
-        if (getToken(Symbol.FACE_R) == null) {
+        if (getToken(Symbol.PERMUTATION_FACE_R) == null) {
             symbolToInfoMap.put(Symbol.PERMUTATION, new SymbolInfo(Symbol.PERMUTATION, false, Syntax.PRECIRCUMFIX));
         }
         //System.out.println(this.toVerboseString());
     }
 
-    public String toVerboseString() {
-        StringBuilder buf = new StringBuilder();
-
-        buf.append("Permutation=");
-        buf.append(isSupported(Symbol.PERMUTATION));
-        buf.append("\n  Syntax=");
-        buf.append(getSyntax(Symbol.PERMUTATION));
-        buf.append("\n  Faces=");
-        buf.append(getToken(Symbol.FACE_R));
-        buf.append(",");
-        buf.append(getToken(Symbol.FACE_U));
-        buf.append(",");
-        buf.append(getToken(Symbol.FACE_F));
-        buf.append(",");
-        buf.append(getToken(Symbol.FACE_L));
-        buf.append(",");
-        buf.append(getToken(Symbol.FACE_D));
-        buf.append(",");
-        buf.append(getToken(Symbol.FACE_B));
-        buf.append("\n  Plus=");
-        buf.append(getToken(Symbol.PERMUTATION_PLUS));
-        buf.append("  Minus=");
-        buf.append(getToken(Symbol.PERMUTATION_MINUS));
-        buf.append("  PlusPlus=");
-        buf.append(getToken(Symbol.PERMUTATION_PLUSPLUS));
-        buf.append("\n  Begin=");
-        buf.append(getToken(Symbol.PERMUTATION_BEGIN));
-        buf.append("  End=");
-        buf.append(getToken(Symbol.PERMUTATION_END));
-        return buf.toString();
-    }
-
     @Override
-    public void configureMoveFromToken(MoveNode twist, String twistToken) {
-        Move twistSymbol = tokenToMoveMap.get(twistToken);
-        twist.setAngle(twistSymbol.getAngle());
-        twist.setAxis(twistSymbol.getAxis());
-        twist.setLayerMask(twistSymbol.getLayerMask());
+    public Move getMoveFromToken(String moveToken) {
+        Move move = tokenToMoveMap.get(moveToken);
+        if (move == null) {
+            throw new IllegalArgumentException("Not a move token. token:" + moveToken);
+        }
+        return move;
     }
 
     public String getName() {
@@ -362,7 +332,7 @@ public class CubeMarkupNotation implements Notation {
         if (compositeSymbol == Symbol.MOVE) {
             return (tokenToMoveMap.containsKey(token)) ? Symbol.MOVE : null;
         } else {
-            ArrayList<Symbol> symbols =  tokenToSymbolMap.get(token);
+            ArrayList<Symbol> symbols = tokenToSymbolsMap.get(token);
             if (symbols != null) {
                 for (Symbol symbol : symbols) {
                     if (compositeSymbol.isSubSymbol(symbol)) {
@@ -383,7 +353,7 @@ public class CubeMarkupNotation implements Notation {
     @Override
     public String getToken(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
-        return (info == null || info.tokens == null) ? null : info.tokens[0];
+        return (info == null || info.tokens == null) ? null : info.tokens.get(0);
     }
 
     @Override
@@ -395,19 +365,8 @@ public class CubeMarkupNotation implements Notation {
     @Override
     public boolean isToken(String token) {
         return tokenToMoveMap != null && tokenToMoveMap.containsKey(token)
-                || tokenToSymbolMap != null && tokenToSymbolMap.containsKey(token);
+                || tokenToSymbolsMap != null && tokenToSymbolsMap.containsKey(token);
     }
-    /*
-    public boolean isTokenFor(String token, Symbol symbol) {
-    if (token == null) return false;
-
-    if (symbol == Symbol.MOVE) {
-    return tokenToMoveMap.containsKey(token);
-    } else {
-    Vector symbols = (Vector) tokenToSymbolMap.get(token);
-    return symbols != null && symbols.contains(symbol);
-    }
-    }*/
 
     /**
      * Returns true, if the specified String is a token for the specified symbol.
@@ -418,7 +377,7 @@ public class CubeMarkupNotation implements Notation {
         if (symbol == Symbol.MOVE) {
             result = tokenToMoveMap.containsKey(token);
         } else {
-            ArrayList<Symbol> symbols = tokenToSymbolMap.get(token);
+            ArrayList<Symbol> symbols = tokenToSymbolsMap.get(token);
             if (symbols == null) {
                 result = false;
             } else {
@@ -447,15 +406,16 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public void writeToken(PrintWriter w, int axis, int layerMask, int angle) throws IOException {
-        w.write(moveToTokenMap.get(new MoveNode(getLayerCount(), axis, layerMask, angle, -1, -1))[0]);
+    public void writeMoveToken(PrintWriter w, int axis, int layerMask, int angle) throws IOException {
+        w.write(moveToTokenMap.get(new Move(getLayerCount(), axis, layerMask, angle))[0]);
     }
 
     public void dumpNotation() {
         System.out.println("name:" + name);
         System.out.println("description:" + name);
-        Symbol[] s = Symbol.SEQUENCE.getSubSymbols();
-        for (int i = 0; i < s.length; i++) {
+        Set<Symbol> ss = Symbol.SEQUENCE.getSubSymbols();
+        int i=0;
+        for (Symbol s:ss) {
             if (i != 0) {
                 if (i % 10 == 0) {
                     System.out.println();
@@ -463,17 +423,17 @@ public class CubeMarkupNotation implements Notation {
                     System.out.print(" ,");
                 }
             }
-            System.out.print(s[i] + ":");
-            if (s[i] == null) {
+            System.out.print(s + ":");
+            if (s == null) {
                 System.out.println("null symbol for " + i);
             } else {
-                writeToken(System.out, s[i]);
+                writeToken(System.out, s);
             }
+            i++;
         }
         System.out.println();
-        for (Iterator i = moveToTokenMap.keySet().iterator(); i.hasNext();) {
-            Object key = i.next();
-            System.out.println(key + ":" + moveToTokenMap.get(key));
+        for (Move key : moveToTokenMap.keySet()) {
+            System.out.println(key + ":" + Arrays.toString(moveToTokenMap.get(key)));
         }
     }
 
@@ -491,5 +451,39 @@ public class CubeMarkupNotation implements Notation {
     public List<MacroNode> getMacros() {
         // FIXME - Implement me
         return Collections.emptyList();
+    }
+
+    /**
+     * Gets all tokens defined for this notation.
+     *
+     * @return the tokens.
+     */
+    public Collection<String> getTokens() {
+        Set<String> tokens=new LinkedHashSet<>();
+        for (Map.Entry<String, ArrayList<Symbol>> entry : tokenToSymbolsMap.entrySet()) {
+            boolean enabled=false;
+            for (Symbol symbol : entry.getValue()) {
+                SymbolInfo info = symbolToInfoMap.get(symbol);
+                if (info!=null&&info.isSupported) {
+                    enabled=true;
+                    break;
+                }
+            }
+            if (enabled)tokens.add(entry.getKey());
+        }
+
+        return tokens;
+    }
+
+    public List<Symbol> getSymbolsFor(String token) {
+        ArrayList<Symbol> symbols=new ArrayList<>();
+        for (Symbol symbol : tokenToSymbolsMap.get(token)) {
+            SymbolInfo info = symbolToInfoMap.get(symbol);
+            if (info!=null&&info.isSupported) {
+                symbols.add(symbol);
+            }
+        }
+
+        return symbols;
     }
 }

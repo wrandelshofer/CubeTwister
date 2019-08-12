@@ -4,12 +4,13 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 /**
  * Represents a node of a parsed script.
@@ -24,12 +25,12 @@ import java.util.Map;
 public class ReflectionNode extends Node {
         private final static long serialVersionUID = 1L;
 
-    public ReflectionNode(int layerCount) {
-        this(layerCount, -1, -1);
+    public ReflectionNode() {
+        this(-1, -1);
     }
     
-    public ReflectionNode(int layerCount, int startpos, int endpos) {
-        super(Symbol.REFLECTION, layerCount, startpos, endpos);
+    public ReflectionNode(int startpos, int endpos) {
+        super(Symbol.REFLECTION, startpos, endpos);
     }
     /**
      * Applies the symbol represented by this node to the cube.
@@ -69,18 +70,18 @@ public class ReflectionNode extends Node {
             if (reflectorPos == null) {
                     ReflectionNode reflected = (ReflectionNode) cloneSubtree();
                 for (Node node1 : reflected.getChildren()) {
-                    SequenceNode node = (SequenceNode) node1;
+                    ScriptNode node = (ScriptNode) node1;
                     node.reflect();
                     node.writeTokens(w, p, macroMap);
                 }
                     
                 } else if (reflectorPos == Syntax.PREFIX) { 
-                    p.writeToken(w, Symbol.REFLECTOR);
+                    p.writeToken(w, Symbol.REFLECTION_OPERATOR);
                     super.writeTokens(w, p, macroMap);
                     
                 } else if (reflectorPos == Syntax.SUFFIX) {
                     super.writeTokens(w, p, macroMap);
-                    p.writeToken(w, Symbol.REFLECTOR);
+                    p.writeToken(w, Symbol.REFLECTION_OPERATOR);
             }
         }
     }
@@ -91,15 +92,13 @@ public class ReflectionNode extends Node {
      */
     @Override
     public Iterator<Node> resolvedIterator(boolean inverse) {
-        return new ReflectedIterator(layerCount, super.resolvedIterator(inverse));
+        return new ReflectedIterator(super.resolvedIterator(inverse));
     }
     private static class ReflectedIterator
     implements Iterator<Node> {
         protected Iterator<Node> inner;
-        private final int layerCount;
-        
-        public ReflectedIterator(int layerCount, Iterator<Node> inner) {
-            this.layerCount = layerCount;
+
+        public ReflectedIterator(Iterator<Node> inner) {
             this.inner = inner;
         }
         

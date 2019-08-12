@@ -4,7 +4,8 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.rubik.parser.Move;
+import ch.randelshofer.rubik.notation.Move;
+
 import java.util.*;
 /**
  * MoveSymbols.
@@ -16,9 +17,9 @@ import java.util.*;
  * <br>1.0 May 1, 2006 Created.
  */
 public class MoveSymbols {
-    private static HashMap<String,Move> tvs2, tvs3, tvs4, tvs5;
+    private static HashMap<String, Move> tvs2, tvs3, tvs4, tvs5;
     
-    public static HashMap<String,Move> getMoveValueSet(int layerCount) {
+    public static HashMap<String, Move> getMoveValueSet(int layerCount) {
         switch (layerCount) {
             case 2 :
                 if (tvs2 == null) {
@@ -45,11 +46,11 @@ public class MoveSymbols {
                 return tvs5;
                 //break;
         }
-        return new HashMap<String,Move>();
+        return new HashMap<String, Move>();
     }
     
-    private static HashMap<String,Move> createTwistValueSet2() {
-        HashMap<String,Move> twistValueSet = new HashMap<String,Move>();
+    private static HashMap<String, Move> createTwistValueSet2() {
+        HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};
         String[] faces = {"R", "U", "F", "L", "D", "B"};
         String[] suffixes = {"", "i", "2", "2i"};
@@ -73,14 +74,14 @@ public class MoveSymbols {
                         case 3 : angle = -2; break;
                     }
                     String token = prefixes[p]+faces[f]+suffixes[s];
-                    twistValueSet.put(token, new Move(axis,layerMask,angle));
+                    twistValueSet.put(token, new Move(3, axis,layerMask,angle));
                 }
             }
         }
         return twistValueSet;
     }
-    private static HashMap<String,Move> createTwistValueSet3() {
-        HashMap<String,Move> twistValueSet = new HashMap<String,Move>();
+    private static HashMap<String, Move> createTwistValueSet3() {
+        HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};
         String[] faces = {"R", "U", "F", "L", "D", "B"};
         String[] suffixes = {"", "i", "2", "2i"};
@@ -104,14 +105,14 @@ public class MoveSymbols {
                         case 3 : angle = -2; break;
                     }
                     String token = prefixes[p]+faces[f]+suffixes[s];
-                    twistValueSet.put(token, new Move(axis,layerMask,angle));
+                    twistValueSet.put(token, new Move(3, axis,layerMask,angle));
                 }
             }
         }
         return twistValueSet;
     }
-    private static HashMap<String,Move> createTwistValueSet4() {
-        HashMap<String,Move> twistValueSet = new HashMap<String,Move>();
+    private static HashMap<String, Move> createTwistValueSet4() {
+        HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};
         String[] faces = {"R", "U", "F", "L", "D", "B"};
         String[] suffixes = {"", "i", "2", "2i"};
@@ -135,14 +136,14 @@ public class MoveSymbols {
                         case 3 : angle = -2; break;
                     }
                     String token = prefixes[p]+faces[f]+suffixes[s];
-                    twistValueSet.put(token, new Move(axis,layerMask,angle));
+                    twistValueSet.put(token, new Move(3, axis,layerMask,angle));
                 }
             }
         }
         return twistValueSet;
     }
-    private static HashMap<String,Move> createTwistValueSet5() {
-        HashMap<String,Move> twistValueSet = new HashMap<String,Move>();
+    private static HashMap<String, Move> createTwistValueSet5() {
+        HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};
         String[] faces = {"R", "U", "F", "L", "D", "B"};
         String[] suffixes = {"", "i", "2", "2i"};
@@ -166,7 +167,7 @@ public class MoveSymbols {
                         case 3 : angle = -2; break;
                     }
                     String token = prefixes[p]+faces[f]+suffixes[s];
-                    twistValueSet.put(token, new Move(axis,layerMask,angle));
+                    twistValueSet.put(token, new Move(3, axis,layerMask,angle));
                 }
             }
         }

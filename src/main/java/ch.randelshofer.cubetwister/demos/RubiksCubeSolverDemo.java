@@ -7,11 +7,11 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.ProgressView;
 import ch.randelshofer.io.ParseException;
 import ch.randelshofer.rubik.*;
-import ch.randelshofer.rubik.parser.DefaultNotation;
+import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.parser.Node;
-import ch.randelshofer.rubik.parser.Notation;
+import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.SequenceNode;
+import ch.randelshofer.rubik.parser.ScriptNode;
 import ch.randelshofer.rubik.solver.CubeParser;
 import ch.randelshofer.rubik.solver.FaceletCube;
 import ch.randelshofer.rubik.solver.KociembaCube;
@@ -200,7 +200,7 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
 
         ScriptParser parser = new ScriptParser(notation);
         try {
-            final SequenceNode script = parser.parse(scriptField.getText());
+            final Node script = parser.parse(scriptField.getText());
 
             new Thread(new RunnableWorker() {
 
@@ -273,8 +273,8 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
                     if (result == Solver.ABORT) {
                         return null;
                     } else {
-                        Node solution = solver.getSolution();
-                        solution.transformOrientation(rcube.getCubeOrientation(), true);
+                        ScriptNode solution = solver.getSolution();
+                        solution.transformOrientation(cube.getLayerCount(), rcube.getCubeOrientation(), true);
                         return solution;
                     }
 

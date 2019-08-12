@@ -677,51 +677,7 @@ public class StreamPosTokenizer
             endpos = readpos - 2;
             return ttype;
         }
-        /* rlw*/
-        /*
-        if (c == '/' && (slashSlashCommentsP || slashStarCommentsP)) {
-            c = read();
-            if (c == '*' && slashStarCommentsP) {
-                int prevc = 0;
-                while ((c = read()) != '/' || prevc != '*') {
-                    if (c == '\r') {
-                        LINENO++;
-                        c = read();
-                        if (c == '\n') {
-                            c = read();
-                        }
-                    } else {
-                        if (c == '\n') {
-                            LINENO++;
-                            c = read();
-                        }
-                    }
-                    if (c < 0) {
-                        endpos = readpos;
-                        return ttype = TT_EOF;
-                    }
-                    prevc = c;
-                }
-                return nextToken();
-            } else if (c == '/' && slashSlashCommentsP) {
-                while ((c = read()) != '\n' && c != '\r' && c >= 0);
-                peekc = c;
-                return nextToken();
-            } else {
-                // Now see if it is still a single line comment
-                if ((ct['/'] & CT_COMMENT) != 0) {
-                    while ((c = read()) != '\n' && c != '\r' && c >= 0);
-                    peekc = c;
-                    return nextToken();
-                } else {
-                    peekc = c;
-                    // rlw
-                    endpos = readpos - 2;
-                    return ttype = '/';
-                }
-            }
-        }*/
-        
+
         if (slashSlashCommentsP && c == slashSlash[0]
         || slashStarCommentsP && c == slashStar[0]) {
             if (c == slashStar[0] && slashStar.length == 1) {

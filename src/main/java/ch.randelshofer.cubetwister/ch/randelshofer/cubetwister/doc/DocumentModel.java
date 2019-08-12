@@ -7,9 +7,12 @@ import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.gui.*;
 import ch.randelshofer.gui.tree.*;
 import ch.randelshofer.gui.datatransfer.*;
+import ch.randelshofer.rubik.notation.Move;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.undo.*;
 import ch.randelshofer.util.*;
-import ch.randelshofer.rubik.parser.*;
+
 import java.awt.Color;
 import java.awt.Toolkit;
 
@@ -84,7 +87,7 @@ public class DocumentModel extends DefaultTreeModel
     private final static String[] NODE_TYPES = {
         "Cube", "Notation", "Script", "Note"
     };
-    private final static HashMap<String,Syntax> syntaxValueSet = new HashMap<String,Syntax>();
+    private final static HashMap<String, Syntax> syntaxValueSet = new HashMap<String,Syntax>();
 
     static {
         syntaxValueSet.put("PREFIX", Syntax.PREFIX);
@@ -510,7 +513,7 @@ public class DocumentModel extends DefaultTreeModel
 
             LinkedList<Symbol> statements = new LinkedList<Symbol>();
             statements.add(Symbol.COMMENT);
-            statements.addAll(Arrays.asList(Symbol.STATEMENT.getSubSymbols()));
+            statements.addAll(Symbol.STATEMENT.getSubSymbols());
 
             for (Symbol s : statements) {
                 elem2 = doc.createElement("Statement");
@@ -1086,7 +1089,7 @@ public class DocumentModel extends DefaultTreeModel
 
                 // Read layer count
                 item.setLayerCount(elem.getIntAttribute("layerCount", 2, 7, 3));
-                HashMap<String,Move> tvs = MoveSymbols.getMoveValueSet(item.getLayerCount());
+                HashMap<String, Move> tvs = MoveSymbols.getMoveValueSet(item.getLayerCount());
 
                 // Must be done only after we have read the layer count!
                 if (elem.getBooleanAttribute("default", false)) {
@@ -1099,49 +1102,49 @@ public class DocumentModel extends DefaultTreeModel
                 boolean b;
                 b = elem.getBooleanAttribute("quarterTurnTwists", true);
                 for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(axis, 1, 1), b);
-                    item.basicSetMoveSupported(new Move(axis, 1, -1), b);
-                    item.basicSetMoveSupported(new Move(axis, 4, 1), b);
-                    item.basicSetMoveSupported(new Move(axis, 4, -1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 1, 1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 1, -1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 4, 1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 4, -1), b);
                 }
                 b = elem.getBooleanAttribute("halfTurnTwists", true);
                 for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(axis, 1, 2), b);
-                    item.basicSetMoveSupported(new Move(axis, 1, -2), b);
-                    item.basicSetMoveSupported(new Move(axis, 4, 2), b);
-                    item.basicSetMoveSupported(new Move(axis, 4, -2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 1, 2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 1, -2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 4, 2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 4, -2), b);
                 }
                 b = elem.getBooleanAttribute("midLayerTwists", true);
                 for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(axis, 2, 1), b);
-                    item.basicSetMoveSupported(new Move(axis, 2, -1), b);
-                    item.basicSetMoveSupported(new Move(axis, 2, 2), b);
-                    item.basicSetMoveSupported(new Move(axis, 2, -2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 2, 1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 2, -1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 2, 2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 2, -2), b);
                 }
                 b = elem.getBooleanAttribute("twoLayerTwists", true);
                 for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(axis, 3, 1), b);
-                    item.basicSetMoveSupported(new Move(axis, 3, -1), b);
-                    item.basicSetMoveSupported(new Move(axis, 3, 2), b);
-                    item.basicSetMoveSupported(new Move(axis, 3, -2), b);
-                    item.basicSetMoveSupported(new Move(axis, 6, 1), b);
-                    item.basicSetMoveSupported(new Move(axis, 6, -1), b);
-                    item.basicSetMoveSupported(new Move(axis, 6, 2), b);
-                    item.basicSetMoveSupported(new Move(axis, 6, -2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 3, 1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 3, -1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 3, 2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 3, -2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 6, 1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 6, -1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 6, 2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 6, -2), b);
                 }
                 b = elem.getBooleanAttribute("sliceTwists", true);
                 for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(axis, 5, 1), b);
-                    item.basicSetMoveSupported(new Move(axis, 5, -1), b);
-                    item.basicSetMoveSupported(new Move(axis, 5, 2), b);
-                    item.basicSetMoveSupported(new Move(axis, 5, -2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 5, 1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 5, -1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 5, 2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 5, -2), b);
                 }
                 b = elem.getBooleanAttribute("rotations", true);
                 for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(axis, 7, 1), b);
-                    item.basicSetMoveSupported(new Move(axis, 7, -1), b);
-                    item.basicSetMoveSupported(new Move(axis, 7, 2), b);
-                    item.basicSetMoveSupported(new Move(axis, 7, -2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 7, 1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 7, -1), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 7, 2), b);
+                    item.basicSetMoveSupported(new Move(3, axis, 7, -2), b);
                 }
 
                 // Read legacy switches from CubeTwister 1.0
@@ -1254,7 +1257,7 @@ public class DocumentModel extends DefaultTreeModel
                                     for (int usefulLayerMask : NotationModel.getUsefulLayers(item.getLayerCount())) {
                                         if (layerMask == usefulLayerMask
                                                 || reversedLayerMask == usefulLayerMask) {
-                                            Move ts = new Move(axis, layerMask, angle);
+                                            Move ts = new Move(3, axis, layerMask, angle);
                                             item.setMoveToken(ts, Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
                                             item.setMoveSupported(ts, isEnabled);
                                             break;

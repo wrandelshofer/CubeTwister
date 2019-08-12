@@ -2,10 +2,11 @@ package ch.randelshofer.twophase;
 
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.RubiksCube;
-import ch.randelshofer.rubik.parser.DefaultNotation;
-import ch.randelshofer.rubik.parser.Notation;
+import ch.randelshofer.rubik.notation.DefaultNotation;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.SequenceNode;
+
 import java.io.IOException;
 import org.kociemba.twophase.Search;
 import org.kociemba.twophase.Tools;
@@ -40,7 +41,7 @@ public class Main {
 
             String solution = new Search().solution(facelets, 21, 1000, true);
             System.out.println(indent + "  Solution = " + solution);
-            SequenceNode script = parser.parse(solution);
+            Node script = parser.parse(solution);
             System.out.println(indent + "  Parsed   = " + script.toString(notation));
             System.out.println(indent + "  #Moves   = " + solution.split("[ .]+").length);
             script.applyTo(cube, false);

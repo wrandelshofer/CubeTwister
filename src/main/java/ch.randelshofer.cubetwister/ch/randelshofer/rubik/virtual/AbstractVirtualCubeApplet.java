@@ -16,10 +16,10 @@ import ch.randelshofer.rubik.CubeEvent;
 import ch.randelshofer.rubik.CubeListener;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
-import ch.randelshofer.rubik.parser.DefaultNotation;
+import ch.randelshofer.rubik.notation.DefaultNotation;
+import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptKeyboardHandler;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.SequenceNode;
 import ch.randelshofer.util.AppletParameterException;
 import ch.randelshofer.util.Applets;
 import ch.randelshofer.util.Cookies;
@@ -692,7 +692,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
             String state = Cookies.getCookie(this, cookieName, "");
 
             try {
-                SequenceNode seq = parser.parse(state);
+                Node seq = parser.parse(state);
                 seq.applyTo(cube3d.getCube(), false);
             } catch (IOException ex) {
                 ex.printStackTrace();

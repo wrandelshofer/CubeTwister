@@ -6,6 +6,7 @@ package ch.randelshofer.cubetwister;
 import ch.randelshofer.cubetwister.doc.*;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.parser.*;
 import java.io.*;
 import java.util.*;
@@ -369,7 +370,7 @@ public class HTMLExporter implements Exporter {
             parsedScript = m.getParser().parse(m.getScript());
             parsedScript.applyTo(cube, false);
         } catch (IOException ex) {
-            parsedScript = new SequenceNode(m.getNotationModel().getLayerCount());
+            parsedScript = new ScriptNode();
         }
         data.put("script.permutation", Cubes.toPermutationString(cube, m.getNotationModel()));
         data.put("script.order", Cubes.getOrder(cube));

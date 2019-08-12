@@ -4,6 +4,10 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.notation.Move;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,6 +33,7 @@ public class MoveNode extends Node {
     private int axis;
     private int layerMask;
     private int angle;
+    private int layerCount;
 
     /**
      * Creates new MoveNode
@@ -37,20 +42,23 @@ public class MoveNode extends Node {
         this(layerCount, 0, 0, 0, -1, -1);
     }
 
-    public MoveNode(int layerCount, Move t) {
-        this(layerCount, t.getAxis(), t.getLayerMask(), t.getAngle(), -1, -1);
+    public MoveNode( Move t) {
+        this(t.getLayerCount(), t.getAxis(), t.getLayerMask(), t.getAngle(), -1, -1);
     }
 
     /**
      * Creates new MoveNode
      */
     public MoveNode(int layerCount, int axis, int layerMask, int angle, int startpos, int endpos) {
-        super(Symbol.MOVE, layerCount, startpos, endpos);
+        super(Symbol.MOVE, startpos, endpos);
         this.axis = axis;
         this.layerMask = layerMask;
         this.angle = angle;
         setAllowsChildren(false);
+        this.layerCount=layerCount;
     }
+
+
 
     @Override
     public void applyTo(Cube cube, boolean inverse) {
@@ -182,6 +190,9 @@ public class MoveNode extends Node {
     @Override
     public String toString() {
         StringBuilder b= new StringBuilder( );
+        b.append(getStartPosition());
+        b.append("..");
+        b.append(getEndPosition());
         b.append(getClass().getSimpleName());
         b.append("{");
         b.append("ax:").append(axis).append(" lm:").append(layerMask).append(" an:").append(angle);
@@ -195,21 +206,21 @@ public class MoveNode extends Node {
     @Override
     public void writeTokens(PrintWriter w, Notation notation, Map<String, MacroNode> macroMap)
             throws IOException {
-        Move move = new Move(axis, layerMask, angle);
+        Move move = new Move(3, axis, layerMask, angle);
         String token = notation.getToken(move);
 
         // no token for +/-180° twist? 
         if (token == null && Math.abs(angle) == 2) {
             // look for a twist into the other clockwise direction
-            move = new Move(axis, layerMask, -angle);
+            move = new Move(3, axis, layerMask, -angle);
             token = notation.getToken(move);
             // no token for 180° twist into the other direction?
             if (token == null) {
                 // look for a +/-90° twist
-                move = new Move(axis, layerMask, -angle);
+                move = new Move(3, axis, layerMask, -angle);
                 token = notation.getToken(move);
                 if (token == null) {
-                    move = new Move(axis, layerMask, -1);
+                    move = new Move(3, axis, layerMask, -1);
                     token = notation.getToken(move);
                 }
                 // print the +/-90° twist twice
@@ -221,10 +232,10 @@ public class MoveNode extends Node {
             // no token for +/-90° twist, but is inversion supported?
         } else if (token == null && notation.isSupported(Symbol.INVERSION)) {
             // look for a twist into the other clockwise direction
-            token = notation.getToken(new Move(axis, layerMask, -angle));
+            token = notation.getToken(new Move(3, axis, layerMask, -angle));
             if (token != null) {
                 Syntax syntax = notation.getSyntax(Symbol.INVERSION);
-                String invertor = notation.getToken(Symbol.INVERTOR);
+                String invertor = notation.getToken(Symbol.INVERSION_OPERATOR);
                 if (syntax == Syntax.PREFIX && invertor != null) {
                     token = invertor + token;
                 } else if (syntax == Syntax.SUFFIX && invertor != null) {

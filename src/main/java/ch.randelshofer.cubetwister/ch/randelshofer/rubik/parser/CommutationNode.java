@@ -4,14 +4,13 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.Cubes;
-import ch.randelshofer.util.ListOfLists;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.util.SequenceIterator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -30,19 +29,20 @@ public class CommutationNode extends Node {
     private final static long serialVersionUID = 1L;
     private Node commutator;
 
-    public CommutationNode(int layerCount) {
-        this(layerCount, new SequenceNode(layerCount), new SequenceNode(layerCount), -1, -1);
+    public CommutationNode() {
+        this(new ScriptNode(), null, -1, -1);
     }
 
-    public CommutationNode(int layerCount, int startpos, int endpos) {
-        this(layerCount, new SequenceNode(layerCount), new SequenceNode(layerCount), startpos, endpos);
+    public CommutationNode(int startpos, int endpos) {
+        this(new ScriptNode(), null, startpos, endpos);
     }
 
-    public CommutationNode(int layerCount, Node commutator, Node commutated, int startpos, int endpos) {
-        super(Symbol.COMMUTATION, layerCount, startpos, endpos);
+    public CommutationNode(Node commutator, Node commutated, int startpos, int endpos) {
+        super(Symbol.COMMUTATION, startpos, endpos);
         commutator.removeFromParent();
         commutator.setParent(this);
         this.commutator = commutator;
+        if (commutated!=null)
         add(commutated);
     }
 
@@ -100,7 +100,7 @@ public class CommutationNode extends Node {
     @Override
     public void inverse() {
         Node helper = commutator;
-        commutator = new SequenceNode(layerCount);
+        commutator = new ScriptNode();
 
         while (getChildCount() > 0) {
             Node n = getChildAt(0);
@@ -180,7 +180,7 @@ public class CommutationNode extends Node {
             w.write(' ');
             p.writeToken(w, Symbol.NOP);
             w.write(' ');
-            inv = new SequenceNode(layerCount);
+            inv = new ScriptNode();
             Iterator<Node> enumer = getChildren().iterator();
             while (enumer.hasNext()) {
                 //inv.add((Node) enumer.nextElement());
@@ -254,12 +254,6 @@ public class CommutationNode extends Node {
      */
     private void writeChildTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
-        Cube cube = Cubes.create(layerCount);
-        applyTo(cube, false);
-        String macroName = p.getEquivalentMacro(cube, macroMap);
-        if (macroName != null) {
-            w.write(macroName);
-        } else {
             Iterator<Node> enumer = getChildren().iterator();
             while (enumer.hasNext()) {
                 enumer.next().writeTokens(w, p, macroMap);
@@ -268,13 +262,15 @@ public class CommutationNode extends Node {
                     w.write(' ');
                 }
             }
-        }
     }
 
 
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
+        b.append(getStartPosition());
+        b.append("..");
+        b.append(getEndPosition());
         b.append(getClass().getSimpleName());
         b.append("{");
         b.append(' ');

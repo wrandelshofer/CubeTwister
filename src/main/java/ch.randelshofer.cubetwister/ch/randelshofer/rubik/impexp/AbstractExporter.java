@@ -13,8 +13,8 @@ import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.rubik.parser.MoveMetrics;
+import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.SequenceNode;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -95,7 +95,7 @@ public class AbstractExporter extends JPanel implements Exporter {
             
             // Add synthetic fields to record
             ScriptParser parser = item.getParser();
-            SequenceNode parsedScript = item.getParsedScript();
+            Node parsedScript = item.getParsedScript();
             sr.isParsed = parsedScript != null;
             if (sr.isParsed) {
                 cube.reset();
@@ -150,7 +150,7 @@ public class AbstractExporter extends JPanel implements Exporter {
             
             // Add synthetic fields to record
             ScriptParser parser = item.getParser();
-            SequenceNode parsedScript = item.getParsedScript();
+            Node parsedScript = item.getParsedScript();
             sr.isParsed = parsedScript != null;
             sr.macros = new String[item.getMacroModels().getChildCount()][2];
             if (sr.isParsed) {
@@ -165,7 +165,7 @@ public class AbstractExporter extends JPanel implements Exporter {
                 ArrayList<MacroNode> localMacros = new ArrayList<MacroNode>();
                 for (Iterator j = macros.iterator(); j.hasNext(); ) {
                     MacroModel macro = (MacroModel) j.next();
-                    localMacros.add(new MacroNode(translator.getLayerCount(),macro.getIdentifier(),
+                    localMacros.add(new MacroNode(macro.getIdentifier(),
                     macro.getScript(), 0, 0));
                 }
                 

@@ -3,6 +3,7 @@
  */
 package ch.randelshofer.rubik.parser;
 
+import ch.randelshofer.rubik.notation.DefaultNotation;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -63,7 +64,7 @@ class MoveMetricsTest {
             System.out.println("  expected: " + expectedBtm + "btm, " + expectedLtm + "ltm, " + expectedFtm + "ftm, " + expectedQtm + "qtm, " + expectedCount + " moves");
         }
         ScriptParser parser = new ScriptParser(new DefaultNotation());
-        SequenceNode ast = parser.parse(script);
+        Node ast = parser.parse(script);
 
         MoveMetrics instance = new MoveMetrics();
         instance.accept(ast);

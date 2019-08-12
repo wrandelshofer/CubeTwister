@@ -20,14 +20,13 @@ import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.CubeListener;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
-import ch.randelshofer.rubik.parser.CubeMarkupNotation;
+import ch.randelshofer.rubik.notation.CubeMarkupNotation;
 import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptKeyboardHandler;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
-import ch.randelshofer.rubik.parser.SequenceNode;
-import ch.randelshofer.rubik.parser.Symbol;
+import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.util.AppletParameterException;
 import ch.randelshofer.util.Applets;
 import ch.randelshofer.util.ArrayUtil;
@@ -1147,7 +1146,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
 
         // Determine the script language
         value = Applets.getParameter(this, "notation");
-        notation = new CubeMarkupNotation(getCube());
+        notation = new CubeMarkupNotation();
         if (value == null || value.length() == 0) {
             try {
                 notation.readXML(resources);
@@ -1194,7 +1193,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
                 script = script.substring(0, p) + '\n' + script.substring(p + 2);
             }
             try {
-                Node root = parser.parse(new StringReader(script));
+                Node root = parser.parse(script);
                 scriptTextArea.setText(script);
                 player.setScript(root);
             } catch (ParseException e) {
@@ -1223,7 +1222,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
                 script = initScript.substring(0, p) + '\n' + initScript.substring(p + 2);
             }
             try {
-                Node root = parser.parse(new StringReader(initScript));
+                Node root = parser.parse(initScript);
                 root.applyTo(player.getResetCube(), false);
             } catch (Exception e) {
                 StringWriter sw = new StringWriter();
@@ -1768,7 +1767,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
             script = newValue;
             scriptTextArea.setText(script);
             try {
-                SequenceNode parsedScript = parser.parse(script);
+                Node parsedScript = parser.parse(script);
                 player.setScript(parsedScript);
                 player.getResetCube().reset();
                 if (isSolver) {
@@ -1835,7 +1834,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     public void setPermutation(String newValue) {
         if (parser != null) {
             try {
-                SequenceNode seq;
+                Node seq;
                 seq = parser.parse(newValue);
                 cube3D.getCube().reset();
                 seq.applyTo(cube3D.getCube(), false);

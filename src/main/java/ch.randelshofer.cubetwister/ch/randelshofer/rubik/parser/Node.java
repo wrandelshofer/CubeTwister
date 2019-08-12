@@ -5,7 +5,8 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.gui.tree.TreeNodeImpl;
 import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.util.ListOfLists;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.util.ReverseListIterator;
 
 import javax.swing.tree.TreeNode;
@@ -49,51 +50,25 @@ public abstract class Node extends TreeNodeImpl<Node> {
      */
     protected Symbol symbol;
 
-    protected int layerCount;
+    public Node(Symbol symbol) {
+        this.symbol = symbol;
+    }
 
-    /**
-     * Maps cube orientations to symbols.
-     *
-     * @see ch.randelshofer.rubik.RubiksCube#getCubeOrientation()
-     */
-    private final static Move[][] orientationToMoveMap = {
-            // R U F L D B
-            {}, // 0
-            {Move.CR}, {Move.CR2}, {Move.CL}, // 1 x-axis
-            {Move.CU}, {Move.CU2}, {Move.CD}, // 2 y-axis
-            {Move.CF}, {Move.CF2}, {Move.CB}, // 3 z-axis
-            {Move.CR, Move.CU}, {Move.CR, Move.CU2}, {Move.CR, Move.CD},
-            {Move.CR2, Move.CU}, {Move.CR2, Move.CD}, // 4 corner-axis from ru to ld
-            {Move.CL, Move.CU}, {Move.CL, Move.CU2}, {Move.CL, Move.CD},
-            {Move.CR, Move.CF}, {Move.CR, Move.CB}, // 5 corner-axis from lu to rd
-            {Move.CR2, Move.CF}, {Move.CR2, Move.CB}, // 8
-            {Move.CL, Move.CF}, {Move.CL, Move.CB} // 9
-            /*
-             // F R D B L U
-             {}, // 0
-             {Move.CR}, {Move.CR2}, {Move.CL}, // 1
-             {Move.CU}, {Move.CU2}, {Move.CD}, // 2
-             {Move.CF}, {Move.CF2}, {Move.CB}, // 3
-             {Move.CR, Move.CU}, {Move.CR, Move.CU2}, {Move.CR, Move.CD}, // 4
-             {Move.CR2, Move.CU}, {Move.CR2, Move.CD}, // 5
-             {Move.CL, Move.CU}, {Move.CL, Move.CU2}, {Move.CL, Move.CD}, // 6
-             {Move.CR, Move.CF}, {Move.CR, Move.CB}, // 7
-             {Move.CR2, Move.CF}, {Move.CR2, Move.CB}, // 8
-             {Move.CL, Move.CF}, {Move.CL, Move.CB} // 9
-             */};
 
     /**
      * Creates a node which represents a symbol at the indicated position in the
      * source code.
-     *
-     * @param startpos The start position of the symbol.
+     *  @param startpos The start position of the symbol.
      * @param endpos   The end position of the symbol.
      */
-    public Node(Symbol symbol, int layerCount, int startpos, int endpos) {
+    public Node(Symbol symbol, int startpos, int endpos) {
         this.symbol = symbol;
         this.startpos = startpos;
         this.endpos = endpos;
-        this.layerCount = layerCount;
+    }
+
+    public void addAll(List<Node> children) {
+        for (Node n:children) add(n);
     }
 
     /**
@@ -179,6 +154,9 @@ public abstract class Node extends TreeNodeImpl<Node> {
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
+        b.append(getStartPosition());
+        b.append("..");
+        b.append(getEndPosition());
         b.append(getClass().getSimpleName());
         b.append("{");
         for (Node n : getChildren()) {
@@ -232,36 +210,6 @@ public abstract class Node extends TreeNodeImpl<Node> {
         transform(move.getAxis(), move.getLayerMask(), (inverse) ? -move.getAngle() : move.getAngle());
     }
 
-    /**
-     * Transformes the subtree starting at this node by the given cube
-     * orientation. Does nothing if the orientation can not be done.
-     */
-    public void transformOrientation(int cubeOrientation, boolean inverse) {
-        // XXX - This method currently only works for 3x3 cubes. We need to pass a cube as a parameter
-        if (cubeOrientation >= 1) {
-            if (inverse) {
-                add(new NOPNode(layerCount));
-                if (orientationToMoveMap[cubeOrientation].length == 2) {
-                    GroupingNode seq = new GroupingNode(layerCount);
-                    seq.add(new MoveNode(layerCount, orientationToMoveMap[cubeOrientation][1].toInverse()));
-                    seq.add(new MoveNode(layerCount, orientationToMoveMap[cubeOrientation][0].toInverse()));
-                    add(seq);
-                } else {
-                    add(new MoveNode(layerCount, orientationToMoveMap[cubeOrientation][0].toInverse()));
-                }
-            } else {
-                if (orientationToMoveMap[cubeOrientation].length == 2) {
-                    GroupingNode seq = new GroupingNode(layerCount);
-                    seq.add(new MoveNode(layerCount, orientationToMoveMap[cubeOrientation][0]));
-                    seq.add(new MoveNode(layerCount, orientationToMoveMap[cubeOrientation][1]));
-                    insert(seq, 0);
-                } else {
-                    insert(new MoveNode(layerCount, orientationToMoveMap[cubeOrientation][0]), 0);
-                }
-                insert(new NOPNode(layerCount), 1);
-            }
-        }
-    }
 
     /**
      * Inverses the subtree starting at this node.

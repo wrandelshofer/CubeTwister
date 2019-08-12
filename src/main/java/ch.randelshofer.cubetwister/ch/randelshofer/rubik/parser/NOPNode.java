@@ -3,6 +3,9 @@
  */
 package ch.randelshofer.rubik.parser;
 
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collections;
@@ -23,15 +26,15 @@ public class NOPNode extends Node {
     /**
      * Creates a new instance.
      */
-    public NOPNode(int layerCount) {
-        this(layerCount, -1, -1);
+    public NOPNode() {
+        this(-1, -1);
     }
 
     /**
      * Creates a new instance.
      */
-    public NOPNode(int layerCount, int startpos, int endpos) {
-        super(Symbol.NOP, layerCount, startpos, endpos);
+    public NOPNode(int startpos, int endpos) {
+        super(Symbol.NOP, startpos, endpos);
         setAllowsChildren(false);
     }
 

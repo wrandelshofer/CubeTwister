@@ -4,18 +4,18 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.util.ListOfLists;
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.util.ReverseListIterator;
 import ch.randelshofer.util.SequenceIterator;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Vector;
 
 /**
@@ -33,22 +33,24 @@ public class ConjugationNode extends Node {
     private final static long serialVersionUID = 1L;
     private Node conjugator;
 
-    public ConjugationNode(int layerCount) {
-        this(layerCount, -1, -1);
+    public ConjugationNode() {
+        this(-1, -1);
     }
 
-    public ConjugationNode(int layerCount, int startpos, int endpos) {
-        super(Symbol.CONJUGATION, layerCount, startpos, endpos);
-        conjugator = new SequenceNode(layerCount);
+    public ConjugationNode(int startpos, int endpos) {
+        super(Symbol.CONJUGATION, startpos, endpos);
+        conjugator = new ScriptNode();
         conjugator.setParent(this);
     }
 
-    public ConjugationNode(int layerCount, Node conjugator, Node conjugate, int startpos, int endpos) {
-        super(Symbol.CONJUGATION, layerCount, startpos, endpos);
+    public ConjugationNode(Node conjugator, Node conjugate, int startpos, int endpos) {
+        super(Symbol.CONJUGATION, startpos, endpos);
         conjugator.removeFromParent();
         conjugator.setParent(this);
         this.conjugator = conjugator;
-        add(conjugate);
+        if (conjugate != null) {
+            add(conjugate);
+        }
     }
 
     /**
@@ -233,6 +235,9 @@ public class ConjugationNode extends Node {
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();
+        b.append(getStartPosition());
+        b.append("..");
+        b.append(getEndPosition());
         b.append(getClass().getSimpleName());
         b.append("{");
         b.append(' ');
