@@ -38,11 +38,6 @@ package idx3d;
 
 /**
  *
- * @version $Id$
- * Moved responsibility for texture location from class idx3d_Vertex to
- * this class. Dependency note: This change also requires changes in
- * idx3d_Vertex, idx3d_Triangle, idx3d_TextureProjector, idx3d_Object, 
- * idx3d_Rasterizer.
  */
 public class idx3d_TextureProjector
 {

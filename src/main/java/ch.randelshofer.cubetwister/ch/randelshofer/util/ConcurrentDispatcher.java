@@ -33,8 +33,6 @@ import java.util.*;
  * </pre>
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2002-05-18 Created.
  */
 public class ConcurrentDispatcher {
 

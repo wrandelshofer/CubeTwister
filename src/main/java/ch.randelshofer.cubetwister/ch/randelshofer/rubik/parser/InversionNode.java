@@ -18,14 +18,6 @@ import java.util.Map;
  * The side effect of an inversion node is A'.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * method toResolvedList.
- * end position of a single child Move node.
- * <br>5.0.1 2007-07-19 Implemented method applyTo.
- * <br>5.0 2005-01-31 Reworked.
- * <br>1.1 20004-03-28 Two nested inversions cancel each other out.
- * <br>1.0 2001-07-25
- * @see ScriptParser
  */
 public class InversionNode extends Node {
     private final static long serialVersionUID = 1L;

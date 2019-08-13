@@ -14,8 +14,6 @@ import java.util.*;
  * Supports UndoableEditListeners.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-10-09
  */
 public class DefaultUndoableTreeSelectionModel
 extends DefaultTreeSelectionModel

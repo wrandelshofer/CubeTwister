@@ -17,7 +17,6 @@ import java.util.Enumeration;
  *
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class MimeType implements Externalizable, Cloneable {
     

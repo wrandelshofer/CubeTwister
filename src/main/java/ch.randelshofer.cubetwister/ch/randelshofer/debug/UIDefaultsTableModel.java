@@ -13,13 +13,6 @@ import javax.swing.table.*;
  * Table model for UIDefaults.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * String.
- * <br>1.3.1 2010-04-10 Catch throwables when getting values from UIManager.
- * <br>1.3 2006-07-20 Reworked for Java 1.5.
- * <br>1.2 2004-05-22 UIDefaults key does not necessarily have to be a
- * String.
- * <br>1.1 2003-03-16
  */
 public class UIDefaultsTableModel extends AbstractTableModel {
     private final static long serialVersionUID = 1L;

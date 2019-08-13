@@ -34,9 +34,6 @@ import java.beans.*;
  * text field is out of bounds, it is set to the minimum or maximum
  * value of the boundary.
  *
- * @version $Id$
- * <br>1.0 2002-11-14
- * @author Werner Randelshofer
  */
 public class IntegerTextField extends JTextField {
         private final static long serialVersionUID = 1L;

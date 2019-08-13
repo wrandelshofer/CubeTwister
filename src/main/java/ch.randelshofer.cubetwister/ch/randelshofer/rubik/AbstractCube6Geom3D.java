@@ -16,9 +16,6 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * orient side parts.
- * <br>1.0 2008-08-17 Created.
  */
 public abstract class AbstractCube6Geom3D extends AbstractCubeGeom3D {
 

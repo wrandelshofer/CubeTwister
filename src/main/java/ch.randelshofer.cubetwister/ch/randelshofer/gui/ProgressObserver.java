@@ -11,10 +11,6 @@ import javax.swing.*;
  * 
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.2 2010-01-03 Added method printf.
- * <br>1.1 2007-11-19 Added method setWarning and setError.
- * <br>1.0 September 18, 2006 Created.
  */
 public interface ProgressObserver {
     

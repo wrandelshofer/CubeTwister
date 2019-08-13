@@ -20,8 +20,6 @@ import java.util.Arrays;
  * different sizes and different aspect ratios.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2008-08-15 Created.
  */
 public class Cube7Idx3D extends AbstractCube7Idx3D {
 

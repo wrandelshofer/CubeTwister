@@ -39,12 +39,6 @@ package idx3d;
 /**
  * Rasterizer stage of the render pipeline.
  *
- * @version $Id$
- * Turned this class into an abstract class. There are now two concrete
- * implementations available:
- * idx3d_LinearRasterizer and idx3d_PerspectiveRasterizer.
- * The latter is slower but performs perspective correct rasterization
- * of textures.
  */
 public abstract class idx3d_Rasterizer {
     /** Render pipeline. By convention this method is only called by

@@ -14,9 +14,6 @@ import javax.swing.undo.UndoableEdit;
  * Supports UndoableEditListeners.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0.1 2011-01-19 Removes unused imports.
- * <br>1.0 2001-10-09
  */
 public interface UndoableTreeSelectionModel
 extends TreeSelectionModel,Undoable, StateEditable {

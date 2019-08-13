@@ -13,7 +13,6 @@ import java.util.*;
  * additional semantics.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class idx3d_Group extends idx3d_Node {
 

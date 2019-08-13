@@ -11,8 +11,6 @@ import java.util.NoSuchElementException;
  * EmptyEnumeration.
  *
  *@author Werner Randelshofer
- * @version $Id$
- * @version $Id$
  */
 public class EmptyEnumeration<T>
 implements Enumeration<T> {

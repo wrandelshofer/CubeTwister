@@ -16,10 +16,6 @@ import javax.swing.event.*;
  * CubeOptionsView.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.0 2008-04-28 Added CubeAnimationView. Reworked lazy generation
- * of views. 
- * <br>1.0 January 31, 2006 Created.
  */
 public class CubeOptionsView extends JPanel implements EntityView, Undoable {
     private final static long serialVersionUID = 1L;

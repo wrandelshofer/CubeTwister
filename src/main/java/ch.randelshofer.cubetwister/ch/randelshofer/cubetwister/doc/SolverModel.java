@@ -19,8 +19,6 @@ import javax.swing.undo.*;
  * SolverModel.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2005-05-05 Created.
  */
 public class SolverModel extends AbstractBean implements CubeAttributes, PropertyChangeListener {
     private final static long serialVersionUID = 1L;

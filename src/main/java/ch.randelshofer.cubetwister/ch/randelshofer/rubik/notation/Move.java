@@ -15,7 +15,6 @@ import java.util.List;
  * This class must be Java 1.1 compliant.
  *
  * @author Werner Randelshofer.
- * @version $Id$
  */
 public class Move implements Comparable<Move> {
 

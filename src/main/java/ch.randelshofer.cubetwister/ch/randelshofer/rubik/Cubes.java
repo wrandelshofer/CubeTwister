@@ -18,18 +18,6 @@ import java.util.Arrays;
  * This class provides static utility methods for Cube objects.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.3 2008-09-03 Return a readable permutation string, even if
- * a notation does not support it.
- * <br>2.2 2008-02-23 Method getVisibleOrder returned incorrect
- * values for cubes which have more than 3 layers. 
- * <br>2.1 2008-01-06 Split method toPermutationString up into
- * multiple methods.
- * <br>2.0 2008-12-30 Adapted to changes in AbstractCube. Rewrote method
- * toPermutationString. 
- * <br>1.1 2007-11-04 Implemented methods getNormalizedStickersString
- * and getMappedStickersString for 3x3 cubes.
- * <br>1.0 January 3, 2006 Created.
  */
 public class Cubes {
 

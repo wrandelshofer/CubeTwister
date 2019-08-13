@@ -10,7 +10,6 @@ import ch.randelshofer.rubik.parser.ScriptParser;
  * KociembaENGParser.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class KociembaENGParser extends ScriptParser {
 

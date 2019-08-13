@@ -11,7 +11,6 @@ import ch.randelshofer.rubik.VCube6Idx3D;
  *
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class VirtualVCube6Applet extends AbstractVirtualCubeApplet {
 

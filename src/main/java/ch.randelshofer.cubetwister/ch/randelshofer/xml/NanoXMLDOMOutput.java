@@ -12,7 +12,6 @@ import nanoxml.*;
  * DOMOutput using Nano XML.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class NanoXMLDOMOutput implements DOMOutput {
     

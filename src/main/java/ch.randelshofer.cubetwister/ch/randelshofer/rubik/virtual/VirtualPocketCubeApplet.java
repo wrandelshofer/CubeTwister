@@ -11,7 +11,6 @@ import ch.randelshofer.rubik.PocketCubeIdx3D;
  * 
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class VirtualPocketCubeApplet extends AbstractVirtualCubeApplet {
         private final static long serialVersionUID = 1L;

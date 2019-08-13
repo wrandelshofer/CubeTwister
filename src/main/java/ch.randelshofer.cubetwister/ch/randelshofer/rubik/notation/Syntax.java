@@ -12,10 +12,6 @@ import java.util.Map;
  * Typesafe enum of Syntaxes for the Parser.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>9.0 2009-01-22 Reworked for ScriptParser 9.0.
- * <br>5.0 2005-01-31 Reworked.
- * <br>1.0  November 14, 2004  Created.
  */
 public enum Syntax {
     /**

@@ -18,7 +18,6 @@ import java.io.InputStream;
  * PocketCubeIdx3DPlayerApplet.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class PocketCubeIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;

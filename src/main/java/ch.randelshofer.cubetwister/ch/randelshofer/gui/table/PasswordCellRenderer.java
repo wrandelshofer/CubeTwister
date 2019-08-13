@@ -13,7 +13,6 @@ import java.io.Serializable;
  * PasswordCellRenderer.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class PasswordCellRenderer extends JPasswordField 
 implements TableCellRenderer {

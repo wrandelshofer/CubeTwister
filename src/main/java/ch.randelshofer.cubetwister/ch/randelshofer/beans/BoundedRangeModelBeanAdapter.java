@@ -11,8 +11,6 @@ import javax.swing.*;
  * Provides a BoundedRangeModel interface for a JavaBeans property.
  *
  * @author Werner Randelshofer.
- * @version $Id$
- * <br>1.0 April 9, 2006 Created.
  */
 public class BoundedRangeModelBeanAdapter
         extends AbstractStateModel

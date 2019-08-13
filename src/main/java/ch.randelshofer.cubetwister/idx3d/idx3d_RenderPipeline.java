@@ -35,7 +35,6 @@
 // | -----------------------------------------------------------------
 
 /*
- * @version $Id$
  */
 package idx3d;
 
@@ -46,30 +45,6 @@ import java.util.Enumeration;
 /**
  * Renders a scene in a sequence of stages.
  *
- * @version $Id$
- * dereference in method performResizing.
- * <br>5.1 2010-08-18 Werner Randelshofer Added support for screen sharing.
- * <br>5.0 2009-01-03 Werner Randelshofer Moved dynamic determination of
- * antialiasing mode out of RenderPipeline into idx3d_JCanvas.
- * <br>4.2 2006-02-21 Werner Randelshofer: Avoid unecessary object creation.
- * <br>4.0 2004-08-29 Werner Randelshofer: Method setAntialiasHint added. 
- * <br>3.2 2003-12-18 Werner Randelshofer: 
- * Retrieve the material from the current triangle instead from its parent 
- * object. This allows for individual materials at the triangle level. 
- * Dependency note: This change also requires changes in class idx3d_Triangle.
- *
- * Changed the size of the idBuffer to the size of the display area (instead of
- * to the size of the antialias screen, which is twice as big.
- * Dependency note: These changes also require changes in class 
- * idx3d_Rasterizer and idx3d_Scene.
- *
- * Method render calls method clearReferences on the rasteriezer to allow for 
- * better memory management by the garbage collector.
- * Dependency note: This change also requires changes in class 
- * idx3d_Rasterizer.
- *
- * Added a visible attribute to idx3d_InternalMaterial. This change also affects idx3d_InternalMaterial.
- * Added dispose method.
  */
 public class idx3d_RenderPipeline {
     // F I E L D S

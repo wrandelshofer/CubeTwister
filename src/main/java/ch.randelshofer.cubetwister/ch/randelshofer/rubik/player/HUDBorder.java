@@ -16,7 +16,6 @@ import java.awt.RenderingHints;
  * HUDBorder.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class HUDBorder implements Border {
  public void paintBorder(Component c, Graphics gr, int x, int y, int width, int height) {

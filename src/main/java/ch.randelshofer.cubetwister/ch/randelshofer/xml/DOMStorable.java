@@ -8,7 +8,6 @@ package ch.randelshofer.xml;
  * DOMStorable.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public interface DOMStorable {
     public void write(DOMOutput out);

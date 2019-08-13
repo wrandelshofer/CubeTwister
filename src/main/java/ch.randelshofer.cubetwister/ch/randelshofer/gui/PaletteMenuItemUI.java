@@ -15,7 +15,6 @@ import java.awt.event.*;
  * PaletteMenuItemUI.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class PaletteMenuItemUI extends javax.swing.plaf.basic.BasicMenuItemUI {
     /** Creates a new instance. */

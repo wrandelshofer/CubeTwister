@@ -40,7 +40,6 @@ package nanoxml;
  * @see nanoxml.XMLElement
  *
  * @author Marc De Scheemaecker
- * @version $Id$
  */
 public class XMLParseException extends RuntimeException {
     private final static long serialVersionUID = 1L;

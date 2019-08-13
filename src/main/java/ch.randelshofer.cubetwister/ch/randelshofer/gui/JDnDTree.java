@@ -18,14 +18,6 @@ import javax.swing.tree.*;
  * JDnDTree.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.1.1 2010-11-06 Fixes possible NPE in method getSupportedDragActions.
- * <br>2.1 2010-01-09 Moved transfer handler into super class.
- * <br>2.0.1 2008-12-25 Mostly fixed insertion point determination when
- * dropping an object.
- * <br>2.0 2008-03-21 Reimplemented with TransferHandler. Renamed from
- * DnDJTree to JDnDTree.
- * <br>1.0  May 16, 2004  Created.
  */
 public class JDnDTree extends MutableJTree implements Autoscroll {
     private final static long serialVersionUID = 1L;

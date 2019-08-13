@@ -15,9 +15,6 @@ import javax.swing.event.*;
  * Parts View.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.1 2004-04-11 ComboBox is used as cell renderer where appropriate. 
- * <br>1.0 2001-08-02 Created.
  */
 public class CubePartsView extends AbstractEntityView {
     private final static long serialVersionUID = 1L;

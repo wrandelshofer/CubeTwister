@@ -109,7 +109,6 @@ import java.util.Set;
  * </pre>
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 
 public class ScriptParser {

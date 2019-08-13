@@ -19,11 +19,6 @@ package ch.randelshofer.rubik;
  * two layers and can have up to 32 layers.
  *
  * @author Werner Randelshofer.
- * @version $Id$
- * its faces.
- * <br>2.0 2007-12-31 Renamed get...Side methods to get...Face methods
- * to clarify their intent. Added getUnsolvedParts method.
- * <br>1.0 April 6, 2006 Created.
  */
 public interface Cube extends Cloneable {
     /**

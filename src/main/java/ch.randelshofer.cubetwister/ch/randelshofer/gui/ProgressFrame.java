@@ -14,8 +14,6 @@ import org.jhotdraw.util.prefs.PreferencesUtil;
  * The ProgressFrame holds all ProgressView's.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2002-05-10 Created.
  */
 public class ProgressFrame extends javax.swing.JFrame {
     private final static long serialVersionUID = 1L;

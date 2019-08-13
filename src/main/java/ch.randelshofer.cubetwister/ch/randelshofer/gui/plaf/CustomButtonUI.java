@@ -23,8 +23,6 @@ import javax.swing.plaf.*;
  * </pre>
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-10-16 Created.
  */
 public class CustomButtonUI
         extends BasicButtonUI

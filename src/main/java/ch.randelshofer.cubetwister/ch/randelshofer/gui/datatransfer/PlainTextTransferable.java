@@ -13,8 +13,6 @@ import java.io.*;
  * PlainTextTransferable.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 22. August 2007 Created.
  */
 public class PlainTextTransferable extends AbstractTransferable {
     private String plainText;

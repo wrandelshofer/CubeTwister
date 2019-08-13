@@ -16,8 +16,6 @@ import javax.swing.text.PlainDocument;
  * DefaultCellEditor2.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2010-01-23 Created.
  */
 public class DefaultCellEditor2 extends DefaultCellEditor {
     private final static long serialVersionUID = 1L;

@@ -29,7 +29,6 @@ import java.util.StringTokenizer;
  * CubeMarkupNotation reads its notation definition from a CubeMarkup XML 3 file.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class CubeMarkupNotation implements Notation {
 

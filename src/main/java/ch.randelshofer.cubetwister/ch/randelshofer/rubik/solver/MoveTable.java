@@ -31,8 +31,6 @@ import java.text.MessageFormat;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2000-07-01
  */
 public abstract class MoveTable extends Object {
     private final static boolean DEBUG = false;

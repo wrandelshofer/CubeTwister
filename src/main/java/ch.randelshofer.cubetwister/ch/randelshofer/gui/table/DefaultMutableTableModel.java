@@ -17,10 +17,6 @@ import javax.swing.table.*;
  * FIXME: Should override more methods of the superclass.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.2 2001-09-22 Method getRowActions added.
- * <br>2.1 2001-07-27 Duplication of rows added.
- * <br>2.0 2001-07-18
  */
 public class DefaultMutableTableModel
 extends AbstractTableModel

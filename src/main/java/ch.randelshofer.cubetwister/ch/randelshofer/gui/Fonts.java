@@ -11,10 +11,6 @@ import javax.swing.*;
  * Fonts.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2004-04-04 Changed font settings to provide better fonts on
- * Mac OS X and on Windows.
- * <br>1.0 March 19, 2003 Created.
  */
 public class Fonts {
     private static HashMap<String,Object> fonts;

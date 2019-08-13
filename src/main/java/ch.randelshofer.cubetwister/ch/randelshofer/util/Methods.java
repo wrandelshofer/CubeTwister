@@ -10,7 +10,6 @@ import java.lang.reflect.*;
  * java.lang.reflect.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class Methods {
     /**

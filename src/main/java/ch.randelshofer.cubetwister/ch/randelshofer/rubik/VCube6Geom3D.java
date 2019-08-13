@@ -15,10 +15,6 @@ import java.util.Arrays;
  * bigger than the side parts.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2009-01-04 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0 2008-09-16 Created.
  */
 public class VCube6Geom3D extends AbstractCube6Geom3D {
     /**

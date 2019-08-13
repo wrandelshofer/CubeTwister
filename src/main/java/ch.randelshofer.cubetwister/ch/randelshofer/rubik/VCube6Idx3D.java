@@ -19,9 +19,6 @@ import java.util.Arrays;
 
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0.1 2008-12-19 Fixed UV-Values for the right-down edges.
- * <br>1.0 2008-10-23 Created.
  */
 public class VCube6Idx3D extends AbstractCube6Idx3D {
     /**

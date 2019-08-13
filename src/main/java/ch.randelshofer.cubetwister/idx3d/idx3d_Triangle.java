@@ -39,14 +39,6 @@ package idx3d;
 /**
  * Defines a 3d triangle.
  *
- * @version $Id$
- * <br>3.2 2003-12-18 Werner Randelshofer: Methods setMaterial and
- * getMaterial added. These methods allows for individual materials
- * per triangle. Dependency note: This change also requires changes in
- * class idx3d_RenderPipeline.
- * Moved responsibility for texture location from class idx3d_Vertex to
- * this class. Dependency note: This change also requires changes in
- * idx3d_Vertex, idx3d_Rasterizer.
  */
 public class idx3d_Triangle {
     // F I E L D S

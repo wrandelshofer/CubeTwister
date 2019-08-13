@@ -20,18 +20,6 @@ package ch.randelshofer.geom3d;
  * </pre>
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.2 2006-01-05 Method hashCode added.
- * <br>1.1 2004-08-23 Workaround for VirtualPC removed.
- * <br>1.0 2002-05-06 Method setTransform added.
- * <br>0.4 2001-10-27 Method isNaN added.
- *   FIXME Workaround for VirtualPC Math.sin and Math.cos produce NaN: 
- *   Use of Math instead of Math avoids this.
- * <br>0.3.1 2000-03-25  Method rotate(double, double, double) fixed.
- * <br>0.3     2000-02-27      Comments revised.
- * <br>0.2  1999-01-01  Package renamed.
- * <br>0.1  1998-12-15  Interface revised.
- * <br>0.0  1998-02-15  Created.
  */
 public class Transform3D
 implements Cloneable {

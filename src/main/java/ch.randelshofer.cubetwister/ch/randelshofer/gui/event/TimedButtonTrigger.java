@@ -15,7 +15,6 @@ import javax.swing.*;
  * long period of time.
  * 
  * @author  werni
- * @version $Id$
  */
 public class TimedButtonTrigger 
 extends MouseAdapter

@@ -7,7 +7,6 @@ package demos.perspective;
  * Triangle.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class Triangle {
 public float x1,y1,z1;

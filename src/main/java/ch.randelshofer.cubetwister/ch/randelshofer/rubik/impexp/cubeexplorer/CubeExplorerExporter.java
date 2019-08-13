@@ -36,7 +36,6 @@ import java.util.HashMap;
  * </pre>
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class CubeExplorerExporter extends JPanel
 implements Exporter {

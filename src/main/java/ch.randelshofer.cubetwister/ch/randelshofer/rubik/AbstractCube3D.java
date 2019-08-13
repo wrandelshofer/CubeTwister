@@ -27,13 +27,6 @@ import java.beans.PropertyChangeListener;
  * interface.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>8.1 2008-04-28 Added method setAnimator.
- * <br>8.0 2007-11-15 Upgraded to Java 1.4. 
- * <br>7.1 2007-09-10 Use SplineInterpolator instead of linear Interpolator.
- * <br>7.0 2007-08-28 PartAction is now also a MouseListener.
- * <br>6.0 2005-03-06 Reworked.
- * <br>1.0 December 21, 2003 Created.
  */
 public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyChangeListener,
         ChangeListener {

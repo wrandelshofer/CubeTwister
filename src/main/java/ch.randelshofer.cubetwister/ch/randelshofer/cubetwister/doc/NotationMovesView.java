@@ -15,9 +15,6 @@ import javax.swing.text.PlainDocument;
  * NotationMovesView.
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * cell editor field.
- * <br>1.0  April 15, 2006  Created.
  */
 public class NotationMovesView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;

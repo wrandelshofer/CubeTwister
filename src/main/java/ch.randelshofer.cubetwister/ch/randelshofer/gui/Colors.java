@@ -9,7 +9,6 @@ import java.awt.*;
  * Colors.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class Colors {
     

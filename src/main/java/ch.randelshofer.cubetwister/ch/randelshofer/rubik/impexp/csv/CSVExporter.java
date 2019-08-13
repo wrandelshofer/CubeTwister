@@ -23,7 +23,6 @@ import java.util.Iterator;
  * CSVExporter.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class CSVExporter extends AbstractExporter {
     private final static long serialVersionUID = 1L;

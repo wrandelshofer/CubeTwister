@@ -23,20 +23,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * operations cut, copy and paste.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * Adapted for JHotDraw 7.3 rev604.
- * <br>2.5 2007-08-05 Enable pasting in more cases.
- * <br>2.4 2006-01-04 Specifying Quaqua "tableHeader" button style for
- * popup button.
- * <br>2.3.1 2004-02-04 Fixed a null pointer exception in removeNotify,
- * which was caused by method unconfigureEnclosingScrollPane.
- * <br>2.3 2002-11-26 Reworked due to changes in MutableTableModel.
- * <br>2.2.1 2002-04-07 Methods added in MutableTableModel.
- * <br>2.2 2001-08-27 Actions provided by the MutableTableModel are
- *           shown in the popup menu.
- * <br>2.1 2001-07-27 Duplicate function added and Accelerater
- * for Delete Row changed from 'Delete'-Key to Control-Delete.
- * <br>2.0 2001-07-18
  */
 public class MutableJTable
         extends JTable

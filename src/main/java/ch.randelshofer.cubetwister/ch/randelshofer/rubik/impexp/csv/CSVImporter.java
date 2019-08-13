@@ -30,7 +30,6 @@ import java.util.ArrayList;
  * CSVImporter.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class CSVImporter extends JPanel implements Importer {
     private final static long serialVersionUID = 1L;

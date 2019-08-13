@@ -16,12 +16,6 @@ import java.util.Arrays;
  * A 3D model of a Rubik's Cube for the Idx3D rendering engine.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>3.0 2009-01-01 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0.1 2004-09-26 Fixed orientation of sticker at corner part
- * down right back.
- * <br>1.0 December 22, 2003 Created.
  */
 public class RubiksCubeIdx3D extends AbstractRubiksCubeIdx3D {
 

@@ -258,26 +258,6 @@ import java.util.Arrays;
  * </ul>
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>4.0.1 2008-01-06 Fixed twist angle of edge 'dl'.
- * <br>4.0 2007-12-27 Changed the location and orientation of the parts so 
- * that they are symmetric to the axis passing from the right-up-front corner
- * through the left-down-back corner.
- * <br>3.0 2007-11-15 Upgraded to Java 1.4. Removed method toPermutationString.
- * <br>2.0  2004-10-24  Reworked to support cubes ranging from 2 to 5
- * layers. Renamed from RubiksCubeCore to AbstractCube.
- * <br>1.4.1 2004-09-18 Fixed orientation changes of side parts in method
- * twistMiddleRightClockwise.
- * <br>1.4 2004-02-23 Support for two-layer and slice twists added.
- * <br>1.3.1 2003-07-18 Method getCenterSide(int) added.
- * <br>1.3 2002-05-06 Method getOrder added. Output of undesired line breaks
- * in methods toPermutationString() and toPermutationString(ScriptParser) fixed.
- * Method getParityInfo() replaced by method getParityInfo().
- * Method isSolved() added.
- * <br>1.2 2001-08-14 Twist methods are now private.
- * <br>1.1 2001-07-23 Adapted to JDK 1.3
- * <br>1.0  2001-02-03  Reworked.
- * <br>0.0  1999-12-31  Draft.
  */
 public abstract class AbstractCube implements Cube, Cloneable {
 

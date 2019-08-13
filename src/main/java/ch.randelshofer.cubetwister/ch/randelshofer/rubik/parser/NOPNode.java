@@ -17,8 +17,6 @@ import java.util.Map;
  * A NOP node has no side effect if applied to a cube.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0  01 February 2005  Created.
  */
 public class NOPNode extends Node {
     private final static long serialVersionUID = 1L;

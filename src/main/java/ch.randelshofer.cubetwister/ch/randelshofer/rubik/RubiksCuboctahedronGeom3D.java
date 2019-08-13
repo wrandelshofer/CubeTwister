@@ -13,16 +13,6 @@ import java.util.Arrays;
  * three dimensions using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.0 2009-01-04 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.1.4 2002-07-14 Cube draws more border lines.
- * <br>1.1.3 2002-04-07 Actions were not properly assigned to the
- * hexagonal stickers of the cube.
- * <br>1.1.2 2001-08-16 Inner faces which are never visible removed.
- * <br>1.1.1 2001-07-30 Colors adapted to fit original Rubik's Cube.
- * <br>1.1 2001-07-23 Inner faces have no borders to speed up the painting process.
- * <br>1.0 2000-03-11
  */
 public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
     /**

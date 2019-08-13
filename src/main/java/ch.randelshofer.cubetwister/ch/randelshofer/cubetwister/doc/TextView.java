@@ -13,11 +13,6 @@ import javax.swing.event.*;
  * TextView.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0.2 2004-02-23 Method updateEnabled enables/disables now all
- * components of the TextView. 
- * <br>1.0.1 2003-08-10 Line wrapping activated.
- * <br>1.0  2001-07-19 Created.
  */
 public class TextView extends javax.swing.JPanel implements Undoable/*, PropertyChangeListener*/ {    
     private TextModel model;

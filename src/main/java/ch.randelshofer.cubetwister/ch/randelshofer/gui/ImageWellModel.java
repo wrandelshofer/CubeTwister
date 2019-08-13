@@ -13,8 +13,6 @@ import javax.swing.event.*;
  * Model for JImageWell component.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 January 6, 2006 Created.
  */
 public interface ImageWellModel {
     /**

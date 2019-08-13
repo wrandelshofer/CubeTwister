@@ -9,8 +9,6 @@ import java.io.*;
  * Files.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 13. Januar 2004  Created.
  */
 public class Files {
     

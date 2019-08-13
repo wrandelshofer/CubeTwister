@@ -51,8 +51,6 @@ import java.io.*;
  * </pre>
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0  2004-04-18  Created.
  */
 public class CSVWriter extends FilterWriter {
     /**

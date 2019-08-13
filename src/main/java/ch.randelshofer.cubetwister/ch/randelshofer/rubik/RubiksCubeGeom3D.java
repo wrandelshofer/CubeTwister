@@ -13,12 +13,6 @@ import java.util.Arrays;
  * three dimensions.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>8.0 2009-01-04 Added support for twisting the cube by swiping over
- * its faces.
- * <br>7.0 2008-01-06 Adapted to changes in AbstractCube.
- * <br>6.0 2005-03-06 Reworked.
- * <br>1.0 2000-03-11 Created
  */
 public class RubiksCubeGeom3D extends AbstractRubiksCubeGeom3D {
     /* Maps stickers to cube parts.

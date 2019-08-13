@@ -18,7 +18,6 @@ import java.util.Set;
  * 1.12 01/12/03
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 class MimeTypeParameterList implements Cloneable {
 

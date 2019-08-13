@@ -39,12 +39,6 @@ package idx3d;
 /**
  * Lightmap for faster rendering, assuming static light sources.
  *
- * @version $Id$
- * <br>3.2 2003-12-18 Werner Randelshofer: Changed type of variable cos in
- * method rebuildLightMap from int to float. This greatly reduces band effects
- * of the specular map. 
- * Added support for different resolutions. Dependency note: This change 
- * also requires changes in class idx3d_Rasterizer.
  */
 public final class idx3d_Lightmap {
     int[] diffuse;

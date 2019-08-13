@@ -14,10 +14,6 @@ import java.util.LinkedList;
  * '.' and minus dot '-.' are not treated as numbers.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1.1 2004-02-23 Diagnostic output to System.out removed. 
- * <br>1.1 2003-07-26 Methods setSlashStarTokens and setSlashSlashToken added.
- * <br>1.0 2001-02-24 Created.
  */
 
 public class StreamPosTokenizer

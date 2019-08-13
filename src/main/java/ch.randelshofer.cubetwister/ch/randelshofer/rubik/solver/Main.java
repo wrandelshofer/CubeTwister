@@ -23,7 +23,6 @@ import java.io.IOException;
  * command line.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class Main extends Object {
 

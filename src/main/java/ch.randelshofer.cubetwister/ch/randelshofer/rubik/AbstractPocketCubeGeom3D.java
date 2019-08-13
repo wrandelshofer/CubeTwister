@@ -18,8 +18,6 @@ import java.awt.Color;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2005-12-26 Created.
  */
 public abstract class AbstractPocketCubeGeom3D extends AbstractCubeGeom3D {
 

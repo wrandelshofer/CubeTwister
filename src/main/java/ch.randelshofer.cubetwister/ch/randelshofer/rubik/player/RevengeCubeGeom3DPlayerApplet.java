@@ -16,7 +16,6 @@ import java.io.InputStream;
  * RevengeCubeGeom3DPlayerApplet.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 
 public class RevengeCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet {

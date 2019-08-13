@@ -8,7 +8,6 @@ package ch.randelshofer.xml;
  * DOMFactory.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public interface DOMFactory {
     /**

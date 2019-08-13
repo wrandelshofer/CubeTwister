@@ -13,7 +13,6 @@ import nanoxml.*;
  * NanoXMLDOMInput.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class NanoXMLDOMInput implements DOMInput {
     /**

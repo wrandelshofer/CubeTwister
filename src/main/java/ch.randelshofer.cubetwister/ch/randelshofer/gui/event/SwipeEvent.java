@@ -10,8 +10,6 @@ import java.awt.event.MouseEvent;
  * SwipeEvent.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2008-12-31 Created.
  */
 public class SwipeEvent extends MouseEvent {
     private final static long serialVersionUID = 1L;

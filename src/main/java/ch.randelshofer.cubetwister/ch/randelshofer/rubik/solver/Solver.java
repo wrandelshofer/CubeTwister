@@ -82,9 +82,6 @@ import java.io.IOException;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0.1 2002-12-23 Text provided to progress monitor improved.
- * <br>1.0 2000-09-22
  */
 public class Solver {
     // Solver return codes

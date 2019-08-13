@@ -9,8 +9,6 @@ import java.util.*;
  * Wraps an Enumeration with the Iterator interface.
  *
  * @author  Werni Randelshofer
- * @version $Id$
- * <br>1.0 2001-10-08
  */
 public class EnumerationIterator<T> implements java.util.Iterator<T> {
     private Enumeration<T> enumer;

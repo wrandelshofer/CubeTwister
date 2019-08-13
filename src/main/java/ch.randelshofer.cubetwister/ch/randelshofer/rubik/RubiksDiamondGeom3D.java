@@ -13,14 +13,6 @@ import java.util.Arrays;
  * three dimensions.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * its faces.
- * <br>1.2 2002-07-29 Outlines to inner faces added to improve
- * visual appearance of a semi-disassembled cube.
- * <br>1.1.2 2001-08-16 Inner faces which are never visible removed.
- * <br>1.1.1 2001-07-30 Colors adapted to fit original Rubik's Cube.
- * <br>1.1 2001-07-23 Inner faces have no borders to speed up the painting process.
- * <br>1.0 2000-03-11
  */
 public class RubiksDiamondGeom3D extends AbstractRubiksCubeGeom3D {
     private final static int[] stickerToPartMap_old = {

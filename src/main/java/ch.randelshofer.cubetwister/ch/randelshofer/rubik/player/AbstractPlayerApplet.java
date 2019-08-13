@@ -99,46 +99,6 @@ import java.util.zip.ZipInputStream;
  * can play back scripts.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>6.3 2011-06-29 Adds setScriptType/getScriptType methods to JavaScript
- * API.
- * <br>6.2 2010-08-03 "stickersFront", "stickersLeft", ... parameters could only
- * access the first six colors in the color list. Adds applet parameter
- * "locale".
- * <br>6.1.2 2010-03-27 Test if player != null in the JavaScript API methods.
- * <br>6.1.1 2010-02-12 Get default twist duration from model.
- * <br>6.1 2010-02-09 Added support for zip-compressed resource file.
- * <br>6.0 2010-01-24 Load stickers image from the .jar file, if a file named
- * StickersImage.png, .jpg or .gif is in the .jar file.
- * <br>5.5.1 2010-01-01 Adding an additional color to the cube in the resource
- * XML file caused one complete face to be in this color.
- * <br>5.5 2009-12-02 Added "scaleFactor" parameter.
- * <br>5.4.2 2009-11-28 Flush memory when applet is stopped.
- * <br>5.4.1 2009-07-04 Catch all throwables when getting an image.
- * <br>5.4 2009-04-13 Added method getAPIInfo(), fixed method
- * getParameterInfo().
- * <br>5.3 Added methods setPermutation/getPermutation.
- * <br>5.2 2009-03-08 Added "stickerBevel" parameter. The script field is now
- * always displayed, if the "displayLines" parameter has a value different from
- * 0.
- * <br>5.0 2009-01-06 Added public methods for controlling playback using
- * JavaScript. Changed case of 'scriptType' parameter values.
- * <br>4.5 2009-01-04 Bail if notation parameter is for a different cube.
- * <br>4.4 2008-12-20 Only read cube atributes from resource file if kind
- * matches. "colorMap" attribute was wrongly used instead of "colorList".
- * "colorTable" was not applied to colorMap. Fixed class-cast exceptions when
- * reading "colorTable" and "colorList" parameters.
- * <br>4.3 2008-09-13 Read cube attributes from resource file.
- * <br>4.2 2008-06-14 Print all read parameters when debugging mode is turned
- * on.
- * <br>4.1 2008-04-03 Added parameter showController.
- * <br>4.0 2008-02-02 Rewrote parameters. Now, an empty parameter has the same
- * effect like not specifying this parameter at all.
- * <br>3.0 2007-12-25 Rewritten for Swing.
- * <br>2.0 2007-11-15 Upgraded to Java 1.4.
- * <br>1.0.2 2007-11-14 Compute version string dynamically.
- * <br>1.0.1 2007-03-04 Updated version string.
- * <br>1.0 2005-03-03 Created.
  */
 public abstract class AbstractPlayerApplet extends javax.swing.JApplet
         implements Runnable {

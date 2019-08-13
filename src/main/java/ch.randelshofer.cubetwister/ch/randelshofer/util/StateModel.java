@@ -9,7 +9,6 @@ import java.awt.Component;
  * Generic interface for Objects with state.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public interface StateModel {
     /**

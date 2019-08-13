@@ -9,8 +9,6 @@ import javax.swing.*;
 
 /**
  * Tracks Memory allocated and used, displayed in graph form.
- * @version $Id$
- * <br>2.0 2006-01-09 Complete rewrite.
  */
 public class MemoryMonitor extends JPanel {
     private final static long serialVersionUID = 1L;

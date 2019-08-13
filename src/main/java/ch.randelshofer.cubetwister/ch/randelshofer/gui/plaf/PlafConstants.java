@@ -9,7 +9,6 @@ import javax.swing.*;
 /**
  * PlafConstants.
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public interface PlafConstants {
     /**

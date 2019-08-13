@@ -26,7 +26,6 @@ import java.util.zip.ZipOutputStream;
  * PreferencesTemplatesPanel.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class PreferencesTemplatesPanel extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

@@ -7,11 +7,6 @@ package ch.randelshofer.util;
  * AppletParameterException.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.2.1 2010-02-18 Fixed NPE's when value is null.
- * <br>1.2 2009-01-04 Fixed message output.
- * <br>1.1 2008-12-28 Message contained wrong start and end position.
- * <br>1.0 Jan 14, 2008 Created.
  */
 public class AppletParameterException extends Exception {
     private final static long serialVersionUID = 1L;

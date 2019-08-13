@@ -13,7 +13,6 @@ import org.jhotdraw.app.*;
  * Main.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class Main {
 

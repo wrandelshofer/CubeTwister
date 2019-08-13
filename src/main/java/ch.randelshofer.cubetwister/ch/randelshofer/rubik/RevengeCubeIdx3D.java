@@ -15,14 +15,6 @@ import java.util.Arrays;
  * RevengeCubeIdx3D.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.3.1 2010-04-05 Removed debugging code.
- * <br>1.3 2010-04-04 Added swipe actions to edges adjacent to stickers.
- * <br>1.2.1 2008-12-19 Fixed UV-Values for the right-down edges.
- * <br>1.2 2008-08-17 Streamlined with code of class VCube6Idx3D.
- * <br>1.1.1 2008-01-05 Fixed sticker to part map.
- * <br>1.1 2007-12-28 Adapted to changes in AbstractCube. 
- * <br>1.0 2006-01-01 Created.
  */
 public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
 

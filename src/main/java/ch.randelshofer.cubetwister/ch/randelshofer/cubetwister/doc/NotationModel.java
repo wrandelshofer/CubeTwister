@@ -18,11 +18,6 @@ import java.io.*;
  * NotationModel.
  *
  * @author  Werner Randelshofer.
- * @version $Id$
- * <br>2.1 2007-08-11 Moved "name" property into superclass.
- * <br>2.0 2004-04-03 Support for many new tokens and expressions added.
- * <br>1.1 2003-01-03 Only tokens marked as supported may be passed to the parser.
- * <br>1.0 2001-09-28 Created.
  */
 public class NotationModel extends InfoModel implements Notation {
     private final static long serialVersionUID = 1L;

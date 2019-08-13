@@ -15,13 +15,6 @@ import java.util.Arrays;
  * A default implementation of the {@link CubeAttributes} interface.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.1 2006-01-05 Background color and background image property added.
- * <br>2.0 2004-10-08 Renamed fro CubeColorModel3D to DefaultCubeAttributes.
- * <br>1.2 2002-05-05 Methods setAlpha and setBeta added.
- * <br>1.1 Now uses the original Rubik's Cube Color scheme.
- * <br>1.0 2001-08-19 Created.
- *
  */
 public class DefaultCubeAttributes implements CubeAttributes {
 

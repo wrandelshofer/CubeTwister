@@ -17,10 +17,6 @@ import java.util.Arrays;
  * the corner parts need to be larger than those on the center parts.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2009-01-04 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0 2008-08-17 Created.
  */
 public class Cube6Geom3D extends AbstractCube6Geom3D {
 

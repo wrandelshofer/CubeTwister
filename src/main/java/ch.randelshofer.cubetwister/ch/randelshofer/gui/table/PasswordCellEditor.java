@@ -11,7 +11,6 @@ import javax.swing.*;
  * PassworCellEditor.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class PasswordCellEditor extends DefaultCellEditor {
     private final static long serialVersionUID = 1L;

@@ -18,8 +18,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * HelpAction.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2008-10-12 Created.
  */
 public class HelpAction extends AbstractAction {
     private final static long serialVersionUID = 1L;

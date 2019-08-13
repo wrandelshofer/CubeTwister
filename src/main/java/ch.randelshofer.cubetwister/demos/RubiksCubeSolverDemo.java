@@ -24,7 +24,6 @@ import javax.swing.*;
  * A JPanel with an interactive Rubik's Cube, a script field and a solver.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class RubiksCubeSolverDemo extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

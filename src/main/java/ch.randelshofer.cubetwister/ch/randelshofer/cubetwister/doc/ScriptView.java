@@ -58,24 +58,6 @@ import org.jhotdraw.util.prefs.PreferencesUtil;
  * info panel for entering comments.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.2 2010-08-18 Changes icon of reset button when option button is
- * pressed.
- * <br>2.1 2010-05-02 Option-Click on reset button only resets
- * the canvas but not the cube.
- * <br>2.0 2007-11-15 Upgraded to Java 1.4.
- * <br>1.2.6 2004-02-23 Method updateEnabled changed to change the enabled
- * state of more components.
- * <br>1.2.5 2003-08-03 Font settings revised.
- * <br>1.2.4 2003-03-16 Size of buttons adjusted.
- * *<br>1.2.3 2003-01-03 Bug fixed in script recorder. Number of parser instances
- * reduced.
- * <br>1.2.1 2002-11-14 Minor changes in the layout.
- * <br>1.2 2002-05-13 Reworked.
- * <br>1.1.1 2002-05-05 StateTextArea shows now the order of the current
- *  permutation of the cube.
- * <br>1.1 2002-02-02 Tooltips added. Various bugs caused by
- * the recording feature fixed.
  */
 public class ScriptView
         extends JPanel

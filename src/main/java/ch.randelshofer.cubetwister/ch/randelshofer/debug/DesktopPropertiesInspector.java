@@ -15,7 +15,6 @@ import javax.swing.table.*;
  * Displays the current desktop properties of java.awt.Toolkit.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class DesktopPropertiesInspector extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

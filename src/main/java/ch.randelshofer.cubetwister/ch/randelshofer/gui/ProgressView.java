@@ -15,18 +15,6 @@ import javax.swing.event.*;
  *
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.1 2010-01-03 Added method printf.
- * <br>2.0 2009-03-22 Made object creation thread save.
- * <br>1.6.1 2007-12-04 Added missing constructor.
- * <br>1.6 2007-11-19 Upgraded to new ProgressObserver interface.
- * <br>1.5 2006-09-18 Interface ProgressObserver implemented
- * <br>1.4.1 2004-12-23 Use invokeAndWait in method setCancelable instead of
- * invokeLater.
- * <br>1.4 2004-04-19 Reworked to have a BoundedRangeModel as the data model.
- * <br>1.2 2002-12-23 Operation getProgress() added.
- * <br>1.1 2002-07-28 ScrollPane in class ProgressView added.
- * <br>1.0 2002-05-10 Created.
  */
 public class ProgressView extends javax.swing.JPanel implements ProgressObserver {
 

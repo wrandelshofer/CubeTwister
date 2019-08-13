@@ -18,10 +18,6 @@ import static java.lang.Math.sqrt;
  * from six intersecting spheres.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2009-01-04 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0 2008-09-16 Created.
  */
 public class VCube7Geom3D extends AbstractCube7Geom3D {
     /* The variables SCX, SCY, SCZ define the center of the sphere used for

@@ -13,8 +13,6 @@ import javax.imageio.stream.ImageOutputStream;
  * {@code OutputStream}.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2010-12-26 Created.
  */
 public class ImageOutputStreamAdapter extends OutputStream {
 

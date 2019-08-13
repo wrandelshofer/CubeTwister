@@ -14,7 +14,6 @@ import javax.swing.table.*;
  * Displays the current system colors.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class SystemColorsInspector extends javax.swing.JPanel {
         private final static long serialVersionUID = 1L;

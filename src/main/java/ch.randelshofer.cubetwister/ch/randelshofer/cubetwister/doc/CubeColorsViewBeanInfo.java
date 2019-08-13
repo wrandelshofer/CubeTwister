@@ -9,7 +9,6 @@ import java.beans.*;
  * CubeColorsViewBeanInfo.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     

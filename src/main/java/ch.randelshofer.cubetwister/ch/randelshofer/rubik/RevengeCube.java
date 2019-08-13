@@ -115,11 +115,6 @@ package ch.randelshofer.rubik;
  *
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>3.0 2009-01-01 Added support for twisting the cube by swiping over
- * its faces.
- * <br>2.0 2007-12-31 Adapted to changes in AbstractCube.
- * <br>1.0  14 February 2005  Created.
  */
 public class RevengeCube extends AbstractCube {
 

@@ -12,11 +12,6 @@ import javax.swing.*;
  * Displays multiple lines of text.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0.2 2005-08-26 Call repaint after validating the parent to ensure
- * that the label is drawn. Methods setBorderColor/getBorderColor added.
- * <br>1.0.1 2004-11-01 Init variable "text" with an empty string. 
- * <br>1.0 2004-08-15 Created.
  */
 public class JMultilineLabel extends JComponent {
     private final static long serialVersionUID = 1L;

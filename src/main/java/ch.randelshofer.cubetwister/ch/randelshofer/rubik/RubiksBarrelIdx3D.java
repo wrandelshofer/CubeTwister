@@ -16,10 +16,6 @@ import java.util.Arrays;
  * BarrelIdx3D.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * its faces.
- * <br>2.0 2008-01-03 Adapted to changes in AbstractCube.
- * <br>1.0 December 26, 2003 Created.
  */
 public class RubiksBarrelIdx3D extends AbstractRubiksCubeIdx3D {
     private final static int[] stickerToPartMap = {

@@ -22,9 +22,6 @@ import java.io.IOException;
  * AbstractCubeIdx3DPlayerApplet.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * reduce memory consumption.
- * <br>1.0 2008-01-07 Created.
  */
 public abstract class AbstractCubeIdx3DPlayerApplet extends AbstractPlayerApplet {
     private static idx3d_RenderPipeline sharedPipeline;

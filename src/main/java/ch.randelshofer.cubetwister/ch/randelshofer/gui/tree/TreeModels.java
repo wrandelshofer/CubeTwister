@@ -13,8 +13,6 @@ import java.io.*;
  * TreeModels.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 November 1, 2003 Created.
  */
 public class TreeModels {
 

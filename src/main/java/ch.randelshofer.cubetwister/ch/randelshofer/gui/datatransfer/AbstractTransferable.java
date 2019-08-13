@@ -11,7 +11,6 @@ import java.io.*;
  * Base class for transferable objects.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public abstract class AbstractTransferable implements Transferable {
     private DataFlavor[] flavors;

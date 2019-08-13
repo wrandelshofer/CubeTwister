@@ -10,7 +10,6 @@ import java.io.IOException;
  * PreferencesCachesPanel.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class PreferencesCachesPanel extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

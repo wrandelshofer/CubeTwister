@@ -17,10 +17,6 @@ import java.util.Arrays;
  * different sizes and different aspect ratios.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2009-01-04 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0 2008-08-19 Created.
  */
 public class Cube7Geom3D extends AbstractCube7Geom3D {
     private static float[] CORNER_VERTS;

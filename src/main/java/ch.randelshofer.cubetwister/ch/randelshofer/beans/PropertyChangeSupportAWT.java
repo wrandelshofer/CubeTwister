@@ -9,7 +9,6 @@ import java.beans.*;
  * PropertyChangeSupportAWT.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class PropertyChangeSupportAWT extends PropertyChangeSupport {
     private final static long serialVersionUID = 1L;

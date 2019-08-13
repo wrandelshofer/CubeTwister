@@ -18,9 +18,6 @@ import javax.swing.Timer;
  * BusyIcon.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2010-01-04 Only use a single timer.
- * <br>1.0 2010-01-01 Created.
  */
 public class BusyIcon implements Icon {
 

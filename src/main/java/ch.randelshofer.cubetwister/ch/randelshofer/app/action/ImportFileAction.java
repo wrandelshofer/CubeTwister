@@ -74,7 +74,6 @@ import org.jhotdraw.util.*;
  * </p>
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class ImportFileAction extends AbstractViewAction {
     private static final long serialVersionUID = 1L;

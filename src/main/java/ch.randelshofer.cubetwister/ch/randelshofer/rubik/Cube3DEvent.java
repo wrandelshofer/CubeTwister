@@ -13,14 +13,6 @@ import java.awt.event.MouseEvent;
  * in a Cube3D object.
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * getAngle().
- * <br>3.1 2009-01-19 Treat CTRL_DOWN_MASK like META_DOWN_MASK - except
- * on Mac OS X.
- * <br>3.0 2009-01-14 Use MouseEvent.modifiersEx instead of modifiersEx.
- * Re-implemented support for modifier keys.
- * <br>2.0 2007-08-28 Forward mouse event instead of just the mouseEvent.
- * <br>1.0 December 22, 2003 Created.
  */
 public class Cube3DEvent extends java.util.EventObject {
     private final static long serialVersionUID = 1L;

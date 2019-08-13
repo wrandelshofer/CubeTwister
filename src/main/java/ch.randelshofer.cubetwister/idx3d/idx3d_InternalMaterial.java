@@ -10,11 +10,6 @@ package idx3d;
  * scene.
  *
 * @author  Werner Randelshofer
- * @version $Id$
- * Dependency note: The creation of this class changes the class hierarchy of
- * idx3d. This change also affects the following classes: idx3d_Material, 
- * Inspector, idx3d_MaterialInspector, idx3d_RenderPipeline, idx3d_Triangle,
- * idx3d_Rasterizer, idx3d_Scene, idx3d_Object.
  */
 public class idx3d_InternalMaterial 
 {

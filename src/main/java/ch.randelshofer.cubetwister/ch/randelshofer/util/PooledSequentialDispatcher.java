@@ -67,11 +67,6 @@ import java.util.*;
  * has finished.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2003-04-05 Method stop() invokes wait() now on object 'queue' and
- * not on thisi object.
- * <br>1.0.1 2001-12-31 Comments translated into english.
- * <br>1.0 2001-12-27 Created.
  */
 public class PooledSequentialDispatcher implements Dispatcher, Runnable {
     /**

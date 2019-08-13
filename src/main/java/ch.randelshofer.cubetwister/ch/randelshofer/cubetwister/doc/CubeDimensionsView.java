@@ -19,7 +19,6 @@ import org.jhotdraw.text.JavaNumberFormatter;
  * CubeView.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class CubeDimensionsView extends AbstractEntityView {
     private final static long serialVersionUID = 1L;

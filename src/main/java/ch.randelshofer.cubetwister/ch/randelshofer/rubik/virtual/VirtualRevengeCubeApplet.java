@@ -11,7 +11,6 @@ import ch.randelshofer.rubik.RevengeCubeIdx3D;
  * 
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class VirtualRevengeCubeApplet extends AbstractVirtualCubeApplet {
         private final static long serialVersionUID = 1L;

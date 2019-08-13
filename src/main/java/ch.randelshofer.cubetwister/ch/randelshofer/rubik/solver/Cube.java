@@ -47,7 +47,6 @@ import java.util.Arrays;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  * <p>
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class Cube implements Cloneable {
     // Cubie locations

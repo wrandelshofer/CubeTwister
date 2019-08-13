@@ -15,7 +15,6 @@ import javax.swing.SwingUtilities;
  * handles java.awt.ActiveEvent's.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public abstract class RunnableWorker<T> implements Runnable {
     private T value;  // see getValue(), setValue()

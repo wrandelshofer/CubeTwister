@@ -10,8 +10,6 @@ import java.lang.reflect.*;
  * java.lang.reflect.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 September 24, 2005 Created.
  */
 public class Methods {
     /**

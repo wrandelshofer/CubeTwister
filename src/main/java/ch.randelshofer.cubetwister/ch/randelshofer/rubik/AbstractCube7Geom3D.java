@@ -18,7 +18,6 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public abstract class AbstractCube7Geom3D extends AbstractCubeGeom3D {
 

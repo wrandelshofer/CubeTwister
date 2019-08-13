@@ -27,7 +27,6 @@ import javax.swing.undo.*;
  * </pre>
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class CompositeEdit extends CompoundEdit {
     private final static long serialVersionUID = 1L;

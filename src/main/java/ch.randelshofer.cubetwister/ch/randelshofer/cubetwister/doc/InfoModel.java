@@ -30,9 +30,6 @@ import javax.swing.tree.*;
  * insertion and removal.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * this class. 
- * <br>1.0 2001-10-05 Created
  */
 public class InfoModel extends EntityModel {
     private final static long serialVersionUID = 1L;

@@ -11,7 +11,6 @@ import java.util.List;
  * Java File List Transferable.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class FileListTransferable
 implements Transferable {

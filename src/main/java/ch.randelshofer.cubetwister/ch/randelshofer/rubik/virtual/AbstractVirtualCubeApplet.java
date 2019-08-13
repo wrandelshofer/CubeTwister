@@ -73,35 +73,6 @@ import java.util.zip.ZipInputStream;
  * which can be taken apart.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.8 2010-05-02 Alt- or Ctrl-Click on reset button only resets
- * the canvas but not the cube.
- * <br>2.7.6 2010-04-06 Replaced Random2 class by java.util.Random.
- * <br>2.7.5 2010-03-08 Adjusted layout, so that buttons are cut off
- * instead of disappearing when the applet is sized too small.
- * <br>2.7.4 2010-02-09 Added support for zip-compressed resource file.
- * <br>2.7.3 2010-01-01 Adding an additional color to the cube in the
- * resource XML file caused one complete face to be in this color.
- * <br>2.7.2 2009-11-28 Flush resources when applet is stopped.
- * <br>2.7.1 2009-07-04 Catch all throwables when loading
- * images.
- * <br>2.7 2009-01-09 Use modifiersEx instead of modifiers.
- * <br>2.6 2009-01-07 Added applet parameter selectTool.
- * <br>2.5 2009-01-05 Avoid cursor update conflicts with idx3d_JCanvas.
- * <br>2.4 2009-01-03 Use hand cursor do indicate that the cube can be
- * rotated.
- * <br>2.3 2008-04-03 Use system look and feel.
- * <br>2.2 2008-01-03 Implemented base64 image decoder. Fixed implementation
- * of reset function.
- * <br>2.1 2007-11-18 Added applet parameters: resourceFile, resourceData,
- * cube.
- * <br>2.0.1 2007-11-14 Method scramble only worked for 3x3 cube.
- * <br>2.0 2007-09-10 Rewritten for Swing instead of AWT:
- * <br>1.2 2007-09-09 Use SplineInterpolator to reset explosion factor.
- * Use Shift-key for 180 degree twists.
- * <br>1.1 2007-08-31 Dispose of resources when method destroy
- * is called.
- * <br>1.0 25. August 2007 Created.
  */
 public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
 

@@ -20,9 +20,6 @@ import java.util.Arrays;
  * the corner parts need to be larger than those on the center parts.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0.1 2008-12-19 Fixed UV-Values for the right-down edges.
- * <br>1.0 2008-10-14 Created.
  */
 public class Cube6Idx3D extends AbstractCube6Idx3D {
 

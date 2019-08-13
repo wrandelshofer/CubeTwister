@@ -18,28 +18,6 @@ import javax.swing.event.*;
  * idx3d_JCanvas.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>5.8 2011-06-29 Adds methods setSwipeTimeout and getSwipeTimeout.
- * <br>5.7 2010-08-18 Adds support for shared render pipelines.
- * <br>5.6 2010-08-08 Adds scroll wheel support.
- * <br>5.5 2010-06-01 Adds method setRasterizer.
- * <br>5.4 2009-11-28 Adds method flush.
- * <br>5.3 2009-04-11 Only process mouse events when enabled.
- * <br>5.2.1 2009-01-19 Update cursor on mouse release.
- * <br>5.2 2009-01-09 Cursor changes to hand cursor when over a triangle
- * which has event listeners. Added workaround for
- * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6634290
- * <br>5.1 2009-01-05 Added methods setUpdateCursor and isUpdateCursor.
- * <br>5.0.1 2009-01-03 Don't start swiping when not in ROTATE_AND_SWIPE
- * mode. Added method setMinFPS/getMinFPS.
- * <br>5.0 2009-01-01 Added ROTATE_AND_SWIPE interaction mode.
- * <br>4.2 2008-12-24 Added variable "quiet".
- * <br>4.1 2008-09-12 Added support for border painting and insets.
- * <br>4.0 2007-11-15 Upgraded to Java 1.4. 
- * <br>3.0.1 2007-09-10 Fixed some synchronization issues. 
- * <br>3.0 2007-09-09 Rewritten to match functionality of idx3d_CanvasAWT.
- * <br>2.0 2006-02-20 Rewritten for asynchronous rendering of the scene.
- * <br>1.0 January 5, 2006 Created.
  */
 public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMotionListener, ChangeListener, MouseWheelListener {
 

@@ -18,10 +18,6 @@ import java.awt.Image;
  * rendering engine.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.1 2009-11-28
- * <br>2.0 2007-11-15 Upgraded to Java 1.4.
- * <br>1.0  16 February 2005  Created.
  */
 public class Cube3DCanvasIdx3D
         extends AbstractBean

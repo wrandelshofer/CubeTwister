@@ -20,10 +20,6 @@ import javax.swing.undo.*;
  * This panel acts like an Explorer Window as commonly used on Windows.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * by Executor.
- * <br>1.0.1 2011-01-22 UndoableTreeSelectionModel was renamed to DefaultUndoableTreeSelectionModel.
- * <br>1.0 2001-10-05
  */
 public class JExplorer extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;

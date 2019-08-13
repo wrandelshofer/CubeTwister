@@ -47,34 +47,6 @@ import static java.lang.Math.*;
  * For surfaces with large textured triangles use
  * {@link idx3d_PerspectiveRasterizer}.
  *
- * @version $Id$
- * Minor bug fixes and speed improvements.
- * <br>3.2 2003-12-18 Werner Randelshofer:
- * Supports now lightmaps of different resolutions. Dependency note: This change
- * also requires changes in class idx3d_Lightmap.
- *
- * Changed the idBuffer array from int[] to short[] to save memory. The idBuffer
- * only stores triangle id's now (instead of object id's in its upper 16 bit
- * and the triangle id in the lower 16 bits). We do not need to store the object
- * id in the idBuffer, because all triangles know their parent object.
- * Changed the size of the idBuffer to the size of the display area (instead of
- * to the size of the antialias screen, which is twice as big.
- * Dependency note: These changes also require changes in class
- * idx3d_Math, idx3d_RenderPipeline and idx3d_Scene.
- *
- * Method clearReferences added to allow for better memory management by the
- * garbage collector.
- * Dependency note: This change also requires changes in class
- * idx3d_RenderPipeline.
- *
- * Moved responsibility for texture location from class idx3d_Vertex to
- * this class. Dependency note: This change also requires changes in
- * idx3d_Vertex, idx3d_Triangle, idx3d_TextureProjector, idx3d_Object.
- *
- * Removed all OR operations with the alpha channel. As we do not produce an
- * RGB channel, we do not have to care about the bits contained in this channel.
- * Dependency note: This requires that the idx3d_Screen produces an image without
- * an RGB channel.
  */
 @SuppressWarnings("cast")
 public final class idx3d_PerspectiveRasterizerUnoptimized extends idx3d_Rasterizer {

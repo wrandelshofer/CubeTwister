@@ -11,16 +11,6 @@ import java.util.*;
  * Usefull methods for applets.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.0 2004-12-27 Enhanced to support the special applet parameters
- * of Sun's Java plug in. See http://java.sun.com/j2se/1.5.0/docs/guide/plugin/developer_guide/special_attributes.html
- * <br>1.5 2008-06-14 Added debugging support.
- * <br>1.4 2007-06-10 Methog getParamete(Applet,String,boolean) added. 
- * <br>1.3 2003-07-25 Method
- * getIndexedKeyValueParameters(Applet,String,Hashtable) added.
- * <br>1.2 2002-06-26 Method getParameter(Applet,String,double) added.
- * <br>1.1 2001-12-27 Method getParameters did not work.
- * <br>1.0 2000-03-06
  */
 public class Applets extends Object {
 

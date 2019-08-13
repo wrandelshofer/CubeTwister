@@ -44,7 +44,6 @@ package base64;
  *
  * @author Robert Harder
  * @author rob@iharder.net
- * @version $Id$
  */
 public class Base64
 {

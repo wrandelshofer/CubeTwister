@@ -11,7 +11,6 @@ import java.util.ResourceBundle;
  * PreferencesPanel.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class PreferencesPanel extends javax.swing.JPanel {
 

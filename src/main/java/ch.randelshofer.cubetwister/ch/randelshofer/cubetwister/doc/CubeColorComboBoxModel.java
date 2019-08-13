@@ -12,7 +12,6 @@ import javax.swing.*;
  * "Stickers" and "Parts" page of the CubeView.
  *
  * @author  werni
- * @version $Id$
  */
 public class CubeColorComboBoxModel
 extends AbstractListModel

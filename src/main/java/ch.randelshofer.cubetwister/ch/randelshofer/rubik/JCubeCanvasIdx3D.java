@@ -12,7 +12,6 @@ import javax.swing.JComponent;
  * Cube3DCanvas.
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class JCubeCanvasIdx3D extends JComponent implements Cube3DCanvas {
     private final static long serialVersionUID = 1L;

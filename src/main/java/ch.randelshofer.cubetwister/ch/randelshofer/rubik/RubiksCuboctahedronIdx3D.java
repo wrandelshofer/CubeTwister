@@ -17,11 +17,6 @@ import java.util.Arrays;
  * three dimensions using the Idx3D engine.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>3.0 2009-01-02 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0.1 2007-09-11 Fixed broken stickerToOrientationMap.
- * <br>1.0 2005-12-26 Created.
  */
 public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
     private final static int[] stickerToPartMap = {

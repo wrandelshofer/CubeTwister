@@ -48,16 +48,6 @@ import java.util.*;
  * </tt></pre>
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.3 2002-05-15 Reworked.
- * <br>1.2 2001-09-24 Support for coalescing of events added.
- * <br>1.1 2001-08-24 Reworked for JDK 1.3.
- * <br>1.0.2   2000-03-03
- *        Catch SecurityException's (To make this class work in Netscape Navigator).
- * <br>history 1.0.1  14.10.1998
- *     Versionskennung in Klassenkommentar eingefügt.
- * <br>history  1.0  Datum ?
- *    Threads werden nicht mehr wiederverwendet.
  */
 public abstract class EventLoop {
     /**

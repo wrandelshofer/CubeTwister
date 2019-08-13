@@ -27,24 +27,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * operations cut, copy and paste.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * Displays node actions.
- * <br>3.2.1 2011-01-20 Method delete() did not remove all descendants.
- * <br>3.2 2010-01-09 Implemented duplicate() method.
- * Adapted for JHotDraw 7.3 rev604.
- * <br>3.1 2009-12-21 MutableTreeModel.createNodeAt-method returns path to
- * created node.
- * <br>3.0 2008-03-19 Streamlined naming of cut/copy/paste methods with
- * JTextComponent. 
- * <br>2.4 2007-01-12 Place popup menu nicely by the button. 
- * <br>2.3.1 2006-01-04 Specifying Quaqua "tableHeader" button style for popup
- * button.
- * <br>2.3  2004-07-03  Reworked due to API changes in MutableTreeModel.
- * <br>2.2.1 2004-02-03 Fixed a problem in method unconfigureEnclosingScrollPane.
- * <br>2.2 2003-06-20 Add actions from MutableTreeModel to popup menu.
- * <br>2.1 2002-12-21 Popup button added.
- * <br>2.0.2 2002-11-20 Undo support added.
- * <br>2.0.1 2001-10-13
  */
 public class MutableJTree extends JTree
         implements EditableComponent {

@@ -9,7 +9,6 @@ import java.io.IOException;
  * encounters an invalid token.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class ParseException
 extends IOException {

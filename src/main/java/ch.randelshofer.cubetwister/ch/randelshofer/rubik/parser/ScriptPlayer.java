@@ -48,24 +48,6 @@ import java.util.ResourceBundle;
  * ScriptPlayer.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>7.9.1 2010-11-13 Fixes enabled state of reset and scramble button.
- * <br>7.9 2010-08-03 The Locale of the player can now be changed by
- * setting a new locale on its control panel component.
- * <br>7.8 2010-05-02 Alt- or Ctrl-Click on reset button only resets
- * the canvas but not the cube.
- * <br>7.7 2009-07-26 Enable/Disable the movie control.
- * <br>7.6 2009-01-09 Use modifiersEx instead of modifiers.
- * <br>7.5 2008-12-30 Localized tooltips.
- * <br>7.4 2008-12-26 Added methods setScrambleButtonVisible.
- * <br>7.3 2008-01-08 Fixed highlighting during seeks.
- * <br>7.2 2008-01-07 Implemented methods isProcessingCurrentNode and getCurrentNode. 
- * <br>7.1 2008-01-05 Replaced AbstractButtonAWT by JButton. 
- * <br>7.0 2007-11-15 Upgraded to Java 1.4.
- * <br>6.1 2007-09-09 Changed modifiersEx: Alt-Key twists counter-clockwise,
- * Shift-Key twists by 180°, Meta-Key twists two layers. 
- * <br>6.0.1 2007-06-10 Added sleeps after seeks to method doStarted. 
- * <br>6.0  2005-03-13 Reworked.
  */
 public class ScriptPlayer extends AbstractPlayer {
 

@@ -16,11 +16,6 @@ import java.util.Map;
  * Defines the syntax and tokens of a rubik's cube script.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>4.0 2008-01-03 Migrated from JDK 1.1 to 1.4.
- * <br>3.0 2007-06-16 Renamed "twist" to "move". 
- * <br>2.0 2005-01-31 Reworked.
- * <br>1.0  31 January 2005  Created.
  */
 public interface Notation {
     /**

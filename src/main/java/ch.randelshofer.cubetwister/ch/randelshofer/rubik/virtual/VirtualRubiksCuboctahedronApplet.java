@@ -11,7 +11,6 @@ import ch.randelshofer.rubik.RubiksCuboctahedronIdx3D;
  * 
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class VirtualRubiksCuboctahedronApplet extends AbstractVirtualCubeApplet {
         private final static long serialVersionUID = 1L;

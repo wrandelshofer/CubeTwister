@@ -152,10 +152,6 @@ package ch.randelshofer.rubik;
  * {@link AbstractCube}.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.0 2009-01-01 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0 2008-08-13 Created.
  */
 public class Cube6 extends AbstractCube {
 

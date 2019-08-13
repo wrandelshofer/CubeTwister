@@ -15,8 +15,6 @@ import java.io.IOException;
  * thread (the supervising thread).
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 1999-05-09  Created.
  */
 public class SuspendableInputStream
 extends FilterInputStream {

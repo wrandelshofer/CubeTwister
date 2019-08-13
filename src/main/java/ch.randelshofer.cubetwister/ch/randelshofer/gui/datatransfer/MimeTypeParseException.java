@@ -11,7 +11,6 @@ package ch.randelshofer.gui.datatransfer;
  *
  * @serial exclude
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class MimeTypeParseException extends Exception {
     

@@ -10,7 +10,6 @@ import java.util.EventListener;
  * SwipeListener.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public interface SwipeListener extends EventListener {
     public void faceSwiped(SwipeEvent evt);

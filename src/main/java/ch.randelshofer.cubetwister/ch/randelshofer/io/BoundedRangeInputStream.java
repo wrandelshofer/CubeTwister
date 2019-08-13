@@ -16,11 +16,6 @@ import javax.swing.event.*;
  * the observation of the input reading process.
  *
  *@author Werner Randelshofer
- * @version $Id$
- * <br>1.0.2  09.05.1999  Transferred into package ch.randelshofer.io
- * <br>1.0.1  02.05.1999  #setMaximum overrides the size information
- * from the file.
- * <br>1.0   20.03.1999  Derived from javax.swing.ProgressMonitorInputStream.
  */
 public class BoundedRangeInputStream
 extends FilterInputStream

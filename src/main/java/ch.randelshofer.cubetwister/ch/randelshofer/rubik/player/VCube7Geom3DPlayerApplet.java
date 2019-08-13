@@ -16,7 +16,6 @@ import java.io.InputStream;
  * VCube7Geom3DPlayerApplet.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 
 public class VCube7Geom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet {

@@ -41,12 +41,6 @@ import java.awt.image.*;
 /**
  * Produces an image.
  *
- * @version $Id$
- * <br>3.2 2003-12-18 Werner Randelshofer: The producer sends now 
- * ImageConsumer.STATICIMAGEDONE instead of ImageConsumer.SINGLEFRAMEDONE
- * when it has finished rendering. This prevents Components which draw
- * the image from being updated over and over again.
- * Method flush added.
  */
 public class idx3d_ImageProducer implements ImageProducer {
 

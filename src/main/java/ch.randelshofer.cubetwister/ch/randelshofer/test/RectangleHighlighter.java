@@ -13,7 +13,6 @@ package ch.randelshofer.test;
  * http://forums.sun.com/thread.jspa?forumID=57&threadID=708866
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 import java.awt.*;
 import javax.swing.*;

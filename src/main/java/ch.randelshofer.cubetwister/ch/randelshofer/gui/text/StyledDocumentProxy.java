@@ -18,10 +18,6 @@ import javax.swing.undo.UndoableEdit;
  * into a String (losing all styles).
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2004-04-04 Creates now a styled document with a proportional font
- * instead of with a fixed width font.
- * <br>1.0.1 2002-02-02 Clone method returned DocumentProxy instead of StyledDocumentProxy.
  */
 public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy implements javax.swing.text.StyledDocument {
     /**

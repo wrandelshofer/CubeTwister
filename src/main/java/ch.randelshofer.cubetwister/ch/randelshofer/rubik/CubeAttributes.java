@@ -14,15 +14,6 @@ import java.beans.PropertyChangeListener;
  * Rubik's Cube-like puzzle.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.3 2007-11-14 Added property twistDuration. Renamed property
- * constants.
- * <br>2.2 2007-08-29 Property partExplosion added. 
- * <br>2.0 2004-10-08 Renamed from CubeColorModel3D to CubeAttributes.
- * <br>1.2 2002-05-05 Methods setAlpha and setBeta added.
- * <br>1.1 Now uses the original Rubik's Cube Color scheme.
- * <br>1.0 2001-08-19 Created.
- *
  */
 public interface CubeAttributes extends Cloneable {
     public final static String ALPHA_PROPERTY = "alpha";

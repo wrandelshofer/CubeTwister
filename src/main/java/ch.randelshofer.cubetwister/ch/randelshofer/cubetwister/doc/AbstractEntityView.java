@@ -19,7 +19,6 @@ import java.util.ResourceBundle;
  * the NetBeans GUI builder anymore.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class AbstractEntityView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;

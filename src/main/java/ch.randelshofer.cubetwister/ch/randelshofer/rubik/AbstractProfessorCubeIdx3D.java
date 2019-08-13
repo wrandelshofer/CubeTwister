@@ -22,10 +22,6 @@ import javax.swing.SwingUtilities;
  * using the Idx3D engine.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.0 2007-12-31 Adapted to changes in AbstractCube. 
- * <br>1.1 2007-09-09 Use SplineInterpolator for cube twists. 
- * <br>1.0 2005-12-31 Created.
  */
 public abstract class AbstractProfessorCubeIdx3D extends AbstractCubeIdx3D {
     /**

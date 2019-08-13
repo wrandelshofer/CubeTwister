@@ -14,8 +14,6 @@ import javax.swing.event.ChangeListener;
  * PreferencesUtil.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 October 13, 2005 Created.
  */
 public class PreferencesUtil {
     

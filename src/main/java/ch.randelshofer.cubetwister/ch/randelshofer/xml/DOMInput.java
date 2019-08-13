@@ -9,7 +9,6 @@ package ch.randelshofer.xml;
  * DOMInput.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public interface DOMInput {
     

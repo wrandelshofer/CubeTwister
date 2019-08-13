@@ -13,7 +13,6 @@ import javax.swing.table.*;
  * Renders a color in the "Parts" and "Stickers" page of CubeView.
  *
  * @author  werni
- * @version $Id$
  */
 public class CubeColorModelCellRenderer
 extends DefaultTableCellRenderer

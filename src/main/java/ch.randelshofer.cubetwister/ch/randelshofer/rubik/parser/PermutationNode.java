@@ -26,20 +26,6 @@ import java.util.Map;
  * orientation change the cube parts in the cycle.
  *
  * @author werni
- * @version $Id$
- * with more than 5 layers.
- * <br>5.2 2009-01-05 Removed static method toPermutationString(), because
- * it is redundant with methods in class ch.randelshofer.rubik.Cubes.
- * <br>5.1 2008-01-08 Added support for multiple part numbers.
- * <br>5.0 2005-01-31 Reworked.
- * <br>2.0 2004-07-07 Support for multiple sign positions added.
- * <br>1.2 2002-12-26 Support for the identity permutation added.
- * <br>1.1.2 2002-12-23 Signs were not applied properly to the cube.
- * <br>1.1.1 2002-05-18 Method applyInverseTo did not apply
- * orientation changes properly to the cube.
- * <br>1.1 2001-12-27 Corner Permutation can not be clockwise and
- * anticlockwise at the same time. Method addPermItem checks now if this
- * is valid.
  */
 public class PermutationNode extends Node implements Cloneable {
     private final static long serialVersionUID = 1L;

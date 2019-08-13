@@ -28,15 +28,6 @@ import javax.swing.undo.UndoableEdit;
  * </ul>
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>3.1 2009-12-22 Methods createNodeAt and importTransferable return
- * paths of inserted nodes. Use MutableTreeNode instead of MutableTreeNode.
- * Adds undo support.
- * <br>3.0 2004-05-16 Revised.
- * <br>2.3 2002-04-08 Interface streamlined. Support for Transferables
- * added.
- * <br>2.0.1 2002-04-07 Method getInsertableRowTypes added.
- * <br>2.0 2001-07-18
  */
 public interface MutableTreeModel
         extends TreeModel {

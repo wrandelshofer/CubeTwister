@@ -12,10 +12,6 @@ import javax.swing.event.*;
  * ProgressPrinter.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.1 2010-01-03 Added method printf.
- * <br>2.0 2007-12-04 Updated to new ProgressObserver interface.
- * <br>1.0 September 18, 2006 Created.
  */
 public class ProgressPrinter implements ProgressObserver {
 private boolean isPrint=true;

@@ -16,9 +16,6 @@ import org.jhotdraw.gui.Worker;
  * LazyImageIcon.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2010-08-18 Adds xOffset and yOffset parameters.
- * <br>1.0 January 12, 2007 Created.
  */
 public class LazyImageIcon extends ImageIcon {
     private final static long serialVersionUID = 1L;

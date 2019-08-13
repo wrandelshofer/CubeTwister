@@ -40,8 +40,6 @@ import javax.swing.plaf.*;
  * and to the right.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-10-16 Created.
  */
 public class CustomSliderUI extends BasicSliderUI
 implements PlafConstants {

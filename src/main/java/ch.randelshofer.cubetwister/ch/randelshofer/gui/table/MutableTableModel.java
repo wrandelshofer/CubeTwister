@@ -24,12 +24,6 @@ import javax.swing.table.TableModel;
  * </ul>
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.3 2002-11-26 Interface streamlined. Support for Transferables
- * added.
- * <br> 2.2 2001-08-28 Method for retrieving actions for rows added.
- * <br>2.1 2001-07-27 Methods for duplication of rows added.
- * <br>2.0 2001-07-18
  */
 
 public interface MutableTableModel

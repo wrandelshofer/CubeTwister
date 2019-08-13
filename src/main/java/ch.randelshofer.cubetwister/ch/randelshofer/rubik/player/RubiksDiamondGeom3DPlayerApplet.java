@@ -15,7 +15,6 @@ import ch.randelshofer.rubik.parser.ScriptPlayer;
  * RubiksDiamondGeom3DPlayerApplet.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class RubiksDiamondGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet {
     private final static long serialVersionUID = 1L;

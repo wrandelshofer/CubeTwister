@@ -12,7 +12,6 @@ import javax.swing.text.*;
 /**
  * DefaultDocumentEvent.
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class DefaultDocumentEvent
 extends EventObject 

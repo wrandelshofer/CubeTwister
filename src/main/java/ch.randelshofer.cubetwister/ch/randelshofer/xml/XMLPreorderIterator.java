@@ -11,9 +11,6 @@ import nanoxml.*;
  * XMLPreorderIterator.
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.0 2007-11-16 Upgraded to Java 1.4. 
- * <br>1.0  05 February 2005  Created.
  */
 public class XMLPreorderIterator implements Iterator {
 	private Deque<Iterator> stack;

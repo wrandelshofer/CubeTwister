@@ -16,11 +16,6 @@ import javax.swing.text.PlainDocument;
  * 
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * cell editor field.
- * <br>1.1 2004-06-21 Made the table striped.
- * <br>1.0.1 2004-03-15 Always show the vertical scroll bar.
- * <br>1.0 2001-07-24 Created.
  */
 public class ScriptMacrosView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;

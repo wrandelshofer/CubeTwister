@@ -16,7 +16,6 @@ import java.io.*;
  * DOMOutput.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class JavaxDOMOutput implements DOMOutput {
     

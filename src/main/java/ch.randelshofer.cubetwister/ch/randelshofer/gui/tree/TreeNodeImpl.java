@@ -20,7 +20,6 @@ import javax.swing.tree.TreeNode;
  * This class only allows nodes of the specified type T.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeNode {
     private final static long serialVersionUID = 1L;

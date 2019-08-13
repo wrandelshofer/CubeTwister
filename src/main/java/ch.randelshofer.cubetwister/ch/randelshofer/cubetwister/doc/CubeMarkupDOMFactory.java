@@ -11,7 +11,6 @@ import java.util.*;
  * CubeMarkupDOMFactory.
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class CubeMarkupDOMFactory implements DOMFactory {
     

@@ -19,10 +19,6 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * accessible by a MutableJTable.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.2 2009-01-24 Normalize identifiers and scripts to Unicode NFKC.
- * <br>1.1 2004-07-03 Revised.
- * <br>1.0 2001-07-19
  */
 public class ScriptMacrosTableModel
 extends TreeNodeTableModel

@@ -42,13 +42,6 @@ import java.util.Enumeration;
 /**
  * Defines a triangle vertex.
  *
- * @version $Id$
- * hashCode() method.
- * <br>3.3 2006-02-22 Werner Randelshofer: Avoid unnecessary object creation.
- * 3.2 2003-12-21 Werner Randelshofer: Moved responsibility for texture
- * location from this class to idx3d_Triangle. Dependency note: This change also 
- * requires changes in idx3d_Triangle, idx3d_Rasterizer, idx3d_Object, 
- * idx3d_TextureProjector.
  */
 public class idx3d_Vertex {
     // F I E L D S

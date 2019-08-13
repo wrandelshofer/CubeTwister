@@ -10,8 +10,6 @@ import javax.swing.event.*;
  * BoundedRangeModelProxy.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 January 3, 2006 Created.
  */
 public class BoundedRangeModelProxy implements BoundedRangeModel, ChangeListener {
     private BoundedRangeModel target;

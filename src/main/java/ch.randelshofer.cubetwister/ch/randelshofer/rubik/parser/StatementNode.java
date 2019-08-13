@@ -15,10 +15,6 @@ import java.util.Map;
  * The side effect of a statement node to a Cube is A.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>5.0 2005-01-31 Reworked.
- * <br>1.0 2001-07-25
- * @see ScriptParser
  */
 public class StatementNode extends Node {
     private final static long serialVersionUID = 1L;

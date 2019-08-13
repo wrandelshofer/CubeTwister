@@ -18,8 +18,6 @@ import javax.swing.tree.*;
  * A Model for Texts.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-07-24 Created.
  */
 public class TextModel extends InfoModel {
     private final static long serialVersionUID = 1L;

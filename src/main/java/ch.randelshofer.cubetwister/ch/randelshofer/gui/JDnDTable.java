@@ -8,7 +8,6 @@ package ch.randelshofer.gui;
  * JDnDTable.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class JDnDTable extends MutableJTable {
         private final static long serialVersionUID = 1L;

@@ -16,15 +16,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * redo operations.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.3 2003-03-16 Texts and accelerator keys are now read from a
- * resource bundle.
- * <br>1.1.2 2003-03-12 Actions use now KeyStroke objects instead of
- * String objects as accelerator keys.
- * <br>1.1.1 2002-05-10 Method addEdit is now smarter when
- * determining whether an edit is significant.
- * <br>1.1 2002-04-08 Method hasSignificantEdits/clearChanged added.
- * <br>1.0 2001-10-09
  */
 public class UndoRedoManager extends UndoManager {
     private final static long serialVersionUID = 1L;

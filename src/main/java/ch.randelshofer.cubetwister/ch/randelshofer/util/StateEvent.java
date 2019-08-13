@@ -8,7 +8,6 @@ import java.util.EventObject;
  * Event for state changes.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class StateEvent
 extends EventObject {

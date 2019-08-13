@@ -7,8 +7,6 @@ package ch.randelshofer.math;
  * Utility class for integer arithmetic.
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0  2002-05-01
  */
 public class IntMath {
     

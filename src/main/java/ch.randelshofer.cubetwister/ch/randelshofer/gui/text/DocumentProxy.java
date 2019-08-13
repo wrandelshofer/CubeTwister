@@ -21,12 +21,6 @@ import java.lang.ref.*;
  * into a char array.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * font instead of with a fixed width font.
- * <br>2.0 2003-10-31 Use a char array instead of a String.
- * <br>1.0.2 2002-05-13 Clone did still not work properly.
- * <br>1.0.1 2002-02-02 Clone did not work properly.
- * <br>1.0 2001-10-09
  */
 public class DocumentProxy
         implements javax.swing.text.Document, Cloneable, DocumentListener, UndoableEditListener {

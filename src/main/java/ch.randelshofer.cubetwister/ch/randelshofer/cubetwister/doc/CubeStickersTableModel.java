@@ -22,9 +22,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * accessible by a MutableJTable.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0.1 2002-04-07 Method getInsertableRowTypes added.
- * <br>1.0 2001-07-19
  */
 public class CubeStickersTableModel 
 extends AbstractTableModel 

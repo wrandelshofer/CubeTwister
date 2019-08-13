@@ -13,10 +13,6 @@ import java.util.Arrays;
  * three dimensions.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.0 2009-01-01 Added support for twisting the cube by swiping over
- * its faces.
- * <br>1.0 2005-12-28 W. Randelshofer Created.
  */
 public class RevengeCubeGeom3D extends AbstractRevengeCubeGeom3D {
 

@@ -14,9 +14,6 @@ import javax.swing.ListModel;
  * <code>MutableListModel</code>'s.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2002-11-21 Reworked.
- * <br>0.1 2002-04-28 Created.
  */
 public class ListModels {
     

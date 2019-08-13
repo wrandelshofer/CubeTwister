@@ -11,8 +11,6 @@ import javax.swing.*;
  *
  * @author Werner Randelshofer
  *
- * @version $Id$
- * <br>1.0 2001-09-02 Created.
  */
 public class VectorIcon implements javax.swing.Icon {
     private Shape[] shapes;

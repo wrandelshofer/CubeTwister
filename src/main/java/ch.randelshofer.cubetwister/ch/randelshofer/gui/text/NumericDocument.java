@@ -14,7 +14,6 @@ import java.beans.*;
  * NumericDocument.
  *
  * @author Werner Randelshofer.
- * @version $Id$
  */
 public class NumericDocument extends PlainDocument  implements ChangeListener {
     private final static long serialVersionUID = 1L;

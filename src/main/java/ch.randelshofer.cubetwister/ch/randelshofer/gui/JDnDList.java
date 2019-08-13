@@ -26,17 +26,6 @@ import java.util.*;
  * FIXME: Implement cloning.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>3.0 2008-03-21 Reimplemented with TransferHandler. Renamed from
- * DnDJList to JDnDList.
- * <br>2.2.1 2007-06-07 On dropActionChanged, we need always to call accept
- * drag.
- * <br>2.2 2006-10-24 Added timer for autoscroll.
- * <br>2.1.1 2006-01-07 Clear isUnderDrag variable when rejecting drop.
- * <br>2.1 2004-02-06 Moved all listener methods into the private inner
- * class EventHandler.
- * <br>2.0 2003-11-01 Revised.
- * <br>1.0 2002-12-17 Created.
  */
 public class JDnDList extends MutableJList implements Autoscroll {
     private final static long serialVersionUID = 1L;

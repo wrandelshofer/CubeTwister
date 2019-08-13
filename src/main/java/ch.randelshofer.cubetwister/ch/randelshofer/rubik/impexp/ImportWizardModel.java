@@ -31,7 +31,6 @@ import java.util.Iterator;
  * ImportWizardModel.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class ImportWizardModel extends AbstractBean implements WizardModel {
     private final static long serialVersionUID = 1L;

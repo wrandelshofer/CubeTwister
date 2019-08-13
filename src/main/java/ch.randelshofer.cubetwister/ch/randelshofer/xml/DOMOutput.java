@@ -9,7 +9,6 @@ package ch.randelshofer.xml;
  * DOMOutput.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public interface DOMOutput {
     

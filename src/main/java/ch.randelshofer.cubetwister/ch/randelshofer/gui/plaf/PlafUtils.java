@@ -13,7 +13,6 @@ import javax.swing.plaf.*;
 /**
  * PlafUtils.
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class PlafUtils 
 implements PlafConstants {

@@ -12,14 +12,6 @@ import java.util.*;
  * arbitrary number of planar and convex vertices.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>3.0 2009-01-03 Reuse array of transformed coordinates between
- * calls to addVisibleFacesTo(). Store face actions in Face3D rather than in
- * this object. Changed method names for clarification. Removed method setAction.
- * <br>2.1 2004-08-22 Added support for face reduction to optimize speed.
- * <br> 2.0 2004-08-03  Upgraded from Java 1.0 compliance to Java 1.1 
- * compliance.
- * <br>1.0  2000-02-28      Created.
  */
 public class Shape3D
         implements Node3D {

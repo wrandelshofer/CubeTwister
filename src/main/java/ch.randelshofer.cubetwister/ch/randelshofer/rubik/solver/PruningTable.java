@@ -38,7 +38,6 @@ import java.io.OutputStream;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class PruningTable extends Object {
     /**

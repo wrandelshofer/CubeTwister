@@ -11,7 +11,6 @@ import ch.randelshofer.rubik.ProfessorCubeIdx3D;
  * 
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class VirtualProfessorCubeApplet extends AbstractVirtualCubeApplet {
         private final static long serialVersionUID = 1L;

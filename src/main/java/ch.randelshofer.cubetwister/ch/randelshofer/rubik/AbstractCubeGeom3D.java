@@ -15,9 +15,6 @@ import java.awt.Color;
  * using the Geom3D engine.
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>6.1 2007-09-09 Animate twists using SplineInterpolator.
- * <br>1.0 January 1, 2006 Created.
  */
 public abstract class AbstractCubeGeom3D extends AbstractCube3D {
     protected int cornerCount, edgeCount, sideCount, centerCount;

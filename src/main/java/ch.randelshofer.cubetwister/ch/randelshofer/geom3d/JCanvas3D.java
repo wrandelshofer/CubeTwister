@@ -21,25 +21,6 @@ import javax.swing.event.*;
  * A canvas for rendering three dimensional geometry.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>3.4.1 Removes synchronization from add/removePropertyChangeListener
- * methods.
- * <br>3.4 2010-04-04 Moves event listeners into internal class
- * EventHandler. Always updates active face list.
- * <br>3.3 2009-11-28 Adds flush method.
- * <br>3.2.1 2009-01-19 Updates cursor on mouse release.
- * <br>3.2 2009-01-09 Cursor changes to hand cursor when over a triangle
- * which has event listeners. Added workaround for
- * http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6634290
- * <br>3.1 2009-01-09 Cursor changes to hand cursor when over a face.
- * <br>3.0 2009-01-03 Added support for multiple interaction modes.
- * <br>2.0 2008-09-16 Use a speed-render mode if the scene is adjusting.
- * Use Scene3D instead of Node3D as the model. 
- * <br>1.2 2008-09-14 Removed paintInsets in favor of the insets
- * functionality of JComponent.
- * <br>1.1 2008-01-06 Fixed repainting issues with overlapping Swing 
- * components. 
- * <br>1.0 November 15, 2007 Created.
  */
 public class JCanvas3D extends JComponent implements ChangeListener {
     private final static long serialVersionUID = 1L;

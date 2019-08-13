@@ -42,17 +42,6 @@ import java.util.Iterator;
 /**
  * Represents a three dimensional shape.
  *
- * @version $Id$
- * creation.
- * <br>4.0 2004-08-29 Werner Randelshofer: Changed superclass to idx3d_Node.
- * Moved variables 'parent' and 'isDirty' to superclass.
- * <br>3.2 2003-12-18 Werner Randelshofer: Method
- * incorporateGeometry(idx3d_Object) added. Method removeDegeneratedTriangles
- * iterates in reverse order to prevent index mismatches when removing
- * triangles. Moved responsibility for texture location from class idx3d_Vertex
- * to this class. Dependency note: This change also requires changes in
- * idx3d_Vertex, idx3d_Triangle, idx3d_TextureProjector, idx3d_Rasterizer.
- * Method getTriangleCount added.
  */
 public class idx3d_Object extends idx3d_Node {
     // F I E L D S

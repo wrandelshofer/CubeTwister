@@ -10,7 +10,6 @@ import javax.swing.undo.*;
  * This is an abstract class for undoable int properties.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableEdit {
     private static final long serialVersionUID = 1L;

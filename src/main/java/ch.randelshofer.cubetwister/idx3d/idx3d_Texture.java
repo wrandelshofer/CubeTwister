@@ -43,8 +43,6 @@ import java.net.URL;
 /**
  * Defines a texture.
  *
- * @version $Id$
- * loadTexture by a MediaTracker.
  */
 public class idx3d_Texture {
     // F I E L D S

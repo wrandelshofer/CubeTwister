@@ -42,18 +42,6 @@ import java.util.StringTokenizer;
  * Holds a Script and its attributes.
  *
  * @author Werner Randelshofer.
- * @version $Id$
- * <br>2.2 Normalize script to Unicode NFKC before parsing.
- * <br>2.1 2007-08-11 Moved "name" property into superclass.
- * <br>1.3 2006-09-24 Reworked.
- * <br>1.2.2 2004-07-31 Variable parseException was not properly assigned
- * in method check().
- * <br>1.2.1 2003-03-05 ProProgressPanelst not be cloned.
- * <br>1.2 2002-12-26 Method translateInto(NotatationModel) improved.
- * <br>1.1.2 2002-11-20 Set the notationModel property to getDocument.getDefaultNotation(),
- * when the notationModel is removed from the document.
- * <br>1.1.1 2002-02-03 TranslateInto and change of Notation
- * could not be undone.
  */
 public class ScriptModel
         extends InfoModel {

@@ -10,7 +10,6 @@ import java.awt.*;
  * Defines the requirements for a viewer that displays an object. 
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public interface Viewer {
     /**

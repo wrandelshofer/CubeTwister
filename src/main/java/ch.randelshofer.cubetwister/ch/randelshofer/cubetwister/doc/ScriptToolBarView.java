@@ -24,10 +24,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  *
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.1 2010-08-18 Changes icon of reset button when option key is
- * pressed.
- * <br>1.0  June 3, 2006  Created.
  */
 public class ScriptToolBarView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;

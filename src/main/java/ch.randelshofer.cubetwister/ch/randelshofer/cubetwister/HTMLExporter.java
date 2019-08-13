@@ -23,18 +23,6 @@ import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
  * HTMLExporter exports a CubeTwister document to a directory.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.3 2010-02-08 Show more information about progress. Only export
- * applets which are needed by the document. Compress the resources.xml file.
- * <br>2.2.1 2009-01-25 Fixed NPE in method htmlencode.
- * <br>2.2 2009-01-08 If a file already exists, but does not have the
- * right case, delete it instead of just overwriting its contents.
- * <br>2.1 2009-01-07 Added support for script.scriptType attribute.
- * <br>2.0 2008-12-25 The "htmltemplates" resource is now compressed
- * as tar.bz instead of as .zip. The "htmltemplates" does now contain only
- * pack200-compressed java applets - the jar files of the applets need to
- * be generated from them.
- * <br>1.0 5. August 2007 Created.
  */
 public class HTMLExporter implements Exporter {
 

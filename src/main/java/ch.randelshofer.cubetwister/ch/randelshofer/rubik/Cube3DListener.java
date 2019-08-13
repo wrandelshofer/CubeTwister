@@ -8,8 +8,6 @@ package ch.randelshofer.rubik;
  * The listener interface for Cube3D events.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 December 22, 2003 Created.
  */
 public interface Cube3DListener extends java.util.EventListener {
     /**

@@ -11,11 +11,6 @@ import java.util.Map;
  * Typesafe enum of cube kinds used by CubeModel.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.0 2008-12-20 Moved from ch.randelshofer.cubetwister into
- * ch.randelshofer.rubik package. Added method isNameOfKind.
- * <br>1.1 2008-01-03 Added method getLayerCount.
- * <br>1.0 January 9, 2006 Created.
  */
 public enum CubeKind {
 

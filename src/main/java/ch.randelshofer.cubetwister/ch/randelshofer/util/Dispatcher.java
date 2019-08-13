@@ -9,8 +9,6 @@ package ch.randelshofer.util;
  * processing by worker threads.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 2002-05-18
  */
 public interface Dispatcher {
     /**

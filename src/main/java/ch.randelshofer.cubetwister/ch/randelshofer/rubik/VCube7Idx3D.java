@@ -22,9 +22,6 @@ import static java.lang.Math.sqrt;
  * 
  * 
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2009-04-13 Fixed uv-map of drb corner.
- * <br>2008-08-15 Created.
  */
 public class VCube7Idx3D extends AbstractCube7Idx3D {
     /* The variables SCX, SCY, SCZ define the center of the sphere used for

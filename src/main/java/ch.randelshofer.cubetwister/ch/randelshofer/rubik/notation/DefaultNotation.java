@@ -7,7 +7,6 @@ package ch.randelshofer.rubik.notation;
  * DefaultNotation supports Superset ENG for the 3x3 cube.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class DefaultNotation extends AbstractNotation {
     private String name;

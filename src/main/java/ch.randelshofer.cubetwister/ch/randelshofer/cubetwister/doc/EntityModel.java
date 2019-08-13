@@ -31,8 +31,6 @@ import javax.swing.tree.*;
  * insertion and removal.
  *
  * @author  werni
- * @version $Id$
- * <br>1.0 2001-10-05
  */
 public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable, UndoableEditListener {
     private final static long serialVersionUID = 1L;

@@ -19,7 +19,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  *
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class ScriptSecondaryView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;

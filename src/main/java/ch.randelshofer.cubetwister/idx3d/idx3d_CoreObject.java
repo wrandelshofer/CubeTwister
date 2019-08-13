@@ -39,7 +39,6 @@ package idx3d;
 /**
  * idx3d_CoreObject.
  *
- * @version $Id$
  */
 public abstract class idx3d_CoreObject
 {

@@ -15,7 +15,6 @@ import java.io.InputStream;
  * ProfessorCubeIdx3DPlayerApplet.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class ProfessorCubeIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;

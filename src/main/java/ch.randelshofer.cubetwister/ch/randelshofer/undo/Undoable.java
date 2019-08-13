@@ -11,7 +11,6 @@ import javax.swing.event.*;
  * and redo.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public interface Undoable {
 

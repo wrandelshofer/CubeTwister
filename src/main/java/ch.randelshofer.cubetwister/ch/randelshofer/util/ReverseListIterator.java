@@ -10,7 +10,6 @@ import java.util.List;
  * ReverseListIteerator.
  *
  * @author Werner Randelshofer.
- * @version $Id$
  */
 public class ReverseListIterator<T>
         implements Iterator<T> {

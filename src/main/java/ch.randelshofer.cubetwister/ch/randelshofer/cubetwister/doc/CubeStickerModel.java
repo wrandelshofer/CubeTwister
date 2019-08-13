@@ -14,8 +14,6 @@ import javax.swing.undo.*;
  * Model for the properties of a cube part.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-10-12
  */
 public class CubeStickerModel extends EntityModel {
     private final static long serialVersionUID = 1L;

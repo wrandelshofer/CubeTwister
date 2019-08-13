@@ -13,12 +13,6 @@ import javax.swing.event.ChangeListener;
  * a Rubik's Cube-like puzzle.
  * 
  * @author Werner Randelshofer.
- * @version $Id$
- * <br>4.1 2009-04-15 Added method setStickerBeveling.
- * <br>4.0 2008-12-20 Added method getKind.
- * <br>3.0 2008-04-28 Added method setAnimator.
- * <br>2.0 2007-11-15 Upgraded to Java 1.4. 
- * <br>1.0 April 10, 2006 Created.
  */
 public interface Cube3D {
 

@@ -42,9 +42,6 @@ import java.net.URL;
 /**
  * Material description object. 
  *
- * @version $Id$
- * Method clone() added.
- * Added a visible attribute. This change also affects idx3d_RenderPipeline.
  */
 public final class idx3d_Material extends idx3d_InternalMaterial
 {

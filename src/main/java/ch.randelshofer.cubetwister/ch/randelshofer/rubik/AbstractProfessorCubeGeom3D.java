@@ -19,21 +19,6 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer, Markus Pirzer
- * @version $Id$
- * orient side parts.
- * <br>7.1 2008-08-17 Streamlined with code of class AbstractVCube7Geom3D.
- * <br>7.0 2008-01-06 W. Randelshofer Adapted to changes in AbstractCube. 
- * <br>6.1 2007-09-09 W. Randelshofer Use SplineInterpolator for animation.
- * <br>6.0 2005-03-06 W. Randelshofer reworked.
- * @version $Id$
- * instead of plain java.awt.Event objects from the Canvas3D. Animate twists with
- * more steps. Reduce number of faces if possible to increase drawing performance.
- * Changed dimensions to match Rubik's Professor Cube by Oddzon: 7 x 7 x 7 cm.
- * <br>5.1 2004-08-03 W. Randelshofer: Upgraded from Java 1.0 compliance to
- * Java 1.1 compliance.
- * <br>5.0 2004-07-10 M. Pirzer: Cube changed from a standard 3x3x3
- * Rubik's Cube to a 5x5x5 Rubik's Professor Cube.
- * <br>0.5 2000-03-04 W. Randelshofer: Created.
  */
 public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
     /**

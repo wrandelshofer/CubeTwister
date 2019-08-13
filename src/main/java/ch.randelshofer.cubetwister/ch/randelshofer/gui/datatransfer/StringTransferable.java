@@ -22,7 +22,6 @@ import java.io.IOException;
  * </pre>
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class StringTransferable extends AbstractTransferable {
     private String string;

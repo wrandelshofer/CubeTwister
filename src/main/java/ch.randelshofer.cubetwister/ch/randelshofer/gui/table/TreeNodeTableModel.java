@@ -15,8 +15,6 @@ import javax.swing.tree.*;
  * Wraps a TreeNode of a MutableTreeModel into a MutableTableModel.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-10-08
  */
 public class TreeNodeTableModel
 extends AbstractTableModel

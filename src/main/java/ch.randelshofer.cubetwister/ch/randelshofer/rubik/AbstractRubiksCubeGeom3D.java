@@ -18,25 +18,6 @@ import java.awt.Color;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>7.0 2008-01-06 Adapted to changes in AbstractCube.
- * <br>6.1 2007-09-09 Use SplineInterpolator to animat twists. 
- * <br>6.0 2005-03-06 Reworked.
- * <br>1.3.1 2003-08-04 CubeEvent's always reported a stickerIndex of 0.
- * <br>1.3 2003-07-17 Method computeTransformation() must take orientation
- * changes of the center part into account.
- * <br>1.2.1 2002-12-27 Animations must not stop in the middle.
- * <br>1.2 2002-06-29 RubiksCube replaced by RubiksCubeCore.
- * <br>1.1.3 2002-05-18 Class EventDispatcher replaced by RunnableDispatcher.
- * Class EventWorker replaced by RunnableWorker.
- * <br>1.1.2 2002-02-07 Method FaceAction.actionPerformed mustn't call
- * getPartFace() when the orientation attribute is -1.
- * <br>1.1.1 2001-11-11 ColorModel3D was not properly initialized.
- * <br> 1.1 2001-09-26 Uses now the Arxon Color scheme. Edge parts
- * are now correctly flipped.
- * <br>1.0 2001-08-04 Objects are now cloneable.
- * <br>0.5.1 2001-06-25 Adapted for JDK 1.3.
- * <br>0.5 2000-03-04
  */
 public abstract class AbstractRubiksCubeGeom3D extends AbstractCubeGeom3D {
 

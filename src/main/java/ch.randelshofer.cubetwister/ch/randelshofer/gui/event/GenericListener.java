@@ -53,8 +53,6 @@ import java.lang.reflect.*;
  * </pre>
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2003-11-02 Created.
  */
 public abstract class GenericListener {
     /**

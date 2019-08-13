@@ -13,8 +13,6 @@ import java.io.*;
  * <code>MutableTableModel</code>'s.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2002-11-21 Created.
  */
 public class TableModels {
     

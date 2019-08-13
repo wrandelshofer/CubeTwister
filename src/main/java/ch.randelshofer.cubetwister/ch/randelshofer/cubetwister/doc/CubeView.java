@@ -27,19 +27,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
 /**
  *
  * @author Werner Randelshofer
- * @version $Id$
- * pressed.
- * <br>2.3 2010-05-02 Option-Click on reset button only resets
- * the canvas but not the cube.
- * <br>2.2 2009-01-09 Use modifiersEx instead of modifiersEx.
- * <br>2.1 2008-08-23 Added support for modifiersEx key to "parts" tool.
- * <br>2.0.1 2008-04-28 Preferences of selected tab were not updated. 
- * <br>2.0 2005-01-05 Reworked for CubeTwister 2.0.
- * <br>1.1.3 2003-08-03 Fixed some font settings.
- * <br>1.1.2 2002-11-14 Undo implementaton of DimensionView changed.
- * <br>1.1.1 2002-02-07 Cube must be twisted only, when the Twist Toggle Button
- * is selected.
- * <br>1.1 2002-02-03 Orientation of Edge twists changed.
  */
 public class CubeView extends JPanel implements Undoable, EntityView {
     private final static long serialVersionUID = 1L;

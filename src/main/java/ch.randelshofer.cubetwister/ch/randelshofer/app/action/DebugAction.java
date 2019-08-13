@@ -15,7 +15,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * DebugAction.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class DebugAction extends AbstractAction {
     private final static long serialVersionUID = 1L;

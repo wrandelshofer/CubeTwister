@@ -16,13 +16,6 @@ import javax.swing.SwingUtilities;
  * using the Geom3D engine.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>7.1.1 2009-01-04 Method computeTransformation did not properly
- * orient side parts.
- * <br>7.1 2008-08-17 Streamlined with code of class AbstractVCube6Geom3D.
- * <br>7.0 2008-01-06 Adapted to changes in AbstractCube.
- * <br>6.1 2007-09-09 Use SplineInterpolator for animation.
- * <br>1.0 2005-12-26 W. Randelshofer created.
  */
 public abstract class AbstractRevengeCubeGeom3D extends AbstractCubeGeom3D {
     /**

@@ -8,7 +8,6 @@ package ch.randelshofer.rubik.solver;
  * {@code SolverPreferences}.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class SolverPreferences {
     /** Prevent instance creation. */

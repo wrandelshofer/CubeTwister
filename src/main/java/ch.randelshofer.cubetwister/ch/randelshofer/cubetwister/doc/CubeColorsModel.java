@@ -15,7 +15,6 @@ import java.io.*;
  * a child of CubeModel.
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class CubeColorsModel extends EntityModel {
         private final static long serialVersionUID = 1L;

@@ -49,8 +49,6 @@ import javax.swing.event.TableModelEvent;
  * events to its listeners. Inserting a TableMap which has not been subclassed
  * into a chain of table filters should have no effect.
  *
- * @version $Id$
- * @author Philip Milne
  */
 public class TableMap extends DefaultTableModel implements TableModelListener {
 

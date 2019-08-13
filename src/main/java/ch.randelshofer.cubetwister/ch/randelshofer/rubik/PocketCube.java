@@ -32,10 +32,6 @@ package ch.randelshofer.rubik;
  *
  * 
  * @author  Werner Randelshofer
- * @version $Id$
- * its faces.
- * <br>2.0 2007-12-29 Adapted to changes in AbstractCube.
- * <br>1.0  14 February 2005  Created.
  */
 public class PocketCube extends AbstractCube {
 

@@ -14,9 +14,6 @@ import java.awt.Image;
  * The interface of objects which can display a Cube3D.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.1 2008-01-02 Added method setLock.
- * <br>1.0  16 February 2005  Created.
  */
 public interface Cube3DCanvas {
     public Component getVisualComponent();

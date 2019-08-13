@@ -28,7 +28,6 @@ import java.util.List;
  * AbstractExporter.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class AbstractExporter extends JPanel implements Exporter {
     private final static long serialVersionUID = 1L;

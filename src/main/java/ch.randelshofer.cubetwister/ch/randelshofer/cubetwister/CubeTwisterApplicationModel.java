@@ -32,7 +32,6 @@ import java.util.ResourceBundle;
  * CubeTwisterApplicationModel.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class CubeTwisterApplicationModel extends DefaultApplicationModel {
     public final static long serialVersionUID=1L;

@@ -13,7 +13,6 @@ import javax.swing.border.*;
  * The background border can be retrieved using getBackgroundBorder().
  * 
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class BackdropBorder implements Border {
     private Border foregroundBorder;

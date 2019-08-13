@@ -20,7 +20,6 @@ import javax.swing.text.*;
  * ScriptStateView.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class ScriptStateView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;

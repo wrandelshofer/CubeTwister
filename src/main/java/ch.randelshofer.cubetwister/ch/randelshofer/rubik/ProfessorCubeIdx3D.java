@@ -15,12 +15,6 @@ import java.util.Arrays;
  * ProfessorCubeIdx3D.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.1 2008-08-17 Streamlined with code of class VCube7Idx3D.
- * <br>2008-03-19 Fixed UV values for "rd" edges.
- * <br>2008-01-01 Adapted to changes in AbstractCube. 
- * <br>1.1 2007-12-27 Increased image width from 504 to 512.
- * <br>1.0 2005-12-31 Created.
  */
 public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
 

@@ -17,8 +17,6 @@ import java.awt.event.InputEvent;
  * 
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 25. August 2007 Created.
  */
 public class VirtualRubiksBarrelApplet extends AbstractVirtualCubeApplet {
     private final static long serialVersionUID = 1L;

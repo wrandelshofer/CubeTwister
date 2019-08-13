@@ -12,9 +12,6 @@ import java.util.*;
  * 
  * 
  * @author Werner Randelshofer.
- * @version $Id$
- * <br>1.0.1 2008-02-23 Added missing "2i" suffix.
- * <br>1.0 May 1, 2006 Created.
  */
 public class MoveSymbols {
     private static HashMap<String, Move> tvs2, tvs3, tvs4, tvs5;

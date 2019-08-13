@@ -7,10 +7,6 @@ package ch.randelshofer.util;
  * This class contains various methods for manipulating strings.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.2.1 2003-06-13 Method translate(String, char, char) removed.
- * <br>1.2 2002-05-10 Method replace(String, String, String) added.
- * <br>1.1 2002-02-05 Created.
  */
 public class Strings extends Object {
     /**

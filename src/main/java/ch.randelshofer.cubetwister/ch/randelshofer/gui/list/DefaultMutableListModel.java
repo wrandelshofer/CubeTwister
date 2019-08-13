@@ -17,10 +17,6 @@ import javax.swing.*;
  * Default implementation of a MutableListModel.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * into a template.
- * <br>2.0 2003-11-01 Revised.
- * <br>1.0 2002-11-20 Created.
  */
 public class DefaultMutableListModel<T>
         extends AbstractListModel

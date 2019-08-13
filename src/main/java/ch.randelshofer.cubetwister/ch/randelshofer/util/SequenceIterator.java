@@ -12,7 +12,6 @@ import java.util.List;
  * This class Encapsulates a sequence of iterators.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class SequenceIterator<T>
         implements Iterator<T> {

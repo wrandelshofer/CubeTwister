@@ -13,18 +13,6 @@ import java.util.Arrays;
  * three dimensions.
  *
  * @author Werner Randelshofer, Markus Pirzer
- * @version $Id$
- * <br>6.2 2009-01-04 Added support for twisting the cube by swiping over
- * its faces.
- * <br>6.1 2008-08-19 W. Randelshofer Streamlined with code of VCube7Geom3D.
- * 6.0.1 2008-01-13 W. Randelshofer: Fixed color scheme of attributes
- * created by method createAttributes. 
- * <br>6.0 2008-01-08 W. Randelshofer: Updated to changes in AbstractCube. 
- * <br>5.1 2004-08-21 W. Randelshofer Changed dimensions of parts to match
- * the Rubik's Professor Cube by Oddzon: 7 x 7 x 7 cm.
- * <br>5.0 2004-07-10 M. Pirzer: Cube changed from a standard 3x3x3 Rubik's Cube to a
- * 5x5x5 Rubik's Professor Cube.
- * <br> 1.0 W. Randelshofer 2000-03-11 Created.
  */
 public class ProfessorCubeGeom3D extends AbstractProfessorCubeGeom3D {
 

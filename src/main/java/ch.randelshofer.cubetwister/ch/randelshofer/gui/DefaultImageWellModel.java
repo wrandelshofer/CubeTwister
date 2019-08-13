@@ -15,9 +15,6 @@ import base64.*;
  * DefaultImageModel.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.1 2008-01-03 Removed unnecessary code in method getImage().
- * <br>1.0 January 6, 2006 Created.
  */
 public class DefaultImageWellModel extends AbstractStateModel implements ImageWellModel {
 

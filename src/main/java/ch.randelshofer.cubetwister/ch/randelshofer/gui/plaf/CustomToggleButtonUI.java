@@ -27,8 +27,6 @@ import java.io.Serializable;
  * </pre>
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-10-16 Created.
  */
 public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafConstants {
 

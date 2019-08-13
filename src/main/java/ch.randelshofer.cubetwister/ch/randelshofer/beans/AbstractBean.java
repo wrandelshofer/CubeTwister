@@ -11,8 +11,6 @@ import java.beans.*;
  * listeners.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2001-08-04
  */
 public abstract class AbstractBean extends Object implements java.io.Serializable {
     private static final long serialVersionUID = 1L;

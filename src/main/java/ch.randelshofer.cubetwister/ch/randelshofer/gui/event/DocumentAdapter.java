@@ -13,10 +13,6 @@ import javax.swing.text.*;
  * This class exists as convenience for creating listener objects.  
  *
  * @author Werner Randelshofer
- * @version $Id$
- * the document.
- * <br>1.1 2006-04-17 Method setText(String) added.
- * <br>1.0 2001-07-24
  */
 public class DocumentAdapter 
 implements DocumentListener {

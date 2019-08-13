@@ -29,7 +29,6 @@ import java.util.Iterator;
  * ExportWizard.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class ExportWizardModel extends AbstractBean implements WizardModel {
     private final static long serialVersionUID = 1L;

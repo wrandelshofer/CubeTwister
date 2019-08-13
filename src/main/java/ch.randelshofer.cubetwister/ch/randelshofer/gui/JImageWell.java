@@ -45,15 +45,6 @@ import org.jhotdraw.util.Images;
  * JImageWell.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.3.1 2010-01-04 Don't excessively recreate thumbnail.
- * <br>2.2 2009-12-31 Added text property. Added busy icon.
- * <br>2.1.2 2009-12-30 Removed PictImageReader.
- * <br>2.1.1 2009-03-21 Increased insets for image rect.
- * <br>2.1 2008-12-20 Show wait cursor while loading image.
- * <br>2.0 2008-03-18 Implemented support for TransferHandler, improved
- * usability of preview dialog.
- * <br>1.0 January 6, 2006 Created.
  */
 public class JImageWell extends JComponent implements EditableComponent {
     private final static long serialVersionUID = 1L;

@@ -18,16 +18,6 @@ import javax.swing.event.*;
  * Holds a description of a Cube.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.1.1 2010-03-23 Method createCube is now able to create cubes
- * with 6 and 7 layers too.
- * <br>2.1 2007-08-11 Moved "name" property into superclass.
- * <br>2.0 2006-01-05 Reworked for CubeTwister 2.0.
- * <br>1.2 2002-12-27 Part names shortened.
- * <br>1.1.2 2002-11-14 Coalescing of undoable edit events of
- * setIntScale, setIntExplode, setIntAlpha and setIntBeta removed.
- * <br>1.1.1 2002-05-12 Renamed the term 'kind' into 'kind'.
- * <br>1.1 2001-09-23 Now uses Rubik's Cube color scheme.
  */
 public class CubeModel
         extends InfoModel

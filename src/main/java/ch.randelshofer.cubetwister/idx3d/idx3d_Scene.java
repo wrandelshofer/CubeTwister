@@ -42,30 +42,6 @@ import java.util.*;
 /**
  * Represents a scene in three dimensional space.
  *
- * @version $Id$
- * <br>6.1 2008-04-29 Wener Randelshofer made prepareForRendering public.
- * <br>6.0 2007-08-28 Werner Randelshofer: Added support for mouse listeners
- * on triangles.
- * <br>5.0 2006-01-06 Werner Randelshofer: Removed all references to
- * render pipeline from scene.
- * Method setAntialiasHint added.
- * <br>4.0 2004-08-29 Werner Randelshofer: Support for scene graphs added.
- * Superclass changed from idx3d_CoreObject to idx3d_Group. 
- * Method setAntialiasHint added.
- * <br>3.2 2003-12-18 Werner Randelshofer: 
- * Changed the idBuffer array from int[] to short[] to save memory. The idBuffer
- * only stores triangle id's now (instead of object id's in its upper 16 bit
- * and the triangle id in the lower 16 bits). We do not need to store the object
- * id in the idBuffer, because all triangles know their parent object.
- * Changed the size of the idBuffer to the size of the display area (instead of
- * to the size of the antialias screen, which is twice as big.
- * Dependency note: These changes also require changes in class 
- * idx3d_Math, idx3d_RenderPipeline and idx3d_Rasterizer.
- * Methods addActionListener/removeActionListener added.
- *
- *
- * Added a VERBOSE attribute. This is used to activate or suppress diagnostic
- * messages of the rendering engine.
  */
 public class idx3d_Scene extends idx3d_Group {
     //Release Information

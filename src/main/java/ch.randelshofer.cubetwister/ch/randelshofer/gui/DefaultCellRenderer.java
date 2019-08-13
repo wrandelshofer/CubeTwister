@@ -13,7 +13,6 @@ import javax.swing.tree.*;
  * DefaultCellRenderer.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class DefaultCellRenderer implements TableCellRenderer, ListCellRenderer {
     /** The Swing component being rendered. */

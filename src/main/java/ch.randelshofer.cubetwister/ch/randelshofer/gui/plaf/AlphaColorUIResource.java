@@ -6,7 +6,6 @@ import java.awt.Color;
  * A ColorUIResource whith an alpha channel.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class AlphaColorUIResource extends Color implements UIResource {
     public AlphaColorUIResource(int r, int g, int b, int a) {

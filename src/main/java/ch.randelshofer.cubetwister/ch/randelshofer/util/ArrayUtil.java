@@ -13,7 +13,6 @@ import java.util.ArrayList;
  * This class contains various methods for manipulating arrays (such as
  * sorting and searching). 
  * 
- * @version $Id$
  */
 public class ArrayUtil {
 

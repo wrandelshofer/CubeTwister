@@ -21,17 +21,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * The NotationConstructsView is an editor for the expression tokens of a notation.
  * 
  * @author Werner Randelshofer
- * @version $Id$
- * <br>3.0 2009-01-22 Extended the syntax. Normalize tokens to Unicode NFKC.
- * <br>2.0.1 2007-08-05 Delimiter fields were not wired with model.
- * <br>2.0 2006-05-26 Reworked.
- * <br>1.4 2004-01-02 Split up into two separate classes. Event handling
- * is now implemented using GenericListener's instead of with many inner classes.
- * <br>1.3.2 2003-08-03 Font settings revised.
- * <br>1.3.1 2003-03-16 Revised.
- * <br>1.2 2002-12-27 Checkboxes and fields are enabled only if they make sense.
- * <br>1.1 2002-05-30 reworked.
- * <br>1.0 2001-07-19
  */
 public class NotationConstructsView extends ScrollablePanel
         implements EntityView, PropertyChangeListener {

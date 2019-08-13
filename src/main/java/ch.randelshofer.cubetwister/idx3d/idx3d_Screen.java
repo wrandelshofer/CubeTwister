@@ -45,19 +45,6 @@ import java.lang.ref.WeakReference;
 /**
  * Defines a virtual screen which is a server for rendered images.
  *
- * @version $Id$
- * idx3d_imageProducer.
- * <br>3.3 2003-12-19 Werner Randelshofer: Keep a weak reference to the
- * antialiased and the non-antialiased pixel arrays.
- * <br>3.2 2003-12-19 Werner Randelshofer: Method setAntialias changed to
- * fail safely when not enough memory is available. Method performAntialiasing
- * changed to create an antialiased image, which has the same brightness and
- * the same color fidelity than the non-antialiased image.
- *
- * Method resize clears references to the pixel arrays before allocating new
- * ones. This helps to reduce peak memory requirements.
- *
- * Added dispose method.
  */
 public class idx3d_Screen {
     // F I E L D S

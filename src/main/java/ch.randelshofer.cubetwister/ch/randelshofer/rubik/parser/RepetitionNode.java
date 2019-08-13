@@ -21,16 +21,6 @@ import java.util.NoSuchElementException;
  * RepetitionNode.
  *
  * @author werni
- * @version $Id$
- * result is an illegal move.
- * <br>5.1 2010-02-27 Special treatment of a single MoveNode child in
- * method toResolvedList.
- * <br>5.0 2005-01-31 Reworked.
- * <br>1.0.2 2003-06-20 WriteTokens should catch IOException when
- * attempting to write brackets in a notation that does not support
- * repetitions.
- * <br>1.0.1 2002-12-30 Bug in inner class ResolvedEnumeration fixed.
- * <br>1.0 2002-07-24
  */
 public class RepetitionNode extends Node {
     private final static long serialVersionUID = 1L;

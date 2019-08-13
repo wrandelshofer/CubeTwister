@@ -14,10 +14,6 @@ import javax.swing.table.*;
  * Displays the current user interface defaults.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * the defaults from it.
- * <br>1.1 2003-03-16 Creates lazy values to show their contents.
- * <br>1.0 2003-03-15 Created.
  */
 public class UIDefaultsInspector extends javax.swing.JPanel {
         private final static long serialVersionUID = 1L;

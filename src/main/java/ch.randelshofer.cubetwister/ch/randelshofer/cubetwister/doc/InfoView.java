@@ -23,10 +23,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * Info view for notes, author and creation date of a document element. 
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * of all child components.
- * <br>1.0.1 2003-08-09 Line wrapping activated.
- * <br>1.0 2001-07-19 Created.
  */
 public class InfoView extends javax.swing.JPanel implements Undoable, EntityView {
     private final static long serialVersionUID = 1L;

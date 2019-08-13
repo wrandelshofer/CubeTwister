@@ -26,12 +26,6 @@ import javax.swing.SwingUtilities;
  * a child of the idx3d_Scene.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>2.2 2007-09-09 Use SplineInterpolator for cube twists.
- * <br>2.1 2006-02-21 Avoid unecessary object creation.
- * <br>2.0 2004-08-29 Reflectivity of part fill color increased from 160
- * to 300. We use now a hierarchical scene graph. Support for explosion addded.
- * <br>1.0 December 26, 2003 Created.
  */
 public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
 

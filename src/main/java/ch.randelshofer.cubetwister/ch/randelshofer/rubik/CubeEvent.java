@@ -9,8 +9,6 @@ package ch.randelshofer.rubik;
  * in a Cube object.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>1.0 December 21, 2003 Created.
  */
 public class CubeEvent extends java.util.EventObject {
     private final static long serialVersionUID = 1L;

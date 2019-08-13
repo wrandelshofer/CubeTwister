@@ -39,41 +39,6 @@ import nanoxml.*;
  * a reference to an EntityModel in another DocumentModel.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * <br>3.8.1 2010-04-05 Removed dependencies to IBM Unicode normalizer.
- * <br>3.8 2010-04-05 Increased version number because the colors
- * are interpreted differently by V-Cube 7.
- * <br>3.7 2010-03-28 Normalize to NFC instead of NFKC.
- * <br>3.6 2010-01-09 Method createNodeAt tries harder to find a good
- * insertion location.
- * <br>3.5 2009-07-05 Skip move tokens with unsupported layerList
- * when reading an XML file.
- * <br>3.4 2009-01-12 Adapted to enhanced syntax support of notations.
- * Normalize notation identifiers and scripts to Unicode NFC when reading and
- * writing a document file.
- * <br>3.3 2008-12-25 Support reading of input streams into a preferred
- * parent + index.
- * <br>3.2.1 2008-12-21 XML attribute "scriptType" was not read from XML file.
- * <br>3.2 2008-04-28 Store twist duration and background colors in XML file.
- * <br>3.1 2007-06-16 Renamed XML attribute "move" to "twist".
- * <br>3.0 2007-06-10 Renamed XML element "Construct" to "Statement".
- * Renamed attribute "generator=true/false" to "scriptType=generator/solver".
- * This is now version 3 of the XML file.
- * <br>2.0 2006-01-08 Reworked to improve startup latency (use nanoxml
- * instead of DOM and parse XML file progressively).
- * <br>1.4 2004-04-03 New features to notation added. Current version
- * number of XML files is 2.
- * <br>1.3 2003-08-03 Version check for XML file added. Current version
- * number is 1.
- * <br>1.2 2003-06-20 Method getNodeActions added. Action translateInto
- * added.
- * <br>1.1.1 2002-12-21 Minor changes.
- * <br>1.1 2002-05-18 Decoupled attribute CubeModel.get/set/Shape
- * from XML Cube.kind attribute. ScriptModel has a new attribute "Generator".
- * Uses now property 'removable' from EntityModel to determine if a node
- * is removable. Class EventDispatcher replaced by SequentialDispatcher.
- * Methods isCloseable and close added.
- * <br>1.0 2001-10-04 Created.
  */
 public class DocumentModel extends DefaultTreeModel
         implements MutableTreeModel, Undoable {

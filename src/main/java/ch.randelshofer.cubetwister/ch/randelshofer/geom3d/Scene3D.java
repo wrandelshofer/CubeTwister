@@ -8,7 +8,6 @@ package ch.randelshofer.geom3d;
  * Represents a scene of a three dimensional universe.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class Scene3D extends TransformNode3D {
     private boolean isAdjusting;

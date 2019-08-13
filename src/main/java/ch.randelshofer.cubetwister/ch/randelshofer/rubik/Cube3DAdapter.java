@@ -8,7 +8,6 @@ package ch.randelshofer.rubik;
  * Abstract adapter class for receiving {@link Cube3D} events.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public abstract class Cube3DAdapter implements Cube3DListener {
     public void mouseExited(Cube3DEvent evt) {

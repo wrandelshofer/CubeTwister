@@ -24,7 +24,6 @@ import java.util.*;
  *
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class Cookies extends Object {
     /**

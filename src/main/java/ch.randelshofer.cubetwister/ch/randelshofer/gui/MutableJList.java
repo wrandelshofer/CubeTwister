@@ -22,12 +22,6 @@ import org.jhotdraw.util.ResourceBundleUtil;
  * operations cut, copy and paste.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * JTextComponent. 
- * <br>1.1.1 2006-01-04 Specifying Quaqua "tableHeader" button style for popup
- * button.
- * <br>1.1 2004-02-06
- * <br>1.0 2002-11-26
  */
 public class MutableJList
 extends JList

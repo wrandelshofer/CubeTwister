@@ -13,11 +13,6 @@ import java.util.Arrays;
  * three dimensions.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>3.0 2009-01-01 Added support for twisting the cube by swiping over
- * its faces.
- * <br>2.0 2008-01-06 Adapted to changes in AbstractCube.
- * <br>1.0 2005-12-26 Created
  */
 public class PocketCubeGeom3D extends AbstractPocketCubeGeom3D {
     /** Updates the outline color of the parts.

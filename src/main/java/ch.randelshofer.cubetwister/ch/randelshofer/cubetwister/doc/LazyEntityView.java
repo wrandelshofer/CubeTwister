@@ -16,9 +16,6 @@ import org.jhotdraw.gui.Worker;
  * be drawn on screen.
  *
  * @author  Werner Randelshofer
- * @version $Id$
- * instead of a Class object.
- * <br>1.0 February 1, 2006 Created.
  */
 public class LazyEntityView extends JPanel
         implements EntityView {

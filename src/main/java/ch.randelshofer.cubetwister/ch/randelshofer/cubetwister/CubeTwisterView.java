@@ -30,7 +30,6 @@ import org.jhotdraw.net.URIUtil;
  * CubeTwisterView.
  *
  * @author  Werner Randelshofer
- * @version $Id$
  */
 public class CubeTwisterView extends AbstractView implements Viewer {
 

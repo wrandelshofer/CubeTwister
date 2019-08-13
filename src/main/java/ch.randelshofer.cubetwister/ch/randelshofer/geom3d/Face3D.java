@@ -13,14 +13,6 @@ import javax.swing.event.EventListenerList;
  * Represents a planar and convex polygon in 3 dimensional space.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>2.1 2004-08-21 Changed operation handleEvent(Event) to
- * handleEvent(MouseEvent).
- * <br>2.0 2004-08-03 Upgraded from Java 1.0 compliance to Java 1.1 
- * compliance.
- * <br>1.0 2002-06-26 Signature of method getBrightness changed.
- * <br>0.1.1 2001-08-17 Pass java.awt.Event as event source to action listener. 
- * 0.1 2000-02-28      Created.
  */
 public class Face3D implements Comparable<Face3D> {
 

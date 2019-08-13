@@ -11,16 +11,6 @@ import javax.swing.*;
  *
  * @author Werner Randelshofer
  *
- * @version $Id$
- * <br>1.3.2 2001-08-14 Comments added.
- * <br>1.3.1 2001-08-02 Method setFillColor added.
- * <br>1.3 2001-07-24 Upgraded for JDK 1.3.
- * <br>1.2    2001-02-27  When the component is disabled,
- * the polygon is drawn in gray.
- * <br>  1999-05-13  Polygons are stroked and filled to provide
- *           better visual compatibility on various Java VM's.
- * <br>  1999-05-02  Support added for array of polygons.
- * <br>  1999-02-14 Created.
  */
 public class PolygonIcon
 implements javax.swing.Icon, Cloneable {

@@ -9,7 +9,6 @@ import java.io.IOException;
 /**
  *
  * @author  werni
- * @version $Id$
  */
 public class JVMLocalObjectTransferable
 implements Transferable {

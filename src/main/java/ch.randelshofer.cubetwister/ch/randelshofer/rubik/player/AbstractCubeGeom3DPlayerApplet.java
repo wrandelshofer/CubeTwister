@@ -23,7 +23,6 @@ import java.net.URL;
  * AbstractCubeGeom3DPlayerApplet.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApplet {
     

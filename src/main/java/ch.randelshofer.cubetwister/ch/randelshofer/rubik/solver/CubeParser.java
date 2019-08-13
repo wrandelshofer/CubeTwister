@@ -26,7 +26,6 @@ import java.util.StringTokenizer;
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
  * @author Werner Randelshofer
- * @version $Id$
  */
 public class CubeParser extends Object {
     // Parser return codes

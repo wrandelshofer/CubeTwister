@@ -20,8 +20,6 @@ import java.util.Vector;
  * rotation node to a Cube is A' B A.
  *
  * @author Werner Randelshofer
- * @version $Id$
- * <br>1.0 2002-02-24 Created.
  */
 public class RotationNode extends ScriptNode {
 
