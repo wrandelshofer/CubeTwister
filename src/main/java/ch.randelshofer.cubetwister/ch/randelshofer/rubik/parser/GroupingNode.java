@@ -13,7 +13,7 @@ import java.util.Map;
  * A GroupingNode holds a sequence of children A.
  * The resolved Enumeration of a grouping node is A.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class GroupingNode extends Node {
         private final static long serialVersionUID = 1L;

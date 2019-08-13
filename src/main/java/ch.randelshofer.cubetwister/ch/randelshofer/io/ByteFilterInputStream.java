@@ -8,7 +8,7 @@ package ch.randelshofer.io;
 import java.io.*;
 /**
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class ByteFilterInputStream extends FilterInputStream {    
     /** Creates a new instance of ByteFilterInputStream */

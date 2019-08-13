@@ -20,7 +20,7 @@ import java.util.NoSuchElementException;
 /**
  * RepetitionNode.
  *
- * @author werni
+ * @author Werner Randelshofer
  */
 public class RepetitionNode extends Node {
     private final static long serialVersionUID = 1L;

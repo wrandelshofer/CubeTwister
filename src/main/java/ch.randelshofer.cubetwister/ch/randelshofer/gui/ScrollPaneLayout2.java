@@ -15,7 +15,7 @@ import javax.swing.*;
  * is granted to be visible when the vertical scroll bar
  * is visible.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class ScrollPaneLayout2 extends ScrollPaneLayout implements javax.swing.plaf.UIResource  {
         private final static long serialVersionUID = 1L;

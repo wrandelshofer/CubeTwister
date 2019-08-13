@@ -16,7 +16,7 @@ import java.util.Map;
  * The MacroNode can be expanded to hold the macro script as its child A.
  * The side effect of a macro node is A.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class MacroNode extends Node {
     private final static long serialVersionUID = 1L;

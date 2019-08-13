@@ -10,7 +10,7 @@ import ch.randelshofer.cubetwister.doc.DocumentModel;
  * scripts.
  * In addition this combo box model provides a choice "Do not translate".
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class TranslateNotationComboBoxModel extends javax.swing.AbstractListModel implements javax.swing.ComboBoxModel {
     private final static long serialVersionUID = 1L;

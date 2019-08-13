@@ -14,7 +14,7 @@ import javax.swing.undo.*;
 /**
  * Holds a single color value. CubeColorModel is a child of CubeColorsModel.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class CubeColorModel extends InfoModel implements DOMStorable {
     private final static long serialVersionUID = 1L;

@@ -10,7 +10,7 @@ import java.awt.*;
 
 /**
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class DocumentModelTreeCellRenderer extends DefaultTreeCellRenderer {
     private final static long serialVersionUID = 1L;

@@ -12,7 +12,7 @@ import javax.swing.table.*;
 
 /**
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class SystemColorsTableModel extends AbstractTableModel {
     private final static long serialVersionUID = 1L;

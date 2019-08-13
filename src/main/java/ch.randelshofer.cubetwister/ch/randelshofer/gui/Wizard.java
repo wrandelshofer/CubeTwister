@@ -15,7 +15,7 @@ import org.jhotdraw.util.ResourceBundleUtil;
 /**
  * A wizard is a dialog which guides the user step by step through a task.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class Wizard extends javax.swing.JDialog
 implements PropertyChangeListener, ListSelectionListener {

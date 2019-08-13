@@ -8,7 +8,7 @@ import java.awt.*;
 import javax.swing.border.Border;
 /**
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class FocusBorder extends javax.swing.border.MatteBorder {
         private final static long serialVersionUID = 1L;

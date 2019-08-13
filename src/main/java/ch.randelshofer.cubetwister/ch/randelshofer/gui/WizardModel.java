@@ -13,7 +13,7 @@ import java.beans.*;
  * The list model is extended by a getPanel method which is used to retrieve
  * a panel for the current step.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public interface WizardModel {
     /**

@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.Component;
 /**
  * ColumnMappingCellRenderer.
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class ColumnMappingCellRenderer
 extends DefaultTableCellRenderer

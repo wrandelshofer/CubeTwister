@@ -7,7 +7,7 @@ import java.beans.*;
 import ch.randelshofer.undo.*;
 /**
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class MacroModel extends InfoModel  {
     private final static long serialVersionUID = 1L;

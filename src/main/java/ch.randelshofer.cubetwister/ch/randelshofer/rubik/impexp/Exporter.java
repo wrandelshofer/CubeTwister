@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 /**
  * Exporter.
- * @author  werni
+ * @author Werner Randelshofer
  */
 public interface Exporter {
     /**

@@ -14,7 +14,7 @@ import javax.swing.*;
  * repeatedely when the user keeps the mouse pressed during a 
  * long period of time.
  * 
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class TimedButtonTrigger 
 extends MouseAdapter

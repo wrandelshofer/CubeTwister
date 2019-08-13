@@ -8,7 +8,7 @@ import java.awt.datatransfer.*;
 import java.io.IOException;
 /**
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class JVMLocalObjectTransferable
 implements Transferable {

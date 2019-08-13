@@ -25,7 +25,7 @@ import java.util.Map;
  * The side effect of a permutation node to a Cube is a permutation and
  * orientation change the cube parts in the cycle.
  *
- * @author werni
+ * @author Werner Randelshofer
  */
 public class PermutationNode extends Node implements Cloneable {
     private final static long serialVersionUID = 1L;

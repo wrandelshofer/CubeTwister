@@ -9,7 +9,7 @@ import javax.swing.undo.*;
 
 /**
  * UndoCoalescingBoundedRangeModel.
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class UndoCoalescingBoundedRangeModel extends javax.swing.DefaultBoundedRangeModel {
     private final static long serialVersionUID = 1L;

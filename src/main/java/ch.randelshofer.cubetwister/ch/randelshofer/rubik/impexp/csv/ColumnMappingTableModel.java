@@ -6,7 +6,7 @@ package ch.randelshofer.rubik.impexp.csv;
 import java.util.ArrayList;
 /**
  * ColumnMappingTableModel.
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class ColumnMappingTableModel extends javax.swing.table.AbstractTableModel {
     private final static long serialVersionUID = 1L;

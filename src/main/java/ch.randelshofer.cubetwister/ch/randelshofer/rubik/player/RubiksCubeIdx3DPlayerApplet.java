@@ -13,7 +13,7 @@ import idx3d.idx3d_JCanvas;
 /**
  * RubiksCubeIdx3DPlayerApplet.
  * 
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class RubiksCubeIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;

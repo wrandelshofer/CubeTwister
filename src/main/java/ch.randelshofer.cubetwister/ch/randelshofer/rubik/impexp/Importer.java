@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 /**
  * Importer.
- * @author  werni
+ * @author Werner Randelshofer
  */
 public interface Importer {
     /**

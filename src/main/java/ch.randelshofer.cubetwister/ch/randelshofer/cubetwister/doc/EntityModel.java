@@ -30,7 +30,7 @@ import javax.swing.tree.*;
  * This is used to ensure proper listener notifications for object
  * insertion and removal.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable, UndoableEditListener {
     private final static long serialVersionUID = 1L;

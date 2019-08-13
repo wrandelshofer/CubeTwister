@@ -11,7 +11,7 @@ import javax.swing.*;
  * CubeColorComboBoxModel is used to present a choice of colors in the 
  * "Stickers" and "Parts" page of the CubeView.
  *
- * @author  werni
+ * @author Werner Randelshofer
  */
 public class CubeColorComboBoxModel
 extends AbstractListModel
