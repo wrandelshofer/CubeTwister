@@ -11,7 +11,7 @@ import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.ScriptNode;
+import ch.randelshofer.rubik.parser.SequenceNode;
 import ch.randelshofer.rubik.solver.CubeParser;
 import ch.randelshofer.rubik.solver.FaceletCube;
 import ch.randelshofer.rubik.solver.KociembaCube;
@@ -272,7 +272,7 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
                     if (result == Solver.ABORT) {
                         return null;
                     } else {
-                        ScriptNode solution = solver.getSolution();
+                        SequenceNode solution = solver.getSolution();
                         solution.transformOrientation(cube.getLayerCount(), rcube.getCubeOrientation(), true);
                         return solution;
                     }

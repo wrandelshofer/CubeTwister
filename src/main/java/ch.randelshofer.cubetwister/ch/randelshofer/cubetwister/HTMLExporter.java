@@ -358,7 +358,7 @@ public class HTMLExporter implements Exporter {
             parsedScript = m.getParser().parse(m.getScript());
             parsedScript.applyTo(cube, false);
         } catch (IOException ex) {
-            parsedScript = new ScriptNode();
+            parsedScript = new SequenceNode();
         }
         data.put("script.permutation", Cubes.toPermutationString(cube, m.getNotationModel()));
         data.put("script.order", Cubes.getOrder(cube));

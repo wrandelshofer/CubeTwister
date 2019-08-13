@@ -19,7 +19,7 @@ import java.util.Map;
  *
  * @author Werner Randelshofer
  */
-public class InversionNode extends Node {
+public class InversionNode extends UnaryNode {
     private final static long serialVersionUID = 1L;
 
     public InversionNode() {
@@ -60,7 +60,7 @@ public class InversionNode extends Node {
             // them.
             InversionNode nestedInversion = (InversionNode) getChildAt(0);
             for (Iterator<Node> enumer = nestedInversion.getChildren().iterator(); enumer.hasNext();) {
-                ((ScriptNode) enumer.next()).writeTokens(w, p, macroMap);
+                ((SequenceNode) enumer.next()).writeTokens(w, p, macroMap);
                 if (enumer.hasNext()) {
                     p.writeToken(w, Symbol.DELIMITER);
                     w.write(' ');
@@ -74,7 +74,7 @@ public class InversionNode extends Node {
             // print the inverse of the move node.
             InversionNode inverted = (InversionNode) cloneSubtree();
             for (Iterator<Node> i = inverted.reversedChildIterator(); i.hasNext();) {
-                ScriptNode node = (ScriptNode) i.next();
+                SequenceNode node = (SequenceNode) i.next();
                 node.inverse();
                 node.writeTokens(w, p, macroMap);
             }
@@ -86,7 +86,7 @@ public class InversionNode extends Node {
             if (invertorPos == null) {
                 InversionNode inverted = (InversionNode) cloneSubtree();
                 for (Iterator<Node> i = inverted.reversedChildIterator();i.hasNext();) {
-                    ScriptNode node = (ScriptNode) i.next();
+                    SequenceNode node = (SequenceNode) i.next();
                     node.inverse();
                     node.writeTokens(w, p, macroMap);
                 }

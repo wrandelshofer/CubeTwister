@@ -182,14 +182,14 @@ public class Tokenizer implements Cloneable {
     }
 
     /**
-     * Returns the start position of the current token
+     * Returns the start position of the current token.
      */
     public int getStartPosition() {
         return this.tstart;
     }
 
     /**
-     * Returns the end position of the current token
+     * Returns the end position of the current token.
      */
     public int getEndPosition() {
         return this.tend;
@@ -278,7 +278,7 @@ public class Tokenizer implements Cloneable {
             }
 
             this.ttype = ch; // special character
-            this.sval = String.valueOf((char) ch);
+            this.sval = ch == TT_EOF ? "<EOF>" : String.valueOf((char) ch);
             return this.ttype;
         }
     }

@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author Werner Randelshofer
  */
-public class ReflectionNode extends Node {
+public class ReflectionNode extends UnaryNode {
         private final static long serialVersionUID = 1L;
 
     public ReflectionNode() {
@@ -65,7 +65,7 @@ public class ReflectionNode extends Node {
             if (reflectorPos == null) {
                     ReflectionNode reflected = (ReflectionNode) cloneSubtree();
                 for (Node node1 : reflected.getChildren()) {
-                    ScriptNode node = (ScriptNode) node1;
+                    SequenceNode node = (SequenceNode) node1;
                     node.reflect();
                     node.writeTokens(w, p, macroMap);
                 }

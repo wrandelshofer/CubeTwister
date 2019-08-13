@@ -114,7 +114,7 @@ class NodeTest {
                 DynamicTest.dynamicTest("1", () -> doApply("(R)2", "(drb,urf) (ubr,dfr)\n(ur,dr) (rf,rb)\n(++r)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R U F)3", "(dfr,urf) (ufl,bdr,ulb,lfd,ubr)\n(+ur,fd,lu,rb,lf,ub,dr,fu) (+rf)\n(-r) (-u) (-f)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R U F)'3", "(dfr,urf) (dlf,bul,rbd,luf,rub)\n(+ur,uf,rd,bu,fl,br,ul,df) (+rf)\n(+r) (+u) (+f)")),
-                DynamicTest.dynamicTest("1", () -> doApply("(R U F)3'", "(dfr,urf) (dlf,bul,rbd,luf,rub)\n(+ur,uf,rd,bu,fl,br,ul,df) (+rf)\n(+r) (+u) (+f)")),
+                DynamicTest.dynamicTest("(R U F)3'", () -> doApply("(R U F)3'", "(dfr,urf) (dlf,bul,rbd,luf,rub)\n(+ur,uf,rd,bu,fl,br,ul,df) (+rf)\n(+r) (+u) (+f)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R U F)3''", "(dfr,urf) (ufl,bdr,ulb,lfd,ubr)\n(+ur,fd,lu,rb,lf,ub,dr,fu) (+rf)\n(-r) (-u) (-f)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R U F)3'4", "(ufl,bdr,ulb,lfd,ubr)\n(+ur,fl) (+dr,lu) (+bu,df) (+rb,uf)")),
                 DynamicTest.dynamicTest("1", () -> doApply("(R)'", "(dfr,bdr,ubr,fur)\n(ur,fr,dr,br)\n(-r)")),

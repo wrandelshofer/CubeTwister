@@ -47,7 +47,9 @@ public abstract class Node extends TreeNodeImpl<Node> {
     }
 
     public void addAll(List<Node> children) {
-        for (Node n:children) add(n);
+        for (Node n : children) {
+            add(n);
+        }
     }
 
     /**

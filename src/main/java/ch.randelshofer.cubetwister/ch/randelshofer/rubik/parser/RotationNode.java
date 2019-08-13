@@ -21,11 +21,9 @@ import java.util.Vector;
  *
  * @author Werner Randelshofer
  */
-public class RotationNode extends ScriptNode {
+public class RotationNode extends BinaryNode {
 
     private final static long serialVersionUID = 1L;
-
-    private Node rotator;
 
     public RotationNode() {
         this(0, 0);
@@ -33,36 +31,28 @@ public class RotationNode extends ScriptNode {
 
     public RotationNode(int startpos, int endpos) {
         super(startpos, endpos);
-        rotator = new ScriptNode();
-        rotator.setParent(this);
+        operand1 = new SequenceNode();
+        operand1.setParent(this);
     }
 
-    public RotationNode(Node rotator, Node rotatee, int startpos, int endpos) {
+    public RotationNode(Node operand1, Node rotatee, int startpos, int endpos) {
         super(startpos, endpos);
-        rotator.removeFromParent();
-        rotator.setParent(this);
-        this.rotator = rotator;
+        operand1.removeFromParent();
+        operand1.setParent(this);
+        this.operand1 = operand1;
         add(rotatee);
     }
 
-    public Node getRotator() {
-        return rotator;
-    }
-
-    public void setRotator(Node newValue) {
-        rotator = newValue;
-    }
-
-    /**
+     /**
      * Applies the symbol represented by this node to the cube.
      *
      * @param cube    A cube to be transformed by this symbol.
      * @param inverse If true, the transform will be done in inverse order.
      */
     public void applyTo(Cube cube, boolean inverse) {
-        rotator.applyTo(cube, true);
+        operand1.applyTo(cube, true);
         super.applyTo(cube, inverse);
-        rotator.applyTo(cube, false);
+        operand1.applyTo(cube, false);
     }
 
     /**
@@ -78,7 +68,7 @@ public class RotationNode extends ScriptNode {
      */
     @Override
     public void reflect() {
-        rotator.reflect();
+        operand1.reflect();
         super.reflect();
     }
 
@@ -88,7 +78,7 @@ public class RotationNode extends ScriptNode {
      * be done.
      */
     public void transform(int axis, int layerMask, int angle) {
-        rotator.transform(axis, layerMask, angle);
+        operand1.transform(axis, layerMask, angle);
         super.transform(axis, layerMask, angle);
     }
 
@@ -97,7 +87,7 @@ public class RotationNode extends ScriptNode {
      */
     public Node cloneSubtree() {
         RotationNode that = (RotationNode) super.cloneSubtree();
-        that.rotator = this.rotator.cloneSubtree();
+        that.operand1 = this.operand1.cloneSubtree();
         return that;
     }
 
@@ -111,7 +101,7 @@ public class RotationNode extends ScriptNode {
 
         // Extract rotators at the end of the rotator
         // if any.
-        Iterator<Node> enumeration = rotator.resolvedIterator(false);
+        Iterator<Node> enumeration = operand1.resolvedIterator(false);
         while (enumeration.hasNext()) {
             Node node = enumeration.next();
             if (node instanceof MoveNode) {
@@ -131,7 +121,7 @@ public class RotationNode extends ScriptNode {
         if (rotators.size() > 0 && twisters.size() > 0) {
             //for (int i = 0; i < twisters.size(); i++) {
             for (int i = twisters.size() - 1; i > -1; i--) {
-                ScriptNode rotated = (ScriptNode) ((ScriptNode) twisters.get(i)).clone();
+                SequenceNode rotated = (SequenceNode) ((SequenceNode) twisters.get(i)).clone();
                 //for (int j = 0; j < rotators.size(); j++) {
                 for (int j = rotators.size() - 1; j > -1; j--) {
                     MoveNode rotate = (MoveNode) rotators.get(j);
@@ -160,7 +150,7 @@ public class RotationNode extends ScriptNode {
             Node rotated = enumeration.next().clone();
             for (int j = 0; j < rotators.size(); j++) {
                 MoveNode rotator_ = (MoveNode) rotators.get(j);
-                rotated.transform((MoveNode) rotator, false);
+                rotated.transform((MoveNode) operand1, false);
             }
             resolved.add(rotated);
         }
@@ -181,7 +171,7 @@ public class RotationNode extends ScriptNode {
             // Break the loop, if other symbols than rotators are encountered.
             boolean isPureRotation = true;
             Vector<Node> rotators = new Vector<Node>();
-            for (Iterator<Node> i = rotator.resolvedIterator(false); i.hasNext(); ) {
+            for (Iterator<Node> i = operand1.resolvedIterator(false); i.hasNext(); ) {
                 Node node = i.next();
                 if (node instanceof MoveNode) {
                     MoveNode transform = (MoveNode) node;
@@ -214,14 +204,14 @@ public class RotationNode extends ScriptNode {
                 // If the rotator consists of rotators only it can be
                 // written as rotated children.
                 RotationNode rotated = (RotationNode) cloneSubtree();
-                rotated.rotator.removeAllChildren();
+                rotated.operand1.removeAllChildren();
 
                 for (Iterator<Node> i = rotators.iterator(); i.hasNext(); ) {
                     MoveNode rotator_ = (MoveNode) i.next();
                     rotated.transform(rotator_, false);
                 }
                 for (Iterator<Node> i = rotated.childIterator(); i.hasNext(); ) {
-                    ((ScriptNode) i.next()).writeTokens(w, p, macroMap);
+                    ((SequenceNode) i.next()).writeTokens(w, p, macroMap);
                     if (i.hasNext()) {
                         p.writeToken(w, Symbol.DELIMITER);
                         w.write(' ');
@@ -232,34 +222,34 @@ public class RotationNode extends ScriptNode {
                 if (p.isSupported(Symbol.GROUPING)) {
                     p.writeToken(w, Symbol.GROUPING_BEGIN);
                 }
-                Node inverseRotator = rotator.cloneSubtree();
+                Node inverseRotator = operand1.cloneSubtree();
                 inverseRotator.inverse();
                 inverseRotator.writeTokens(w, p, macroMap);
                 w.write(' ');
                 super.writeTokens(w, p, macroMap);
                 w.write(' ');
-                rotator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 if (p.isSupported(Symbol.GROUPING)) {
                     p.writeToken(w, Symbol.GROUPING_END);
                 }
             }
         } else if (pos == Syntax.PREFIX) {
-            if (rotator.getChildCount() != 0) {
+            if (operand1.getChildCount() != 0) {
                 p.writeToken(w, Symbol.ROTATION_BEGIN);
-                rotator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.ROTATION_END);
             }
             super.writeTokens(w, p, macroMap);
         } else if (pos == Syntax.SUFFIX) {
             super.writeTokens(w, p, macroMap);
-            if (rotator.getChildCount() != 0) {
+            if (operand1.getChildCount() != 0) {
                 p.writeToken(w, Symbol.ROTATION_BEGIN);
-                rotator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.ROTATION_END);
             }
         } else if (pos == Syntax.PRECIRCUMFIX) {
             p.writeToken(w, Symbol.ROTATION_BEGIN);
-            rotator.writeTokens(w, p, macroMap);
+            operand1.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.ROTATION_OPERATOR);
             super.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.ROTATION_END);

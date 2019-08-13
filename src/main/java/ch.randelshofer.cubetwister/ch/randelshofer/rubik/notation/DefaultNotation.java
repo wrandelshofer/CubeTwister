@@ -55,8 +55,8 @@ public class DefaultNotation extends AbstractNotation {
         addToken(Symbol.CONJUGATION_BEGIN, "<");
         addToken(Symbol.CONJUGATION_END, ">");
         //addToken(Symbol.CONJUGATION_DELIMITER ,":");
-        addToken(Symbol.ROTATION_BEGIN, "<<");
-        addToken(Symbol.ROTATION_END, ">>'");
+        addToken(Symbol.ROTATION_BEGIN, "<");
+        addToken(Symbol.ROTATION_END, ">'");
         //addToken(Symbol.ROTATION_OPERATOR ,"::");
         // addToken(Symbol.MACRO ,"");
         addToken(Symbol.MULTILINE_COMMENT_BEGIN, "/*");

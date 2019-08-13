@@ -23,9 +23,8 @@ import java.util.Vector;
  *
  * @author Werner Randelshofer
  */
-public class ConjugationNode extends Node {
+public class ConjugationNode extends BinaryNode {
     private final static long serialVersionUID = 1L;
-    private Node conjugator;
 
     public ConjugationNode() {
         this(-1, -1);
@@ -33,26 +32,18 @@ public class ConjugationNode extends Node {
 
     public ConjugationNode(int startpos, int endpos) {
         super(startpos, endpos);
-        conjugator = new ScriptNode();
-        conjugator.setParent(this);
+        operand1 = new SequenceNode();
+        operand1.setParent(this);
     }
 
-    public ConjugationNode(Node conjugator, Node conjugate, int startpos, int endpos) {
+    public ConjugationNode(Node operand1, Node conjugate, int startpos, int endpos) {
         super(startpos, endpos);
-        conjugator.removeFromParent();
-        conjugator.setParent(this);
-        this.conjugator = conjugator;
+        operand1.removeFromParent();
+        operand1.setParent(this);
+        this.operand1 = operand1;
         if (conjugate != null) {
             add(conjugate);
         }
-    }
-
-    public Node getConjugator() {
-        return conjugator;
-    }
-
-    public void setConjugator(Node newValue) {
-        conjugator = newValue;
     }
 
     /**
@@ -62,9 +53,9 @@ public class ConjugationNode extends Node {
      * @param inverse If true, the transform will be done in inverse order.
      */
     public void applyTo(Cube cube, boolean inverse) {
-        conjugator.applyTo(cube, false);
+        operand1.applyTo(cube, false);
         super.applyTo(cube, inverse);
-        conjugator.applyTo(cube, true);
+        operand1.applyTo(cube, true);
     }
 
     /**
@@ -81,7 +72,7 @@ public class ConjugationNode extends Node {
      */
     @Override
     public void reflect() {
-        conjugator.reflect();
+        operand1.reflect();
         super.reflect();
     }
 
@@ -91,7 +82,7 @@ public class ConjugationNode extends Node {
      * Does nothing if the transformation can not be done.
      */
     public void transform(int axis, int layerMask, int angle) {
-        conjugator.transform(axis, layerMask, angle);
+        operand1.transform(axis, layerMask, angle);
         super.transform(axis, layerMask, angle);
     }
 
@@ -100,7 +91,7 @@ public class ConjugationNode extends Node {
      */
     public Node cloneSubtree() {
         ConjugationNode that = (ConjugationNode) super.cloneSubtree();
-        that.conjugator = this.conjugator.cloneSubtree();
+        that.operand1 = this.operand1.cloneSubtree();
         return that;
     }
 
@@ -108,9 +99,9 @@ public class ConjugationNode extends Node {
     public Iterator<Node> resolvedIterator(boolean inverse) {
         return new SequenceIterator<>(
                 List.of(
-                        conjugator.resolvedIterator(inverse),
+                        operand1.resolvedIterator(inverse),
                         super.resolvedIterator(inverse),
-                        conjugator.resolvedIterator(!inverse)
+                        operand1.resolvedIterator(!inverse)
                 )
         );
     }
@@ -125,7 +116,7 @@ public class ConjugationNode extends Node {
             // Break the loop, if other symbols than rotators are encountered.
             boolean isPureRotation = true;
             Vector<Node> rotators = new Vector<Node>();
-            Iterator<Node> i = conjugator.resolvedIterator(false);
+            Iterator<Node> i = operand1.resolvedIterator(false);
             while (i.hasNext()) {
                 Node node = i.next();
                 if (node instanceof MoveNode) {
@@ -159,7 +150,7 @@ public class ConjugationNode extends Node {
                 // If the conjugator consists of rotators only it can be
                 // written as rotated children.
                 ConjugationNode rotated = (ConjugationNode) cloneSubtree();
-                rotated.conjugator.removeAllChildren();
+                rotated.operand1.removeAllChildren();
 
                 i = new ReverseListIterator<Node>(rotators);
                 while (i.hasNext()) {
@@ -179,11 +170,11 @@ public class ConjugationNode extends Node {
                 if (p.isSupported(Symbol.GROUPING)) {
                     p.writeToken(w, Symbol.GROUPING_BEGIN);
                 }
-                conjugator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 w.write(' ');
                 super.writeTokens(w, p, macroMap);
                 w.write(' ');
-                Node inverseCommutator = conjugator.cloneSubtree();
+                Node inverseCommutator = operand1.cloneSubtree();
                 inverseCommutator.inverse();
                 inverseCommutator.writeTokens(w, p, macroMap);
                 if (p.isSupported(Symbol.GROUPING)) {
@@ -191,22 +182,22 @@ public class ConjugationNode extends Node {
                 }
             }
         } else if (pos == Syntax.PREFIX) {
-            if (conjugator.getChildCount() != 0) {
+            if (operand1.getChildCount() != 0) {
                 p.writeToken(w, Symbol.CONJUGATION_BEGIN);
-                conjugator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.CONJUGATION_END);
             }
             super.writeTokens(w, p, macroMap);
         } else if (pos == Syntax.SUFFIX) {
             super.writeTokens(w, p, macroMap);
-            if (conjugator.getChildCount() != 0) {
+            if (operand1.getChildCount() != 0) {
                 p.writeToken(w, Symbol.CONJUGATION_BEGIN);
-                conjugator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.CONJUGATION_END);
             }
         } else if (pos == Syntax.PRECIRCUMFIX) {
             p.writeToken(w, Symbol.CONJUGATION_BEGIN);
-            conjugator.writeTokens(w, p, macroMap);
+            operand1.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.CONJUGATION_DELIMITER);
             super.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.CONJUGATION_END);
@@ -222,7 +213,7 @@ public class ConjugationNode extends Node {
         b.append(getClass().getSimpleName());
         b.append("{");
         b.append(' ');
-        b.append(conjugator);
+        b.append(operand1);
         b.append(",");
         for (Node n : getChildren()) {
             b.append(' ');

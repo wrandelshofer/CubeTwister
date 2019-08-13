@@ -21,35 +21,28 @@ import java.util.Map;
  *
  * @author Werner Randelshofer
  */
-public class CommutationNode extends Node {
+public class CommutationNode extends BinaryNode {
     private final static long serialVersionUID = 1L;
-    private Node commutator;
 
     public CommutationNode() {
-        this(new ScriptNode(), null, -1, -1);
+        this(new SequenceNode(), null, -1, -1);
     }
 
     public CommutationNode(int startpos, int endpos) {
-        this(new ScriptNode(), null, startpos, endpos);
+        this(new SequenceNode(), null, startpos, endpos);
     }
 
-    public CommutationNode(Node commutator, Node commutated, int startpos, int endpos) {
+    public CommutationNode(Node operand1, Node commutated, int startpos, int endpos) {
         super(startpos, endpos);
-        commutator.removeFromParent();
-        commutator.setParent(this);
-        this.commutator = commutator;
+        operand1.removeFromParent();
+        operand1.setParent(this);
+        this.operand1 = operand1;
         if (commutated != null) {
             add(commutated);
         }
     }
 
-    public Node getCommutator() {
-        return commutator;
-    }
 
-    public void setCommutator(Node newValue) {
-        commutator = newValue;
-    }
 
     /**
      * Applies the symbol represented by this node to the cube.
@@ -67,13 +60,13 @@ public class CommutationNode extends Node {
             commutator.applyTo(cube, false);
              */
             super.applyTo(cube, false);
-            commutator.applyTo(cube, false);
+            operand1.applyTo(cube, false);
             super.applyTo(cube, true);
-            commutator.applyTo(cube, true);
+            operand1.applyTo(cube, true);
         } else {
-            commutator.applyTo(cube, false);
+            operand1.applyTo(cube, false);
             super.applyTo(cube, false);
-            commutator.applyTo(cube, true);
+            operand1.applyTo(cube, true);
             super.applyTo(cube, true);
         }
     }
@@ -83,12 +76,12 @@ public class CommutationNode extends Node {
      */
     @Override
     public void inverse() {
-        Node helper = commutator;
-        commutator = new ScriptNode();
+        Node helper = operand1;
+        operand1 = new SequenceNode();
 
         while (getChildCount() > 0) {
             Node n = getChildAt(0);
-            commutator.add(n);
+            operand1.add(n);
         }
 
         while (helper.getChildCount() > 0) {
@@ -102,7 +95,7 @@ public class CommutationNode extends Node {
      */
     @Override
     public void reflect() {
-        commutator.reflect();
+        operand1.reflect();
         super.reflect();
     }
 
@@ -112,7 +105,7 @@ public class CommutationNode extends Node {
      * Does nothing if the transformation can not be done.
      */
     public void transform(int axis, int layerMask, int angle) {
-        commutator.transform(axis, layerMask, angle);
+        operand1.transform(axis, layerMask, angle);
         super.transform(axis, layerMask, angle);
     }
 
@@ -121,7 +114,7 @@ public class CommutationNode extends Node {
      */
     public Node cloneSubtree() {
         CommutationNode that = (CommutationNode) super.cloneSubtree();
-        that.commutator = this.commutator.cloneSubtree();
+        that.operand1 = this.operand1.cloneSubtree();
         return that;
     }
 
@@ -133,9 +126,9 @@ public class CommutationNode extends Node {
     public Iterator<Node> resolvedIterator(boolean inverse) {
         return new SequenceIterator<Node>(
                 List.of(
-                        commutator.resolvedIterator(inverse),
+                        operand1.resolvedIterator(inverse),
                         super.resolvedIterator(inverse),
-                        commutator.resolvedIterator(!inverse),
+                        operand1.resolvedIterator(!inverse),
                         super.resolvedIterator(!inverse)
                 )
         );
@@ -150,7 +143,7 @@ public class CommutationNode extends Node {
             if (p.isSupported(Symbol.GROUPING)) {
                 p.writeToken(w, Symbol.GROUPING_BEGIN);
             }
-            commutator.writeTokens(w, p, macroMap);
+            operand1.writeTokens(w, p, macroMap);
             w.write(' ');
             p.writeToken(w, Symbol.NOP);
             w.write(' ');
@@ -158,13 +151,13 @@ public class CommutationNode extends Node {
             w.write(' ');
             p.writeToken(w, Symbol.NOP);
             w.write(' ');
-            Node inv = commutator.cloneSubtree();
+            Node inv = operand1.cloneSubtree();
             inv.inverse();
             inv.writeTokens(w, p, macroMap);
             w.write(' ');
             p.writeToken(w, Symbol.NOP);
             w.write(' ');
-            inv = new ScriptNode();
+            inv = new SequenceNode();
             Iterator<Node> enumer = getChildren().iterator();
             while (enumer.hasNext()) {
                 //inv.add((Node) enumer.nextElement());
@@ -176,9 +169,9 @@ public class CommutationNode extends Node {
                 p.writeToken(w, Symbol.GROUPING_END);
             }
         } else if (pos == Syntax.PREFIX) {
-            if (commutator.getChildCount() != 0) {
+            if (operand1.getChildCount() != 0) {
                 p.writeToken(w, Symbol.COMMUTATION_BEGIN);
-                commutator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.COMMUTATION_END);
             }
             if (getChildCount() == 1) {
@@ -197,14 +190,14 @@ public class CommutationNode extends Node {
                 super.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.GROUPING_END);
             }
-            if (commutator.getChildCount() != 0) {
+            if (operand1.getChildCount() != 0) {
                 p.writeToken(w, Symbol.COMMUTATION_BEGIN);
-                commutator.writeTokens(w, p, macroMap);
+                operand1.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.COMMUTATION_END);
             }
         } else if (pos == Syntax.PRECIRCUMFIX) {
             p.writeToken(w, Symbol.COMMUTATION_BEGIN);
-            commutator.writeTokens(w, p, macroMap);
+            operand1.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.COMMUTATION_DELIMITER);
             super.writeTokens(w, p, macroMap);
             p.writeToken(w, Symbol.COMMUTATION_END);
@@ -244,7 +237,7 @@ public class CommutationNode extends Node {
         b.append(getClass().getSimpleName());
         b.append("{");
         b.append(' ');
-        b.append(commutator);
+        b.append(operand1);
         b.append(",");
         for (Node n : getChildren()) {
             b.append(' ');

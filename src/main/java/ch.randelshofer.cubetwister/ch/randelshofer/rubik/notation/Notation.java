@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.parser.MacroNode;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -101,4 +102,13 @@ public interface Notation {
     Collection<String> getTokens();
 
     List<Symbol> getSymbolsFor(String token);
+
+    default Symbol getSymbolFor(String token, Symbol compositeSymbol) {
+        for (Symbol s : getSymbolsFor(token)) {
+            if (compositeSymbol.isSubSymbol(s)) {
+                return s;
+            }
+        }
+        return null;
+    }
 }

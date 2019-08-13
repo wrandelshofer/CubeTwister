@@ -11,14 +11,14 @@ import ch.randelshofer.rubik.notation.Move;
  *
  * @author Werner Randelshofer
  */
-public class ScriptNode extends Node {
+public class SequenceNode extends Node {
         private final static long serialVersionUID = 1L;
 
     /**
      * Creates a script node with start position = 0
      * and end position = 0.
      */
-    public ScriptNode() {
+    public SequenceNode() {
         this(-1, -1);
     }
     /**
@@ -27,7 +27,7 @@ public class ScriptNode extends Node {
      *  @param startpos The start position of the symbol.
      * @param endpos The end position of the symbol.
      */
-    public ScriptNode(int startpos, int endpos) {
+    public SequenceNode(int startpos, int endpos) {
         super(startpos, endpos);
         setAllowsChildren(true);
     }

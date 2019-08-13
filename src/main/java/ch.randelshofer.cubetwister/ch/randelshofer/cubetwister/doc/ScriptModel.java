@@ -18,7 +18,7 @@ import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
-import ch.randelshofer.rubik.parser.ScriptNode;
+import ch.randelshofer.rubik.parser.SequenceNode;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.undo.CompositeEdit;
 import ch.randelshofer.undo.UndoableObjectEdit;
@@ -255,13 +255,13 @@ public class ScriptModel
                 }
             } catch (ParseException e) {
                 // FIXME should look better
-                getPlayer().setScript(new ScriptNode());
+                getPlayer().setScript(new SequenceNode());
                 getPlayer().setResetCube(null);
                 parseException = e;
                 setStateInfo("Error:\n" + e.getMessage() + " @" + e.getStartPosition() + ".." + e.getEndPosition());
                 throw e;
             } catch (Exception e) {
-                getPlayer().setScript(new ScriptNode());
+                getPlayer().setScript(new SequenceNode());
                 getPlayer().setResetCube(null);
                 parseException = null;
                 setStateInfo("Error:\n" + e);
@@ -327,7 +327,7 @@ public class ScriptModel
         } catch (ParseException e) {
             // Set parsed script to empty, if parsing failed.
             // FIXME - We should fire property change if the parsed script changes!!!
-            parsedScript = new ScriptNode();
+            parsedScript = new SequenceNode();
         }
         return parsedScript;
     }

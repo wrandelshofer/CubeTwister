@@ -3,6 +3,7 @@
  */
 package ch.randelshofer.rubik.tokenizer;
 
+import ch.randelshofer.rubik.notation.DefaultNotation;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -14,6 +15,20 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 class TokenizerTest {
 
+    @TestFactory
+    public List<DynamicTest> testTokenizerWithDefaultNotation() {
+        DefaultNotation defaultNotation = new DefaultNotation();
+        Tokenizer tt=new Tokenizer();
+        tt.skipWhitespace();
+        for (String token : defaultNotation.getTokens()) {
+            tt.addKeyword(token);
+        }
+
+        return Arrays.asList(
+                dynamicTest("1",()->doTokenizer(tt,"<CU CF>'(R)","0..1:KEY:<, 1..3:KEY:CU, 4..6:KEY:CF, 6..8:KEY:>', 8..9:KEY:(, 9..10:KEY:R, 10..11:KEY:)"))
+        );
+
+    }
     @TestFactory
     public List<DynamicTest> testTokenizer() {
         Tokenizer ttNone=new Tokenizer();

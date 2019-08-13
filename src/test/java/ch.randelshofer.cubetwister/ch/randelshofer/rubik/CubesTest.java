@@ -62,6 +62,7 @@ public class CubesTest {
         DefaultNotation precircumfixNotation = new DefaultNotation();
         precircumfixNotation.putSyntax(Symbol.PERMUTATION, Syntax.PRECIRCUMFIX);
         DefaultNotation prefixNotation = new DefaultNotation();
+        prefixNotation.removeToken(Symbol.INVERSION_OPERATOR,"-");
         prefixNotation.putSyntax(Symbol.PERMUTATION, Syntax.PREFIX);
         DefaultNotation postcircumfixNotation = new DefaultNotation();
         postcircumfixNotation.putSyntax(Symbol.PERMUTATION, Syntax.POSTCIRCUMFIX);

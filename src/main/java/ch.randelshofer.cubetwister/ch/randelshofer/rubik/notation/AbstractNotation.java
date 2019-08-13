@@ -25,6 +25,11 @@ public abstract class AbstractNotation implements Notation {
     private final List<MacroNode> macros = new ArrayList<>();
     private int layerCount;
 
+    public void removeToken(Symbol symbol, String token) {
+        symbolToTokensMap.computeIfAbsent(symbol, k -> new ArrayList<>()).remove(token);
+        tokenToSymbolsMap.computeIfAbsent(token, k -> new ArrayList<>()).remove(symbol);
+    }
+
     protected void setLayerCount(int value) {
         this.layerCount = value;
     }
@@ -70,7 +75,7 @@ public abstract class AbstractNotation implements Notation {
 
     @Override
     public Syntax getSyntax(Symbol s) {
-        return symbolToSyntaxMap.get(s.getCompositeSymbol());
+        return symbolToSyntaxMap.getOrDefault(s.getCompositeSymbol(),Syntax.PRIMARY);
     }
 
     @Override

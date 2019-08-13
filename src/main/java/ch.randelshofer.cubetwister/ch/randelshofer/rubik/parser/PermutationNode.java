@@ -128,25 +128,15 @@ public class PermutationNode extends Node implements Cloneable {
      * @param type        PermutationNode.SIDE, .EDGE, .CORNER
      * @param signSymbol  Symbol.PERMUTATION_PLUS, .PMINUS or  .PPLUSPLUS or (0 if no sign symbol).
      * @param faceSymbols Array of 1, 2, or 3 entries of
-     *                    Symbol.FACE_R, .PU, .PB, .PL, .PD or .PF.
-     */
-    public void addPermItem(int type, Symbol signSymbol, Symbol[] faceSymbols) {
-        addPermItem(type, signSymbol, faceSymbols, 0, 3);
-    }
-
-    /**
-     * Throws illegal argument exception if this
-     * permutation already has permutation items
-     * of a different type.
-     *
-     * @param type        PermutationNode.SIDE, .EDGE, .CORNER
-     * @param signSymbol  Symbol.PERMUTATION_PLUS, .PMINUS or  .PPLUSPLUS or (0 if no sign symbol).
-     * @param faceSymbols Array of 1, 2, or 3 entries of
      *                    Symbol.FACE_R, Symbol.FACE_U, Symbol.FACE_B, Symbol.FACE_L, Symbol.FACE_D or Symbol.FACE_F.
      * @param partNumber  A value &gt;= 0 used to disambiguate multiple edge parts
      *                    and multiple side parts in 4x4 cubes and 5x5 cubes.
      * @param layerCount  The number of layers of the cube.
      */
+    public void addPermItem(int type, Symbol signSymbol, List<Symbol>faceSymbols, int partNumber, int layerCount) {
+        addPermItem(type,signSymbol,faceSymbols.toArray(new Symbol[0]), partNumber,layerCount);
+    }
+
     public void addPermItem(int type, Symbol signSymbol, Symbol[] faceSymbols, int partNumber, int layerCount) {
         if (this.type == UNDEFINED_PERMUTATION) {
             this.type = type;

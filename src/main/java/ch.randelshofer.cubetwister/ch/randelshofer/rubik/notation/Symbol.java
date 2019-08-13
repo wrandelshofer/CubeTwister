@@ -52,6 +52,7 @@ public enum Symbol {
     COMMUTATION_OPERATOR("commutationOperator"),
     CONJUGATION_BEGIN("conjugationBegin", "conjugatorBegin"),
     CONJUGATION_END("conjugationEnd", "conjugatorEnd"),
+    ROTATION_DELIMITER("rotationDelim", "rotationDelimiter"),
     CONJUGATION_DELIMITER("conjugationDelim", "conjugatorDelimiter"),
     CONJUGATION_OPERATOR("conjugationOperator"),
     ROTATION_BEGIN("rotationBegin", "rotatorBegin"),
@@ -117,6 +118,7 @@ public enum Symbol {
             ROTATION_BEGIN,
             ROTATION_END,
             ROTATION_OPERATOR,
+            ROTATION_DELIMITER,
     }),
     COMMENT("comment", new Symbol[]{
             MULTILINE_COMMENT_BEGIN,
@@ -156,7 +158,6 @@ public enum Symbol {
     private final String alternativeName;
 
     private Set<Symbol> subSymbols;
-
     private volatile static Map<String, Symbol> symbolValueSet;
     private volatile static Map<Symbol, Symbol> compositeSymbolMap;
 
@@ -241,5 +242,87 @@ public enum Symbol {
             compositeSymbolMap = Collections.unmodifiableMap(m);
         }
         return compositeSymbolMap;
+    }
+
+    public boolean isBegin() {
+        switch (this) {
+            case CONJUGATION_BEGIN:
+            case COMMUTATION_BEGIN:
+            case ROTATION_BEGIN:
+            case PERMUTATION_BEGIN:
+            case INVERSION_BEGIN:
+            case REFLECTION_BEGIN:
+            case GROUPING_BEGIN:
+            case MULTILINE_COMMENT_BEGIN:
+            case SINGLELINE_COMMENT_BEGIN:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isOperator() {
+        switch (this) {
+            case CONJUGATION_OPERATOR:
+            case COMMUTATION_OPERATOR:
+            case ROTATION_OPERATOR:
+            case INVERSION_OPERATOR:
+            case REFLECTION_OPERATOR:
+            case REPETITION_OPERATOR:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isDelimiter() {
+        switch (this) {
+            case ROTATION_DELIMITER:
+            case CONJUGATION_DELIMITER:
+            case COMMUTATION_DELIMITER:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isEnd() {
+        switch (this) {
+            case CONJUGATION_END:
+            case COMMUTATION_END:
+            case PERMUTATION_END:
+            case ROTATION_END:
+            case INVERSION_END:
+            case REFLECTION_END:
+            case GROUPING_END:
+            case MULTILINE_COMMENT_END:
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public boolean isFaceSymbol() {
+        switch (this) {
+            case PERMUTATION_FACE_R:
+            case PERMUTATION_FACE_U:
+            case PERMUTATION_FACE_F:
+            case PEMRUTATION_FACE_L:
+            case PERMUTATION_FACE_D:
+            case PERMUTATION_FACE_B:
+                return true;
+            default:
+                return false;
+        }
+    }
+    public boolean isPermuationSign() {
+        switch (this) {
+            case PERMUTATION_PLUS:
+            case PERMUTATION_PLUSPLUS:
+            case PERMUTATION_MINUS:
+                return true;
+            default:
+                return false;
+        }
     }
 }
