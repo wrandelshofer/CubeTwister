@@ -35,7 +35,7 @@ public class DefaultNotationTest {
     private void doTokens(String token, boolean expResult) {
         System.out.println("isToken:" + token);
         DefaultNotation instance = new DefaultNotation();
-        boolean result = instance.isToken(token);
+        boolean result = !instance.getSymbolsFor(token).isEmpty();
         assertEquals(result, expResult);
     }
 

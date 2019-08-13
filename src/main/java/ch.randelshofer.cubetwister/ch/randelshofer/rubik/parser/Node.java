@@ -30,33 +30,18 @@ public abstract class Node extends TreeNodeImpl<Node> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * The start position of the first token in the source code, that is part of
-     * this script.
+     * The start position of this node in the source.
      */
     protected int startpos;
     /**
-     * The end position of the last token in the source code, that is part of
-     * this script.
+     * The end position of this node in the source.
      */
     protected int endpos;
-    /**
-     * The Symbol that this node represents.
-     */
-    protected Symbol symbol;
 
-    public Node(Symbol symbol) {
-        this.symbol = symbol;
+    public Node() {
     }
 
-
-    /**
-     * Creates a node which represents a symbol at the indicated position in the
-     * source code.
-     *  @param startpos The start position of the symbol.
-     * @param endpos   The end position of the symbol.
-     */
-    public Node(Symbol symbol, int startpos, int endpos) {
-        this.symbol = symbol;
+    public Node(int startpos, int endpos) {
         this.startpos = startpos;
         this.endpos = endpos;
     }
@@ -94,20 +79,6 @@ public abstract class Node extends TreeNodeImpl<Node> {
     }
 
     /**
-     * Overwrite start and end positions of this node and the subtree starting
-     * at this node.
-     */
-    public void overwritePositions(int sp, int ep) {
-        startpos = sp;
-        endpos = ep;
-        if (children != null) {
-            for (Node child : getChildren()) {
-                child.overwritePositions(sp, ep);
-            }
-        }
-    }
-
-    /**
      * Applies the symbol represented by this node to the cube.
      *
      * @param cube    A cube to be transformed by this symbol.
@@ -117,31 +88,6 @@ public abstract class Node extends TreeNodeImpl<Node> {
         for (Iterator<Node> i = (inverse) ? reversedChildIterator() : childIterator(); i.hasNext(); ) {
             Node child = i.next();
             child.applyTo(cube, inverse);
-        }
-    }
-
-    /**
-     * Returns the ScriptParser symbol that represents this node.
-     */
-    public Symbol getSymbol() {
-        return symbol;
-    }
-
-    /**
-     * Dumps the subtree starting at this Node node. Use for debugging only.
-     *
-     * @param depth The number of spaces used for indenting.
-     */
-    public void dumpTree(int depth) {
-        StringBuilder buf = new StringBuilder(depth);
-        for (int i = 0; i < depth; i++) {
-            buf.append('.');
-        }
-        buf.append(toString());
-        System.out.println(buf.toString());
-        depth++;
-        for (Node n : getChildren()) {
-            n.dumpTree(depth);
         }
     }
 
@@ -269,7 +215,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
     }
 
     /**
-     * The resolved enumeration.
+     * The resolved iteration.
      */
     private static class ResolvedIterator
             implements Iterator<Node> {

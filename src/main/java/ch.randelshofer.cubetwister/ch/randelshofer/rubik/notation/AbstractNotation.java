@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class AbstractNotation implements Notation {
     private final HashMap<Symbol, List<String>> symbolToTokensMap = new HashMap<>();
@@ -73,16 +74,6 @@ public abstract class AbstractNotation implements Notation {
     }
 
     @Override
-    public boolean isToken(String token) {
-        return tokenToSymbolsMap.containsKey(token);
-    }
-
-    @Override
-    public boolean isTokenFor(String token, Symbol symbol) {
-        return tokenToSymbolsMap.getOrDefault(token, Collections.emptyList()).contains(symbol);
-    }
-
-    @Override
     public String getToken(Symbol s) {
         List<String> tokens = symbolToTokensMap.getOrDefault(s, Collections.emptyList());
         return tokens.isEmpty() ? null : tokens.get(0);
@@ -92,16 +83,6 @@ public abstract class AbstractNotation implements Notation {
     public String getToken(Move s) {
         List<String> tokens = moveToTokensMap.getOrDefault(s, Collections.emptyList());
         return tokens.isEmpty() ? null : tokens.get(0);
-    }
-
-    @Override
-    public Symbol getSymbolFor(String token, Symbol compositeSymbol) {
-        for (Symbol s : getSymbolsFor(token)) {
-            if (compositeSymbol.isSubSymbol(s)) {
-                return s;
-            }
-        }
-        return null;
     }
 
     @Override
@@ -138,6 +119,4 @@ public abstract class AbstractNotation implements Notation {
     protected void putSyntax(Symbol symbol, Syntax syntax) {
         symbolToSyntaxMap.put(symbol, syntax);
     }
-
-
 }

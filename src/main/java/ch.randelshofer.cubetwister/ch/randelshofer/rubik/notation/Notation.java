@@ -73,16 +73,6 @@ public interface Notation {
     Syntax getSyntax(Symbol s);
 
     /**
-     * Returns true, if the specified String is a token of this notation.
-     */
-    boolean isToken(String token);
-    
-    /**
-     * Returns true, if the specified String is a token for the specified symbol.
-     */
-    boolean isTokenFor(String token, Symbol symbol);
-    
-    /**
      * Returns a token for the specified symbol.
      * If the symbol has more than one token, the first token is returned.
      *
@@ -96,16 +86,7 @@ public interface Notation {
      * Returns null, if move is not supported.
      */
     String getToken(Move s);
-    
-    /**
-     * Returns a symbol for the specified token.
-     * The compositeSymbol must be specified do disambiguate tokens.
-     * If the compositeSymbol is null, then the token must be unambiguous. 
-     *
-     * Returns null, if the token is not a token for the specified compositeSymbol.
-     */
-    Symbol getSymbolFor(String token, Symbol compositeSymbol);
-    
+
     /**
      * Returns the a move from the given move token.
      * @return a move

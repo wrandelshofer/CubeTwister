@@ -34,12 +34,13 @@ public class CommutationNode extends Node {
     }
 
     public CommutationNode(Node commutator, Node commutated, int startpos, int endpos) {
-        super(Symbol.COMMUTATION, startpos, endpos);
+        super(startpos, endpos);
         commutator.removeFromParent();
         commutator.setParent(this);
         this.commutator = commutator;
-        if (commutated!=null)
-        add(commutated);
+        if (commutated != null) {
+            add(commutated);
+        }
     }
 
     public Node getCommutator() {
@@ -74,19 +75,6 @@ public class CommutationNode extends Node {
             super.applyTo(cube, false);
             commutator.applyTo(cube, true);
             super.applyTo(cube, true);
-        }
-    }
-
-    /**
-     * Overwrite start and end positions of this node and
-     * the subtree starting at this node.
-     */
-    public void overwritePositions(int sp, int ep) {
-        super.overwritePositions(sp, ep);
-        if (commutator != null) {
-            for (Node child : commutator.getChildren()) {
-                child.overwritePositions(sp, ep);
-            }
         }
     }
 
@@ -193,29 +181,16 @@ public class CommutationNode extends Node {
                 commutator.writeTokens(w, p, macroMap);
                 p.writeToken(w, Symbol.COMMUTATION_END);
             }
-            if (getParent() instanceof StatementNode
-                    && getChildCount() == 1
-                    && ((getChildAt(0) instanceof GroupingNode)
-                    || (getChildAt(0) instanceof GroupingNode)
-                    || (getChildAt(0) instanceof PermutationNode)
-                    || (getChildAt(0) instanceof MoveNode)
-            )
-            ) {
+            if (getChildCount() == 1) {
                 super.writeTokens(w, p, macroMap);
             } else {
                 p.writeToken(w, Symbol.GROUPING_BEGIN);
-                super.writeTokens(w, p, macroMap);
-                p.writeToken(w, Symbol.GROUPING_END);
             }
+            super.writeTokens(w, p, macroMap);
+            p.writeToken(w, Symbol.GROUPING_END);
+
         } else if (pos == Syntax.SUFFIX) {
-            if (getParent() instanceof StatementNode
-                    && getChildCount() == 1
-                    && ((getChildAt(0) instanceof GroupingNode)
-                    || (getChildAt(0) instanceof GroupingNode)
-                    || (getChildAt(0) instanceof PermutationNode)
-                    || (getChildAt(0) instanceof MoveNode)
-            )
-            ) {
+            if (getChildCount()==1) {
                 super.writeTokens(w, p, macroMap);
             } else {
                 p.writeToken(w, Symbol.GROUPING_BEGIN);
@@ -250,14 +225,13 @@ public class CommutationNode extends Node {
      */
     private void writeChildTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
-            Iterator<Node> enumer = getChildren().iterator();
-            while (enumer.hasNext()) {
-                enumer.next().writeTokens(w, p, macroMap);
-                if (enumer.hasNext()) {
-                    p.writeToken(w, Symbol.DELIMITER);
-                    w.write(' ');
-                }
+        for (Iterator<Node> i = getChildren().iterator();i.hasNext();) {
+            i.next().writeTokens(w, p, macroMap);
+            if (i.hasNext()) {
+                p.writeToken(w, Symbol.DELIMITER);
+                w.write(' ');
             }
+        }
     }
 
 

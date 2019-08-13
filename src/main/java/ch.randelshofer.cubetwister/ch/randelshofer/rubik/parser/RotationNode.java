@@ -66,20 +66,6 @@ public class RotationNode extends ScriptNode {
     }
 
     /**
-     * Overwrite start and end positions of this node and the subtree starting
-     * at this node.
-     */
-    public void overwritePositions(int sp, int ep) {
-        super.overwritePositions(sp, ep);
-        if (rotator != null) {
-            for (Iterator<Node> i = rotator.getChildren().iterator(); i.hasNext(); ) {
-                ScriptNode child = (ScriptNode) i.next();
-                child.overwritePositions(sp, ep);
-            }
-        }
-    }
-
-    /**
      * Inverses the subtree starting at this node.
      */
     public void inverse() {

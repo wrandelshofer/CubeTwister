@@ -72,7 +72,7 @@ public class PermutationNode extends Node implements Cloneable {
      * @param endpos   The end position of the node in the source code.
      */
     public PermutationNode(int startpos, int endpos) {
-        super(Symbol.PERMUTATION, startpos, endpos);
+        super(startpos, endpos);
         setAllowsChildren(true);
         this.layerCount = layerCount;
     }
@@ -97,7 +97,7 @@ public class PermutationNode extends Node implements Cloneable {
         return type;
     }
 
-    public void setPermutationSign(Symbol signSymbol) {
+    public void setSign(Symbol signSymbol) {
         int s;
         if (signSymbol == Symbol.PERMUTATION_MINUS) {
             s = MINUS_SIGN;
@@ -716,6 +716,10 @@ public class PermutationNode extends Node implements Cloneable {
         }
         // compute the sign
         sign = (modulo + prevOrient + orient[i]) % modulo;
+    }
+
+    public int getSign() {
+        return sign;
     }
 
     @Override

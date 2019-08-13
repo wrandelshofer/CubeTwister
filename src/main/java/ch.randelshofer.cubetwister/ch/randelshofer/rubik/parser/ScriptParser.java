@@ -9,8 +9,12 @@ import ch.randelshofer.rubik.tokenizer.Tokenizer;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Parser for rubik's cube scripts. The tokens and syntax-rules used by the
@@ -23,7 +27,7 @@ import java.util.Set;
  * This parser takes the first solution that it could find using a backtracking
  * algorithm.
  * <pre>
- * Script           = { Statement } ;
+ * Script         = { Statement } ;
  *
  * Statement        = Primary
  *                  | Prefix
@@ -39,11 +43,11 @@ import java.util.Set;
  * Primary          = Keyword ;
  * Prefix           = Operator , Statement ;
  * Suffix           = Statement , Operator ;
- * Circumfix        = Begin, Statement, End ;
+ * Circumfix        = Begin, { Statement } , End ;
  * Preinfix         = Statement, Operator, Statement ;
  * Postinfix        = Statement, Operator, Statement ;
- * Precircumfix     = Begin, Statement, Delimiter, Statement , End ;
- * Postcircumfix    = Begin, Statement, Delimiter, Statement , End ;
+ * Precircumfix     = Begin, { Statement } , Delimiter, { Statement }  , End ;
+ * Postcircumfix    = Begin, { Statement } , Delimiter, { Statement }  , End ;
  *
  * Unary            = Prefix
  *                  | Suffix
@@ -76,8 +80,8 @@ import java.util.Set;
  * SuffixRepetition        = Statement , Number ;
  * PreinfixRepetition      = Number, Operator, Statement ;
  * PostinfixRepetition     = Statement, Operator, Number ;
- * PrecircumfixRepetition  = Begin, Number, Delimiter, Statement , End ;
- * PostcircumfixRepetition = Begin, Statement, Delimiter, Number , End ;
+ * PrecircumfixRepetition  = Begin, Number, Delimiter, { Statement }  , End ;
+ * PostcircumfixRepetition = Begin, { Statement } , Delimiter, Number , End ;
  *
  * Permutation   = PrecircumfixPermutation
  *               | PrefixPermutation
@@ -113,7 +117,7 @@ import java.util.Set;
 
 public class ScriptParser {
     private Notation notation;
-    private List<MacroNode> localMacros;
+    private Map<String, MacroNode> localMacros;
 
     public ScriptParser(Notation notation) {
         this(notation, Collections.emptyList());
@@ -121,14 +125,15 @@ public class ScriptParser {
 
     public ScriptParser(Notation notation, List<MacroNode> localMacros) {
         this.notation = notation;
-        this.localMacros = localMacros;
+        this.localMacros = localMacros.stream().collect(
+                Collectors.toMap(MacroNode::getIdentifier, Function.identity()));
     }
 
     public Notation getNotation() {
         return notation;
     }
 
-    public ScriptNode parse(CharSequence input) throws ParseException {
+    public ScriptNode parse(String input) throws ParseException {
         Tokenizer tt = createTokenizer(notation);
         tt.setInput(input);
         return parseScript(tt);
@@ -156,19 +161,19 @@ public class ScriptParser {
                 parseOtherStatementBacktrack(tt, parent);
                 break;
             default:
-                throw createException(tt, "Expression: Keyword or Number expected.");
+                throw createException(tt, "Statement: Keyword or Number expected.");
         }
     }
 
     private void parseOtherStatementBacktrack(Tokenizer tt, Node parent) throws ParseException {
         if (tt.nextToken() != Tokenizer.TT_KEYWORD) {
-            throw createException(tt, "Keyword: Keyword expected.");
+            throw createException(tt, "Statement: Keyword expected.");
         }
 
         String token = tt.getStringValue();
         ParseException e = null;
         List<Node> children = new ArrayList<>(parent.getChildren());
-        for (Symbol symbol : notation.getSymbolsFor(token)) {
+        for (Symbol symbol : this.getSymbolsFor(token)) {
             Syntax syntax = getSyntax(symbol);
 
             Tokenizer clone = tt.clone();
@@ -198,9 +203,7 @@ public class ScriptParser {
 
     private void parseOtherStatement(Tokenizer tt, Node parent, String token, Symbol symbol, Syntax syntax) throws ParseException {
         Symbol c = symbol.getCompositeSymbol();
-        if (c == Symbol.PERMUTATION
-                || c == Symbol.PERMUTATION_SIGN
-                || c == Symbol.PERMUTATION_FACES) {
+        if (c == Symbol.PERMUTATION) {
             tt.pushBack();
             parsePermutation(tt, parent, token, symbol);
             return;
@@ -254,9 +257,6 @@ public class ScriptParser {
         switch (symbol) {
             case CONJUGATION_DELIMITER:
             case COMMUTATION_DELIMITER:
-            case PERMUTATION_DELIMITER:
-            case INVERSION_DELIMITER:
-            case REFLECTION_DELIMITER:
                 return true;
             default:
                 return false;
@@ -311,7 +311,7 @@ public class ScriptParser {
                     throw createException(tt, "Circumfix: End expected.");
                 case Tokenizer.TT_KEYWORD:
                     String maybeSeparatorOrEnd = tt.getStringValue();
-                    for (Symbol symbol1 : notation.getSymbolsFor(maybeSeparatorOrEnd)) {
+                    for (Symbol symbol1 : this.getSymbolsFor(maybeSeparatorOrEnd)) {
                         if (symbol1.getCompositeSymbol().equals(compositeSymbol)) {
                             if (isDelimiter(symbol1)) {
                                 operand.setEndPosition(tt.getStartPosition());
@@ -333,6 +333,27 @@ public class ScriptParser {
         }
         operand.setEndPosition(tt.getStartPosition());
         return operands;
+    }
+
+    private List<Symbol> getSymbolsFor(String token) {
+        List<Symbol> notationSymbols = notation.getSymbolsFor(token);
+        if (localMacros.containsKey(token)) {
+            List<Symbol> symbols = new ArrayList<>();
+            symbols.addAll(notationSymbols);
+            symbols.add(Symbol.MACRO);
+            return symbols;
+        }
+        return notationSymbols;
+    }
+
+    private Symbol getSymbolFor(String token, Symbol compositeSymbol) {
+        for (Symbol s : getSymbolsFor(token)) {
+            if (compositeSymbol.isSubSymbol(s)) {
+                return s;
+            }
+        }
+        return null;
+
     }
 
     private void parsePrecircumfix(Tokenizer tt, Node parent, String token, Symbol symbol) throws ParseException {
@@ -362,9 +383,14 @@ public class ScriptParser {
     }
 
     private void parsePreinfix(Tokenizer tt, Node parent, String value, Symbol symbol) throws ParseException {
+        if (parent.getChildCount() == 0) {
+            throw createException(tt, "Preinfix: Operand expected.");
+        }
         Node sibling = parent.getChildAt(parent.getChildCount() - 1);
         ScriptNode operand1 = new ScriptNode();
         operand1.add(sibling);
+        operand1.setStartPosition(sibling.getStartPosition());
+        operand1.setEndPosition(sibling.getEndPosition());
         ScriptNode operand2 = new ScriptNode();
         parseStatement(tt, operand2);
         Node node = createCompositeNode(tt, symbol, operand1, operand2);
@@ -374,6 +400,9 @@ public class ScriptParser {
     }
 
     private void parsePostinfix(Tokenizer tt, Node parent, String value, Symbol symbol) throws ParseException {
+        if (parent.getChildCount() == 0) {
+            throw createException(tt, "Preinfix: Operand expected.");
+        }
         Node sibling = parent.getChildAt(parent.getChildCount() - 1);
         ScriptNode operand2 = new ScriptNode();
         operand2.add(sibling);
@@ -386,7 +415,9 @@ public class ScriptParser {
             node = createCompositeNode(tt, symbol, operand2, operand1);
             ((RepetitionNode) node).setRepeatCount(tt.getNumericValue());
         } else {
+            operand1.setStartPosition(tt.getStartPosition());
             parseStatement(tt, operand1);
+            operand1.setEndPosition(tt.getEndPosition());
             node = createCompositeNode(tt, symbol, operand1, operand2);
         }
         node.setStartPosition(sibling.getStartPosition());
@@ -481,7 +512,7 @@ public class ScriptParser {
                 break;
             case SUFFIX: {
                 if (parent.getChildCount() < 1) {
-                    throw new ParseException("Repetition: Sibling missing.", tt.getStartPosition(), tt.getEndPosition());
+                    throw createException(tt, "Repetition: Sibling missing.");
                 }
                 Node sibling = parent.getChildAt(parent.getChildCount() - 1);
                 start = sibling.getStartPosition();
@@ -492,11 +523,13 @@ public class ScriptParser {
                 nextTokenWithSymbolNonnull(tt, Symbol.REPETITION_OPERATOR, "Repetition");
                 parseStatement(tt, operand);
                 break;
+            case POSTINFIX:
+                // Note: Postinfix syntax is handled by parsePostinfix.
+                // We only get here, if the operator is missing!
+                throw createException(tt, "Repetition: Operator expected.");
             case CIRCUMFIX:
             case PRECIRCUMFIX:
-            case POSTCIRCUMFIX:
-            case POSTINFIX: {
-                // Note: Postinfix syntax is handled by parsePostinfix.
+            case POSTCIRCUMFIX: {
                 throw new ParseException("Repetition: Illegal syntax: " + syntax, tt.getStartPosition(), tt.getEndPosition());
             }
         }
@@ -514,7 +547,7 @@ public class ScriptParser {
         if (tt.getTokenType() != Tokenizer.TT_KEYWORD) {
             throw new ParseException(production + ": Unexpected token: " + value, tt.getStartPosition(), tt.getEndPosition());
         }
-        List<Symbol> symbols = notation.getSymbolsFor(value);
+        List<Symbol> symbols = this.getSymbolsFor(value);
         if (!symbols.contains(symbol0)) {
             throw new ParseException(production + ": Unexpected keyword: " + value, tt.getStartPosition(), tt.getEndPosition());
         }
@@ -578,7 +611,7 @@ public class ScriptParser {
             sign = this.parsePermutationSign(tt);
         }
         if (tt.nextToken() != Tokenizer.TT_KEYWORD ||
-                notation.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION) != Symbol.PERMUTATION_BEGIN) {
+                this.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION) != Symbol.PERMUTATION_BEGIN) {
             throw createException(tt, "Permutation: Begin expected.");
         }
         if (syntax == Syntax.PRECIRCUMFIX) {
@@ -591,7 +624,7 @@ public class ScriptParser {
                 case Tokenizer.TT_EOF:
                     throw createException(tt, "Permutation: Unexpected EOF.");
                 case Tokenizer.TT_KEYWORD:
-                    Symbol sym = notation.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION);
+                    Symbol sym = this.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION);
                     if (sym == Symbol.PERMUTATION_END) {
                         break PermutationCycle;
                     } else if (sym == null) {
@@ -612,7 +645,7 @@ public class ScriptParser {
         }
         if (syntax != Syntax.POSTCIRCUMFIX) {
             // postcircumfix is read in parsePermutationItem.
-            permutation.setPermutationSign(sign);
+            permutation.setSign(sign);
         }
         permutation.setEndPosition(tt.getEndPosition());
         parent.add(permutation);
@@ -624,7 +657,7 @@ public class ScriptParser {
      */
     private Symbol parsePermutationSign(Tokenizer t) {
         if (t.nextToken() == Tokenizer.TT_KEYWORD) {
-            List<Symbol> symbols = notation.getSymbolsFor(t.getStringValue());
+            List<Symbol> symbols = this.getSymbolsFor(t.getStringValue());
             if (this.containsType(symbols, Symbol.PERMUTATION_PLUS)
                     || this.containsType(symbols, Symbol.PERMUTATION_PLUSPLUS)
                     || this.containsType(symbols, Symbol.PERMUTATION_MINUS)) {
@@ -651,21 +684,23 @@ public class ScriptParser {
         }
         // Evaluate PermFace [PermFace] [PermFace]
         List<Symbol> faceSymbols = new ArrayList<>(3);
-        int type = 0;
 
-        while (type < 3) {
+        while (faceSymbols.size() < 3) {
             if (t.nextToken() != Tokenizer.TT_KEYWORD) {
-                throw new ParseException("PermutationItem: Face token missing.", t.getStartPosition(), t.getEndPosition());
+                throw createException(t, "PermutationItem: Face token expected.");
             }
-            Symbol symbol = notation.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION_FACES);
-            if (symbol != null) {
+            Symbol symbol = this.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION);
+            if (symbol != null && isFaceSymbol(symbol)) {
                 partName = partName + t.getStringValue();
                 faceSymbols.add(symbol);
-                type++;
             } else {
                 t.pushBack();
                 break;
             }
+        }
+        int type = faceSymbols.size();
+        if (type == 0) {
+            throw createException(t, "PermutationItem: Face expected.");
         }
 
         if (notation.getLayerCount() < 3 && type < 3) {
@@ -759,6 +794,20 @@ public class ScriptParser {
         return parent;
     }
 
+    private boolean isFaceSymbol(Symbol symbol) {
+        switch (symbol) {
+            case PERMUTATION_FACE_R:
+            case PERMUTATION_FACE_U:
+            case PERMUTATION_FACE_F:
+            case PEMRUTATION_FACE_L:
+            case PERMUTATION_FACE_D:
+            case PERMUTATION_FACE_B:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     /**
      * Returns the first intersecting symbol of symbols with types.
      *
@@ -805,6 +854,9 @@ public class ScriptParser {
 
         for (String token : notation.getTokens()) {
             tt.addKeyword(token);
+        }
+        for (Map.Entry<String, MacroNode> e : localMacros.entrySet()) {
+            tt.addKeyword(e.getKey());
         }
 
         String mbegin = notation.getToken(Symbol.MULTILINE_COMMENT_BEGIN);

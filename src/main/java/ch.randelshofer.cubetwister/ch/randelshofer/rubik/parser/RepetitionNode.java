@@ -35,7 +35,7 @@ public class RepetitionNode extends Node {
     }
 
     public RepetitionNode(int startpos, int endpos) {
-        super(Symbol.REPETITION, startpos, endpos);
+        super(startpos, endpos);
     }
 
     public void setRepeatCount(int r) {

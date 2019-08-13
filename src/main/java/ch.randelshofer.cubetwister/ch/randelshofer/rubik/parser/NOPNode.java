@@ -32,7 +32,7 @@ public class NOPNode extends Node {
      * Creates a new instance.
      */
     public NOPNode(int startpos, int endpos) {
-        super(Symbol.NOP, startpos, endpos);
+        super(startpos, endpos);
         setAllowsChildren(false);
     }
 

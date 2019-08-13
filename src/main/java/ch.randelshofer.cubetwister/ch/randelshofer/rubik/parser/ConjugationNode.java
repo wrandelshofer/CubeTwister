@@ -15,7 +15,6 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Vector;
 
 /**
@@ -33,31 +32,18 @@ public class ConjugationNode extends Node {
     }
 
     public ConjugationNode(int startpos, int endpos) {
-        super(Symbol.CONJUGATION, startpos, endpos);
+        super(startpos, endpos);
         conjugator = new ScriptNode();
         conjugator.setParent(this);
     }
 
     public ConjugationNode(Node conjugator, Node conjugate, int startpos, int endpos) {
-        super(Symbol.CONJUGATION, startpos, endpos);
+        super(startpos, endpos);
         conjugator.removeFromParent();
         conjugator.setParent(this);
         this.conjugator = conjugator;
         if (conjugate != null) {
             add(conjugate);
-        }
-    }
-
-    /**
-     * Overwrite start and end positions of this node and
-     * the subtree starting at this node.
-     */
-    public void overwritePositions(int sp, int ep) {
-        super.overwritePositions(sp, ep);
-        if (conjugator != null) {
-            for (Node child : conjugator.getChildren()) {
-                child.overwritePositions(sp, ep);
-            }
         }
     }
 

@@ -327,23 +327,6 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public Symbol getSymbolFor(String token, Symbol compositeSymbol) {
-        if (compositeSymbol == Symbol.MOVE) {
-            return (tokenToMoveMap.containsKey(token)) ? Symbol.MOVE : null;
-        } else {
-            ArrayList<Symbol> symbols = tokenToSymbolsMap.get(token);
-            if (symbols != null) {
-                for (Symbol symbol : symbols) {
-                    if (compositeSymbol.isSubSymbol(symbol)) {
-                        return symbol;
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    @Override
     public Syntax getSyntax(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
         return (info == null) ? null : info.syntax;
@@ -359,39 +342,6 @@ public class CubeMarkupNotation implements Notation {
     public boolean isSupported(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
         return info == null || info.isSupported;
-    }
-
-    @Override
-    public boolean isToken(String token) {
-        return tokenToMoveMap != null && tokenToMoveMap.containsKey(token)
-                || tokenToSymbolsMap != null && tokenToSymbolsMap.containsKey(token);
-    }
-
-    /**
-     * Returns true, if the specified String is a token for the specified symbol.
-     */
-    @Override
-    public boolean isTokenFor(String token, Symbol symbol) {
-        boolean result;
-        if (symbol == Symbol.MOVE) {
-            result = tokenToMoveMap.containsKey(token);
-        } else {
-            ArrayList<Symbol> symbols = tokenToSymbolsMap.get(token);
-            if (symbols == null) {
-                result = false;
-            } else {
-                result = symbols.contains(symbol);
-                if (!result) {
-                    for (Symbol ss : symbols) {
-                        if (symbol.isSubSymbol(ss)) {
-                            result = true;
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        return result;
     }
 
     @Override
@@ -412,7 +362,7 @@ public class CubeMarkupNotation implements Notation {
     public void dumpNotation() {
         System.out.println("name:" + name);
         System.out.println("description:" + name);
-        Set<Symbol> ss = Symbol.SEQUENCE.getSubSymbols();
+        Set<Symbol> ss = Symbol.SCRIPT.getSubSymbols();
         int i=0;
         for (Symbol s:ss) {
             if (i != 0) {

@@ -119,11 +119,6 @@ public class DefaultNotation extends AbstractNotation {
         putSyntax(Symbol.MOVE,Syntax.PRIMARY);
         putSyntax(Symbol.NOP,Syntax.PRIMARY);
 
-        // FIXME should not have to put those
-        putSyntax(Symbol.STATEMENT,Syntax.PRIMARY);
-        putSyntax(Symbol.PERMUTATION_SIGN, Syntax.PRECIRCUMFIX);
-        putSyntax(Symbol.PERMUTATION_ITEM,Syntax.PRECIRCUMFIX);
-        putSyntax(Symbol.PERMUTATION_FACES,Syntax.PRECIRCUMFIX);
     }
 
     /** Putlic for testing. */

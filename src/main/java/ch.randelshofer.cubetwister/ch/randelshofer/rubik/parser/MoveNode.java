@@ -46,7 +46,7 @@ public class MoveNode extends Node {
      * Creates new MoveNode
      */
     public MoveNode(int layerCount, int axis, int layerMask, int angle, int startpos, int endpos) {
-        super(Symbol.MOVE, startpos, endpos);
+        super(startpos, endpos);
         this.axis = axis;
         this.layerMask = layerMask;
         this.angle = angle;

@@ -368,36 +368,6 @@ public class NotationModel extends InfoModel implements Notation {
     }
 
     /**
-     * Returns true, if the specified String is a token of this notation.
-     */
-    public boolean isToken(String token) {
-        return getTokenToSymbolMap().containsKey(token) ||
-                getTokenToTwistMap().containsKey(token);
-    }
-
-    /**
-     * Returns true, if the specified String is a token for the specified symbol.
-     */
-    public boolean isTokenFor(String token, Symbol symbol) {
-        HashSet<Symbol> symbols = getTokenToSymbolMap().get(token);
-        boolean result;
-        if (symbols == null) {
-            result = false;
-        } else {
-            result = symbols.contains(symbol);
-            if (!result) {
-                for (Symbol ss : symbols) {
-                    if (symbol.isSubSymbol(ss)) {
-                        result = true;
-                        break;
-                    }
-                }
-            }
-        }
-        return result;
-    }
-
-    /**
      * Returns a token for the specified symbol.
      * If the symbol has more than one token, the first token is returned.
      *
@@ -417,25 +387,6 @@ public class NotationModel extends InfoModel implements Notation {
     public String getAllTokens(Symbol key) {
         String str = symbolToTokenMap.get(key);
         return str;
-    }
-
-    /**
-     * Returns a symbol for the specified token.
-     * The compositeSymbol must be specified do disambiguate tokens.
-     * If the compositeSymbol is null, then the token must be unambiguous.
-     *
-     * Returns null, if the token is not a token for the specified compositeSymbol.
-     */
-    public Symbol getSymbolFor(String token, Symbol compositeSymbol) {
-        HashSet<Symbol> symbols = getTokenToSymbolMap().get(token);
-        if (symbols != null) {
-            for (Symbol s : symbols) {
-                if (compositeSymbol.isSubSymbol(s)) {
-                    return s;
-                }
-            }
-        }
-        return null;
     }
 
     @Override

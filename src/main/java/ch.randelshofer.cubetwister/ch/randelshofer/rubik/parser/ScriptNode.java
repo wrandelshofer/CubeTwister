@@ -4,7 +4,6 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.notation.Move;
-import ch.randelshofer.rubik.notation.Symbol;
 
 /**
  * A SequenceNode holds a sequence of statements as its children A.
@@ -29,7 +28,7 @@ public class ScriptNode extends Node {
      * @param endpos The end position of the symbol.
      */
     public ScriptNode(int startpos, int endpos) {
-        super(Symbol.SEQUENCE, startpos, endpos);
+        super(startpos, endpos);
         setAllowsChildren(true);
     }
     /**

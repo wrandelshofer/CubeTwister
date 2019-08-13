@@ -37,7 +37,7 @@ public class Tokenizer implements Cloneable {
      */
     private final Map<Character, Integer> lookup = new HashMap<>();
 
-    private CharSequence input = "";
+    private String input = "";
 
     private int pos = 0;
     private boolean pushedBack = false;
@@ -140,7 +140,7 @@ public class Tokenizer implements Cloneable {
      *
      * @param input the input String;
      */
-    public void setInput(CharSequence input) {
+    public void setInput(String input) {
         this.input = input;
         this.pos = 0;
         this.pushedBack = false;
@@ -201,7 +201,8 @@ public class Tokenizer implements Cloneable {
      * @return [Object] ttype
      */
     public int nextToken() {
-        loop: while(true) {
+        loop:
+        while (true) {
             if (this.pushedBack) {
                 this.pushedBack = false;
                 return this.ttype;
@@ -298,21 +299,9 @@ public class Tokenizer implements Cloneable {
         }
     }
 
-    private void seekTo(String value) {
-        if (value.length()==0||value.length()>input.length()-pos) {
-            pos = input.length();
-            return;
-        }
-
-        int vpos = 0;
-        for (int ch = read(); ch != TT_EOF; ch = read()) {
-            if (ch == value.charAt(vpos)) {
-                vpos++;
-                if (vpos==value.length()) return;
-            } else {
-                vpos = 0;
-            }
-        }
+    private void seekTo(String str) {
+        int i = this.input.indexOf(str, this.pos);
+        pos = (i == -1) ? this.input.length() : i + str.length();
     }
 
     /**
@@ -346,7 +335,6 @@ public class Tokenizer implements Cloneable {
 
     public void setTo(Tokenizer that) {
         this.input = that.input;
-
         this.pos = that.pos;
         this.pushedBack = that.pushedBack;
         this.ttype = that.ttype;
@@ -355,7 +343,6 @@ public class Tokenizer implements Cloneable {
         this.sval = that.sval;
         this.nval = that.nval;
         this.keywordTree = that.keywordTree;
-
     }
 }
 

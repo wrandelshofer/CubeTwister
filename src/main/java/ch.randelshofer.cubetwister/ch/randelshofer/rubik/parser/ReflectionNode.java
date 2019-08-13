@@ -25,7 +25,7 @@ public class ReflectionNode extends Node {
     }
     
     public ReflectionNode(int startpos, int endpos) {
-        super(Symbol.REFLECTION, startpos, endpos);
+        super(startpos, endpos);
     }
     /**
      * Applies the symbol represented by this node to the cube.

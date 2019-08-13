@@ -33,21 +33,37 @@ public class ScriptKeyboardHandler extends AbstractBean {
 
     public static String KEY_BUFFER_PROPERTY = "keyBuffer";
     public static String INVERSE_CASE_PROPERTY = "inverseCase";
-    /** The cube on which the parser acts. */
+    /**
+     * The cube on which the parser acts.
+     */
     private Cube cube;
-    /** Intermediate cube. */
+    /**
+     * Intermediate cube.
+     */
     private Cube tmpCube;
-    /** The keyboard buffer holds the contents of the keyboard. */
+    /**
+     * The keyboard buffer holds the contents of the keyboard.
+     */
     private StringBuilder keyBuffer = new StringBuilder();
-    /** The sequence buffer holds the parsed sequence so far. */
+    /**
+     * The sequence buffer holds the parsed sequence so far.
+     */
     private Node currentSeq = null;
-    /** This parser is used to decode the contents of the keyboard buffer. */
+    /**
+     * This parser is used to decode the contents of the keyboard buffer.
+     */
     private ScriptParser parser;
-    /** The time when the buffer will cleared. */
+    /**
+     * The time when the buffer will cleared.
+     */
     private long bestBefore;
-    /** The time to live for contents in the buffer. */
+    /**
+     * The time to live for contents in the buffer.
+     */
     private static final long BUFFER_TTL = 2000;
-    /** Whether the case of characters is inverted. */
+    /**
+     * Whether the case of characters is inverted.
+     */
     private boolean isInvertingCase = true;
     private Handler handler = new Handler();
     private Cube3DCanvas canvas;
@@ -153,8 +169,8 @@ public class ScriptKeyboardHandler extends AbstractBean {
     }
 
     public ScriptKeyboardHandler() {
-timer= new Timer((int) BUFFER_TTL, handler);
-timer.setRepeats(false);
+        timer = new Timer((int) BUFFER_TTL, handler);
+        timer.setRepeats(false);
     }
 
     public ScriptParser getParser() {
@@ -174,7 +190,9 @@ timer.setRepeats(false);
         this.cube = cube;
     }
 
-    /** Sets the canvas on which this keyboard parser acts. */
+    /**
+     * Sets the canvas on which this keyboard parser acts.
+     */
     public void setCanvas(Cube3DCanvas c) {
         if (canvas != null) {
             removeFrom(canvas.getVisualComponent());
@@ -202,7 +220,9 @@ timer.setRepeats(false);
         c.removeMouseListener(handler);
     }
 
-    /** Clears the key buffer. */
+    /**
+     * Clears the key buffer.
+     */
     public void clearBuffer() {
         String oldValue = keyBuffer.toString();
         keyBuffer.setLength(0);
@@ -218,7 +238,9 @@ timer.setRepeats(false);
         firePropertyChange(KEY_BUFFER_PROPERTY, oldValue, keyBuffer.toString());
     }
 
-    /** Parses the key buffer. */
+    /**
+     * Parses the key buffer.
+     */
     private void parse(char ch) {
         String oldValue = keyBuffer.toString();
 
@@ -229,7 +251,7 @@ timer.setRepeats(false);
             currentSeq = null;
         }
         bestBefore = now + BUFFER_TTL;
-timer.restart();
+        timer.restart();
         if (isInvertingCase) {
             if (Character.isUpperCase(ch)) {
                 ch = Character.toLowerCase(ch);

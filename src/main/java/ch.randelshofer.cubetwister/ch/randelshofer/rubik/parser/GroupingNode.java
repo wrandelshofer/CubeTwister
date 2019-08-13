@@ -23,7 +23,7 @@ public class GroupingNode extends Node {
         this(-1,-1);
     }
     public GroupingNode(int startpos, int endpos) {
-        super(Symbol.GROUPING, startpos, endpos);
+        super(startpos, endpos);
     }
     
     @Override

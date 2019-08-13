@@ -5,7 +5,6 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
 import ch.randelshofer.rubik.notation.Notation;
-import ch.randelshofer.rubik.notation.Symbol;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.IOException;
@@ -38,7 +37,7 @@ public class MacroNode extends Node {
         this(identifier,script,-1,-1);
     }
     public MacroNode(String identifier, String script, int startpos, int endpos) {
-        super(Symbol.MACRO, startpos, endpos);
+        super(startpos, endpos);
         this.identifier = identifier;
         this.script = script;
         setAllowsChildren(true);
@@ -79,12 +78,16 @@ public class MacroNode extends Node {
         }
         
         // Expand the macro
+        removeAllChildren();
+        add(parser.parse(script));
+
+        // Overwrite start and end positions of children
         int sp = getStartPosition();
         int ep = getEndPosition();
-        add(parser.parse(script));
-        
-        // Overwrite start and end positions
-        overwritePositions(sp, ep);
+        for (Node node : preorderIterable()) {
+            node.setStartPosition(sp);
+            node.setEndPosition(ep);
+        }
     }
     
     @Override

@@ -27,7 +27,7 @@ public class InversionNode extends Node {
     }
 
     public InversionNode(int startpos, int endpos) {
-        super(Symbol.INVERSION, startpos, endpos);
+        super(startpos, endpos);
     }
 
     /**

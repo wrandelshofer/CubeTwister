@@ -36,11 +36,9 @@ public enum Symbol {
     DELIMITER("delimiter", "statementDelimiter"),
     INVERSION_BEGIN("inversionBegin"),
     INVERSION_END("inversionEnd"),
-    INVERSION_DELIMITER("inversionDelim"),
     INVERSION_OPERATOR("invertor"),
     REFLECTION_BEGIN("reflectionBegin"),
     REFLECTION_END("reflectionEnd"),
-    REFLECTION_DELIMITER("reflectionDelim"),
     REFLECTION_OPERATOR("reflector"),
     GROUPING_BEGIN("groupingBegin", "sequenceBegin"),
     GROUPING_END("groupingEnd", "sequenceEnd"),
@@ -72,11 +70,13 @@ public enum Symbol {
             COMMUTATION_BEGIN,
             COMMUTATION_END,
             COMMUTATION_DELIMITER,
+            COMMUTATION_OPERATOR
     }),
     CONJUGATION("conjugation", new Symbol[]{
             CONJUGATION_BEGIN,
             CONJUGATION_END,
             CONJUGATION_DELIMITER,
+            CONJUGATION_OPERATOR
     }),
     GROUPING("grouping", new Symbol[]{
             GROUPING_BEGIN,
@@ -85,10 +85,8 @@ public enum Symbol {
     INVERSION("inversion", new Symbol[]{
             INVERSION_BEGIN,
             INVERSION_END,
-            INVERSION_DELIMITER,
             INVERSION_OPERATOR,
     }),
-    PERMUTATION_ITEM("permutationItem"),
     PERMUTATION("permutation", new Symbol[]{
             PERMUTATION_FACE_R,
             PERMUTATION_FACE_U,
@@ -104,24 +102,9 @@ public enum Symbol {
             PERMUTATION_DELIMITER,
     }),
 
-    PERMUTATION_FACES("permutationFaces", new Symbol[]{
-            PERMUTATION_FACE_R,
-            PERMUTATION_FACE_U,
-            PERMUTATION_FACE_F,
-            PEMRUTATION_FACE_L,
-            PERMUTATION_FACE_D,
-            PERMUTATION_FACE_B
-    }),
-
-    PERMUTATION_SIGN("permutationSign", new Symbol[]{
-            PERMUTATION_PLUS,
-            PERMUTATION_MINUS,
-            PERMUTATION_PLUSPLUS,
-    }),
     REFLECTION("reflection", new Symbol[]{
             REFLECTION_BEGIN,
             REFLECTION_END,
-            REFLECTION_DELIMITER,
             REFLECTION_OPERATOR,
     }),
     REPETITION("repetition", new Symbol[]{
@@ -140,9 +123,13 @@ public enum Symbol {
             MULTILINE_COMMENT_END,
             SINGLELINE_COMMENT_BEGIN,
     }),
-    STATEMENT("statement", new Symbol[]{
+    PRIMARY("primary", new Symbol[]{
             NOP,
             MOVE,
+            MACRO
+    }),
+    STATEMENT("statement", new Symbol[]{
+            PRIMARY,
             GROUPING,
             INVERSION,
             REFLECTION,
@@ -153,7 +140,7 @@ public enum Symbol {
             DELIMITER,
             REPETITION,
     }),
-    SEQUENCE("sequence", new Symbol[]{
+    SCRIPT("script", new Symbol[]{
             STATEMENT,
             COMMENT
     });

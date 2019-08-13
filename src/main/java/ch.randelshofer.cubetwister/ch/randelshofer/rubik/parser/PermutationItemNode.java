@@ -1,7 +1,5 @@
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.notation.Symbol;
-
 public class PermutationItemNode extends Node {
     enum PartType {
         SIDE,
@@ -10,7 +8,7 @@ public class PermutationItemNode extends Node {
     }
 
     public PermutationItemNode() {
-        super(Symbol.PERMUTATION_ITEM);
+        super();
     }
 
 
