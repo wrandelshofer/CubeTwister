@@ -247,17 +247,5 @@ public class MoveNode extends Node {
         w.write(token);
     }
 
-    @Override
-    public int hashCode() {
-        return angle << 6 | layerMask << 2 | axis;
-    }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o instanceof MoveNode) {
-            MoveNode that = (MoveNode) o;
-            return this.layerMask == that.layerMask && this.angle == that.angle && this.axis == that.axis;
-        }
-        return false;
-    }
 }

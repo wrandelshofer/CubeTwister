@@ -561,7 +561,7 @@ public class RubiksCube extends AbstractCube {
      *               2=180 degrees
      */
     @Override
-    public void transform0(int axis, int layerMask, int angle) {
+    protected void transform0(int axis, int layerMask, int angle) {
         if (DEBUG) {
             System.out.println("RubiksCube#" + System.identityHashCode(this) + ".transform(ax=" + axis + ",msk=" + layerMask + ",ang:" + angle + ")");
         }
