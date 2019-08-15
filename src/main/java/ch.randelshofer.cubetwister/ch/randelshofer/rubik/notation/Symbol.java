@@ -244,8 +244,8 @@ public enum Symbol {
         return compositeSymbolMap;
     }
 
-    public boolean isBegin() {
-        switch (this) {
+    static public boolean isBegin(Symbol s) {
+        switch (s) {
             case CONJUGATION_BEGIN:
             case COMMUTATION_BEGIN:
             case ROTATION_BEGIN:
@@ -261,8 +261,8 @@ public enum Symbol {
         }
     }
 
-    public boolean isOperator() {
-        switch (this) {
+    static public boolean isOperator(Symbol s) {
+        switch (s) {
             case CONJUGATION_OPERATOR:
             case COMMUTATION_OPERATOR:
             case ROTATION_OPERATOR:
@@ -275,8 +275,8 @@ public enum Symbol {
         }
     }
 
-    public boolean isDelimiter() {
-        switch (this) {
+    static public boolean isDelimiter(Symbol s) {
+        switch (s) {
             case ROTATION_DELIMITER:
             case CONJUGATION_DELIMITER:
             case COMMUTATION_DELIMITER:
@@ -286,8 +286,8 @@ public enum Symbol {
         }
     }
 
-    public boolean isEnd() {
-        switch (this) {
+    static public boolean isEnd(Symbol s) {
+        switch (s) {
             case CONJUGATION_END:
             case COMMUTATION_END:
             case PERMUTATION_END:
@@ -302,8 +302,8 @@ public enum Symbol {
         }
     }
 
-    public boolean isFaceSymbol() {
-        switch (this) {
+    static public boolean isFaceSymbol(Symbol s) {
+        switch (s) {
             case PERMUTATION_FACE_R:
             case PERMUTATION_FACE_U:
             case PERMUTATION_FACE_F:
@@ -315,8 +315,9 @@ public enum Symbol {
                 return false;
         }
     }
-    public boolean isPermuationSign() {
-        switch (this) {
+
+    static public boolean isPermutationSign(Symbol s) {
+        switch (s) {
             case PERMUTATION_PLUS:
             case PERMUTATION_PLUSPLUS:
             case PERMUTATION_MINUS:

@@ -1,8 +1,21 @@
 package ch.randelshofer.rubik.parser;
 
-public class BinaryNode extends Node {
+import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.Symbol;
+import ch.randelshofer.rubik.notation.Syntax;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.Map;
+
+/**
+ * A binary node must have two children.
+ * The first child is the first operand,
+ * the second child is the second operand of the binary node.
+ */
+public abstract class BinaryNode extends Node {
     private final static long serialVersionUID = 1L;
-    protected Node operand1;
 
     public BinaryNode() {
     }
@@ -11,11 +24,82 @@ public class BinaryNode extends Node {
         super(startpos, endpos);
     }
 
-    public Node getOperand1() {
-        return operand1;
+    protected abstract Symbol getSymbol();
+
+    @Override
+    public void writeTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
+            throws IOException {
+        if (getChildCount() != 2) {
+            return;
+        }
+        final Node operand1 = getChildAt(0);
+        final Node operand2 = getChildAt(1);
+
+        Syntax pos = (p.isSupported(Symbol.GROUPING)) ? p.getSyntax(getSymbol()) : null;
+        if (pos == null) {
+            // Write the commutation as (A B A' B').
+            if (p.isSupported(Symbol.GROUPING)) {
+                p.writeToken(w, Symbol.GROUPING_BEGIN);
+            }
+            operand1.writeTokens(w, p, macroMap);
+            w.write(' ');
+            p.writeToken(w, Symbol.NOP);
+            w.write(' ');
+            operand2.writeTokens(w, p, macroMap);
+            w.write(' ');
+            p.writeToken(w, Symbol.NOP);
+            w.write(' ');
+            Node inv = operand1.cloneSubtree();
+            inv.inverse();
+            inv.writeTokens(w, p, macroMap);
+            w.write(' ');
+            p.writeToken(w, Symbol.NOP);
+            w.write(' ');
+            inv = new SequenceNode();
+            Iterator<Node> enumer = getChildren().iterator();
+            while (enumer.hasNext()) {
+                //inv.add((Node) enumer.nextElement());
+                inv.add(enumer.next().cloneSubtree());
+            }
+            inv.inverse();
+            inv.writeTokens(w, p, macroMap);
+            if (p.isSupported(Symbol.GROUPING)) {
+                p.writeToken(w, Symbol.GROUPING_END);
+            }
+        } else if (pos == Syntax.PREFIX) {
+            if (operand1.getChildCount() != 0) {
+                p.writeToken(w, Symbol.COMMUTATION_BEGIN);
+                operand1.writeTokens(w, p, macroMap);
+                p.writeToken(w, Symbol.COMMUTATION_END);
+            }
+            if (getChildCount() == 1) {
+                operand2.writeTokens(w, p, macroMap);
+            } else {
+                p.writeToken(w, Symbol.GROUPING_BEGIN);
+            }
+            operand2.writeTokens(w, p, macroMap);
+            p.writeToken(w, Symbol.GROUPING_END);
+
+        } else if (pos == Syntax.SUFFIX) {
+            if (getChildCount() == 1) {
+                operand2.writeTokens(w, p, macroMap);
+            } else {
+                p.writeToken(w, Symbol.GROUPING_BEGIN);
+                operand2.writeTokens(w, p, macroMap);
+                p.writeToken(w, Symbol.GROUPING_END);
+            }
+            if (operand1.getChildCount() != 0) {
+                p.writeToken(w, Symbol.COMMUTATION_BEGIN);
+                operand1.writeTokens(w, p, macroMap);
+                p.writeToken(w, Symbol.COMMUTATION_END);
+            }
+        } else if (pos == Syntax.PRECIRCUMFIX) {
+            p.writeToken(w, Symbol.COMMUTATION_BEGIN);
+            operand1.writeTokens(w, p, macroMap);
+            p.writeToken(w, Symbol.COMMUTATION_DELIMITER);
+            operand2.writeTokens(w, p, macroMap);
+            p.writeToken(w, Symbol.COMMUTATION_END);
+        }
     }
 
-    public void setOperand1(Node newValue) {
-        operand1 = newValue;
-    }
 }

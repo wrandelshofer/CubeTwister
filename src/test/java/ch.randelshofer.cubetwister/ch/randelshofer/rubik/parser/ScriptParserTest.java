@@ -158,14 +158,14 @@ class ScriptParserTest {
         return Arrays.asList(
                 dynamicTest("No precedence: 3 * R", () -> doParse(mixedA, "3 * R", "0..5 Sequence{ 0..5 Repetition{ 3, 4..5 Move{ 0:4:1 } } }")),
                 dynamicTest("No precedence: 3 * «R»", () -> doParse(mixedA, "3 * «R»", "0..7 Sequence{ 0..7 Repetition{ 3, 4..7 Reflection{ 5..6 Move{ 0:4:1 } } } }")),
-                dynamicTest("No precedence: 3 * R rot CU", () -> doParse(mixedA, "3 * R rot CU", "0..12 Sequence{ 0..12 Rotation{ 6..12 Sequence{ 10..12 Move{ 1:7:1 } }, 0..5 Repetition{ 3, 4..5 Move{ 0:4:1 } } } }")),
-                dynamicTest("No precedence: 4 * 3 * R rot CU", () -> doParse(mixedA, "4 * 3 * R rot CU", "0..16 Sequence{ 0..16 Rotation{ 10..16 Sequence{ 14..16 Move{ 1:7:1 } }, 0..9 Repetition{ 4, 4..9 Repetition{ 3, 8..9 Move{ 0:4:1 } } } } }")),
-                dynamicTest("Suffix precedes Prefix: <CU>R'", () -> doParse(mixedA, "<CU>R'", "0..6 Sequence{ 0..6 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..6 Inversion{ 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("No precedence: 3 * R rot CU", () -> doParse(mixedA, "3 * R rot CU", "0..12 Sequence{ 0..12 Rotation{ 10..12 Move{ 1:7:1 } 0..5 Repetition{ 3, 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("No precedence: 4 * 3 * R rot CU", () -> doParse(mixedA, "4 * 3 * R rot CU", "0..16 Sequence{ 0..16 Rotation{ 14..16 Move{ 1:7:1 } 0..9 Repetition{ 4, 4..9 Repetition{ 3, 8..9 Move{ 0:4:1 } } } } }")),
+                dynamicTest("Suffix precedes Prefix: <CU>R'", () -> doParse(mixedA, "<CU>R'", "0..6 Sequence{ 0..6 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..6 Inversion{ 4..5 Move{ 0:4:1 } } } }")),
                 dynamicTest("Suffix precedes Preinfix: 3 * R'", () -> doParse(mixedA, "3 * R'", "0..6 Sequence{ 0..6 Repetition{ 3, 4..6 Inversion{ 4..5 Move{ 0:4:1 } } } }")),
-                dynamicTest("Prefix precedes Preinfix: 3 * <CU>R", () -> doParse(mixedA, "3 * <CU>R", "0..9 Sequence{ 0..9 Repetition{ 3, 4..9 Conjugation{ 5..7 Sequence{ 5..7 Move{ 1:7:1 } }, 8..9 Move{ 0:4:1 } } } }")),
-                dynamicTest("No precedence: 3 * R rot CU", () -> doParse(mixedA, "3 * R rot CU", "0..12 Sequence{ 0..12 Rotation{ 6..12 Sequence{ 10..12 Move{ 1:7:1 } }, 0..5 Repetition{ 3, 4..5 Move{ 0:4:1 } } } }")),
-                dynamicTest("No precedence: 3 * CU comm R", () -> doParse(mixedA, "3 * CU comm R", "0..13 Sequence{ 0..13 Commutation{ 0..6 Sequence{ 0..6 Repetition{ 3, 4..6 Move{ 1:7:1 } } }, 12..13 Move{ 0:4:1 } } }")),
-                dynamicTest("Explicit precedence: (3 * CU) comm R", () -> doParse(mixedA, "(3 * CU) comm R", "0..15 Sequence{ 0..15 Commutation{ 0..8 Sequence{ 0..8 Grouping{ 1..7 Repetition{ 3, 5..7 Move{ 1:7:1 } } } }, 14..15 Move{ 0:4:1 } } }"))
+                dynamicTest("Prefix precedes Preinfix: 3 * <CU>R", () -> doParse(mixedA, "3 * <CU>R", "0..9 Sequence{ 0..9 Repetition{ 3, 4..9 Conjugation{ 5..7 Sequence{ 5..7 Move{ 1:7:1 } } 8..9 Move{ 0:4:1 } } } }")),
+                dynamicTest("No precedence: 3 * R rot CU", () -> doParse(mixedA, "3 * R rot CU", "0..12 Sequence{ 0..12 Rotation{ 10..12 Move{ 1:7:1 } 0..5 Repetition{ 3, 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("No precedence: 3 * CU comm R", () -> doParse(mixedA, "3 * CU comm R", "0..13 Sequence{ 0..13 Commutation{ 0..6 Repetition{ 3, 4..6 Move{ 1:7:1 } } 12..13 Move{ 0:4:1 } } }")),
+                dynamicTest("Explicit precedence: (3 * CU) comm R", () -> doParse(mixedA, "(3 * CU) comm R", "0..15 Sequence{ 0..15 Commutation{ 0..8 Grouping{ 1..7 Repetition{ 3, 5..7 Move{ 1:7:1 } } } 14..15 Move{ 0:4:1 } } }"))
         );
     }
 
@@ -183,16 +183,16 @@ class ScriptParserTest {
         return Arrays.asList(
                 dynamicTest("No precedence: R 3", () -> doParse(mixedB, "R 3", "0..3 Sequence{ 0..3 Repetition{ 3, 0..1 Move{ 0:4:1 } } }")),
                 dynamicTest("No precedence: «R» 3", () -> doParse(mixedB, "«R» 3", "0..5 Sequence{ 0..5 Repetition{ 3, 0..3 Reflection{ 1..2 Move{ 0:4:1 } } } }")),
-                dynamicTest("Suffix precedes Postinfix: R rot CU 3", () -> doParse(mixedB, "R rot CU 3", "0..10 Sequence{ 0..10 Rotation{ 2..10 Sequence{ 6..10 Repetition{ 3, 6..8 Move{ 1:7:1 } } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("Suffix precedes Postinfix: R rot CU 3 4", () -> doParse(mixedB, "R rot CU 3 4", "0..12 Sequence{ 0..12 Rotation{ 2..12 Sequence{ 6..12 Repetition{ 4, 6..10 Repetition{ 3, 6..8 Move{ 1:7:1 } } } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("Suffix precedes Prefix: <CU>R'", () -> doParse(mixedB, "<CU>R'", "0..6 Sequence{ 0..6 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..6 Inversion{ 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("Suffix precedes Postinfix: R rot CU 3", () -> doParse(mixedB, "R rot CU 3", "0..10 Sequence{ 0..10 Rotation{ 6..10 Repetition{ 3, 6..8 Move{ 1:7:1 } } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("Suffix precedes Postinfix: R rot CU 3 4", () -> doParse(mixedB, "R rot CU 3 4", "0..12 Sequence{ 0..12 Rotation{ 6..12 Repetition{ 4, 6..10 Repetition{ 3, 6..8 Move{ 1:7:1 } } } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("Suffix precedes Prefix: <CU>R'", () -> doParse(mixedB, "<CU>R'", "0..6 Sequence{ 0..6 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..6 Inversion{ 4..5 Move{ 0:4:1 } } } }")),
                 dynamicTest("No precedence: R' 3", () -> doParse(mixedB, "R' 3", "0..4 Sequence{ 0..4 Repetition{ 3, 0..2 Inversion{ 0..1 Move{ 0:4:1 } } } }")),
-                dynamicTest("Suffix precedes Prefix: <CU>R 3", () -> doParse(mixedB, "<CU>R 3", "0..7 Sequence{ 0..7 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..7 Repetition{ 3, 4..5 Move{ 0:4:1 } } } }")),
-                dynamicTest("No precedence: R rot CU 3", () -> doParse(mixedB, "R rot CU 3", "0..10 Sequence{ 0..10 Rotation{ 2..10 Sequence{ 6..10 Repetition{ 3, 6..8 Move{ 1:7:1 } } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("Suffix precedes Preinfix: CU comm R 3", () -> doParse(mixedB, "CU comm R 3", "0..11 Sequence{ 0..11 Commutation{ 0..2 Sequence{ 0..2 Move{ 1:7:1 } }, 8..11 Repetition{ 3, 8..9 Move{ 0:4:1 } } } }")),
-                dynamicTest("No precedence: CU 3 comm R", () -> doParse(mixedB, "CU 3 comm R", "0..11 Sequence{ 0..11 Commutation{ 0..4 Sequence{ 0..4 Repetition{ 3, 0..2 Move{ 1:7:1 } } }, 10..11 Move{ 0:4:1 } } }")),
-                dynamicTest("Explicit precedence: (CU 3) comm R", () -> doParse(mixedB, "(CU 3) comm R", "0..13 Sequence{ 0..13 Commutation{ 0..6 Sequence{ 0..6 Grouping{ 1..5 Repetition{ 3, 1..3 Move{ 1:7:1 } } } }, 12..13 Move{ 0:4:1 } } }")),
-                dynamicTest("Explicit precedence: CU comm (R 3)", () -> doParse(mixedB, "CU comm (R 3)", "0..13 Sequence{ 0..13 Commutation{ 0..2 Sequence{ 0..2 Move{ 1:7:1 } }, 8..13 Grouping{ 9..12 Repetition{ 3, 9..10 Move{ 0:4:1 } } } } }"))
+                dynamicTest("Suffix precedes Prefix: <CU>R 3", () -> doParse(mixedB, "<CU>R 3", "0..7 Sequence{ 0..7 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..7 Repetition{ 3, 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("No precedence: R rot CU 3", () -> doParse(mixedB, "R rot CU 3", "0..10 Sequence{ 0..10 Rotation{ 6..10 Repetition{ 3, 6..8 Move{ 1:7:1 } } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("Suffix precedes Preinfix: CU comm R 3", () -> doParse(mixedB, "CU comm R 3", "0..11 Sequence{ 0..11 Commutation{ 0..2 Move{ 1:7:1 } 8..11 Repetition{ 3, 8..9 Move{ 0:4:1 } } } }")),
+                dynamicTest("No precedence: CU 3 comm R", () -> doParse(mixedB, "CU 3 comm R", "0..11 Sequence{ 0..11 Commutation{ 0..4 Repetition{ 3, 0..2 Move{ 1:7:1 } } 10..11 Move{ 0:4:1 } } }")),
+                dynamicTest("Explicit precedence: (CU 3) comm R", () -> doParse(mixedB, "(CU 3) comm R", "0..13 Sequence{ 0..13 Commutation{ 0..6 Grouping{ 1..5 Repetition{ 3, 1..3 Move{ 1:7:1 } } } 12..13 Move{ 0:4:1 } } }")),
+                dynamicTest("Explicit precedence: CU comm (R 3)", () -> doParse(mixedB, "CU comm (R 3)", "0..13 Sequence{ 0..13 Commutation{ 0..2 Move{ 1:7:1 } 8..13 Grouping{ 9..12 Repetition{ 3, 9..10 Move{ 0:4:1 } } } } }"))
         );
     }
 
@@ -304,15 +304,15 @@ class ScriptParserTest {
                 dynamicTest("(R F)'", () -> doParse(defaultN, "(R F)'", "0..6 Sequence{ 0..6 Inversion{ 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:4:1 } } } }")),
                 dynamicTest("(R- U F)- (R' U F)'", () -> doParse(defaultN, "(R- U F)- (R' U F)'",
                         "0..19 Sequence{ 0..9 Inversion{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } 10..19 Inversion{ 10..18 Grouping{ 11..13 Inversion{ 11..12 Move{ 0:4:1 } } 14..15 Move{ 1:4:1 } 16..17 Move{ 2:4:1 } } } }")),
-                dynamicTest("<CU>R", () -> doParse(defaultN, "<CU>R", "0..5 Sequence{ 0..5 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..5 Move{ 0:4:1 } } }")),
-                dynamicTest("<CU CF>(R)", () -> doParse(defaultN, "<CU CF>(R)", "0..10 Sequence{ 0..10 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..10 Grouping{ 8..9 Move{ 0:4:1 } } } }")),
-                dynamicTest("<CU CF>'(R)", () -> doParse(defaultN, "<CU CF>'(R)", "0..11 Sequence{ 0..11 Rotation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 8..11 Grouping{ 9..10 Move{ 0:4:1 } } } }")),
-                dynamicTest("<CU CF>(R B)", () -> doParse(defaultN, "<CU CF>(R B)", "0..12 Sequence{ 0..12 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..12 Grouping{ 8..9 Move{ 0:4:1 } 10..11 Move{ 2:1:-1 } } } }")),
-                dynamicTest("<R>U", () -> doParse(defaultN, "<R>U", "0..4 Sequence{ 0..4 Conjugation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } }, 3..4 Move{ 1:4:1 } } }")),
-                dynamicTest("[CU,R]", () -> doParse(defaultN, "[CU,R]", "0..6 Sequence{ 0..6 Commutation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..5 Move{ 0:4:1 } } }")),
-                dynamicTest("[CU CF,R]", () -> doParse(defaultN, "[CU CF,R]", "0..9 Sequence{ 0..9 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..8 Move{ 0:4:1 } } }")),
-                dynamicTest("[CU CF,R B]", () -> doParse(defaultN, "[CU CF,R B]", "0..11 Sequence{ 0..11 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..8 Move{ 0:4:1 } 9..10 Move{ 2:1:-1 } } }")),
-                dynamicTest("[R,U]", () -> doParse(defaultN, "[R,U]", "0..5 Sequence{ 0..5 Commutation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } }, 3..4 Move{ 1:4:1 } } }")),
+                dynamicTest("<CU>R", () -> doParse(defaultN, "<CU>R", "0..5 Sequence{ 0..5 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..5 Move{ 0:4:1 } } }")),
+                dynamicTest("<CU CF>(R)", () -> doParse(defaultN, "<CU CF>(R)", "0..10 Sequence{ 0..10 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..10 Grouping{ 8..9 Move{ 0:4:1 } } } }")),
+                dynamicTest("<CU CF>'(R)", () -> doParse(defaultN, "<CU CF>'(R)", "0..11 Sequence{ 0..11 Rotation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 8..11 Grouping{ 9..10 Move{ 0:4:1 } } } }")),
+                dynamicTest("<CU CF>(R B)", () -> doParse(defaultN, "<CU CF>(R B)", "0..12 Sequence{ 0..12 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..12 Grouping{ 8..9 Move{ 0:4:1 } 10..11 Move{ 2:1:-1 } } } }")),
+                dynamicTest("<R>U", () -> doParse(defaultN, "<R>U", "0..4 Sequence{ 0..4 Conjugation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } } 3..4 Move{ 1:4:1 } } }")),
+                dynamicTest("[CU,R]", () -> doParse(defaultN, "[CU,R]", "0..6 Sequence{ 0..6 Commutation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..5 Sequence{ 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("[CU CF,R]", () -> doParse(defaultN, "[CU CF,R]", "0..9 Sequence{ 0..9 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..8 Sequence{ 7..8 Move{ 0:4:1 } } } }")),
+                dynamicTest("[CU CF,R B]", () -> doParse(defaultN, "[CU CF,R B]", "0..11 Sequence{ 0..11 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..10 Sequence{ 7..8 Move{ 0:4:1 } 9..10 Move{ 2:1:-1 } } } }")),
+                dynamicTest("[R,U]", () -> doParse(defaultN, "[R,U]", "0..5 Sequence{ 0..5 Commutation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } } 3..4 Sequence{ 3..4 Move{ 1:4:1 } } } }")),
                 dynamicTest("(R)*", () -> doParse(defaultN, "(R)*", "0..4 Sequence{ 0..4 Reflection{ 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
                 dynamicTest("(R' U F)*", () -> doParse(defaultN, "(R' U F)*", "0..9 Sequence{ 0..9 Reflection{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } }")),
                 dynamicTest("R . U · F", () -> doParse(defaultN, "R . U · F", "0..9 Sequence{ 0..1 Move{ 0:4:1 } 2..3 NOP{ } 4..5 Move{ 1:4:1 } 6..7 NOP{ } 8..9 Move{ 2:4:1 } }"))
@@ -332,14 +332,14 @@ class ScriptParserTest {
                 dynamicTest("'(R)", () -> doParse(prefixN, "'(R)", "0..4 Sequence{ 0..4 Inversion{ 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } }")),
                 dynamicTest("'(R F)", () -> doParse(prefixN, "'(R F)", "0..6 Sequence{ 0..6 Inversion{ 1..6 Grouping{ 2..3 Move{ 0:4:1 } 4..5 Move{ 2:4:1 } } } }")),
                 dynamicTest("-(-R U F) '('R U F)", () -> doParse(prefixN, "-(-R U F) '('R U F)", "0..19 Sequence{ 0..9 Inversion{ 1..9 Grouping{ 2..4 Inversion{ 3..4 Move{ 0:4:1 } } 5..6 Move{ 1:4:1 } 7..8 Move{ 2:4:1 } } } 10..19 Inversion{ 11..19 Grouping{ 12..14 Inversion{ 13..14 Move{ 0:4:1 } } 15..16 Move{ 1:4:1 } 17..18 Move{ 2:4:1 } } } }")),
-                dynamicTest("<CU>R", () -> doParse(prefixN, "<CU>R", "0..5 Sequence{ 0..5 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..5 Move{ 0:4:1 } } }")),
-                dynamicTest("<CU CF>(R)", () -> doParse(prefixN, "<CU CF>(R)", "0..10 Sequence{ 0..10 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..10 Grouping{ 8..9 Move{ 0:4:1 } } } }")),
-                dynamicTest("<CU CF>(R B)", () -> doParse(prefixN, "<CU CF>(R B)", "0..12 Sequence{ 0..12 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..12 Grouping{ 8..9 Move{ 0:4:1 } 10..11 Move{ 2:1:-1 } } } }")),
-                dynamicTest("<R>U", () -> doParse(prefixN, "<R>U", "0..4 Sequence{ 0..4 Conjugation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } }, 3..4 Move{ 1:4:1 } } }")),
-                dynamicTest("[CU]R", () -> doParse(prefixN, "[CU]R", "0..5 Sequence{ 0..5 Commutation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..5 Move{ 0:4:1 } } }")),
-                dynamicTest("[CU CF]R", () -> doParse(prefixN, "[CU CF]R", "0..8 Sequence{ 0..8 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..8 Move{ 0:4:1 } } }")),
-                dynamicTest("[CU CF](R B)", () -> doParse(prefixN, "[CU CF](R B)", "0..12 Sequence{ 0..12 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..12 Grouping{ 8..9 Move{ 0:4:1 } 10..11 Move{ 2:1:-1 } } } }")),
-                dynamicTest("[R]U", () -> doParse(prefixN, "[R]U", "0..4 Sequence{ 0..4 Commutation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } }, 3..4 Move{ 1:4:1 } } }")),
+                dynamicTest("<CU>R", () -> doParse(prefixN, "<CU>R", "0..5 Sequence{ 0..5 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..5 Move{ 0:4:1 } } }")),
+                dynamicTest("<CU CF>(R)", () -> doParse(prefixN, "<CU CF>(R)", "0..10 Sequence{ 0..10 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..10 Grouping{ 8..9 Move{ 0:4:1 } } } }")),
+                dynamicTest("<CU CF>(R B)", () -> doParse(prefixN, "<CU CF>(R B)", "0..12 Sequence{ 0..12 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..12 Grouping{ 8..9 Move{ 0:4:1 } 10..11 Move{ 2:1:-1 } } } }")),
+                dynamicTest("<R>U", () -> doParse(prefixN, "<R>U", "0..4 Sequence{ 0..4 Conjugation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } } 3..4 Move{ 1:4:1 } } }")),
+                dynamicTest("[CU]R", () -> doParse(prefixN, "[CU]R", "0..5 Sequence{ 0..5 Commutation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..5 Move{ 0:4:1 } } }")),
+                dynamicTest("[CU CF]R", () -> doParse(prefixN, "[CU CF]R", "0..8 Sequence{ 0..8 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..8 Move{ 0:4:1 } } }")),
+                dynamicTest("[CU CF](R B)", () -> doParse(prefixN, "[CU CF](R B)", "0..12 Sequence{ 0..12 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..12 Grouping{ 8..9 Move{ 0:4:1 } 10..11 Move{ 2:1:-1 } } } }")),
+                dynamicTest("[R]U", () -> doParse(prefixN, "[R]U", "0..4 Sequence{ 0..4 Commutation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } } 3..4 Move{ 1:4:1 } } }")),
                 dynamicTest("*(R)", () -> doParse(prefixN, "*(R)", "0..4 Sequence{ 0..4 Reflection{ 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } }")),
                 dynamicTest("*('R U F)", () -> doParse(prefixN, "*('R U F)", "0..9 Sequence{ 0..9 Reflection{ 1..9 Grouping{ 2..4 Inversion{ 3..4 Move{ 0:4:1 } } 5..6 Move{ 1:4:1 } 7..8 Move{ 2:4:1 } } } }"))
         );
@@ -358,14 +358,14 @@ class ScriptParserTest {
                 dynamicTest("'(R)", () -> doParse(precircumfixN, "'(R)", "0..4 Sequence{ 0..4 Inversion{ 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } }")),
                 dynamicTest("'(R F)", () -> doParse(precircumfixN, "'(R F)", "0..6 Sequence{ 0..6 Inversion{ 1..6 Grouping{ 2..3 Move{ 0:4:1 } 4..5 Move{ 2:4:1 } } } }")),
                 dynamicTest("-(-R U F) '('R U F)", () -> doParse(precircumfixN, "-(-R U F) '('R U F)", "0..19 Sequence{ 0..9 Inversion{ 1..9 Grouping{ 2..4 Inversion{ 3..4 Move{ 0:4:1 } } 5..6 Move{ 1:4:1 } 7..8 Move{ 2:4:1 } } } 10..19 Inversion{ 11..19 Grouping{ 12..14 Inversion{ 13..14 Move{ 0:4:1 } } 15..16 Move{ 1:4:1 } 17..18 Move{ 2:4:1 } } } }")),
-                dynamicTest("<CU,R>", () -> doParse(precircumfixN, "<CU,R>", "0..6 Sequence{ 0..6 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..5 Move{ 0:4:1 } } }")),
-                dynamicTest("<CU CF,R>", () -> doParse(precircumfixN, "<CU CF,R>", "0..9 Sequence{ 0..9 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..8 Move{ 0:4:1 } } }")),
-                dynamicTest("<CU CF,R B>", () -> doParse(precircumfixN, "<CU CF,R B>", "0..11 Sequence{ 0..11 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..8 Move{ 0:4:1 } 9..10 Move{ 2:1:-1 } } }")),
-                dynamicTest("<R,U>", () -> doParse(precircumfixN, "<R,U>", "0..5 Sequence{ 0..5 Conjugation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } }, 3..4 Move{ 1:4:1 } } }")),
-                dynamicTest("[CU,R]", () -> doParse(precircumfixN, "[CU,R]", "0..6 Sequence{ 0..6 Commutation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } }, 4..5 Move{ 0:4:1 } } }")),
-                dynamicTest("[CU CF,R]", () -> doParse(precircumfixN, "[CU CF,R]", "0..9 Sequence{ 0..9 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..8 Move{ 0:4:1 } } }")),
-                dynamicTest("[CU CF,R B]", () -> doParse(precircumfixN, "[CU CF,R B]", "0..11 Sequence{ 0..11 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } }, 7..8 Move{ 0:4:1 } 9..10 Move{ 2:1:-1 } } }")),
-                dynamicTest("[R,U]", () -> doParse(precircumfixN, "[R,U]", "0..5 Sequence{ 0..5 Commutation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } }, 3..4 Move{ 1:4:1 } } }")),
+                dynamicTest("<CU,R>", () -> doParse(precircumfixN, "<CU,R>", "0..6 Sequence{ 0..6 Conjugation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..5 Sequence{ 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("<CU CF,R>", () -> doParse(precircumfixN, "<CU CF,R>", "0..9 Sequence{ 0..9 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..8 Sequence{ 7..8 Move{ 0:4:1 } } } }")),
+                dynamicTest("<CU CF,R B>", () -> doParse(precircumfixN, "<CU CF,R B>", "0..11 Sequence{ 0..11 Conjugation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..10 Sequence{ 7..8 Move{ 0:4:1 } 9..10 Move{ 2:1:-1 } } } }")),
+                dynamicTest("<R,U>", () -> doParse(precircumfixN, "<R,U>", "0..5 Sequence{ 0..5 Conjugation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } } 3..4 Sequence{ 3..4 Move{ 1:4:1 } } } }")),
+                dynamicTest("[CU,R]", () -> doParse(precircumfixN, "[CU,R]", "0..6 Sequence{ 0..6 Commutation{ 1..3 Sequence{ 1..3 Move{ 1:7:1 } } 4..5 Sequence{ 4..5 Move{ 0:4:1 } } } }")),
+                dynamicTest("[CU CF,R]", () -> doParse(precircumfixN, "[CU CF,R]", "0..9 Sequence{ 0..9 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..8 Sequence{ 7..8 Move{ 0:4:1 } } } }")),
+                dynamicTest("[CU CF,R B]", () -> doParse(precircumfixN, "[CU CF,R B]", "0..11 Sequence{ 0..11 Commutation{ 1..6 Sequence{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 7..10 Sequence{ 7..8 Move{ 0:4:1 } 9..10 Move{ 2:1:-1 } } } }")),
+                dynamicTest("[R,U]", () -> doParse(precircumfixN, "[R,U]", "0..5 Sequence{ 0..5 Commutation{ 1..2 Sequence{ 1..2 Move{ 0:4:1 } } 3..4 Sequence{ 3..4 Move{ 1:4:1 } } } }")),
                 dynamicTest("*(R)", () -> doParse(precircumfixN, "*(R)", "0..4 Sequence{ 0..4 Reflection{ 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } }")),
                 dynamicTest("*('R U F)", () -> doParse(precircumfixN, "*('R U F)", "0..9 Sequence{ 0..9 Reflection{ 1..9 Grouping{ 2..4 Inversion{ 3..4 Move{ 0:4:1 } } 5..6 Move{ 1:4:1 } 7..8 Move{ 2:4:1 } } } }"))
         );
@@ -384,14 +384,14 @@ class ScriptParserTest {
                 dynamicTest("(R)'", () -> doParse(suffixN, "(R)'", "0..4 Sequence{ 0..4 Inversion{ 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
                 dynamicTest("(R F)'", () -> doParse(suffixN, "(R F)'", "0..6 Sequence{ 0..6 Inversion{ 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:4:1 } } } }")),
                 dynamicTest("(R- U F)- (R' U F)'", () -> doParse(suffixN, "(R- U F)- (R' U F)'", "0..19 Sequence{ 0..9 Inversion{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } 10..19 Inversion{ 10..18 Grouping{ 11..13 Inversion{ 11..12 Move{ 0:4:1 } } 14..15 Move{ 1:4:1 } 16..17 Move{ 2:4:1 } } } }")),
-                dynamicTest("R<CU>", () -> doParse(suffixN, "R<CU>", "0..5 Sequence{ 0..5 Conjugation{ 2..4 Sequence{ 2..4 Move{ 1:7:1 } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("(R)<CU CF>", () -> doParse(suffixN, "(R)<CU CF>", "0..10 Sequence{ 0..10 Conjugation{ 4..9 Sequence{ 4..6 Move{ 1:7:1 } 7..9 Move{ 2:7:1 } }, 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
-                dynamicTest("(R B)<CU CF>", () -> doParse(suffixN, "(R B)<CU CF>", "0..12 Sequence{ 0..12 Conjugation{ 6..11 Sequence{ 6..8 Move{ 1:7:1 } 9..11 Move{ 2:7:1 } }, 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
-                dynamicTest("U<R>", () -> doParse(suffixN, "U<R>", "0..4 Sequence{ 0..4 Conjugation{ 2..3 Sequence{ 2..3 Move{ 0:4:1 } }, 0..1 Move{ 1:4:1 } } }")),
-                dynamicTest("R[CU]", () -> doParse(suffixN, "R[CU]", "0..5 Sequence{ 0..5 Commutation{ 2..4 Sequence{ 2..4 Move{ 1:7:1 } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("R[CU CF]", () -> doParse(suffixN, "R[CU CF]", "0..8 Sequence{ 0..8 Commutation{ 2..7 Sequence{ 2..4 Move{ 1:7:1 } 5..7 Move{ 2:7:1 } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("(R B)[CU CF]", () -> doParse(suffixN, "(R B)[CU CF]", "0..12 Sequence{ 0..12 Commutation{ 6..11 Sequence{ 6..8 Move{ 1:7:1 } 9..11 Move{ 2:7:1 } }, 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
-                dynamicTest("U[R]", () -> doParse(suffixN, "U[R]", "0..4 Sequence{ 0..4 Commutation{ 2..3 Sequence{ 2..3 Move{ 0:4:1 } }, 0..1 Move{ 1:4:1 } } }")),
+                dynamicTest("R<CU>", () -> doParse(suffixN, "R<CU>", "0..5 Sequence{ 0..5 Conjugation{ 2..4 Sequence{ 2..4 Move{ 1:7:1 } } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("(R)<CU CF>", () -> doParse(suffixN, "(R)<CU CF>", "0..10 Sequence{ 0..10 Conjugation{ 4..9 Sequence{ 4..6 Move{ 1:7:1 } 7..9 Move{ 2:7:1 } } 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
+                dynamicTest("(R B)<CU CF>", () -> doParse(suffixN, "(R B)<CU CF>", "0..12 Sequence{ 0..12 Conjugation{ 6..11 Sequence{ 6..8 Move{ 1:7:1 } 9..11 Move{ 2:7:1 } } 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
+                dynamicTest("U<R>", () -> doParse(suffixN, "U<R>", "0..4 Sequence{ 0..4 Conjugation{ 2..3 Sequence{ 2..3 Move{ 0:4:1 } } 0..1 Move{ 1:4:1 } } }")),
+                dynamicTest("R[CU]", () -> doParse(suffixN, "R[CU]", "0..5 Sequence{ 0..5 Commutation{ 2..4 Sequence{ 2..4 Move{ 1:7:1 } } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("R[CU CF]", () -> doParse(suffixN, "R[CU CF]", "0..8 Sequence{ 0..8 Commutation{ 2..7 Sequence{ 2..4 Move{ 1:7:1 } 5..7 Move{ 2:7:1 } } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("(R B)[CU CF]", () -> doParse(suffixN, "(R B)[CU CF]", "0..12 Sequence{ 0..12 Commutation{ 6..11 Sequence{ 6..8 Move{ 1:7:1 } 9..11 Move{ 2:7:1 } } 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
+                dynamicTest("U[R]", () -> doParse(suffixN, "U[R]", "0..4 Sequence{ 0..4 Commutation{ 2..3 Sequence{ 2..3 Move{ 0:4:1 } } 0..1 Move{ 1:4:1 } } }")),
                 dynamicTest("(R)*", () -> doParse(suffixN, "(R)*", "0..4 Sequence{ 0..4 Reflection{ 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
                 dynamicTest("(R' U F)*", () -> doParse(suffixN, "(R' U F)*", "0..9 Sequence{ 0..9 Reflection{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } }"))
         );
@@ -410,14 +410,14 @@ class ScriptParserTest {
                 dynamicTest("(R)'", () -> doParse(postcircumfixN, "(R)'", "0..4 Sequence{ 0..4 Inversion{ 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
                 dynamicTest("(R F)'", () -> doParse(postcircumfixN, "(R F)'", "0..6 Sequence{ 0..6 Inversion{ 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:4:1 } } } }")),
                 dynamicTest("(R- U F)- (R' U F)'", () -> doParse(postcircumfixN, "(R- U F)- (R' U F)'", "0..19 Sequence{ 0..9 Inversion{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } 10..19 Inversion{ 10..18 Grouping{ 11..13 Inversion{ 11..12 Move{ 0:4:1 } } 14..15 Move{ 1:4:1 } 16..17 Move{ 2:4:1 } } } }")),
-                dynamicTest("<R,CU>", () -> doParse(postcircumfixN, "<R,CU>", "0..6 Sequence{ 0..6 Conjugation{ 3..5 Sequence{ 3..5 Move{ 1:7:1 } }, 1..2 Move{ 0:4:1 } } }")),
-                dynamicTest("<(R),CU CF>", () -> doParse(postcircumfixN, "<(R),CU CF>", "0..11 Sequence{ 0..11 Conjugation{ 5..10 Sequence{ 5..7 Move{ 1:7:1 } 8..10 Move{ 2:7:1 } }, 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } }")),
-                dynamicTest("<(R B),CU CF>", () -> doParse(postcircumfixN, "<(R B),CU CF>", "0..13 Sequence{ 0..13 Conjugation{ 7..12 Sequence{ 7..9 Move{ 1:7:1 } 10..12 Move{ 2:7:1 } }, 1..6 Grouping{ 2..3 Move{ 0:4:1 } 4..5 Move{ 2:1:-1 } } } }")),
-                dynamicTest("<U, R>", () -> doParse(postcircumfixN, "<U, R>", "0..6 Sequence{ 0..6 Conjugation{ 3..5 Sequence{ 4..5 Move{ 0:4:1 } }, 1..2 Move{ 1:4:1 } } }")),
-                dynamicTest("[R,CU]", () -> doParse(postcircumfixN, "[R,CU]", "0..6 Sequence{ 0..6 Commutation{ 3..5 Sequence{ 3..5 Move{ 1:7:1 } }, 1..2 Move{ 0:4:1 } } }")),
-                dynamicTest("[R,CU CF]", () -> doParse(postcircumfixN, "[R,CU CF]", "0..9 Sequence{ 0..9 Commutation{ 3..8 Sequence{ 3..5 Move{ 1:7:1 } 6..8 Move{ 2:7:1 } }, 1..2 Move{ 0:4:1 } } }")),
-                dynamicTest("[R B,CU CF]", () -> doParse(postcircumfixN, "[R B,CU CF]", "0..11 Sequence{ 0..11 Commutation{ 5..10 Sequence{ 5..7 Move{ 1:7:1 } 8..10 Move{ 2:7:1 } }, 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } }")),
-                dynamicTest("[U,R]", () -> doParse(postcircumfixN, "[U,R]", "0..5 Sequence{ 0..5 Commutation{ 3..4 Sequence{ 3..4 Move{ 0:4:1 } }, 1..2 Move{ 1:4:1 } } }")),
+                dynamicTest("<R,CU>", () -> doParse(postcircumfixN, "<R,CU>", "0..6 Sequence{ 0..6 Conjugation{ 3..5 Sequence{ 3..5 Move{ 1:7:1 } } 1..2 Sequence{ 1..2 Move{ 0:4:1 } } } }")),
+                dynamicTest("<(R),CU CF>", () -> doParse(postcircumfixN, "<(R),CU CF>", "0..11 Sequence{ 0..11 Conjugation{ 5..10 Sequence{ 5..7 Move{ 1:7:1 } 8..10 Move{ 2:7:1 } } 1..4 Sequence{ 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } } }")),
+                dynamicTest("<(R B),CU CF>", () -> doParse(postcircumfixN, "<(R B),CU CF>", "0..13 Sequence{ 0..13 Conjugation{ 7..12 Sequence{ 7..9 Move{ 1:7:1 } 10..12 Move{ 2:7:1 } } 1..6 Sequence{ 1..6 Grouping{ 2..3 Move{ 0:4:1 } 4..5 Move{ 2:1:-1 } } } } }")),
+                dynamicTest("<U, R>", () -> doParse(postcircumfixN, "<U, R>", "0..6 Sequence{ 0..6 Conjugation{ 3..5 Sequence{ 4..5 Move{ 0:4:1 } } 1..2 Sequence{ 1..2 Move{ 1:4:1 } } } }")),
+                dynamicTest("[R,CU]", () -> doParse(postcircumfixN, "[R,CU]", "0..6 Sequence{ 0..6 Commutation{ 3..5 Sequence{ 3..5 Move{ 1:7:1 } } 1..2 Sequence{ 1..2 Move{ 0:4:1 } } } }")),
+                dynamicTest("[R,CU CF]", () -> doParse(postcircumfixN, "[R,CU CF]", "0..9 Sequence{ 0..9 Commutation{ 3..8 Sequence{ 3..5 Move{ 1:7:1 } 6..8 Move{ 2:7:1 } } 1..2 Sequence{ 1..2 Move{ 0:4:1 } } } }")),
+                dynamicTest("[R B,CU CF]", () -> doParse(postcircumfixN, "[R B,CU CF]", "0..11 Sequence{ 0..11 Commutation{ 5..10 Sequence{ 5..7 Move{ 1:7:1 } 8..10 Move{ 2:7:1 } } 1..4 Sequence{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
+                dynamicTest("[U,R]", () -> doParse(postcircumfixN, "[U,R]", "0..5 Sequence{ 0..5 Commutation{ 3..4 Sequence{ 3..4 Move{ 0:4:1 } } 1..2 Sequence{ 1..2 Move{ 1:4:1 } } } }")),
                 dynamicTest("(R)*", () -> doParse(postcircumfixN, "(R)*", "0..4 Sequence{ 0..4 Reflection{ 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
                 dynamicTest("(R' U F)*", () -> doParse(postcircumfixN, "(R' U F)*", "0..9 Sequence{ 0..9 Reflection{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } }"))
         );
@@ -436,11 +436,11 @@ class ScriptParserTest {
                 dynamicTest("'(R)", () -> doParse(preinfixN, "'(R)", "0..4 Sequence{ 0..4 Inversion{ 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } }")),
                 dynamicTest("'(R F)", () -> doParse(preinfixN, "'(R F)", "0..6 Sequence{ 0..6 Inversion{ 1..6 Grouping{ 2..3 Move{ 0:4:1 } 4..5 Move{ 2:4:1 } } } }")),
                 dynamicTest("-(-R U F) '('R U F)", () -> doParse(preinfixN, "-(-R U F) '('R U F)", "0..19 Sequence{ 0..9 Inversion{ 1..9 Grouping{ 2..4 Inversion{ 3..4 Move{ 0:4:1 } } 5..6 Move{ 1:4:1 } 7..8 Move{ 2:4:1 } } } 10..19 Inversion{ 11..19 Grouping{ 12..14 Inversion{ 13..14 Move{ 0:4:1 } } 15..16 Move{ 1:4:1 } 17..18 Move{ 2:4:1 } } } }")),
-                dynamicTest("CU conj R", () -> doParse(preinfixN, "CU conj R", "0..9 Sequence{ 0..9 Conjugation{ 0..2 Sequence{ 0..2 Move{ 1:7:1 } }, 8..9 Move{ 0:4:1 } } }")),
-                dynamicTest("(CU CF) conj (R)", () -> doParse(preinfixN, "(CU CF) conj (R)", "0..16 Sequence{ 0..16 Conjugation{ 0..7 Sequence{ 0..7 Grouping{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } }, 13..16 Grouping{ 14..15 Move{ 0:4:1 } } } }")),
-                dynamicTest("(CU CF) conj (R B)", () -> doParse(preinfixN, "(CU CF) conj (R B)", "0..18 Sequence{ 0..18 Conjugation{ 0..7 Sequence{ 0..7 Grouping{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } }, 13..18 Grouping{ 14..15 Move{ 0:4:1 } 16..17 Move{ 2:1:-1 } } } }")),
-                dynamicTest("CU comm R", () -> doParse(preinfixN, "CU comm R", "0..9 Sequence{ 0..9 Commutation{ 0..2 Sequence{ 0..2 Move{ 1:7:1 } }, 8..9 Move{ 0:4:1 } } }")),
-                dynamicTest("(CU CF) comm (R B)", () -> doParse(preinfixN, "(CU CF) comm (R B)", "0..18 Sequence{ 0..18 Commutation{ 0..7 Sequence{ 0..7 Grouping{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } }, 13..18 Grouping{ 14..15 Move{ 0:4:1 } 16..17 Move{ 2:1:-1 } } } }")),
+                dynamicTest("CU conj R", () -> doParse(preinfixN, "CU conj R", "0..9 Sequence{ 0..9 Conjugation{ 0..2 Move{ 1:7:1 } 8..9 Move{ 0:4:1 } } }")),
+                dynamicTest("(CU CF) conj (R)", () -> doParse(preinfixN, "(CU CF) conj (R)", "0..16 Sequence{ 0..16 Conjugation{ 0..7 Grouping{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 13..16 Grouping{ 14..15 Move{ 0:4:1 } } } }")),
+                dynamicTest("(CU CF) conj (R B)", () -> doParse(preinfixN, "(CU CF) conj (R B)", "0..18 Sequence{ 0..18 Conjugation{ 0..7 Grouping{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 13..18 Grouping{ 14..15 Move{ 0:4:1 } 16..17 Move{ 2:1:-1 } } } }")),
+                dynamicTest("CU comm R", () -> doParse(preinfixN, "CU comm R", "0..9 Sequence{ 0..9 Commutation{ 0..2 Move{ 1:7:1 } 8..9 Move{ 0:4:1 } } }")),
+                dynamicTest("(CU CF) comm (R B)", () -> doParse(preinfixN, "(CU CF) comm (R B)", "0..18 Sequence{ 0..18 Commutation{ 0..7 Grouping{ 1..3 Move{ 1:7:1 } 4..6 Move{ 2:7:1 } } 13..18 Grouping{ 14..15 Move{ 0:4:1 } 16..17 Move{ 2:1:-1 } } } }")),
                 dynamicTest("*(R)", () -> doParse(preinfixN, "*(R)", "0..4 Sequence{ 0..4 Reflection{ 1..4 Grouping{ 2..3 Move{ 0:4:1 } } } }")),
                 dynamicTest("*('R U F)", () -> doParse(preinfixN, "*('R U F)", "0..9 Sequence{ 0..9 Reflection{ 1..9 Grouping{ 2..4 Inversion{ 3..4 Move{ 0:4:1 } } 5..6 Move{ 1:4:1 } 7..8 Move{ 2:4:1 } } } }"))
         );
@@ -458,10 +458,10 @@ class ScriptParserTest {
                 dynamicTest("(R)'", () -> doParse(postinfixN, "(R)'", "0..4 Sequence{ 0..4 Inversion{ 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
                 dynamicTest("(R F)'", () -> doParse(postinfixN, "(R F)'", "0..6 Sequence{ 0..6 Inversion{ 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:4:1 } } } }")),
                 dynamicTest("(R- U F)- (R' U F)'", () -> doParse(postinfixN, "(R- U F)- (R' U F)'", "0..19 Sequence{ 0..9 Inversion{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } 10..19 Inversion{ 10..18 Grouping{ 11..13 Inversion{ 11..12 Move{ 0:4:1 } } 14..15 Move{ 1:4:1 } 16..17 Move{ 2:4:1 } } } }")),
-                dynamicTest("R conj CU", () -> doParse(postinfixN, "R conj CU", "0..9 Sequence{ 0..9 Conjugation{ 2..9 Sequence{ 7..9 Move{ 1:7:1 } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("(R B) conj (CU CF)", () -> doParse(postinfixN, "(R B) conj (CU CF)", "0..18 Sequence{ 0..18 Conjugation{ 6..18 Sequence{ 11..18 Grouping{ 12..14 Move{ 1:7:1 } 15..17 Move{ 2:7:1 } } }, 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
-                dynamicTest("R comm CU", () -> doParse(postinfixN, "R comm CU", "0..9 Sequence{ 0..9 Commutation{ 2..9 Sequence{ 7..9 Move{ 1:7:1 } }, 0..1 Move{ 0:4:1 } } }")),
-                dynamicTest("(R B) comm (CU CF)", () -> doParse(postinfixN, "(R B) comm (CU CF)", "0..18 Sequence{ 0..18 Commutation{ 6..18 Sequence{ 11..18 Grouping{ 12..14 Move{ 1:7:1 } 15..17 Move{ 2:7:1 } } }, 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
+                dynamicTest("R conj CU", () -> doParse(postinfixN, "R conj CU", "0..9 Sequence{ 0..9 Conjugation{ 7..9 Move{ 1:7:1 } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("(R B) conj (CU CF)", () -> doParse(postinfixN, "(R B) conj (CU CF)", "0..18 Sequence{ 0..18 Conjugation{ 11..18 Grouping{ 12..14 Move{ 1:7:1 } 15..17 Move{ 2:7:1 } } 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
+                dynamicTest("R comm CU", () -> doParse(postinfixN, "R comm CU", "0..9 Sequence{ 0..9 Commutation{ 7..9 Move{ 1:7:1 } 0..1 Move{ 0:4:1 } } }")),
+                dynamicTest("(R B) comm (CU CF)", () -> doParse(postinfixN, "(R B) comm (CU CF)", "0..18 Sequence{ 0..18 Commutation{ 11..18 Grouping{ 12..14 Move{ 1:7:1 } 15..17 Move{ 2:7:1 } } 0..5 Grouping{ 1..2 Move{ 0:4:1 } 3..4 Move{ 2:1:-1 } } } }")),
                 dynamicTest("(R)*", () -> doParse(postinfixN, "(R)*", "0..4 Sequence{ 0..4 Reflection{ 0..3 Grouping{ 1..2 Move{ 0:4:1 } } } }")),
                 dynamicTest("(R' U F)*", () -> doParse(postinfixN, "(R' U F)*", "0..9 Sequence{ 0..9 Reflection{ 0..8 Grouping{ 1..3 Inversion{ 1..2 Move{ 0:4:1 } } 4..5 Move{ 1:4:1 } 6..7 Move{ 2:4:1 } } } }"))
         );
@@ -603,11 +603,6 @@ class ScriptParserTest {
             b.append(' ')
                     .append(m.getRepeatCount())
                     .append(',');
-        } else if (node instanceof BinaryNode) {
-            BinaryNode m = (BinaryNode) node;
-            b.append(' ');
-            dump(m.getOperand1(), b);
-            b.append(',');
         } else if (node instanceof PermutationNode) {
             PermutationNode m = (PermutationNode) node;
             b.append(' ');

@@ -4,16 +4,12 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
-import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.util.SequenceIterator;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A CommutationNode holds a commutator A and a single child B.
@@ -25,24 +21,17 @@ public class CommutationNode extends BinaryNode {
     private final static long serialVersionUID = 1L;
 
     public CommutationNode() {
-        this(new SequenceNode(), null, -1, -1);
+        this(-1, -1);
     }
 
     public CommutationNode(int startpos, int endpos) {
-        this(new SequenceNode(), null, startpos, endpos);
-    }
-
-    public CommutationNode(Node operand1, Node commutated, int startpos, int endpos) {
         super(startpos, endpos);
-        operand1.removeFromParent();
-        operand1.setParent(this);
-        this.operand1 = operand1;
-        if (commutated != null) {
-            add(commutated);
-        }
     }
 
-
+    @Override
+    protected Symbol getSymbol() {
+        return Symbol.COMMUTATION;
+    }
 
     /**
      * Applies the symbol represented by this node to the cube.
@@ -52,22 +41,21 @@ public class CommutationNode extends BinaryNode {
      */
     @Override
     public void applyTo(Cube cube, boolean inverse) {
+        if (getChildCount() != 2) {
+            return;
+        }
+        final Node operand1 = getChildAt(0);
+        final Node operand2 = getChildAt(1);
         if (inverse) {
-            /*
-            super.applyTo(cube, true);
-            commutator.applyTo(cube, true);
-            super.applyTo(cube, false);
-            commutator.applyTo(cube, false);
-             */
-            super.applyTo(cube, false);
+            operand2.applyTo(cube, false);
             operand1.applyTo(cube, false);
-            super.applyTo(cube, true);
+            operand2.applyTo(cube, true);
             operand1.applyTo(cube, true);
         } else {
             operand1.applyTo(cube, false);
-            super.applyTo(cube, false);
+            operand2.applyTo(cube, false);
             operand1.applyTo(cube, true);
-            super.applyTo(cube, true);
+            operand2.applyTo(cube, true);
         }
     }
 
@@ -76,46 +64,14 @@ public class CommutationNode extends BinaryNode {
      */
     @Override
     public void inverse() {
-        Node helper = operand1;
-        operand1 = new SequenceNode();
-
-        while (getChildCount() > 0) {
-            Node n = getChildAt(0);
-            operand1.add(n);
+        if (getChildCount() != 2) {
+            return;
         }
-
-        while (helper.getChildCount() > 0) {
-            Node n = helper.getChildAt(0);
-            add(n);
-        }
-    }
-
-    /**
-     * Reflect the subtree starting at this node.
-     */
-    @Override
-    public void reflect() {
-        operand1.reflect();
-        super.reflect();
-    }
-
-    /**
-     * Transformes the subtree starting at this node by
-     * the given ScriptParser.symbol constant.
-     * Does nothing if the transformation can not be done.
-     */
-    public void transform(int axis, int layerMask, int angle) {
-        operand1.transform(axis, layerMask, angle);
-        super.transform(axis, layerMask, angle);
-    }
-
-    /**
-     * Returns a deep clone of the subtree starting at this node.
-     */
-    public Node cloneSubtree() {
-        CommutationNode that = (CommutationNode) super.cloneSubtree();
-        that.operand1 = this.operand1.cloneSubtree();
-        return that;
+        final Node operand1 = getChildAt(0);
+        final Node operand2 = getChildAt(1);
+        removeAllChildren();
+        add(operand2);
+        add(operand1);
     }
 
     /**
@@ -124,127 +80,18 @@ public class CommutationNode extends BinaryNode {
      * resolved before the children are returned.
      */
     public Iterator<Node> resolvedIterator(boolean inverse) {
+        if (getChildCount() != 2) {
+            return Collections.emptyIterator();
+        }
+        final Node operand1 = getChildAt(0);
+        final Node operand2 = getChildAt(1);
         return new SequenceIterator<Node>(
                 List.of(
                         operand1.resolvedIterator(inverse),
-                        super.resolvedIterator(inverse),
+                        operand2.resolvedIterator(inverse),
                         operand1.resolvedIterator(!inverse),
-                        super.resolvedIterator(!inverse)
+                        operand2.resolvedIterator(!inverse)
                 )
         );
-    }
-
-    @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
-            throws IOException {
-        Syntax pos = (p.isSupported(Symbol.GROUPING)) ? p.getSyntax(Symbol.COMMUTATION) : null;
-        if (pos == null) {
-            // Write the commutation as (A B A' B').
-            if (p.isSupported(Symbol.GROUPING)) {
-                p.writeToken(w, Symbol.GROUPING_BEGIN);
-            }
-            operand1.writeTokens(w, p, macroMap);
-            w.write(' ');
-            p.writeToken(w, Symbol.NOP);
-            w.write(' ');
-            writeChildTokens(w, p, macroMap);
-            w.write(' ');
-            p.writeToken(w, Symbol.NOP);
-            w.write(' ');
-            Node inv = operand1.cloneSubtree();
-            inv.inverse();
-            inv.writeTokens(w, p, macroMap);
-            w.write(' ');
-            p.writeToken(w, Symbol.NOP);
-            w.write(' ');
-            inv = new SequenceNode();
-            Iterator<Node> enumer = getChildren().iterator();
-            while (enumer.hasNext()) {
-                //inv.add((Node) enumer.nextElement());
-                inv.add(enumer.next().cloneSubtree());
-            }
-            inv.inverse();
-            inv.writeTokens(w, p, macroMap);
-            if (p.isSupported(Symbol.GROUPING)) {
-                p.writeToken(w, Symbol.GROUPING_END);
-            }
-        } else if (pos == Syntax.PREFIX) {
-            if (operand1.getChildCount() != 0) {
-                p.writeToken(w, Symbol.COMMUTATION_BEGIN);
-                operand1.writeTokens(w, p, macroMap);
-                p.writeToken(w, Symbol.COMMUTATION_END);
-            }
-            if (getChildCount() == 1) {
-                super.writeTokens(w, p, macroMap);
-            } else {
-                p.writeToken(w, Symbol.GROUPING_BEGIN);
-            }
-            super.writeTokens(w, p, macroMap);
-            p.writeToken(w, Symbol.GROUPING_END);
-
-        } else if (pos == Syntax.SUFFIX) {
-            if (getChildCount()==1) {
-                super.writeTokens(w, p, macroMap);
-            } else {
-                p.writeToken(w, Symbol.GROUPING_BEGIN);
-                super.writeTokens(w, p, macroMap);
-                p.writeToken(w, Symbol.GROUPING_END);
-            }
-            if (operand1.getChildCount() != 0) {
-                p.writeToken(w, Symbol.COMMUTATION_BEGIN);
-                operand1.writeTokens(w, p, macroMap);
-                p.writeToken(w, Symbol.COMMUTATION_END);
-            }
-        } else if (pos == Syntax.PRECIRCUMFIX) {
-            p.writeToken(w, Symbol.COMMUTATION_BEGIN);
-            operand1.writeTokens(w, p, macroMap);
-            p.writeToken(w, Symbol.COMMUTATION_DELIMITER);
-            super.writeTokens(w, p, macroMap);
-            p.writeToken(w, Symbol.COMMUTATION_END);
-        }
-    }
-
-    /**
-     * Writes only the child token(s) represented by the subtree starting
-     * at this node, that is, the commutator is ommitted.
-     * The syntax and the string representations
-     * of the tokens are provided by the parser.
-     *
-     * @param w        This is where the tokens are written to.
-     * @param p        The parser which provides the tokens.
-     * @param macroMap Macros with identifiers of which
-     *                 macroMap.containsKey(String) returns true
-     *                 are preserved.
-     */
-    private void writeChildTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
-            throws IOException {
-        for (Iterator<Node> i = getChildren().iterator();i.hasNext();) {
-            i.next().writeTokens(w, p, macroMap);
-            if (i.hasNext()) {
-                p.writeToken(w, Symbol.DELIMITER);
-                w.write(' ');
-            }
-        }
-    }
-
-
-    @Override
-    public String toString() {
-        StringBuilder b = new StringBuilder();
-        b.append(getStartPosition());
-        b.append("..");
-        b.append(getEndPosition());
-        b.append(getClass().getSimpleName());
-        b.append("{");
-        b.append(' ');
-        b.append(operand1);
-        b.append(",");
-        for (Node n : getChildren()) {
-            b.append(' ');
-            b.append(n.toString());
-        }
-        b.append(' ');
-        b.append("}");
-        return b.toString();
     }
 }
