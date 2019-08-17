@@ -151,6 +151,16 @@ public class ScriptParser {
         return script;
     }
 
+    /**
+     * Progressively parses a statement.
+     * <p>
+     * This method either adds a new child to the parent or replaces the last
+     * child.
+     *
+     * @param tt     the tokenizer
+     * @param parent the parent of the statement
+     * @throws ParseException
+     */
     private void parseStatement(Tokenizer tt, Node parent) throws ParseException {
         switch (tt.nextToken()) {
             case Tokenizer.TT_NUMBER:
@@ -170,6 +180,21 @@ public class ScriptParser {
         parseSuffixes(tt, parent);
     }
 
+    /**
+     * Progressively parses a statement with a syntax that is known not to
+     * be of type {@link Syntax#SUFFIX}.
+     * <p>
+     * This method tries out all symbols that could work for the next token
+     * of the tokenizer. If a symbol does not work out, the method backtracks
+     * and tries the next symbol.
+     * <p>
+     * On success, this method (or a method called from it) either adds a
+     * new child to the parent or replaces the last child.
+     *
+     * @param tt the tokenizer
+     * @param parent the parent of the statement
+     * @throws ParseException
+     */
     private void parseNonSuffixOrBacktrack(Tokenizer tt, Node parent) throws ParseException {
         if (tt.nextToken() != Tokenizer.TT_KEYWORD) {
             throw createException(tt, "Statement: Keyword expected.");
@@ -198,6 +223,21 @@ public class ScriptParser {
         throw (e != null) ? e : createException(tt, "Statement: Illegal token.");
     }
 
+    /**
+     * Progressively parses a statement with a syntax that is known not to
+     * be of type {@link Syntax#SUFFIX}.
+     * <p>
+     * This method tries out to parse the given token with the given syntax.
+     * <p>
+     * On success, this method (or a method called from it) either adds a
+     * new child to the parent or replaces the last child.
+     *
+     * @param tt the tokenizer
+     * @param parent the parent of the statement
+     * @param token the current token
+     * @param symbol the symbol that we want to try out
+     * @throws ParseException on parse failure
+     */
     private void parseNonSuffix(Tokenizer tt, Node parent, String token, Symbol symbol) throws ParseException {
         Symbol c = symbol.getCompositeSymbol();
         if (c == Symbol.PERMUTATION) {
@@ -234,6 +274,15 @@ public class ScriptParser {
         }
     }
 
+    /**
+     * Tries to replace the last child of the parent with a suffix expression(s).
+     * <p>
+     * This method replaces the last child of the parent, each time a
+     * suffix has been parsed succesfully.
+     *
+     * @param tt the tokenizer
+     * @param parent the parent of the statement
+     */
     private void parseSuffixes(Tokenizer tt, Node parent) {
         Tokenizer savedTT = tt.clone();
         Outer:
@@ -362,6 +411,14 @@ public class ScriptParser {
         parent.add(node);
     }
 
+    /**
+     * Replaces the last child of parent with a pre-infix expression.
+     *
+     * @param tt the tokenizer
+     * @param parent the parent
+     * @param symbol the symbol with pre-infix syntax
+     * @throws ParseException on parsing failure
+     */
     private void parsePreinfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
         if (parent.getChildCount() == 0) {
             throw createException(tt, "Preinfix: Operand expected.");
@@ -376,6 +433,14 @@ public class ScriptParser {
         parent.add(node);
     }
 
+    /**
+     * Replaces the last child of parent with a post-infix expression.
+     *
+     * @param tt the tokenizer
+     * @param parent the parent
+     * @param symbol the symbol with post-infix syntax
+     * @throws ParseException on parsing failure
+     */
     private void parsePostinfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
         if (parent.getChildCount() == 0) {
             throw createException(tt, "Postinfix: Operand expected.");
@@ -451,6 +516,14 @@ public class ScriptParser {
         parent.add(node);
     }
 
+    /**
+     * Replaces the last child of parent with a suffix expression.
+     *
+     * @param tt the tokenizer
+     * @param parent the parent
+     * @param symbol the symbol with suffix syntax
+     * @throws ParseException on parsing failure
+     */
     private void parseSuffix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
         if (parent.getChildCount() < 1) {
             throw new ParseException("Suffix: No sibling for suffix.", tt.getStartPosition(), tt.getEndPosition());
@@ -471,6 +544,14 @@ public class ScriptParser {
         parent.add(node);
     }
 
+    /**
+     * Adds a child to the parent or (if the repetition has suffix syntax)
+     * replaces the last child of the parent.
+     *
+     * @param tt the tokenizer
+     * @param parent the parent
+     * @throws ParseException on parsing failure
+     */
     private void parseRepetition(Tokenizer tt, Node parent) throws ParseException {
         if (tt.nextToken() != Tokenizer.TT_NUMBER) {
             throw new ParseException("Repetition: Number expected.", tt.getStartPosition(), tt.getEndPosition());
