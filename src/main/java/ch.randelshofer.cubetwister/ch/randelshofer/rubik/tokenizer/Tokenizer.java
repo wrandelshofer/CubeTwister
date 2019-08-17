@@ -46,7 +46,7 @@ public class Tokenizer implements Cloneable {
     private int tend = 0;
     private String sval = null;
     private Integer nval = null;
-    private KeywordTree keywordTree = new KeywordTree(null);
+    private KeywordTree keywordTree = new KeywordTree();
 
     public Tokenizer() {
     }
@@ -108,17 +108,17 @@ public class Tokenizer implements Cloneable {
      * @param token the keyword token
      */
     public void addKeyword(String token) {
-        KeywordTree node = doAddKeyword(token);
+        KeywordTree node = addKeywordRecursively(token);
         node.setKeyword(token);
     }
 
-    private KeywordTree doAddKeyword(String token) {
+    private KeywordTree addKeywordRecursively(String token) {
         KeywordTree node = this.keywordTree;
         for (int i = 0; i < token.length(); i++) {
             char ch = token.charAt(i);
             KeywordTree child = node.getChild(ch);
             if (child == null) {
-                child = new KeywordTree(null);
+                child = new KeywordTree();
                 node.putChild(ch, child);
             }
             node = child;
@@ -130,7 +130,7 @@ public class Tokenizer implements Cloneable {
      * Defines a comment begin and end token.
      */
     public void addComment(String start, String end) {
-        KeywordTree node = doAddKeyword(start);
+        KeywordTree node = addKeywordRecursively(start);
         node.setKeyword(start);
         node.setCommentEnd(end);
     }
