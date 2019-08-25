@@ -28,11 +28,12 @@ class KeywordTree {
     KeywordTree() {
     }
 
-     KeywordTree getChild(char ch) {
-        return children.get(ch);
+    KeywordTree getChild(char ch) {
+        return this.children.get(ch);
     }
-     void putChild(char ch, KeywordTree child) {
-        children.put(ch,child);
+
+    void putChild(char ch, KeywordTree child) {
+        this.children.put(ch, child);
     }
 
     void setKeyword(String value) {
@@ -40,7 +41,7 @@ class KeywordTree {
     }
 
     String getKeyword() {
-        return keyword;
+        return this.keyword;
     }
 
     void setCommentEnd(String value) {
@@ -48,6 +49,6 @@ class KeywordTree {
     }
 
     String getCommentEnd() {
-        return commentEnd;
+        return this.commentEnd;
     }
 }

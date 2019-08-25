@@ -203,7 +203,8 @@ public class ScriptParser {
         // Backtracking algorithm: try out each possible symbol for the given token.
         ParseException e = null;
         List<Node> savedChildren = new ArrayList<>(parent.getChildren());
-        Tokenizer savedTokenizer = tt.clone();
+        Tokenizer savedTokenizer = new Tokenizer();
+        savedTokenizer.setTo(tt);
         String token = tt.getStringValue();
         for (Symbol symbol : this.notation.getSymbolsFor(token)) {
             try {
@@ -284,7 +285,8 @@ public class ScriptParser {
      * @param parent the parent of the statement
      */
     private void parseSuffixes(Tokenizer tt, Node parent) {
-        Tokenizer savedTT = tt.clone();
+        Tokenizer savedTT = new Tokenizer();
+        savedTT.setTo(tt);
         Outer:
         while (true) {
             if (tt.nextToken() == Tokenizer.TT_KEYWORD) {

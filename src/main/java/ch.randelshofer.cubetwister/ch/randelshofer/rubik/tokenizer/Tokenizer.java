@@ -14,11 +14,13 @@ import java.util.Map;
  * You can activate tokenization of positive integer numbers, by invoking addDigitTokens().
  * You can activate tokenization of keywords, by adding keyword lookup.
  * <p>
- * The tokenizer supports backtracking. That is, it can be cloned
- * to attempt a potential solution, and - in case of success - can be
- * set to the state of the clone. See methods {@link #clone}, {@link #setTo}.
+ * Note that word parsing is greedy. If a word contains a comment-start token, then
+ * the tokenizer will add the characters of the comment-start token to the word.
+ * <p>
+ * The tokenizer supports backtracking. That is, it can be
+ * set to the state of another tokenizer. See method {@link #setTo}.
  */
-public class Tokenizer implements Cloneable {
+public class Tokenizer {
     public final static int TT_WORD = -2;
     public final static int TT_EOF = -1;
 
@@ -35,7 +37,7 @@ public class Tokenizer implements Cloneable {
     /**
      * Map<Character,TType> maps char to ttype or to null
      */
-    private final Map<Character, Integer> lookup = new HashMap<>();
+    private Map<Character, Integer> lookup = new HashMap<>();
 
     private String input = "";
 
@@ -52,10 +54,12 @@ public class Tokenizer implements Cloneable {
     }
 
     /**
-     * Adds a skip character.
+     * Defines a comment begin and end token.
      */
-    private void addSkip(char ch) {
-        this.lookup.put(ch, TT_SKIP);
+    public void addComment(String start, String end) {
+        KeywordTree node = addKeywordRecursively(start);
+        node.setKeyword(start);
+        node.setCommentEnd(end);
     }
 
     /**
@@ -63,43 +67,6 @@ public class Tokenizer implements Cloneable {
      */
     private void addDigit(char ch) {
         this.lookup.put(ch, TT_DIGIT);
-    }
-
-    /**
-     * Adds a special character.
-     */
-    private void addSpecial(char ch) {
-        this.lookup.put(ch, TT_SPECIAL);
-    }
-
-    /**
-     * Defines the tokens needed for parsing non-negative integers.
-     */
-    public void addNumbers() {
-        this.addDigit('0');
-        this.addDigit('1');
-        this.addDigit('2');
-        this.addDigit('3');
-        this.addDigit('4');
-        this.addDigit('5');
-        this.addDigit('6');
-        this.addDigit('7');
-        this.addDigit('8');
-        this.addDigit('9');
-    }
-
-    /**
-     * Defines the lookup needed for skipping whitespace.
-     */
-    public void skipWhitespace() {
-        this.addSkip(' ');
-        this.addSkip('\f');
-        this.addSkip('\n');
-        this.addSkip('\r');
-        this.addSkip('\t');
-        this.addSkip('\u00a0');
-        this.addSkip('\u2028');
-        this.addSkip('\u2029');
     }
 
     /**
@@ -127,49 +94,44 @@ public class Tokenizer implements Cloneable {
     }
 
     /**
-     * Defines a comment begin and end token.
+     * Defines the tokens needed for parsing non-negative integers.
      */
-    public void addComment(String start, String end) {
-        KeywordTree node = addKeywordRecursively(start);
-        node.setKeyword(start);
-        node.setCommentEnd(end);
+    public void addNumbers() {
+        this.addDigit('0');
+        this.addDigit('1');
+        this.addDigit('2');
+        this.addDigit('3');
+        this.addDigit('4');
+        this.addDigit('5');
+        this.addDigit('6');
+        this.addDigit('7');
+        this.addDigit('8');
+        this.addDigit('9');
     }
 
     /**
-     * Sets the input for the tokenizer.
-     *
-     * @param input the input String;
+     * Adds a skip character.
      */
-    public void setInput(String input) {
-        this.input = input;
-        this.pos = 0;
-        this.pushedBack = false;
-        this.ttype = TT_EOF;
-        this.tstart = 0;
-        this.tend = 0;
-        this.sval = null;
+    private void addSkip(char ch) {
+        this.lookup.put(ch, TT_SKIP);
+    }
+
+    /**
+     * Adds a special character.
+     */
+    private void addSpecial(char ch) {
+        this.lookup.put(ch, TT_SPECIAL);
+    }
+
+    /**
+     * Returns the end position of the current token.
+     */
+    public int getEndPosition() {
+        return this.tend;
     }
 
     public int getInputLength() {
         return this.input.length();
-    }
-
-    /**
-     * Returns the current token type.
-     *
-     * @return token type
-     */
-    public int getTokenType() {
-        return this.ttype;
-    }
-
-    /**
-     * Returns the current token string value.
-     *
-     * @return String value or null
-     */
-    public String getStringValue() {
-        return this.sval;
     }
 
     /**
@@ -189,10 +151,21 @@ public class Tokenizer implements Cloneable {
     }
 
     /**
-     * Returns the end position of the current token.
+     * Returns the current token string value.
+     *
+     * @return String value or null
      */
-    public int getEndPosition() {
-        return this.tend;
+    public String getStringValue() {
+        return this.sval;
+    }
+
+    /**
+     * Returns the current token type.
+     *
+     * @return token type
+     */
+    public int getTokenType() {
+        return this.ttype;
     }
 
     /**
@@ -283,6 +256,10 @@ public class Tokenizer implements Cloneable {
         }
     }
 
+    public void pushBack() {
+        this.pushedBack = true;
+    }
+
     /**
      * Reads the next character from input.
      *
@@ -305,12 +282,18 @@ public class Tokenizer implements Cloneable {
     }
 
     /**
-     * Unreads the last character from input.
+     * Sets the input for the tokenizer.
+     *
+     * @param input the input String;
      */
-    private void unread() {
-        if (this.pos > 0) {
-            this.pos = this.pos - 1;
-        }
+    public void setInput(String input) {
+        this.input = input;
+        this.pos = 0;
+        this.pushedBack = false;
+        this.ttype = TT_EOF;
+        this.tstart = 0;
+        this.tend = 0;
+        this.sval = null;
     }
 
     /**
@@ -320,29 +303,51 @@ public class Tokenizer implements Cloneable {
         this.pos = newValue;
     }
 
-    public void pushBack() {
-        this.pushedBack = true;
-    }
-
-    @Override
-    public Tokenizer clone() {
-        try {
-            return (Tokenizer) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new InternalError(e);
-        }
-    }
-
+    /**
+     * Sets this tokenizer to the state of that tokenizer
+     * <p>
+     * This should only be used for backtracking.
+     * <p>
+     * Note that both tokenizer share the same tokenizer
+     * settings (e.g. added keywords, added comments, ...)
+     * after this call.
+     *
+     * @param that another tokenizer
+     */
     public void setTo(Tokenizer that) {
         this.input = that.input;
         this.pos = that.pos;
         this.pushedBack = that.pushedBack;
+        this.lookup = that.lookup;
         this.ttype = that.ttype;
         this.tstart = that.tstart;
         this.tend = that.tend;
         this.sval = that.sval;
         this.nval = that.nval;
         this.keywordTree = that.keywordTree;
+    }
+
+    /**
+     * Defines the lookup needed for skipping whitespace.
+     */
+    public void skipWhitespace() {
+        this.addSkip(' ');
+        this.addSkip('\f');
+        this.addSkip('\n');
+        this.addSkip('\r');
+        this.addSkip('\t');
+        this.addSkip('\u00a0');
+        this.addSkip('\u2028');
+        this.addSkip('\u2029');
+    }
+
+    /**
+     * Unreads the last character from input.
+     */
+    private void unread() {
+        if (this.pos > 0) {
+            this.pos = this.pos - 1;
+        }
     }
 }
 
