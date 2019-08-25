@@ -190,8 +190,8 @@ public class ScriptParser {
         for (String token : notation.getTokens()) {
             tt.addKeyword(token);
         }
-        for (Map.Entry<String, MacroNode> e : localMacros.entrySet()) {
-            tt.addKeyword(e.getKey());
+        for (String identifier : localMacros.keySet()) {
+            tt.addKeyword(identifier);
         }
 
         String mbegin = notation.getToken(Symbol.MULTILINE_COMMENT_BEGIN);
@@ -464,7 +464,7 @@ public class ScriptParser {
             sign = this.parsePermutationSign(t);
         }
 
-        final int layerCount = notation.getLayerCount();
+        int layerCount = notation.getLayerCount();
         List<Symbol> faceSymbols = parsePermutationFaces(t);
         int partNumber = parsePermutationPartNumber(t, layerCount, faceSymbols.size());
 

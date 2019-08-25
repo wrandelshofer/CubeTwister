@@ -3,16 +3,26 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
-import ch.randelshofer.rubik.parser.*;
-import ch.randelshofer.rubik.notation.Move;
-import ch.randelshofer.undo.*;
+import ch.randelshofer.rubik.parser.MacroNode;
+import ch.randelshofer.rubik.parser.MoveNode;
+import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.undo.UndoableObjectEdit;
 
-import java.util.*;
-import java.io.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 /**
  * NotationModel.
@@ -350,7 +360,7 @@ public class NotationModel extends InfoModel implements Notation {
      */
     @Override
     public Syntax getSyntax(Symbol s) {
-        return symbolToSyntaxMap.get(s);
+        return symbolToSyntaxMap.getOrDefault(s, Syntax.PRIMARY);
     }
 
     public void basicSetSyntax(Symbol s, Syntax newValue) {

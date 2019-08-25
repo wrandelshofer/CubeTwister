@@ -6,10 +6,10 @@ package ch.randelshofer.rubik.notation;
 
 import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.parser.MacroNode;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +71,7 @@ public interface Notation {
     /**
      * Returns the syntax for the specified symbol.
      */
+    @Nonnull
     Syntax getSyntax(Symbol s);
 
     /**

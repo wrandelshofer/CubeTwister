@@ -329,7 +329,7 @@ public class CubeMarkupNotation implements Notation {
     @Override
     public Syntax getSyntax(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
-        return (info == null) ? null : info.syntax;
+        return (info == null) ? Syntax.PRIMARY : info.syntax;
     }
 
     @Override
