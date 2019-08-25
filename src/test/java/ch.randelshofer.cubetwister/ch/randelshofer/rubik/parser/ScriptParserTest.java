@@ -36,6 +36,7 @@ class ScriptParserTest {
     DefaultNotation suffix = new DefaultNotation();
     DefaultNotation mixed = new DefaultNotation();
     DefaultNotation mixedB = new DefaultNotation();
+    DefaultNotation notationWithMacros = new DefaultNotation();
 
     {
 
@@ -142,6 +143,10 @@ class ScriptParserTest {
         mixedB.putSyntax(Symbol.REPETITION, Syntax.SUFFIX);
         mixedB.putSyntax(Symbol.INVERSION, Syntax.SUFFIX);
         mixedB.putSyntax(Symbol.REFLECTION, Syntax.CIRCUMFIX);
+
+        notationWithMacros.setName("macros");
+        notationWithMacros.putMacro("CRU", "CR CU");
+
     }
 
     @TestFactory
@@ -489,6 +494,15 @@ class ScriptParserTest {
                 dynamicTest("defaultNotation R /*comment*/ U F", () -> doParse(defaultNotatioon, "R /*comment*/ U F", "0..17 Sequence{ 0..1 Move{ 0:4:1 } 14..15 Move{ 1:4:1 } 16..17 Move{ 2:4:1 } }"))
         );
 
+    }
+
+    @TestFactory
+    public List<DynamicTest> testParseMacros() {
+        return Arrays.asList(
+                dynamicTest("CRU", () -> doParse(notationWithMacros, "CRU", "0..4 Sequence{ 0..4 Repetition{ 2, 0..3 Macro{ 0..3 Sequence{ 0..3 Move{ 0:7:1 } 0..3 Move{ 1:7:1 } } } } }")),
+                dynamicTest("R CRU", () -> doParse(notationWithMacros, "R CRU", "0..5 Sequence{ 0..1 Move{ 0:4:1 } 2..5 Macro{ 2..5 Sequence{ 2..5 Move{ 0:7:1 } 2..5 Move{ 1:7:1 } } } }")),
+                dynamicTest("CRU2", () -> doParse(notationWithMacros, "CRU2", "0..4 Sequence{ 0..4 Repetition{ 2, 0..3 Macro{ 0..3 Sequence{ 0..3 Move{ 0:7:1 } 0..3 Move{ 1:7:1 } } } } }"))
+        );
     }
 
     @TestFactory

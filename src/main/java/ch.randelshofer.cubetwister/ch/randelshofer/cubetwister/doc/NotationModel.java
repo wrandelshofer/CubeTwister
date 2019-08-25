@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -162,14 +163,14 @@ public class NotationModel extends InfoModel implements Notation {
     }
 
     @Override
-    public List<MacroNode> getMacros() {
-        ArrayList<MacroNode> macros = new ArrayList<MacroNode>();
+    public Map<String, String> getMacros() {
+        Map<String, String> macros = new LinkedHashMap<>();
         EntityModel macroModels = getMacroModels();
         for (int i = 0, n = macroModels.getChildCount(); i < n; i++) {
             MacroModel mm = (MacroModel) macroModels.getChildAt(i);
             StringTokenizer st = new StringTokenizer(mm.getIdentifier());
             while (st.hasMoreTokens()) {
-                macros.add(new MacroNode(st.nextToken(), mm.getScript(), 0, 0));
+                macros.put(st.nextToken(), mm.getScript());
             }
         }
         return macros;

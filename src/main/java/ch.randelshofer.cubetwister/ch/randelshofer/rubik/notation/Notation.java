@@ -39,13 +39,10 @@ public interface Notation {
      * 
      * @return macros.
      */
-    List<MacroNode> getMacros();
+    Map<String, String> getMacros();
 
     default String getMacro(String identifier) {
-        for (MacroNode macro : getMacros()) {
-            if (identifier.equals(macro.getIdentifier())) return macro.getScript();
-        }
-        return null;
+        return getMacros().get(identifier);
     }
 
     String getName();

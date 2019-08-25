@@ -1,7 +1,6 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
@@ -183,23 +182,23 @@ public class ScriptParser {
     }
 
     private Tokenizer createTokenizer(Notation notation) {
-        Tokenizer tt = new Tokenizer();
+        var tt = new Tokenizer();
         tt.addNumbers();
         tt.skipWhitespace();
 
-        for (String token : notation.getTokens()) {
+        for (var token : notation.getTokens()) {
             tt.addKeyword(token);
         }
-        for (String identifier : localMacros.keySet()) {
+        for (var identifier : localMacros.keySet()) {
             tt.addKeyword(identifier);
         }
 
-        String mbegin = notation.getToken(Symbol.MULTILINE_COMMENT_BEGIN);
-        String mend = notation.getToken(Symbol.MULTILINE_COMMENT_END);
+        var mbegin = notation.getToken(Symbol.MULTILINE_COMMENT_BEGIN);
+        var mend = notation.getToken(Symbol.MULTILINE_COMMENT_END);
         if (mbegin != null && mend != null && !mbegin.isEmpty() && !mend.isEmpty()) {
             tt.addComment(mbegin, mend);
         }
-        String sbegin = notation.getToken(Symbol.SINGLELINE_COMMENT_BEGIN);
+        var sbegin = notation.getToken(Symbol.SINGLELINE_COMMENT_BEGIN);
         if (sbegin != null && !sbegin.isEmpty()) {
             tt.addComment(sbegin, "\n");
         }
@@ -224,22 +223,22 @@ public class ScriptParser {
     }
 
     public Node parse(String input) throws ParseException {
-        Tokenizer tt = createTokenizer(notation);
+        var tt = this.createTokenizer(this.notation);
         tt.setInput(input);
         return parseScript(tt);
     }
 
     private void parseCircumfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
-        int startPos = tt.getStartPosition();
-        Node operand1 = parseCircumfixOperand(tt, symbol);
-        Node compositeNode = createCompositeNode(tt, symbol, operand1, null);
+        var startPos = tt.getStartPosition();
+        var operand1 = parseCircumfixOperand(tt, symbol);
+        var compositeNode = createCompositeNode(tt, symbol, operand1, null);
         compositeNode.setStartPosition(startPos);
         compositeNode.setEndPosition(tt.getEndPosition());
         parent.add(compositeNode);
     }
 
     private Node parseCircumfixOperand(Tokenizer tt, Symbol symbol) throws ParseException {
-        List<Node> nodes = parseCircumfixOperands(tt, symbol);
+        var nodes = parseCircumfixOperands(tt, symbol);
         if (nodes.size() != 1) {
             throw createException(tt, "Circumfix: Exactly one operand expected.");
         }
@@ -250,9 +249,9 @@ public class ScriptParser {
         if (!Symbol.isBegin(symbol)) {
             throw createException(tt, "Circumfix: Begin expected.");
         }
-        Symbol compositeSymbol = symbol.getCompositeSymbol();
+        var compositeSymbol = symbol.getCompositeSymbol();
         List<Node> operands = new ArrayList<>();
-        SequenceNode operand = new SequenceNode();
+        var operand = new SequenceNode();
         operand.setStartPosition(tt.getEndPosition());
         operands.add(operand);
         Loop:
@@ -263,8 +262,8 @@ public class ScriptParser {
                     parseStatement(tt, operand);
                     break;
                 case Tokenizer.TT_KEYWORD:
-                    String maybeSeparatorOrEnd = tt.getStringValue();
-                    for (Symbol symbol1 : this.notation.getSymbolsFor(maybeSeparatorOrEnd)) {
+                    var maybeSeparatorOrEnd = tt.getStringValue();
+                    for (var symbol1 : this.notation.getSymbolsFor(maybeSeparatorOrEnd)) {
                         if (symbol1.getCompositeSymbol().equals(compositeSymbol)) {
                             if (Symbol.isDelimiter(symbol1)) {
                                 operand.setEndPosition(tt.getStartPosition());
@@ -304,14 +303,14 @@ public class ScriptParser {
      * @throws ParseException on parse failure
      */
     private void parseNonSuffix(Tokenizer tt, Node parent, String token, Symbol symbol) throws ParseException {
-        Symbol c = symbol.getCompositeSymbol();
+        var c = symbol.getCompositeSymbol();
         if (c == Symbol.PERMUTATION) {
             tt.pushBack();
             parsePermutation(tt, parent);
             return;
         }
 
-        Syntax syntax = notation.getSyntax(symbol);
+        var syntax = notation.getSyntax(symbol);
         switch (syntax) {
             case PRIMARY:
                 parsePrimary(tt, parent, token, symbol);
@@ -362,10 +361,10 @@ public class ScriptParser {
         // Backtracking algorithm: try out each possible symbol for the given token.
         ParseException e = null;
         List<Node> savedChildren = new ArrayList<>(parent.getChildren());
-        Tokenizer savedTokenizer = new Tokenizer();
+        var savedTokenizer = new Tokenizer();
         savedTokenizer.setTo(tt);
-        String token = tt.getStringValue();
-        for (Symbol symbol : this.notation.getSymbolsFor(token)) {
+        var token = tt.getStringValue();
+        for (var symbol : this.notation.getSymbolsFor(token)) {
             try {
                 parseNonSuffix(tt, parent, token, symbol);
                 // Parse was successful
@@ -384,10 +383,10 @@ public class ScriptParser {
     }
 
     private void parsePermutation(Tokenizer tt, Node parent) throws ParseException {
-        PermutationNode permutation = new PermutationNode(tt.getStartPosition(), tt.getStartPosition());
+        var permutation = new PermutationNode(tt.getStartPosition(), tt.getStartPosition());
 
         Symbol sign = null;
-        Syntax syntax = notation.getSyntax(Symbol.PERMUTATION);
+        var syntax = notation.getSyntax(Symbol.PERMUTATION);
         if (syntax == Syntax.PREFIX) {
             sign = this.parsePermutationSign(tt);
         }
@@ -405,7 +404,7 @@ public class ScriptParser {
                 case Tokenizer.TT_EOF:
                     throw createException(tt, "Permutation: Unexpected EOF.");
                 case Tokenizer.TT_KEYWORD:
-                    Symbol sym = this.notation.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION);
+                    var sym = this.notation.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION);
                     if (sym == Symbol.PERMUTATION_END) {
                         break PermutationCycle;
                     } else if (sym == null) {
@@ -436,7 +435,7 @@ public class ScriptParser {
         List<Symbol> faceSymbols = new ArrayList<>(3);
         while (true) {
             if (t.nextToken() == Tokenizer.TT_KEYWORD) {
-                Symbol symbol = this.notation.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION);
+                var symbol = this.notation.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION);
                 if (symbol != null && Symbol.isFaceSymbol(symbol)) {
                     faceSymbols.add(symbol);
                     continue;
@@ -446,7 +445,7 @@ public class ScriptParser {
         }
         t.pushBack();
 
-        int type = faceSymbols.size();
+        var type = faceSymbols.size();
         if (type == 0) {
             throw createException(t, "PermutationItem: Face expected.");
         }
@@ -464,9 +463,9 @@ public class ScriptParser {
             sign = this.parsePermutationSign(t);
         }
 
-        int layerCount = notation.getLayerCount();
-        List<Symbol> faceSymbols = parsePermutationFaces(t);
-        int partNumber = parsePermutationPartNumber(t, layerCount, faceSymbols.size());
+        var layerCount = notation.getLayerCount();
+        var faceSymbols = parsePermutationFaces(t);
+        var partNumber = parsePermutationPartNumber(t, layerCount, faceSymbols.size());
 
         if ((syntax == Syntax.POSTCIRCUMFIX || syntax == Syntax.SUFFIX)) {
             sign = parsePermutationSign(t);
@@ -476,7 +475,7 @@ public class ScriptParser {
     }
 
     private int parsePermutationPartNumber(Tokenizer t, int layerCount, int type) throws ParseException {
-        int partNumber = 0;
+        var partNumber = 0;
         if (t.nextToken() == Tokenizer.TT_NUMBER) {
             partNumber = t.getNumericValue();
         } else {
@@ -558,7 +557,7 @@ public class ScriptParser {
      */
     private Symbol parsePermutationSign(Tokenizer t) {
         if (t.nextToken() == Tokenizer.TT_KEYWORD) {
-            Symbol symbol = this.notation.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION);
+            var symbol = this.notation.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION);
             if (symbol != null && Symbol.isPermutationSign(symbol)) {
                 return symbol;
             }
@@ -568,13 +567,13 @@ public class ScriptParser {
     }
 
     private void parsePostcircumfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
-        int start = tt.getStartPosition();
-        List<Node> operands = parseCircumfixOperands(tt, symbol);
+        var start = tt.getStartPosition();
+        var operands = parseCircumfixOperands(tt, symbol);
         if (operands.size() != 2) {
             throw createException(tt, "Postcircumfix: Two operands expected.");
         }
-        int end = tt.getEndPosition();
-        Node node = createCompositeNode(tt, symbol, operands.get(1), operands.get(0));
+        var end = tt.getEndPosition();
+        var node = createCompositeNode(tt, symbol, operands.get(1), operands.get(0));
         node.setStartPosition(start);
         node.setEndPosition(end);
         parent.add(node);
@@ -592,7 +591,7 @@ public class ScriptParser {
         if (parent.getChildCount() == 0) {
             throw createException(tt, "Postinfix: Operand expected.");
         }
-        Node operand2 = parent.getChildAt(parent.getChildCount() - 1);
+        var operand2 = parent.getChildAt(parent.getChildCount() - 1);
         Node node;
         if (symbol.getCompositeSymbol() == Symbol.REPETITION) {
             if (tt.nextToken() != Tokenizer.TT_NUMBER) {
@@ -603,7 +602,7 @@ public class ScriptParser {
         } else {
             Node tempParent = new SequenceNode();
             parseStatement(tt, tempParent);
-            Node operand1 = tempParent.getChildAt(0);
+            var operand1 = tempParent.getChildAt(0);
             node = createCompositeNode(tt, symbol, operand1, operand2);
         }
         node.setStartPosition(operand2.getStartPosition());
@@ -612,26 +611,26 @@ public class ScriptParser {
     }
 
     private void parsePrecircumfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
-        int start = tt.getStartPosition();
-        List<Node> operands = parseCircumfixOperands(tt, symbol);
+        var start = tt.getStartPosition();
+        var operands = parseCircumfixOperands(tt, symbol);
         if (operands.size() != 2) {
             throw createException(tt, "Precircumfix: Two operands expected.");
         }
-        int end = tt.getEndPosition();
-        Node node = createCompositeNode(tt, symbol, operands.get(0), operands.get(1));
+        var end = tt.getEndPosition();
+        var node = createCompositeNode(tt, symbol, operands.get(0), operands.get(1));
         node.setStartPosition(start);
         node.setEndPosition(end);
         parent.add(node);
     }
 
     private void parsePrefix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
-        int startPosition = tt.getStartPosition();
+        var startPosition = tt.getStartPosition();
         Node node;
         if (Symbol.isBegin(symbol)) {
-            Node operand1 = parseCircumfixOperand(tt, symbol);
+            var operand1 = parseCircumfixOperand(tt, symbol);
             Node tempParent = new SequenceNode();
             parseStatement(tt, tempParent);
-            Node operand2 = tempParent.getChildAt(0);
+            var operand2 = tempParent.getChildAt(0);
             node = createCompositeNode(tt, symbol, operand1, operand2);
         } else if (Symbol.isOperator(symbol)) {
             Node operand1 = new SequenceNode();
@@ -657,11 +656,11 @@ public class ScriptParser {
         if (parent.getChildCount() == 0) {
             throw createException(tt, "Preinfix: Operand expected.");
         }
-        Node operand1 = parent.getChildAt(parent.getChildCount() - 1);
+        var operand1 = parent.getChildAt(parent.getChildCount() - 1);
         Node tempParent = new SequenceNode();
         parseStatement(tt, tempParent);
-        Node operand2 = tempParent.getChildAt(0);
-        Node node = createCompositeNode(tt, symbol, operand1, operand2);
+        var operand2 = tempParent.getChildAt(0);
+        var node = createCompositeNode(tt, symbol, operand1, operand2);
         node.setStartPosition(operand1.getStartPosition());
         node.setEndPosition(tt.getEndPosition());
         parent.add(node);
@@ -674,16 +673,21 @@ public class ScriptParser {
                 child = new NOPNode(tt.getStartPosition(), tt.getEndPosition());
                 break;
             case MOVE:
-                Move move = notation.getMoveFromToken(token);
+                var move = notation.getMoveFromToken(token);
                 child = new MoveNode(move.getLayerCount(), move.getAxis(), move.getLayerMask(), move.getAngle(),
                         tt.getStartPosition(), tt.getEndPosition());
                 break;
             case MACRO:
                 // Expand macro
                 try {
-                    String macro = notation.getMacro(token);
-                    Node macroScript = parse(macro);
-                    MacroNode macroNode = new MacroNode(null, macro, tt.getStartPosition(), tt.getEndPosition());
+                    var macro = notation.getMacro(token);
+                    var macroScript = parse(macro);
+                    var macroNode = new MacroNode(null, token, tt.getStartPosition(), tt.getEndPosition());
+                    for (Node node : macroScript.preorderIterable()) {
+                        node.setStartPosition(tt.getStartPosition());
+                        node.setEndPosition(tt.getEndPosition());
+                    }
+
                     macroNode.add(macroScript);
                     child = macroNode;
                 } catch (ParseException e) {
@@ -710,10 +714,10 @@ public class ScriptParser {
         if (tt.nextToken() != Tokenizer.TT_NUMBER) {
             throw new ParseException("Repetition: Number expected.", tt.getStartPosition(), tt.getEndPosition());
         }
-        int start = tt.getStartPosition();
+        var start = tt.getStartPosition();
         int repeatCount = tt.getNumericValue();
-        Syntax syntax = notation.getSyntax(Symbol.REPETITION);
-        SequenceNode operand = new SequenceNode();
+        var syntax = notation.getSyntax(Symbol.REPETITION);
+        var operand = new SequenceNode();
         switch (syntax) {
             case PREFIX:
                 parseStatement(tt, operand);
@@ -722,7 +726,7 @@ public class ScriptParser {
                 if (parent.getChildCount() < 1) {
                     throw createException(tt, "Repetition: Operand missing.");
                 }
-                Node sibling = parent.getChildAt(parent.getChildCount() - 1);
+                var sibling = parent.getChildAt(parent.getChildCount() - 1);
                 start = sibling.getStartPosition();
                 operand.add(sibling);
                 break;
@@ -744,7 +748,7 @@ public class ScriptParser {
                 throw new ParseException("Repetition: Illegal syntax: " + syntax, tt.getStartPosition(), tt.getEndPosition());
             }
         }
-        RepetitionNode repetitionNode = new RepetitionNode();
+        var repetitionNode = new RepetitionNode();
         repetitionNode.addAll(new ArrayList<>(operand.getChildren()));
         repetitionNode.setRepeatCount(repeatCount);
         repetitionNode.setStartPosition(start);
@@ -753,7 +757,7 @@ public class ScriptParser {
     }
 
     private SequenceNode parseScript(Tokenizer tt) throws ParseException {
-        SequenceNode script = new SequenceNode();
+        var script = new SequenceNode();
         script.setStartPosition(tt.getStartPosition());
         while (tt.nextToken() != Tokenizer.TT_EOF) {
             tt.pushBack();
@@ -804,11 +808,11 @@ public class ScriptParser {
         if (parent.getChildCount() < 1) {
             throw new ParseException("Suffix: No sibling for suffix.", tt.getStartPosition(), tt.getEndPosition());
         }
-        Node sibling = parent.getChildAt(parent.getChildCount() - 1);
-        int startPosition = sibling.getStartPosition();
+        var sibling = parent.getChildAt(parent.getChildCount() - 1);
+        var startPosition = sibling.getStartPosition();
         Node node;
         if (Symbol.isBegin(symbol)) {
-            Node operand1 = parseCircumfixOperand(tt, symbol);
+            var operand1 = parseCircumfixOperand(tt, symbol);
             node = createCompositeNode(tt, symbol, operand1, sibling);
         } else if (Symbol.isOperator(symbol)) {
             node = createCompositeNode(tt, symbol, sibling, null);
@@ -830,15 +834,15 @@ public class ScriptParser {
      * @param parent the parent of the statement
      */
     private void parseSuffixes(Tokenizer tt, Node parent) {
-        Tokenizer savedTT = new Tokenizer();
+        var savedTT = new Tokenizer();
         savedTT.setTo(tt);
         Outer:
         while (true) {
             if (tt.nextToken() == Tokenizer.TT_KEYWORD) {
-                String token = tt.getStringValue();
+                var token = tt.getStringValue();
 
                 // Backtracking algorithm: try out each possible symbol for the given token.
-                for (Symbol symbol : this.notation.getSymbolsFor(token)) {
+                for (var symbol : this.notation.getSymbolsFor(token)) {
                     if (symbol.getCompositeSymbol() != Symbol.PERMUTATION
                             && notation.getSyntax(symbol) == Syntax.SUFFIX) {
 

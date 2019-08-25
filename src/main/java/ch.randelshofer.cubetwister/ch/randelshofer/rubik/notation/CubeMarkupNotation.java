@@ -5,7 +5,6 @@ package ch.randelshofer.rubik.notation;
 
 import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.RubiksCube;
-import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.xml.XMLPreorderIterator;
 import nanoxml.XMLElement;
 import nanoxml.XMLParseException;
@@ -397,9 +396,9 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public List<MacroNode> getMacros() {
+    public Map<String, String> getMacros() {
         // FIXME - Implement me
-        return Collections.emptyList();
+        return Collections.emptyMap();
     }
 
     /**

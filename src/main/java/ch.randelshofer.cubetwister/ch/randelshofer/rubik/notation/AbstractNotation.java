@@ -14,7 +14,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class AbstractNotation implements Notation {
     private final HashMap<Symbol, List<String>> symbolToTokensMap = new HashMap<>();
@@ -22,8 +21,13 @@ public abstract class AbstractNotation implements Notation {
     private final HashMap<Move, List<String>> moveToTokensMap = new HashMap<>();
     private final HashMap<String, Move> tokenToMoveMap = new HashMap<>();
     private final HashMap<Symbol, Syntax> symbolToSyntaxMap = new HashMap<>();
-    private final List<MacroNode> macros = new ArrayList<>();
+    private final Map<String, String> macros = new HashMap<>();
     private int layerCount;
+
+    public void putMacro(String identifier, String code) {
+        macros.put(identifier, code);
+        tokenToSymbolsMap.computeIfAbsent(identifier, k -> new ArrayList<>()).add(Symbol.MACRO);
+    }
 
     public void removeToken(Symbol symbol, String token) {
         symbolToTokensMap.computeIfAbsent(symbol, k -> new ArrayList<>()).remove(token);
@@ -46,7 +50,7 @@ public abstract class AbstractNotation implements Notation {
     }
 
     @Override
-    public List<MacroNode> getMacros() {
+    public Map<String, String> getMacros() {
         return macros;
     }
 
