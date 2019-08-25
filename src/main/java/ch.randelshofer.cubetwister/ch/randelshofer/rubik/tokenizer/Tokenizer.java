@@ -34,13 +34,7 @@ public class Tokenizer {
     private final static int TT_SKIP = -13;
 
 
-    /**
-     * Map<Character,TType> maps char to ttype or to null
-     */
-    private Map<Character, Integer> lookup = new HashMap<>();
-
     private String input = "";
-
     private int pos = 0;
     private boolean pushedBack = false;
     private int ttype = TT_EOF;
@@ -49,6 +43,11 @@ public class Tokenizer {
     private String sval = null;
     private Integer nval = null;
     private KeywordTree keywordTree = new KeywordTree();
+    /**
+     * Map<Character,TType> maps char to ttype or to null
+     */
+    private Map<Character, Integer> lookup = new HashMap<>();
+
 
     public Tokenizer() {
     }
@@ -168,6 +167,11 @@ public class Tokenizer {
         return this.ttype;
     }
 
+    private <K, V> V getOrDefault(Map<K, V> map, K key, V defaultValue) {
+        V value = map.get(key);
+        return value == null ? defaultValue : value;
+    } 
+    
     /**
      * Parses the next token.
      *
@@ -185,7 +189,7 @@ public class Tokenizer {
             int ch = this.read();
 
             // try to skip characters
-            while (ch != TT_EOF && this.lookup.getOrDefault((char) ch, TT_WORD) == TT_SKIP) {
+            while (ch != TT_EOF && this.getOrDefault(this.lookup, (char) ch, TT_WORD) == TT_SKIP) {
                 ch = this.read();
                 start += 1;
             }
@@ -220,8 +224,8 @@ public class Tokenizer {
             ch = this.read();
 
             // try to tokenize a number
-            if (ch != TT_EOF && this.lookup.getOrDefault((char) ch, TT_WORD) == TT_DIGIT) {
-                while (ch != TT_EOF && this.lookup.getOrDefault((char) ch, TT_WORD) == TT_DIGIT) {
+            if (ch != TT_EOF && this.getOrDefault(this.lookup, (char) ch, TT_WORD) == TT_DIGIT) {
+                while (ch != TT_EOF && this.getOrDefault(this.lookup, (char) ch, TT_WORD) == TT_DIGIT) {
                     ch = this.read();
                 }
                 if (ch != TT_EOF) {
@@ -236,8 +240,8 @@ public class Tokenizer {
             }
 
             // try to tokenize a word
-            if (ch != TT_EOF && this.lookup.getOrDefault((char) ch, TT_WORD) == TT_WORD) {
-                while (ch != TT_EOF && this.lookup.getOrDefault((char) ch, TT_WORD) == TT_WORD) {
+            if (ch != TT_EOF && this.getOrDefault(this.lookup, (char) ch, TT_WORD) == TT_WORD) {
+                while (ch != TT_EOF && this.getOrDefault(this.lookup, (char) ch, TT_WORD) == TT_WORD) {
                     ch = this.read();
                 }
                 if (ch != TT_EOF) {

@@ -22,9 +22,7 @@ class KeywordTree {
     private String keyword;
     private String commentEnd;
     private final Map<Character,KeywordTree> children=new LinkedHashMap<>();
-    /**
-     * Constructos a new instance.
-     */
+
     KeywordTree() {
     }
 
