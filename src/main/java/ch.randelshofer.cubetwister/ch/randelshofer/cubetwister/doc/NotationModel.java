@@ -228,8 +228,19 @@ public class NotationModel extends InfoModel implements Notation {
         return twistToTokenMap.keySet();
     }
 
-    public String getMoveToken(Move key) {
-        return twistToTokenMap.get(key);
+    @Override
+    public String getMoveToken(Move s) {
+        String tokens = twistToTokenMap.get(s);
+        if (tokens == null || tokens.length() == 0) {
+            return null;
+        } else {
+            int p = tokens.indexOf(' ');
+            if (p != -1) {
+                return tokens.substring(0, p);
+            } else {
+                return tokens;
+            }
+        }
     }
 
     public String getAllTwistTokens(Move key) {
@@ -451,20 +462,6 @@ public class NotationModel extends InfoModel implements Notation {
         return that;
     }
 
-    @Override
-    public String getToken(Move s) {
-        String tokens = twistToTokenMap.get(s);
-        if (tokens == null || tokens.length() == 0) {
-            return null;
-        } else {
-            int p = tokens.indexOf(' ');
-            if (p != -1) {
-                return tokens.substring(0, p);
-            } else {
-                return tokens;
-            }
-        }
-    }
 
     private Map<String, Move> getTokenToTwistMap() {
         validateTokenMaps();

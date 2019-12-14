@@ -499,7 +499,7 @@ class ScriptParserTest {
     @TestFactory
     public List<DynamicTest> testParseMacros() {
         return Arrays.asList(
-                dynamicTest("CRU", () -> doParse(notationWithMacros, "CRU", "0..4 Sequence{ 0..4 Repetition{ 2, 0..3 Macro{ 0..3 Sequence{ 0..3 Move{ 0:7:1 } 0..3 Move{ 1:7:1 } } } } }")),
+                dynamicTest("CRU", () -> doParse(notationWithMacros, "CRU", "0..3 Sequence{ 0..3 Macro{ 0..3 Sequence{ 0..3 Move{ 0:7:1 } 0..3 Move{ 1:7:1 } } } }")),
                 dynamicTest("R CRU", () -> doParse(notationWithMacros, "R CRU", "0..5 Sequence{ 0..1 Move{ 0:4:1 } 2..5 Macro{ 2..5 Sequence{ 2..5 Move{ 0:7:1 } 2..5 Move{ 1:7:1 } } } }")),
                 dynamicTest("CRU2", () -> doParse(notationWithMacros, "CRU2", "0..4 Sequence{ 0..4 Repetition{ 2, 0..3 Macro{ 0..3 Sequence{ 0..3 Move{ 0:7:1 } 0..3 Move{ 1:7:1 } } } } }"))
         );

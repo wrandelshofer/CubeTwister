@@ -391,7 +391,7 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public String getToken(Move s) {
+    public String getMoveToken(Move s) {
         return moveToTokenMap.get(s)[0];
     }
 

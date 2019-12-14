@@ -84,7 +84,7 @@ public interface Notation {
      *
      * Returns null, if move is not supported.
      */
-    String getToken(Move s);
+    String getMoveToken(Move s);
 
     /**
      * Returns the a move from the given move token.

@@ -203,21 +203,21 @@ public class MoveNode extends Node {
     public void writeTokens(PrintWriter w, Notation notation, Map<String, MacroNode> macroMap)
             throws IOException {
         Move move = new Move(3, axis, layerMask, angle);
-        String token = notation.getToken(move);
+        String token = notation.getMoveToken(move);
 
         // no token for +/-180° twist? 
         if (token == null && Math.abs(angle) == 2) {
             // look for a twist into the other clockwise direction
             move = new Move(3, axis, layerMask, -angle);
-            token = notation.getToken(move);
+            token = notation.getMoveToken(move);
             // no token for 180° twist into the other direction?
             if (token == null) {
                 // look for a +/-90° twist
                 move = new Move(3, axis, layerMask, -angle);
-                token = notation.getToken(move);
+                token = notation.getMoveToken(move);
                 if (token == null) {
                     move = new Move(3, axis, layerMask, -1);
-                    token = notation.getToken(move);
+                    token = notation.getMoveToken(move);
                 }
                 // print the +/-90° twist twice
                 if (token != null) {
@@ -228,7 +228,7 @@ public class MoveNode extends Node {
             // no token for +/-90° twist, but is inversion supported?
         } else if (token == null && notation.isSupported(Symbol.INVERSION)) {
             // look for a twist into the other clockwise direction
-            token = notation.getToken(new Move(3, axis, layerMask, -angle));
+            token = notation.getMoveToken(new Move(3, axis, layerMask, -angle));
             if (token != null) {
                 Syntax syntax = notation.getSyntax(Symbol.INVERSION);
                 String invertor = notation.getToken(Symbol.INVERSION_OPERATOR);

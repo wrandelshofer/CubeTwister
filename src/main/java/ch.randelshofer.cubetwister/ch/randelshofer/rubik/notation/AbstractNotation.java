@@ -83,13 +83,13 @@ public abstract class AbstractNotation implements Notation {
     }
 
     @Override
-    public String getToken(Symbol s) {
-        List<String> tokens = symbolToTokensMap.getOrDefault(s, Collections.emptyList());
+    public String getToken(Symbol symbol) {
+        List<String> tokens = symbolToTokensMap.getOrDefault(symbol, Collections.emptyList());
         return tokens.isEmpty() ? null : tokens.get(0);
     }
 
     @Override
-    public String getToken(Move s) {
+    public String getMoveToken(Move s) {
         List<String> tokens = moveToTokensMap.getOrDefault(s, Collections.emptyList());
         return tokens.isEmpty() ? null : tokens.get(0);
     }
