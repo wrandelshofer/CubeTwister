@@ -43,8 +43,6 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Stack;
 import java.util.jar.JarOutputStream;
-import java.util.jar.Pack200;
-import java.util.jar.Pack200.Unpacker;
 import java.util.zip.Deflater;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
@@ -1085,8 +1083,9 @@ public class HTMLExporter implements Exporter {
         InputStream itmp = new GZIPInputStream(new ByteArrayInputStream(tmp.toByteArray()));
         JarOutputStream jout = new JarOutputStream(entryOut);
         jout.setLevel(Deflater.BEST_COMPRESSION);
-        Unpacker unpacker = Pack200.newUnpacker();
-        unpacker.unpack(itmp, jout);
+        // FIXME Applets are not supported anymore
+        //Unpacker unpacker = Pack200.newUnpacker();
+        //unpacker.unpack(itmp, jout);
 
         jout.finish();
         closeEntry();
