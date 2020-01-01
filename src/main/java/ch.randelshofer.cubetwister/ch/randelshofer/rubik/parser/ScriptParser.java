@@ -263,7 +263,7 @@ public class ScriptParser {
                     break;
                 case Tokenizer.TT_KEYWORD:
                     var maybeSeparatorOrEnd = tt.getStringValue();
-                    for (var symbol1 : this.notation.getSymbolsFor(maybeSeparatorOrEnd)) {
+                    for (var symbol1 : this.notation.getSymbols(maybeSeparatorOrEnd)) {
                         if (symbol1.getCompositeSymbol().equals(compositeSymbol)) {
                             if (Symbol.isDelimiter(symbol1)) {
                                 operand.setEndPosition(tt.getStartPosition());
@@ -364,7 +364,7 @@ public class ScriptParser {
         var savedTokenizer = new Tokenizer();
         savedTokenizer.setTo(tt);
         var token = tt.getStringValue();
-        for (var symbol : this.notation.getSymbolsFor(token)) {
+        for (var symbol : this.notation.getSymbols(token)) {
             try {
                 parseNonSuffix(tt, parent, token, symbol);
                 // Parse was successful
@@ -391,7 +391,7 @@ public class ScriptParser {
             sign = this.parsePermutationSign(tt);
         }
         if (tt.nextToken() != Tokenizer.TT_KEYWORD ||
-                this.notation.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION) != Symbol.PERMUTATION_BEGIN) {
+                this.notation.getSymbolInCompositeSymbol(tt.getStringValue(), Symbol.PERMUTATION) != Symbol.PERMUTATION_BEGIN) {
             throw createException(tt, "Permutation: Begin expected.");
         }
         if (syntax == Syntax.PRECIRCUMFIX) {
@@ -404,7 +404,7 @@ public class ScriptParser {
                 case Tokenizer.TT_EOF:
                     throw createException(tt, "Permutation: Unexpected EOF.");
                 case Tokenizer.TT_KEYWORD:
-                    var sym = this.notation.getSymbolFor(tt.getStringValue(), Symbol.PERMUTATION);
+                    var sym = this.notation.getSymbolInCompositeSymbol(tt.getStringValue(), Symbol.PERMUTATION);
                     if (sym == Symbol.PERMUTATION_END) {
                         break PermutationCycle;
                     } else if (sym == null) {
@@ -435,7 +435,7 @@ public class ScriptParser {
         List<Symbol> faceSymbols = new ArrayList<>(3);
         while (true) {
             if (t.nextToken() == Tokenizer.TT_KEYWORD) {
-                var symbol = this.notation.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION);
+                var symbol = this.notation.getSymbolInCompositeSymbol(t.getStringValue(), Symbol.PERMUTATION);
                 if (symbol != null && Symbol.isFaceSymbol(symbol)) {
                     faceSymbols.add(symbol);
                     continue;
@@ -557,7 +557,7 @@ public class ScriptParser {
      */
     private Symbol parsePermutationSign(Tokenizer t) {
         if (t.nextToken() == Tokenizer.TT_KEYWORD) {
-            var symbol = this.notation.getSymbolFor(t.getStringValue(), Symbol.PERMUTATION);
+            var symbol = this.notation.getSymbolInCompositeSymbol(t.getStringValue(), Symbol.PERMUTATION);
             if (symbol != null && Symbol.isPermutationSign(symbol)) {
                 return symbol;
             }
@@ -733,7 +733,7 @@ public class ScriptParser {
             }
             case PREINFIX:
                 if (tt.nextToken() != Tokenizer.TT_KEYWORD
-                        || !this.notation.getSymbolsFor(tt.getStringValue()).contains(Symbol.REPETITION_OPERATOR)) {
+                        || !this.notation.getSymbols(tt.getStringValue()).contains(Symbol.REPETITION_OPERATOR)) {
                     throw createException(tt, "Repetition: Operator expected.");
                 }
                 parseStatement(tt, operand);
@@ -842,7 +842,7 @@ public class ScriptParser {
                 var token = tt.getStringValue();
 
                 // Backtracking algorithm: try out each possible symbol for the given token.
-                for (var symbol : this.notation.getSymbolsFor(token)) {
+                for (var symbol : this.notation.getSymbols(token)) {
                     if (symbol.getCompositeSymbol() != Symbol.PERMUTATION
                             && notation.getSyntax(symbol) == Syntax.SUFFIX) {
 

@@ -52,11 +52,11 @@ public enum Symbol {
     COMMUTATION_OPERATOR("commutationOperator"),
     CONJUGATION_BEGIN("conjugationBegin", "conjugatorBegin"),
     CONJUGATION_END("conjugationEnd", "conjugatorEnd"),
-    ROTATION_DELIMITER("rotationDelim", "rotationDelimiter"),
     CONJUGATION_DELIMITER("conjugationDelim", "conjugatorDelimiter"),
     CONJUGATION_OPERATOR("conjugationOperator"),
     ROTATION_BEGIN("rotationBegin", "rotatorBegin"),
     ROTATION_END("rotationEnd", "rotatorEnd"),
+    ROTATION_DELIMITER("rotationDelim", "rotationDelimiter"),
     ROTATION_OPERATOR("rotationDelim", "rotatorDelimiter"),
     MACRO("macro"),
     MULTILINE_COMMENT_BEGIN("commentMultiLineBegin", "slashStarCommentBegin"),
@@ -142,7 +142,7 @@ public enum Symbol {
             DELIMITER,
             REPETITION,
     }),
-    SCRIPT("script", new Symbol[]{
+    SEQUENCE("sequence", new Symbol[]{
             STATEMENT,
             COMMENT
     });

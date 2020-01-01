@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SymbolTest {
     @Test
@@ -34,7 +35,7 @@ class SymbolTest {
             while (parentMap.get(root)!=null) {
                 root=parentMap.get(root).get(0);
             }
-            assertEquals(Symbol.SCRIPT,root,symbol+" has bad root: "+root);
+            assertEquals(Symbol.SEQUENCE, root, symbol + " has bad root: " + root);
         }
     }
 }

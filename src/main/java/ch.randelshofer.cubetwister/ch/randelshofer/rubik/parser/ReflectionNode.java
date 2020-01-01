@@ -13,7 +13,9 @@ import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.Map;
 /**
- * Represents a node of a parsed script.
+ * A reflection node holds one child A.
+ * The side effect of a reflection node on a cube is
+ * the reflection of A.
  *
  * @author Werner Randelshofer
  */

@@ -12,7 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * A ConjugationNode holds a conjugator A and a single child B.
+ * A ConjugationNode holds a child A and a child B.
  * The side effect of a conjugation node is A B A'.
  *
  * @author Werner Randelshofer
@@ -21,11 +21,7 @@ public class ConjugationNode extends BinaryNode {
     private final static long serialVersionUID = 1L;
 
     public ConjugationNode() {
-        this(-1, -1);
-    }
-
-    public ConjugationNode(int startpos, int endpos) {
-        super(startpos, endpos);
+        super(-1, -1);
     }
 
     @Override

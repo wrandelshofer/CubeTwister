@@ -422,8 +422,8 @@ public class NotationModel extends InfoModel implements Notation {
     }
 
     @Override
-    public List<Symbol> getSymbolsFor(String token) {
-       return new ArrayList<>(tokenToSymbolMap.get(token));
+    public List<Symbol> getSymbols(String token) {
+        return new ArrayList<>(tokenToSymbolMap.get(token));
     }
 
     /**

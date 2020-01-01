@@ -18,7 +18,9 @@ import java.util.Map;
 import java.util.NoSuchElementException;
 
 /**
- * RepetitionNode.
+ * A RepetitionNode holds one child A and a repeat count.
+ * The side effect of a RepetitionNode on a cube is
+ * repeat count times A.
  *
  * @author Werner Randelshofer
  */

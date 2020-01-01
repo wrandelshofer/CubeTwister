@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.Iterator;
 
 /**
- * A RotationNode holds a rotator A and a single child B. The side effect of a
+ * A RotationNode holds a child A and a child B. The side effect of a
  * rotation node to a Cube is A' B A.
  *
  * @author Werner Randelshofer
@@ -21,23 +21,12 @@ public class RotationNode extends BinaryNode {
     private final static long serialVersionUID = 1L;
 
     public RotationNode() {
-        this(0, 0);
-    }
-
-    public RotationNode(int startpos, int endpos) {
-        super(startpos, endpos);
+        super(-1, -1);
     }
 
     @Override
     protected Symbol getSymbol() {
         return Symbol.ROTATION;
-    }
-
-    public RotationNode(Node operand1, Node rotatee, int startpos, int endpos) {
-        super(startpos, endpos);
-        operand1.removeFromParent();
-        operand1.setParent(this);
-        add(rotatee);
     }
 
      /**

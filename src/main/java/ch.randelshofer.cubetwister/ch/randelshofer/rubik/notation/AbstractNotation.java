@@ -109,7 +109,7 @@ public abstract class AbstractNotation implements Notation {
     }
 
     @Override
-    public List<Symbol> getSymbolsFor(String token) {
+    public List<Symbol> getSymbols(String token) {
         return tokenToSymbolsMap.getOrDefault(token, Collections.emptyList());
     }
 

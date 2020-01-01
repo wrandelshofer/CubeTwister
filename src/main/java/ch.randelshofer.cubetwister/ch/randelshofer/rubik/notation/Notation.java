@@ -99,10 +99,26 @@ public interface Notation {
      */
     Collection<String> getTokens();
 
-    List<Symbol> getSymbolsFor(String token);
+    /**
+     * Given a (potentially ambiguous) token returns all symbols for
+     * that token.
+     *
+     * @param token a token
+     * @return the symbols for the token
+     */
+    List<Symbol> getSymbols(String token);
 
-    default Symbol getSymbolFor(String token, Symbol compositeSymbol) {
-        for (Symbol s : getSymbolsFor(token)) {
+    /**
+     * Given a (potentially ambiguous) token and a composite symbol
+     * that parser is currently parsing, returns the symbol for
+     * that token.
+     *
+     * @param token           a token
+     * @param compositeSymbol the composite symbol being parsed
+     * @return the symbol for the token in this composite symbol
+     */
+    default Symbol getSymbolInCompositeSymbol(String token, Symbol compositeSymbol) {
+        for (Symbol s : getSymbols(token)) {
             if (compositeSymbol.isSubSymbol(s)) {
                 return s;
             }

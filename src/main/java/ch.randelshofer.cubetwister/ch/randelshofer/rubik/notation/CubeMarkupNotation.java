@@ -361,8 +361,8 @@ public class CubeMarkupNotation implements Notation {
     public void dumpNotation() {
         System.out.println("name:" + name);
         System.out.println("description:" + name);
-        Set<Symbol> ss = Symbol.SCRIPT.getSubSymbols();
-        int i=0;
+        Set<Symbol> ss = Symbol.SEQUENCE.getSubSymbols();
+        int i = 0;
         for (Symbol s:ss) {
             if (i != 0) {
                 if (i % 10 == 0) {
@@ -423,11 +423,11 @@ public class CubeMarkupNotation implements Notation {
         return tokens;
     }
 
-    public List<Symbol> getSymbolsFor(String token) {
-        ArrayList<Symbol> symbols=new ArrayList<>();
+    public List<Symbol> getSymbols(String token) {
+        ArrayList<Symbol> symbols = new ArrayList<>();
         for (Symbol symbol : tokenToSymbolsMap.get(token)) {
             SymbolInfo info = symbolToInfoMap.get(symbol);
-            if (info!=null&&info.isSupported) {
+            if (info != null && info.isSupported) {
                 symbols.add(symbol);
             }
         }

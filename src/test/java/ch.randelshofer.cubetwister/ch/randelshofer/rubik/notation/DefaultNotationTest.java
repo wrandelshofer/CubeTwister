@@ -4,7 +4,6 @@
  */
 package ch.randelshofer.rubik.notation;
 
-import ch.randelshofer.rubik.notation.DefaultNotation;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -35,7 +34,7 @@ public class DefaultNotationTest {
     private void doTokens(String token, boolean expResult) {
         System.out.println("isToken:" + token);
         DefaultNotation instance = new DefaultNotation();
-        boolean result = !instance.getSymbolsFor(token).isEmpty();
+        boolean result = !instance.getSymbols(token).isEmpty();
         assertEquals(result, expResult);
     }
 
