@@ -3,17 +3,6 @@ package ch.randelshofer.rubik.parser;
 import org.jhotdraw.annotation.Nonnull;
 
 public class PermutationItemNode extends Node {
-    enum PartType {
-        SIDE,
-        EDGE,
-        CORNER
-    }
-
-    public PermutationItemNode() {
-        super();
-    }
-
-
     /**
      * The orientation of the part.
      * Values: 0, 1 for edge parts.
@@ -27,6 +16,11 @@ public class PermutationItemNode extends Node {
      * @see ch.randelshofer.rubik.Cube
      */
     private int location;
+
+    public PermutationItemNode() {
+        super();
+    }
+
 
     @Nonnull
     public PermutationItemNode clone() {

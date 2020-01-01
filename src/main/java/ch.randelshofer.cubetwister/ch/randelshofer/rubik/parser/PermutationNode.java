@@ -216,9 +216,7 @@ public class PermutationNode extends Node implements Cloneable {
                     throw new IllegalArgumentException("Illegal sign for edge part. [" + signSymbol + "]");
                 }
 
-                // FIXME: This low/high stuff is stupid, because we
-                //        imply that PR < PU < PF < PL < PD < PB
-                //        is an invariant.
+                // We imply here that PR < PU < PF < PL < PD < PB.
                 Symbol low = (faceSymbols[0].compareTo(faceSymbols[1]) < 0) ? faceSymbols[0] : faceSymbols[1];
                 Symbol high = (faceSymbols[0].compareTo(faceSymbols[1]) > 0) ? faceSymbols[0] : faceSymbols[1];
                 Symbol first = faceSymbols[0];
@@ -261,7 +259,7 @@ public class PermutationNode extends Node implements Cloneable {
                     rotated = first == Symbol.PERMUTATION_FACE_D;
 
                 } else {
-                    throw new IllegalArgumentException("Impossible edge part.");
+                    throw new IllegalArgumentException("Impossible edge part \"" + low.getName() + high.getName() + "\".");
                 }
 
                 if (layerCount <= 3) {
@@ -286,9 +284,7 @@ public class PermutationNode extends Node implements Cloneable {
                     throw new IllegalArgumentException("Illegal sign for corner part.");
                 }
 
-                // FIXME: This low/high stuff is stupid, because we
-                //        imply that PR < PU < PF < PL < PD < PB
-                //        is an invariant.
+                // We imply that PR < PU < PF < PL < PD < PB is an invariant.
                 Symbol[] sorted = faceSymbols.clone();
                 Arrays.sort(sorted);
                 Symbol low = sorted[0];
@@ -303,7 +299,9 @@ public class PermutationNode extends Node implements Cloneable {
                 //   4 = Orientation 1 counterclockwise
                 //   5 = Orientation 2 counterclockwise
                 int rotation = 0;
-                if (low == Symbol.PERMUTATION_FACE_R && mid == Symbol.PERMUTATION_FACE_U && high == Symbol.PERMUTATION_FACE_F) {
+                if (low == Symbol.PERMUTATION_FACE_R
+                        && mid == Symbol.PERMUTATION_FACE_U
+                        && high == Symbol.PERMUTATION_FACE_F) {
                     loc = 0;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_R) ? 0 : 3;
@@ -312,7 +310,9 @@ public class PermutationNode extends Node implements Cloneable {
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_R && mid == Symbol.PERMUTATION_FACE_F && high == Symbol.PERMUTATION_FACE_D) {
+                } else if (low == Symbol.PERMUTATION_FACE_R
+                        && mid == Symbol.PERMUTATION_FACE_F
+                        && high == Symbol.PERMUTATION_FACE_D) {
                     loc = 1;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 0 : 3;
@@ -321,7 +321,9 @@ public class PermutationNode extends Node implements Cloneable {
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_R && mid == Symbol.PERMUTATION_FACE_U && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.PERMUTATION_FACE_R
+                        && mid == Symbol.PERMUTATION_FACE_U
+                        && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 2;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 0 : 3;
@@ -330,7 +332,9 @@ public class PermutationNode extends Node implements Cloneable {
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_R && mid == Symbol.PERMUTATION_FACE_D && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.PERMUTATION_FACE_R
+                        && mid == Symbol.PERMUTATION_FACE_D
+                        && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 3;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_R) ? 0 : 3;
@@ -339,7 +343,9 @@ public class PermutationNode extends Node implements Cloneable {
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_U && mid == Symbol.PEMRUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.PERMUTATION_FACE_U
+                        && mid == Symbol.PEMRUTATION_FACE_L
+                        && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 4;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
                         rotation = (faceSymbols[1] == Symbol.PEMRUTATION_FACE_L) ? 0 : 3;
@@ -348,7 +354,9 @@ public class PermutationNode extends Node implements Cloneable {
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PEMRUTATION_FACE_L && mid == Symbol.PERMUTATION_FACE_D && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.PEMRUTATION_FACE_L
+                        && mid == Symbol.PERMUTATION_FACE_D
+                        && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 5;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 0 : 3;
@@ -357,7 +365,9 @@ public class PermutationNode extends Node implements Cloneable {
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_U && mid == Symbol.PERMUTATION_FACE_F && high == Symbol.PEMRUTATION_FACE_L) {
+                } else if (low == Symbol.PERMUTATION_FACE_U
+                        && mid == Symbol.PERMUTATION_FACE_F
+                        && high == Symbol.PEMRUTATION_FACE_L) {
                     loc = 6;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 0 : 3;
@@ -366,7 +376,9 @@ public class PermutationNode extends Node implements Cloneable {
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_F && mid == Symbol.PEMRUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_D) {
+                } else if (low == Symbol.PERMUTATION_FACE_F
+                        && mid == Symbol.PEMRUTATION_FACE_L
+                        && high == Symbol.PERMUTATION_FACE_D) {
                     loc = 7;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
                         rotation = (faceSymbols[1] == Symbol.PEMRUTATION_FACE_L) ? 0 : 3;
@@ -376,7 +388,7 @@ public class PermutationNode extends Node implements Cloneable {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
                     }
                 } else {
-                    throw new IllegalArgumentException("Impossible corner part.");
+                    throw new IllegalArgumentException("Impossible corner part \"" + low.getName() + mid.getName() + high.getName() + "\".");
                 }
 
                 permItem.setLocation(loc);

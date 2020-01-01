@@ -121,19 +121,7 @@
       <recent name="$PROJECT_DIR$/lib/test/classpath" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.All in ch.randelshofer.cubetwister">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
@@ -257,11 +245,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ScriptParserTest" />
-        <item itemvalue="JUnit.prefixNotation R as permutation (1)" />
-        <item itemvalue="JUnit.prefixNotation R as permutation" />
-        <item itemvalue="JUnit.postcircumfixNotation R as permutation" />
-        <item itemvalue="JUnit.ScriptParserTest.testParse" />
+        <item itemvalue="JUnit.All in ch.randelshofer.cubetwister" />
+        <item itemvalue="JUnit.defaultNotation (+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l) (1)" />
+        <item itemvalue="JUnit.defaultNotation (+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l)" />
+        <item itemvalue="JUnit.ScriptParserTest.testParsePermutation" />
+        <item itemvalue="JUnit.CubesTest" />
       </list>
     </recent_temporary>
   </component>
@@ -548,7 +536,112 @@
     <MESSAGE value="Fixes test." />
     <MESSAGE value="Before cleanup." />
     <MESSAGE value="During cleanup." />
-    <option name="LAST_COMMIT_MESSAGE" value="During cleanup." />
+    <MESSAGE value="Improves parser." />
+    <MESSAGE value="Fixes interpreter issues." />
+    <MESSAGE value="Cleans code up." />
+    <MESSAGE value="Adds documentation." />
+    <MESSAGE value="Improves tokenizer." />
+    <MESSAGE value="Organizes members." />
+    <MESSAGE value="Makes tokenizer code more similar to JavaScript." />
+    <MESSAGE value="Fixes NPE." />
+    <MESSAGE value="Fixes macro parsing." />
+    <MESSAGE value="Minor fixes." />
+    <MESSAGE value="Streamlines code with JavaScript implementation." />
+    <MESSAGE value="Infers nullity annotations." />
+    <MESSAGE value="Updates to Java SE 14." />
+    <MESSAGE value="Tweaks the test case for reflection." />
+    <MESSAGE value="Streamlines code with JavaScript version." />
+    <option name="LAST_COMMIT_MESSAGE" value="Streamlines code with JavaScript version." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="322" y="213" key="#Project_Structure" timestamp="1577882954280">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="322" y="200" key="#Project_Structure/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577882872296" />
+    <state x="322" y="213" key="#Project_Structure/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577882954280" />
+    <state x="459" y="338" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1577880584154">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="459" y="338" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880584154" />
+    <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1577880773161">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880773161" />
+    <state x="20" y="150" key="CommitChangelistDialog2" timestamp="1577888007394">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="20" y="150" key="CommitChangelistDialog2/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577888007394" />
+    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog" timestamp="1577886127481">
+      <screen x="480" y="1175" width="1440" height="816" />
+    </state>
+    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577886127481" />
+    <state width="1106" height="326" key="GridCell.Tab.0.bottom" timestamp="1577896084740">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.0.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
+    <state width="1106" height="326" key="GridCell.Tab.0.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084740" />
+    <state width="1106" height="326" key="GridCell.Tab.0.center" timestamp="1577896084740">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.0.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788610" />
+    <state width="1106" height="326" key="GridCell.Tab.0.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084740" />
+    <state width="1106" height="326" key="GridCell.Tab.0.left" timestamp="1577896084739">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.0.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788609" />
+    <state width="1106" height="326" key="GridCell.Tab.0.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084739" />
+    <state width="1106" height="326" key="GridCell.Tab.0.right" timestamp="1577896084740">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.0.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788610" />
+    <state width="1106" height="326" key="GridCell.Tab.0.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084740" />
+    <state width="1106" height="326" key="GridCell.Tab.1.bottom" timestamp="1577896064019">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.1.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788612" />
+    <state width="1106" height="326" key="GridCell.Tab.1.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064019" />
+    <state width="1106" height="326" key="GridCell.Tab.1.center" timestamp="1577896064019">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.1.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
+    <state width="1106" height="326" key="GridCell.Tab.1.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064019" />
+    <state width="1106" height="326" key="GridCell.Tab.1.left" timestamp="1577896064018">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.1.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
+    <state width="1106" height="326" key="GridCell.Tab.1.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064018" />
+    <state width="1106" height="326" key="GridCell.Tab.1.right" timestamp="1577896064019">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="1398" height="274" key="GridCell.Tab.1.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
+    <state width="1106" height="326" key="GridCell.Tab.1.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064019" />
+    <state x="544" y="199" key="SettingsEditor" timestamp="1577880591067">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="544" y="199" key="SettingsEditor/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880591067" />
+    <state x="572" y="471" key="VCS.ChangelistChooser" timestamp="1577880736340">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="572" y="471" key="VCS.ChangelistChooser/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880736340" />
+    <state x="322" y="288" key="Vcs.Push.Dialog.v2" timestamp="1577888013325">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="322" y="288" key="Vcs.Push.Dialog.v2/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577888013325" />
+    <state x="380" y="310" width="683" height="476" key="find.popup" timestamp="1577882289906">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="380" y="310" width="683" height="476" key="find.popup/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577882289906" />
+    <state width="979" height="510" key="javadoc.popup.new" timestamp="1577885915445">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state width="979" height="510" key="javadoc.popup.new/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577885915445" />
+    <state x="454" y="266" width="670" height="676" key="search.everywhere.popup" timestamp="1577889513296">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="454" y="249" width="670" height="629" key="search.everywhere.popup/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577799481225" />
+    <state x="454" y="266" width="670" height="676" key="search.everywhere.popup/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577889513296" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

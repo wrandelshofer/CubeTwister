@@ -66,7 +66,8 @@ public class MoveNode extends Node {
             normalizedAngle = 1;
         }
 
-        cube.transform(axis, layerMask, (inverse) ? -normalizedAngle : normalizedAngle);
+        var appliedMask = (layerMask << cube.getLayerCount()) >>> layerCount;
+        cube.transform(axis, appliedMask, (inverse) ? -normalizedAngle : normalizedAngle);
     }
 
     public int getAxis() {

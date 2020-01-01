@@ -23,12 +23,16 @@ public enum Symbol {
      */
     NOP("NOP"),
     MOVE("move", "twist"),
+
+    // Note: Ordering of the enum constants is significant.
+    // Class PermutationNode implies that PR < PU < PF < PL < PD < PB.
     PERMUTATION_FACE_R("permR"),
     PERMUTATION_FACE_U("permU"),
     PERMUTATION_FACE_F("permF"),
     PEMRUTATION_FACE_L("permL"),
     PERMUTATION_FACE_D("permD"),
     PERMUTATION_FACE_B("permB"),
+
     PERMUTATION_PLUS("permPlus"),
     PERMUTATION_MINUS("permMinus"),
     PERMUTATION_PLUSPLUS("permPlusPlus"),
