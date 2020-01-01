@@ -806,15 +806,15 @@ public class StreamPosTokenizer
     }
     
     /**
-     * Causes the next call to the <code>nextToken</code> method of this
-     * tokenizer to return the current value in the <code>ttype</code>
-     * field, and not to modify the value in the <code>nval</code> or
-     * <code>sval</code> field.
+     * Causes the next call to the {@code nextToken} method of this
+     * tokenizer to return the current value in the {@code ttype}
+     * field, and not to modify the value in the {@code nval} or
+     * {@code sval}  field.
      *
-     * @see     java.io.StreamTokenizer#nextToken()
-     * @see     java.io.StreamTokenizer#nval
-     * @see     java.io.StreamTokenizer#sval
-     * @see     java.io.StreamTokenizer#ttype
+     * @see java.io.StreamTokenizer#nextToken()
+     * @see java.io.StreamTokenizer#nval
+     * @see java.io.StreamTokenizer#sval
+     * @see java.io.StreamTokenizer#ttype
      */
     public void pushBack() {
         if (ttype != TT_NOTHING)   /* No-op if nextToken() not called */

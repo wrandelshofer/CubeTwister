@@ -13,12 +13,12 @@ import java.util.Map;
  * A greedy tokenizer.
  * <p>
  * By default this tokenizer parses the entire input sequence as a single word.
- * You can activate skipping of whitespaces by invoking addWhitespaceTokens().
- * You can activate tokenization of positive integer numbers, by invoking addDigitTokens().
- * You can activate tokenization of keywords, by adding keyword lookup.
+ * You can activate skipping of whitespaces by adding whitespace tokens using {@link #addSkip}.
+ * You can activate tokenization of positive integer numbers, by invoking {@link #addNumbers}.
+ * You can activate tokenization of keywords, by adding keyword tokens using {@link #addKeyword}.
+ * You can activate tokenization of comments, by adding comment tokens using {@link #addComment}.
  * <p>
- * Note that word parsing is greedy. If a word contains a comment-start token, then
- * the tokenizer will add the characters of the comment-start token to the word.
+ * Note that keyword parsing is greedy.
  * <p>
  * The tokenizer supports backtracking. That is, it can be
  * set to the state of another tokenizer. See method {@link #setTo}.
@@ -27,16 +27,16 @@ public class Tokenizer {
     public final static int TT_WORD = -2;
     public final static int TT_EOF = -1;
 
-    // the following ttypes can be activated on demand
+    // the following token types can be activated on demand
     public final static int TT_KEYWORD = -4;
     public final static int TT_NUMBER = -5;
 
-    // the following ttypes are used internally
+    // the following token types are used internally
     private final static int TT_DIGIT = -11;
-    private final static int TT_SPECIAL = -12;
     private final static int TT_SKIP = -13;
 
 
+    @Nonnull
     private String input = "";
     private int pos = 0;
     private boolean pushedBack = false;
@@ -47,7 +47,9 @@ public class Tokenizer {
     private String sval = null;
     @Nullable
     private Integer nval = null;
-    private KeywordTree keywordTree = new KeywordTree();
+
+    @Nonnull
+    private KeywordNode keywordTree = new KeywordNode();
     /**
      * Map<Character,TType> maps char to ttype or to null
      */
@@ -58,11 +60,20 @@ public class Tokenizer {
     }
 
     /**
-     * Defines a comment begin and end token.
+     * Adds a comment token.
+     * <p>
+     * To add a single line comment, use:
+     * <pre>
+     *     addComment("//","\n");
+     * </pre>
+     * <p>
+     * To add a multi line comment, use:
+     * <pre>
+     *     addComment("/*", "* /");
+     * </pre>
      */
-    public void addComment(@Nonnull String start, String end) {
-        KeywordTree node = addKeywordRecursively(start);
-        node.setKeyword(start);
+    public void addComment(@Nonnull String start, @Nonnull String end) {
+        var node = addKeywordRecursively(start);
         node.setCommentEnd(end);
     }
 
@@ -74,26 +85,26 @@ public class Tokenizer {
     }
 
     /**
-     * Defines a keyword token.
+     * Adds a keyword.
      *
-     * @param token the keyword token
+     * @param keyword the keyword token
      */
-    public void addKeyword(@Nonnull String token) {
-        KeywordTree node = addKeywordRecursively(token);
-        node.setKeyword(token);
+    public void addKeyword(@Nonnull String keyword) {
+        addKeywordRecursively(keyword);
     }
 
-    private KeywordTree addKeywordRecursively(@Nonnull String token) {
-        KeywordTree node = this.keywordTree;
-        for (int i = 0; i < token.length(); i++) {
-            char ch = token.charAt(i);
-            KeywordTree child = node.getChild(ch);
+    private KeywordNode addKeywordRecursively(@Nonnull String keyword) {
+        var node = this.keywordTree;
+        for (int i = 0; i < keyword.length(); i++) {
+            char ch = keyword.charAt(i);
+            var child = node.getChild(ch);
             if (child == null) {
-                child = new KeywordTree();
+                child = new KeywordNode();
                 node.putChild(ch, child);
             }
             node = child;
         }
+        node.setKeyword(keyword);
         return node;
     }
 
@@ -114,17 +125,10 @@ public class Tokenizer {
     }
 
     /**
-     * Adds a skip character.
+     * Adds a character that the tokenizer should skip.
      */
     private void addSkip(char ch) {
         this.lookup.put(ch, TT_SKIP);
-    }
-
-    /**
-     * Adds a special character.
-     */
-    private void addSpecial(char ch) {
-        this.lookup.put(ch, TT_SPECIAL);
     }
 
     /**
@@ -202,8 +206,8 @@ public class Tokenizer {
             }
 
             // try to tokenize a keyword or a comment
-            KeywordTree node = this.keywordTree;
-            KeywordTree foundNode = null;
+            KeywordNode node = this.keywordTree;
+            KeywordNode foundNode = null;
             int end = start;
             while (ch != TT_EOF && node.getChild((char) ch) != null) {
                 node = node.getChild((char) ch);
@@ -267,6 +271,10 @@ public class Tokenizer {
         }
     }
 
+    /**
+     * Causes the next call to the {@code nextToken} method of this
+     * tokenizer to return the current value.
+     */
     public void pushBack() {
         this.pushedBack = true;
     }
@@ -297,7 +305,7 @@ public class Tokenizer {
      *
      * @param input the input String;
      */
-    public void setInput(String input) {
+    public void setInput(@Nonnull String input) {
         this.input = input;
         this.pos = 0;
         this.pushedBack = false;
@@ -339,17 +347,19 @@ public class Tokenizer {
     }
 
     /**
-     * Defines the lookup needed for skipping whitespace.
+     * Adds whitespace characters to the list of characters that the tokenizer
+     * is supposed to skip.
      */
     public void skipWhitespace() {
         this.addSkip(' ');
-        this.addSkip('\f');
-        this.addSkip('\n');
-        this.addSkip('\r');
-        this.addSkip('\t');
-        this.addSkip('\u00a0');
-        this.addSkip('\u2028');
-        this.addSkip('\u2029');
+        this.addSkip('\f');// FORM FEED
+        this.addSkip('\n');// LINE FEED
+        this.addSkip('\r');// CARRIAGE RETURN
+        this.addSkip('\t');// CHARACTER TABULATION
+        this.addSkip('\u000b');// LINE TABULATION
+        this.addSkip('\u00a0');// NO-BREAK SPACE
+        this.addSkip('\u2028');// LINE SEPARATOR
+        this.addSkip('\u2029');// PARAGRAPH SEPARATOR
     }
 
     /**
@@ -361,4 +371,3 @@ public class Tokenizer {
         }
     }
 }
-
