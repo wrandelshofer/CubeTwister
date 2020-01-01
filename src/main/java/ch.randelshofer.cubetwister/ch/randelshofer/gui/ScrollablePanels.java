@@ -3,8 +3,14 @@
  */
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JPanel;
+import javax.swing.JScrollBar;
+import javax.swing.JViewport;
+import javax.swing.SwingConstants;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 
 /**
  * Helper class for panels that implement the Scrollable interface.
@@ -29,7 +35,7 @@ public class ScrollablePanels {
      * @return The preferredSize of a JViewport whose view is this Scrollable.
      * @see JViewport#getPreferredSize
      */
-    public static Dimension getPreferredScrollableViewportSize(JPanel component) {
+    public static Dimension getPreferredScrollableViewportSize(@Nonnull JPanel component) {
         return component.getPreferredSize();
     }
     
@@ -48,8 +54,8 @@ public class ScrollablePanels {
      *        This value should always be positive.
      * @see JScrollBar#setBlockIncrement
      */
-    public static int getScrollableBlockIncrement(JPanel component, Rectangle visibleRect, int orientation, int direction) {
-        switch(orientation) {
+    public static int getScrollableBlockIncrement(JPanel component, @Nonnull Rectangle visibleRect, int orientation, int direction) {
+        switch (orientation) {
             case SwingConstants.VERTICAL:
                 return visibleRect.height;
             case SwingConstants.HORIZONTAL:
@@ -71,9 +77,9 @@ public class ScrollablePanels {
      *
      * @return True if a viewport should force the Scrollables height to match its own.
      */
-    public static boolean getScrollableTracksViewportHeight(JPanel component) {
+    public static boolean getScrollableTracksViewportHeight(@Nonnull JPanel component) {
         if (component.getParent() instanceof JViewport) {
-            return (((JViewport)component.getParent()).getHeight() > component.getPreferredSize().height);
+            return (((JViewport) component.getParent()).getHeight() > component.getPreferredSize().height);
         }
         return false;
     }
@@ -93,11 +99,11 @@ public class ScrollablePanels {
      *
      * @return True if a viewport should force the Scrollables width to match its own.
      */
-    public static boolean getScrollableTracksViewportWidth(JPanel component) {
+    public static boolean getScrollableTracksViewportWidth(@Nonnull JPanel component) {
         if (component.getParent() instanceof JViewport) {
-            return (((JViewport)component.getParent()).getWidth() > component.getPreferredSize().width);
+            return (((JViewport) component.getParent()).getWidth() > component.getPreferredSize().width);
         }
-        
+
         return false;
     }
     
@@ -118,8 +124,8 @@ public class ScrollablePanels {
      *        This value should always be positive.
      * @see JScrollBar#setUnitIncrement
      */
-    public static int getScrollableUnitIncrement(JPanel component, Rectangle visibleRect, int orientation, int direction) {
-        switch(orientation) {
+    public static int getScrollableUnitIncrement(JPanel component, @Nonnull Rectangle visibleRect, int orientation, int direction) {
+        switch (orientation) {
             case SwingConstants.VERTICAL:
                 return visibleRect.height / 10;
             case SwingConstants.HORIZONTAL:

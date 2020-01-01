@@ -2,6 +2,10 @@
  * Copyright (c) 1998 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.geom3d;
+
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 /**
  * This class represents a 3D transform which performs a
  * mapping from 3D coordinates to other 3D coordinates.
@@ -284,7 +288,7 @@ implements Cloneable {
      * @param t The transform object to be concatenated with
      * this transform object.
      */
-    public void concatenate(Transform3D t) {
+    public void concatenate(@Nonnull Transform3D t) {
         double a00 = m00;
         double a10 = m10;
         double a20 = m20;
@@ -318,6 +322,7 @@ implements Cloneable {
     /**
      * Returns the complete 4x4 matrix representing this transform.
      */
+    @Nonnull
     public double[][] getMatrix() {
         double[][] m = {
             {m00, m10, m20, m30},
@@ -359,8 +364,8 @@ implements Cloneable {
     /**
      * Transforms the specified point.
      */
-    public void transform(Point3D pt) {
-        transform(pt,pt);
+    public void transform(@Nonnull Point3D pt) {
+        transform(pt, pt);
     }
 
     /**
@@ -371,21 +376,22 @@ implements Cloneable {
      * Note that ptSrc and ptDst can be the same. In this case, the input
      * point will be overwritten with the transformed point.
      */
-    public Point3D transform(Point3D ptSrc, Point3D ptDst)  {
-      double xx = ptSrc.x * this.m00 + ptSrc.y * this.m10 + ptSrc.z * this.m20 + this.m30;
-      double yy = ptSrc.x * this.m01 + ptSrc.y * this.m11 + ptSrc.z * this.m21 + this.m31;
-      double zz = ptSrc.x * this.m02 + ptSrc.y * this.m12 + ptSrc.z * this.m22 + this.m32;
+    @Nullable
+    public Point3D transform(@Nonnull Point3D ptSrc, @Nullable Point3D ptDst) {
+        double xx = ptSrc.x * this.m00 + ptSrc.y * this.m10 + ptSrc.z * this.m20 + this.m30;
+        double yy = ptSrc.x * this.m01 + ptSrc.y * this.m11 + ptSrc.z * this.m21 + this.m31;
+        double zz = ptSrc.x * this.m02 + ptSrc.y * this.m12 + ptSrc.z * this.m22 + this.m32;
 
-      if (ptDst == null)
-        { return new Point3D(xx,yy,zz); }
-      else
-        {
-        ptDst.x = xx;
-        ptDst.y = yy;
+        if (ptDst == null) {
+            return new Point3D(xx, yy, zz);
+        } else {
+            ptDst.x = xx;
+            ptDst.y = yy;
         ptDst.z = zz;
         return ptDst;
         }
       }
+
     /**
      * Transforms the specified polySrc and stores the result in polyDst.
      * If polyDst is null, a new Polygon3D object will be allocated before
@@ -396,16 +402,15 @@ implements Cloneable {
      * When the polyDst does not have enough capacity to store the data, its
      * capacity will be increased.
      */
-    public Polygon3D transform(Polygon3D polySrc, Polygon3D polyDst) {
-      // Create destination polygon if necessary
-      if (polyDst == null)
-        {
-        polyDst = new Polygon3D(polySrc.npoints);
+    @Nullable
+    public Polygon3D transform(@Nonnull Polygon3D polySrc, @Nullable Polygon3D polyDst) {
+        // Create destination polygon if necessary
+        if (polyDst == null) {
+            polyDst = new Polygon3D(polySrc.npoints);
         }
-      // Ensure enough capacity in destination polygon
-      if (polyDst.xpoints.length < polySrc.npoints)
-        {
-        polyDst.setCapacity(polySrc.npoints);
+        // Ensure enough capacity in destination polygon
+        if (polyDst.xpoints.length < polySrc.npoints) {
+            polyDst.setCapacity(polySrc.npoints);
         }
       // Transform the points
       for (int i = polySrc.npoints-1; --i >= 0; )
@@ -472,6 +477,7 @@ implements Cloneable {
         }
     }
 
+    @Nonnull
     public String toString() {
         return "{"+m00+","+m10+","+m20+","+m30+"\n"+m01+","+m11+","+m21+","+m31+"\n"+m02+","+m12+","+m22+","+m32+"}";
     }
@@ -499,20 +505,21 @@ implements Cloneable {
     /**
      * Sets this transform to a copy of the transform in the specified
      * <code>Transform3D</code> object.
+     *
      * @param Tx the <code>Transform3D</code> object from which to
-     * copy the transform
+     *           copy the transform
      */
-    public void setTransform(Transform3D Tx) {
-	this.m00 = Tx.m00;
-	this.m10 = Tx.m10;
-	this.m20 = Tx.m20;
-	this.m30 = Tx.m30;
-	this.m01 = Tx.m01;
-	this.m11 = Tx.m11;
-	this.m21 = Tx.m21;
-	this.m31 = Tx.m31;
-	this.m02 = Tx.m02;
-	this.m12 = Tx.m12;
+    public void setTransform(@Nonnull Transform3D Tx) {
+        this.m00 = Tx.m00;
+        this.m10 = Tx.m10;
+        this.m20 = Tx.m20;
+        this.m30 = Tx.m30;
+        this.m01 = Tx.m01;
+        this.m11 = Tx.m11;
+        this.m21 = Tx.m21;
+        this.m31 = Tx.m31;
+        this.m02 = Tx.m02;
+        this.m12 = Tx.m12;
 	this.m22 = Tx.m22;
 	this.m32 = Tx.m32;
     }
@@ -530,8 +537,9 @@ implements Cloneable {
 	bits = bits * 31 + Double.doubleToLongBits(m10);
 	bits = bits * 31 + Double.doubleToLongBits(m11);
 	bits = bits * 31 + Double.doubleToLongBits(m32);
-	return (((int) bits) ^ ((int) (bits >> 32)));
+        return (((int) bits) ^ ((int) (bits >> 32)));
     }
+
     /*
      * A function for creating a rotation matrix that rotates a vector called
      * "from" into another vector called "to".
@@ -540,7 +548,7 @@ implements Cloneable {
      * Author: Tomas Moller, 1999
      * As seen at http://lists.apple.com/archives/mac-opengl/2001/Jan/msg00059.html
      */
-    public static Transform3D fromToRotation(Point3D from, Point3D to) {
+    public static Transform3D fromToRotation(@Nonnull Point3D from, @Nonnull Point3D to) {
 //#define M(row,col) mtx9[col*4+row]
         final double EPSILON = 0.00001f;
         Point3D v;
@@ -642,6 +650,7 @@ implements Cloneable {
 //#undef M
         return m;
     }
+    @Nonnull
     public Transform3D getInverse() // Inverts this matrix
     // Code generated with MapleV and handoptimized
     {

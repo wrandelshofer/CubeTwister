@@ -3,37 +3,42 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.cubetwister.doc.*;
-import ch.randelshofer.gui.table.*;
-import ch.randelshofer.gui.datatransfer.*;
-import ch.randelshofer.util.*;
-import java.awt.datatransfer.*;
-import java.awt.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
-import javax.swing.table.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
+import ch.randelshofer.gui.datatransfer.CompositeTransferable;
+import ch.randelshofer.gui.table.MutableTableModel;
+import ch.randelshofer.gui.table.TableModels;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.Action;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.table.AbstractTableModel;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 
 /**
  * Wraps the macros provided by CubeModel to make them
  * accessible by a MutableJTable.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
-public class CubeStickersTableModel 
-extends AbstractTableModel 
-implements MutableTableModel, PropertyChangeListener, TreeModelListener {
+public class CubeStickersTableModel
+        extends AbstractTableModel
+        implements MutableTableModel, PropertyChangeListener, TreeModelListener {
     private final static long serialVersionUID = 1L;
     /**
      * The wrapped document.
      */
+    @Nullable
     private CubeModel model;
     /**
      * The Document.
      */
+    @Nullable
     private DocumentModel documentModel;
 
     private final String[] columnNames = {"cube.stickerColumn", "cube.visibleColumn",
@@ -58,13 +63,13 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
         setModel(n);
     }
 
-    public void setModel(CubeModel value) {
+    public void setModel(@Nullable CubeModel value) {
         CubeModel oldValue = model;
 
         if (oldValue != null) {
             oldValue.removePropertyChangeListener(this);
             fireTableRowsDeleted(0, getRowCount() - 1);
-            for (int i=getRowCount() - 1; i > -1; i--) {
+            for (int i = getRowCount() - 1; i > -1; i--) {
                 getRowObject(i).removePropertyChangeListener(this);
             }
         }
@@ -87,6 +92,8 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
             documentModel.addTreeModelListener(this);
         }
     }
+
+    @Nonnull
     public CubeStickerModel getRowObject(int row) {
         return (CubeStickerModel) model.getStickers().getChildAt(row);
     }
@@ -98,6 +105,7 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      * @param	column  	the column whose value is to be looked up
      * @return	the value Object at the specified cell
      */
+    @Nullable
     public Object getValueAt(int row, int column) {
         CubeStickerModel item = getRowObject(row);
         switch (column) {
@@ -178,22 +186,22 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to 
      * <I>aValue</I> is the new value.
      *
-     * @param	value		 the new value
-     * @param	row	 the row whose value is to be changed
-     * @param	column 	 the column whose value is to be changed
+     * @param    value         the new value
+     * @param    row     the row whose value is to be changed
+     * @param    column     the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
-    public void setValueAt(Object value, int row, int column) {
+    public void setValueAt(@Nonnull Object value, int row, int column) {
         CubeStickerModel item = getRowObject(row);
         switch (column) {
-            case 0 : 
+            case 0:
                 //item.setName((String) value);
                 break;
-            case 1 : 
+            case 1:
                 item.setVisible(((Boolean) value).booleanValue());
                 break;
-            case 2 : 
+            case 2:
                 item.setFillColorModel((CubeColorModel) value);
                 break;
             case 3 : 
@@ -209,6 +217,7 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      *
      * @return the common ancestor class of the object values in the model.
      */
+    @Nonnull
     @Override
     public Class<?> getColumnClass(int column) {
         switch (column) {
@@ -258,22 +267,23 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      *
      * @param   rows   indexes of the rows.
      */
+    @Nullable
     public Action[] getRowActions(int[] rows) {
         return null;
     }
     
-   public void propertyChange(PropertyChangeEvent evt) {
-        Object source = evt.getSource();
-        if (source == model && evt.getPropertyName() == CubeModel.KIND_PROPERTY) {
-            fireTableDataChanged();
-        } else if (source instanceof CubeStickerModel) {
-            int i = model.getStickers().getIndex((CubeStickerModel) source);
-            if (i != -1) {
-                fireTableRowsUpdated(i, i);
-            }
-        }
-    }
-    
+   public void propertyChange(@Nonnull PropertyChangeEvent evt) {
+       Object source = evt.getSource();
+       if (source == model && evt.getPropertyName() == CubeModel.KIND_PROPERTY) {
+           fireTableDataChanged();
+       } else if (source instanceof CubeStickerModel) {
+           int i = model.getStickers().getIndex((CubeStickerModel) source);
+           if (i != -1) {
+               fireTableRowsUpdated(i, i);
+           }
+       }
+   }
+
     /**
      * <p>Invoked after the tree has drastically changed structure from a
      * given node down.  If the path returned by e.getPath() is of length
@@ -283,14 +293,14 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      * <p>evt.path() holds the path to the node.</p>
      * <p>evt.childIndices() returns null.</p>
      */
-    public void treeStructureChanged(TreeModelEvent evt) {
+    public void treeStructureChanged(@Nonnull TreeModelEvent evt) {
         Object path[] = evt.getPath();
-        if (path[path.length - 1] == model.getStickers() 
-        || path[path.length - 1] == model) {
+        if (path[path.length - 1] == model.getStickers()
+                || path[path.length - 1] == model) {
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * <p>Invoked after nodes have been inserted into the tree.</p>
      *
@@ -298,15 +308,15 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      * <p>e.childIndices() returns the indices of the new nodes in
      * ascending order.
      */
-    public void treeNodesInserted(TreeModelEvent evt) {
+    public void treeNodesInserted(@Nonnull TreeModelEvent evt) {
         Object path[] = evt.getPath();
         if (path[path.length - 1] == model.getStickers()) {
             int[] indices = evt.getChildIndices();
-            
-            for (int i=0; i < indices.length; i++) {
+
+            for (int i = 0; i < indices.length; i++) {
                 ((CubeStickerModel) model.getStickers().getChildAt(indices[i])).addPropertyChangeListener(this);
             }
-            
+
             fireTableRowsInserted(indices[0], indices[indices.length - 1]);
         } else if (path[path.length - 1] == model) {
             fireTableDataChanged();
@@ -323,7 +333,7 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      *
      * <p>e.childIndices() returns the indices the nodes had before they were deleted in ascending order.</p>
      */
-    public void treeNodesRemoved(TreeModelEvent evt) {
+    public void treeNodesRemoved(@Nonnull TreeModelEvent evt) {
         Object path[] = evt.getPath();
         if (path[path.length - 1] == model.getStickers()) {
             int[] indices = evt.getChildIndices();
@@ -332,7 +342,7 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * <p>Invoked after a node (or a set of siblings) has changed in some
      * way. The node(s) have not changed locations in the tree or
@@ -347,34 +357,41 @@ implements MutableTableModel, PropertyChangeListener, TreeModelListener {
      *
      * <p>evt.childIndices() returns the index(es) of the changed node(s).</p>
      */
-    public void treeNodesChanged(TreeModelEvent evt) {
+    public void treeNodesChanged(@Nonnull TreeModelEvent evt) {
         Object path[] = evt.getPath();
         if (path[path.length - 1] == model.getStickers()) {
             int[] indices = evt.getChildIndices();
             fireTableRowsUpdated(indices[0], indices[indices.length - 1]);
         }
-    }    
+    }
+
     /**
      * Returns an empty array since insertion of stickers is not allowed.
      */
+    @Nonnull
     public Object[] getCreatableRowTypes(int row) {
         return new Object[] {};
     }
+
+    @Nullable
     public Object getCreatableRowType(int row) {
         return null;
     }
-    
+
     public boolean isRowAddable(int row) {
         return false;
     }
-    
+
     public int importRowTransferable(Transferable transfer, int action, int row, boolean asChild) {
         throw new IllegalStateException("cannot import row");
     }
+
     public boolean isRowImportable(DataFlavor[] flavors, int action, int row, boolean asChild) {
         return false;
     }
-    public Transferable exportRowTransferable(int[] rows) {
+
+    @Nonnull
+    public Transferable exportRowTransferable(@Nonnull int[] rows) {
         CompositeTransferable t = new CompositeTransferable();
         //t.add(TableModels.createLocalTransferable(this, rows));
         t.add(TableModels.createHTMLTransferable(this, rows));

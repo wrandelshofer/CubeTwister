@@ -7,6 +7,7 @@ import idx3d.idx3d_InternalMaterial;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -936,6 +937,7 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
         return 6 * 6 * 6;
     }
 
+    @Nonnull
     @Override
     protected CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, getStickerCount(), new int[]{36, 36, 36, 36, 36, 36});
@@ -962,7 +964,7 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
     }
 
     @Override
-    protected void initActions(idx3d_Scene scene) {
+    protected void initActions(@Nonnull idx3d_Scene scene) {
         int i, j;
         PartAction action;
 
@@ -1094,8 +1096,10 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
         initCornerUVMap();
         initSideUVMap();
     }
+
+    @Nonnull
     @Override
     public CubeKind getKind() {
-       return CubeKind.CUBE_6;
+        return CubeKind.CUBE_6;
     }
 }

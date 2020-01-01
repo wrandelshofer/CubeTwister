@@ -5,15 +5,16 @@ package ch.randelshofer.gui.tree;
 
 import ch.randelshofer.util.EnumerationIterator;
 import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeNode;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreeNode;
 
 /**
  * Extends {@code DefaultMutableTreeNode} with type safe collections.
@@ -42,9 +43,11 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
     }
 
 
+    @Nonnull
     public Iterable<T> breadthFirstIterable() {
         return new Iterable<T>() {
 
+            @Nonnull
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>) (Enumeration<?>) breadthFirstEnumeration();
@@ -70,9 +73,11 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
         return (T) super.clone();
     }
 
+    @Nonnull
     public Iterable<T> depthFirstIterable() {
         return new Iterable<T>() {
 
+            @Nonnull
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked") Enumeration<T> treeNodeEnumeration = (Enumeration<T>) (Enumeration<?>) depthFirstEnumeration();
@@ -87,30 +92,35 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
         return super.getAllowsChildren();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
-    public T getChildAfter(TreeNode aChild) {
+    public T getChildAfter(@Nonnull TreeNode aChild) {
         return (T) super.getChildAfter(aChild);
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getChildAt(int index) {
         return (T) super.getChildAt(index);
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
-    public T getChildBefore(TreeNode aChild) {
+    public T getChildBefore(@Nonnull TreeNode aChild) {
         return (T) super.getChildBefore(aChild);
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getFirstChild() {
         return (T) super.getFirstChild();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getFirstLeaf() {
@@ -118,52 +128,60 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
     }
 
     @Override
-    public int getIndex(TreeNode aChild) {
+    public int getIndex(@Nonnull TreeNode aChild) {
         return super.getIndex(aChild);
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getLastChild() {
         return (T) super.getLastChild();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getLastLeaf() {
         return (T) super.getLastLeaf();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getNextLeaf() {
         return (T) super.getNextLeaf();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getNextNode() {
         return (T) super.getNextNode();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getNextSibling() {
         return (T) super.getNextSibling();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getParent() {
         return (T) super.getParent();
     }
 
+    @Nullable
     @Override
     public TreeNode[] getPath() {
         return getPathToRootEx(this, 0);
     }
 
-    protected TreeNode[] getPathToRootEx(TreeNodeImpl<T> aNode, int depth) {
+    @Nullable
+    protected TreeNode[] getPathToRootEx(@Nullable TreeNodeImpl<T> aNode, int depth) {
         TreeNode[] retNodes;
 
 	/* Check for null, in case someone passed in a null node, or
@@ -182,30 +200,35 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
         return retNodes;
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getPreviousLeaf() {
         return (T) super.getPreviousLeaf();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getPreviousNode() {
         return (T) super.getPreviousNode();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getPreviousSibling() {
         return (T) super.getPreviousSibling();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getRoot() {
         return (T) super.getRoot();
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
     public T getSharedAncestor(DefaultMutableTreeNode aNode) {
@@ -218,9 +241,11 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
         super.insert((T) newChild, childIndex);
     }
 
+    @Nonnull
     public Iterable<T> postorderIterable() {
         return new Iterable<T>() {
 
+            @Nonnull
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked")
@@ -231,9 +256,11 @@ public class TreeNodeImpl<T extends TreeNodeImpl<T>> extends DefaultMutableTreeN
         };
     }
 
+    @Nonnull
     public Iterable<T> preorderIterable() {
         return new Iterable<T>() {
 
+            @Nonnull
             @Override
             public Iterator<T> iterator() {
                 @SuppressWarnings("unchecked")

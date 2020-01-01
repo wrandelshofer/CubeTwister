@@ -4,12 +4,19 @@
 
 package ch.randelshofer.util.prefs;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.prefs.*;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.Window;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.prefs.Preferences;
 /**
  * PreferencesUtil.
  *
@@ -32,16 +39,16 @@ public class PreferencesUtil {
      * @param name Base name of the preference.
      * @param window The window for which to track preferences.
      */
-    public static void installPrefsHandler(final Preferences prefs, final String name, Window window) {
+    public static void installPrefsHandler(@Nonnull final Preferences prefs, final String name, @Nonnull Window window) {
         GraphicsConfiguration conf = window.getGraphicsConfiguration();
         Rectangle screenBounds = conf.getBounds();
         Insets screenInsets = window.getToolkit().getScreenInsets(conf);
-        
+
         screenBounds.x += screenInsets.left;
         screenBounds.y += screenInsets.top;
         screenBounds.width -= screenInsets.left + screenInsets.right;
         screenBounds.height -= screenInsets.top + screenInsets.bottom;
-        
+
         Dimension preferredSize = window.getPreferredSize();
         
         Rectangle bounds = new Rectangle(
@@ -61,33 +68,34 @@ public class PreferencesUtil {
         
         window.addComponentListener(new ComponentAdapter() {
             @Override
-            public void componentMoved(ComponentEvent evt) {
-                prefs.putInt(name+".x", evt.getComponent().getX());
-                prefs.putInt(name+".y", evt.getComponent().getY());
+            public void componentMoved(@Nonnull ComponentEvent evt) {
+                prefs.putInt(name + ".x", evt.getComponent().getX());
+                prefs.putInt(name + ".y", evt.getComponent().getY());
             }
+
             @Override
-            public void componentResized(ComponentEvent evt) {
-                prefs.putInt(name+".width", evt.getComponent().getWidth());
-                prefs.putInt(name+".height", evt.getComponent().getHeight());
+            public void componentResized(@Nonnull ComponentEvent evt) {
+                prefs.putInt(name + ".width", evt.getComponent().getWidth());
+                prefs.putInt(name + ".height", evt.getComponent().getHeight());
             }
         });
         
     }
-    
+
     /**
      * Installs a JTabbedPane preferences handler.
      * On first run, sets the JTabbedPane to its preferred tab.
      *
-     * @param prefs Preferences for storing/retrieving preferences values.
-     * @param name Base name of the preference.
+     * @param prefs      Preferences for storing/retrieving preferences values.
+     * @param name       Base name of the preference.
      * @param tabbedPane The JTabbedPane for which to track preferences.
      */
-    public static void installPrefsHandler(final Preferences prefs, final String name, final JTabbedPane tabbedPane) {
+    public static void installPrefsHandler(@Nonnull final Preferences prefs, final String name, @Nonnull final JTabbedPane tabbedPane) {
         int selectedTab = prefs.getInt(name, 0);
         try {
-        tabbedPane.setSelectedIndex(selectedTab);
+            tabbedPane.setSelectedIndex(selectedTab);
         } catch (IndexOutOfBoundsException e) {
-            
+
         }
         tabbedPane.addChangeListener(new ChangeListener() {
 

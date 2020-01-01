@@ -3,12 +3,16 @@
  */
 package ch.randelshofer.gui;
 
-import java.lang.reflect.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Formatter;
 import java.util.Locale;
-
-import javax.swing.*;
-import javax.swing.event.*;
 
 /**
  * A class to monitor the progress of some operation.
@@ -24,6 +28,7 @@ public class ProgressView extends javax.swing.JPanel implements ProgressObserver
     private javax.swing.BoundedRangeModel model;
     private Runnable doCancel;
     private Formatter formatter;
+    @Nonnull
     private ChangeListener changeHandler = new ChangeListener() {
 
         @Override
@@ -280,7 +285,7 @@ public class ProgressView extends javax.swing.JPanel implements ProgressObserver
     }
 
     @Override
-    public void printf(String format, Object... args) {
+    public void printf(@Nonnull String format, Object... args) {
         if ((formatter == null)//
                 || (formatter.locale() != Locale.getDefault())) {
             formatter = new Formatter();
@@ -423,7 +428,7 @@ public class ProgressView extends javax.swing.JPanel implements ProgressObserver
         }
     }
 
-    private static void invokeAndWait(Runnable r) {
+    private static void invokeAndWait(@Nonnull Runnable r) {
         if (SwingUtilities.isEventDispatchThread()) {
             r.run();
         } else {

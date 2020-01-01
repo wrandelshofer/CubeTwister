@@ -3,12 +3,27 @@
  */
 package ch.randelshofer.gui.datatransfer;
 
-import java.awt.datatransfer.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JPasswordField;
+import javax.swing.TransferHandler;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.EditorKit;
+import javax.swing.text.JTextComponent;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.im.InputContext;
-import java.io.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.text.*;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The FileTextFieldTransferHandler can be used to add drag and drop
@@ -20,6 +35,7 @@ public class FileTextFieldTransferHandler extends TransferHandler {
     private final static long serialVersionUID = 1L;
 
     private boolean shouldRemove;
+    @Nullable
     private JTextComponent exportComp;
     private int p0;
     private int p1;
@@ -52,7 +68,7 @@ public class FileTextFieldTransferHandler extends TransferHandler {
     }
 
     @Override
-    public boolean importData(JComponent comp, Transferable t) {
+    public boolean importData(JComponent comp, @Nonnull Transferable t) {
         JTextComponent c = (JTextComponent) comp;
 
         // if we are importing to the same component that we exported from
@@ -131,7 +147,7 @@ public class FileTextFieldTransferHandler extends TransferHandler {
         return imported;
     }
 
-    protected boolean importFiles(JTextComponent c, List<File> files) {
+    protected boolean importFiles(@Nonnull JTextComponent c, @Nonnull List<File> files) {
         File file = files.get(0);
         c.setText(file.getPath());
         return true;
@@ -165,7 +181,7 @@ public class FileTextFieldTransferHandler extends TransferHandler {
     }
 
     @Override
-    public boolean canImport(JComponent comp, DataFlavor[] transferFlavors) {
+    public boolean canImport(JComponent comp, @Nonnull DataFlavor[] transferFlavors) {
         JTextComponent c = (JTextComponent) comp;
         if (!(c.isEditable() && c.isEnabled())) {
             return false;
@@ -191,7 +207,8 @@ public class FileTextFieldTransferHandler extends TransferHandler {
      *     <li>Lastly, DataFlavor.stringFlavor is searched for.
      * </ol>
      */
-    protected DataFlavor getImportFlavor(DataFlavor[] flavors, JTextComponent c) {
+    @Nullable
+    protected DataFlavor getImportFlavor(@Nonnull DataFlavor[] flavors, JTextComponent c) {
         DataFlavor plainFlavor = null;
         DataFlavor refFlavor = null;
         DataFlavor stringFlavor = null;
@@ -217,7 +234,7 @@ public class FileTextFieldTransferHandler extends TransferHandler {
     /**
      * Import the given stream data into the text component.
      */
-    protected void handleReaderImport(Reader in, JTextComponent c, boolean useRead)
+    protected void handleReaderImport(@Nonnull Reader in, @Nonnull JTextComponent c, boolean useRead)
             throws BadLocationException, IOException {
         if (useRead) {
             int startPosition = c.getSelectionStart();

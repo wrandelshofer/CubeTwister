@@ -5,13 +5,15 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.undo.*;
+import ch.randelshofer.undo.Undoable;
+import org.jhotdraw.annotation.Nonnull;
 
-import java.util.prefs.*;
-
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
+import javax.swing.event.UndoableEditListener;
+import java.util.prefs.Preferences;
 /**
  * CubeOptionsView.
  *
@@ -87,6 +89,7 @@ public class CubeOptionsView extends JPanel implements EntityView, Undoable {
          backgroundView.setModel(model);
     }
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

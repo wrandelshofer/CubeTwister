@@ -3,21 +3,52 @@ package ch.randelshofer.cubetwister;
  * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
  */
 
-import ch.randelshofer.cubetwister.doc.*;
+import ch.randelshofer.cubetwister.doc.CubeModel;
+import ch.randelshofer.cubetwister.doc.DocumentModel;
+import ch.randelshofer.cubetwister.doc.EntityModel;
+import ch.randelshofer.cubetwister.doc.InfoModel;
+import ch.randelshofer.cubetwister.doc.MacroModel;
+import ch.randelshofer.cubetwister.doc.NotationModel;
+import ch.randelshofer.cubetwister.doc.NotationMovesTableModel;
+import ch.randelshofer.cubetwister.doc.ScriptModel;
+import ch.randelshofer.cubetwister.doc.TextModel;
 import ch.randelshofer.gui.ProgressObserver;
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.CubeKind;
+import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.notation.Symbol;
-import ch.randelshofer.rubik.parser.*;
-import java.io.*;
-import java.util.*;
-import java.util.jar.JarOutputStream;
-import java.util.jar.Pack200;
-import java.util.jar.Pack200.Unpacker;
-import java.util.zip.*;
-
+import ch.randelshofer.rubik.parser.MoveMetrics;
+import ch.randelshofer.rubik.parser.Node;
+import ch.randelshofer.rubik.parser.SequenceNode;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Stack;
+import java.util.jar.JarOutputStream;
+import java.util.jar.Pack200;
+import java.util.jar.Pack200.Unpacker;
+import java.util.zip.Deflater;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * HTMLExporter exports a CubeTwister document to a directory.
@@ -31,12 +62,14 @@ public class HTMLExporter implements Exporter {
      * Note: zipfile and dir are mutually exclusive. If dir has a non-null
      * value, then zipFile must be null and vice versa.
      */
+    @Nullable
     private File dir;
     /**
      * Output zip file of the exporter.
      * Note: zipfile and dir are mutually exclusive. If zipFile has a non-null
      * value, then dir must be null and vice versa.
      */
+    @Nullable
     private File zipFile;
     /**
      * ZipOutputStream for the zipFile.
@@ -66,18 +99,23 @@ public class HTMLExporter implements Exporter {
             return super.put(key, htmlencode(value));
         }
 
+        @Nullable
         public String putUnencoded(String key, String value) {
             return super.put(key, value);
         }
+
+        @Nullable
         public String putParameter(String key, String value) {
             return super.put(key, paramencode(value));
         }
 
+        @Nullable
         public String put(String key, int value) {
             return super.put(key, Integer.toString(value));
         }
 
-        private String htmlencode(String str) {
+        @Nullable
+        private String htmlencode(@Nullable String str) {
             if (str != null) {
                 str = str.replace("&", "&amp;");
                 str = str.replace("<", "&lt;");
@@ -86,7 +124,9 @@ public class HTMLExporter implements Exporter {
             }
             return str;
         }
-        private String paramencode(String str) {
+
+        @Nullable
+        private String paramencode(@Nullable String str) {
             if (str != null) {
                 str = str.replace("\"", "&#034;");
             }
@@ -96,6 +136,7 @@ public class HTMLExporter implements Exporter {
 
     private static class StackEntry {
 
+        @Nonnull
         public DataMap data = new DataMap();
         public CubeModel cube;
         public NotationModel notation;
@@ -108,13 +149,14 @@ public class HTMLExporter implements Exporter {
     /**
      * Output Stream for the current Entry.
      */
+    @Nullable
     private OutputStream entryOut;
 
     /** Creates a new instance. */
     public HTMLExporter() {
     }
 
-    public void exportToDirectory(String documentName, DocumentModel model, File dir, ProgressObserver p) throws IOException {
+    public void exportToDirectory(String documentName, @Nonnull DocumentModel model, File dir, @Nonnull ProgressObserver p) throws IOException {
         this.documentName = documentName;
         this.model = model;
         this.dir = dir;
@@ -138,7 +180,7 @@ public class HTMLExporter implements Exporter {
         p.setProgress(p.getProgress() + 1);
     }
 
-    public void exportToZipFile(String documentName, DocumentModel model, File zipFile, ProgressObserver p) throws IOException {
+    public void exportToZipFile(String documentName, DocumentModel model, @Nonnull File zipFile, @Nonnull ProgressObserver p) throws IOException {
         this.documentName = documentName;
         this.model = model;
         this.dir = null;
@@ -153,7 +195,7 @@ public class HTMLExporter implements Exporter {
         processHTMLTemplates(p);
     }
 
-    private void putNextEntry(String filename) throws IOException {
+    private void putNextEntry(@Nonnull String filename) throws IOException {
         if (zipOut != null) {
             ZipEntry entry = new ZipEntry(filename);
             zipOut.putNextEntry(entry);
@@ -250,7 +292,7 @@ public class HTMLExporter implements Exporter {
         putNotationData(model.getDefaultNotation(model.getDefaultCube().getLayerCount()), "");
     }
 
-    private void putCubeData(CubeModel m, String prefix) {
+    private void putCubeData(@Nonnull CubeModel m, String prefix) {
         StackEntry entry = stack.peek();
         DataMap data = entry.data;
         entry.cube = m;
@@ -291,7 +333,7 @@ public class HTMLExporter implements Exporter {
         data.put(prefix + "cube.shorterKind", m.getKind().getAlternativeName(2));
     }
 
-    private void putNotationData(NotationModel m, String prefix) {
+    private void putNotationData(@Nonnull NotationModel m, String prefix) {
         StackEntry entry = stack.peek();
         DataMap data = entry.data;
         entry.notation = m;
@@ -336,7 +378,7 @@ public class HTMLExporter implements Exporter {
         data.put(prefix + "notation.macro.count", m.getMacroModels().getChildCount());
     }
 
-    private void putScriptData(ScriptModel m) {
+    private void putScriptData(@Nonnull ScriptModel m) {
         StackEntry entry = stack.peek();
         DataMap data = entry.data;
         entry.script = m;
@@ -373,7 +415,7 @@ public class HTMLExporter implements Exporter {
         putCubeData(m.getCubeModel(), "script.");
     }
 
-    private void putNoteData(TextModel m) {
+    private void putNoteData(@Nonnull TextModel m) {
         StackEntry entry = stack.peek();
         DataMap data = entry.data;
         entry.note = m;
@@ -385,7 +427,7 @@ public class HTMLExporter implements Exporter {
         data.put("note.date", m.getDate());
     }
 
-    private void processHTMLTemplates(ProgressObserver p) throws IOException {
+    private void processHTMLTemplates(@Nonnull ProgressObserver p) throws IOException {
         TarInputStream tin = null;
         try {
             InputStream in = getClass().getResourceAsStream("/htmltemplates.tar.bz");
@@ -393,7 +435,7 @@ public class HTMLExporter implements Exporter {
             in.read();
             tin = new TarInputStream(new BZip2CompressorInputStream(in));
 
-            for (TarArchiveEntry entry = tin.getNextEntry(); entry != null && !p.isCanceled();) {
+            for (TarArchiveEntry entry = tin.getNextEntry(); entry != null && !p.isCanceled(); ) {
                 if (entry.isDirectory()) {
                     //System.out.println("dir:" + entry.getName());
                 } else {
@@ -429,12 +471,12 @@ public class HTMLExporter implements Exporter {
         }
     }
 
-    private int countHTMLTemplates(ProgressObserver p) throws IOException {
+    private int countHTMLTemplates(@Nonnull ProgressObserver p) throws IOException {
         int count = 0;
 
         HashSet<CubeKind> cubeKinds = new HashSet<CubeKind>();
         EntityModel dmtn = model.getChild(model.getRoot(), DocumentModel.CUBE_INDEX);
-        for (EntityModel node: dmtn.getChildren()) {
+        for (EntityModel node : dmtn.getChildren()) {
             CubeModel cm = (CubeModel) node;
             cubeKinds.add(cm.getKind());
         }
@@ -496,7 +538,8 @@ public class HTMLExporter implements Exporter {
      * If a token start with "${", its a placeholder.
      * If a token doesn't start with "${" its a literal text.
      */
-    private String[] toTokens(String filename, InputStream in) throws IOException {
+    @Nonnull
+    private String[] toTokens(String filename, @Nonnull InputStream in) throws IOException {
         InputStreamReader reader = new InputStreamReader(in, "UTF8");
         StringBuilder buf = new StringBuilder();
         char[] cbuf = new char[256];
@@ -531,10 +574,10 @@ public class HTMLExporter implements Exporter {
      * Processes a cube template.
      *
      * @param filenameTemplate The template for the filenameTemplate. It must contain
-     * the substring ${cube}
-     * @param tokens An input stream for reading the contents of the template.
+     *                         the substring ${cube}
+     * @param tokens           An input stream for reading the contents of the template.
      */
-    private void processCubeTemplate(String filenameTemplate, String[] tokens) throws IOException {
+    private void processCubeTemplate(@Nonnull String filenameTemplate, @Nonnull String[] tokens) throws IOException {
         String placeholder = "${cube}";
         int plh = filenameTemplate.indexOf(placeholder);
         String filenamePrefix = (plh == 0) ? "" : filenameTemplate.substring(0, plh);
@@ -558,7 +601,8 @@ public class HTMLExporter implements Exporter {
     /**
      * Converts a String, so that it only contains lower case ASCII characters.
      */
-    private String toID(String str) {
+    @Nonnull
+    private String toID(@Nonnull String str) {
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < str.length(); i++) {
             char ch = Character.toLowerCase(str.charAt(i));
@@ -575,10 +619,10 @@ public class HTMLExporter implements Exporter {
      * Processes a notation template.
      *
      * @param filenameTemplate The filenameTemplate of the template. The filenameTemplate must contain the substring
-     * ${notation}
-     * @param tokens An input stream for reading the contents of the template.
+     *                         ${notation}
+     * @param tokens           An input stream for reading the contents of the template.
      */
-    private void processNotationTemplate(String filenameTemplate, String[] tokens) throws IOException {
+    private void processNotationTemplate(@Nonnull String filenameTemplate, @Nonnull String[] tokens) throws IOException {
         String placeholder = "${notation}";
         int plh = filenameTemplate.indexOf(placeholder);
         String filenamePrefix = (plh == 0) ? "" : filenameTemplate.substring(0, plh);
@@ -603,10 +647,10 @@ public class HTMLExporter implements Exporter {
      * Processes a script template.
      *
      * @param filename The filename of the template. The filename must contain the substring
-     * ${script}
-     * @param tokens An input stream for reading the contents of the template.
+     *                 ${script}
+     * @param tokens   An input stream for reading the contents of the template.
      */
-    private void processScriptTemplate(String filename, String[] tokens) throws IOException {
+    private void processScriptTemplate(@Nonnull String filename, @Nonnull String[] tokens) throws IOException {
         String placeholder = "${script}";
         int plh = filename.indexOf(placeholder);
         String filenamePrefix = (plh == 0) ? "" : filename.substring(0, plh);
@@ -631,10 +675,10 @@ public class HTMLExporter implements Exporter {
      * Processes a note template.
      *
      * @param filename The filename of the template. The filename must contain the substring
-     * ${note}
-     * @param tokens An input stream for reading the contents of the template.
+     *                 ${note}
+     * @param tokens   An input stream for reading the contents of the template.
      */
-    private void processNoteTemplate(String filename, String[] tokens) throws IOException {
+    private void processNoteTemplate(@Nonnull String filename, @Nonnull String[] tokens) throws IOException {
         String placeholder = "${note}";
         int plh = filename.indexOf(placeholder);
         String filenamePrefix = (plh == 0) ? "" : filename.substring(0, plh);
@@ -659,9 +703,9 @@ public class HTMLExporter implements Exporter {
      * Processes a HTML template.
      *
      * @param filename The filename of the template.
-     * @param tokens An input stream for reading the contents of the template.
+     * @param tokens   An input stream for reading the contents of the template.
      */
-    private void processHTMLTemplate(String filename, String[] tokens) throws IOException {
+    private void processHTMLTemplate(@Nonnull String filename, @Nonnull String[] tokens) throws IOException {
         p.setProgress(p.getProgress() + 1);
         putNextEntry(filename);
         Writer w = new OutputStreamWriter(entryOut, "UTF-8");
@@ -680,6 +724,7 @@ public class HTMLExporter implements Exporter {
         return "-" + placeholder + "-";
     }
 
+    @Nullable
     private CubeModel getCurrentCube() {
         for (int i = stack.size() - 1; i >= 0; i--) {
             if (stack.get(i).cube != null) {
@@ -689,6 +734,7 @@ public class HTMLExporter implements Exporter {
         return null;
     }
 
+    @Nullable
     private NotationModel getCurrentNotation() {
         for (int i = stack.size() - 1; i >= 0; i--) {
             if (stack.get(i).notation != null) {
@@ -698,6 +744,7 @@ public class HTMLExporter implements Exporter {
         return null;
     }
 
+    @Nullable
     private ScriptModel getCurrentScript() {
         for (int i = stack.size() - 1; i >= 0; i--) {
             if (stack.get(i).script != null) {
@@ -707,6 +754,7 @@ public class HTMLExporter implements Exporter {
         return null;
     }
 
+    @Nullable
     private TextModel getCurrentNote() {
         for (int i = stack.size() - 1; i >= 0; i--) {
             if (stack.get(i).note != null) {
@@ -716,7 +764,7 @@ public class HTMLExporter implements Exporter {
         return null;
     }
 
-    private void writeData(Writer w, String[] tokens, int start, int end) throws IOException {
+    private void writeData(@Nonnull Writer w, @Nonnull String[] tokens, int start, int end) throws IOException {
         for (int i = start; i < end; i++) {
             String t = tokens[i];
 
@@ -739,14 +787,14 @@ public class HTMLExporter implements Exporter {
      * The block starts with a ${FOR placeholder} token and ends with a
      * ${ENDFOR placeholder} token, or a ${ENDFOR} token..
      *
-     * @param w The Writer into which we write the output of the block.
+     * @param w      The Writer into which we write the output of the block.
      * @param tokens An array with tokens
-     * @param start The index of the token which contains the
-     * ${BEGIN placeholder} token.
+     * @param start  The index of the token which contains the
+     *               ${BEGIN placeholder} token.
      * @return Returns the index of the token which contains the
      * ${END placeholder} token.
      */
-    private int writeForeachBlock(Writer w, String[] tokens, int start) throws IOException {
+    private int writeForeachBlock(@Nonnull Writer w, @Nonnull String[] tokens, int start) throws IOException {
         // Search end token
         String endToken = "${FOR" + tokens[start].substring("${FOR ".length());
         int depth = 0;
@@ -890,7 +938,7 @@ public class HTMLExporter implements Exporter {
      * @param start The index of the token which contains the ${IF ...} token.
      * @return Returns the index of the token which contains the ${ENDIF} token.
      */
-    private int writeConditionalBlock(Writer w, String[] tokens, int start) throws IOException {
+    private int writeConditionalBlock(@Nonnull Writer w, @Nonnull String[] tokens, int start) throws IOException {
         // Search end token
         int depth = 0;
         int end;
@@ -957,9 +1005,9 @@ public class HTMLExporter implements Exporter {
      * Processes a binary template.
      *
      * @param filename The name of the template.
-     * @param in An input stream for reading the contents of the template.
+     * @param in       An input stream for reading the contents of the template.
      */
-    private void processBinaryTemplate(String filename, InputStream in) throws IOException {
+    private void processBinaryTemplate(@Nonnull String filename, @Nonnull InputStream in) throws IOException {
         p.setProgress(p.getProgress() + 1);
 
         putNextEntry(filename);
@@ -978,10 +1026,10 @@ public class HTMLExporter implements Exporter {
      * a Jar file to the output stream.
      *
      * @param filename The name of the template. Must end with ".jar.pack.gz".
-     * @param in An input stream for reading the contents of the template.
+     * @param in       An input stream for reading the contents of the template.
      */
-    private void processPack200Template(String filename, InputStream in) throws IOException {
-            p.setNote("Exporting "+filename+" ...");
+    private void processPack200Template(@Nonnull String filename, @Nonnull InputStream in) throws IOException {
+        p.setNote("Exporting " + filename + " ...");
         p.setProgress(p.getProgress() + 1);
 
         // Determine whether we can skip this file

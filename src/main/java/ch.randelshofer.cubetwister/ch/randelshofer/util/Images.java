@@ -4,13 +4,26 @@
 
 package ch.randelshofer.util;
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.PixelGrabber;
+import java.awt.image.Raster;
+import java.awt.image.RenderedImage;
+import java.awt.image.WritableRaster;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 /**
  * Image processing methods.
@@ -18,37 +31,45 @@ import javax.swing.*;
  * @author  Werner Randelshofer, Karl von Randow
  */
 public class Images {
-    
-    /** Prevent instance creation. */
+
+    /**
+     * Prevent instance creation.
+     */
     private Images() {
     }
-    public static Image createImage(InputStream resource) throws IOException {
+
+    public static Image createImage(@Nonnull InputStream resource) throws IOException {
         Image image = Toolkit.getDefaultToolkit().createImage(resource.readAllBytes());
         return image;
     }
-    public static Image createImage(String moduleName, String location) {
+
+    @Nullable
+    public static Image createImage(@Nonnull String moduleName, @Nonnull String location) {
         try (InputStream resource = ModuleLayer.boot().findModule(moduleName).get().getResourceAsStream(location);) {
             return createImage(resource);
         } catch (IOException e) {
-            System.err.println("Warning: Images.createImage no resource found for "+moduleName+" "+location);
+            System.err.println("Warning: Images.createImage no resource found for " + moduleName + " " + location);
             return null;
         }
     }
-    public static Image createImage(Class<?> baseClass, String location) {
+
+    public static Image createImage(@Nonnull Class<?> baseClass, @Nonnull String location) {
         URL url = baseClass.getResource(location);
         if (url == null) {
-            throw new IllegalArgumentException("Resource not found for "+baseClass+" "+location);
+            throw new IllegalArgumentException("Resource not found for " + baseClass + " " + location);
         }
         return createImage(url);
     }
-    public static Image createImage(URL resource) {
+
+    public static Image createImage(@Nullable URL resource) {
         if (resource == null) {
-            throw new IllegalArgumentException("Resource not found for "+resource);
+            throw new IllegalArgumentException("Resource not found for " + resource);
         }
         Image image = Toolkit.getDefaultToolkit().createImage(resource);
         return image;
     }
-    
+
+    @Nullable
     public static BufferedImage toBufferedImage(RenderedImage rImg) {
         BufferedImage image;
         if (rImg instanceof BufferedImage) {
@@ -63,11 +84,12 @@ public class Images {
                     wr,
                     rImg.getColorModel().isAlphaPremultiplied(),
                     null
-                    );
+            );
         }
         return image;
     }
-    
+
+    @Nullable
     public static BufferedImage toBufferedImage(Image image) {
         if (image instanceof BufferedImage) {
             return (BufferedImage)image;
@@ -197,6 +219,7 @@ public class Images {
     /**
      * Splits an image into count subimages.
      */
+    @Nonnull
     public static BufferedImage[] split(Image image, int count, boolean isHorizontal) {
         BufferedImage src = Images.toBufferedImage(image);
         if (count == 1) {

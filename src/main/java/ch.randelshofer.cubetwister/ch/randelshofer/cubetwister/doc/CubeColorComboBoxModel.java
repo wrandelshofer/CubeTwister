@@ -4,8 +4,13 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import java.beans.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * CubeColorComboBoxModel is used to present a choice of colors in the 
@@ -57,11 +62,12 @@ implements ComboBoxModel, PropertyChangeListener {
     /**
      * Returns the value at the specified index.
      */
+    @Nullable
     public Object getElementAt(int index) {
         return (cubeModel == null || index >= cubeModel.getColors().getChildCount()) ? null : cubeModel.getColors().getChildAt(index);
     }
-    
-    public void propertyChange(PropertyChangeEvent evt) {
+
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         String name = evt.getPropertyName();
         if (name.equals(EntityModel.PROP_CHILD_COUNT)) {
             fireIntervalRemoved(this, 0, cachedSize);

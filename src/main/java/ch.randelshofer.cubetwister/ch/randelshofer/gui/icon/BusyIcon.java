@@ -3,6 +3,12 @@
  */
 package ch.randelshofer.gui.icon;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.Timer;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -10,9 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashSet;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.Timer;
 
 /**
  * BusyIcon.
@@ -23,6 +26,7 @@ public class BusyIcon implements Icon {
 
     private static BusyIcon instance;
     private static BufferedImage image;
+    @Nullable
     private Timer timer;
     private HashSet<Component> timerComponents;
 
@@ -50,7 +54,7 @@ public class BusyIcon implements Icon {
     }
 
     @Override
-    public void paintIcon(final Component c, Graphics g, final int x, final int y) {
+    public void paintIcon(@Nullable final Component c, @Nonnull Graphics g, final int x, final int y) {
         if (image != null) {
             // 10 frames @ in intervals of 60 milliseconds
             int i = (int) (System.currentTimeMillis() / 60 % 10);

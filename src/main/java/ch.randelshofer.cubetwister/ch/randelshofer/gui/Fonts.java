@@ -4,9 +4,11 @@
 
 package ch.randelshofer.gui;
 
-import java.util.*;
-import java.awt.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.UIManager;
+import java.awt.Font;
+import java.util.HashMap;
 /**
  * Fonts.
  *
@@ -66,6 +68,7 @@ public class Fonts {
      * The dialog font is used for text in menus, modeless dialogs, and titles
      * of document windows.
      */
+    @Nonnull
     public static Font getDialogFont() {
         init();
         return (Font) fonts.get("Dialog");
@@ -75,6 +78,7 @@ public class Fonts {
      * used in only two places in the interface: the application name in an
      * About window and the message text in an option pane.
      */
+    @Nonnull
     public static Font getEmphasizedDialogFont() {
         init();
         return (Font) fonts.get("EmphasizedDialog");
@@ -85,6 +89,7 @@ public class Fonts {
      * text in the small versions of many controls. You can also use it to
      * provide additional information about settings in various windows.
      */
+    @Nonnull
     public static Font getSmallDialogFont() {
         init();
         return (Font) fonts.get("SmallDialog");
@@ -94,6 +99,7 @@ public class Fonts {
      * that appear without a group box, or for brief informative text below a
      * text field.
      */
+    @Nonnull
     public static Font getEmphasizedSmallDialogFont() {
         init();
         return (Font) fonts.get("EmphasizedSmallDialog");
@@ -102,6 +108,7 @@ public class Fonts {
      * If your application creates text documents, use the application font as
      * the default for user-created content.
      */
+    @Nonnull
     public static Font getApplicationFont() {
         init();
         return (Font) fonts.get("Application");
@@ -109,6 +116,7 @@ public class Fonts {
     /**
      * If your application needs monospaced fonts, use the monospace font.
      */
+    @Nonnull
     public static Font getMonospaceFont() {
         init();
         return (Font) fonts.get("Monospace");
@@ -118,6 +126,7 @@ public class Fonts {
      * bevel buttons. You should rarely need to use this font in dialogs, but
      * may find it useful in utility windows when space is at a premium.
      */
+    @Nonnull
     public static Font getLabelFont() {
         init();
         return (Font) fonts.get("Label");
@@ -126,6 +135,7 @@ public class Fonts {
      * If necessary, the mini dialog font can be used for utility window labels
      * and text.
      */
+    @Nonnull
     public static Font getMiniDialogFont() {
         init();
         return (Font) fonts.get("MiniDialog");
@@ -134,6 +144,7 @@ public class Fonts {
     /**
      * Puts an HTML font tag for the Dialog Font around the specified text.
      */
+    @Nonnull
     public static String dialogFontTag(String text) {
         init();
         return fonts.get("DialogTag") + text + fonts.get("/DialogTag");
@@ -141,6 +152,7 @@ public class Fonts {
     /**
      * Puts an HTML font tag for the Small Dialog Font around the specified text.
      */
+    @Nonnull
     public static String smallDialogFontTag(String text) {
         init();
         return fonts.get("SmallDialogTag") + text + fonts.get("/SmallDialogTag");
@@ -148,6 +160,7 @@ public class Fonts {
     /**
      * Puts an HTML font tag for the Emphasized Dialog Font around the specified text.
      */
+    @Nonnull
     public static String emphasizedDialogFontTag(String text) {
         init();
         return fonts.get("EmphasizedDialogTag") + text + fonts.get("/EmphasizedDialogTag");

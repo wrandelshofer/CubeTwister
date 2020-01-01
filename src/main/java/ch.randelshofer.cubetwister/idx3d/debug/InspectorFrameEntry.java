@@ -1,24 +1,28 @@
 package idx3d.debug;
 
-import idx3d.*;
-import java.util.Vector;
-import java.awt.*;
-import java.applet.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.awt.Color;
+import java.awt.Event;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Panel;
 
 @SuppressWarnings("deprecation")
 public class InspectorFrameEntry extends Panel {
 
     private final static long serialVersionUID = 1L;
-    Object obj = null;
-    String type, name, value;
+    @Nullable Object obj = null;
+    @Nullable String type, name, value;
     boolean mouseInside = false;
     InspectorFrame parent;
     boolean isPrimitive;
 
-    Font plain = new Font("Helvetica", 0, 11);
-    Font bold = new Font("Helvetica", 1, 11);
+    @Nonnull Font plain = new Font("Helvetica", 0, 11);
+    @Nonnull Font bold = new Font("Helvetica", 1, 11);
 
-    public InspectorFrameEntry(InspectorFrame parent, Object obj, String name) {
+    public InspectorFrameEntry(InspectorFrame parent, @Nullable Object obj, String name) {
         this.parent = parent;
         this.type = (obj != null) ? obj.getClass().getName() : "Object";
         if (this.type.startsWith("idx3d.")) {
@@ -30,7 +34,7 @@ public class InspectorFrameEntry extends Panel {
         isPrimitive = (obj == null);
     }
 
-    public InspectorFrameEntry(InspectorFrame parent, String type, String name, String value) {
+    public InspectorFrameEntry(InspectorFrame parent, String type, String name, @Nullable String value) {
         this.parent = parent;
         this.type = type;
         this.name = name;
@@ -39,7 +43,7 @@ public class InspectorFrameEntry extends Panel {
         isPrimitive = true;
     }
 
-    public void paint(Graphics g) {
+    public void paint(@Nonnull Graphics g) {
         int w = this.size().width;
         int h = this.size().height;
         int m1 = w / 3;

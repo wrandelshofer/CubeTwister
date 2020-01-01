@@ -4,7 +4,13 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.LayoutManager;
 /**
  * VerticalGridLayout.
  * <p>
@@ -210,16 +216,17 @@ public class VerticalGridLayout implements LayoutManager, java.io.Serializable {
      * plus the top and bottom insets of the target container.
      *
      * @param     parent   the container in which to do the layout
-     * @return    the preferred dimensions to lay out the
+     * @return the preferred dimensions to lay out the
      *                      subcomponents of the specified container
      */
-    public Dimension preferredLayoutSize(Container parent) {
+    @Nonnull
+    public Dimension preferredLayoutSize(@Nonnull Container parent) {
         synchronized (parent.getTreeLock()) {
             Insets insets = parent.getInsets();
             int ncomponents = parent.getComponentCount();
             int nrows = rows;
             int ncols = cols;
-            
+
             if (nrows > 0) {
                 ncols = (ncomponents + nrows - 1) / nrows;
             } else {
@@ -257,16 +264,17 @@ public class VerticalGridLayout implements LayoutManager, java.io.Serializable {
      * the top and bottom insets of the target container.
      *
      * @param       parent   the container in which to do the layout
-     * @return      the minimum dimensions needed to lay out the
+     * @return the minimum dimensions needed to lay out the
      *                      subcomponents of the specified container
      */
-    public Dimension minimumLayoutSize(Container parent) {
+    @Nonnull
+    public Dimension minimumLayoutSize(@Nonnull Container parent) {
         synchronized (parent.getTreeLock()) {
             Insets insets = parent.getInsets();
             int ncomponents = parent.getComponentCount();
             int nrows = rows;
             int ncols = cols;
-            
+
             if (nrows > 0) {
                 ncols = (ncomponents + nrows - 1) / nrows;
             } else {
@@ -307,14 +315,14 @@ public class VerticalGridLayout implements LayoutManager, java.io.Serializable {
      * @see        java.awt.Container
      * @see        java.awt.Container#doLayout
      */
-    public void layoutContainer(Container parent) {
+    public void layoutContainer(@Nonnull Container parent) {
         synchronized (parent.getTreeLock()) {
             Insets insets = parent.getInsets();
             int ncomponents = parent.getComponentCount();
             int nrows = rows;
             int ncols = cols;
             boolean ltr = parent.getComponentOrientation().isLeftToRight();
-            
+
             if (ncomponents == 0) {
                 return;
             }
@@ -363,6 +371,7 @@ public class VerticalGridLayout implements LayoutManager, java.io.Serializable {
      * Returns the string representation of this grid layout's values.
      * @return     a string representation of this grid layout
      */
+    @Nonnull
     public String toString() {
         return getClass().getName() + "[hgap=" + hgap + ",vgap=" + vgap +
         ",rows=" + rows + ",cols=" + cols + "]";

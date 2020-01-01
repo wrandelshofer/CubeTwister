@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -19,6 +21,7 @@ public class EmptyIterator<T> implements Iterator<T> {
         return false;
     }
 
+    @Nonnull
     @Override
     public T next() {
         throw new NoSuchElementException();
@@ -28,9 +31,10 @@ public class EmptyIterator<T> implements Iterator<T> {
     public void remove() {
         throw new NoSuchElementException();
     }
-    
-  @SuppressWarnings("unchecked")
-  public static <T> Iterator<T> getInstance() {
-    return (Iterator<T>) EMPTY_ITERATOR;
-  }
+
+    @Nonnull
+    @SuppressWarnings("unchecked")
+    public static <T> Iterator<T> getInstance() {
+        return (Iterator<T>) EMPTY_ITERATOR;
+    }
 }

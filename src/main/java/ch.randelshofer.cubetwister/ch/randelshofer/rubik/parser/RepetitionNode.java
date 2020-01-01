@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.util.EmptyIterator;
 import ch.randelshofer.util.ReverseListIterator;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -60,11 +61,13 @@ public class RepetitionNode extends Node {
      * Special operators (i. e. repeat and inverse) are
      * resolved before the children are returned.
      */
+    @Nonnull
     @Override
     public Iterator<Node> resolvedIterator(boolean inverse) {
         return new ResolvedIterator(this, inverse, repeatCount);
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings({"rawtypes", "unchecked"})
     public Iterator<Node> reversedChildIterator() {
@@ -74,7 +77,7 @@ public class RepetitionNode extends Node {
     }
 
     @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         Syntax pos = (p.isSupported(Symbol.GROUPING)) ? p.getSyntax(Symbol.REPETITION) : null;
         if (pos == null) {
@@ -100,13 +103,14 @@ public class RepetitionNode extends Node {
     private static class ResolvedIterator
             implements Iterator<Node> {
 
+        @Nonnull
         private final RepetitionNode root;
         private Iterator<Node> children;
         private Iterator<Node> subtree;
         private boolean inverse;
         private int repeatCount;
 
-        public ResolvedIterator(RepetitionNode root, boolean inverse, int repeat) {
+        public ResolvedIterator(@Nonnull RepetitionNode root, boolean inverse, int repeat) {
             this.root = root;
             this.inverse = inverse;
             this.repeatCount = (root.getChildCount() == 0) ? 0 : repeat;
@@ -146,6 +150,7 @@ public class RepetitionNode extends Node {
         }
     }
 
+    @Nonnull
     @Override
     public String toString() {
         StringBuilder b = new StringBuilder();

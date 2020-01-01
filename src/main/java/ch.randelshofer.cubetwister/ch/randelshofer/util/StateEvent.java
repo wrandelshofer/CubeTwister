@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.EventObject;
 /**
  * Event for state changes.
@@ -17,10 +19,10 @@ extends EventObject {
    */
   private int state;
 
-  public StateEvent(Object source, int state) {
-    super(source);
-    this.state = state;
-  }
+    public StateEvent(@Nonnull Object source, int state) {
+        super(source);
+        this.state = state;
+    }
   
   public int getNewState() {
     return state;

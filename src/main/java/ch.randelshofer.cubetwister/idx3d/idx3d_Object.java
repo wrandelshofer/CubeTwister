@@ -35,8 +35,10 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Iterator;
 
 /**
@@ -46,10 +48,14 @@ import java.util.Iterator;
 public class idx3d_Object extends idx3d_Node {
     // F I E L D S
 
+    @Nullable
     public Object userData = null;	// Can be freely used
+    @Nullable
     public String user = null; 	// Can be freely used
 
+    @Nonnull
     public ArrayList<idx3d_Vertex> vertexData = new ArrayList<idx3d_Vertex>();
+    @Nonnull
     public ArrayList<idx3d_Triangle> triangleData = new ArrayList<idx3d_Triangle>();
 
     public int id;  // This object's index
@@ -62,6 +68,7 @@ public class idx3d_Object extends idx3d_Node {
     public int vertices = 0;
     public int triangles = 0;
 
+    @Nullable
     public idx3d_InternalMaterial material = null;
 
     // C O N S T R U C T O R S
@@ -81,13 +88,13 @@ public class idx3d_Object extends idx3d_Node {
         return triangleData.size();
     }
 
-    public void addVertex(idx3d_Vertex newVertex) {
+    public void addVertex(@Nonnull idx3d_Vertex newVertex) {
         newVertex.parent = this;
         vertexData.add(newVertex);
         invalidate();
     }
 
-    public void addTriangle(idx3d_Triangle newTriangle) {
+    public void addTriangle(@Nonnull idx3d_Triangle newTriangle) {
         newTriangle.parent = this;
         triangleData.add(newTriangle);
         invalidate();
@@ -97,7 +104,7 @@ public class idx3d_Object extends idx3d_Node {
      * Incorporates the geometry of the supplied object into this object. This
      * removes all vertices and triangles from the supplied object.
      */
-    public void incorporateGeometry(idx3d_Object that) {
+    public void incorporateGeometry(@Nonnull idx3d_Object that) {
         for (idx3d_Vertex vertex : that.vertexData) {
             vertex.parent = this;
             this.vertexData.add(vertex);
@@ -219,6 +226,7 @@ public class idx3d_Object extends idx3d_Node {
         }
     }
 
+    @Nonnull
     public String toString() {
         StringBuilder buffer = new StringBuilder();
         buffer.append("<object id=" + name + ">\r\n");
@@ -244,6 +252,7 @@ public class idx3d_Object extends idx3d_Node {
         regenerate();
     }
 
+    @Nonnull
     public idx3d_Vector min() {
         if (vertices == 0) {
             return new idx3d_Vector(0f, 0f, 0f);
@@ -265,6 +274,7 @@ public class idx3d_Object extends idx3d_Node {
         return new idx3d_Vector(minX, minY, minZ);
     }
 
+    @Nonnull
     public idx3d_Vector max() {
         if (vertices == 0) {
             return new idx3d_Vector(0f, 0f, 0f);
@@ -305,6 +315,7 @@ public class idx3d_Object extends idx3d_Node {
     /**
      * Returns the center of this object.
      */
+    @Nonnull
     public idx3d_Vector getCenter() {
         idx3d_Vector max = max();
         idx3d_Vector min = min();
@@ -314,6 +325,7 @@ public class idx3d_Object extends idx3d_Node {
     /**
      * Returns the x,y,z - Dimension of this object.
      */
+    @Nonnull
     public idx3d_Vector getDimension() {
         idx3d_Vector max = max();
         idx3d_Vector min = min();
@@ -334,6 +346,7 @@ public class idx3d_Object extends idx3d_Node {
         normalmatrix.reset();
     }
 
+    @Nonnull
     public idx3d_Object getClone() {
         idx3d_Object obj = new idx3d_Object();
         rebuild();
@@ -458,11 +471,13 @@ public class idx3d_Object extends idx3d_Node {
      * concatenation of the matrix of this idx3d_Object and of all its parent
      * idx3d_Group objects.
      */
+    @Nonnull
     public idx3d_Matrix getVertexProjection() {
         return getVertexProjectionInto(new idx3d_Matrix());
     }
 
-    public idx3d_Matrix getVertexProjectionInto(idx3d_Matrix vertexProjection) {
+    @Nonnull
+    public idx3d_Matrix getVertexProjectionInto(@Nonnull idx3d_Matrix vertexProjection) {
         vertexProjection.set(matrix);
         //idx3d_Matrix vertexProjection = matrix.getClone();
         for (idx3d_Group group = parent; group != null; group = group.parent) {
@@ -476,11 +491,13 @@ public class idx3d_Object extends idx3d_Node {
      * concatenation of the normalmatrix of this idx3d_Object and of all its
      * parent idx3d_Group objects.
      */
+    @Nonnull
     public idx3d_Matrix getNormalProjection() {
         return getNormalProjectionInto(new idx3d_Matrix());
     }
 
-    public idx3d_Matrix getNormalProjectionInto(idx3d_Matrix normalProjection) {
+    @Nonnull
+    public idx3d_Matrix getNormalProjectionInto(@Nonnull idx3d_Matrix normalProjection) {
         normalProjection.set(matrix);
         //idx3d_Matrix normalProjection = normalmatrix.getClone();
         for (idx3d_Group group = parent; group != null; group = group.parent) {
@@ -490,7 +507,7 @@ public class idx3d_Object extends idx3d_Node {
     }
 
     // P R I V A T E   M E T H O D S
-    private void edgeCollapse(idx3d_Edge edge) // Collapses the edge [u,v] by replacing v by u
+    private void edgeCollapse(@Nonnull idx3d_Edge edge) // Collapses the edge [u,v] by replacing v by u
     {
         idx3d_Vertex u = edge.start();
         idx3d_Vertex v = edge.end();

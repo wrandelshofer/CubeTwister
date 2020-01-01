@@ -7,8 +7,17 @@
 package ch.randelshofer.util;
 
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.Serializable;
-import java.util.*;
+import java.util.AbstractList;
+import java.util.Collection;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * JDCTechTips 2002-08-22. John Zukowski.
@@ -51,21 +60,21 @@ implements Serializable {
     public PriorityQueue(int count) {
         this(null, count);
     }
-    
+
     /**
      * Constructs a priority queue containing the elements of the specified
      * collection, in the order they are returned by the collection'siterator.
      * The created PriorityQueue supports <code>count</code> distinct priorities.
      * All elements are added using priority 0 (the lowest priority).
      *
-     * @exception IllegalArgumentException if the specified priority count
-     * is is out of range <code>count &lt; 0</code>.
+     * @throws IllegalArgumentException if the specified priority count
+     *                                  is is out of range <code>count &lt; 0</code>.
      */
     @SuppressWarnings("unchecked")
-    public PriorityQueue(Collection<? extends E> col, int count) {
+    public PriorityQueue(@Nullable Collection<? extends E> col, int count) {
         if (count <= 0) {
             throw new IllegalArgumentException(
-            "Illegal priority count: "+ count);
+                    "Illegal priority count: " + count);
         }
         queue = new List[count];
         if (col != null) {
@@ -177,6 +186,7 @@ implements Serializable {
      * Returns an iterator of the elements in this priority queue (elements
      * with higher priorities first).
      */
+    @Nonnull
     public Iterator<E> iterator() {
         Iterator<E> iter = new Iterator<E>() {
             int expectedModCount = modCount;
@@ -186,8 +196,8 @@ implements Serializable {
             
             // Used to prevent successive remove() calls
             int lastRet = -1;
-            
-            Iterator<E> tempIter;
+
+            @Nullable Iterator<E> tempIter;
             
             // Get iterator for highest priority
             {
@@ -255,6 +265,7 @@ implements Serializable {
      * (comma and space). Elements are converted to strings as by
      * String.valueOf(Object).
      */
+    @Nonnull
     @Override
     public String toString() {
         StringBuilder buffer = new StringBuilder("{");

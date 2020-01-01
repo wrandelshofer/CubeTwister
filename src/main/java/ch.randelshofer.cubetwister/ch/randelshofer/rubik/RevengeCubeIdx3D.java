@@ -7,6 +7,7 @@ import idx3d.idx3d_InternalMaterial;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -749,6 +750,7 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
         return 6 * 4 * 4;
     }
 
+    @Nonnull
     @Override
     protected CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, getStickerCount(), new int[]{16, 16, 16, 16, 16, 16});
@@ -775,7 +777,7 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
     }
 
     @Override
-    protected void initActions(idx3d_Scene scene) {
+    protected void initActions(@Nonnull idx3d_Scene scene) {
         int i, j;
         PartAction action;
 
@@ -908,6 +910,7 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
         initSideUVMap();
     }
 
+    @Nonnull
     @Override
     public CubeKind getKind() {
         return CubeKind.REVENGE;

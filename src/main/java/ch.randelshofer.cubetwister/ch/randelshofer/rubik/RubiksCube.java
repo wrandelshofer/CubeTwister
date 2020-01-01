@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Represents the state of a 3-times sliced cube (Rubik's Cube) by the location 
  * and orientation of its parts.
@@ -1045,6 +1047,7 @@ public class RubiksCube extends AbstractCube {
      * @return A two dimensional array. First dimension: faces.
      * Second dimension: sticker index on the faces.
      */
+    @Nonnull
     @Override
     public int[][] toStickers() {
         int[][] stickers = new int[6][9];

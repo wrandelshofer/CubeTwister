@@ -36,7 +36,14 @@
 
 package idx3d;
 
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 
 /**
@@ -51,75 +58,77 @@ public final class idx3d_Material extends idx3d_InternalMaterial
 		{
                     super();
 		}
-		
-		public idx3d_Material(int color)
-		{
-			super(color);
-		}
-		
-		public idx3d_Material(idx3d_Texture t)
-		{
-			super(t);
-		}
-		
-		public idx3d_Material(URL docURL, String filename)
-		// Call from Applet
-		{			
-                    super();
-			int pos=0;
-			String temp=docURL.toString();
-			while (temp.indexOf("/",pos)>0) pos=temp.indexOf("/",pos)+1;
-			temp=temp.substring(0,pos)+filename;
-			while (temp.indexOf("/",pos)>0) pos=temp.indexOf("/",pos)+1;
-			String file=temp.substring(pos);
-			String base=temp.substring(0,pos);
-			
-			try{
-				importFromStream(new java.net.URL(base+file).openStream(),new URL(base));
-			}
-			catch (Exception e){System.err.println(e+"");}
-		}
-		
-		public idx3d_Material(String filename)
-		// Call from Application
-		{	
-			String base=filename.substring(0,filename.length()-(new File(filename).getName().length()));
-			try{
-				importFromStream(new FileInputStream(new File(filename)),base);
-			}
-			catch (Exception e){System.err.println(e+"");}
-		}
-		
-		
-	// Material import
-	
-		private void importFromStream(InputStream inStream, Object baseURL) throws IOException
-		{
-			DataInputStream in=new DataInputStream(new BufferedInputStream(inStream));
-			readSettings(in);
-			readTexture(in,baseURL,true);
-			readTexture(in,baseURL,false);				
-		}
-		
-		private void readSettings(DataInputStream in) throws IOException
-		{
-			setColor(in.readInt());
-			setTransparency(in.readUnsignedByte());
-			setReflectivity(in.readUnsignedByte());
-			setFlat(in.readBoolean());
-		}
-		
-		private void readTexture(DataInputStream in, Object baseURL, boolean textureId) throws IOException
-		{
-			idx3d_Texture t=null;
-			int id=in.readByte();
-			if (id==1) 
-			{
-				if (baseURL instanceof URL) t=new idx3d_Texture((URL)baseURL,in.readUTF());
-				else t=new idx3d_Texture((String)baseURL+in.readUTF());
-				
-				if (t!=null && textureId)
-				{
+
+    public idx3d_Material(int color) {
+        super(color);
+    }
+
+    public idx3d_Material(idx3d_Texture t) {
+        super(t);
+    }
+
+    public idx3d_Material(@Nonnull URL docURL, String filename)
+    // Call from Applet
+    {
+        super();
+        int pos = 0;
+        String temp = docURL.toString();
+        while (temp.indexOf("/", pos) > 0) {
+            pos = temp.indexOf("/", pos) + 1;
+        }
+        temp = temp.substring(0, pos) + filename;
+        while (temp.indexOf("/", pos) > 0) {
+            pos = temp.indexOf("/", pos) + 1;
+        }
+        String file = temp.substring(pos);
+        String base = temp.substring(0, pos);
+
+        try {
+            importFromStream(new java.net.URL(base + file).openStream(), new URL(base));
+        } catch (Exception e) {
+            System.err.println(e + "");
+        }
+    }
+
+    public idx3d_Material(@Nonnull String filename)
+    // Call from Application
+    {
+        String base = filename.substring(0, filename.length() - (new File(filename).getName().length()));
+        try {
+            importFromStream(new FileInputStream(new File(filename)), base);
+        } catch (Exception e) {
+            System.err.println(e + "");
+        }
+    }
+
+
+    // Material import
+
+    private void importFromStream(@Nonnull InputStream inStream, Object baseURL) throws IOException {
+        DataInputStream in = new DataInputStream(new BufferedInputStream(inStream));
+        readSettings(in);
+        readTexture(in, baseURL, true);
+        readTexture(in, baseURL, false);
+    }
+
+    private void readSettings(@Nonnull DataInputStream in) throws IOException {
+        setColor(in.readInt());
+        setTransparency(in.readUnsignedByte());
+        setReflectivity(in.readUnsignedByte());
+        setFlat(in.readBoolean());
+    }
+
+    private void readTexture(@Nonnull DataInputStream in, Object baseURL, boolean textureId) throws IOException {
+        idx3d_Texture t = null;
+        int id = in.readByte();
+        if (id == 1) {
+            if (baseURL instanceof URL) {
+                t = new idx3d_Texture((URL) baseURL, in.readUTF());
+            } else {
+                t = new idx3d_Texture((String) baseURL + in.readUTF());
+            }
+
+            if (t != null && textureId) {
 					texturePath=t.path;
 					textureSettings=null;
 					setTexture(t);

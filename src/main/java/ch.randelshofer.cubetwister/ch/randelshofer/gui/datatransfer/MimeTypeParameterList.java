@@ -3,9 +3,10 @@
  */
 package ch.randelshofer.gui.datatransfer;
 
-import java.util.Enumeration;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -30,7 +31,7 @@ class MimeTypeParameterList implements Cloneable {
         parameters = new HashMap<String, String>();
     }
 
-    public MimeTypeParameterList(String rawdata)
+    public MimeTypeParameterList(@Nonnull String rawdata)
             throws MimeTypeParseException {
         parameters = new HashMap<String, String>();
 
@@ -91,7 +92,7 @@ class MimeTypeParameterList implements Cloneable {
     /**
      * A routine for parsing the parameter list out of a String.
      */
-    protected void parse(String rawdata) throws MimeTypeParseException {
+    protected void parse(@Nonnull String rawdata) throws MimeTypeParseException {
         int length = rawdata.length();
         if (length > 0) {
             int currentIndex = skipWhiteSpace(rawdata, 0);
@@ -227,7 +228,7 @@ class MimeTypeParameterList implements Cloneable {
      * Retrieve the value associated with the given name, or null if there is no
      * current association.
      */
-    public String get(String name) {
+    public String get(@Nonnull String name) {
         return parameters.get(name.trim().toLowerCase());
     }
 
@@ -235,24 +236,26 @@ class MimeTypeParameterList implements Cloneable {
      * Set the value to be associated with the given name, replacing any
      * previous association.
      */
-    public void set(String name, String value) {
+    public void set(@Nonnull String name, String value) {
         parameters.put(name.trim().toLowerCase(), value);
     }
 
     /**
      * Remove any value associated with the given name.
      */
-    public void remove(String name) {
+    public void remove(@Nonnull String name) {
         parameters.remove(name.trim().toLowerCase());
     }
 
     /**
      * Retrieve an enumeration of all the names in this list.
      */
+    @Nonnull
     public Iterable<String> getNames() {
         return parameters.keySet();
     }
 
+    @Nonnull
     public String toString() {
         StringBuilder buffer = new StringBuilder();
         buffer.ensureCapacity(parameters.size() * 16);    //    heuristic: 8 characters per field
@@ -270,6 +273,7 @@ class MimeTypeParameterList implements Cloneable {
     /**
      * @return a clone of this object
      */
+    @Nullable
     @Override
     @SuppressWarnings("unchecked")
     public MimeTypeParameterList clone() {
@@ -294,7 +298,7 @@ class MimeTypeParameterList implements Cloneable {
      * return the index of the first non white space character in rawdata at or
      * after index i.
      */
-    private static int skipWhiteSpace(String rawdata, int i) {
+    private static int skipWhiteSpace(@Nonnull String rawdata, int i) {
         int length = rawdata.length();
         if (i < length) {
             char c = rawdata.charAt(i);
@@ -310,7 +314,8 @@ class MimeTypeParameterList implements Cloneable {
     /**
      * A routine that knows how and when to quote and escape the given value.
      */
-    private static String quote(String value) {
+    @Nonnull
+    private static String quote(@Nonnull String value) {
         boolean needsQuotes = false;
 
         //    check to see if we actually have to quote this thing
@@ -348,7 +353,8 @@ class MimeTypeParameterList implements Cloneable {
      * A routine that knows how to strip the quotes and escape sequences from
      * the given value.
      */
-    private static String unquote(String value) {
+    @Nonnull
+    private static String unquote(@Nonnull String value) {
         int valueLength = value.length();
         StringBuilder buffer = new StringBuilder();
         buffer.ensureCapacity(valueLength);

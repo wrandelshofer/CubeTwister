@@ -42,9 +42,27 @@
 package nanoxml;
 
 import ch.randelshofer.util.Applets;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.Color;
-import java.io.*;
-import java.util.*;
+import java.io.CharArrayReader;
+import java.io.CharArrayWriter;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.LineNumberReader;
+import java.io.PrintWriter;
+import java.io.PushbackReader;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * XMLElement is a representation of an XML object. The object is able to parse
@@ -157,6 +175,7 @@ public class XMLElement {
      *         XML identifier.
      * </ul></dd></dl>
      */
+    @Nullable
     private String name;
     /**
      * The #PCDATA content of the object.
@@ -418,9 +437,9 @@ public class XMLElement {
         this(entities, skipLeadingWhitespace, fillBasicConversionTable, ignoreCase, true);
     }
 
-    protected XMLElement(HashMap<String, char[]> entities, boolean skipLeadingWhitespace, boolean fillBasicConversionTable,
-            boolean ignoreCase,
-            boolean encodeUnicodeCharacters) {
+    protected XMLElement(@Nullable HashMap<String, char[]> entities, boolean skipLeadingWhitespace, boolean fillBasicConversionTable,
+                         boolean ignoreCase,
+                         boolean encodeUnicodeCharacters) {
         this.ignoreWhitespace = skipLeadingWhitespace;
         this.ignoreCase = ignoreCase;
         this.name = null;
@@ -495,7 +514,7 @@ public class XMLElement {
      * </ul></dd></dl><dl>
      *
      */
-    public void setAttribute(String name, Object value) {
+    public void setAttribute(String name, @Nonnull Object value) {
         if (this.ignoreCase) {
             name = name.toUpperCase();
         }
@@ -549,7 +568,7 @@ public class XMLElement {
      * </ul></dd></dl><dl>
      *
      */
-    public void setColorAttribute(String name, Color value) {
+    public void setColorAttribute(String name, @Nullable Color value) {
         if (value != null) {
             if (this.ignoreCase) {
                 name = name.toUpperCase();
@@ -561,7 +580,7 @@ public class XMLElement {
         }
     }
 
-    public void setColorAttribute(String name, Color value, Color defaultValue) {
+    public void setColorAttribute(String name, @Nullable Color value, Color defaultValue) {
         if (value != null && !value.equals(defaultValue)) {
             setColorAttribute(name, value);
         }
@@ -620,6 +639,7 @@ public class XMLElement {
      * </ul></dd></dl>
      *
      */
+    @Nonnull
     public Iterator<String> enumerateAttributeNames() {
         return this.attributes.keySet().iterator();
     }
@@ -651,6 +671,7 @@ public class XMLElement {
      * @see #removeChild(nanoxml.XMLElement)
      *         removeChild(XMLElement)
      */
+    @Nonnull
     public List<XMLElement> getChildren() {
         return Collections.unmodifiableList(children);
     }
@@ -658,7 +679,8 @@ public class XMLElement {
     /**
      * Returns all children with the specified element name in a new array list.
      */
-    public ArrayList<XMLElement> getChildren(String name) {
+    @Nonnull
+    public ArrayList<XMLElement> getChildren(@Nullable String name) {
         ArrayList<XMLElement> desiredChildren = new ArrayList<XMLElement>(children.size());
         if (name == null) {
             for (XMLElement c : children) {
@@ -778,9 +800,9 @@ public class XMLElement {
      *         getAttribute(String, Object)
      */
     public <T> T getAttribute(String name,
-            Map<String, T> valueSet,
-            String defaultKey,
-            boolean allowLiterals) {
+                              @Nonnull Map<String, T> valueSet,
+                              String defaultKey,
+                              boolean allowLiterals) {
         if (this.ignoreCase) {
             name = name.toUpperCase();
         }
@@ -899,9 +921,9 @@ public class XMLElement {
      *         getStringAttribute(String, String)
      */
     public String getStringAttribute(String name,
-            HashMap<String, String> valueSet,
-            String defaultKey,
-            boolean allowLiterals) {
+                                     @Nonnull HashMap<String, String> valueSet,
+                                     String defaultKey,
+                                     boolean allowLiterals) {
         return this.getAttribute(name, valueSet, defaultKey,
                 allowLiterals);
     }
@@ -1019,9 +1041,9 @@ public class XMLElement {
      *         getIntAttribute(String, int)
      */
     public int getIntAttribute(String name,
-            HashMap<String,Integer> valueSet,
-            String defaultKey,
-            boolean allowLiteralNumbers) {
+                               @Nonnull HashMap<String, Integer> valueSet,
+                               String defaultKey,
+                               boolean allowLiteralNumbers) {
         if (this.ignoreCase) {
             name = name.toUpperCase();
         }
@@ -1182,9 +1204,9 @@ public class XMLElement {
      *         getDoubleAttribute(String, double)
      */
     public double getDoubleAttribute(String name,
-            HashMap<String,Double> valueSet,
-            String defaultKey,
-            boolean allowLiteralNumbers) {
+                                     @Nonnull HashMap<String, Double> valueSet,
+                                     String defaultKey,
+                                     boolean allowLiteralNumbers) {
         if (this.ignoreCase) {
             name = name.toUpperCase();
         }
@@ -1267,6 +1289,7 @@ public class XMLElement {
      *
      * @see #setName(java.lang.String) setName(String)
      */
+    @Nullable
     public String getName() {
         return this.name;
     }
@@ -1384,7 +1407,7 @@ public class XMLElement {
      * @throws nanoxml.XMLParseException
      *     If an error occured while parsing the string.
      */
-    public void parseString(String string)
+    public void parseString(@Nonnull String string)
             throws XMLParseException {
         try {
             this.parseFromReader(new StringReader(string),
@@ -1416,8 +1439,8 @@ public class XMLElement {
      * @throws nanoxml.XMLParseException
      *     If an error occured while parsing the string.
      */
-    public void parseString(String string,
-            int offset)
+    public void parseString(@Nonnull String string,
+                            int offset)
             throws XMLParseException {
         this.parseString(string.substring(offset));
     }
@@ -1448,9 +1471,9 @@ public class XMLElement {
      * @throws nanoxml.XMLParseException
      *     If an error occured while parsing the string.
      */
-    public void parseString(String string,
-            int offset,
-            int end)
+    public void parseString(@Nonnull String string,
+                            int offset,
+                            int end)
             throws XMLParseException {
         this.parseString(string.substring(offset, end));
     }
@@ -1522,9 +1545,9 @@ public class XMLElement {
      * @throws nanoxml.XMLParseException
      *     If an error occured while parsing the string.
      */
-    public void parseCharArray(char[] input,
-            int offset,
-            int end)
+    public void parseCharArray(@Nonnull char[] input,
+                               int offset,
+                               int end)
             throws XMLParseException {
         this.parseCharArray(input, offset, end, /*startingLineNr*/ 1);
     }
@@ -1557,10 +1580,10 @@ public class XMLElement {
      * @throws nanoxml.XMLParseException
      *     If an error occured while parsing the string.
      */
-    public void parseCharArray(char[] input,
-            int offset,
-            int end,
-            int startingLineNr)
+    public void parseCharArray(@Nonnull char[] input,
+                               int offset,
+                               int end,
+                               int startingLineNr)
             throws XMLParseException {
         try {
             Reader reader = new CharArrayReader(input, offset, end);
@@ -1625,6 +1648,7 @@ public class XMLElement {
     /**
      * Creates a new similar XML element.
      */
+    @Nonnull
     public XMLElement createElement(String name) {
         XMLElement elem = createElement();
         elem.setName(name);
@@ -1636,6 +1660,7 @@ public class XMLElement {
      * <P>
      * You should override this method when subclassing XMLElement.
      */
+    @Nonnull
     protected XMLElement createElement() {
         return new XMLElement(this.entities,
                 this.ignoreWhitespace,
@@ -1645,6 +1670,7 @@ public class XMLElement {
     }
 
     /** Creates a new XML element and adds it as a child. */
+    @Nonnull
     public XMLElement createChild(String name) {
         XMLElement elem = createElement(name);
         addChild(elem);
@@ -1652,6 +1678,7 @@ public class XMLElement {
     }
 
     /** Creates a new XML element and adds it as a child. */
+    @Nonnull
     public XMLElement createChild() {
         XMLElement elem = createElement();
         addChild(elem);
@@ -1718,7 +1745,7 @@ public class XMLElement {
      *
      * @see #toString()
      */
-    public void write(Writer writer)
+    public void write(@Nonnull Writer writer)
             throws IOException {
         if (this.name == null) {
             this.writeEncoded(writer, this.contents);
@@ -1727,7 +1754,7 @@ public class XMLElement {
         writer.write('<');
         writer.write(this.name);
         if (!this.attributes.isEmpty()) {
-            for (Map.Entry<String,String> entry : attributes.entrySet()) {
+            for (Map.Entry<String, String> entry : attributes.entrySet()) {
                 writer.write(' ');
                 writer.write(entry.getKey());
                 writer.write('=');
@@ -1774,7 +1801,7 @@ public class XMLElement {
      *
      * @see #toString()
      */
-    public void print(PrintWriter writer) {
+    public void print(@Nonnull PrintWriter writer) {
         print(writer, 0);
     }
 
@@ -1797,7 +1824,7 @@ public class XMLElement {
      *
      * @see #toString()
      */
-    protected void print(PrintWriter writer, int indent) {
+    protected void print(@Nonnull PrintWriter writer, int indent) {
         try {
             if (this.name == null) {
                 this.writeEncoded(writer, this.contents);
@@ -1863,8 +1890,8 @@ public class XMLElement {
      *     <li><code>str != null</code>
      * </ul></dd></dl>
      */
-    protected void writeEncoded(Writer writer,
-            String str)
+    protected void writeEncoded(@Nonnull Writer writer,
+                                @Nonnull String str)
             throws IOException {
         for (int i = 0; i < str.length(); i += 1) {
             char ch = str.charAt(i);
@@ -1929,6 +1956,7 @@ public class XMLElement {
      * <ul><li><code>name != null</code>
      * </ul></dd></dl>
      */
+    @Nullable
     protected XMLParseException invalidValueSet(String name) {
         String msg = "Invalid value set (entity name = \"" + name + "\")";
         return new XMLParseException(this.getName(), this.parserLineNr, msg);
@@ -1946,8 +1974,9 @@ public class XMLElement {
      *     <li><code>value != null</code>
      * </ul></dd></dl>
      */
+    @Nullable
     protected XMLParseException invalidValue(String name,
-            String value) {
+                                             String value) {
         String msg = "Attribute \"" + name + "\" does not contain a valid " + "value (\"" + value + "\")";
         return new XMLParseException(this.getName(), this.parserLineNr, msg);
     }
@@ -1956,6 +1985,7 @@ public class XMLElement {
      * Creates a parse exception for when the end of the data input has been
      * reached.
      */
+    @Nullable
     protected XMLParseException unexpectedEndOfData() {
         String msg = "Unexpected end of data reached";
         return new XMLParseException(this.getName(), this.parserLineNr, msg);
@@ -1965,9 +1995,10 @@ public class XMLElement {
     /** A reader which does exactly what we want. */
     protected static class XMLParser extends PushbackReader {
     private XMLElement elem;
-        public XMLParser(XMLElement elem,Reader r) {
+
+        public XMLParser(XMLElement elem, @Nonnull Reader r) {
             super(new LineNumberReader(r));
-            this.elem=elem;
+            this.elem = elem;
         }
 
         public char readChar() throws IOException {
@@ -1996,9 +2027,9 @@ public class XMLElement {
          *         character.
          * </ul></dd></dl><dl>
          */
-        protected void scanIdentifier(StringBuilder result)
+        protected void scanIdentifier(@Nonnull StringBuilder result)
                 throws IOException {
-            for (;;) {
+            for (; ; ) {
                 char ch = readChar();
                 if (((ch < 'A') || (ch > 'Z')) && ((ch < 'a') || (ch > 'z')) && ((ch < '0') || (ch > '9')) && (ch != '_') && (ch != '.') && (ch != ':') && (ch != '-') && (ch <= '\u007E')) {
                     unread(ch);
@@ -2013,12 +2044,12 @@ public class XMLElement {
          *
          * @param elt The element that will contain the result.
          *
-         * </dl><dl><dt><b>Preconditions:</b></dt><dd>
-         * <ul><li>The first &lt; has already been read.
-         *     <li><code>elt != null</code>
-         * </ul></dd></dl>
+         *            </dl><dl><dt><b>Preconditions:</b></dt><dd>
+         *            <ul><li>The first &lt; has already been read.
+         *                <li><code>elt != null</code>
+         *            </ul></dd></dl>
          */
-        protected void scanElement(XMLElement elt)
+        protected void scanElement(@Nonnull XMLElement elt)
                 throws IOException {
             StringBuilder buf = new StringBuilder();
             scanIdentifier(buf);
@@ -2124,55 +2155,55 @@ public class XMLElement {
                 throw this.expectedInput(">");
             }
         }
-    
 
-    /**
-     * Scans a #PCDATA element. CDATA sections and entities are resolved.
-     * The next &lt; char is skipped.
-     * The scanned data is appended to <code>data</code>.
-     *
-     * </dl><dl><dt><b>Preconditions:</b></dt><dd>
-     * <ul><li><code>data != null</code>
-     * </ul></dd></dl>
-     */
-    protected void scanPCData(StringBuilder data)
-            throws IOException {
-        for (;;) {
-            char ch = readChar();
-            if (ch == '<') {
-                ch = readChar();
-                if (ch == '!') {
-                    this.checkCDATA(data);
-                } else {
-                    unread(ch);
+
+        /**
+         * Scans a #PCDATA element. CDATA sections and entities are resolved.
+         * The next &lt; char is skipped.
+         * The scanned data is appended to <code>data</code>.
+         *
+         * </dl><dl><dt><b>Preconditions:</b></dt><dd>
+         * <ul><li><code>data != null</code>
+         * </ul></dd></dl>
+         */
+        protected void scanPCData(@Nonnull StringBuilder data)
+                throws IOException {
+            for (; ; ) {
+                char ch = readChar();
+                if (ch == '<') {
+                    ch = readChar();
+                    if (ch == '!') {
+                        this.checkCDATA(data);
+                    } else {
+                        unread(ch);
                     return;
                 }
             } else if (ch == '&') {
                 this.resolveEntity(data);
             } else {
-                data.append(ch);
+                    data.append(ch);
+                }
             }
         }
-    }
 
-    /**
-     * Scans a special tag and if the tag is a CDATA section, append its
-     * content to <code>buf</code>.
-     *
-     * </dl><dl><dt><b>Preconditions:</b></dt><dd>
-     * <ul><li><code>buf != null</code>
-     *     <li>The first &lt; has already been read.
-     * </ul></dd></dl>
-     */
-    protected boolean checkCDATA(StringBuilder buf)
-            throws IOException {
-        char ch = readChar();
-        if (ch != '[') {
-            this.unread(ch);
-            this.skipSpecialTag(0);
-            return false;
-        } else if (!this.checkLiteral("CDATA[")) {
-            this.skipSpecialTag(1); // one [ has already been read
+        /**
+         * Scans a special tag and if the tag is a CDATA section, append its
+         * content to <code>buf</code>.
+         *
+         * </dl><dl><dt><b>Preconditions:</b></dt><dd>
+         * <ul><li><code>buf != null</code>
+         *     <li>The first &lt; has already been read.
+         * </ul></dd></dl>
+         */
+        protected boolean checkCDATA(@Nonnull StringBuilder buf)
+                throws IOException {
+            char ch = readChar();
+            if (ch != '[') {
+                this.unread(ch);
+                this.skipSpecialTag(0);
+                return false;
+            } else if (!this.checkLiteral("CDATA[")) {
+                this.skipSpecialTag(1); // one [ has already been read
             return false;
         } else {
             int delimiterCharsSkipped = 0;
@@ -2231,51 +2262,51 @@ public class XMLElement {
         }
     }
 
-    /**
-     * This method scans an identifier from the current reader.
-     * The scanned whitespace is appended to <code>result</code>.
-     *
-     * @return the next character following the whitespace.
-     *
-     * </dl><dl><dt><b>Preconditions:</b></dt><dd>
-     * <ul><li><code>result != null</code>
-     * </ul></dd></dl>
-     */
-    protected char scanWhitespace(StringBuilder result)
-            throws IOException {
-        for (;;) {
-            char ch = readChar();
-            switch (ch) {
-                case ' ':
-                case '\t':
-                case '\n':
+        /**
+         * This method scans an identifier from the current reader.
+         * The scanned whitespace is appended to <code>result</code>.
+         *
+         * @return the next character following the whitespace.
+         *
+         * </dl><dl><dt><b>Preconditions:</b></dt><dd>
+         * <ul><li><code>result != null</code>
+         * </ul></dd></dl>
+         */
+        protected char scanWhitespace(@Nonnull StringBuilder result)
+                throws IOException {
+            for (; ; ) {
+                char ch = readChar();
+                switch (ch) {
+                    case ' ':
+                    case '\t':
+                    case '\n':
                     result.append(ch);
                     break;
-                case '\r':
-                    break;
-                default:
-                    return ch;
+                    case '\r':
+                        break;
+                    default:
+                        return ch;
+                }
             }
         }
-    }
 
-    /**
-     * This method scans a delimited string from the current reader.
-     * The scanned string without delimiters is appended to
-     * <code>string</code>.
-     *
-     * </dl><dl><dt><b>Preconditions:</b></dt><dd>
-     * <ul><li><code>string != null</code>
-     *     <li>the next char read is the string delimiter
-     * </ul></dd></dl>
-     */
-    protected void scanString(StringBuilder string)
-            throws IOException {
-        char delimiter = readChar();
-        if ((delimiter != '\'') && (delimiter != '"')) {
-            throw expectedInput("' or \"");
-        }
-        for (;;) {
+        /**
+         * This method scans a delimited string from the current reader.
+         * The scanned string without delimiters is appended to
+         * <code>string</code>.
+         *
+         * </dl><dl><dt><b>Preconditions:</b></dt><dd>
+         * <ul><li><code>string != null</code>
+         *     <li>the next char read is the string delimiter
+         * </ul></dd></dl>
+         */
+        protected void scanString(@Nonnull StringBuilder string)
+                throws IOException {
+            char delimiter = readChar();
+            if ((delimiter != '\'') && (delimiter != '"')) {
+                throw expectedInput("' or \"");
+            }
+            for (;;) {
             char ch = readChar();
             if (ch == delimiter) {
                 return;
@@ -2366,39 +2397,40 @@ public class XMLElement {
         }
     }
 
-    /**
-     * Scans the data for literal text.
-     * Scanning stops when a character does not match or after the complete
-     * text has been checked, whichever comes first.
-     *
-     * @param literal the literal to check.
-     *
-     * </dl><dl><dt><b>Preconditions:</b></dt><dd>
-     * <ul><li><code>literal != null</code>
-     * </ul></dd></dl>
-     */
-    protected boolean checkLiteral(String literal)
-            throws IOException {
-        int length = literal.length();
-        for (int i = 0; i < length; i += 1) {
-            if (readChar() != literal.charAt(i)) {
-                return false;
+        /**
+         * Scans the data for literal text.
+         * Scanning stops when a character does not match or after the complete
+         * text has been checked, whichever comes first.
+         *
+         * @param literal the literal to check.
+         *
+         *                </dl><dl><dt><b>Preconditions:</b></dt><dd>
+         *                <ul><li><code>literal != null</code>
+         *                </ul></dd></dl>
+         */
+        protected boolean checkLiteral(@Nonnull String literal)
+                throws IOException {
+            int length = literal.length();
+            for (int i = 0; i < length; i += 1) {
+                if (readChar() != literal.charAt(i)) {
+                    return false;
+                }
             }
+            return true;
         }
-        return true;
-    }
-    /**
-     * Resolves an entity. The name of the entity is read from the reader.
-     * The value of the entity is appended to <code>buf</code>.
-     *
-     * @param buf Where to put the entity value.
-     *
-     * </dl><dl><dt><b>Preconditions:</b></dt><dd>
-     * <ul><li>The first &amp; has already been read.
-     *     <li><code>buf != null</code>
-     * </ul></dd></dl>
-     */
-    protected void resolveEntity(StringBuilder buf)
+
+        /**
+         * Resolves an entity. The name of the entity is read from the reader.
+         * The value of the entity is appended to <code>buf</code>.
+         *
+         * @param buf Where to put the entity value.
+         *
+         *            </dl><dl><dt><b>Preconditions:</b></dt><dd>
+         *            <ul><li>The first &amp; has already been read.
+         *                <li><code>buf != null</code>
+         *            </ul></dd></dl>
+         */
+        protected void resolveEntity(@Nonnull StringBuilder buf)
             throws IOException {
         char ch = '\0';
         StringBuilder keyBuf = new StringBuilder();
@@ -2439,6 +2471,7 @@ public class XMLElement {
      *     <li><code>context.length() &gt; 0</code>
      * </ul></dd></dl>
      */
+    @Nullable
     protected XMLParseException syntaxError(String context) {
         String msg = "Syntax error while parsing " + context;
         return new XMLParseException(elem.getName(), elem.parserLineNr, msg);
@@ -2456,6 +2489,7 @@ public class XMLElement {
      *     <li><code>charSet.length() &gt; 0</code>
      * </ul></dd></dl>
      */
+    @Nullable
     protected XMLParseException expectedInput(String charSet) {
         String msg = "Expected: " + charSet;
         return new XMLParseException(elem.getName(), elem.parserLineNr, msg);
@@ -2471,6 +2505,7 @@ public class XMLElement {
      *     <li><code>name.length() &gt; 0</code>
      * </ul></dd></dl>
      */
+    @Nullable
     protected XMLParseException unknownEntity(String name) {
         String msg = "Unknown or invalid entity: &" + name + ";";
         return new XMLParseException(elem.getName(), elem.parserLineNr, msg);

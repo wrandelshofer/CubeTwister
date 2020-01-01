@@ -35,9 +35,10 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.util.ArrayList;
-import java.util.Vector;
-import java.util.Enumeration;
 
 /**
  * Defines a triangle vertex.
@@ -50,10 +51,12 @@ public class idx3d_Vertex {
     /** (x,y,z) Coordinate of vertex. */
     public idx3d_Vector pos = new idx3d_Vector();
     /** Transformed vertex coordinate. */
+    @Nonnull
     public idx3d_Vector pos2 = new idx3d_Vector();
     /** Normal Vector at vertex. */
     public idx3d_Vector n = new idx3d_Vector();
     /** Transformed normal vector (camera space). */
+    @Nonnull
     public idx3d_Vector n2 = new idx3d_Vector();
     /** Projected x coordinate. */
     public int x;
@@ -72,6 +75,7 @@ public class idx3d_Vertex {
     public int id;
     private float fact;
     /** Neighbor triangles of vertex. */
+    @Nonnull
     private ArrayList<idx3d_Triangle> neighbor = new ArrayList<idx3d_Triangle>();
 
     // C O N S T R U C T O R S
@@ -83,13 +87,16 @@ public class idx3d_Vertex {
         pos = new idx3d_Vector(xpos, ypos, zpos);
     }
 
-    public idx3d_Vertex(idx3d_Vector ppos) {
+    public idx3d_Vertex(@Nonnull idx3d_Vector ppos) {
         pos = ppos.getClone();
     }
 
     // P U B L I C   M E T H O D S
-    /** Projects this vertex into camera space. */
-    void project(idx3d_Matrix vertexProjection, idx3d_Matrix normalProjection, idx3d_Camera camera) {
+
+    /**
+     * Projects this vertex into camera space.
+     */
+    void project(@Nonnull idx3d_Matrix vertexProjection, @Nonnull idx3d_Matrix normalProjection, @Nonnull idx3d_Camera camera) {
 
         pos.transformInto(vertexProjection, pos2);
         n.transformInto(normalProjection, n2);
@@ -150,6 +157,7 @@ public class idx3d_Vertex {
         n.normalize();
     }
 
+    @Nonnull
     public idx3d_Vertex getClone() {
         idx3d_Vertex newVertex = new idx3d_Vertex();
         newVertex.pos = pos.getClone();
@@ -157,6 +165,7 @@ public class idx3d_Vertex {
         return newVertex;
     }
 
+    @Nonnull
     @Override
     public String toString() {
         return new String("<vertex  x=" + pos.x + " y=" + pos.y + " z=" + pos.z + ">\r\n");
@@ -164,7 +173,7 @@ public class idx3d_Vertex {
 
     // BEGIN PATCH
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(@Nullable Object obj) {
         if (obj == null) {
             return false;
         }
@@ -182,11 +191,11 @@ public class idx3d_Vertex {
     }
     // END PATCH
 
-    public boolean equals(idx3d_Vertex v) {
+    public boolean equals(@Nonnull idx3d_Vertex v) {
         return ((pos.x == v.pos.x) && (pos.y == v.pos.y) && (pos.z == v.pos.z));
     }
 
-    public boolean equals(idx3d_Vertex v, float tolerance) {
+    public boolean equals(@Nonnull idx3d_Vertex v, float tolerance) {
         return Math.abs(idx3d_Vector.sub(pos, v.pos).length()) < tolerance;
     }
     /*

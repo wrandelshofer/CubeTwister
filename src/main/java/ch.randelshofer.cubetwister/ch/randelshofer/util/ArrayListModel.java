@@ -3,8 +3,14 @@
  */
 package ch.randelshofer.util;
 
-import javax.swing.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * A ListModel backed by an ArrayList.
@@ -50,7 +56,7 @@ public class ArrayListModel<E> extends javax.swing.AbstractListModel
     }
 
     @Override
-    public boolean addAll(Collection<? extends E> c) {
+    public boolean addAll(@Nonnull Collection<? extends E> c) {
         if (c.size() > 0) {
             int index = delegate.size();
             delegate.addAll(c);
@@ -68,7 +74,7 @@ public class ArrayListModel<E> extends javax.swing.AbstractListModel
     }
 
     @Override
-    public boolean addAll(int index, Collection<? extends E> c) {
+    public boolean addAll(int index, @Nonnull Collection<? extends E> c) {
         if (delegate.addAll(index, c)) {
             fireIntervalAdded(this, index, index + c.size() - 1);
             return true;
@@ -90,7 +96,7 @@ public class ArrayListModel<E> extends javax.swing.AbstractListModel
     }
 
     @Override
-    public boolean containsAll(Collection c) {
+    public boolean containsAll(@Nonnull Collection c) {
         return delegate.containsAll(c);
     }
 
@@ -109,6 +115,7 @@ public class ArrayListModel<E> extends javax.swing.AbstractListModel
         return delegate.isEmpty();
     }
 
+    @Nonnull
     @Override
     public Iterator<E> iterator() {
         return delegate.iterator();
@@ -119,11 +126,13 @@ public class ArrayListModel<E> extends javax.swing.AbstractListModel
         return delegate.lastIndexOf(o);
     }
 
+    @Nonnull
     @Override
     public ListIterator<E> listIterator() {
         return delegate.listIterator();
     }
 
+    @Nonnull
     @Override
     public ListIterator<E> listIterator(int index) {
         return delegate.listIterator(index);
@@ -148,7 +157,7 @@ public class ArrayListModel<E> extends javax.swing.AbstractListModel
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(@Nonnull Collection<?> c) {
         boolean hasRemoved = false;
         Iterator i = c.iterator();
         while (i.hasNext()) {
@@ -181,17 +190,20 @@ public class ArrayListModel<E> extends javax.swing.AbstractListModel
         return delegate.size();
     }
 
+    @Nonnull
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
         return delegate.subList(fromIndex, toIndex);
     }
 
+    @Nonnull
     @Override
     public Object[] toArray() {
         return delegate.toArray();
     }
 
-    public <T> T[] toArray(T[] a) {
+    @Nonnull
+    public <T> T[] toArray(@Nonnull T[] a) {
         return delegate.toArray(a);
     }
 

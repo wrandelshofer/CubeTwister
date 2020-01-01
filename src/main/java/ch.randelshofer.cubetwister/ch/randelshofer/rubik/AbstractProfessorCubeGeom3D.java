@@ -8,6 +8,7 @@ package ch.randelshofer.rubik;
 import ch.randelshofer.geom3d.Scene3D;
 import ch.randelshofer.geom3d.Transform3D;
 import ch.randelshofer.geom3d.TransformNode3D;
+import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 
@@ -560,19 +561,21 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
             }
         }
     }
-    
+
+    @Nonnull
     protected Cube createCube() {
         return new ProfessorCube();
     }
+
     @Override
-    public void cubeTwisted(CubeEvent evt) {
+    public void cubeTwisted(@Nonnull CubeEvent evt) {
         int loc;
-        
+
         int layerMask = evt.getLayerMask();
         final int axis = evt.getAxis();
         final int angle = evt.getAngle();
         Cube model = getCube();
-        
+
         final int[] partIndices = new int[partCount];
         //final int[] locations = new int[partCount];
         final int[] orientations = new int[partCount];
@@ -617,17 +620,19 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                 validateTwist(partIndices, locations, orientations, finalCount, axis, angle, value);
                 fireStateChanged();
             }
+
             @Override
-            public boolean isSequential(Interpolator that) {
+            public boolean isSequential(@Nonnull Interpolator that) {
                 return (that.getClass() == this.getClass());
             }
+
             @Override
             public void finish(long now) {
                 // reduce number of faces which need to be rendered
                 for (int i = 0; i < partCount; i++) {
                     shapes[i].setReduced(true);
                 }
-        scene.setAdjusting(false||isInStartedPlayer());
+                scene.setAdjusting(false || isInStartedPlayer());
                 super.finish(now);
             }
         };

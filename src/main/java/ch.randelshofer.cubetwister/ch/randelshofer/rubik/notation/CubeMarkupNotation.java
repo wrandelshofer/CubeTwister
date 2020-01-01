@@ -8,6 +8,8 @@ import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.xml.XMLPreorderIterator;
 import nanoxml.XMLElement;
 import nanoxml.XMLParseException;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintStream;
@@ -38,7 +40,7 @@ public class CubeMarkupNotation implements Notation {
         Syntax syntax;
         List<String> tokens;
 
-        public SymbolInfo(Symbol symbol, boolean isSupported, Syntax syntax, List<String> tokens) {
+        public SymbolInfo(Symbol symbol, boolean isSupported, Syntax syntax, @Nullable List<String> tokens) {
             this.symbol = symbol;
             this.isSupported = isSupported;
             this.syntax = syntax;
@@ -183,7 +185,7 @@ public class CubeMarkupNotation implements Notation {
      * <p>
      * The CubeMarkup 4 DTD must be used.
      */
-    private void readNotationXMLElement(XMLElement notationElem) throws XMLParseException {
+    private void readNotationXMLElement(@Nonnull XMLElement notationElem) throws XMLParseException {
         // Name
         name = notationElem.getStringAttribute("name");
 
@@ -320,17 +322,20 @@ public class CubeMarkupNotation implements Notation {
         return name;
     }
 
+    @Nullable
     @Override
     public String getEquivalentMacro(Cube cube, Map localMacros) {
         return null;
     }
 
+    @Nonnull
     @Override
     public Syntax getSyntax(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
         return (info == null) ? Syntax.PRIMARY : info.syntax;
     }
 
+    @Nullable
     @Override
     public String getToken(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
@@ -344,17 +349,17 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public void writeToken(PrintWriter w, Symbol symbol) throws IOException {
+    public void writeToken(@Nonnull PrintWriter w, Symbol symbol) throws IOException {
         w.write(getToken(symbol));
     }
 
-    public void writeToken(PrintStream w, Symbol symbol) {
+    public void writeToken(@Nonnull PrintStream w, Symbol symbol) {
         String token = getToken(symbol);
         w.print((token == null) ? "null" : token);
     }
 
     @Override
-    public void writeMoveToken(PrintWriter w, int axis, int layerMask, int angle) throws IOException {
+    public void writeMoveToken(@Nonnull PrintWriter w, int axis, int layerMask, int angle) throws IOException {
         w.write(moveToTokenMap.get(new Move(getLayerCount(), axis, layerMask, angle))[0]);
     }
 
@@ -395,6 +400,7 @@ public class CubeMarkupNotation implements Notation {
         return moveToTokenMap.get(s)[0];
     }
 
+    @Nonnull
     @Override
     public Map<String, String> getMacros() {
         // FIXME - Implement me
@@ -406,6 +412,7 @@ public class CubeMarkupNotation implements Notation {
      *
      * @return the tokens.
      */
+    @Nonnull
     public Collection<String> getTokens() {
         Set<String> tokens=new LinkedHashSet<>();
         for (Map.Entry<String, ArrayList<Symbol>> entry : tokenToSymbolsMap.entrySet()) {
@@ -423,6 +430,7 @@ public class CubeMarkupNotation implements Notation {
         return tokens;
     }
 
+    @Nonnull
     public List<Symbol> getSymbols(String token) {
         ArrayList<Symbol> symbols = new ArrayList<>();
         for (Symbol symbol : tokenToSymbolsMap.get(token)) {

@@ -6,10 +6,16 @@ package ch.randelshofer.gui.plaf;
 
 
 import ch.randelshofer.gui.border.ImageBevelBorder;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.plaf.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JComponent;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Toolkit;
 /**
  * PlafUtils.
  * @author  Werner Randelshofer
@@ -17,35 +23,45 @@ import javax.swing.plaf.*;
 public class PlafUtils 
 implements PlafConstants {
     protected static ImageBevelBorder[][] bevelRenderer;
+
     /**
-     * Convenience method for installing a component's default Border object on the 
-     * specified component if either the border is currently null or already an instance 
-     * of UIResource. 
+     * Convenience method for installing a component's default Border object on the
+     * specified component if either the border is currently null or already an instance
+     * of UIResource.
      *
-     *
-     * @param c the target component for installing default border
-     * @param defaultBorderName - the key specifying the default border     
+     * @param c                 the target component for installing default border
+     * @param defaultBorderName - the key specifying the default border
      */
-    static void installBevelBorder(JComponent c, String defaultBorderName) {
+    static void installBevelBorder(@Nonnull JComponent c, String defaultBorderName) {
         initBevels();
         Object bevelProperty = c.getClientProperty(PROP_BEVEL);
         Border border;
-        if (bevelProperty == WEST) border = new EmptyBorder(6,8,8,4);
-        else if (bevelProperty == EAST) border = new EmptyBorder(6,4,8,8);
-        else if (bevelProperty == NONE || bevelProperty == CENTER) border = new EmptyBorder(6,4,8,4);
-        else border = new EmptyBorder(6,8,8,8);
+        if (bevelProperty == WEST) {
+            border = new EmptyBorder(6, 8, 8, 4);
+        } else if (bevelProperty == EAST) {
+            border = new EmptyBorder(6, 4, 8, 8);
+        } else if (bevelProperty == NONE || bevelProperty == CENTER) {
+            border = new EmptyBorder(6, 4, 8, 4);
+        } else {
+            border = new EmptyBorder(6, 8, 8, 8);
+        }
         c.setBorder(border);
     }
-    
-    static void paintBevel(JComponent c, Graphics g, int x, int y, int width, int height, boolean enabled, boolean pressed, boolean selected) {
+
+    static void paintBevel(@Nonnull JComponent c, Graphics g, int x, int y, int width, int height, boolean enabled, boolean pressed, boolean selected) {
         initBevels();
         Object bevelProperty = c.getClientProperty(PROP_BEVEL);
         int type;
-        if (bevelProperty == WEST) type = 1;
-        else if (bevelProperty == EAST) type = 2;
-        else if (bevelProperty == NONE || bevelProperty == CENTER) type = 3;
-        else type = 0;
-        
+        if (bevelProperty == WEST) {
+            type = 1;
+        } else if (bevelProperty == EAST) {
+            type = 2;
+        } else if (bevelProperty == NONE || bevelProperty == CENTER) {
+            type = 3;
+        } else {
+            type = 0;
+        }
+
         int state = ((enabled) ? 0 : 1) | ((pressed & enabled) ? 2 : 0) | ((selected) ? 4 : 0);
         
         bevelRenderer[type][state].paintBorder(c, g, x, y, width, height);

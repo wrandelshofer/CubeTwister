@@ -38,29 +38,43 @@
  */
 package fullscreen;
 
-import java.awt.*;
-import java.awt.font.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.awt.Color;
+import java.awt.DisplayMode;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.font.LineMetrics;
 import java.awt.geom.Rectangle2D;
-import java.awt.image.*;
+import java.awt.image.BufferStrategy;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
 public class MultiBufferTest {
-    
+
+    @Nonnull
     private static Color[] COLORS = new Color[] {
-        Color.red, Color.blue, Color.green, Color.white, Color.black,
-        Color.yellow, Color.gray, Color.cyan, Color.pink, Color.lightGray,
-        Color.magenta, Color.orange, Color.darkGray };
+            Color.red, Color.blue, Color.green, Color.white, Color.black,
+            Color.yellow, Color.gray, Color.cyan, Color.pink, Color.lightGray,
+            Color.magenta, Color.orange, Color.darkGray };
+    @Nonnull
     private static DisplayMode[] BEST_DISPLAY_MODES = new DisplayMode[] {
-        new DisplayMode(640, 480, 32, 0),
-        new DisplayMode(640, 480, 16, 0),
-        new DisplayMode(640, 480, 8, 0)
+            new DisplayMode(640, 480, 32, 0),
+            new DisplayMode(640, 480, 16, 0),
+            new DisplayMode(640, 480, 8, 0)
     };
     
     Frame mainFrame;
-    
-    public MultiBufferTest(int numBuffers, GraphicsDevice device) {
+
+    public MultiBufferTest(int numBuffers, @Nonnull GraphicsDevice device) {
         try {
             GraphicsConfiguration gc = device.getDefaultConfiguration();
             mainFrame = new Frame(gc);
@@ -98,7 +112,8 @@ public class MultiBufferTest {
                     }
                     try {
                         Thread.sleep((int)lag);
-                    } catch (InterruptedException e) {}
+                    } catch (InterruptedException e) {
+                    }
                 }
             }
         } catch (Exception e) {
@@ -107,37 +122,38 @@ public class MultiBufferTest {
             device.setFullScreenWindow(null);
         }
     }
-    
-    private static DisplayMode getBestDisplayMode(GraphicsDevice device) {
+
+    @Nullable
+    private static DisplayMode getBestDisplayMode(@Nonnull GraphicsDevice device) {
         for (int x = 0; x < BEST_DISPLAY_MODES.length; x++) {
             DisplayMode[] modes = device.getDisplayModes();
             for (int i = 0; i < modes.length; i++) {
                 if (modes[i].getWidth() == BEST_DISPLAY_MODES[x].getWidth()
-                   && modes[i].getHeight() == BEST_DISPLAY_MODES[x].getHeight()
-                   && modes[i].getBitDepth() == BEST_DISPLAY_MODES[x].getBitDepth()
-                   ) {
+                        && modes[i].getHeight() == BEST_DISPLAY_MODES[x].getHeight()
+                        && modes[i].getBitDepth() == BEST_DISPLAY_MODES[x].getBitDepth()
+                ) {
                     return BEST_DISPLAY_MODES[x];
                 }
             }
         }
         return null;
     }
-    
-    public static void chooseBestDisplayMode(GraphicsDevice device) {
+
+    public static void chooseBestDisplayMode(@Nonnull GraphicsDevice device) {
         DisplayMode best = getBestDisplayMode(device);
         if (best != null) {
             device.setDisplayMode(best);
         }
     }
-    
-    public static void main(String[] args) {
+
+    public static void main(@Nullable String[] args) {
         try {
             int numBuffers = 2;
             if (args != null && args.length > 0) {
                 numBuffers = Integer.parseInt(args[0]);
                 if (numBuffers < 2 || numBuffers > COLORS.length) {
                     System.err.println("Must specify between 2 and "
-                        + COLORS.length + " buffers");
+                            + COLORS.length + " buffers");
                     System.exit(1);
                 }
             }

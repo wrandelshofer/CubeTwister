@@ -4,8 +4,13 @@
 
 package ch.randelshofer.gui;
 
-import javax.swing.*;
-import javax.swing.event.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.EventListenerList;
 /**
  * BoundedRangeModelProxy.
  *
@@ -14,12 +19,15 @@ import javax.swing.event.*;
 public class BoundedRangeModelProxy implements BoundedRangeModel, ChangeListener {
     private BoundedRangeModel target;
     /** The listeners waiting for model changes. */
+    @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
+    @Nullable
     protected transient ChangeEvent changeEvent = null;
+
     /**
      * Creates a new instance.
      */
-    public BoundedRangeModelProxy(BoundedRangeModel target) {
+    public BoundedRangeModelProxy(@Nonnull BoundedRangeModel target) {
         this.target = target;
         target.addChangeListener(this);
     }

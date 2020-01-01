@@ -3,16 +3,22 @@
  */
 package ch.randelshofer.app.action;
 
-import java.awt.event.ActionEvent;
-import java.net.*;
-import java.io.*;
-import java.security.Permission;
-import java.util.ResourceBundle;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+import org.jhotdraw.util.ResourceBundleUtil;
+
 import javax.help.CSH;
 import javax.help.HelpBroker;
 import javax.help.HelpSet;
 import javax.swing.AbstractAction;
-import org.jhotdraw.util.ResourceBundleUtil;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.security.Permission;
+import java.util.ResourceBundle;
 
 /**
  * HelpAction.
@@ -23,6 +29,7 @@ public class HelpAction extends AbstractAction {
     private final static long serialVersionUID = 1L;
 
     public final static String ID = "help";
+    @Nullable
     private static HelpSet hs;
     private static HelpBroker hb;
 
@@ -31,7 +38,7 @@ public class HelpAction extends AbstractAction {
         labels.configureAction(this, ID);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(@Nonnull ActionEvent e) {
         if (hs == null) {
 // Find the HelpSet file and create the HelpSet object: 
             String helpHS = "help/helpset.hs";
@@ -59,7 +66,8 @@ public class HelpAction extends AbstractAction {
 
     }
 
-    public static URL fixJarURL(URL url) {
+    @Nonnull
+    public static URL fixJarURL(@Nonnull URL url) {
         String originalURLProtocol = url.getProtocol();
         if ("jar".equalsIgnoreCase(originalURLProtocol) == false) {
             return url;

@@ -48,11 +48,29 @@ package fullscreen;
  * type of graphics card.
  */
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.table.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.DisplayMode;
+import java.awt.FlowLayout;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 class DisplayModeModel extends DefaultTableModel {
     private final static long serialVersionUID = 1L;
@@ -125,10 +143,15 @@ public class DisplayModeTest extends JFrame implements ActionListener,
     private boolean waiting = false;
     private GraphicsDevice device;
     private DisplayMode originalDM;
+    @Nonnull
     private JButton exit = new JButton("Exit");
+    @Nonnull
     private JButton changeDM = new JButton("Set Display");
+    @Nonnull
     private JLabel currentDM = new JLabel();
+    @Nonnull
     private JTable dmList = new JTable();
+    @Nonnull
     private JScrollPane dmPane = new JScrollPane(dmList);
     private boolean isFullScreen = false;
 
@@ -144,7 +167,7 @@ public class DisplayModeTest extends JFrame implements ActionListener,
         "Width", "Height", "Bit Depth", "Refresh Rate"
     };
 
-    public DisplayModeTest(GraphicsDevice device) {
+    public DisplayModeTest(@Nonnull GraphicsDevice device) {
         super(device.getDefaultConfiguration());
         this.device = device;
         setTitle("Display Mode Test");
@@ -157,7 +180,7 @@ public class DisplayModeTest extends JFrame implements ActionListener,
         changeDM.setEnabled(device.isDisplayChangeSupported());
     }
 
-    public void actionPerformed(ActionEvent ev) {
+    public void actionPerformed(@Nonnull ActionEvent ev) {
         Object source = ev.getSource();
         if (source == exit) {
             device.setDisplayMode(originalDM);
@@ -165,7 +188,7 @@ public class DisplayModeTest extends JFrame implements ActionListener,
         } else { // if (source == changeDM)
             int index = dmList.getSelectionModel().getAnchorSelectionIndex();
             if (index >= 0) {
-                DisplayModeModel model = (DisplayModeModel)dmList.getModel();
+                DisplayModeModel model = (DisplayModeModel) dmList.getModel();
                 DisplayMode dm = model.getDisplayMode(index);
                 device.setDisplayMode(dm);
                 setDMLabel(dm);
@@ -179,7 +202,7 @@ public class DisplayModeTest extends JFrame implements ActionListener,
         changeDM.setEnabled(device.isDisplayChangeSupported());
     }
 
-    private void initComponents(Container c) {
+    private void initComponents(@Nonnull Container c) {
         setContentPane(c);
         c.setLayout(new BorderLayout());
         // Current DM
@@ -225,7 +248,7 @@ public class DisplayModeTest extends JFrame implements ActionListener,
         }
     }
 
-    public void setDMLabel(DisplayMode newMode) {
+    public void setDMLabel(@Nonnull DisplayMode newMode) {
         int bitDepth = newMode.getBitDepth();
         int refreshRate = newMode.getRefreshRate();
         String bd, rr;

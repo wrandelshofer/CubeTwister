@@ -34,9 +34,22 @@ package ch.randelshofer.gui.text;
  * </pre>
  * @author Werner Randelshofer
  */
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.text.*;
+
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.Position;
+import javax.swing.text.View;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
 public class WavyHighlighter extends DefaultHighlighter.DefaultHighlightPainter {
 
@@ -44,9 +57,10 @@ public class WavyHighlighter extends DefaultHighlighter.DefaultHighlightPainter 
         super(color);
     }
 
+    @Nullable
     @Override
-    public Shape paintLayer(Graphics g, int offs0, int offs1,
-            Shape bounds, JTextComponent c, View view) {
+    public Shape paintLayer(@Nonnull Graphics g, int offs0, int offs1,
+                            Shape bounds, @Nonnull JTextComponent c, @Nonnull View view) {
         Color color = getColor();
 
         if (color == null) {
@@ -82,13 +96,13 @@ public class WavyHighlighter extends DefaultHighlighter.DefaultHighlightPainter 
                 Rectangle r = (shape instanceof Rectangle)
                         ? (Rectangle) shape : shape.getBounds();
                 //g.drawRect(r.x, r.y, r.width - 1, r.height - 1);
-            Shape clip = g.getClip();
-            g.clipRect(r.x, r.y, r.width, r.height);
+                Shape clip = g.getClip();
+                g.clipRect(r.x, r.y, r.width, r.height);
                 for (int i = 0; i < r.width; i += 6) {
                     g.drawArc(r.x + i, r.y + r.height - 3, 3, 3, 0, 180);
                     g.drawArc(r.x + i+3, r.y + r.height - 3, 3, 3, 180, 181);
                 }
-            g.setClip(clip);
+                g.setClip(clip);
                 return r;
             } catch (BadLocationException e) {
                 // can't render

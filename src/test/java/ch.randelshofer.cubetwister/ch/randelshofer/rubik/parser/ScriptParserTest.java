@@ -13,6 +13,7 @@ import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -26,17 +27,17 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 class ScriptParserTest {
     private static boolean html = true;
 
-    DefaultNotation defaultNotatioon = new DefaultNotation();
-    DefaultNotation precircumfix = new DefaultNotation();
-    DefaultNotation preinfix = new DefaultNotation();
-    DefaultNotation postinfix = new DefaultNotation();
-    DefaultNotation prefix = new DefaultNotation();
-    DefaultNotation circumfix = new DefaultNotation();
-    DefaultNotation postcircumfix = new DefaultNotation();
-    DefaultNotation suffix = new DefaultNotation();
-    DefaultNotation mixed = new DefaultNotation();
-    DefaultNotation mixedB = new DefaultNotation();
-    DefaultNotation notationWithMacros = new DefaultNotation();
+    @Nonnull DefaultNotation defaultNotatioon = new DefaultNotation();
+    @Nonnull DefaultNotation precircumfix = new DefaultNotation();
+    @Nonnull DefaultNotation preinfix = new DefaultNotation();
+    @Nonnull DefaultNotation postinfix = new DefaultNotation();
+    @Nonnull DefaultNotation prefix = new DefaultNotation();
+    @Nonnull DefaultNotation circumfix = new DefaultNotation();
+    @Nonnull DefaultNotation postcircumfix = new DefaultNotation();
+    @Nonnull DefaultNotation suffix = new DefaultNotation();
+    @Nonnull DefaultNotation mixed = new DefaultNotation();
+    @Nonnull DefaultNotation mixedB = new DefaultNotation();
+    @Nonnull DefaultNotation notationWithMacros = new DefaultNotation();
 
     {
 
@@ -149,6 +150,7 @@ class ScriptParserTest {
 
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testOperatorPrecedenceA() {
         // Expected
@@ -174,6 +176,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testOperatorPrecedenceB() {
         // Expected
@@ -201,6 +204,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParseDefaultNotation() {
         return Arrays.asList(
@@ -329,6 +333,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParsePrefixNotation() {
         return Arrays.asList(
@@ -355,6 +360,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParcePrecircumfixNotation() {
         return Arrays.asList(
@@ -381,6 +387,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParseSuffixNotation() {
         return Arrays.asList(
@@ -407,6 +414,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParsePostcircumfixNotation() {
         return Arrays.asList(
@@ -433,6 +441,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParsePreinfixNotation() {
         return Arrays.asList(
@@ -456,6 +465,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParsePostinfixNotation() {
         return Arrays.asList(
@@ -477,6 +487,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParsePermutation() {
         return Arrays.asList(
@@ -499,6 +510,7 @@ class ScriptParserTest {
 
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParseMacros() {
         return Arrays.asList(
@@ -508,6 +520,7 @@ class ScriptParserTest {
         );
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParseAppliedPermutation() {
         final DefaultNotation notation7x7 = new DefaultNotation(7);
@@ -547,7 +560,7 @@ class ScriptParserTest {
     }
 
 
-    public void doParsePermutation(Notation notation, Cube cube) throws Exception {
+    public void doParsePermutation(@Nonnull Notation notation, @Nonnull Cube cube) throws Exception {
         final String expected = Cubes.toPermutationString(cube, notation);
         System.out.println("expected: " + expected);
 
@@ -568,7 +581,7 @@ class ScriptParserTest {
      * @param script   the input script
      * @throws java.lang.Exception on failure
      */
-    public void doParse(Notation notation, String script, String expected) throws Exception {
+    public void doParse(@Nonnull Notation notation, @Nonnull String script, String expected) throws Exception {
         ScriptParser instance = new ScriptParser(notation);
         Node node = instance.parse(script);
         String actual = dump(node);
@@ -591,13 +604,14 @@ class ScriptParserTest {
 
     }
 
+    @Nonnull
     private String dump(Node node) {
         StringBuilder buf = new StringBuilder();
         dump(node, buf);
         return buf.toString();
     }
 
-    private void dump(Node node, StringBuilder b) {
+    private void dump(Node node, @Nonnull StringBuilder b) {
         if (node instanceof PermutationItemNode) {
             PermutationItemNode m = (PermutationItemNode) node;
             b.append(m.getLocation())
@@ -648,12 +662,14 @@ class ScriptParserTest {
         b.append("}");
     }
 
-    private String htmlEscape(String actual) {
+    @Nonnull
+    private String htmlEscape(@Nonnull String actual) {
         return actual.replaceAll("\n", "\\\\n")
                 .replaceAll("<", "&lt;")
                 .replaceAll(">", "&gt;");
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testParseFailures() {
         return Arrays.asList(

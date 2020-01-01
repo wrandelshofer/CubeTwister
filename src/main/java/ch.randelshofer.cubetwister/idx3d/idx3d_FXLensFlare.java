@@ -37,34 +37,37 @@
 package idx3d;
 
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 public class idx3d_FXLensFlare extends idx3d_FXPlugin
 // Creates a lens flare
 {
-	public idx3d_Object flareObject;
-	
-	private int flares=0;
-	private boolean zBufferSensitive=true;
-	private idx3d_Texture[] flare;
-	private float[] flareDist;
-	
-	// C O N S T R U C T O R S
-	
-		private idx3d_FXLensFlare(idx3d_Scene scene, idx3d_RenderPipeline renderPipeline)
-		{
-			super(scene, renderPipeline);
-		}
+    public idx3d_Object flareObject;
 
-		public idx3d_FXLensFlare(String name, idx3d_Scene scene, idx3d_RenderPipeline renderPipeline, boolean zBufferSensitive)
-		{
-			super(scene, renderPipeline);
-			this.zBufferSensitive=zBufferSensitive;
-			flareObject=new idx3d_Object();
-			flareObject.addVertex(new idx3d_Vertex(1f,1f,1f));
-			flareObject.rebuild();
-			scene.addObject(name,flareObject);
-		}
-		
-	// P R E S E T S
+    private int flares = 0;
+    private boolean zBufferSensitive = true;
+    @Nullable
+    private idx3d_Texture[] flare;
+    @Nullable
+    private float[] flareDist;
+
+    // C O N S T R U C T O R S
+
+    private idx3d_FXLensFlare(idx3d_Scene scene, @Nonnull idx3d_RenderPipeline renderPipeline) {
+        super(scene, renderPipeline);
+    }
+
+    public idx3d_FXLensFlare(String name, @Nonnull idx3d_Scene scene, @Nonnull idx3d_RenderPipeline renderPipeline, boolean zBufferSensitive) {
+        super(scene, renderPipeline);
+        this.zBufferSensitive = zBufferSensitive;
+        flareObject = new idx3d_Object();
+        flareObject.addVertex(new idx3d_Vertex(1f, 1f, 1f));
+        flareObject.rebuild();
+        scene.addObject(name, flareObject);
+    }
+
+    // P R E S E T S
 	
 		public void preset1()
 		{
@@ -192,79 +195,75 @@ public class idx3d_FXLensFlare extends idx3d_FXPlugin
 				idx3d_Texture[] temp1=new idx3d_Texture[flares];
 				System.arraycopy(flare,0,temp1,0,flares-1);
 				flare=temp1;
-				
-				float[] temp2=new float[flares];
-				System.arraycopy(flareDist,0,temp2,0,flares-1);
-				flareDist=temp2;
-			}
-			
-			flare[flares-1]=texture;
-			flareDist[flares-1]=relPos;
-		}
-		
-		private idx3d_Texture createRadialTexture(int w, int h, int[] colormap, int[] alphamap)
-		{
-			int offset;
-			float relX,relY;
-			idx3d_Texture newTexture=new idx3d_Texture(w,h);
-			int[] palette=getPalette(colormap,alphamap);
-			
-			for(int y=h-1;y>=0;y--)
-			{
-				offset=y*w;
-				for (int x=w-1;x>=0;x--)
-				{
-					relX=(float)(x-(w>>1))/(float)(w>>1);
-					relY=(float)(y-(h>>1))/(float)(h>>1);
-					newTexture.pixel[offset+x]=palette[idx3d_Math.crop((int)(255*Math.sqrt(relX*relX+relY*relY)),0,255)];
-				}
-			}
-			return newTexture;			
-		}
-		
-		private int[] getPalette(int[] color, int[] alpha)
-		{
-			int r,g,b;
-			int[] palette=new int[256];
-			for (int i=255;i>=0;i--)
-			{
-				r=(((color[i]>>16)&255)*alpha[i])>>8;
-				g=(((color[i]>>8)&255)*alpha[i])>>8;
-				b=((color[i]&255)*alpha[i])>>8;
-				palette[i]=idx3d_Color.getColor(r,g,b);
-			}
-			return palette;
-		}
-		
-		private idx3d_Texture createGlow(int w, int h, int color, int alpha)
-		{
-			return createRadialTexture(w,h,getGlowPalette(color),getConstantAlpha(alpha));
-		}
-		
-		private idx3d_Texture createRing(int size, int color)
-		{
-			return createRadialTexture(size,size,getColorPalette(color,color),getRingAlpha(40));
-		}
-		
-		private idx3d_Texture createSec(int size, int sizedelta, int color, int colordelta)
-		{
-			int s=(int)idx3d_Math.randomWithDelta(size,sizedelta);
-			int c1=idx3d_Color.random(color,colordelta);
-			int c2=idx3d_Color.random(color,colordelta);
-			return createRadialTexture(s,s,getColorPalette(c1,c2),getSecAlpha());
-		}
-		
-		private idx3d_Texture createRays(int size, int rays, int rad, int color)
-		{
-			int pos;	float relPos;
-			idx3d_Texture texture=new idx3d_Texture(size,size);
-			int[] radialMap=new int [1024];
-			idx3d_Math.clearBuffer(radialMap, 0);
-			for (int i=0;i<rays;i++)
-			{
-				pos=(int)idx3d_Math.random(rad,1023-rad);
-				for (int k=pos-rad; k<=pos+rad; k++)
-				{
+
+                float[] temp2 = new float[flares];
+                System.arraycopy(flareDist, 0, temp2, 0, flares - 1);
+                flareDist = temp2;
+            }
+
+            flare[flares - 1] = texture;
+            flareDist[flares - 1] = relPos;
+        }
+
+    @Nonnull
+    private idx3d_Texture createRadialTexture(int w, int h, int[] colormap, int[] alphamap) {
+        int offset;
+        float relX, relY;
+        idx3d_Texture newTexture = new idx3d_Texture(w, h);
+        int[] palette = getPalette(colormap, alphamap);
+
+        for (int y = h - 1; y >= 0; y--) {
+            offset = y * w;
+            for (int x = w - 1; x >= 0; x--) {
+                relX = (float) (x - (w >> 1)) / (float) (w >> 1);
+                relY = (float) (y - (h >> 1)) / (float) (h >> 1);
+                newTexture.pixel[offset + x] = palette[idx3d_Math.crop((int) (255 * Math.sqrt(relX * relX + relY * relY)), 0, 255)];
+            }
+        }
+        return newTexture;
+    }
+
+    @Nonnull
+    private int[] getPalette(int[] color, int[] alpha) {
+        int r, g, b;
+        int[] palette = new int[256];
+        for (int i = 255; i >= 0; i--) {
+            r = (((color[i] >> 16) & 255) * alpha[i]) >> 8;
+            g = (((color[i] >> 8) & 255) * alpha[i]) >> 8;
+            b = ((color[i] & 255) * alpha[i]) >> 8;
+            palette[i] = idx3d_Color.getColor(r, g, b);
+        }
+        return palette;
+    }
+
+    @Nonnull
+    private idx3d_Texture createGlow(int w, int h, int color, int alpha) {
+        return createRadialTexture(w, h, getGlowPalette(color), getConstantAlpha(alpha));
+    }
+
+    @Nonnull
+    private idx3d_Texture createRing(int size, int color) {
+        return createRadialTexture(size, size, getColorPalette(color, color), getRingAlpha(40));
+    }
+
+    @Nonnull
+    private idx3d_Texture createSec(int size, int sizedelta, int color, int colordelta) {
+        int s = (int) idx3d_Math.randomWithDelta(size, sizedelta);
+        int c1 = idx3d_Color.random(color, colordelta);
+        int c2 = idx3d_Color.random(color, colordelta);
+        return createRadialTexture(s, s, getColorPalette(c1, c2), getSecAlpha());
+    }
+
+    @Nonnull
+    private idx3d_Texture createRays(int size, int rays, int rad, int color) {
+        int pos;
+        float relPos;
+        idx3d_Texture texture = new idx3d_Texture(size, size);
+        int[] radialMap = new int[1024];
+        idx3d_Math.clearBuffer(radialMap, 0);
+        for (int i = 0; i < rays; i++) {
+            pos = (int) idx3d_Math.random(rad, 1023 - rad);
+            for (int k = pos - rad; k <= pos + rad; k++) {
 					relPos=(float)(k-pos+rad)/(float)(rad*2);
 					radialMap[k]+=(int)(255*(1+Math.sin((relPos-0.25)*3.14159*2))/2);
 				}
@@ -276,83 +275,89 @@ public class idx3d_FXLensFlare extends idx3d_FXPlugin
 				offset=y*size;
 				for (int x=size-1;x>=0;x--)
 				{
-					xrel=(float)(2*x-size)/(float)size;
-					yrel=(float)(2*y-size)/(float)size;
-					angle=(int)(1023*Math.atan2(xrel,yrel)/3.14159/2)&1023;
-					reldist=Math.max((int)(255-255*idx3d_Math.pythagoras(xrel,yrel)),0);
-					texture.pixel[x+offset]=idx3d_Color.scale(color,radialMap[angle]*reldist/255);
-				}
-			}
-			return texture;
-		}
-		
-		private int[] getGlowPalette(int color)
-		{
-			int r,g,b;
-			float relDist,diffuse,specular;
-			int[] palette=new int[256];
-			int cr=(color>>16)&255;
-			int cg=(color>>8)&255;
-			int cb=color&255;
-			for (int i=255;i>=0;i--)
-			{
-				relDist=(float)i/255;
-				diffuse=(float)Math.cos(relDist*1.57);
-				specular=(float)(255/Math.pow(2.718,relDist*2.718)-(float)i/16);
-				r=(int)((float)cr*diffuse+specular);
-				g=(int)((float)cg*diffuse+specular);
-				b=(int)((float)cb*diffuse+specular);
-				palette[i]=idx3d_Color.getCropColor(r,g,b);
-			}
-			return palette;
-		}
-		
-		private int[] getConstantAlpha(int alpha)
-		{
-			int[] alphaPalette=new int[256];
-			for (int i=255;i>=0;i--) alphaPalette[i]=alpha;
-			return alphaPalette;
-		}
-		
-		private int[] getLinearAlpha()
-		{
-			int[] alphaPalette=new int[256];
-			for (int i=255;i>=0;i--) alphaPalette[i]=255-i;
-			return alphaPalette;
-		}
-		
-		private int[] getRingAlpha(int ringsize)
-		{
-			int[] alphaPalette=new int[256];
-			float angle;
-			for (int i=0;i<256;i++) alphaPalette[i]=0;
-			for (int i=0;i<ringsize;i++)
-			{
-				angle=3.14159f/180*(float)(180*i/ringsize);				
-				alphaPalette[255-ringsize+i]=(int)(64*Math.sin(angle));
-			}
-			return alphaPalette;
-		}
-		
-		private int[] getSecAlpha()
-		{
-			int[] alphaPalette=getRingAlpha((int)idx3d_Math.random(0,255));
-			for (int i=0;i<256;i++) alphaPalette[i]=(alphaPalette[i]+255-i)>>2;
-			return alphaPalette;
-		}
-		
-		
-		private int[] getColorPalette(int color1, int color2)
-		{
-			int[] palette=new int[256];
-			int r1=(color1>>16)&255;
-			int g1=(color1>>8)&255;
-			int b1=color1&255;
-			int r2=(color2>>16)&255;
-			int g2=(color2>>8)&255;
-			int b2=color2&255;
-			int dr=r2-r1;
-			int dg=g2-g1;
+                    xrel = (float) (2 * x - size) / (float) size;
+                    yrel = (float) (2 * y - size) / (float) size;
+                    angle = (int) (1023 * Math.atan2(xrel, yrel) / 3.14159 / 2) & 1023;
+                    reldist = Math.max((int) (255 - 255 * idx3d_Math.pythagoras(xrel, yrel)), 0);
+                    texture.pixel[x + offset] = idx3d_Color.scale(color, radialMap[angle] * reldist / 255);
+                }
+            }
+        return texture;
+    }
+
+    @Nonnull
+    private int[] getGlowPalette(int color) {
+        int r, g, b;
+        float relDist, diffuse, specular;
+        int[] palette = new int[256];
+        int cr = (color >> 16) & 255;
+        int cg = (color >> 8) & 255;
+        int cb = color & 255;
+        for (int i = 255; i >= 0; i--) {
+            relDist = (float) i / 255;
+            diffuse = (float) Math.cos(relDist * 1.57);
+            specular = (float) (255 / Math.pow(2.718, relDist * 2.718) - (float) i / 16);
+            r = (int) ((float) cr * diffuse + specular);
+            g = (int) ((float) cg * diffuse + specular);
+            b = (int) ((float) cb * diffuse + specular);
+            palette[i] = idx3d_Color.getCropColor(r, g, b);
+        }
+        return palette;
+    }
+
+    @Nonnull
+    private int[] getConstantAlpha(int alpha) {
+        int[] alphaPalette = new int[256];
+        for (int i = 255; i >= 0; i--) {
+            alphaPalette[i] = alpha;
+        }
+        return alphaPalette;
+    }
+
+    @Nonnull
+    private int[] getLinearAlpha() {
+        int[] alphaPalette = new int[256];
+        for (int i = 255; i >= 0; i--) {
+            alphaPalette[i] = 255 - i;
+        }
+        return alphaPalette;
+    }
+
+    @Nonnull
+    private int[] getRingAlpha(int ringsize) {
+        int[] alphaPalette = new int[256];
+        float angle;
+        for (int i = 0; i < 256; i++) {
+            alphaPalette[i] = 0;
+        }
+        for (int i = 0; i < ringsize; i++) {
+            angle = 3.14159f / 180 * (float) (180 * i / ringsize);
+            alphaPalette[255 - ringsize + i] = (int) (64 * Math.sin(angle));
+        }
+        return alphaPalette;
+    }
+
+    @Nonnull
+    private int[] getSecAlpha() {
+        int[] alphaPalette = getRingAlpha((int) idx3d_Math.random(0, 255));
+        for (int i = 0; i < 256; i++) {
+            alphaPalette[i] = (alphaPalette[i] + 255 - i) >> 2;
+        }
+        return alphaPalette;
+    }
+
+
+    @Nonnull
+    private int[] getColorPalette(int color1, int color2) {
+        int[] palette = new int[256];
+        int r1 = (color1 >> 16) & 255;
+        int g1 = (color1 >> 8) & 255;
+        int b1 = color1 & 255;
+        int r2 = (color2 >> 16) & 255;
+        int g2 = (color2 >> 8) & 255;
+        int b2 = color2 & 255;
+        int dr = r2 - r1;
+        int dg = g2 - g1;
 			int db=b2-b1;
 			int r=r1<<8;
 			int g=g1<<8;

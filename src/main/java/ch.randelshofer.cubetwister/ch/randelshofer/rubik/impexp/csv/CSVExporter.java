@@ -10,6 +10,7 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.io.CSVWriter;
 import ch.randelshofer.rubik.impexp.AbstractExporter;
 import ch.randelshofer.rubik.impexp.TranslateNotationComboBoxModel;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.BufferedWriter;
 import java.io.CharArrayWriter;
@@ -42,18 +43,18 @@ public class CSVExporter extends AbstractExporter {
         super.setDocumentModel(documentModel);
         translateModel.setDocumentModel(documentModel);
     }
-    
+
     /**
      * Exports the DocumentModel to the provided file.
      */
-    public void exportFile(File file, ProgressObserver p) throws IOException {
+    public void exportFile(@Nonnull File file, @Nonnull ProgressObserver p) throws IOException {
         ArrayList records;
-                if (translateModel.getSelectedItem() != TranslateNotationComboBoxModel.DO_NOT_TRANSLATE) {
+        if (translateModel.getSelectedItem() != TranslateNotationComboBoxModel.DO_NOT_TRANSLATE) {
             NotationModel translator = (NotationModel) translateModel.getSelectedItem();
             records = createScriptRecords(translator, p);
         } else {
             records = createScriptRecords(p);
-            
+
         }
 
         p.setNote("Writing file...");

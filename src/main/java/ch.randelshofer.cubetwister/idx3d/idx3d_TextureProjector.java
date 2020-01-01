@@ -36,18 +36,18 @@
 
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  *
  */
-public class idx3d_TextureProjector
-{
-	public static final void projectFrontal(idx3d_Object obj)
-	{
-		obj.rebuild();
-		idx3d_Vector min=obj.min();
-		idx3d_Vector max=obj.max();
-		float du=1/(max.x-min.x);
-		float dv=1/(max.y-min.y);
+public class idx3d_TextureProjector {
+    public static final void projectFrontal(@Nonnull idx3d_Object obj) {
+        obj.rebuild();
+        idx3d_Vector min = obj.min();
+        idx3d_Vector max = obj.max();
+        float du = 1 / (max.x - min.x);
+        float dv = 1 / (max.y - min.y);
                 /*
 		for (int i=0; i<obj.vertices;i++)
 		{
@@ -58,23 +58,22 @@ public class idx3d_TextureProjector
 		{
                     idx3d_Triangle tri = obj.triangle[i];
 			tri.setUV(
-                        (tri.p1.pos.x-min.x)*du,
-			1-(tri.p1.pos.y-min.y)*dv,
-                        (tri.p2.pos.x-min.x)*du,
-			1-(tri.p2.pos.y-min.y)*dv,
-                        (tri.p3.pos.x-min.x)*du,
-			1-(tri.p3.pos.y-min.y)*dv
-                        );
-		}
-	}
+                    (tri.p1.pos.x - min.x) * du,
+                    1 - (tri.p1.pos.y - min.y) * dv,
+                    (tri.p2.pos.x - min.x) * du,
+                    1 - (tri.p2.pos.y - min.y) * dv,
+                    (tri.p3.pos.x - min.x) * du,
+                    1 - (tri.p3.pos.y - min.y) * dv
+            );
+        }
+    }
 
-	public static final void projectTop(idx3d_Object obj)
-	{
-		obj.rebuild();
-		idx3d_Vector min=obj.min();
-		idx3d_Vector max=obj.max();
-		float du=1/(max.x-min.x);
-		float dv=1/(max.z-min.z);
+    public static final void projectTop(@Nonnull idx3d_Object obj) {
+        obj.rebuild();
+        idx3d_Vector min = obj.min();
+        idx3d_Vector max = obj.max();
+        float du = 1 / (max.x - min.x);
+        float dv = 1 / (max.z - min.z);
                 /*
 		for (int i=0; i<obj.vertices;i++)
 		{
@@ -85,22 +84,21 @@ public class idx3d_TextureProjector
 		{
                     idx3d_Triangle tri = obj.triangle[i];
 			tri.setUV(
-                        (tri.p1.pos.x-min.x)*du,
-			1-(tri.p1.pos.z-min.z)*dv,
-                        (tri.p2.pos.x-min.x)*du,
-			1-(tri.p2.pos.z-min.z)*dv,
-                        (tri.p3.pos.x-min.x)*du,
-			1-(tri.p3.pos.z-min.z)*dv
-                        );
-		}
-	}
-	
-	public static final void projectCylindric(idx3d_Object obj)
-	{
-		obj.rebuild();
-		idx3d_Vector min=obj.min();
-		idx3d_Vector max=obj.max();
-		float dz=1/(max.z-min.z);
+                    (tri.p1.pos.x - min.x) * du,
+                    1 - (tri.p1.pos.z - min.z) * dv,
+                    (tri.p2.pos.x - min.x) * du,
+                    1 - (tri.p2.pos.z - min.z) * dv,
+                    (tri.p3.pos.x - min.x) * du,
+                    1 - (tri.p3.pos.z - min.z) * dv
+            );
+        }
+    }
+
+    public static final void projectCylindric(@Nonnull idx3d_Object obj) {
+        obj.rebuild();
+        idx3d_Vector min = obj.min();
+        idx3d_Vector max = obj.max();
+        float dz = 1 / (max.z - min.z);
                 /*
 		for (int i=0; i<obj.vertices;i++)
 		{

@@ -3,20 +3,20 @@
  */
 package ch.randelshofer.cubetwister;
 
-import java.awt.Component;
-import java.awt.Dialog;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.app.Application;
 import org.jhotdraw.app.action.app.AbstractPreferencesAction;
 import org.jhotdraw.util.ResourceBundleUtil;
 import org.jhotdraw.util.prefs.PreferencesUtil;
+
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 /**
  * PreferencesAction.
@@ -27,6 +27,7 @@ public class PreferencesAction extends AbstractPreferencesAction {
     private final static long serialVersionUID = 1L;
 
     private static JPanel panel;
+    @Nullable
     private static JDialog dialog;
 
     public PreferencesAction(Application app) {

@@ -4,12 +4,21 @@
 package ch.randelshofer.gui.plaf;
 
 import ch.randelshofer.gui.border.BackdropBorder;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.plaf.basic.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.plaf.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.JComponent;
+import javax.swing.border.Border;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicButtonListener;
+import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
+import java.awt.Component;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
 
 /**
  * CustomButtonUI draws a BackdropBorder in the background of the button.
@@ -44,6 +53,7 @@ public class CustomButtonUI
     public CustomButtonUI() {
     }
 
+    @Nonnull
     public static ComponentUI createUI(JComponent c) {
         return new CustomButtonUI();
     }
@@ -51,7 +61,7 @@ public class CustomButtonUI
     // ********************************
     //          Install
     // ********************************
-    public void installDefaults(AbstractButton b) {
+    public void installDefaults(@Nonnull AbstractButton b) {
         super.installDefaults(b);
         /*
         if(!defaults_initialized) {
@@ -67,7 +77,7 @@ public class CustomButtonUI
         }*/
     }
 
-    public void uninstallDefaults(AbstractButton b) {
+    public void uninstallDefaults(@Nonnull AbstractButton b) {
         super.uninstallDefaults(b);
         /*
         defaults_initialized = false;
@@ -77,6 +87,7 @@ public class CustomButtonUI
     // ********************************
     //         Create Listeners
     // ********************************
+    @Nonnull
     protected BasicButtonListener createButtonListener(AbstractButton b) {
         return new ImageButtonListener(b);
     }
@@ -100,7 +111,7 @@ public class CustomButtonUI
     // ********************************
     //          Paint Methods
     // ********************************
-    public void paint(Graphics g, JComponent c) {
+    public void paint(@Nonnull Graphics g, @Nonnull JComponent c) {
         g.setColor(c.getBackground());
         g.fillRect(0, 0, c.getWidth(), c.getHeight());
         ButtonModel m = ((AbstractButton) c).getModel();
@@ -155,7 +166,7 @@ public class CustomButtonUI
          */
     }
 
-    protected void paintText(Graphics g, JComponent c, Rectangle textRect, String text) {
+    protected void paintText(@Nonnull Graphics g, JComponent c, @Nonnull Rectangle textRect, String text) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
         FontMetrics fm = g.getFontMetrics();
@@ -184,7 +195,7 @@ class ImageButtonListener extends BasicButtonListener {
         super(b);
     }
 
-    public void focusGained(FocusEvent e) {
+    public void focusGained(@Nonnull FocusEvent e) {
         Component c = (Component) e.getSource();
         c.repaint();
     }

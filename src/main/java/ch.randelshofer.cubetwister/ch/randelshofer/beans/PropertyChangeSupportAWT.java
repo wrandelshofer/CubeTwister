@@ -4,7 +4,9 @@
 
 package ch.randelshofer.beans;
 
-import java.beans.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.beans.PropertyChangeSupport;
 /**
  * PropertyChangeSupportAWT.
  *
@@ -12,11 +14,11 @@ import java.beans.*;
  */
 public class PropertyChangeSupportAWT extends PropertyChangeSupport {
     private final static long serialVersionUID = 1L;
-    
+
     /**
      * Creates a new instance.
      */
-    public PropertyChangeSupportAWT(Object sourceBean) {
+    public PropertyChangeSupportAWT(@Nonnull Object sourceBean) {
         super(sourceBean);
     }
     

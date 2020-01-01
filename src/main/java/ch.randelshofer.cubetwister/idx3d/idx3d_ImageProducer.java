@@ -35,8 +35,15 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.Point;
-import java.awt.image.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.DataBufferInt;
+import java.awt.image.ImageConsumer;
+import java.awt.image.ImageProducer;
+import java.awt.image.Raster;
 
 /**
  * Produces an image.
@@ -47,8 +54,10 @@ public class idx3d_ImageProducer implements ImageProducer {
     private ImageConsumer consumer;
     private int w, h;
     private ColorModel cm;
+    @Nullable
     private int[] pixel;
     private int hints, done;
+    @Nullable
     private BufferedImage image;
 
     // C O N S T R U C T O R
@@ -66,6 +75,7 @@ public class idx3d_ImageProducer implements ImageProducer {
 
     }
 
+    @Nullable
     public BufferedImage getImage() {
         if (image == null && w > 0 && h > 0) {
             DataBufferInt db = new DataBufferInt(pixel, pixel.length);

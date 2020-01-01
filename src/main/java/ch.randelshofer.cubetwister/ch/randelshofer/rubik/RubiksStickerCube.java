@@ -7,6 +7,8 @@
 
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * The RubiksStickerCube represents a Rubik's Cube by the markings
  * of its 54 individual stickers.  The RubiksStickerCube can
@@ -116,8 +118,10 @@ public class RubiksStickerCube {
     private final static int BR = facesToEdge(B,R);
 
     /** The 9 markings for each of the 6 faces. */
+    @Nonnull
     private int[] stickers = new int[6*9];
     /** Markings mapped to each face. */
+    @Nonnull
     private int[] faces = new int[6];
 
     /**
@@ -238,13 +242,18 @@ public class RubiksStickerCube {
     };
 
     /** The resulting cubie permutation and orientations */
+    @Nonnull
     private int[] cornerCubiePermutations = new int[RubiksCube.NUMBER_OF_CORNER_PARTS];
+    @Nonnull
     private int[] cornerCubieOrientations = new int[RubiksCube.NUMBER_OF_CORNER_PARTS];
 
+    @Nonnull
     private int[] edgeCubiePermutations = new int[RubiksCube.NUMBER_OF_EDGE_PARTS];
+    @Nonnull
     private int[] edgeCubieOrientations = new int[RubiksCube.NUMBER_OF_EDGE_PARTS];
 
     /** Error messages. */
+    @Nonnull
     private static String[] errorText = {
         "",
         "Sticker marking does not match any center marking",
@@ -261,13 +270,15 @@ public class RubiksStickerCube {
     public RubiksStickerCube() {
     }
 
-    public void setStickers(int[] stickers) {
+    public void setStickers(@Nonnull int[] stickers) {
         System.arraycopy(stickers, 0, this.stickers, 0, this.stickers.length);
     }
-    
 
-    /** Validate markings, permutation, and parity. */
-    public int validate(Cube cube) {
+
+    /**
+     * Validate markings, permutation, and parity.
+     */
+    public int validate(@Nonnull Cube cube) {
         int status;
 
         // Must validate centers first!
@@ -325,6 +336,8 @@ public class RubiksStickerCube {
     public void dump() {
         System.out.println(toString());
     }
+
+    @Nonnull
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("FaceletCube(\n  cornerPerm:{");

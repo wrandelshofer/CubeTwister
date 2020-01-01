@@ -3,17 +3,31 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.beans.*;
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.beans.AbstractBean;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cube3D;
+import ch.randelshofer.rubik.Cube3DAdapter;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.Cube3DListener;
+import ch.randelshofer.rubik.CubeAttributes;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.notation.Notation;
-import ch.randelshofer.rubik.parser.*;
-import ch.randelshofer.undo.*;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
+import ch.randelshofer.undo.UndoableIntEdit;
+import ch.randelshofer.undo.UndoableObjectEdit;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
-import java.awt.*;
-import java.beans.*;
-
-import javax.swing.event.*;
-import javax.swing.undo.*;
+import javax.swing.event.EventListenerList;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoableEdit;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * SolverModel.
@@ -23,6 +37,7 @@ import javax.swing.undo.*;
 public class SolverModel extends AbstractBean implements CubeAttributes, PropertyChangeListener {
     private final static long serialVersionUID = 1L;
 
+    @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
     private CubeAttributes target;
     /**
@@ -44,8 +59,10 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
     private ScriptPlayer player;
     private Cube3DListener cube3DHandler;
 
-    /** Creates a new instance of SolverModel */
-    public SolverModel(Cube3D cube3D, ScriptPlayer player, CubeAttributes target) {
+    /**
+     * Creates a new instance of SolverModel
+     */
+    public SolverModel(@Nonnull Cube3D cube3D, ScriptPlayer player, CubeAttributes target) {
         //   this.target = target;
         this.cube3D = cube3D;
         this.player = player;
@@ -53,7 +70,7 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
         cube3DHandler = new Cube3DAdapter() {
 
             @Override
-            public void actionPerformed(Cube3DEvent evt) {
+            public void actionPerformed(@Nonnull Cube3DEvent evt) {
                 if (SolverModel.this.player != null) {
                     SolverModel.this.player.stop();
                 }
@@ -279,6 +296,7 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
     return stickerFaces[stickerIndex];
     }*/
 
+    @Nullable
     public Color getStickerFillColor(int stickerIndex) {
         if (isPainting()) {
             int faceIndex = stickerFaces[stickerIndex];
@@ -336,10 +354,11 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
 
     /**
      * This method gets called when a bound property is changed.
+     *
      * @param evt A PropertyChangeEvent object describing the event source
-     *  	and the property that has changed.
+     *            and the property that has changed.
      */
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         propertySupport.firePropertyChange(evt.getPropertyName(), evt.getOldValue(), evt.getNewValue());
     }
 
@@ -389,7 +408,8 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
         }
     }
 
-    public String getMappedStickersString(Cube cube) {
+    @Nonnull
+    public String getMappedStickersString(@Nonnull Cube cube) {
         if (isSolverSupported() && isPainting()) {
             return Cubes.toMappedStickersString(cube, stickerFaces);
         } else {
@@ -397,7 +417,8 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
         }
     }
 
-    public String getMappedPermutationString(Cube cube, Notation notation) {
+    @Nonnull
+    public String getMappedPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (isPainting()) {
             if (isSolveable()) {
                 if (mappedCube == null) {
@@ -414,7 +435,8 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
         }
     }
 
-    public Cube getMappedCube(Cube cube) {
+    @Nonnull
+    public Cube getMappedCube(@Nonnull Cube cube) {
         if (isSolveable()) {
             if (mappedCube == null || mappedCube.getLayerCount() != cube.getLayerCount()) {
                 mappedCube = (Cube) cube.clone();
@@ -489,6 +511,7 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
         return target.getStickerOutlineColor(index);
     }
 
+    @Nullable
     public Image getStickersImage() {
         return (isPainting()) ? null : target.getStickersImage();
     }
@@ -550,6 +573,7 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Nonnull
     public Object clone() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

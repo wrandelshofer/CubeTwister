@@ -18,24 +18,28 @@
  */
 package org.apache.commons.compress.archivers.tar;
 
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.ArchiveInputStream;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.ArchiveInputStream;
-
 public class TarArchiveInputStream extends ArchiveInputStream {
+    @Nonnull
     private final TarInputStream in;
     
 	public TarArchiveInputStream( InputStream inputStream ) {
 		in = new TarInputStream(inputStream);
 	}
 
+    @Nullable
     public ArchiveEntry getNextEntry() throws IOException {
         return (ArchiveEntry)in.getNextEntry();
     }
 
-    public int read(byte[] b, int off, int len) throws IOException {
+    public int read(@Nonnull byte[] b, int off, int len) throws IOException {
         return in.read(b, off, len);
     }
 

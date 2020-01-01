@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik.impexp.csv;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.ArrayList;
 /**
  * ColumnMappingTableModel.
@@ -48,13 +50,13 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
     public ColumnMappingTableModel() {
         data = new ArrayList<Entry>();
     }
-    
-    public void setImportDataColumnTitles(String[] columnTitles) {
+
+    public void setImportDataColumnTitles(@Nonnull String[] columnTitles) {
         clear();
-        for (int i=0; i < columnTitles.length; i++) {
+        for (int i = 0; i < columnTitles.length; i++) {
             data.add(new Entry(
-            columnTitles[i],
-            (i < CSVImporter.supportedColumns.length) ? i : -1
+                    columnTitles[i],
+                    (i < CSVImporter.supportedColumns.length) ? i : -1
             ));
         }
         fireTableRowsInserted(0, data.size() - 1);
@@ -71,7 +73,8 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
         return data.size();
         
     }
-    
+
+    @Nonnull
     public Class getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case 0 : return String.class;
@@ -88,17 +91,19 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
             default : throw new ArrayIndexOutOfBoundsException();
         }
     }
-    
-    public void setValueAt(Object value, int rowIndex, int columnIndex) {
+
+    public void setValueAt(@Nonnull Object value, int rowIndex, int columnIndex) {
         Entry entry = data.get(rowIndex);
         switch (columnIndex) {
-            case 0 : throw new IllegalStateException();
-            case 1 :
-                int newMapping = ((Integer) value).intValue();;
+            case 0:
+                throw new IllegalStateException();
+            case 1:
+                int newMapping = ((Integer) value).intValue();
+                ;
                 entry.columnMapping = newMapping;
                 fireTableCellUpdated(rowIndex, columnIndex);
                 if (newMapping != -1) {
-                    for (int i=0; i < data.size(); i++) {
+                    for (int i = 0; i < data.size(); i++) {
                         if (i != rowIndex
                         && data.get(i).columnMapping == newMapping) {
                             setValueAt(new Integer(-1), i, columnIndex);
@@ -126,6 +131,7 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
      * contains the data for the data element with that index.
      * The value -1 in item[i] specifies that no data is available.
      */
+    @Nonnull
     public int[] getColumnMapping() {
         int[] mapping = new int[CSVImporter.supportedColumns.length];
         for (int i=0; i < mapping.length; i++) {
@@ -140,7 +146,8 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
         }
         return mapping;
     }
-    
+
+    @Nonnull
     public static int[] getDefaultColumnMapping() {
         int[] mapping = new int[CSVImporter.supportedColumns.length];
         for (int i=0; i < mapping.length; i++) {

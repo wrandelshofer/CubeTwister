@@ -4,10 +4,14 @@
 
 package ch.randelshofer.debug;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.table.AbstractTableModel;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Iterator;
 /**
  * DesktopPropertiesTableModel.
  *
@@ -70,7 +74,8 @@ public class DesktopPropertiesTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         return data[rowIndex][columnIndex];
     }
-    
+
+    @Nonnull
     public Class<?> getColumnClass(int columnIndex) {
         return Object.class;
     }

@@ -5,6 +5,8 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
 import ch.randelshofer.rubik.notation.Notation;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.IOException;
@@ -22,6 +24,7 @@ public class MacroNode extends Node {
     /**
      * Holds the identifier of the script macro.
      */
+    @Nullable
     private String identifier;
     /**
      * Holds the source of the script macro.
@@ -53,7 +56,8 @@ public class MacroNode extends Node {
         identifier = null; // macro must be expanded.
         super.transform(axis, layerMask, angle);
     }
-    
+
+    @Nullable
     public String getIdentifier() {
         return identifier;
     }
@@ -62,16 +66,18 @@ public class MacroNode extends Node {
         return script;
     }
 
-    public void expand(ScriptParser parser)
-    throws IOException {
+    public void expand(@Nonnull ScriptParser parser)
+            throws IOException {
         // Don't expand if already expanded
-        if (getChildCount() > 0) return;
-        
+        if (getChildCount() > 0) {
+            return;
+        }
+
         // Check if macro is recursive
         DefaultMutableTreeNode ancestor = (DefaultMutableTreeNode) getParent();
         while (ancestor != null) {
             if (ancestor instanceof MacroNode
-            && ((MacroNode) ancestor).identifier.equals(identifier)) {
+                    && ((MacroNode) ancestor).identifier.equals(identifier)) {
                 throw new ParseException("Macro: Illegal Recursion", getStartPosition(), getEndPosition());
             }
             ancestor = (DefaultMutableTreeNode) ancestor.getParent();
@@ -89,10 +95,10 @@ public class MacroNode extends Node {
             node.setEndPosition(ep);
         }
     }
-    
+
     @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String,MacroNode> macroMap)
-    throws IOException {
+    public void writeTokens(@Nonnull PrintWriter w, Notation p, @Nonnull Map<String, MacroNode> macroMap)
+            throws IOException {
         if (macroMap.containsKey(identifier)) {
             w.write(identifier);
         }

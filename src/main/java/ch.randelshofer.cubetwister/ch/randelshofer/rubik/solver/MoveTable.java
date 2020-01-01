@@ -9,6 +9,7 @@
 package ch.randelshofer.rubik.solver;
 
 import ch.randelshofer.gui.ProgressObserver;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -61,18 +62,18 @@ public abstract class MoveTable extends Object {
     public MoveTable(Cube cube, int tableSize) {
         this(cube, tableSize, false);
     }
-    
+
     /**
      * Initialize the pruning table by either generating it
      * or loading it from an existing file.
      */
-    public void initialize(File file, ProgressObserver  pm, String tableName) {
-        if (! file.exists()) {
+    public void initialize(@Nonnull File file, @Nonnull ProgressObserver pm, String tableName) {
+        if (!file.exists()) {
             // If the move mapping table file is absent...
             // Generate the table and save it to a file
-            pm.setNote(MessageFormat.format("Generating {0}.", new Object[] {tableName}));
+            pm.setNote(MessageFormat.format("Generating {0}.", new Object[]{tableName}));
             generate(pm);
-            pm.setNote(MessageFormat.format("Saving {0} to {1}.", new Object[] {tableName, file.getName()}));
+            pm.setNote(MessageFormat.format("Saving {0} to {1}.", new Object[]{tableName, file.getName()}));
             try {
                 OutputStream out = new FileOutputStream(file);
                 save(out);
@@ -170,18 +171,21 @@ public abstract class MoveTable extends Object {
                 // Compute a new ordinal from the new cube state
                 if (DEBUG && ordinal == 17) {
                     cube.dump();
-                    System.out.println(ordinal+":"+move2+":"+ordinalFromCubeState());
+                    System.out.println(ordinal + ":" + move2 + ":" + ordinalFromCubeState());
                 }
                 table[ordinal][move] = ordinalFromCubeState();
-                
+
                 // Unapply this move
                 cube.applyMove(Cube.inverseOfMove(move2));
             }
         }
     }
-    /** Save the table to a file. */
-    private void save(OutputStream outputStream)
-    throws IOException {
+
+    /**
+     * Save the table to a file.
+     */
+    private void save(@Nonnull OutputStream outputStream)
+            throws IOException {
         DataOutputStream out = new DataOutputStream(new BufferedOutputStream(outputStream));
         int ordinal, move;
         for (ordinal = 0; ordinal < tableSize; ordinal++) {
@@ -191,10 +195,12 @@ public abstract class MoveTable extends Object {
         }
         out.flush();
     }
-    
-    /** Load the table from a file. */
-    private void load(InputStream inputStream)
-    throws IOException {
+
+    /**
+     * Load the table from a file.
+     */
+    private void load(@Nonnull InputStream inputStream)
+            throws IOException {
         DataInputStream in = new DataInputStream(new BufferedInputStream(inputStream));
         int ordinal, move;
         for (ordinal = 0; ordinal < tableSize; ordinal++) {

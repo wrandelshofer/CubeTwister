@@ -3,7 +3,9 @@
  */
 package ch.randelshofer.util;
 
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.util.LinkedList;
 
 /**
  * Processes Runnable objects concurrently on a pool of processor threads.
@@ -116,7 +118,7 @@ public class ConcurrentDispatcher {
      * Enqueues the Runnable object, and executes
      * it on a processor thread.
      */
-    public void dispatch(Runnable runner) {
+    public void dispatch(@Nonnull Runnable runner) {
         synchronized (queue) {
             if (threads.size() < maxThreadCount) {
                 queue.addLast(runner);

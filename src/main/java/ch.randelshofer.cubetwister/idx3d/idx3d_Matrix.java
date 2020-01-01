@@ -35,21 +35,23 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+
 public class idx3d_Matrix // defines a 3d matrix
 {
     // M A T R I X   D A T A
 
-    public float m00 = 1,  m01 = 0,  m02 = 0,  m03 = 0;
-    public float m10 = 0,  m11 = 1,  m12 = 0,  m13 = 0;
-    public float m20 = 0,  m21 = 0,  m22 = 1,  m23 = 0;
-    public float m30 = 0,  m31 = 0,  m32 = 0,  m33 = 1;
+    public float m00 = 1, m01 = 0, m02 = 0, m03 = 0;
+    public float m10 = 0, m11 = 1, m12 = 0, m13 = 0;
+    public float m20 = 0, m21 = 0, m22 = 1, m23 = 0;
+    public float m30 = 0, m31 = 0, m32 = 0, m33 = 1;
 
 
     // C O N S T R U C T O R S
     public idx3d_Matrix() {
     }
 
-    public idx3d_Matrix(idx3d_Vector right, idx3d_Vector up, idx3d_Vector forward) {
+    public idx3d_Matrix(@Nonnull idx3d_Vector right, @Nonnull idx3d_Vector up, @Nonnull idx3d_Vector forward) {
         m00 = right.x;
         m10 = right.y;
         m20 = right.z;
@@ -61,7 +63,7 @@ public class idx3d_Matrix // defines a 3d matrix
         m22 = forward.z;
     }
 
-    public void importFromArray(float[][] data) {
+    public void importFromArray(@Nonnull float[][] data) {
         if (data.length < 4) {
             return;
         }
@@ -89,6 +91,7 @@ public class idx3d_Matrix // defines a 3d matrix
         m33 = data[3][3];
     }
 
+    @Nonnull
     public float[][] exportToArray() {
         float data[][] = new float[4][4];
         data[0][0] = m00;
@@ -111,6 +114,7 @@ public class idx3d_Matrix // defines a 3d matrix
     }
 
     // F A C T O R Y  M E T H O D S
+    @Nonnull
     public static idx3d_Matrix shiftMatrix(float dx, float dy, float dz) // matrix for shifting
     {
         idx3d_Matrix m = new idx3d_Matrix();
@@ -121,6 +125,7 @@ public class idx3d_Matrix // defines a 3d matrix
     }
 
     /** matrix for scaling. */
+    @Nonnull
     public static idx3d_Matrix scaleMatrix(float dx, float dy, float dz) {
         idx3d_Matrix m = new idx3d_Matrix();
         m.m00 = dx;
@@ -130,11 +135,13 @@ public class idx3d_Matrix // defines a 3d matrix
     }
 
     /** matrix for scaling. */
+    @Nonnull
     public static idx3d_Matrix scaleMatrix(float d) {
         return idx3d_Matrix.scaleMatrix(d, d, d);
     }
 
     /** matrix for rotation. */
+    @Nonnull
     public static idx3d_Matrix rotateMatrix_SLOW(float dx, float dy, float dz) {
         idx3d_Matrix out = new idx3d_Matrix();
         float SIN;
@@ -174,6 +181,7 @@ public class idx3d_Matrix // defines a 3d matrix
     }
 
     /** matrix for rotation. */
+    @Nonnull
     public static idx3d_Matrix rotateMatrix(float dx, float dy, float dz) {
         idx3d_Matrix out = new idx3d_Matrix();
         float SIN;
@@ -223,11 +231,12 @@ public class idx3d_Matrix // defines a 3d matrix
 
 
     // P U B L I C   M E T H O D S
+
     /**
      * Sets this matrix to the values specified by the specified
      * matrix.
      */
-    public void set(idx3d_Matrix that) {
+    public void set(@Nonnull idx3d_Matrix that) {
         m00 = that.m00;
         m01 = that.m01;
         m02 = that.m02;
@@ -326,8 +335,10 @@ public class idx3d_Matrix // defines a 3d matrix
         preTransform(rotateMatrix(dx, dy, dz));
     }
 
-    /** Transforms this matrix by matrix n from left (this=n x this). */
-    public void transform_SLOW(idx3d_Matrix n) {
+    /**
+     * Transforms this matrix by matrix n from left (this=n x this).
+     */
+    public void transform_SLOW(@Nonnull idx3d_Matrix n) {
         idx3d_Matrix m = this.getClone();
 
         m00 = n.m00 * m.m00 + n.m01 * m.m10 + n.m02 * m.m20;
@@ -344,7 +355,7 @@ public class idx3d_Matrix // defines a 3d matrix
         m23 = n.m20 * m.m03 + n.m21 * m.m13 + n.m22 * m.m23 + n.m23;
     }
 
-    public void transform(idx3d_Matrix n) {
+    public void transform(@Nonnull idx3d_Matrix n) {
         float a00 = m00, a01 = m01, a02 = m02, a03 = m03;
         float a10 = m10, a11 = m11, a12 = m12, a13 = m13;
         float a20 = m20, a21 = m21, a22 = m22, a23 = m23;
@@ -364,7 +375,7 @@ public class idx3d_Matrix // defines a 3d matrix
         m23 = n.m20 * a03 + n.m21 * a13 + n.m22 * a23 + n.m23;
     }
 
-    public void preTransform(idx3d_Matrix n) // transforms this matrix by matrix n from right (this=this x n)
+    public void preTransform(@Nonnull idx3d_Matrix n) // transforms this matrix by matrix n from right (this=this x n)
     {
         idx3d_Matrix m = this.getClone();
 
@@ -382,7 +393,8 @@ public class idx3d_Matrix // defines a 3d matrix
         m23 = m.m20 * n.m03 + m.m21 * n.m13 + m.m22 * n.m23 + m.m23;
     }
 
-    public static idx3d_Matrix multiply(idx3d_Matrix m1, idx3d_Matrix m2) // returns m1 x m2
+    @Nonnull
+    public static idx3d_Matrix multiply(@Nonnull idx3d_Matrix m1, @Nonnull idx3d_Matrix m2) // returns m1 x m2
     {
         idx3d_Matrix m = new idx3d_Matrix();
 
@@ -400,7 +412,8 @@ public class idx3d_Matrix // defines a 3d matrix
         m.m23 = m1.m20 * m2.m03 + m1.m21 * m2.m13 + m1.m22 * m2.m23 + m1.m23;
         return m;
     }
-// BEGIN PATCH
+
+    // BEGIN PATCH
     /*
      * A function for creating a rotation matrix that rotates a vector called
      * "from" into another vector called "to".
@@ -409,7 +422,7 @@ public class idx3d_Matrix // defines a 3d matrix
      * Author: Tomas Moller, 1999
      * As seen at http://lists.apple.com/archives/mac-opengl/2001/Jan/msg00059.html
      */
-    public static idx3d_Matrix fromToRotation(idx3d_Vector from, idx3d_Vector to) {
+    public static idx3d_Matrix fromToRotation(@Nonnull idx3d_Vector from, @Nonnull idx3d_Vector to) {
 //#define M(row,col) mtx9[col*4+row]
         final float EPSILON = 0.00001f;
         idx3d_Vector v;
@@ -512,15 +525,17 @@ public class idx3d_Matrix // defines a 3d matrix
         return m;
     }
 // END PATCH
-    public String toString() {
-        StringBuilder out = new StringBuilder("<Matrix: \r\n");
-        out.append(m00 + "," + m01 + "," + m02 + "," + m03 + ",\r\n");
-        out.append(m10 + "," + m11 + "," + m12 + "," + m13 + ",\r\n");
-        out.append(m20 + "," + m21 + "," + m22 + "," + m23 + ",\r\n");
-        out.append(m30 + "," + m31 + "," + m32 + "," + m33 + ">\r\n");
-        return out.toString();
-    }
+@Nonnull
+public String toString() {
+    StringBuilder out = new StringBuilder("<Matrix: \r\n");
+    out.append(m00 + "," + m01 + "," + m02 + "," + m03 + ",\r\n");
+    out.append(m10 + "," + m11 + "," + m12 + "," + m13 + ",\r\n");
+    out.append(m20 + "," + m21 + "," + m22 + "," + m23 + ",\r\n");
+    out.append(m30 + "," + m31 + "," + m32 + "," + m33 + ">\r\n");
+    return out.toString();
+}
 
+    @Nonnull
     public idx3d_Matrix getClone() {
         idx3d_Matrix m = new idx3d_Matrix();
         m.m00 = m00;
@@ -542,6 +557,7 @@ public class idx3d_Matrix // defines a 3d matrix
         return m;
     }
 
+    @Nonnull
     public idx3d_Matrix inverse() // Returns the inverse of this matrix
     // Code generated with MapleV and handoptimized
     {

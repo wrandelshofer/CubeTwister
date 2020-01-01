@@ -4,16 +4,41 @@
 
 package ch.randelshofer.debug;
 
-import java.io.*;
-
 import ch.randelshofer.binary.BinaryPanel;
 import ch.randelshofer.binary.ByteArrayBinaryModel;
 import ch.randelshofer.gui.SwingWorker;
-import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.datatransfer.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.io.Writer;
 /**
  *
  * @author  Werner Randelshofer
@@ -119,8 +144,9 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
         final File file = fileChooser.getSelectedFile(); 
         
         new SwingWorker() {
+            @Nullable
             public Object construct() {
-                
+
                 Object value = list.getSelectedValue();
                 if (value instanceof FlavorItem) {
                     DataFlavor flavor = ((FlavorItem) value).getFlavor();
@@ -128,7 +154,7 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
                     OutputStream out = null;
                     try {
                         out = new FileOutputStream(file);
-                        
+
                         Object data = transferable.getTransferData(flavor);
                         if (data instanceof InputStream) {
                             InputStream in = (InputStream) data;
@@ -204,6 +230,7 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
         saveButton.setEnabled(list.getSelectedIndices().length == 1);
         
         new SwingWorker() {
+            @Nonnull
             public Object construct() {
                 Object value = list.getSelectedValue();
                 if (value instanceof FlavorItem) {
@@ -215,7 +242,7 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
                             JLabel l = new JLabel(new ImageIcon((Image) data));
                             l.setHorizontalAlignment(JLabel.CENTER);
                             return l;
-                       } if (flavor.isFlavorSerializedObjectType()) {
+                        } if (flavor.isFlavorSerializedObjectType()) {
                             JTextArea l = new JTextArea(data.toString());
                             l.setFont(new Font("Dialog", Font.PLAIN, 11));
                             l.setEditable(false);

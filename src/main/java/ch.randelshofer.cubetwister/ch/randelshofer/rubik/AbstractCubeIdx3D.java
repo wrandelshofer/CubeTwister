@@ -10,6 +10,8 @@ import idx3d.idx3d_Matrix;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Texture;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -32,10 +34,13 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
     protected int sideOffset = cornerCount + edgeCount;
     protected int centerOffset = cornerCount + edgeCount + sideCount;
     protected static idx3d_Lightmap sharedLightmap;
+    @Nullable
     protected idx3d_Scene scene;
     protected idx3d_Group alphaBetaTransform;
     protected idx3d_Group scaleTransform;
+    @Nullable
     protected Image cachedStickersImage;
+    @Nullable
     protected idx3d_Texture stickersTexture;
     protected final static float HALF_PI = (float) (Math.PI / 2d);
     protected final float PI = (float) Math.PI;
@@ -89,11 +94,13 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
         explosionTransforms = new idx3d_Group[partCount];
     }
 
+    @Nullable
     @Override
     public Object getScene() {
         return scene;
     }
 
+    @Nullable
     @Override
     public Object getLock() {
         return scene;
@@ -146,17 +153,18 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
      * The part Index is interpreted according to the scheme
      * used by method getPart(int);
      */
-    protected void updatePartFillColor(int index, Color c) {
+    protected void updatePartFillColor(int index, @Nonnull Color c) {
         idx3d_Object part = getPart(index);
         idx3d_InternalMaterial material = part.material;
         material.setColor(c.getRGB());
         material.setReflectivity(280);
         part.setMaterial(material);
     }
+
     protected void updatePartOutlineColor(int index, Color c) {
     }
 
-    protected void updateStickerFillColor(int index, Color c) {
+    protected void updateStickerFillColor(int index, @Nonnull Color c) {
         int partIndex = getPartIndexForStickerIndex(index);
         int triangleIndex = getPartFaceIndexForStickerIndex(index);
         idx3d_Object part = getPart(partIndex);

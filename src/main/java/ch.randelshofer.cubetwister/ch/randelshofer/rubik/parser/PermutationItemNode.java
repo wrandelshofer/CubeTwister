@@ -1,5 +1,7 @@
 package ch.randelshofer.rubik.parser;
 
+import org.jhotdraw.annotation.Nonnull;
+
 public class PermutationItemNode extends Node {
     enum PartType {
         SIDE,
@@ -26,6 +28,7 @@ public class PermutationItemNode extends Node {
      */
     private int location;
 
+    @Nonnull
     public PermutationItemNode clone() {
         return (PermutationItemNode) super.clone();
 

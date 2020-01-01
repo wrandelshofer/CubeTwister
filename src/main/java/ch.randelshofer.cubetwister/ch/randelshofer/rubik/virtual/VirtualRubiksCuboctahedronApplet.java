@@ -6,16 +6,18 @@ package ch.randelshofer.rubik.virtual;
 
 import ch.randelshofer.rubik.AbstractCubeIdx3D;
 import ch.randelshofer.rubik.RubiksCuboctahedronIdx3D;
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * VirtualRubiksCuboctahedronApplet.
- * 
- * 
+ *
  * @author Werner Randelshofer
  */
 public class VirtualRubiksCuboctahedronApplet extends AbstractVirtualCubeApplet {
-        private final static long serialVersionUID = 1L;
+    private final static long serialVersionUID = 1L;
 
-        @Override
+    @Nonnull
+    @Override
     protected AbstractCubeIdx3D createCube3D() {
         return new RubiksCuboctahedronIdx3D();
     }

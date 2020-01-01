@@ -5,18 +5,29 @@
 package ch.randelshofer.debug;
 
 //import ch.randelshofer.gui.table.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.table.*;
+
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  * Displays the current user interface defaults.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class UIDefaultsInspector extends javax.swing.JPanel {
-        private final static long serialVersionUID = 1L;
+    private final static long serialVersionUID = 1L;
 
     /** Creates new form UIDefaultsInspector */
     public UIDefaultsInspector() {
@@ -42,15 +53,18 @@ public class UIDefaultsInspector extends javax.swing.JPanel {
         lafComboBoxModel.setSelectedItem(currentLafInfo);
         lafComboBox.setModel(lafComboBoxModel);
         lafComboBox.setRenderer(new DefaultListCellRenderer() {
-    private final static long serialVersionUID = 1L;
-            public Component getListCellRendererComponent(JList list,
-            Object value,
-            int index,
-            boolean isSelected,
-            boolean cellHasFocus) {
+            private final static long serialVersionUID = 1L;
+
+            public Component getListCellRendererComponent(@Nonnull JList list,
+                                                          @Nullable Object value,
+                                                          int index,
+                                                          boolean isSelected,
+                                                          boolean cellHasFocus) {
                 if (value != null && (value instanceof UIManager.LookAndFeelInfo)) {
                     value = ((UIManager.LookAndFeelInfo) value).getName();
-                    if (value == null) value = "unnamed LAF";
+                    if (value == null) {
+                        value = "unnamed LAF";
+                    }
                 }
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             }

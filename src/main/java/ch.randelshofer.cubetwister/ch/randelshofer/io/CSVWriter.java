@@ -4,7 +4,12 @@
 
 package ch.randelshofer.io;
 
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.io.FilterWriter;
+import java.io.IOException;
+import java.io.Writer;
 /**
  * Write values into a comma separated value (CSV) stream.
  * <p>
@@ -76,31 +81,34 @@ public class CSVWriter extends FilterWriter {
      * Next delimiter to be written.
      */
     private int nextDelimiter = NO_DELIMITER;
-    
-    /** Creates a new instance. */
-    public CSVWriter(Writer out) {
-        this(out, ',', '"',"\n");
+
+    /**
+     * Creates a new instance.
+     */
+    public CSVWriter(@Nonnull Writer out) {
+        this(out, ',', '"', "\n");
     }
+
     /**
      * Creates a new instance.
      *
-     * @param out writer to which to print.
-     * @param valueDelimiter The new delimiter character to use.
-     * @param quoteChar The new character to use for quoting.
+     * @param out             writer to which to print.
+     * @param valueDelimiter  The new delimiter character to use.
+     * @param quoteChar       The new character to use for quoting.
      * @param recordDelimiter The line break used for delimiting records. Must
-     * be either cr, cr lf or lf.
+     *                        be either cr, cr lf or lf.
      * @throws IllegalArgumentException if one of the delimiters can not be used.
      */
-    public CSVWriter(Writer out, char valueDelimiter, char quoteChar, String recordDelimiter) {
+    public CSVWriter(@Nonnull Writer out, char valueDelimiter, char quoteChar, String recordDelimiter) {
         super(out);
-        
-        if (! "\n".equals(recordDelimiter) 
-                && ! "\r".equals(recordDelimiter) 
-                && ! "\r\n".equals(recordDelimiter)) {
-            throw new IllegalArgumentException("Illegal record delimiter: \""+valueDelimiter+"\"");
+
+        if (!"\n".equals(recordDelimiter)
+                && !"\r".equals(recordDelimiter)
+                && !"\r\n".equals(recordDelimiter)) {
+            throw new IllegalArgumentException("Illegal record delimiter: \"" + valueDelimiter + "\"");
         }
-        
-        
+
+
         this.valueDelimiter = valueDelimiter;
         this.quoteChar = quoteChar;
         this.recordDelimiter = recordDelimiter;
@@ -154,27 +162,26 @@ public class CSVWriter extends FilterWriter {
             out.write(c);
         }
     }
-    
+
     /**
      * Write a portion of an array of characters and appends it as a new value
      * to the current record.
      *
-     * @param  cbuf  Buffer of characters to be written
-     * @param  off   Offset from which to start reading characters
-     * @param  len   Number of characters to be written
-     *
-     * @exception  IOException  If an I/O error occurs
+     * @param cbuf Buffer of characters to be written
+     * @param off  Offset from which to start reading characters
+     * @param len  Number of characters to be written
+     * @throws IOException If an I/O error occurs
      */
-    public void write(char cbuf[], int off, int len) throws IOException {
+    public void write(@Nonnull char cbuf[], int off, int len) throws IOException {
         writeDelimiter();
         nextDelimiter = VALUE_DELIMITER;
-        
+
         if (len > 0) {
             boolean needsQuoting = Character.isWhitespace(cbuf[off])
-            || Character.isWhitespace(cbuf[off + len - 1]);
-            
-            if (! needsQuoting) {
-                for (int i=off, max=off+len; i < max; i++) {
+                    || Character.isWhitespace(cbuf[off + len - 1]);
+
+            if (!needsQuoting) {
+                for (int i = off, max = off + len; i < max; i++) {
                     char c = cbuf[i];
                     if (c == '\n' || c == '\r' || c == quoteChar || c == valueDelimiter) {
                         needsQuoting = true;
@@ -204,40 +211,41 @@ public class CSVWriter extends FilterWriter {
             }
         }
     }
-    
-    
+
+
     /**
      * Write a string.
      *
-     * @param  str  String to be written
-     *
-     * @exception  IOException  If an I/O error occurs
+     * @param str String to be written
+     * @throws IOException If an I/O error occurs
      */
-    public void write(String str) throws IOException {
-        if (str == null) write((String) null, 0, 0);
-        else write(str, 0, str.length());
+    public void write(@Nullable String str) throws IOException {
+        if (str == null) {
+            write((String) null, 0, 0);
+        } else {
+            write(str, 0, str.length());
+        }
     }
-    
+
     /**
      * Write a portion of a string and appends it as a new value to the current
      * record.
      *
-     * @param  str  String to be written
-     * @param  off  Offset from which to start reading characters
-     * @param  len  Number of characters to be written
-     *
-     * @exception  IOException  If an I/O error occurs
+     * @param str String to be written
+     * @param off Offset from which to start reading characters
+     * @param len Number of characters to be written
+     * @throws IOException If an I/O error occurs
      */
-    public void write(String str, int off, int len) throws IOException {
+    public void write(@Nonnull String str, int off, int len) throws IOException {
         writeDelimiter();
         nextDelimiter = VALUE_DELIMITER;
-        
+
         if (len > 0) {
             boolean needsQuoting = Character.isWhitespace(str.charAt(off))
-            || Character.isWhitespace(str.charAt(off + len - 1));
-            
-            if (! needsQuoting) {
-                for (int i=off, max=off+len; i < max; i++) {
+                    || Character.isWhitespace(str.charAt(off + len - 1));
+
+            if (!needsQuoting) {
+                for (int i = off, max = off + len; i < max; i++) {
                     char c = str.charAt(i);
                     if (c == '\n' || c == '\r' || c == quoteChar || c == valueDelimiter) {
                         needsQuoting = true;
@@ -276,6 +284,7 @@ public class CSVWriter extends FilterWriter {
         }
         nextDelimiter = RECORD_DELIMITER;
     }
+
     /**
      * Writes a single record of comma separated values.
      * The values will be quoted if needed.  Quotes and
@@ -283,11 +292,10 @@ public class CSVWriter extends FilterWriter {
      *
      * @param values values to be outputted.
      * @throws IOException if an error occurs while writing.
-     *
      * @since ostermillerutils 1.02.26
      */
-    public void writeln(String[] values) throws IOException {
-        for (int i=0; i < values.length; i++){
+    public void writeln(@Nonnull String[] values) throws IOException {
+        for (int i = 0; i < values.length; i++) {
             write(values[i]);
         }
         writeln();

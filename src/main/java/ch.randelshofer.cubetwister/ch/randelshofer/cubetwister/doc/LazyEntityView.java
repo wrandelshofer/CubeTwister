@@ -5,17 +5,23 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.icon.BusyIcon;
-
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.gui.Worker;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.event.EventListenerList;
+import javax.swing.event.UndoableEditListener;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
 
 /**
  * LazyEntityView postpones instantiation of a real EntityView until it needs to
  * be drawn on screen.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class LazyEntityView extends JPanel
         implements EntityView {
@@ -23,7 +29,9 @@ public class LazyEntityView extends JPanel
     private String viewClassName;
     private EntityView lazyView;
     private EntityModel model;
+    @Nullable
     private EventListenerList listeners;
+    @Nullable
     private Worker<EntityView> worker;
     private boolean isRealized = false;
 
@@ -80,8 +88,8 @@ public class LazyEntityView extends JPanel
                     }
 
                     @Override
-                    protected void failed(Throwable error) {
-                        System.err.println("LazyEntityView couldn't construct "+viewClassName);
+                    protected void failed(@Nonnull Throwable error) {
+                        System.err.println("LazyEntityView couldn't construct " + viewClassName);
                         error.printStackTrace();
                     }
 
@@ -108,6 +116,7 @@ public class LazyEntityView extends JPanel
         }
     }
 
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;

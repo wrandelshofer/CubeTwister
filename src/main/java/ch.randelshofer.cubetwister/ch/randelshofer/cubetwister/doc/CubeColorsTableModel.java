@@ -3,26 +3,26 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.cubetwister.doc.*;
-import ch.randelshofer.gui.table.*;
-import ch.randelshofer.util.*;
-import java.awt.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
-import javax.swing.table.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
+import ch.randelshofer.gui.table.TreeNodeTableModel;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.Action;
+import javax.swing.event.TreeModelEvent;
+import java.awt.Color;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 
 /**
  * Wraps a CubeColorsModel into the swing TableModel interface.
- * 
- * @author  Werner Randelshofer
+ *
+ * @author Werner Randelshofer
  */
 public class CubeColorsTableModel
-extends TreeNodeTableModel 
-implements PropertyChangeListener {
+        extends TreeNodeTableModel
+        implements PropertyChangeListener {
     private final static long serialVersionUID = 1L;
     private final String[] columnNames = {"cube.colorNameColumn",
     "cube.colorColumn"};
@@ -36,15 +36,16 @@ implements PropertyChangeListener {
         super(null, null);
         init();
     }
-    /** 
+
+    /**
      * Creates a new CubeColorsTableModel which wraps the
      * provided CubeModel.
      */
-    public CubeColorsTableModel(CubeModel n) {
+    public CubeColorsTableModel(@Nonnull CubeModel n) {
         super(n.getDocument(), n.getColors());
         init();
     }
-    
+
     private void init() {
         ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
         for (int i=0; i < columnNames.length; i++) {
@@ -52,17 +53,20 @@ implements PropertyChangeListener {
         }
     }
 
-    public void setModel(CubeModel value) {
+    public void setModel(@Nullable CubeModel value) {
         if (treeNode != null && (treeNode.getParent() instanceof CubeModel)) {
             ((CubeModel) treeNode.getParent()).removePropertyChangeListener(this);
-            for (int i=getRowCount() - 1; i > -1; i--) {
+            for (int i = getRowCount() - 1; i > -1; i--) {
                 getRowObject(i).removePropertyChangeListener(this);
             }
         }
 
-        if (value == null) setModel(null, null);
-        else setModel(value.getDocument(), value.getColors());
-        
+        if (value == null) {
+            setModel(null, null);
+        } else {
+            setModel(value.getDocument(), value.getColors());
+        }
+
         if (value != null) {
             value.addPropertyChangeListener(this);
             for (int i=getRowCount() - 1; i > -1; i--) {
@@ -71,6 +75,7 @@ implements PropertyChangeListener {
         }
     }
 
+    @Nonnull
     public CubeColorModel getRowObject(int row) {
         return (CubeColorModel) getRow(row);
     }
@@ -82,6 +87,7 @@ implements PropertyChangeListener {
      * @param	column 	the column whose value is to be looked up
      * @return	the value Object at the specified cell
      */
+    @Nullable
     public Object getValueAt(int row, int column) {
         CubeColorModel item = getRowObject(row);
         if (item == null) return null;
@@ -134,22 +140,24 @@ implements PropertyChangeListener {
      * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to 
      * <I>aValue</I> is the new value.
      *
-     * @param	aValue		 the new value
-     * @param	rowIndex	 the row whose value is to be changed
-     * @param	columnIndex 	 the column whose value is to be changed
+     * @param    aValue         the new value
+     * @param    rowIndex     the row whose value is to be changed
+     * @param    columnIndex     the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+    public void setValueAt(@Nullable Object aValue, int rowIndex, int columnIndex) {
         CubeColorModel item = getRowObject(rowIndex);
-        if (item == null) return;
+        if (item == null) {
+            return;
+        }
 
         String str = (aValue == null) ? null : aValue.toString();
         switch (columnIndex) {
-            case 0 : 
+            case 0:
                 item.setName(str);
                 break;
-            case 1 : 
+            case 1:
                 Object oldValue = item.getColor();
                 item.setColor((Color) aValue);
                 break;
@@ -164,6 +172,7 @@ implements PropertyChangeListener {
      *
      * @return the common ancestor class of the object values in the model.
      */
+    @Nonnull
     public Class<?> getColumnClass(int column) {
         return (column == 0) ? String.class : Color.class;
     }
@@ -194,6 +203,7 @@ implements PropertyChangeListener {
      *
      * @param   rows   indices of the rows.
      */
+    @Nullable
     public Action[] getRowActions(int[] rows) {
         return null;
     }
@@ -203,7 +213,7 @@ implements PropertyChangeListener {
      * @param evt A PropertyChangeEvent object describing the event source
      *  	and the property that has changed.
      */
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         Object source = evt.getSource();
         if (source == treeNode.getParent() && evt.getPropertyName() == CubeModel.KIND_PROPERTY) {
             fireTableDataChanged();
@@ -214,7 +224,7 @@ implements PropertyChangeListener {
             }
         }
     }
-    
+
     /**
      * <p>Invoked after nodes have been inserted into the tree.</p>
      *
@@ -222,15 +232,15 @@ implements PropertyChangeListener {
      * <p>e.childIndices() returns the indices of the new nodes in
      * ascending order.
      */
-    public void treeNodesInserted(TreeModelEvent evt) {
+    public void treeNodesInserted(@Nonnull TreeModelEvent evt) {
         Object path[] = evt.getPath();
         if (path[path.length - 1] == treeNode) {
             int[] indices = evt.getChildIndices();
-            
-            for (int i=0; i < indices.length; i++) {
+
+            for (int i = 0; i < indices.length; i++) {
                 ((CubeColorModel) treeNode.getChildAt(indices[i])).addPropertyChangeListener(this);
             }
-            
+
             fireTableRowsInserted(indices[0], indices[indices.length - 1]);
         } else if (path[path.length - 1] == treeNode.getParent()) {
             fireTableDataChanged();
@@ -247,7 +257,7 @@ implements PropertyChangeListener {
      *
      * <p>e.childIndices() returns the indices the nodes had before they were deleted in ascending order.</p>
      */
-    public void treeNodesRemoved(TreeModelEvent evt) {
+    public void treeNodesRemoved(@Nonnull TreeModelEvent evt) {
         Object path[] = evt.getPath();
         if (path[path.length - 1] == treeNode) {
             int[] indices = evt.getChildIndices();
@@ -257,9 +267,12 @@ implements PropertyChangeListener {
         }
     }
 
+    @Nonnull
     public Object[] getCreatableRowTypes(int row) {
         return new Object[] { "Color" };
     }
+
+    @Nonnull
     public Object getCreatableRowType(int row) {
         return "Color";
     }

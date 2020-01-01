@@ -3,7 +3,9 @@
  */
 package ch.randelshofer.util;
 
-import java.util.*;
+import org.jhotdraw.annotation.Nullable;
+
+import java.util.LinkedList;
 /**
  * An EventLoop can process events on a separate worker thread.
  * It consists of two parts: the event collector and the event
@@ -53,6 +55,7 @@ public abstract class EventLoop {
     /**
      * The event processor thread.
      */
+    @Nullable
     protected Thread eventProcessor;
 
     /**

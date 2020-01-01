@@ -4,17 +4,24 @@
 
 package ch.randelshofer.gui.plaf;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.plaf.basic.BasicToggleButtonUI;
+import org.jhotdraw.annotation.Nonnull;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.plaf.*;
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.JComponent;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
-
-import java.io.Serializable;
+import javax.swing.plaf.basic.BasicToggleButtonUI;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Rectangle;
 
 /**
  * CustomButtonUI draws a BackdropBorder in the background of the button.
@@ -44,6 +51,7 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
     public CustomToggleButtonUI() {
     }
 
+    @Nonnull
     public static ComponentUI createUI(JComponent b) {
         //return imageToggleButtonUI; why does this not work?
         return new CustomToggleButtonUI();
@@ -52,24 +60,24 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
     // ********************************
     //        Install Defaults 
     // ********************************
-    public void installDefaults(AbstractButton b) {
+    public void installDefaults(@Nonnull AbstractButton b) {
         super.installDefaults(b);
-	if(!defaults_initialized) {
+        if (!defaults_initialized) {
             //LookAndFeel.installBorder(b, getPropertyPrefix() + "border");
             PlafUtils.installBevelBorder(b, getPropertyPrefix() + "border");
 
-            LookAndFeel.installColors(b, getPropertyPrefix()+".background", getPropertyPrefix()+".foreground");
+            LookAndFeel.installColors(b, getPropertyPrefix() + ".background", getPropertyPrefix() + ".foreground");
 
             focusColor = UIManager.getColor(getPropertyPrefix() + "focus");
-	    selectColor = UIManager.getColor(getPropertyPrefix() + "select");
-	    disabledTextColor = UIManager.getColor(getPropertyPrefix() + "disabledText");
+            selectColor = UIManager.getColor(getPropertyPrefix() + "select");
+            disabledTextColor = UIManager.getColor(getPropertyPrefix() + "disabledText");
 	    defaults_initialized = true;
 	}
     }
 
-    protected void uninstallDefaults(AbstractButton b) {
-	super.uninstallDefaults(b);
-	defaults_initialized = false;
+    protected void uninstallDefaults(@Nonnull AbstractButton b) {
+        super.uninstallDefaults(b);
+        defaults_initialized = false;
     }
 
     // ********************************
@@ -91,7 +99,7 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
     // ********************************
     //        Paint Methods
     // ********************************
-    public void paint(Graphics g, JComponent c) {
+    public void paint(@Nonnull Graphics g, @Nonnull JComponent c) {
         AbstractButton b = (AbstractButton) c;
         ButtonModel model = b.getModel();
 
@@ -99,7 +107,7 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
         g.fillRect(0, 0, c.getWidth(), c.getHeight());
         PlafUtils.paintBevel(c, g, 0, 0, c.getWidth(), c.getHeight(), true/* model.isEnabled()*/, model.isPressed() & model.isArmed(), model.isSelected());
 
-	
+
         Dimension size = b.getSize();
         FontMetrics fm = g.getFontMetrics();
 
@@ -165,17 +173,16 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
          */
     }
 
-    protected void paintText(Graphics g, AbstractButton b, Rectangle textRect, String text) {
-	ButtonModel model = b.getModel();
-	FontMetrics fm = g.getFontMetrics();
+    protected void paintText(@Nonnull Graphics g, @Nonnull AbstractButton b, @Nonnull Rectangle textRect, String text) {
+        ButtonModel model = b.getModel();
+        FontMetrics fm = g.getFontMetrics();
 
-	/* Draw the Text */
-	if(model.isEnabled()) {
-	    /*** paint the text normally */
-	    g.setColor(b.getForeground());
-	    BasicGraphicsUtils.drawString(g,text, model.getMnemonic(), textRect.x, textRect.y + fm.getAscent());
-	}
-	else {
+        /* Draw the Text */
+        if (model.isEnabled()) {
+            /*** paint the text normally */
+            g.setColor(b.getForeground());
+            BasicGraphicsUtils.drawString(g, text, model.getMnemonic(), textRect.x, textRect.y + fm.getAscent());
+        } else {
 	    /*** paint the text disabled ***/
 	    if (model.isSelected()) {
 		g.setColor(b.getBackground());

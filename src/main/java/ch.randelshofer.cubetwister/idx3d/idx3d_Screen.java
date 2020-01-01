@@ -35,6 +35,9 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.ColorModel;
@@ -49,18 +52,22 @@ import java.lang.ref.WeakReference;
 public class idx3d_Screen {
     // F I E L D S
 
+    @Nullable
     public int pixel[];
     public int width;
     public int height;
-    int p[]; // pixel array before antialiasing
+    @Nullable int p[]; // pixel array before antialiasing
     int w, h; // dimensions before antialiasing
-    WeakReference<int[]> weakP;
+    @Nullable WeakReference<int[]> weakP;
+    @Nullable
     private Image image;
+    @Nullable
     private idx3d_ImageProducer producer;
     // BEGIN PATCH
-                /* XXX - Add support for rendering with and without alpha channel. */
+    /* XXX - Add support for rendering with and without alpha channel. */
+    @Nonnull
     private ColorModel cm = new DirectColorModel(32, 0xFF0000, 0xFF00, 0xFF);
-//		private ColorModel cm=new DirectColorModel(32,0xFF0000,0xFF00,0xFF, 0xFF000000);
+    //		private ColorModel cm=new DirectColorModel(32,0xFF0000,0xFF00,0xFF, 0xFF000000);
     // END PATCH
     boolean antialias = false;
     // BENCHMARK STUFF
@@ -93,6 +100,7 @@ public class idx3d_Screen {
         }
     }
 
+    @Nullable
     public Image getImage() {
         producer.update();
         performBench();
@@ -147,6 +155,7 @@ public class idx3d_Screen {
         return antialias;
     }
 
+    @Nullable
     public idx3d_Texture asTexture() {
         return new idx3d_Texture(width, height, pixel);
     }
@@ -307,7 +316,7 @@ public class idx3d_Screen {
         draw(pixel, width, height, texture, posx, posy, xsize, ysize);
     }
 
-    public void add(idx3d_Texture texture, int posx, int posy, int xsize, int ysize) {
+    public void add(@Nonnull idx3d_Texture texture, int posx, int posy, int xsize, int ysize) {
         add(pixel, width, height, texture, posx, posy, xsize, ysize);
     }
 
@@ -316,7 +325,7 @@ public class idx3d_Screen {
     }
 
     // Private part of image overlaying
-    private void draw(int[] buffer, int width, int height, idx3d_Texture texture, int posx, int posy, int xsize, int ysize) {
+    private void draw(int[] buffer, int width, int height, @Nullable idx3d_Texture texture, int posx, int posy, int xsize, int ysize) {
         if (texture == null) {
             return;
         }
@@ -350,7 +359,7 @@ public class idx3d_Screen {
         }
     }
 
-    private void add(int[] buffer, int width, int height, idx3d_Texture texture, int posx, int posy, int xsize, int ysize) {
+    private void add(int[] buffer, int width, int height, @Nonnull idx3d_Texture texture, int posx, int posy, int xsize, int ysize) {
         int w = xsize;
         int h = ysize;
         int xBase = posx;

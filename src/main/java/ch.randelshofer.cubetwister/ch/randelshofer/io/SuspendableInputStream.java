@@ -3,9 +3,11 @@
  */
 package ch.randelshofer.io;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.io.FilterInputStream;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -61,8 +63,10 @@ extends FilterInputStream {
     throws IOException {
         synchronized(this) {
             while (state == SUSPENDED) {
-                try { wait(); }
-                catch (InterruptedException e) {}
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                }
             }
         }
         if (state == ABORTED) {
@@ -70,29 +74,35 @@ extends FilterInputStream {
         }
         return super.read();
     }
-    public int read(byte[] b)
-    throws IOException {
-        synchronized(this) {
+
+    public int read(@Nonnull byte[] b)
+            throws IOException {
+        synchronized (this) {
             while (state == SUSPENDED) {
-                try { wait(); }
-                catch (InterruptedException e) {}
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                }
             }
         }
-        if (state == ABORTED) { 
+        if (state == ABORTED) {
             throw new IOException("Aborted");
         }
         return super.read(b);
     }
-    public int read(byte[] b, int off, int len)
-    throws IOException {
-        synchronized(this) {
+
+    public int read(@Nonnull byte[] b, int off, int len)
+            throws IOException {
+        synchronized (this) {
             while (state == SUSPENDED) {
-                try { wait(); }
-                catch (InterruptedException e) {}
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                }
             }
         }
-        if (state == ABORTED) { 
-            throw new IOException("Aborted"); 
+        if (state == ABORTED) {
+            throw new IOException("Aborted");
         }
         return super.read(b,off,len);
     }

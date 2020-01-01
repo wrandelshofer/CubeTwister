@@ -8,6 +8,8 @@ import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.tree.MutableTreeNode;
 import java.io.IOException;
@@ -97,7 +99,7 @@ public class PermutationNode extends Node implements Cloneable {
         return type;
     }
 
-    public void setSign(Symbol signSymbol) {
+    public void setSign(@Nullable Symbol signSymbol) {
         int s;
         if (signSymbol == Symbol.PERMUTATION_MINUS) {
             s = MINUS_SIGN;
@@ -133,11 +135,11 @@ public class PermutationNode extends Node implements Cloneable {
      *                    and multiple side parts in 4x4 cubes and 5x5 cubes.
      * @param layerCount  The number of layers of the cube.
      */
-    public void addPermItem(int type, Symbol signSymbol, List<Symbol>faceSymbols, int partNumber, int layerCount) {
-        addPermItem(type,signSymbol,faceSymbols.toArray(new Symbol[0]), partNumber,layerCount);
+    public void addPermItem(int type, Symbol signSymbol, @Nonnull List<Symbol> faceSymbols, int partNumber, int layerCount) {
+        addPermItem(type, signSymbol, faceSymbols.toArray(new Symbol[0]), partNumber, layerCount);
     }
 
-    public void addPermItem(int type, Symbol signSymbol, Symbol[] faceSymbols, int partNumber, int layerCount) {
+    public void addPermItem(int type, @Nullable Symbol signSymbol, @Nonnull Symbol[] faceSymbols, int partNumber, int layerCount) {
         if (this.type == UNDEFINED_PERMUTATION) {
             this.type = type;
         }
@@ -399,7 +401,7 @@ public class PermutationNode extends Node implements Cloneable {
     }
 
     @Override
-    public void applyTo(Cube cube, boolean inverse) {
+    public void applyTo(@Nonnull Cube cube, boolean inverse) {
         if (inverse) {
             applyInverseTo(cube);
         } else {
@@ -407,7 +409,7 @@ public class PermutationNode extends Node implements Cloneable {
         }
     }
 
-    private void applyTo(Cube cube) {
+    private void applyTo(@Nonnull Cube cube) {
         if (getChildCount() == 0) {
             return;
         }
@@ -484,7 +486,7 @@ public class PermutationNode extends Node implements Cloneable {
         }
     }
 
-    private void applyInverseTo(Cube cube) {
+    private void applyInverseTo(@Nonnull Cube cube) {
         if (getChildren().isEmpty()) {
             return;
         }
@@ -621,6 +623,7 @@ public class PermutationNode extends Node implements Cloneable {
      * Special operators (i. e. repeat and inverse) are
      * resolved before the children are returned.
      */
+    @Nonnull
     @Override
     public Iterator<Node> resolvedIterator(boolean inverse) {
         if (inverse) {
@@ -761,6 +764,7 @@ public class PermutationNode extends Node implements Cloneable {
         return sw.toString();
     }
 
+    @Nonnull
     @Override
     public PermutationNode clone() {
         PermutationNode theClone = (PermutationNode) super.clone();
@@ -779,7 +783,7 @@ public class PermutationNode extends Node implements Cloneable {
             {Symbol.PERMUTATION_FACE_D},
             {Symbol.PERMUTATION_FACE_B},//
     };
-    Symbol[][] EDGE_SYMBOLS = {
+    @Nonnull Symbol[][] EDGE_SYMBOLS = {
             {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_R}, //"ur"
             {Symbol.PERMUTATION_FACE_R, Symbol.PERMUTATION_FACE_F}, //"rf"
             {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_R}, //"dr"
@@ -805,7 +809,7 @@ public class PermutationNode extends Node implements Cloneable {
     };
 
     @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (!p.isSupported(Symbol.PERMUTATION)) {
             //throw new IOException("This notation does not support permutations.");

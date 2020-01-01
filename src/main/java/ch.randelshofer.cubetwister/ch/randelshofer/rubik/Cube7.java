@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Represents the state of a 7-times sliced cube (such as a V-Cube 7) by the
  * location and orientation of its parts.
@@ -2153,6 +2155,7 @@ public class Cube7 extends AbstractCube {
         }
     }
 
+    @Nonnull
     public int[][] toStickers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

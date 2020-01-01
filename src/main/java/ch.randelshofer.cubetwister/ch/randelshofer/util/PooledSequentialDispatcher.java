@@ -3,7 +3,9 @@
  */
 package ch.randelshofer.util;
 
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.util.LinkedList;
 /**
  * Processes Runnable objects sequentially on a pool of processor threads.
  * The order in which the runnable objects are processed is
@@ -132,7 +134,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
     public ConcurrentDispatcher getThreadPool() {
         return threadPool;
     }
-    
+
     /**
      * Enqueues the Runnable object, and executes
      * it concurrently by one of the processor threads.
@@ -141,7 +143,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
      *
      * @param runner A runnable.
      */
-    public static void dispatchConcurrently(Runnable runner) {
+    public static void dispatchConcurrently(@Nonnull Runnable runner) {
         globalThreadPool.dispatch(runner);
     }
     
@@ -169,10 +171,10 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
      *
      * @see #reassign
      */
-    public void dispatch(Runnable runner, ConcurrentDispatcher pool) {
-        synchronized(queue) {
+    public void dispatch(Runnable runner, @Nonnull ConcurrentDispatcher pool) {
+        synchronized (queue) {
             queue.addLast(runner);
-            
+
             if (state == STOPPED) {
                 state = STARTING;
                 pool.dispatch(this);

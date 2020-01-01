@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.gui.event;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 
@@ -16,17 +18,18 @@ public class SwipeEvent extends MouseEvent {
 
     private float angle;
 
-    public SwipeEvent(Component source, int id, long when, int modifiersEx,
+    public SwipeEvent(@Nonnull Component source, int id, long when, int modifiersEx,
                       int x, int y, int clickCount, boolean popupTrigger,
                       int button, float angle) {
-        super(source,  id,  when,  modifiersEx,
-                       x,  y,  clickCount,  popupTrigger,
-                       button);
+        super(source, id, when, modifiersEx,
+                x, y, clickCount, popupTrigger,
+                button);
     }
-    public SwipeEvent(MouseEvent evt, float angle) {
-        super(evt.getComponent(),  evt.getID(), evt.getWhen(),  evt.getModifiersEx(),
-                       evt.getX(),  evt.getY(), evt.getClickCount(),  evt.isPopupTrigger(),
-                       evt.getButton());
+
+    public SwipeEvent(@Nonnull MouseEvent evt, float angle) {
+        super(evt.getComponent(), evt.getID(), evt.getWhen(), evt.getModifiersEx(),
+                evt.getX(), evt.getY(), evt.getClickCount(), evt.isPopupTrigger(),
+                evt.getButton());
         this.angle = angle;
     }
 

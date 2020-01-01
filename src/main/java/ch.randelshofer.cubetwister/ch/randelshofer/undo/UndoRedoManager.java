@@ -4,18 +4,28 @@
 
 package ch.randelshofer.undo;
 
-import java.awt.event.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.undo.*;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.EventListenerList;
+import javax.swing.undo.AbstractUndoableEdit;
+import javax.swing.undo.CannotRedoException;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.CompoundEdit;
+import javax.swing.undo.UndoManager;
+import javax.swing.undo.UndoableEdit;
+import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
 
 /**
  * Same as javax.swing.UndoManager but provides actions for undo and
  * redo operations.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class UndoRedoManager extends UndoManager {
     private final static long serialVersionUID = 1L;
@@ -155,7 +165,7 @@ public class UndoRedoManager extends UndoManager {
      * @see CompoundEdit#end
      * @see CompoundEdit#addEdit
      */
-    public boolean addEdit(UndoableEdit anEdit) {
+    public boolean addEdit(@Nonnull UndoableEdit anEdit) {
         if (undoOrRedoInProgress) {
             anEdit.die();
             return true;
@@ -163,7 +173,7 @@ public class UndoRedoManager extends UndoManager {
         boolean success = super.addEdit(anEdit);
         updateActions();
         if (success && anEdit.isSignificant() && editToBeUndone() == anEdit) {
-            if (! hasSignificantEdits) {
+            if (!hasSignificantEdits) {
                 hasSignificantEdits = true;
                 fireStateChanged();
             }

@@ -4,16 +4,21 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.datatransfer.CompositeTransferable;
-import ch.randelshofer.gui.table.*;
+import ch.randelshofer.gui.table.TableModels;
+import ch.randelshofer.gui.table.TreeNodeTableModel;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JList;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
-import java.beans.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.text.Normalizer;
-import javax.swing.JList;
-import javax.swing.tree.DefaultMutableTreeNode;
 /**
  * Wraps the macros provided by InfoModel to make them
  * accessible by a MutableJTable.
@@ -24,6 +29,7 @@ public class ScriptMacrosTableModel
 extends TreeNodeTableModel
 implements PropertyChangeListener {
     private final static long serialVersionUID = 1L;
+    @Nullable
     private ScriptModel model;
     private final static String[] columnNames = {"Identifiers", "Script", "Description"};
     /** The data flavour for JVM local object transferables. */
@@ -37,12 +43,12 @@ implements PropertyChangeListener {
         DataFlavor.stringFlavor,
         DataFlavor.getTextPlainUnicodeFlavor()
     };
-    
-    public void setModel(ScriptModel m) {
+
+    public void setModel(@Nullable ScriptModel m) {
         if (treeNode != null && treeNode.getParent() != null) {
             ((EntityModel) treeNode.getParent()).removePropertyChangeListener(this);
         }
-        model=m;
+        model = m;
         if (m == null) {
             setModel(null, null);
         } else {
@@ -53,7 +59,7 @@ implements PropertyChangeListener {
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         if (evt.getSource() == model && evt.getPropertyName() == ScriptModel.NOTATION_PROPERTY) {
             fireTableDataChanged();
         }
@@ -66,6 +72,7 @@ implements PropertyChangeListener {
      * @param	column 	the column whose value is to be looked up
      * @return	the value Object at the specified cell
      */
+    @Nullable
     @Override
     public Object getValueAt(int row, int column) {
         MacroModel item = (MacroModel) treeNode.getChildAt(row);
@@ -121,24 +128,27 @@ implements PropertyChangeListener {
      * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to 
      * <I>aValue</I> is the new value.
      *
-     * @param	aValue		 the new value
-     * @param	row	 the row whose value is to be changed
-     * @param	column 	 the column whose value is to be changed
+     * @param    aValue         the new value
+     * @param    row     the row whose value is to be changed
+     * @param    column     the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
     @Override
-    public void setValueAt(Object aValue, int row, int column) {
+    public void setValueAt(@Nullable Object aValue, int row, int column) {
         MacroModel item = (MacroModel) treeNode.getChildAt(row);
-        
+
         String str = (aValue == null) ? null : aValue.toString();
         switch (column) {
-            case 0 : 
-                item.setIdentifier(Normalizer.normalize(str, Normalizer.Form.NFC)); break;
-            case 1 : 
-                item.setScript(Normalizer.normalize(str, Normalizer.Form.NFC)); break;
-            case 2 : 
-                item.setDescription(str); break;
+            case 0:
+                item.setIdentifier(Normalizer.normalize(str, Normalizer.Form.NFC));
+                break;
+            case 1:
+                item.setScript(Normalizer.normalize(str, Normalizer.Form.NFC));
+                break;
+            case 2:
+                item.setDescription(str);
+                break;
         }
     }
     
@@ -155,10 +165,13 @@ implements PropertyChangeListener {
         return columnNames.length;
     }
 
+    @Nonnull
     @Override
     public Object[] getCreatableRowTypes(int row) {
         return new Object[] { "Macro" };
     }
+
+    @Nonnull
     @Override
     public Object getCreatableRowType(int row) {
         return "Macro";
@@ -178,22 +191,25 @@ implements PropertyChangeListener {
 
     // Datatransfer operations
     // =======================
+
     /**
      * Creates a Transferable to use as the source for a data
      * transfer of the specified elements.
      * Returns the representation of the rows
      * to be transferred, or null if transfer is not possible.
      *
-     * @param   rows     Row indices.
+     * @param rows Row indices.
      */
+    @Nonnull
     @Override
-    public Transferable exportRowTransferable(int[] rows) {
+    public Transferable exportRowTransferable(@Nonnull int[] rows) {
         CompositeTransferable t = new CompositeTransferable();
         t.add(TableModels.createLocalTransferable(this, rows));
         t.add(TableModels.createHTMLTransferable(this, rows));
         t.add(TableModels.createPlainTransferable(this, rows));
         return t;
     }
+
     /**
      * Causes a transfer to the model from a clipboard or
      * a DND drop operation.
@@ -209,10 +225,11 @@ implements PropertyChangeListener {
      * @return The number of imported elements.
      */
     @Override
-    public int importRowTransferable(Transferable t, int action, int row, boolean asChild)
-    throws UnsupportedFlavorException, IOException {
-        if (! isRowImportable(t.getTransferDataFlavors(), action, row, asChild))
+    public int importRowTransferable(@Nonnull Transferable t, int action, int row, boolean asChild)
+            throws UnsupportedFlavorException, IOException {
+        if (!isRowImportable(t.getTransferDataFlavors(), action, row, asChild)) {
             throw new UnsupportedFlavorException(null);
+        }
 
         Object[][] transferData;
         try {
@@ -260,12 +277,15 @@ implements PropertyChangeListener {
         }
         return transferData.length;
     }
-    @Override
-    public boolean isRowImportable(DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
-        if (action == DnDConstants.ACTION_LINK || asChild || ! isRowAddable(row)) return false;
 
-        for (int i=0; i < transferFlavors.length; i++) {
-            for (int j=0; j < importableFlavors.length; j++) {
+    @Override
+    public boolean isRowImportable(@Nonnull DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
+        if (action == DnDConstants.ACTION_LINK || asChild || !isRowAddable(row)) {
+            return false;
+        }
+
+        for (int i = 0; i < transferFlavors.length; i++) {
+            for (int j = 0; j < importableFlavors.length; j++) {
                 if (transferFlavors[i].equals(importableFlavors[j])) {
                     return true;
                 }

@@ -4,9 +4,11 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.cubetwister.doc.*;
-import ch.randelshofer.xml.*;
-import java.util.*;
+import ch.randelshofer.xml.DOMFactory;
+import ch.randelshofer.xml.DOMStorable;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.util.HashMap;
 /**
  * CubeMarkupDOMFactory.
  * 
@@ -51,9 +53,9 @@ public class CubeMarkupDOMFactory implements DOMFactory {
             throw error;
         }
     }
-    
+
     @Override
-    public String getTagName(DOMStorable o) {
+    public String getTagName(@Nonnull DOMStorable o) {
         return classTagMap.get(o.getClass());
     }
     

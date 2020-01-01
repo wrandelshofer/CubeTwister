@@ -3,13 +3,13 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.datatransfer.*;
-import ch.randelshofer.undo.*;
-import ch.randelshofer.xml.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.beans.*;
-import javax.swing.undo.*;
+import ch.randelshofer.undo.UndoableObjectEdit;
+import ch.randelshofer.xml.DOMInput;
+import ch.randelshofer.xml.DOMOutput;
+import ch.randelshofer.xml.DOMStorable;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.Color;
 
 /**
  * Holds a single color value. CubeColorModel is a child of CubeColorsModel.
@@ -60,8 +60,8 @@ public class CubeColorModel extends InfoModel implements DOMStorable {
    public void basicSetColor(Color value) {
             color = value;
     }
-    
-    public void read(DOMInput in) {
+
+    public void read(@Nonnull DOMInput in) {
         float[] components = new float[4];
         components[0] = in.getAttribute("red", 0f);
         components[1] = in.getAttribute("green", 0f);
@@ -70,8 +70,8 @@ public class CubeColorModel extends InfoModel implements DOMStorable {
         color = new Color(components[0], components[1], components[2], components[3]);
         basicSetName(in.getText());
     }
-    
-    public void write(DOMOutput out) {
+
+    public void write(@Nonnull DOMOutput out) {
         float[] components = color.getComponents(new float[4]);
         out.setAttribute("red", Float.toString(components[0]));
         out.setAttribute("green", Float.toString(components[1]));

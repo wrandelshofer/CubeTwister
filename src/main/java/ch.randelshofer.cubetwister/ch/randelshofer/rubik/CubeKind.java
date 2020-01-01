@@ -3,6 +3,9 @@
  */
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,6 +45,7 @@ public enum CubeKind {
      * listed here must be Locale independent, and they must be unique for this
      * cube type. The first name in this array is used for writing.
      */
+    @Nonnull
     private final String[] alternativeNames;
     /**
      * The number of layers.
@@ -50,9 +54,10 @@ public enum CubeKind {
     /**
      * Kind map. This is used for mappying an alternative name to a CubeKind.
      */
+    @Nullable
     private static HashMap<String, CubeKind> kindMap = null;
 
-    private CubeKind(String name, int layerCount, String[] alternativeNames) {
+    private CubeKind(String name, int layerCount, @Nonnull String[] alternativeNames) {
         this.id = alternativeNames[0];
         this.name = name;
         this.alternativeNames = alternativeNames;
@@ -70,7 +75,7 @@ public enum CubeKind {
      * @param name A name.
      * @return True on match.
      */
-    public boolean isNameOfKind(String name) {
+    public boolean isNameOfKind(@Nonnull String name) {
         if (this.name.equals(name)) {
             return true;
         }
@@ -82,6 +87,7 @@ public enum CubeKind {
         return false;
     }
 
+    @Nonnull
     public static Map<String, CubeKind> getKindMap() {
         if (kindMap == null) {
             kindMap = new HashMap<String, CubeKind>();

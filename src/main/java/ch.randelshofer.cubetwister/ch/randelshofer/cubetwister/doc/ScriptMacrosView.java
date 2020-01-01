@@ -3,13 +3,18 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
+import ch.randelshofer.gui.Fonts;
 import ch.randelshofer.gui.table.DefaultCellEditor2;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.UndoableEditListener;
-import javax.swing.text.PlainDocument;
 
 /**
  * ScriptMacrosView.
@@ -45,7 +50,7 @@ public class ScriptMacrosView extends JPanel implements EntityView {
         }
     }
 
-    public void setModel(ScriptModel s) {
+    public void setModel(@Nullable ScriptModel s) {
         if (table.getCellEditor() != null) {
             table.getCellEditor().stopCellEditing();
         }
@@ -75,6 +80,7 @@ public class ScriptMacrosView extends JPanel implements EntityView {
         setModel((ScriptModel) newValue);
     }
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

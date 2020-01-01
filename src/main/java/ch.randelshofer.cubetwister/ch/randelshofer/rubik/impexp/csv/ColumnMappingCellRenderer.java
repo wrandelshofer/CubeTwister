@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik.impexp.csv;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.ListCellRenderer;
@@ -32,15 +34,16 @@ implements ListCellRenderer {
         }
         return text;
     }
-    
+
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component c = super.getTableCellRendererComponent(table, getDisplayTextFor(value), isSelected, hasFocus, row, column);
-        
+
         return c;
     }
-    
-    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean hasFocus) {
-        
+
+    @Nonnull
+    public Component getListCellRendererComponent(@Nonnull JList list, Object value, int index, boolean isSelected, boolean hasFocus) {
+
         if (isSelected) {
             setBackground(list.getSelectionBackground());
             setForeground(list.getSelectionForeground());
@@ -48,7 +51,7 @@ implements ListCellRenderer {
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
-        
+
         setText(getDisplayTextFor(value));
         
         setEnabled(list.isEnabled());

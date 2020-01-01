@@ -4,17 +4,24 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.datatransfer.*;
-import ch.randelshofer.gui.table.*;
+import ch.randelshofer.gui.datatransfer.CompositeTransferable;
+import ch.randelshofer.gui.table.MutableTableModel;
+import ch.randelshofer.gui.table.TableModels;
 import ch.randelshofer.rubik.notation.Move;
-import ch.randelshofer.util.*;
-import java.awt.datatransfer.*;
+import ch.randelshofer.util.Strings;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.Action;
+import javax.swing.table.AbstractTableModel;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
-import java.beans.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.text.Normalizer;
-import javax.swing.*;
-import javax.swing.table.*;
 /**
  * NotationMovesTableModel.
  * 
@@ -125,8 +132,9 @@ public class NotationMovesTableModel extends AbstractTableModel
             }
         }
     }
-    
-    
+
+
+    @Nullable
     @Override
     public Object getValueAt(int row, int column) {
         if (column == 0) {
@@ -182,32 +190,34 @@ public class NotationMovesTableModel extends AbstractTableModel
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex == 0 || columnIndex > 2;
     }
-    
+
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         String name = evt.getPropertyName();
         if ("layerCount".equals(name)) {
             updateRows();
             fireTableDataChanged();
         } else if ("twistSupported".equals(name)) {
-            for (int i=0, n = getRowCount(); i < n; i++) {
+            for (int i = 0, n = getRowCount(); i < n; i++) {
                 fireTableCellUpdated(i, 0);
             }
         } else if ("twistToken".equals(name)) {
-            for (int i=0, n = getRowCount(); i < n; i++) {
+            for (int i = 0, n = getRowCount(); i < n; i++) {
                 for (int j=3; j < 9; j++) {
                     fireTableCellUpdated(i, j);
                 }
             }
         }
     }
-    
+
     @Override
-    public boolean isRowImportable(DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
-        if (action == DnDConstants.ACTION_LINK || asChild /*|| ! isRowAddable(row)*/) return false;
-        
-        for (int i=0; i < transferFlavors.length; i++) {
-            for (int j=0; j < importableFlavors.length; j++) {
+    public boolean isRowImportable(@Nonnull DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
+        if (action == DnDConstants.ACTION_LINK || asChild /*|| ! isRowAddable(row)*/) {
+            return false;
+        }
+
+        for (int i = 0; i < transferFlavors.length; i++) {
+            for (int j = 0; j < importableFlavors.length; j++) {
                 if (transferFlavors[i].equals(importableFlavors[j])) {
                     return true;
                 }
@@ -230,24 +240,28 @@ public class NotationMovesTableModel extends AbstractTableModel
     public boolean isRowAddable(int row) {
         return false;
     }
-    
+
+    @Nonnull
     @Override
     public Action[] getRowActions(int[] rows) {
         return new Action[0];
     }
-    
+
+    @Nonnull
     @Override
     public Object[] getCreatableRowTypes(int row) {
         return new Object[0];
     }
-    
+
+    @Nullable
     @Override
     public Object getCreatableRowType(int row) {
         return null;
     }
-    
+
+    @Nonnull
     @Override
-    public Transferable exportRowTransferable(int[] rows) {
+    public Transferable exportRowTransferable(@Nonnull int[] rows) {
         CompositeTransferable t = new CompositeTransferable();
         t.add(TableModels.createLocalTransferable(this, rows));
         t.add(TableModels.createHTMLTransferable(this, rows));
@@ -271,12 +285,13 @@ public class NotationMovesTableModel extends AbstractTableModel
         DataFlavor.stringFlavor,
         DataFlavor.getTextPlainUnicodeFlavor()
     };
-    
+
     @Override
-    public int importRowTransferable(Transferable t, int action, int row, boolean asChild) throws UnsupportedFlavorException, IOException {
-        if (! isRowImportable(t.getTransferDataFlavors(), action, row, asChild))
+    public int importRowTransferable(@Nonnull Transferable t, int action, int row, boolean asChild) throws UnsupportedFlavorException, IOException {
+        if (!isRowImportable(t.getTransferDataFlavors(), action, row, asChild)) {
             throw new UnsupportedFlavorException(null);
-        
+        }
+
         Object[][] transferData;
         int rowCount = 0;
         try {

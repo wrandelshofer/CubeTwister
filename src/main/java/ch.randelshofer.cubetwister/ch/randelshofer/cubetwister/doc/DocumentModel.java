@@ -3,31 +3,55 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
+import ch.randelshofer.gui.ProgressObserver;
+import ch.randelshofer.gui.datatransfer.XMLTransferable;
+import ch.randelshofer.gui.tree.MutableTreeModel;
+import ch.randelshofer.gui.tree.TreeNodeImpl;
 import ch.randelshofer.rubik.CubeKind;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.tree.*;
-import ch.randelshofer.gui.datatransfer.*;
 import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
-import ch.randelshofer.undo.*;
-import ch.randelshofer.util.*;
+import ch.randelshofer.undo.CompositeEdit;
+import ch.randelshofer.undo.Undoable;
+import ch.randelshofer.undo.UndoableObjectEdit;
+import ch.randelshofer.util.ConcurrentDispatcher;
+import ch.randelshofer.util.SequentialDispatcher;
+import nanoxml.XMLElement;
+import nanoxml.XMLParseException;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
+import javax.swing.Action;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+import javax.swing.undo.AbstractUndoableEdit;
+import javax.swing.undo.UndoableEdit;
 import java.awt.Color;
 import java.awt.Toolkit;
-
-import java.awt.datatransfer.*;
-import java.beans.*;
-import java.io.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringReader;
 import java.text.Normalizer;
-import java.util.*;
-
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
-import javax.swing.undo.*;
-
-import nanoxml.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Holds a CubeTwister document.
@@ -73,17 +97,22 @@ public class DocumentModel extends DefaultTreeModel
         scriptTypeValueSet.put("generator", true);
         scriptTypeValueSet.put("solver", false);
     }
+
+    @Nullable
     private CubeModel defaultCube;
     /** Key = LayerCount, Value = NotationModel. */
+    @Nullable
     private HashMap<Integer,NotationModel> defaultNotation = new HashMap<Integer,NotationModel>();
     public static final String PROP_DEFAULT_CUBE = "DefaultCube";
     public static final String PROP_DEFAULT_NOTATION = "DefaultNotation";
+    @Nullable
     protected PropertyChangeSupport propertySupport = new PropertyChangeSupport(this);
   
     /**
      * The dispatcher is used for lengthy background operations.
      * @see #dispatch(Runnable)
      */
+    @Nullable
     private SequentialDispatcher dispatcher;
     /**
      * This set is used to determine which entities should
@@ -91,6 +120,7 @@ public class DocumentModel extends DefaultTreeModel
      *
      * @see #writeXML(OutputStream, Object[])
      */
+    @Nullable
     private Object[] writeMembersOnly;
 
     /**
@@ -118,6 +148,7 @@ public class DocumentModel extends DefaultTreeModel
         dispatcher = d;
     }
 
+    @Nonnull
     @Override
     public EntityModel getRoot() {
         return (EntityModel)super.getRoot();
@@ -149,22 +180,26 @@ public class DocumentModel extends DefaultTreeModel
      * Use this method to dispatch tasks which do not block the user interface
      * until the task has finished. i.e. Solving a scrambled cube.
      */
-    public void dispatchSolver(Runnable runner) {
+    public void dispatchSolver(@Nonnull Runnable runner) {
         threadPool.dispatch(runner);
     }
 
+    @Nonnull
     public EntityModel getScripts() {
         return (EntityModel) root.getChildAt(SCRIPT_INDEX);
     }
 
+    @Nonnull
     public EntityModel getTexts() {
         return (EntityModel) root.getChildAt(TEXT_INDEX);
     }
 
+    @Nonnull
     public EntityModel getNotations() {
         return (EntityModel) root.getChildAt(NOTATION_INDEX);
     }
 
+    @Nonnull
     public EntityModel getCubes() {
         return (EntityModel) root.getChildAt(CUBE_INDEX);
     }
@@ -174,6 +209,7 @@ public class DocumentModel extends DefaultTreeModel
      * by the scripts unless they override it with their
      * own definition.
      */
+    @Nullable
     public CubeModel getDefaultCube() {
         return defaultCube;
     }
@@ -217,7 +253,7 @@ public class DocumentModel extends DefaultTreeModel
      * by the scripts unless they override it with their
      * own definition.
      */
-    public void setDefaultNotation(NotationModel value) {
+    public void setDefaultNotation(@Nonnull NotationModel value) {
         NotationModel oldValue = defaultNotation.get(value.getLayerCount());
 
         // make sure that the notation is only represented once as the default
@@ -232,7 +268,7 @@ public class DocumentModel extends DefaultTreeModel
     private final static long serialVersionUID = 1L;
 
             @Override
-            public void revert(Object a, Object b) {
+            public void revert(Object a, @Nonnull Object b) {
                 defaultNotation.put(new Integer(((NotationModel) b).getLayerCount()), (NotationModel) b);
                 propertySupport.firePropertyChange(PROP_DEFAULT_NOTATION, a, b);
             }
@@ -265,7 +301,7 @@ public class DocumentModel extends DefaultTreeModel
      * output stream.
      * For peak performance, the output stream should be buffered.
      */
-    public void writeXML(OutputStream out, Object[] entities)
+    public void writeXML(@Nonnull OutputStream out, Object[] entities)
             throws IOException {
         writeMembersOnly = entities;
         PrintWriter w = new PrintWriter(new OutputStreamWriter(out, "UTF8"));
@@ -287,16 +323,17 @@ public class DocumentModel extends DefaultTreeModel
         return false;
     }
 
+    @Nonnull
     @Override
-    public EntityModel getChild(Object parent, int index) {
-        return (EntityModel) super.getChild(parent, index); 
+    public EntityModel getChild(@Nonnull Object parent, int index) {
+        return (EntityModel) super.getChild(parent, index);
     }
 
     /**
      * Writes the contents of the DocumentModel into the output stream.
      * For peak performance, the output stream should be buffered.
      */
-    public void writeXML(PrintWriter out)
+    public void writeXML(@Nonnull PrintWriter out)
             throws IOException {
         //try {
         // We keep track of all the objects we write and
@@ -720,7 +757,7 @@ public class DocumentModel extends DefaultTreeModel
      * Adds the contents of the input stream to the DocumentModel.
      * For peak performance, the input stream should be buffered.
      */
-    public void addSerializedNode(InputStream in)
+    public void addSerializedNode(@Nonnull InputStream in)
             throws IOException {
         insertSerializedNodeInto(in, (TreeNodeImpl) root, root.getChildCount());
     }
@@ -729,7 +766,7 @@ public class DocumentModel extends DefaultTreeModel
      * Adds the contents of the input stream to the DocumentModel.
      * For peak performance, the input stream should be buffered.
      */
-    public void insertSerializedNodeInto(InputStream in, MutableTreeNode parent, int index)
+    public void insertSerializedNodeInto(@Nonnull InputStream in, @Nonnull MutableTreeNode parent, int index)
             throws IOException {
         Reader r = new InputStreamReader(in, "UTF8");
         insertSerializedNodeInto(r, parent, index);
@@ -739,7 +776,7 @@ public class DocumentModel extends DefaultTreeModel
      * Adds the contents of the input stream to the DocumentModel.
      * For peak performance, the input stream should be buffered.
      */
-    public void insertSerializedNodeInto(Reader r, MutableTreeNode parent, int index)
+    public void insertSerializedNodeInto(Reader r, @Nonnull MutableTreeNode parent, int index)
             throws IOException {
         //in = new ByteFilterInputStream(in);
         try {
@@ -760,17 +797,17 @@ public class DocumentModel extends DefaultTreeModel
 
     }
 
-    public void addXMLNode(XMLElement doc)
+    public void addXMLNode(@Nonnull XMLElement doc)
             throws IOException {
         insertXMLNodeInto(doc, (TreeNodeImpl) root, root.getChildCount());
     }
 
-    public void insertXMLNodeInto(XMLElement doc, MutableTreeNode parent, int index)
+    public void insertXMLNodeInto(@Nonnull XMLElement doc, @Nonnull MutableTreeNode parent, int index)
             throws IOException {
         // We keep track of all the objects we read.
         // The hash map key is a String representation of
         // the object's id, the hash map value is the object.
-        HashMap<String,Object> objects = new HashMap<String,Object>();
+        HashMap<String, Object> objects = new HashMap<String, Object>();
 
         String attrValue;
 
@@ -1351,8 +1388,8 @@ public class DocumentModel extends DefaultTreeModel
      * This will then message nodesWereInserted to create the appropriate event.
      * This is the preferred way to add children as it will create the appropriate event.
      */
-    public void addTo(EntityModel newChild, TreeNode parent) {
-        insertNodeInto(newChild, (MutableTreeNode)parent, parent.getChildCount());
+    public void addTo(EntityModel newChild, @Nonnull TreeNode parent) {
+        insertNodeInto(newChild, (MutableTreeNode) parent, parent.getChildCount());
     }
 
     /**
@@ -1375,6 +1412,7 @@ public class DocumentModel extends DefaultTreeModel
                         insertNodeIntoQuiet((TreeNodeImpl)newChild, (TreeNodeImpl)parent, index);
                     }
 
+                    @Nonnull
                     @Override
                     public String getPresentationName() {
                         return "Insert";
@@ -1393,6 +1431,7 @@ public class DocumentModel extends DefaultTreeModel
                         removeNodeFromParentQuiet((TreeNodeImpl)newChild);
                     }
 
+                    @Nonnull
                     @Override
                     public String getPresentationName() {
                         return "Insert";
@@ -1405,7 +1444,7 @@ public class DocumentModel extends DefaultTreeModel
         super.insertNodeInto(newChild, (MutableTreeNode)parent, index);
     }
 
-    protected void removeNodeFromParentQuiet(MutableTreeNode node) {
+    protected void removeNodeFromParentQuiet(@Nonnull MutableTreeNode node) {
         super.removeNodeFromParent(node);
     }
 
@@ -1429,10 +1468,10 @@ public class DocumentModel extends DefaultTreeModel
     /**
      * Returns wether the specified node may be removed.
      *
-     * @param   node   a node from the tree, obtained from this data source.
+     * @param node a node from the tree, obtained from this data source.
      */
     @Override
-    public boolean isNodeRemovable(MutableTreeNode node) {
+    public boolean isNodeRemovable(@Nonnull MutableTreeNode node) {
         // Direct children of the root node are
         // the Cubes, Notations, Scripts and the Text
         // folder. It does not make sense to rename
@@ -1446,21 +1485,23 @@ public class DocumentModel extends DefaultTreeModel
      * @exception IllegalStateException if the node is not removable.
      */
     @Override
-    public void removeNodeFromParent(final MutableTreeNode node) {
+    public void removeNodeFromParent(@Nonnull final MutableTreeNode node) {
         if (isNodeRemovable(node)) {
             CompositeEdit ce = new CompositeEdit();
             fireUndoableEdit(ce);
 
             fireUndoableEdit(
                     new AbstractUndoableEdit() {
-    private final static long serialVersionUID = 1L;
+                        private final static long serialVersionUID = 1L;
+
                         @Override
                         public void redo() {
                             super.redo();
                             removeNodeFromParentQuiet(node);
                         }
 
-                @Override
+                        @Nonnull
+                        @Override
                         public String getPresentationName() {
                             return "Remove";
                         }
@@ -1480,7 +1521,8 @@ public class DocumentModel extends DefaultTreeModel
                             insertNodeIntoQuiet(node, parent, index);
                         }
 
-                @Override
+                        @Nonnull
+                        @Override
                         public String getPresentationName() {
                             return "Remove";
                         }
@@ -1501,9 +1543,10 @@ public class DocumentModel extends DefaultTreeModel
      *                    from getCreatableChildren
      * @param   parent     a node from the tree, obtained from this data source.
      * @param   index      index of the child.
-     * @exception   IllegalStateException if the parent node does not allow children.
+     * @exception IllegalStateException if the parent node does not allow children.
      */
-    public TreePath createNodeAt(Object newNodeType, MutableTreeNode parent, int index) throws IllegalStateException {
+    @Nonnull
+    public TreePath createNodeAt(Object newNodeType, @Nonnull MutableTreeNode parent, int index) throws IllegalStateException {
         // We create the nodes where we want them to be created!
         EntityModel realParent = null;
         int realIndex;
@@ -1552,7 +1595,7 @@ public class DocumentModel extends DefaultTreeModel
      *
      * @param   node   a node from the tree, obtained from this data source.
      */
-    public boolean isNodeEditable(MutableTreeNode node) {
+    public boolean isNodeEditable(@Nonnull MutableTreeNode node) {
         // Direct children of the root node are
         // the Cubes, Notations, Scripts and the Text
         // folder. It does not make sense to rename
@@ -1568,11 +1611,13 @@ public class DocumentModel extends DefaultTreeModel
      *         added to the node. Returns an empty array for nodes
      *         that cannot have additional children.
      */
+    @Nonnull
     @Override
     public Object[] getCreatableNodeTypes(Object parent) {
         return NODE_TYPES;
     }
 
+    @Nullable
     @Override
     public Object getCreatableNodeType(Object parent) {
         if (isLeaf(parent)) {
@@ -1656,6 +1701,7 @@ public class DocumentModel extends DefaultTreeModel
      * @param   nodes The nodes to be copied.
      * @exception   IllegalStateException if the nodes can not be removed.
      */
+    @Nonnull
     public Transferable exportTransferable(MutableTreeNode[] nodes) {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         try {
@@ -1670,10 +1716,11 @@ public class DocumentModel extends DefaultTreeModel
         return transfer;
     }
 
+    @Nonnull
     @Override
-    public List<TreePath> importTransferable(Transferable transfer, int action, MutableTreeNode parent, int index)
+    public List<TreePath> importTransferable(@Nonnull Transferable transfer, int action, @Nonnull MutableTreeNode parent, int index)
             throws UnsupportedFlavorException, IOException {
-LinkedList<TreePath> importedPaths=new LinkedList<TreePath>();
+        LinkedList<TreePath> importedPaths = new LinkedList<TreePath>();
         DataFlavor flavor = new DataFlavor("text/xml", "Cube Twister Markup");
         //Transferable transfer = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(this);
         if (transfer.isDataFlavorSupported(flavor)) {
@@ -1699,7 +1746,7 @@ importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChi
                 }
             }
 
-importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChild(getChild(parent,index)));
+            importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChild(getChild(parent,index)));
             return importedPaths;
         } else {
             Toolkit.getDefaultToolkit().beep();
@@ -1729,7 +1776,7 @@ importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChi
      * Shuts down all background processes.
      */
     public void close() {
-        for (EntityModel node: getScripts().getChildren()) {
+        for (EntityModel node : getScripts().getChildren()) {
             ScriptModel item = (ScriptModel) node;
             ProgressObserver p = item.getProgressView();
             if (p != null) {
@@ -1738,7 +1785,8 @@ importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChi
         }
     }
 
-    public Action[] getNodeActions(final MutableTreeNode[] nodes) {
+    @Nonnull
+    public Action[] getNodeActions(@Nonnull final MutableTreeNode[] nodes) {
         LinkedList<Action> actions = new LinkedList<Action>();
         boolean allNodesAreScripts = true;
         for (int i = 0; i < nodes.length; i++) {

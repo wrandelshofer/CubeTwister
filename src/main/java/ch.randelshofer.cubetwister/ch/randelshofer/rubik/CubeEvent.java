@@ -4,11 +4,13 @@
 
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * CubeEvent is used to notify interested parties that an event has occured
  * in a Cube object.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class CubeEvent extends java.util.EventObject {
     private final static long serialVersionUID = 1L;
@@ -17,13 +19,14 @@ public class CubeEvent extends java.util.EventObject {
     private int angle;
     
     /** Creates a new instance. */
-    public CubeEvent(Cube src, int axis, int layerMask, int angle) {
+    public CubeEvent(@Nonnull Cube src, int axis, int layerMask, int angle) {
         super(src);
         this.axis = axis;
         this.layerMask = layerMask;
         this.angle = angle;
     }
-    
+
+    @Nonnull
     public Cube getCube() {
         return (Cube) getSource();
     }

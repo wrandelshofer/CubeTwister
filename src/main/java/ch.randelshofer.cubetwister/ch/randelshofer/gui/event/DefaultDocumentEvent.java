@@ -4,10 +4,13 @@
 
 package ch.randelshofer.gui.event;
 
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
-import javax.swing.event.*;
-import javax.swing.text.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import java.util.EventObject;
 
 /**
  * DefaultDocumentEvent.
@@ -24,12 +27,12 @@ implements DocumentEvent {
     /**
      * Creates a new DefaultDocumentEvent.
      *
-     * @param src The Source of the event.
+     * @param src  The Source of the event.
      * @param offs the offset into the document of the change &gt;= 0
-     * @param len the length of the change &gt;= 0
+     * @param len  the length of the change &gt;= 0
      * @param type the type of event DocumentEvent.EventType);
      */
-    public DefaultDocumentEvent(Document src, int offs, int len, DocumentEvent.EventType type) {
+    public DefaultDocumentEvent(@Nonnull Document src, int offs, int len, DocumentEvent.EventType type) {
         super(src);
         this.offset = offs;
         this.length = len;
@@ -65,6 +68,7 @@ implements DocumentEvent {
      * @return the change information, or null if the
      *  element was not modified
      */
+    @Nullable
     public ElementChange getChange(Element elem) {
         return null;
     }
@@ -74,6 +78,7 @@ implements DocumentEvent {
      *
      * @return the document
      */
+    @Nonnull
     public Document getDocument() {
         return (Document) getSource();
     }

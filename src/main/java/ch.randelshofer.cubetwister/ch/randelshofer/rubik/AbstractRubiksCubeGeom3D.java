@@ -7,6 +7,7 @@ import ch.randelshofer.geom3d.Scene3D;
 import ch.randelshofer.geom3d.Shape3D;
 import ch.randelshofer.geom3d.Transform3D;
 import ch.randelshofer.geom3d.TransformNode3D;
+import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 
@@ -524,13 +525,14 @@ public abstract class AbstractRubiksCubeGeom3D extends AbstractCubeGeom3D {
         }
     }
 
+    @Nonnull
     @Override
     protected Cube createCube() {
         return new RubiksCube();
     }
 
     @Override
-    public void cubeTwisted(CubeEvent evt) {
+    public void cubeTwisted(@Nonnull CubeEvent evt) {
         int loc;
 
         int layerMask = evt.getLayerMask();
@@ -567,7 +569,7 @@ public abstract class AbstractRubiksCubeGeom3D extends AbstractCubeGeom3D {
             }
 
             @Override
-            public boolean isSequential(Interpolator that) {
+            public boolean isSequential(@Nonnull Interpolator that) {
                 return (that.getClass() == this.getClass());
             }
 

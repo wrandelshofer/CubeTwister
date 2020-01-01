@@ -5,14 +5,19 @@
 
 package ch.randelshofer.debug;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.security.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
 
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.table.*;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.table.AbstractTableModel;
+import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.security.AccessControlException;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * Displays the current system properties.
@@ -25,15 +30,15 @@ public class SystemPropertiesInspector extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;
         private String[][] data;
         private final static String[] columnNames = { "Key", "Value" };
-        
-        public PropertiesTableModel(Properties p) {
+
+        public PropertiesTableModel(@Nonnull Properties p) {
             data = new String[p.size()][2];
             int i = 0;
             for (Map.Entry<Object, Object> entry : p.entrySet()) {
                 data[i][0] = (String) entry.getKey();
                 data[i++][1] = (String) entry.getValue();
             }
-            
+
             Arrays.sort(data, new Comparator<String[]>() {
                 @Override
                 public int compare(String[] o1, String[] o2) {

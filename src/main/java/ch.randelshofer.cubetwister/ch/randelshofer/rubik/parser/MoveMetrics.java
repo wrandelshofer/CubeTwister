@@ -3,6 +3,9 @@
  */
 package ch.randelshofer.rubik.parser;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.util.function.Consumer;
 
 import static java.lang.Math.abs;
@@ -23,6 +26,7 @@ public class MoveMetrics implements Consumer<Node> {
     /**
      * Current move node.
      */
+    @Nullable
     private MoveNode current = null;
     /**
      * Face Turn Metric without current node.
@@ -51,7 +55,7 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the layer turn count of the subtree starting
      * at this node.
      */
-    public static int getLayerTurnCount(Node node) {
+    public static int getLayerTurnCount(@Nonnull Node node) {
         MoveMetrics metrics = new MoveMetrics();
         metrics.accept(node);
         return metrics.getLayerTurnCount();
@@ -61,7 +65,7 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the block turn count of the subtree starting
      * at this node.
      */
-    public static int getBlockTurnCount(Node node) {
+    public static int getBlockTurnCount(@Nonnull Node node) {
         MoveMetrics metrics = new MoveMetrics();
         metrics.accept(node);
         return metrics.getBlockTurnCount();
@@ -71,7 +75,7 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the face turn count of the subtree starting
      * at this node.
      */
-    public static int getFaceTurnCount(Node node) {
+    public static int getFaceTurnCount(@Nonnull Node node) {
         MoveMetrics metrics = new MoveMetrics();
         metrics.accept(node);
         return metrics.getFaceTurnCount();
@@ -81,14 +85,14 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the quarter turn count of the subtree starting
      * at this node.
      */
-    public static int getQuarterTurnCount(Node node) {
+    public static int getQuarterTurnCount(@Nonnull Node node) {
         MoveMetrics metrics = new MoveMetrics();
         metrics.accept(node);
         return metrics.getQuarterTurnCount();
     }
 
     @Override
-    public void accept(Node node) {
+    public void accept(@Nonnull Node node) {
         // coalesce moves for counting
         for (Node resolvedNode : node.resolvedIterable(false)) {
             if (!(resolvedNode instanceof MoveNode)) {
@@ -130,7 +134,7 @@ public class MoveMetrics implements Consumer<Node> {
         }
     }
 
-    private void addToTurnMetrics(MoveNode move) {
+    private void addToTurnMetrics(@Nonnull MoveNode move) {
         ltm += countLayerTurns(move);
         qtm += countQuarterTurns(move);
         ftm += countFaceTurns(move);
@@ -144,7 +148,8 @@ public class MoveMetrics implements Consumer<Node> {
      * @param that another {@code MoveMetrics}
      * @throws NullPointerException if {@code other} is null
      */
-    public MoveMetrics combine(MoveMetrics that) {
+    @Nonnull
+    public MoveMetrics combine(@Nonnull MoveMetrics that) {
         this.ltm += that.ltm;
         this.btm += that.btm;
         this.qtm += that.qtm;
@@ -195,7 +200,7 @@ public class MoveMetrics implements Consumer<Node> {
     /**
      * Gets the layer turn count of the specified move node.
      */
-    private int countLayerTurns(MoveNode move) {
+    private int countLayerTurns(@Nonnull MoveNode move) {
         int layerCount = move.getLayerCount();
         int layerMask = move.getLayerMask();
         int turns = abs(move.getAngle()) % 4;
@@ -215,7 +220,7 @@ public class MoveMetrics implements Consumer<Node> {
     /**
      * Gets the block turn count of the specified move node.
      */
-    private int countBlockTurns(MoveNode move) {
+    private int countBlockTurns(@Nonnull MoveNode move) {
         int layerCount = move.getLayerCount();
         int layerMask = move.getLayerMask();
         int turns = abs(move.getAngle()) % 4;
@@ -243,7 +248,7 @@ public class MoveMetrics implements Consumer<Node> {
     /**
      * Gets the face turn count of the specified node.
      */
-    private int countFaceTurns(MoveNode move) {
+    private int countFaceTurns(@Nonnull MoveNode move) {
         int layerCount = move.getLayerCount();
         int layerMask = move.getLayerMask();
         int count = getBlockTurnCount(move);
@@ -257,7 +262,7 @@ public class MoveMetrics implements Consumer<Node> {
     /**
      * Gets the face turn count of the specified node.
      */
-    private int countQuarterTurns(MoveNode move) {
+    private int countQuarterTurns(@Nonnull MoveNode move) {
         int qturns = abs(move.getAngle() % 4);
         if (qturns == 3) {
             qturns = 1;
@@ -271,7 +276,7 @@ public class MoveMetrics implements Consumer<Node> {
      * @param move a move
      * @return true if move twists layrser
      */
-    private boolean isTwistMove(MoveNode move) {
+    private boolean isTwistMove(@Nonnull MoveNode move) {
         int layerCount = move.getLayerCount();
         int turns = abs(move.getAngle()) % 4;
         int allLayers = (1 << (layerCount)) - 1;
@@ -281,6 +286,7 @@ public class MoveMetrics implements Consumer<Node> {
 
     }
 
+    @Nonnull
     @Override
     public String toString() {
         return "MoveMetrics{" +

@@ -4,6 +4,18 @@
  */
 package ch.randelshofer.gui.tree;
 
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JTree;
+import javax.swing.TransferHandler;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeCellRenderer;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
@@ -14,12 +26,6 @@ import java.awt.dnd.DnDConstants;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
-import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeCellRenderer;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 
 /**
  * A transfer handler for MutableJTree.
@@ -32,6 +38,7 @@ public class MutableTreeTransferHandler extends TransferHandler {
     private final static long serialVersionUID = 1L;
 
     /** Returns a {@code TreeModel} or null if the JComponent does not have a tree model. */
+    @Nullable
     protected TreeModel getTreeModel(JComponent c) {
         if (c instanceof JTree) {
             JTree tree = (JTree) c;
@@ -42,6 +49,7 @@ public class MutableTreeTransferHandler extends TransferHandler {
     }
 
     /** Returns the selection paths or null if the component does not have selection paths. */
+    @Nullable
     protected TreePath[] getSelectionPaths(JComponent c) {
         if (c instanceof JTree) {
             JTree tree = (JTree) c;
@@ -52,6 +60,7 @@ public class MutableTreeTransferHandler extends TransferHandler {
     }
 
     /** Returns the lead selection paths or null if the component does not have one. */
+    @Nullable
     protected TreePath getLeadSelectionPath(JComponent c) {
         if (c instanceof JTree) {
             JTree tree = (JTree) c;
@@ -61,10 +70,13 @@ public class MutableTreeTransferHandler extends TransferHandler {
         }
     }
 
-    /** Returns the cell renderer component or null if the component does not have a cell renderer. */
+    /**
+     * Returns the cell renderer component or null if the component does not have a cell renderer.
+     */
+    @Nullable
     protected Component getCellRendererComponent(JComponent c, Object value,
-            boolean selected, boolean expanded,
-            boolean leaf, int row, boolean hasFocus) {
+                                                 boolean selected, boolean expanded,
+                                                 boolean leaf, int row, boolean hasFocus) {
         if (c instanceof JTree) {
             JTree tree = (JTree) c;
             TreeCellRenderer r = tree.getCellRenderer();

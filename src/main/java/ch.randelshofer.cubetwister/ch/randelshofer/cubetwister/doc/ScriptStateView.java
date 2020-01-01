@@ -3,18 +3,31 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.rubik.parser.*;
-//import ch.randelshofer.rubik.solver.*;
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.CubeEvent;
+import ch.randelshofer.rubik.CubeListener;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
+import org.jhotdraw.annotation.Nonnull;
 
-import java.awt.*;
-import java.beans.*;
-
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
-import javax.swing.text.*;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
+import java.awt.Color;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+//import ch.randelshofer.rubik.solver.*;
 
 /**
  * ScriptStateView.
@@ -26,9 +39,10 @@ public class ScriptStateView extends JPanel implements EntityView {
 
     private final static boolean DEBUG = false;
     private ScriptModel model;
+    @Nonnull
     private PropertyChangeListener propertyHandler = new PropertyChangeListener() {
 
-        public void propertyChange(PropertyChangeEvent evt) {
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
             String n = evt.getPropertyName();
             if (evt.getSource() == model) {
                 if (n == ScriptModel.CHECKED_PROPERTY) {
@@ -46,6 +60,7 @@ public class ScriptStateView extends JPanel implements EntityView {
             }
         }
     };
+    @Nonnull
     private CubeListener cubeHandler = new CubeListener() {
 
         public void cubeTwisted(final CubeEvent evt) {
@@ -98,6 +113,7 @@ public class ScriptStateView extends JPanel implements EntityView {
         }
     }
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

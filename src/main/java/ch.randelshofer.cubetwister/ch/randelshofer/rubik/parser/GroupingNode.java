@@ -5,6 +5,7 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,7 +32,7 @@ public class GroupingNode extends UnaryNode {
     }
 
     @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (p.isSupported(Symbol.GROUPING)) {
             p.writeToken(w, Symbol.GROUPING_BEGIN);

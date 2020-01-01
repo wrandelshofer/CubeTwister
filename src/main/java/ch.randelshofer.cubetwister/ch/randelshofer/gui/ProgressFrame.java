@@ -3,12 +3,17 @@
  */
 package ch.randelshofer.gui;
 
-import java.lang.reflect.*;
-import java.awt.*;
-import java.util.prefs.Preferences;
-import javax.swing.*;
-import javax.swing.plaf.metal.*;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.util.prefs.PreferencesUtil;
+
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.metal.MetalToggleButtonUI;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.lang.reflect.InvocationTargetException;
+import java.util.prefs.Preferences;
 
 /**
  * The ProgressFrame holds all ProgressView's.
@@ -55,7 +60,7 @@ public class ProgressFrame extends javax.swing.JFrame {
         return instance;
     }
 
-    public void addProgressView(final ProgressView viewer) {
+    public void addProgressView(@Nonnull final ProgressView viewer) {
         invokeAndWait(new Runnable() {
             @Override
             public void run() {
@@ -77,7 +82,7 @@ public class ProgressFrame extends javax.swing.JFrame {
         return d;
     }
 
-    public void removeProgressView(final ProgressView viewer) {
+    public void removeProgressView(@Nonnull final ProgressView viewer) {
         invokeAndWait(new Runnable() {
             @Override
             public void run() {
@@ -113,7 +118,7 @@ public class ProgressFrame extends javax.swing.JFrame {
         }
     }
 
-    private static void invokeAndWait(Runnable r) {
+    private static void invokeAndWait(@Nonnull Runnable r) {
         if (SwingUtilities.isEventDispatchThread()) {
             r.run();
         } else {

@@ -3,10 +3,14 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import java.awt.*;
-import javax.swing.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.beans.*;
+import ch.randelshofer.beans.BoundedRangeModelBeanAdapter;
+import ch.randelshofer.gui.Fonts;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.GroupLayout;
+import javax.swing.JComponent;
+import javax.swing.LayoutStyle;
+import java.awt.Font;
 
 /**
  * CubeAnimationView is used to present the "Options &gt; Animation" page of
@@ -201,6 +205,7 @@ public class CubeAnimationView extends AbstractEntityView {
         durationModel.setBean(model);
     }
 
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;

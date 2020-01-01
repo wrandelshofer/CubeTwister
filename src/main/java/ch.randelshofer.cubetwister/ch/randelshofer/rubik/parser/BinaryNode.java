@@ -3,6 +3,7 @@ package ch.randelshofer.rubik.parser;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,7 +28,7 @@ public abstract class BinaryNode extends Node {
     protected abstract Symbol getSymbol();
 
     @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (getChildCount() != 2) {
             return;

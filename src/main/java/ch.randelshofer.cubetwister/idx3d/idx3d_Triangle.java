@@ -36,13 +36,15 @@
 
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 /**
  * Defines a 3d triangle.
- *
  */
 public class idx3d_Triangle {
     // F I E L D S
-    
+
     /** The object which contains this triangle. */
     public idx3d_Object parent;
     /** Visibility tag for clipping. */
@@ -58,24 +60,31 @@ public class idx3d_Triangle {
     public idx3d_Vertex p3;
     
     /** Normal vector of flat triangle. */
+    @Nonnull
     public idx3d_Vector n = new idx3d_Vector();
     /** Projected Normal vector. */
+    @Nonnull
     public idx3d_Vector n2 = new idx3d_Vector();
     
     /** for clipping. */
     private int minx,maxx,miny,maxy;
+    @Nonnull
     private idx3d_Vector triangleCenter=new idx3d_Vector();
     float dist=0;
     
     public int id=0;
     
     /** Texture x-coordinates (relative). */
+    @Nonnull
     public float[] u = new float[3];
     /** Texture y-coordinates (relative). */
+    @Nonnull
     public float[] v = new float[3];
     /** Texture x-coordinates (absolute). */
+    @Nonnull
     public float[] tx = new float[3];
     /** Texture y-coordinates (absolute). */
+    @Nonnull
     public float[] ty = new float[3];
     
     
@@ -122,6 +131,7 @@ public class idx3d_Triangle {
      *
      * @return Returns the material used to render this triangle.
      */
+    @Nullable
     public idx3d_InternalMaterial getMaterial() {
         return (material != null) ? material : parent.material;
     }
@@ -141,17 +151,17 @@ public class idx3d_Triangle {
         
     }
     
-    public void project(idx3d_Matrix normalProjection) {
+    public void project(@Nonnull idx3d_Matrix normalProjection) {
         n.transformInto(normalProjection, n2);
-        dist=getDist();
-        
+        dist = getDist();
+
         idx3d_InternalMaterial material;
         idx3d_Texture texture;
         if ((material = getMaterial()) != null
-        && (texture = material.getTexture()) != null) {
-            for (int i=0; i < 3; i++) {
-                tx[i]=(texture.width*u[i]);
-                ty[i]=(texture.height*v[i]);
+                && (texture = material.getTexture()) != null) {
+            for (int i = 0; i < 3; i++) {
+                tx[i] = (texture.width * u[i]);
+                ty[i] = (texture.height * v[i]);
             }
         }
     }
@@ -176,28 +186,33 @@ public class idx3d_Triangle {
             v[i]*=fy;
         }
     }
-    
+
     public void regenerateNormal() {
         //n=idx3d_Vector.getNormal(p1.pos,p2.pos,p3.pos);
-        idx3d_Vector.getNormalInto(p1.pos,p2.pos,p3.pos, n);
+        idx3d_Vector.getNormalInto(p1.pos, p2.pos, p3.pos, n);
     }
-    
+
+    @Nonnull
     public idx3d_Vector getWeightedNormal() {
-        return idx3d_Vector.vectorProduct(p1.pos,p2.pos,p3.pos);
+        return idx3d_Vector.vectorProduct(p1.pos, p2.pos, p3.pos);
     }
-    public idx3d_Vector getWeightedNormalInto(idx3d_Vector resultVector) {
-        return idx3d_Vector.vectorProductInto(p1.pos,p2.pos,p3.pos, resultVector);
+
+    @Nonnull
+    public idx3d_Vector getWeightedNormalInto(@Nonnull idx3d_Vector resultVector) {
+        return idx3d_Vector.vectorProductInto(p1.pos, p2.pos, p3.pos, resultVector);
     }
-    
+
+    @Nonnull
     public idx3d_Vertex getMedium() {
-        float cx=(p1.pos.x+p2.pos.x+p3.pos.x)/3;
-        float cy=(p1.pos.y+p2.pos.y+p3.pos.y)/3;
-        float cz=(p1.pos.z+p2.pos.z+p3.pos.z)/3;
+        float cx = (p1.pos.x + p2.pos.x + p3.pos.x) / 3;
+        float cy = (p1.pos.y + p2.pos.y + p3.pos.y) / 3;
+        float cz = (p1.pos.z + p2.pos.z + p3.pos.z) / 3;
         //float cu=(p1.u+p2.u+p3.u)/3;
         //float cv=(p1.v+p2.v+p3.v)/3;
         return new idx3d_Vertex(cx,cy,cz/*,cu,cv*/);
     }
-    
+
+    @Nonnull
     public idx3d_Vector getCenter() {
         float cx=(p1.pos.x+p2.pos.x+p3.pos.x)/3;
         float cy=(p1.pos.y+p2.pos.y+p3.pos.y)/3;
@@ -213,7 +228,8 @@ public class idx3d_Triangle {
     public boolean degenerated() {
         return p1.equals(p2)||p2.equals(p3)||p3.equals(p1);
     }
-    
+
+    @Nonnull
     public idx3d_Triangle getClone() {
         return new idx3d_Triangle(p1,p2,p3);
     }

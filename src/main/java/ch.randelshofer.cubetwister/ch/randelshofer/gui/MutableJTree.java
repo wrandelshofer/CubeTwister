@@ -3,15 +3,10 @@
  */
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.tree.*;
-import java.io.IOException;
-import javax.swing.*;
-import javax.swing.tree.*;
-import java.awt.*;
-import java.awt.dnd.*;
-import java.awt.datatransfer.*;
-import java.util.*;
-import java.awt.event.*;
+import ch.randelshofer.gui.tree.DefaultMutableTreeModel;
+import ch.randelshofer.gui.tree.MutableTreeModel;
+import ch.randelshofer.gui.tree.MutableTreeTransferHandler;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.app.action.edit.CopyAction;
 import org.jhotdraw.app.action.edit.CutAction;
 import org.jhotdraw.app.action.edit.DeleteAction;
@@ -21,12 +16,42 @@ import org.jhotdraw.app.action.edit.SelectAllAction;
 import org.jhotdraw.gui.EditableComponent;
 import org.jhotdraw.util.ResourceBundleUtil;
 
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.JViewport;
+import javax.swing.KeyStroke;
+import javax.swing.ScrollPaneLayout;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /**
  * A JTree that uses a MutableTreeModel. Users can add and remove elements
  * using a popup menu. MutableJTree also supports the standard clipboard
  * operations cut, copy and paste.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class MutableJTree extends JTree
         implements EditableComponent {
@@ -45,6 +70,8 @@ public class MutableJTree extends JTree
         public void lostOwnership(Clipboard clipboard, Transferable contents) {
         }
     }
+
+    @Nonnull
     private EventHandler eventHandler = new EventHandler();
     /**
      * Holds locale specific resources.
@@ -92,11 +119,11 @@ public class MutableJTree extends JTree
                 new MouseAdapter() {
 
             @Override
-                    public void mousePressed(MouseEvent evt) {
-                        if (isEnabled()) {
-                            showPopup(evt, true);
-                        }
-                    }
+            public void mousePressed(@Nonnull MouseEvent evt) {
+                if (isEnabled()) {
+                    showPopup(evt, true);
+                }
+            }
                 });
 
         // The popup listener provides an alternative way for
@@ -104,14 +131,14 @@ public class MutableJTree extends JTree
         popupListener = new MouseAdapter() {
 
             @Override
-            public void mousePressed(MouseEvent evt) {
+            public void mousePressed(@Nonnull MouseEvent evt) {
                 if (isEnabled() && evt.isPopupTrigger()) {
                     showPopup(evt, false);
                 }
             }
 
             @Override
-            public void mouseReleased(MouseEvent evt) {
+            public void mouseReleased(@Nonnull MouseEvent evt) {
                 if (isEnabled() && evt.isPopupTrigger()) {
                     showPopup(evt, false);
                 }
@@ -131,7 +158,7 @@ public class MutableJTree extends JTree
      * Initializes the labels in a locale specific and
      * look-and-feel (LAF) specific way.
      */
-    private void initLabels(Locale locale) {
+    private void initLabels(@Nonnull Locale locale) {
         // remove previously installed key strokes
         KeyStroke keyStroke;
         if (labels != null) {
@@ -214,6 +241,7 @@ public class MutableJTree extends JTree
      *
      * @return The popup menu.
      */
+    @Nonnull
     protected JPopupMenu createPopup() {
         final TreePath[] selectedPaths = getSelectionPaths();
         final MutableTreeModel model = (MutableTreeModel) getModel();
@@ -364,7 +392,7 @@ public class MutableJTree extends JTree
 
     }
 
-    protected void showPopup(MouseEvent evt, boolean isTriggeredByButton) {
+    protected void showPopup(@Nonnull MouseEvent evt, boolean isTriggeredByButton) {
         Component c = evt.getComponent();
         JPopupMenu popupMenu = createPopup();
         if (isTriggeredByButton && c.getGraphicsConfiguration() != null) {

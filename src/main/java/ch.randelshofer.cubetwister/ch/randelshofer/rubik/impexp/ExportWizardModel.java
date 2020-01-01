@@ -13,6 +13,8 @@ import ch.randelshofer.gui.WizardModel;
 import ch.randelshofer.rubik.impexp.csv.CSVExporter;
 import ch.randelshofer.rubik.impexp.cubeexplorer.CubeExplorerExporter;
 import ch.randelshofer.util.RunnableWorker;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.gui.filechooser.ExtensionFileFilter;
 
 import javax.swing.JComponent;
@@ -33,7 +35,9 @@ import java.util.Iterator;
 public class ExportWizardModel extends AbstractBean implements WizardModel {
     private final static long serialVersionUID = 1L;
     private JFileChooser fileChooser;
+    @Nonnull
     private String[] titles = { "Choose File And Format", "Specify Options"};
+    @Nullable
     private File file;
     private CubeTwisterView view;
     
@@ -48,7 +52,7 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
         fileChooser = new JFileChooser();
         fileChooser.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
         fileChooser.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent event) {
+            public void propertyChange(@Nonnull PropertyChangeEvent event) {
                 String name = event.getPropertyName();
                 if (name.equals(JFileChooser.SELECTED_FILE_CHANGED_PROPERTY)) {
                     setFile(fileChooser.getSelectedFile());
@@ -84,21 +88,21 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
         fileChooser.addChoosableFileFilter(filter);
     }
 
-    public void setDocumentView(CubeTwisterView view) {
+    public void setDocumentView(@Nonnull CubeTwisterView view) {
         this.view = view;
-        for (Iterator i=filterToExporterMap.values().iterator(); i.hasNext(); ) {
+        for (Iterator i = filterToExporterMap.values().iterator(); i.hasNext(); ) {
             Exporter exporter = (Exporter) i.next();
             exporter.setDocumentModel(view.getModel());
+        }
     }
-    }
-    
-    public void setFile(File newValue) {
+
+    public void setFile(@Nullable File newValue) {
         File oldValue = file;
         /*
         if (newValue != null && ! newValue.getName().endsWith("."+getSelectedFilter().getDefaultExtension())) {
             newValue = new File(newValue.getParentFile(), newValue.getName()+"."+getSelectedFilter().getDefaultExtension());
         }*/
-        
+
         this.file = newValue;
         firePropertyChange("canFinish", oldValue != null, newValue != null);
     }
@@ -113,6 +117,8 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
     public Exporter getSelectedExporter() {
         return filterToExporterMap.get(fileChooser.getFileFilter());
     }
+
+    @Nonnull
     public ExtensionFileFilter getSelectedFilter() {
         return (ExtensionFileFilter) fileChooser.getFileFilter();
     }
@@ -120,6 +126,7 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
     public void finish() {
         view.setEnabled(false);
         view.getModel().dispatch(new RunnableWorker() {
+            @Nullable
             public Object construct() {
                 ProgressObserver p = new ProgressView("Export "+file,"...", 0, 100);
                 try {
@@ -167,7 +174,8 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
     public String getPanelTitle(int index) {
         return titles[index];
     }
-    
+
+    @Nonnull
     public String getTitle() {
         return "CubeTwister: Export File";
     }

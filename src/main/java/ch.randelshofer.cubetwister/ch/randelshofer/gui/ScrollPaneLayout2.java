@@ -4,8 +4,11 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.ScrollPaneLayout;
+import java.awt.Container;
+import java.awt.Rectangle;
 /**
  * Objects of this class behave essentially like
  * javax.swing.ScrollPaneLayout but treats the top
@@ -23,23 +26,23 @@ public class ScrollPaneLayout2 extends ScrollPaneLayout implements javax.swing.p
     /** Creates a new instance of CornerLayout2 */
     public ScrollPaneLayout2() {
     }
-    
+
     /**
      * Same as ScrollPaneLayout.layoutContainer but the top right
      * corner is treated specially.
      *
      * @param parent the <code>Container</code> to lay out
      */
-    public void layoutContainer(Container parent) {
+    public void layoutContainer(@Nonnull Container parent) {
         super.layoutContainer(parent);
-        
+
         if (upperRight != null && rowHead == null) {
             if (vsb != null && vsb.isVisible()) {
                 Rectangle vsbR = vsb.getBounds();
-                
+
                 upperRight.setBounds(vsbR.x, vsbR.y,
-                vsbR.width, vsbR.width);
-                
+                        vsbR.width, vsbR.width);
+
                 vsb.setBounds(vsbR.x, vsbR.y + vsbR.width,
                 vsbR.width, vsbR.height - vsbR.width);
             }

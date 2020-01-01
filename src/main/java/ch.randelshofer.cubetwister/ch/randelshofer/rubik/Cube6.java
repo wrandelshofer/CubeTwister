@@ -1,8 +1,10 @@
 /* @(#)Cube6.java
- * 
+ *
  * Copyright (c) 2008-2009 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik;
+
+import org.jhotdraw.annotation.Nonnull;
 
 /**
  * Represents the state of a 6-times sliced cube (such as a V-Cube 6) by the 
@@ -1739,6 +1741,7 @@ public class Cube6 extends AbstractCube {
         }
     }
 
+    @Nonnull
     @Override
     public int[][] toStickers() {
         throw new UnsupportedOperationException("Not supported yet.");

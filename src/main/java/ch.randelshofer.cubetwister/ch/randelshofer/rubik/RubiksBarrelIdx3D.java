@@ -9,6 +9,7 @@ import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -557,20 +558,21 @@ public class RubiksBarrelIdx3D extends AbstractRubiksCubeIdx3D {
             parts[sideOffset+k] = object3D;
         }
     }
-    
-    
+
+
+    @Nonnull
     protected CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(27, 42, new int[] {3,3,3,3,3,3,3,3,9,9});
-        
+
         Color[] partsFillColor = new Color[27];
         Color[] partsOutlineColor = new Color[27];
         Color[] stickersFillColor = new Color[42];
-        
+
         Arrays.fill(partsFillColor, 0, 26, new Color(24, 24, 24));
         Arrays.fill(partsOutlineColor, 0, 26, new Color(16, 16, 16));
         Arrays.fill(partsFillColor, 26, 27, new Color(240, 240, 240));
         Arrays.fill(partsOutlineColor, 26, 27, new Color(240, 240, 240));
-        
+
         Arrays.fill(stickersFillColor, 0, 3, new Color(140,0,15)); //Front: red
         Arrays.fill(stickersFillColor, 3, 6, new Color(155,0,97)); //Front Right: dark purple
         Arrays.fill(stickersFillColor, 6, 9, new Color(70,188,218)); //Right: cyan
@@ -579,14 +581,14 @@ public class RubiksBarrelIdx3D extends AbstractRubiksCubeIdx3D {
         Arrays.fill(stickersFillColor, 15, 18, new Color(255,70,0)); //Back Left: orange
         Arrays.fill(stickersFillColor, 18, 21, new Color(124,83,0)); //Left: gold
         Arrays.fill(stickersFillColor, 21, 24, new Color(255,210,0)); //Front-Left: yellow
-        
+
         Arrays.fill(stickersFillColor, 24, 33, new Color(248,248,248)); //Down: white
         Arrays.fill(stickersFillColor, 33, 42, new Color(0,41,103)); //Up: blue
-        
+
         a.setPartFillColor(partsFillColor);
         a.setPartOutlineColor(partsOutlineColor);
         a.setStickerFillColor(stickersFillColor);
-        
+
         return a;
     }
     
@@ -634,17 +636,17 @@ public class RubiksBarrelIdx3D extends AbstractRubiksCubeIdx3D {
         }
         return sticker;
     }
-    
-    protected void initActions(idx3d_Scene scene) {
+
+    protected void initActions(@Nonnull idx3d_Scene scene) {
         int i, j;
         PartAction action;
-        
+
         // Corners
-        for (i=0; i < 8; i++) {
+        for (i = 0; i < 8; i++) {
             int index = cornerOffset + i;
-                action = new PartAction(
-                        index, 0, getStickerIndexForPart(index, 0)
-                        );
+            action = new PartAction(
+                    index, 0, getStickerIndexForPart(index, 0)
+            );
                 
                 scene.addMouseListener(parts[index].triangle(0), action);
                         scene.addSwipeListener(parts[index].triangle(0), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI+Math.PI/4)));
@@ -714,8 +716,9 @@ public class RubiksBarrelIdx3D extends AbstractRubiksCubeIdx3D {
     
     public void setStickerBeveling(float newValue) {
     }
-    
+
+    @Nonnull
     public CubeKind getKind() {
-       return CubeKind.BARREL;
+        return CubeKind.BARREL;
     }
 }

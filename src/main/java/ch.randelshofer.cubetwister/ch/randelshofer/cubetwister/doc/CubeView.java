@@ -3,46 +3,71 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.gui.Icons;
 import ch.randelshofer.gui.border.PlacardButtonBorder;
 import ch.randelshofer.gui.event.ModifierTracker;
-import ch.randelshofer.gui.plaf.*;
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.undo.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import java.util.prefs.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.plaf.ButtonUI;
-import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.text.*;
-import javax.swing.undo.*;
+import ch.randelshofer.gui.plaf.CustomButtonUI;
+import ch.randelshofer.gui.plaf.CustomToggleButtonUI;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cube3D;
+import ch.randelshofer.rubik.Cube3DAdapter;
+import ch.randelshofer.rubik.Cube3DCanvas;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.Cube3DListener;
+import ch.randelshofer.rubik.CubeKind;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.JCubeCanvasIdx3D;
+import ch.randelshofer.undo.Undoable;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.beans.WeakPropertyChangeListener;
 import org.jhotdraw.util.ResourceBundleUtil;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.plaf.ButtonUI;
+import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.text.PlainDocument;
+import javax.swing.undo.UndoableEdit;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
+
 /**
- *
  * @author Werner Randelshofer
  */
 public class CubeView extends JPanel implements Undoable, EntityView {
     private final static long serialVersionUID = 1L;
 
+    @Nullable
     private CubeModel model;
+    @Nullable
     private Cube3D cube3D;
     private Cube cube;
     /** The listeners waiting for model changes. * /
     private javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
      */
+    @Nullable
     private JCubeCanvasIdx3D cubeCanvas;
     private Preferences prefs;
+    @Nonnull
     private PropertyChangeListener propertyHandler = new PropertyChangeListener() {
 
         @Override
-        public void propertyChange(PropertyChangeEvent evt) {
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
             Object source = evt.getSource();
             String n = evt.getPropertyName();
             if (source == model) {
@@ -57,31 +82,33 @@ public class CubeView extends JPanel implements Undoable, EntityView {
                     int modifiersEx = (Integer) evt.getNewValue();
                     resetButton.setIcon(//
                             (modifiersEx & (InputEvent.ALT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK)) != 0//
-                            ? Icons.get(Icons.PLAYER_PARTIAL_RESET_PLACARD) : Icons.get(Icons.PLAYER_RESET_PLACARD));
+                                    ? Icons.get(Icons.PLAYER_PARTIAL_RESET_PLACARD) : Icons.get(Icons.PLAYER_RESET_PLACARD));
                     resetButton2.setIcon(//
                             (modifiersEx & (InputEvent.ALT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK)) != 0//
-                            ? Icons.get(Icons.PLAYER_PARTIAL_RESET_PLACARD) : Icons.get(Icons.PLAYER_RESET_PLACARD));
+                                    ? Icons.get(Icons.PLAYER_PARTIAL_RESET_PLACARD) : Icons.get(Icons.PLAYER_RESET_PLACARD));
 
                 }
             }
 
         }
     };
+    @Nonnull
     private UndoableEditListener undoableEditHandler = new UndoableEditListener() {
 
         @Override
-        public void undoableEditHappened(UndoableEditEvent evt) {
+        public void undoableEditHappened(@Nonnull UndoableEditEvent evt) {
             // forward events from Dimension view
             fireUndoableEditHappened(evt.getEdit());
         }
     };
+    @Nonnull
     private Cube3DListener cube3DHandler = new Cube3DAdapter() {
 
         /**
          * Invoked when a mouse event on a part of the cube occurs.
          */
         @Override
-        public void actionPerformed(final Cube3DEvent evt) {
+        public void actionPerformed(@Nonnull final Cube3DEvent evt) {
 //System.out.println("CubeView.actionPerformed "+evt);            
             if (partsToggleButton.isSelected() && evt.getPartIndex() != -1) {
                 int modifiersEx = evt.getModifiersEx();
@@ -287,6 +314,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
             fireContentsChanged();
         }
 
+        @Nullable
         @Override
         public Object getSelectedItem() {
             return (model == null) ? null : model.getKind();
@@ -427,6 +455,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
         tabbedPane.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
     }
 
+    @Nullable
     private Cube3DCanvas getCubeCanvas() {
         if (cubeCanvas == null) {
             cubeCanvas = new JCubeCanvasIdx3D();
@@ -442,7 +471,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
         setModel((CubeModel) newValue);
     }
 
-    public void setModel(CubeModel value) {
+    public void setModel(@Nullable CubeModel value) {
         //long start = System.currentTimeMillis();
         CubeModel oldValue = model;
 
@@ -636,7 +665,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
         splitPane.setDividerLocation(180);
         splitPane.setOneTouchExpandable(true);
         splitPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            public void propertyChange(@Nonnull java.beans.PropertyChangeEvent evt) {
                 splitPaneChanged(evt);
             }
         });
@@ -650,7 +679,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
 
         resetButton2.setToolTipText(labels.getString("resetButton.toolTipText")); // NOI18N
         resetButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(@Nonnull java.awt.event.ActionEvent evt) {
                 reset(evt);
             }
         });
@@ -713,7 +742,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
         resetButton.setToolTipText(labels.getString("resetButton.toolTipText")); // NOI18N
         resetButton.setRequestFocusEnabled(false);
         resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(@Nonnull java.awt.event.ActionEvent evt) {
                 reset(evt);
             }
         });
@@ -798,13 +827,13 @@ public class CubeView extends JPanel implements Undoable, EntityView {
         add(splitPane);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void splitPaneChanged(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_splitPaneChanged
+    private void splitPaneChanged(@Nonnull java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_splitPaneChanged
         if ("dividerLocation".equals(evt.getPropertyName())) {
             prefs.putInt("CubeView.dividerLocation", ((Integer) evt.getNewValue()).intValue());
         }
     }//GEN-LAST:event_splitPaneChanged
 
-    private void reset(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset
+    private void reset(@Nonnull java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset
         if ((evt.getModifiers() & (ActionEvent.ALT_MASK | ActionEvent.CTRL_MASK)) == 0) {
             cube3D.getCube().reset();
             resetViews();
@@ -833,6 +862,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
         prefs.putInt("CubeView.selectedTab", tabbedPane.getSelectedIndex());
     }//GEN-LAST:event_tabbedPaneChanged
 
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;

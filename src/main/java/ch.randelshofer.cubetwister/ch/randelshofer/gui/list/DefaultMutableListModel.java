@@ -4,14 +4,22 @@
 
 package ch.randelshofer.gui.list;
 
-import ch.randelshofer.gui.datatransfer.*;
-import ch.randelshofer.util.*;
+import ch.randelshofer.gui.datatransfer.CompositeTransferable;
+import ch.randelshofer.util.ArrayUtil;
+import org.jhotdraw.annotation.Nonnull;
 
-import java.awt.datatransfer.*;
-import java.awt.dnd.*;
-import java.io.*;
-import java.util.*;
-import javax.swing.*;
+import javax.swing.AbstractListModel;
+import javax.swing.Action;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Default implementation of a MutableListModel.
@@ -22,6 +30,7 @@ public class DefaultMutableListModel<T>
         extends AbstractListModel
         implements MutableListModel {
     private final static long serialVersionUID = 1L;
+    @Nonnull
     private ArrayList<T> list = new ArrayList<T>();
     
     private final static DataFlavor listFlavor = new DataFlavor(List.class, "List");
@@ -30,6 +39,7 @@ public class DefaultMutableListModel<T>
     /**
      * ArrayList with importable data flavors.
      */
+    @Nonnull
     private ArrayList<DataFlavor> importableFlavors = new ArrayList<DataFlavor>(
             Arrays.asList(new DataFlavor[] {
         listFlavor,
@@ -42,10 +52,11 @@ public class DefaultMutableListModel<T>
     /** Creates a new instance of DefaultMutableListModel */
     public DefaultMutableListModel() {
     }
-    
-    public DefaultMutableListModel(Collection<T> data) {
+
+    public DefaultMutableListModel(@Nonnull Collection<T> data) {
         list.addAll(data);
     }
+
     public DefaultMutableListModel(T[] data) {
         list.addAll(Arrays.asList(data));
     }
@@ -61,6 +72,7 @@ public class DefaultMutableListModel<T>
      *          inserted at the insertion point. Returns an empty array if no
      *          elements can be inserted here. Never returns null.
      */
+    @Nonnull
     public Object[] getCreatableTypes(int index) {
         return new Object[] {"Element"};
     }
@@ -73,6 +85,7 @@ public class DefaultMutableListModel<T>
      *          inserted at the insertion point. Returns null if no
      *          elements can be inserted here.
      */
+    @Nonnull
     public Object getCreatableType(int index) {
         return "Element";
     }
@@ -225,6 +238,7 @@ public class DefaultMutableListModel<T>
      *
      * @param   indices   The elements.
      */
+    @Nonnull
     public Action[] getActions(int[] indices) {
         return new Action[0];
     }
@@ -237,16 +251,17 @@ public class DefaultMutableListModel<T>
     public int getSize() {
         return list.size();
     }
-    
+
     /**
      * Creates a Transferable to use as the source for a data
      * transfer of the specified elements.
      * Returns the representation of the elements
      * to be transferred, or null if transfer is not possible.
      *
-     * @param   indices     Element indices.
+     * @param indices Element indices.
      */
-    public Transferable exportTransferable(int[] indices) {
+    @Nonnull
+    public Transferable exportTransferable(@Nonnull int[] indices) {
         CompositeTransferable t = new CompositeTransferable();
         t.add(ListModels.createLocalTransferable(this, indices, Object.class));
         t.add(ListModels.createHTMLTransferable(this, indices));
@@ -270,14 +285,14 @@ public class DefaultMutableListModel<T>
      *
      * @see java.awt.dnd.DnDConstants
      */
-    public boolean isImportable(DataFlavor[] transferFlavors, int action, int index, boolean asChild) {
+    public boolean isImportable(@Nonnull DataFlavor[] transferFlavors, int action, int index, boolean asChild) {
         if (
                 asChild
-                || ! isAddable(index)) {
+                        || !isAddable(index)) {
             return false;
         }
-        
-        for (int i=0; i < transferFlavors.length; i++) {
+
+        for (int i = 0; i < transferFlavors.length; i++) {
             for (DataFlavor importable : importableFlavors) {
                 if (transferFlavors[i].match(importable)) {
                     return true;
@@ -300,15 +315,15 @@ public class DefaultMutableListModel<T>
      * @return The number of imported elements.
      */
     @SuppressWarnings("unchecked")
-    public int importTransferable(Transferable t, int action, int index, boolean asChild)
-    throws UnsupportedFlavorException, IOException {
-        if (asChild || ! isAddable(index)) {
+    public int importTransferable(@Nonnull Transferable t, int action, int index, boolean asChild)
+            throws UnsupportedFlavorException, IOException {
+        if (asChild || !isAddable(index)) {
             return 0;
         }
-        
+
         int count = 0;
         List<T> l = null;
-        
+
         if (t.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
             l = (List<T>) t.getTransferData(DataFlavor.javaFileListFlavor);
         } else if (t.isDataFlavorSupported(listFlavor)) {
@@ -327,18 +342,19 @@ public class DefaultMutableListModel<T>
         return addAll(index, l);
     }
     
-    public int addAll(int index, List<T> l) {
+    public int addAll(int index, @Nonnull List<T> l) {
         list.addAll(index, l);
         fireIntervalAdded(this, index, index + l.size() - 1);
         return l.size();
     }
-    
-    
+
+
     /*
      * Returns an iterator over the elements in this collection.
      *
      * @return an <tt>Iterator</tt> over the elements in this collection
      */
+    @Nonnull
     public Iterator<T> iterator() {
         return list.iterator();
     }
@@ -347,13 +363,16 @@ public class DefaultMutableListModel<T>
      * Sets the importable data flavors for this list model.
      * @param newValue A list which contains the data flavors.
      */
-    public void setImportableFlavors(List<DataFlavor> newValue) {
+    public void setImportableFlavors(@Nonnull List<DataFlavor> newValue) {
         importableFlavors = new ArrayList<DataFlavor>(newValue);
     }
+
     /**
      * Gets the importable data flavors for this list model.
+     *
      * @return An immutable list which contains the data flavors.
      */
+    @Nonnull
     public List<DataFlavor> getImportableFlavors() {
         return Collections.unmodifiableList(importableFlavors);
     }

@@ -4,28 +4,37 @@
 
 package ch.randelshofer.gui.datatransfer;
 
-import java.awt.datatransfer.*;
-import java.util.*;
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 /**
  *
  *
  * @author  Werner Randelshofer
  */
 public class CompositeTransferable implements java.awt.datatransfer.Transferable {
+    @Nonnull
     private HashMap<DataFlavor,Transferable> transferables = new HashMap<DataFlavor,Transferable>();
+    @Nonnull
     private LinkedList<DataFlavor> flavors = new LinkedList<DataFlavor>();
     
     /** Creates a new instance of CompositeTransferable */
     public CompositeTransferable() {
     }
-    
-    public void add(Transferable t) {
+
+    public void add(@Nonnull Transferable t) {
         DataFlavor[] f = t.getTransferDataFlavors();
-        for (int i=0; i < f.length; i++) {
-            if (! transferables.containsKey(f[i])) flavors.add(f[i]);
+        for (int i = 0; i < f.length; i++) {
+            if (!transferables.containsKey(f[i])) {
+                flavors.add(f[i]);
+            }
             transferables.put(f[i], t);
-            
+
         }
     }
     
@@ -40,6 +49,7 @@ public class CompositeTransferable implements java.awt.datatransfer.Transferable
      * @exception UnsupportedFlavorException if the requested data flavor is
      *             not supported.
      */
+    @Nonnull
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         Transferable t = transferables.get(flavor);
         if (t == null) throw new UnsupportedFlavorException(flavor);
@@ -52,6 +62,7 @@ public class CompositeTransferable implements java.awt.datatransfer.Transferable
      * for providing the data (from most richly descriptive to least descriptive).
      * @return an array of data flavors in which this data can be transferred
      */
+    @Nonnull
     public DataFlavor[] getTransferDataFlavors() {
         return flavors.toArray(new DataFlavor[transferables.size()]);
     }

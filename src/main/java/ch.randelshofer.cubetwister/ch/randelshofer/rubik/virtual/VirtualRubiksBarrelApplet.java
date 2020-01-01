@@ -10,6 +10,7 @@ import ch.randelshofer.rubik.Cube3DEvent;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.rubik.RubiksBarrelIdx3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.event.InputEvent;
 /**
@@ -20,25 +21,27 @@ import java.awt.event.InputEvent;
  */
 public class VirtualRubiksBarrelApplet extends AbstractVirtualCubeApplet {
     private final static long serialVersionUID = 1L;
+
+    @Nonnull
     protected AbstractCubeIdx3D createCube3D() {
-       return new RubiksBarrelIdx3D();
+        return new RubiksBarrelIdx3D();
     }
     @Override
     protected AbstractVirtualCubeApplet.EventHandler getPartsHandler() {
         if (partsHandler == null) {
             partsHandler = new AbstractVirtualCubeApplet.EventHandler() {
                 @Override
-                public void actionPerformed(Cube3DEvent evt) {
+                public void actionPerformed(@Nonnull Cube3DEvent evt) {
                     DefaultCubeAttributes attr = (DefaultCubeAttributes) cube3d.getAttributes();
                     int modifiersEx = evt.getModifiersEx();
                     int partIndex = evt.getPartIndex();
                     int stickerIndex = evt.getStickerIndex();
                     int sideIndex = evt.getSideIndex();
                     int offset, length;
-                    
+
                     Cube cube = cube3d.getCube();
-                    
-                    boolean endState = ! attr.isPartVisible(partIndex);
+
+                    boolean endState = !attr.isPartVisible(partIndex);
                     boolean isMac = System.getProperty("os.name").toLowerCase().contains("mac");
                     int relevantModifiersEx = (isMac) ? //
                             modifiersEx & (InputEvent.SHIFT_DOWN_MASK | InputEvent.ALT_DOWN_MASK | InputEvent.ALT_GRAPH_DOWN_MASK | InputEvent.META_DOWN_MASK) : //

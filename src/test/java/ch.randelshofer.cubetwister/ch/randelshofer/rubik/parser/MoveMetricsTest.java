@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.notation.DefaultNotation;
+import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -11,9 +12,10 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MoveMetricsTest {
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testAccept() {
         return Arrays.asList(

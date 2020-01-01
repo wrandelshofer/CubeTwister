@@ -4,8 +4,13 @@
 
 package ch.randelshofer.undo;
 
-import javax.swing.event.*;
-import javax.swing.undo.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.event.EventListenerList;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoableEdit;
 
 /**
  * UndoCoalescingBoundedRangeModel.
@@ -13,7 +18,9 @@ import javax.swing.undo.*;
  */
 public class UndoCoalescingBoundedRangeModel extends javax.swing.DefaultBoundedRangeModel {
     private final static long serialVersionUID = 1L;
+    @Nullable
     private CompositeEdit compositeEdit;
+    @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
     
     /** Creates a new instance of UndoCoalescingBoundedRangeModel */

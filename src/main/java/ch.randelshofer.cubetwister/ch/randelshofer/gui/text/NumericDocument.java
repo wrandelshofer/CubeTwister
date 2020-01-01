@@ -4,12 +4,14 @@
 
 package ch.randelshofer.gui.text;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
-import java.beans.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
+import java.awt.Toolkit;
 /**
  * NumericDocument.
  *
@@ -22,8 +24,8 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
      * value.
      */
     private javax.swing.BoundedRangeModel model;
-    
-    public NumericDocument(javax.swing.BoundedRangeModel m) {
+
+    public NumericDocument(@Nonnull javax.swing.BoundedRangeModel m) {
         setBoundedRangeModel(m);
     }
     
@@ -51,20 +53,21 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
             throw new InternalError(e.toString());
         }
     }
-    
-    
+
+
     @Override
-    public void insertString(int offs, String str, AttributeSet a)
-    throws BadLocationException {
+    public void insertString(int offs, @Nonnull String str, AttributeSet a)
+            throws BadLocationException {
         char[] source = str.toCharArray();
         char[] result = new char[source.length];
         int j = 0;
-        
-        for (int i=0; i < result.length; i++) {
-            if (Character.isDigit(source[i]))
+
+        for (int i = 0; i < result.length; i++) {
+            if (Character.isDigit(source[i])) {
                 result[j++] = source[i];
-            else
+            } else {
                 Toolkit.getDefaultToolkit().beep();
+            }
         }
         
         super.insertString(offs, new String(result, 0, j), a);
@@ -75,9 +78,11 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
         super.remove(offs, len);
         model.setValue(getIntegerValue());
     }
-    
-    public void setBoundedRangeModel(javax.swing.BoundedRangeModel m) {
-        if (model != null) model.removeChangeListener(this);
+
+    public void setBoundedRangeModel(@Nonnull javax.swing.BoundedRangeModel m) {
+        if (model != null) {
+            model.removeChangeListener(this);
+        }
         model = m;
         try {
             remove(0, getLength());
@@ -91,8 +96,8 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
     public javax.swing.BoundedRangeModel getBoundedRangeModel() {
         return model;
     }
-    
-    public void stateChanged(ChangeEvent evt) {
+
+    public void stateChanged(@Nonnull ChangeEvent evt) {
         if (evt.getSource() == model) {
             setIntegerValue(model.getValue());
         }

@@ -7,6 +7,9 @@ package ch.randelshofer.rubik;
  * be able to run on a Java 1.1 VM.
  */
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import javax.swing.event.EventListenerList;
 import java.util.Arrays;
 
@@ -276,7 +279,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
     /**
      * Listener support.
      */
-    EventListenerList listenerList = new EventListenerList();
+    @Nonnull EventListenerList listenerList = new EventListenerList();
     /**
      * Set this to true if listeners shall not be notified
      * about state changes.
@@ -484,6 +487,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * the index for the second dimension the orientation.
      * The values represent the 6 sides.
      */
+    @Nonnull
     protected int[][] CENTER_TO_SIDE_MAP = {
         //{f, r, d, b, l, u }
         {0, 1, 2, 3, 4, 5} // 0: Front at front, Right at right
@@ -730,7 +734,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * Compares two cubes for equality.
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(@Nullable Object o) {
         if (o == null || !(o instanceof Cube)) {
             return false;
         } else {
@@ -916,7 +920,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * Sets the locations and orientations of all corner parts.
      */
     @Override
-    public void setCorners(int[] locations, int[] orientations) {
+    public void setCorners(@Nonnull int[] locations, @Nonnull int[] orientations) {
         synchronized (this) {
             transformType = TransformType.UNKNOWN;
 
@@ -1003,7 +1007,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * Sets the locations and orientations of all edge parts.
      */
     @Override
-    public void setEdges(int[] locations, int[] orientations) {
+    public void setEdges(@Nonnull int[] locations, @Nonnull int[] orientations) {
         synchronized (this) {
             transformType = TransformType.UNKNOWN;
             System.arraycopy(locations, 0, edgeLoc, 0, edgeLoc.length);
@@ -1065,7 +1069,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * Sets the locations and orientations of all side parts.
      */
     @Override
-    public void setSides(int[] locations, int[] orientations) {
+    public void setSides(@Nonnull int[] locations, @Nonnull int[] orientations) {
         synchronized (this) {
             transformType = TransformType.UNKNOWN;
             System.arraycopy(locations, 0, sideLoc, 0, sideLoc.length);
@@ -1264,7 +1268,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * @see #getLayerCount()
      */
     @Override
-    public void transform(Cube tx) {
+    public void transform(@Nonnull Cube tx) {
         if (tx.getLayerCount() != this.getLayerCount()) {
             throw new IllegalArgumentException("tx.layers=" + tx.getLayerCount() + " must match this.layers=" + this.getLayerCount());
         }
@@ -1625,6 +1629,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
         }
     }
 
+    @Nonnull
     @Override
     public Object clone() {
         try {
@@ -1664,6 +1669,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * which is not at its initial location or has not its initial
      * orientation.
      */
+    @Nonnull
     @Override
     public int[] getUnsolvedParts() {
         int[] a = new int[cornerLoc.length + edgeLoc.length + sideLoc.length];

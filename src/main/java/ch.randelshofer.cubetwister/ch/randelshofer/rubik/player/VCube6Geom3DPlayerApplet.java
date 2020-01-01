@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
 import ch.randelshofer.rubik.Cube6;
 import ch.randelshofer.rubik.VCube6Geom3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.InputStream;
 
@@ -21,6 +22,7 @@ import java.io.InputStream;
 public class VCube6Geom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet {
         private final static long serialVersionUID = 1L;
 
+    @Nonnull
     @Override
     protected ScriptPlayer createPlayer() {
         ScriptPlayer p = new ScriptPlayer();

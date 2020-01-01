@@ -3,6 +3,9 @@
  */
 package ch.randelshofer.rubik.tokenizer;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,7 +43,9 @@ public class Tokenizer {
     private int ttype = TT_EOF;
     private int tstart = 0;
     private int tend = 0;
+    @Nullable
     private String sval = null;
+    @Nullable
     private Integer nval = null;
     private KeywordTree keywordTree = new KeywordTree();
     /**
@@ -55,7 +60,7 @@ public class Tokenizer {
     /**
      * Defines a comment begin and end token.
      */
-    public void addComment(String start, String end) {
+    public void addComment(@Nonnull String start, String end) {
         KeywordTree node = addKeywordRecursively(start);
         node.setKeyword(start);
         node.setCommentEnd(end);
@@ -73,12 +78,12 @@ public class Tokenizer {
      *
      * @param token the keyword token
      */
-    public void addKeyword(String token) {
+    public void addKeyword(@Nonnull String token) {
         KeywordTree node = addKeywordRecursively(token);
         node.setKeyword(token);
     }
 
-    private KeywordTree addKeywordRecursively(String token) {
+    private KeywordTree addKeywordRecursively(@Nonnull String token) {
         KeywordTree node = this.keywordTree;
         for (int i = 0; i < token.length(); i++) {
             char ch = token.charAt(i);
@@ -138,6 +143,7 @@ public class Tokenizer {
      *
      * @return Integer value or null
      */
+    @Nullable
     public Integer getNumericValue() {
         return this.nval;
     }
@@ -154,6 +160,7 @@ public class Tokenizer {
      *
      * @return String value or null
      */
+    @Nullable
     public String getStringValue() {
         return this.sval;
     }
@@ -167,7 +174,7 @@ public class Tokenizer {
         return this.ttype;
     }
 
-    private <K, V> V getOrDefault(Map<K, V> map, K key, V defaultValue) {
+    private <K, V> V getOrDefault(@Nonnull Map<K, V> map, K key, V defaultValue) {
         V value = map.get(key);
         return value == null ? defaultValue : value;
     } 
@@ -280,7 +287,7 @@ public class Tokenizer {
         }
     }
 
-    private void seekTo(String str) {
+    private void seekTo(@Nonnull String str) {
         int i = this.input.indexOf(str, this.pos);
         pos = (i == -1) ? this.input.length() : i + str.length();
     }
@@ -318,7 +325,7 @@ public class Tokenizer {
      *
      * @param that another tokenizer
      */
-    public void setTo(Tokenizer that) {
+    public void setTo(@Nonnull Tokenizer that) {
         this.input = that.input;
         this.pos = that.pos;
         this.pushedBack = that.pushedBack;

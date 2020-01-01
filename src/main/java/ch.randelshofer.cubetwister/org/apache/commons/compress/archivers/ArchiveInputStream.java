@@ -18,6 +18,8 @@
  */
 package org.apache.commons.compress.archivers;
 
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -28,6 +30,7 @@ public abstract class ArchiveInputStream extends InputStream {
      * @return the next entry
      * @throws IOException if the next entry could not be read
      */
+    @Nullable
     public abstract ArchiveEntry getNextEntry() throws IOException;
     
 }

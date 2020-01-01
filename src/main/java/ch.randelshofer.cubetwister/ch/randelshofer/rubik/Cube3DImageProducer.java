@@ -7,6 +7,7 @@ package ch.randelshofer.rubik;
 
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_Scene;
+import org.jhotdraw.annotation.Nullable;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -28,6 +29,7 @@ public class Cube3DImageProducer implements Cube3DCanvas {
         idx3dCanvas = new idx3d_JCanvas();
     }
 
+    @Nullable
     public Component getVisualComponent() {
         return null;
     }

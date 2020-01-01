@@ -3,15 +3,32 @@
  */
 package ch.randelshofer.gui.text;
 
-import ch.randelshofer.gui.*;
+import ch.randelshofer.gui.Fonts;
 import ch.randelshofer.gui.event.DefaultDocumentEvent;
-import java.awt.event.*;
-import ch.randelshofer.undo.*;
-import java.util.*;
-import javax.swing.text.*;
-import javax.swing.event.*;
-import javax.swing.undo.*;
-import java.lang.ref.*;
+import ch.randelshofer.undo.CompositeEdit;
+import ch.randelshofer.undo.UndoableObjectEdit;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.EventListenerList;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.PlainDocument;
+import javax.swing.text.Position;
+import javax.swing.text.Segment;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.undo.UndoableEdit;
+import java.lang.ref.SoftReference;
 
 /**
  * This class is designed to be less memory expensive than a standard Document
@@ -34,14 +51,17 @@ public class DocumentProxy
      * target is a char array. Implentation note: We treat the char array as
      * immutable.
      */
+    @Nullable
     private Object target = EMPTY;
     /**
      * We need this to determine, if there are listeners.
      */
+    @Nullable
     private EventListenerList listenerList;
     /**
      * Soft reference to the Document.
      */
+    @Nullable
     private SoftReference<Document> softReference;
 
     /**
@@ -153,6 +173,7 @@ public class DocumentProxy
      * valid part of the document. The location in the exception is the first
      * bad position encountered.
      */
+    @Nonnull
     public String getText(int offset, int length) throws BadLocationException {
         return (target instanceof Document)
                 ? ((Document) target).getText(offset, length)
@@ -368,7 +389,7 @@ public class DocumentProxy
         getDocumentModel().render(r);
     }
 
-    public void setText(String text) {
+    public void setText(@Nullable String text) {
         if (text == null) {
             text = "";
         }
@@ -423,6 +444,7 @@ public class DocumentProxy
         }
     }
 
+    @Nullable
     public String getText() {
         try {
             if (target instanceof char[]) {
@@ -436,6 +458,7 @@ public class DocumentProxy
         }
     }
 
+    @Nonnull
     protected Document getDocumentModel() {
         try {
             if (target instanceof char[]) {
@@ -613,6 +636,7 @@ public class DocumentProxy
     /**
      * Returns a clone of this object.
      */
+    @Nonnull
     public Object clone() {
         try {
             DocumentProxy that = (DocumentProxy) super.clone();
@@ -672,7 +696,7 @@ public class DocumentProxy
     /**
      * An undoable edit happened
      */
-    public void undoableEditHappened(UndoableEditEvent e) {
+    public void undoableEditHappened(@Nonnull UndoableEditEvent e) {
         fireUndoableEditHappened(e.getEdit());
     }
 }

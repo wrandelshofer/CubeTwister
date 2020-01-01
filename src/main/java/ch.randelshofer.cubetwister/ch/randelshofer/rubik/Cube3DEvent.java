@@ -4,6 +4,8 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.gui.event.SwipeEvent;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import java.awt.event.InputEvent;
 import java.awt.event.MouseEvent;
@@ -43,6 +45,7 @@ public class Cube3DEvent extends java.util.EventObject {
      * Modifiers of the mouse event. Use them only, if mouseEvent is null!
      */
     private int modifiersEx;
+    @Nullable
     private MouseEvent mouseEvent;
     /** A value between 0 and 3 if the part was scraped. Value -1 if the part
      * was clicked.
@@ -64,17 +67,19 @@ public class Cube3DEvent extends java.util.EventObject {
      *    occured.
      * @param mouseEvent The mouse event.
      */
-    /** Creates a new instance. */
-    public Cube3DEvent(Cube3D source,
-            int partIndex, int orientation, int sideIndex, int stickerIndex,
-            MouseEvent mouseEvent) {
+    /**
+     * Creates a new instance.
+     */
+    public Cube3DEvent(@Nonnull Cube3D source,
+                       int partIndex, int orientation, int sideIndex, int stickerIndex,
+                       @Nonnull MouseEvent mouseEvent) {
         this(source, partIndex, orientation, sideIndex, stickerIndex, -1, mouseEvent);
     }
 
-    public Cube3DEvent(Cube3D source,
-            int partIndex, int orientation, int sideIndex, int stickerIndex,
-            int scraping,
-            MouseEvent mouseEvent) {
+    public Cube3DEvent(@Nonnull Cube3D source,
+                       int partIndex, int orientation, int sideIndex, int stickerIndex,
+                       int scraping,
+                       @Nonnull MouseEvent mouseEvent) {
         super(source);
         this.partIndex = partIndex;
         this.orientation = orientation;
@@ -100,18 +105,20 @@ public class Cube3DEvent extends java.util.EventObject {
      *    occured.
      * @param mouseEvent The mouse event.
      */
-    /** Creates a new instance. */
-    public Cube3DEvent(Cube3D source,
-            int partIndex, int orientation, int sideIndex, int stickerIndex,
-            int modifiersEx) {
+    /**
+     * Creates a new instance.
+     */
+    public Cube3DEvent(@Nonnull Cube3D source,
+                       int partIndex, int orientation, int sideIndex, int stickerIndex,
+                       int modifiersEx) {
         this(source, partIndex, orientation, sideIndex, stickerIndex, -1, modifiersEx);
 
     }
 
-    public Cube3DEvent(Cube3D source,
-            int partIndex, int orientation, int sideIndex, int stickerIndex,
-            int scraping,
-            int modifiersEx) {
+    public Cube3DEvent(@Nonnull Cube3D source,
+                       int partIndex, int orientation, int sideIndex, int stickerIndex,
+                       int scraping,
+                       int modifiersEx) {
         super(source);
         this.partIndex = partIndex;
         this.orientation = orientation;
@@ -122,6 +129,7 @@ public class Cube3DEvent extends java.util.EventObject {
         this.modifiersEx = modifiersEx;
     }
 
+    @Nonnull
     public Cube3D getCube3D() {
         return (Cube3D) getSource();
     }
@@ -238,7 +246,7 @@ public class Cube3DEvent extends java.util.EventObject {
      * Applies this event to the specified cube.
      * If the event does not represent a cube transformation, nothing happens.
      */
-    public void applyTo(Cube cube) {
+    public void applyTo(@Nonnull Cube cube) {
         if ((modifiersEx & InputEvent.BUTTON1_DOWN_MASK) != 0) {
             applyTo(cube,
                     isInverse(),
@@ -252,7 +260,7 @@ public class Cube3DEvent extends java.util.EventObject {
      * Applies this event to the provided cube.
      * If the event does not represent a cube transformation, nothing happens.
      */
-    private void applyTo(Cube cube, boolean inverse, boolean doubleAngle, boolean doubleLayer) {
+    private void applyTo(@Nonnull Cube cube, boolean inverse, boolean doubleAngle, boolean doubleLayer) {
         int axis, layerMask, angle;
         if (swipeDirection == -1 && orientation == -1) {
             return;
@@ -343,10 +351,12 @@ public class Cube3DEvent extends java.util.EventObject {
      * This method returns null, when the event has been fired due to
      * an action event.
      */
+    @Nullable
     public MouseEvent getMouseEvent() {
         return mouseEvent;
     }
 
+    @Nonnull
     @Override
     public String toString() {
         return getClass().getName() + "@" + System.identityHashCode(this) + " [partIndex=" + partIndex + ",orientation=" + orientation + ",sideIndex=" + sideIndex + ",stickerIndex=" + stickerIndex + ",modifiers=" + mouseEvent + "]";

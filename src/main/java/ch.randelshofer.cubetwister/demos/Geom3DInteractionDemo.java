@@ -3,14 +3,28 @@
  */
 package demos;
 
-import ch.randelshofer.geom3d.*;
+import ch.randelshofer.geom3d.Face3D;
+import ch.randelshofer.geom3d.JCanvas3D;
+import ch.randelshofer.geom3d.Point3D;
+import ch.randelshofer.geom3d.Scene3D;
+import ch.randelshofer.geom3d.Shape3D;
+import ch.randelshofer.geom3d.Transform3D;
 import ch.randelshofer.gui.event.SwipeEvent;
 import ch.randelshofer.gui.event.SwipeListener;
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.event.MouseEvent;
 import java.awt.geom.GeneralPath;
 import java.util.Vector;
-import javax.swing.*;
 
 /**
  * Geom3DInteractionDemo.
@@ -29,12 +43,16 @@ public class Geom3DInteractionDemo extends javax.swing.JPanel {
             /** projected mouse coordinates */
             private int pmx,  pmy;
             /** world coordinates. */
+            @Nonnull
             private Point3D[] w = new Point3D[3];
             /** projected coordinates. */
+            @Nonnull
             private Point3D[] p = new Point3D[3];
             /** triangle p2 coordinates. */
+            @Nonnull
             private Point3D[] p2 = new Point3D[3];
             /** orthogonal versions of the projected coordinates. */
+            @Nonnull
             private Point3D[] o = new Point3D[3];
 
             @Override
@@ -69,26 +87,27 @@ public class Geom3DInteractionDemo extends javax.swing.JPanel {
                 }
             }
 
+            @Nonnull
             @Override
             protected JCanvas3D.EventHandler createEventHandler() {
                 return new EventHandler2();
             }
 
             class EventHandler2 extends JCanvas3D.EventHandler {
-            @Override
-            public void mouseDragged(MouseEvent evt) {
-                super.mouseDragged(evt);
-                update(evt, swipedFace);
+                @Override
+                public void mouseDragged(@Nonnull MouseEvent evt) {
+                    super.mouseDragged(evt);
+                    update(evt, swipedFace);
+                }
+
+                @Override
+                public void mousePressed(@Nonnull MouseEvent evt) {
+                    super.mousePressed(evt);
+                    update(evt, swipedFace);
+                }
             }
 
-            @Override
-            public void mousePressed(MouseEvent evt) {
-                super.mousePressed(evt);
-                update(evt, swipedFace);
-            }
-            }
-
-            protected void update(MouseEvent evt, Face3D face) {
+            protected void update(@Nonnull MouseEvent evt, @Nullable Face3D face) {
                 int x = evt.getX();
                 int y = evt.getY();
 

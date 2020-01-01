@@ -4,21 +4,40 @@
 
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.list.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.dnd.*;
-import java.awt.datatransfer.*;
-import java.util.*;
-import java.awt.event.*;
+import ch.randelshofer.gui.list.DefaultMutableListModel;
+import ch.randelshofer.gui.list.MutableListModel;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.gui.EditableComponent;
 import org.jhotdraw.util.ResourceBundleUtil;
 
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
+import javax.swing.KeyStroke;
+import javax.swing.ScrollPaneLayout;
+import java.awt.Container;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.Transferable;
+import java.awt.dnd.DnDConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 /**
  * A JList that uses a MutableTableModel. Users can add and remove elements
- * using a popup menu. MutableJList also supports the standard clipboard 
+ * using a popup menu. MutableJList also supports the standard clipboard
  * operations cut, copy and paste.
  *
  * @author Werner Randelshofer
@@ -40,7 +59,8 @@ implements EditableComponent {
             
         }
     }
-    
+
+    @Nonnull
     private EventHandler eventHandler = new EventHandler();
     
     /**
@@ -70,11 +90,11 @@ implements EditableComponent {
     /**
      * Constructs a MutableJList with the specified MutableListModel.
      */
-    public MutableJList(MutableListModel m) {
+    public MutableJList(@Nonnull MutableListModel m) {
         super(m);
         init();
     }
-    
+
     /**
      * This method is called from the constructor to initialize the Object.
      */
@@ -99,28 +119,30 @@ implements EditableComponent {
         // The popup listener provides an alternative way for
         // opening the popup menu.
         popupListener = new MouseAdapter() {
-            public void mousePressed(MouseEvent evt) {
+            public void mousePressed(@Nonnull MouseEvent evt) {
                 if (isEnabled() && evt.isPopupTrigger()) {
                     createPopup().show(evt.getComponent(), evt.getX(), evt.getY());
                 }
             }
-            public void mouseReleased(MouseEvent evt) {
+
+            public void mouseReleased(@Nonnull MouseEvent evt) {
                 if (isEnabled() && evt.isPopupTrigger()) {
                     createPopup().show(evt.getComponent(), evt.getX(), evt.getY());
                 }
             }
         };
         addMouseListener(popupListener);
-        
+
         // All locale specific and LAF specific
         // labels are read from a resource bundle.
         initLabels(Locale.getDefault());
     }
+
     /**
      * Initializes the labels in a locale specific and
      * look-and-feel (LAF) specific way.
      */
-    private void initLabels(Locale locale) {
+    private void initLabels(@Nonnull Locale locale) {
         // remove previously installed key strokes
         KeyStroke keyStroke;
         if (labels != null) {
@@ -230,6 +252,7 @@ implements EditableComponent {
      *
      * @return The popup menu.
      */
+    @Nonnull
     protected JPopupMenu createPopup() {
         final int[] selectedRows = getSelectedIndices();
         int leadSelectionRow = (selectedRows.length == 0) ? -1 : getSelectionModel().getLeadSelectionIndex();

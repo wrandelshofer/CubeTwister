@@ -18,6 +18,9 @@
  */
 package org.apache.commons.compress.archivers.tar;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,12 +35,14 @@ public class TarInputStream
     extends FilterInputStream
 {
     private TarBuffer m_buffer;
+    @Nullable
     private TarArchiveEntry m_currEntry;
     private boolean m_debug;
     private int m_entryOffset;
     private int m_entrySize;
     private boolean m_hasHitEOF;
     private byte[] m_oneBuf;
+    @Nullable
     private byte[] m_readBuf;
 
     /**
@@ -107,6 +112,7 @@ public class TarInputStream
      * @return The next TarEntry in the archive, or null.
      * @exception IOException Description of Exception
      */
+    @Nullable
     public TarArchiveEntry getNextEntry()
         throws IOException
     {
@@ -248,17 +254,14 @@ public class TarInputStream
      * output stream.
      *
      * @param output The OutputStream into which to write the entry's data.
-     * @exception IOException when an IO error causes operation to fail
+     * @throws IOException when an IO error causes operation to fail
      */
-    public void copyEntryContents( final OutputStream output )
-        throws IOException
-    {
-        final byte[] buffer = new byte[ 32 * 1024 ];
-        while( true )
-        {
-            final int numRead = read( buffer, 0, buffer.length );
-            if( numRead == -1 )
-            {
+    public void copyEntryContents(@Nonnull final OutputStream output)
+            throws IOException {
+        final byte[] buffer = new byte[32 * 1024];
+        while (true) {
+            final int numRead = read(buffer, 0, buffer.length);
+            if (numRead == -1) {
                 break;
             }
 
@@ -314,10 +317,9 @@ public class TarInputStream
      * @return The number of bytes read, or -1 at EOF.
      * @exception IOException when an IO error causes operation to fail
      */
-    public int read( final byte[] buffer )
-        throws IOException
-    {
-        return read( buffer, 0, buffer.length );
+    public int read(@Nonnull final byte[] buffer)
+            throws IOException {
+        return read(buffer, 0, buffer.length);
     }
 
     /**
@@ -331,17 +333,15 @@ public class TarInputStream
      * @return The number of bytes read, or -1 at EOF.
      * @exception IOException when an IO error causes operation to fail
      */
-    public int read( final byte[] buffer,
-                     final int offset,
-                     final int count )
-        throws IOException
-    {
+    public int read(@Nonnull final byte[] buffer,
+                    final int offset,
+                    final int count)
+            throws IOException {
         int position = offset;
         int numToRead = count;
         int totalRead = 0;
 
-        if( m_entryOffset >= m_entrySize )
-        {
+        if (m_entryOffset >= m_entrySize) {
             return -1;
         }
 

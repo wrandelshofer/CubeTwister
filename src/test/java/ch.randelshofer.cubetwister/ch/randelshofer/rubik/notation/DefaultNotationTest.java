@@ -4,6 +4,7 @@
  */
 package ch.randelshofer.rubik.notation;
 
+import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -38,6 +39,7 @@ public class DefaultNotationTest {
         assertEquals(result, expResult);
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testTokens() {
         return Arrays.asList(

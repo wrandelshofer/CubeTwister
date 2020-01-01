@@ -36,9 +36,10 @@
 
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Lightmap for faster rendering, assuming static light sources.
- *
  */
 public final class idx3d_Lightmap {
     int[] diffuse;
@@ -57,20 +58,20 @@ public final class idx3d_Lightmap {
     private int shiftX, shiftY;
     private int maskX, maskY;
     
-    public idx3d_Lightmap(idx3d_Scene scene) {
+    public idx3d_Lightmap(@Nonnull idx3d_Scene scene) {
         //this(scene, 32, 32);
-       // this(scene, 512, 512);
+        // this(scene, 512, 512);
         this(scene, 256, 256);
     }
-    
+
     /**
      * Creates a new light map of the specified horizontal and vertical 
      * resolution.
      * The resolution must be a power of two.
      */
-    public idx3d_Lightmap(idx3d_Scene scene, int xResolution, int yResolution) {
-        powerX = Math.max(4, (int) (Math.log(xResolution)/Math.log(2)));
-        powerY = Math.max(4, (int) (Math.log(yResolution)/Math.log(2)));
+    public idx3d_Lightmap(@Nonnull idx3d_Scene scene, int xResolution, int yResolution) {
+        powerX = Math.max(4, (int) (Math.log(xResolution) / Math.log(2)));
+        powerY = Math.max(4, (int) (Math.log(yResolution) / Math.log(2)));
         shiftX = 24 - powerX;
         shiftY = 24 - powerY;
         maskX = 0xffffffff >>> (32 - powerX);

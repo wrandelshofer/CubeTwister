@@ -3,30 +3,42 @@
  */
 package ch.randelshofer.gui.table;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
-import javax.swing.border.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
-import java.io.Serializable;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Rectangle;
+
 /**
  * PasswordCellRenderer.
  *
  * @author Werner Randelshofer
  */
-public class PasswordCellRenderer extends JPasswordField 
-implements TableCellRenderer {
+public class PasswordCellRenderer extends JPasswordField
+        implements TableCellRenderer {
     private final static long serialVersionUID = 1L;
-    protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1); 
-    
+    @Nonnull
+    protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
+
     // We need a place to store the color the JLabel should be returned 
     // to after its foreground and background colors have been set 
     // to the selection background color. 
     // These ivars will be made protected when their names are finalized. 
-    private Color unselectedForeground; 
-    private Color unselectedBackground; 
-    
-    /** Creates a new instance. */
+    private Color unselectedForeground;
+    private Color unselectedBackground;
+
+    /**
+     * Creates a new instance.
+     */
     public PasswordCellRenderer() {
         setBorder(null);
     }
@@ -41,7 +53,7 @@ implements TableCellRenderer {
         super.setForeground(c); 
         unselectedForeground = c; 
     }
-    
+
     /**
      * Overrides <code>JComponent.setBackground</code> to assign
      * the unselected-background color to the specified color.
@@ -49,21 +61,22 @@ implements TableCellRenderer {
      * @param c set the background color to this value
      */
     public void setBackground(Color c) {
-        super.setBackground(c); 
-        unselectedBackground = c; 
+        super.setBackground(c);
+        unselectedBackground = c;
     }
 
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+    @Nonnull
+    public Component getTableCellRendererComponent(@Nonnull JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         setText((String) value);
 
-	if (isSelected) {
-           super.setForeground(table.getSelectionForeground());
-	   super.setBackground(table.getSelectionBackground());
-	} else {
-	    super.setForeground((unselectedForeground != null) ? unselectedForeground 
-	                                                       : table.getForeground());
-	    super.setBackground((unselectedBackground != null) ? unselectedBackground 
-	                                                       : table.getBackground());
+        if (isSelected) {
+            super.setForeground(table.getSelectionForeground());
+            super.setBackground(table.getSelectionBackground());
+        } else {
+            super.setForeground((unselectedForeground != null) ? unselectedForeground
+                    : table.getForeground());
+            super.setBackground((unselectedBackground != null) ? unselectedBackground
+                    : table.getBackground());
 	}
 
 	setFont(table.getFont());
@@ -153,20 +166,20 @@ implements TableCellRenderer {
      * See the <a href="#override">Implementation Note</a> 
      * for more information.
      */
-    public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) { }
+    public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
+    }
 
 
-    /**
-     * Sets the <code>String</code> object for the cell being rendered to
-     * <code>value</code>.
-     * 
-     * @param value  the string value for this cell; if value is
-     *		<code>null</code> it sets the text value to an empty string
-     * @see JLabel#setText
-     * 
-     */
-    protected void setValue(Object value) {
-	setText((value == null) ? "" : value.toString());
+        /**
+         * Sets the <code>String</code> object for the cell being rendered to
+         * <code>value</code>.
+         *
+         * @param value the string value for this cell; if value is
+         *              <code>null</code> it sets the text value to an empty string
+         * @see JLabel#setText
+         */
+        protected void setValue(@Nullable Object value) {
+            setText((value == null) ? "" : value.toString());
     }
 	
 

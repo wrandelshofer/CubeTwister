@@ -7,9 +7,9 @@ import ch.randelshofer.app.action.DebugAction;
 import ch.randelshofer.app.action.HelpAction;
 import ch.randelshofer.app.action.ImportFileAction;
 import ch.randelshofer.gui.plaf.AlphaColorUIResource;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.app.Application;
 import org.jhotdraw.app.DefaultApplicationModel;
-import org.jhotdraw.app.DefaultMenuBuilder;
 import org.jhotdraw.app.MenuBuilder;
 import org.jhotdraw.app.View;
 import org.jhotdraw.app.action.edit.RedoAction;
@@ -41,6 +41,7 @@ public class CubeTwisterApplicationModel extends DefaultApplicationModel {
         setOpenLastURIOnLaunch(true);
     }
 
+    @Nonnull
     @Override
     public List<JToolBar> createToolBars(Application a, View p) {
         LinkedList<JToolBar> list = new LinkedList<JToolBar>();
@@ -57,7 +58,7 @@ public class CubeTwisterApplicationModel extends DefaultApplicationModel {
     }
 
     @Override
-    public ActionMap createActionMap(Application a, View v) {
+    public ActionMap createActionMap(@Nonnull Application a, View v) {
         ActionMap m = super.createActionMap(a, v);
         m.put(ExportFileAction.ID, new ExportFileAction(a, v));
         m.put(ImportFileAction.ID, new ImportFileAction(a, v));
@@ -65,10 +66,11 @@ public class CubeTwisterApplicationModel extends DefaultApplicationModel {
         m.put(UndoAction.ID, new UndoAction(a, v));
         m.put(RedoAction.ID, new RedoAction(a, v));
         m.put(DebugAction.ID, new DebugAction(a));
-m.put(PreferencesAction.ID, new PreferencesAction(a));
+        m.put(PreferencesAction.ID, new PreferencesAction(a));
         return m;
     }
 
+    @Nonnull
     @Override
     protected MenuBuilder createMenuBuilder() {
         CubeTwisterMenuBuilder mb= new CubeTwisterMenuBuilder();
@@ -76,15 +78,16 @@ m.put(PreferencesAction.ID, new PreferencesAction(a));
         return mb;
     }
 
+    @Nonnull
     @Override
     public JFileURIChooser createImportChooser(Application a, View v) {
-            JFileURIChooser c = new JFileURIChooser();
-            ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.app.Labels"));
-            c.setApproveButtonText(labels.getString("import.button"));
-            c.setDialogType(JFileChooser.OPEN_DIALOG);
-            c.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            c.setDialogTitle(labels.getString("import.title"));
-            c.setAcceptAllFileFilterUsed(false);
+        JFileURIChooser c = new JFileURIChooser();
+        ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.app.Labels"));
+        c.setApproveButtonText(labels.getString("import.button"));
+        c.setDialogType(JFileChooser.OPEN_DIALOG);
+        c.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        c.setDialogTitle(labels.getString("import.title"));
+        c.setAcceptAllFileFilterUsed(false);
         ExtensionFileFilter ff = new ExtensionFileFilter("CSV","csv");
         c.addChoosableFileFilter(ff);
         ff = new ExtensionFileFilter("CubeExplorer","txt");
@@ -93,15 +96,17 @@ m.put(PreferencesAction.ID, new PreferencesAction(a));
 
         return c;
     }
+
+    @Nonnull
     @Override
     public JFileURIChooser createExportChooser(Application a, View v) {
-            JFileURIChooser c = new JFileURIChooser();
-            ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels"));
-            c.setApproveButtonText(labels.getString("export.button"));
-            c.setDialogType(JFileChooser.SAVE_DIALOG);
-            c.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            c.setDialogTitle(labels.getString("exportAsHTML.title"));
-            c.setAcceptAllFileFilterUsed(false);
+        JFileURIChooser c = new JFileURIChooser();
+        ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels"));
+        c.setApproveButtonText(labels.getString("export.button"));
+        c.setDialogType(JFileChooser.SAVE_DIALOG);
+        c.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        c.setDialogTitle(labels.getString("exportAsHTML.title"));
+        c.setAcceptAllFileFilterUsed(false);
         ExtensionFileFilter ff = new ExtensionFileFilter("HTML","html");
         c.addChoosableFileFilter(ff);
         ff = new ExtensionFileFilter("CSV","csv");
@@ -110,9 +115,11 @@ m.put(PreferencesAction.ID, new PreferencesAction(a));
 
         return c;
     }
+
+    @Nonnull
     @Override
     public JFileURIChooser createSaveChooser(Application a, View v) {
-            JFileURIChooser c = new JFileURIChooser();
+        JFileURIChooser c = new JFileURIChooser();
 
         ExtensionFileFilter ff = new ExtensionFileFilter("CubeTwister XML","xml");
         c.addChoosableFileFilter(ff);

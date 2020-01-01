@@ -3,11 +3,17 @@
  */
 package ch.randelshofer.debug;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+import javax.swing.table.AbstractTableModel;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Table model for UIDefaults.
@@ -20,15 +26,15 @@ public class UIDefaultsTableModel extends AbstractTableModel {
     private Object[][] data;
     private final static String[] columnNames = {"Key", "Value"};
 
-    public UIDefaultsTableModel(UIDefaults p) {
+    public UIDefaultsTableModel(@Nonnull UIDefaults p) {
         setUIDefaults(p);
     }
 
-    public void setUIDefaults(UIDefaults p) {
-        HashMap<Object,Object> combinedDefaults = new HashMap<Object,Object>();
+    public void setUIDefaults(@Nonnull UIDefaults p) {
+        HashMap<Object, Object> combinedDefaults = new HashMap<Object, Object>();
         // We need this very bogus code to retrieve all the defaults, because
         // the UIDefaults class returned by the UIManager is bogus. :(
-        for (Enumeration<Object> iter = UIManager.getDefaults().keys(); iter.hasMoreElements();) {
+        for (Enumeration<Object> iter = UIManager.getDefaults().keys(); iter.hasMoreElements(); ) {
             Object key = iter.nextElement();
             try {
                 combinedDefaults.put(key, UIManager.get(key));

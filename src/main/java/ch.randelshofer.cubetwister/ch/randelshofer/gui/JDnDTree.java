@@ -3,16 +3,44 @@
  */
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.tree.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.awt.dnd.*;
+import ch.randelshofer.gui.tree.DefaultMutableTreeModel;
+import ch.randelshofer.gui.tree.MutableTreeModel;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JTree;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeCellRenderer;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.Autoscroll;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragGestureRecognizer;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
 import java.awt.image.BufferedImage;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
+import java.util.HashMap;
 
 /**
  * JDnDTree.
@@ -64,17 +92,19 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
          * @param dtde the <code>DropTargetDropEvent</code>
          */
         @Override
-        public void drop(DropTargetDropEvent evt) {
-            if (VERBOSE) System.out.println("tgt drop dropAction("+dndAction.get(new Integer(evt.getDropAction())));
-            
+        public void drop(@Nonnull DropTargetDropEvent evt) {
+            if (VERBOSE) {
+                System.out.println("tgt drop dropAction(" + dndAction.get(new Integer(evt.getDropAction())));
+            }
+
             TreePath oldDropPath = dropPath;
             updateDropIndexAndDropAsChild(evt.getDropAction(), evt.getLocation(), evt.getCurrentDataFlavors());
-            
+
             // Reject the drop if the action is ACTION_NONE
             // or if we don't have a suitable model
             int dropAction = evt.getDropAction();
-            if (! isEnabled()
-            || ((dropAction & getSupportedDropActions()) == DnDConstants.ACTION_NONE)
+            if (!isEnabled()
+                    || ((dropAction & getSupportedDropActions()) == DnDConstants.ACTION_NONE)
             || ! (getModel() instanceof MutableTreeModel)) {
             if (VERBOSE) System.out.println("tgt drop dropAction("+dropAction+"):rejectDrop because of drop action none or not-suitable list model");
                 evt.rejectDrop();
@@ -170,25 +200,26 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
             dropPath = null;
             repaint();
         }
-        
+
         /**
          * Called when a drag operation has
          * encountered the <code>DropTarget</code>.
-         * <P>
+         * <p>
+         *
          * @param dtde the <code>DropTargetDragEvent</code>
          */
         @Override
-        public void dragEnter(DropTargetDragEvent evt) {
+        public void dragEnter(@Nonnull DropTargetDragEvent evt) {
             if (VERBOSE) {
-                System.out.println("tgt dragEnter action:"+dndAction.get(new Integer(evt.getDropAction()))+" "+evt.getLocation());
+                System.out.println("tgt dragEnter action:" + dndAction.get(new Integer(evt.getDropAction())) + " " + evt.getLocation());
                 DataFlavor[] flavors = evt.getCurrentDataFlavors();
-                for (int i=0; i < flavors.length; i++) {
-                    System.out.println("              flavor:"+flavors[i]);
+                for (int i = 0; i < flavors.length; i++) {
+                    System.out.println("              flavor:" + flavors[i]);
                 }
             }
-            
+
             // Reject the drag, if we are disabled or if we don't have a suitable model
-            if (! isEnabled()
+            if (!isEnabled()
             || ! (getModel() instanceof MutableTreeModel)) {
                 dropPath = null;
                 evt.rejectDrag();
@@ -199,22 +230,26 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
             isUnderDrag = true;
             repaint();
         }
+
         /**
          * Called when a drag operation is ongoing
          * on the <code>DropTarget</code>.
-         * <P>
+         * <p>
+         *
          * @param dtde the <code>DropTargetDragEvent</code>
          */
         @Override
-        public void dragOver(DropTargetDragEvent evt) {
-            if (VERBOSE) System.out.println("tgt dragOver action:"+dndAction.get(new Integer(evt.getDropAction()))+" "+evt.getLocation());
-            
+        public void dragOver(@Nonnull DropTargetDragEvent evt) {
+            if (VERBOSE) {
+                System.out.println("tgt dragOver action:" + dndAction.get(new Integer(evt.getDropAction())) + " " + evt.getLocation());
+            }
+
             // Determine over which element the mouse is hovering
             boolean oldDropAsChild = dropAsChild;
             TreePath oldDropPath = dropPath;
-            
+
             updateDropIndexAndDropAsChild(evt.getDropAction(), evt.getLocation(), evt.getCurrentDataFlavors());
-            
+
             if (oldDropPath != dropPath || oldDropAsChild != dropAsChild) {
                 repaintDropCursor(oldDropPath, dropPath);
             }
@@ -234,23 +269,26 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
             isUnderDrag = false;
             repaint();
         }
-                
+
         /**
          * Called if the user has modified
          * the current drop gesture.
-         * <P>
+         * <p>
+         *
          * @param dtde the <code>DropTargetDragEvent</code>
          */
         @Override
-        public void dropActionChanged(DropTargetDragEvent evt) {
-            if (VERBOSE) System.out.println("tgt drpActionChanged dropAction:"+dndAction.get(new Integer(evt.getDropAction())));
-            
+        public void dropActionChanged(@Nonnull DropTargetDragEvent evt) {
+            if (VERBOSE) {
+                System.out.println("tgt drpActionChanged dropAction:" + dndAction.get(new Integer(evt.getDropAction())));
+            }
+
             // Reject the drag, if we don't have a suitable model
-            if (! (getModel() instanceof MutableTreeModel)) {
+            if (!(getModel() instanceof MutableTreeModel)) {
                 evt.rejectDrag();
                 return;
             }
-            
+
             // Check if we can import the data at the current
             // insertion point
             int dropAction = evt.getDropAction();
@@ -289,6 +327,7 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
         }
     }
     
+    @Nonnull
     private EventHandler eventHandler = new EventHandler();
     
     /**
@@ -312,6 +351,7 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
      * The autoscroll border shows a highlight color when the
      * DnDJList has focus or when the user drags an item over it.
      */
+    @Nonnull
     private Border autoscrollBorder = new MatteBorder(2, 2, 2, 2, UIManager.getColor("List.selectionBackground"));
     
     /**
@@ -367,6 +407,7 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
      * (set to -1), when a drag exit is detected or when the user drops
      * an object on the list.
      */
+    @Nullable
     private TreePath dropPath = null;
     
     /**
@@ -414,21 +455,22 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
        InputMap im = getInputMap();
        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_BACK_SPACE, 0), "delete");
        im.put(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0), "delete");
-         */ 
+         */
     }
+
     /**
      * Sets the model that represents the contents or "value" of the
      * list. The DnDJList supports drag and drop operations only when
      * the model is an instance of MutableTreeModel.
      */
     @Override
-    public void setModel(TreeModel m) {
+    public void setModel(@Nonnull TreeModel m) {
         if (getModel() != null) {
-        getModel().removeTreeModelListener(this.eventHandler);
-}        
+            getModel().removeTreeModelListener(this.eventHandler);
+        }
         super.setModel(m);
         if (getModel() != null) {
-        m.addTreeModelListener(this.eventHandler);
+            m.addTreeModelListener(this.eventHandler);
         }
     }
     
@@ -533,12 +575,13 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
     public boolean getPaintsDropCursor() {
         return paintsDropCursor;
     }
+
     /**
      * Paints the component and draws the drop cursor and the autoscroll
      * region if the DnDJList is an active drop target.
      */
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(@Nonnull Graphics g) {
         super.paintComponent(g);
 
         if (isUnderDrag) {
@@ -567,18 +610,18 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
      * <p>
      * Note that you have to change method repaintInsertPoint
      * if you change the shape of the drop cursor.
-     *
-     *�@see
+     * <p>
+     * �@see
      */
-    protected void paintDropCursor(Graphics g) {
+    protected void paintDropCursor(@Nonnull Graphics g) {
         Rectangle r;
         if (dropAsChild) {
             int childCount = treeModel.getChildCount(dropPath.getLastPathComponent());
             if (!isExpanded(dropPath) || childCount == 0) {
-            int rgb = UIManager.getColor("TextField.caretForeground").getRGB();
-            g.setColor(new Color((rgb & 0xfffff) | 100 << 24, true));
-            r = getPathBounds(dropPath);
-            g.fillRect(r.x, r.y, r.width - 1, r.height - 1);
+                int rgb = UIManager.getColor("TextField.caretForeground").getRGB();
+                g.setColor(new Color((rgb & 0xfffff) | 100 << 24, true));
+                r = getPathBounds(dropPath);
+                g.fillRect(r.x, r.y, r.width - 1, r.height - 1);
             } else {
                 TreePath drawPath = dropPath.pathByAddingChild(treeModel.getChild(dropPath.getLastPathComponent(), childCount - 1));
             g.setColor(UIManager.getColor("TextField.caretForeground"));
@@ -617,27 +660,29 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
      * <P>
      * @return the Insets
      */
+    @Nonnull
     @Override
     public Insets getAutoscrollInsets() {
         // FIXME - We are returning here the whole are of the
         //    component.
         return new Insets(0, 0, getHeight(), getWidth());
     }
-    
+
     /**
      * notify the <code>Component</code> to autoscroll
-     * <P>
+     * <p>
+     *
      * @param location A <code>Point</code> indicating the
-     * location of the cursor that triggered this operation.
+     *                 location of the cursor that triggered this operation.
      */
     @Override
-    public void autoscroll(Point location) {
+    public void autoscroll(@Nonnull Point location) {
         if (isUnderDrag) {
-            
+
             Rectangle visibleRect = getVisibleRect();
             Rectangle noscrollRect = (Rectangle) visibleRect.clone();
             noscrollRect.grow(-AUTOSCROLL_MARGIN, -AUTOSCROLL_MARGIN);
-            
+
             if (location.y < noscrollRect.y) {
                 // scroll top downward
                 int dy = getScrollableUnitIncrement(visibleRect, SwingConstants.VERTICAL, -1);
@@ -718,13 +763,13 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
      * @return The drag image. To be used along with the imageOffset in a call
      *                    to start drag.
      */
-    protected Image createDragImage(Point dragOrigin, TreePath dragOriginPath, TreePath[] draggedPaths, boolean isSelected, Point imageOffset) {
+    protected Image createDragImage(@Nonnull Point dragOrigin, TreePath dragOriginPath, @Nonnull TreePath[] draggedPaths, boolean isSelected, @Nonnull Point imageOffset) {
         MutableTreeModel m = (MutableTreeModel) getModel();
-        
+
         // Compute the size of the image
         int h = getHeight();
         int w = getWidth();
-        
+
         if (getParent() != null) {
             h = Math.min(h, getParent().getHeight());
             w = Math.min(w, getParent().getWidth());
@@ -777,9 +822,10 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
         // Compute the image offset
         imageOffset.x = -dragOrigin.x;
         imageOffset.y = getPathBounds(dragOriginPath).getLocation().y - dragOrigin.y - yoffset;
-        
+
         return img;
     }
+
     /**
      * Convert a point in <code>JList</code> coordinates to the nearest
      * index in the list, where an object can be dropped.
@@ -787,17 +833,17 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
      * if the model actually allows insertion of an object here.
      *
      * @param location the coordinates of the cell, relative to
-     *			<code>JList</code>
+     *                 <code>JList</code>
      * @return the nearest index for dropping the object.
      */
-    private TreePath locationToDropPath(Point location) {
+    private TreePath locationToDropPath(@Nonnull Point location) {
         MutableTreeModel m = (MutableTreeModel) getModel();
-        
-        
+
+
         int index = getRowForLocation(location.x, location.y);
         TreePath path;
         Rectangle cellBounds = getRowBounds(index);
-        if (index == -1 || ! cellBounds.contains(location)) {
+        if (index == -1 || !cellBounds.contains(location)) {
             path = new TreePath(m.getRoot());
         } else {
             path = getPathForRow(index);
@@ -812,6 +858,7 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
         }
         return path;
     }
+
     /**
      * Convert a point in <code>JList</code> coordinates to the
      * index in the list, where an object can be dropped as a child
@@ -820,13 +867,14 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
      * if the model actually allows insertion of an object here.
      *
      * @param location the coordinates of the cell, relative to
-     *			<code>JList</code>
+     *                 <code>JList</code>
      * @return the nearest index for dropping the object or -1 if
      * the object can not be dropped as a child here.
      */
-    private TreePath locationToDropAsChildPath(Point location) {
+    @Nullable
+    private TreePath locationToDropAsChildPath(@Nonnull Point location) {
         MutableTreeModel m = (MutableTreeModel) getModel();
-        
+
         int index = getRowForLocation(location.x, location.y);
         if (index != -1) {
             Rectangle r = getRowBounds(index);
@@ -840,13 +888,13 @@ public class JDnDTree extends MutableJTree implements Autoscroll {
         }
         return null;
     }
-    
+
     /**
      * Updates the value of dropPath and dropAsChild instance variables.
      */
-    private void updateDropIndexAndDropAsChild(int dropAction, Point location, DataFlavor[] flavors) {
+    private void updateDropIndexAndDropAsChild(int dropAction, @Nonnull Point location, DataFlavor[] flavors) {
         MutableTreeModel m = (MutableTreeModel) getModel();
-        
+
         dropPath = locationToDropPath(location);
         TreePath asChildPath = locationToDropAsChildPath(location);
         dropAsChild = false;

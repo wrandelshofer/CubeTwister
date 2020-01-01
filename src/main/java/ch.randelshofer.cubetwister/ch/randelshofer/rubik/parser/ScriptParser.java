@@ -5,6 +5,8 @@ import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.rubik.tokenizer.Tokenizer;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -123,13 +125,14 @@ public class ScriptParser {
         this(notation, Collections.emptyList());
     }
 
-    public ScriptParser(Notation notation, List<MacroNode> localMacros) {
+    public ScriptParser(Notation notation, @Nonnull List<MacroNode> localMacros) {
         this.notation = notation;
         this.localMacros = localMacros.stream().collect(
                 Collectors.toMap(MacroNode::getIdentifier, Function.identity()));
     }
 
-    private Node createBinaryNode(Tokenizer tt, BinaryNode binary, Node operand1, Node operand2) throws ParseException {
+    @Nonnull
+    private Node createBinaryNode(@Nonnull Tokenizer tt, @Nonnull BinaryNode binary, @Nullable Node operand1, @Nullable Node operand2) throws ParseException {
         if (operand1 == null || operand2 == null) {
             throw createException(tt, "Binary: Two operands expected.");
         }
@@ -138,7 +141,7 @@ public class ScriptParser {
         return binary;
     }
 
-    private Node createCompositeNode(Tokenizer tt, Symbol operation, Node operand1, Node operand2) throws ParseException {
+    private Node createCompositeNode(@Nonnull Tokenizer tt, @Nonnull Symbol operation, Node operand1, Node operand2) throws ParseException {
         Node node;
         switch (operation.getCompositeSymbol()) {
             case GROUPING:
@@ -168,11 +171,13 @@ public class ScriptParser {
         return node;
     }
 
-    private ParseException createException(Tokenizer tt, String msg) {
+    @Nonnull
+    private ParseException createException(@Nonnull Tokenizer tt, String msg) {
         return new ParseException(msg + " Found \"" + tt.getStringValue() + "\".", tt.getStartPosition(), tt.getEndPosition());
     }
 
-    private Node createRepetitionNode(Tokenizer tt, Node operand1, Node operand2) throws ParseException {
+    @Nonnull
+    private Node createRepetitionNode(@Nonnull Tokenizer tt, @Nullable Node operand1, @Nullable Node operand2) throws ParseException {
         if (operand1 == null || operand2 != null) {
             throw createException(tt, "Repetition: One operand expected.");
         }
@@ -181,7 +186,8 @@ public class ScriptParser {
         return n;
     }
 
-    private Tokenizer createTokenizer(Notation notation) {
+    @Nonnull
+    private Tokenizer createTokenizer(@Nonnull Notation notation) {
         var tt = new Tokenizer();
         tt.addNumbers();
         tt.skipWhitespace();
@@ -206,7 +212,8 @@ public class ScriptParser {
         return tt;
     }
 
-    private Node createUnaryNode(Tokenizer tt, UnaryNode unary, Node operand1, Node operand2) throws ParseException {
+    @Nonnull
+    private Node createUnaryNode(@Nonnull Tokenizer tt, @Nonnull UnaryNode unary, @Nullable Node operand1, @Nullable Node operand2) throws ParseException {
         if (operand1 == null || operand2 != null) {
             throw createException(tt, "Unary: One operand expected.");
         }
@@ -222,13 +229,14 @@ public class ScriptParser {
         return notation;
     }
 
+    @Nonnull
     public Node parse(String input) throws ParseException {
         var tt = this.createTokenizer(this.notation);
         tt.setInput(input);
         return parseScript(tt);
     }
 
-    private void parseCircumfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
+    private void parseCircumfix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         var startPos = tt.getStartPosition();
         var operand1 = parseCircumfixOperand(tt, symbol);
         var compositeNode = createCompositeNode(tt, symbol, operand1, null);
@@ -237,7 +245,7 @@ public class ScriptParser {
         parent.add(compositeNode);
     }
 
-    private Node parseCircumfixOperand(Tokenizer tt, Symbol symbol) throws ParseException {
+    private Node parseCircumfixOperand(@Nonnull Tokenizer tt, @Nonnull Symbol symbol) throws ParseException {
         var nodes = parseCircumfixOperands(tt, symbol);
         if (nodes.size() != 1) {
             throw createException(tt, "Circumfix: Exactly one operand expected.");
@@ -245,7 +253,8 @@ public class ScriptParser {
         return nodes.get(0);
     }
 
-    private List<Node> parseCircumfixOperands(Tokenizer tt, Symbol symbol) throws ParseException {
+    @Nonnull
+    private List<Node> parseCircumfixOperands(@Nonnull Tokenizer tt, @Nonnull Symbol symbol) throws ParseException {
         if (!Symbol.isBegin(symbol)) {
             throw createException(tt, "Circumfix: Begin expected.");
         }
@@ -302,7 +311,7 @@ public class ScriptParser {
      * @param symbol the symbol that we want to try out
      * @throws ParseException on parse failure
      */
-    private void parseNonSuffix(Tokenizer tt, Node parent, String token, Symbol symbol) throws ParseException {
+    private void parseNonSuffix(@Nonnull Tokenizer tt, @Nonnull Node parent, String token, @Nonnull Symbol symbol) throws ParseException {
         var c = symbol.getCompositeSymbol();
         if (c == Symbol.PERMUTATION) {
             tt.pushBack();
@@ -353,7 +362,7 @@ public class ScriptParser {
      * @param parent the parent of the statement
      * @throws ParseException
      */
-    private void parseNonSuffixOrBacktrack(Tokenizer tt, Node parent) throws ParseException {
+    private void parseNonSuffixOrBacktrack(@Nonnull Tokenizer tt, @Nonnull Node parent) throws ParseException {
         if (tt.nextToken() != Tokenizer.TT_KEYWORD) {
             throw createException(tt, "Statement: Keyword expected.");
         }
@@ -382,7 +391,7 @@ public class ScriptParser {
         throw (e != null) ? e : createException(tt, "Statement: Illegal token.");
     }
 
-    private void parsePermutation(Tokenizer tt, Node parent) throws ParseException {
+    private void parsePermutation(@Nonnull Tokenizer tt, @Nonnull Node parent) throws ParseException {
         var permutation = new PermutationNode(tt.getStartPosition(), tt.getStartPosition());
 
         Symbol sign = null;
@@ -431,7 +440,8 @@ public class ScriptParser {
         parent.add(permutation);
     }
 
-    private List<Symbol> parsePermutationFaces(Tokenizer t) throws ParseException {
+    @Nonnull
+    private List<Symbol> parsePermutationFaces(@Nonnull Tokenizer t) throws ParseException {
         List<Symbol> faceSymbols = new ArrayList<>(3);
         while (true) {
             if (t.nextToken() == Tokenizer.TT_KEYWORD) {
@@ -456,7 +466,7 @@ public class ScriptParser {
         return faceSymbols;
     }
 
-    private void parsePermutationItem(Tokenizer t, PermutationNode parent, Syntax syntax) throws ParseException {
+    private void parsePermutationItem(@Nonnull Tokenizer t, @Nonnull PermutationNode parent, Syntax syntax) throws ParseException {
         Symbol sign = null;
 
         if (syntax == Syntax.PRECIRCUMFIX || syntax == Syntax.PREFIX) {
@@ -474,7 +484,7 @@ public class ScriptParser {
         parent.addPermItem(faceSymbols.size(), sign, faceSymbols, partNumber, layerCount);
     }
 
-    private int parsePermutationPartNumber(Tokenizer t, int layerCount, int type) throws ParseException {
+    private int parsePermutationPartNumber(@Nonnull Tokenizer t, int layerCount, int type) throws ParseException {
         var partNumber = 0;
         if (t.nextToken() == Tokenizer.TT_NUMBER) {
             partNumber = t.getNumericValue();
@@ -555,7 +565,8 @@ public class ScriptParser {
      * Parses a permutation sign and returns null or one of the three sign
      * symbols.
      */
-    private Symbol parsePermutationSign(Tokenizer t) {
+    @Nullable
+    private Symbol parsePermutationSign(@Nonnull Tokenizer t) {
         if (t.nextToken() == Tokenizer.TT_KEYWORD) {
             var symbol = this.notation.getSymbolInCompositeSymbol(t.getStringValue(), Symbol.PERMUTATION);
             if (symbol != null && Symbol.isPermutationSign(symbol)) {
@@ -566,7 +577,7 @@ public class ScriptParser {
         return null;
     }
 
-    private void parsePostcircumfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
+    private void parsePostcircumfix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         var start = tt.getStartPosition();
         var operands = parseCircumfixOperands(tt, symbol);
         if (operands.size() != 2) {
@@ -587,7 +598,7 @@ public class ScriptParser {
      * @param symbol the symbol with post-infix syntax
      * @throws ParseException on parsing failure
      */
-    private void parsePostinfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
+    private void parsePostinfix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         if (parent.getChildCount() == 0) {
             throw createException(tt, "Postinfix: Operand expected.");
         }
@@ -610,7 +621,7 @@ public class ScriptParser {
         parent.add(node);
     }
 
-    private void parsePrecircumfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
+    private void parsePrecircumfix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         var start = tt.getStartPosition();
         var operands = parseCircumfixOperands(tt, symbol);
         if (operands.size() != 2) {
@@ -623,7 +634,7 @@ public class ScriptParser {
         parent.add(node);
     }
 
-    private void parsePrefix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
+    private void parsePrefix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         var startPosition = tt.getStartPosition();
         Node node;
         if (Symbol.isBegin(symbol)) {
@@ -652,7 +663,7 @@ public class ScriptParser {
      * @param symbol the symbol with pre-infix syntax
      * @throws ParseException on parsing failure
      */
-    private void parsePreinfix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
+    private void parsePreinfix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         if (parent.getChildCount() == 0) {
             throw createException(tt, "Preinfix: Operand expected.");
         }
@@ -666,7 +677,7 @@ public class ScriptParser {
         parent.add(node);
     }
 
-    private void parsePrimary(Tokenizer tt, Node parent, String token, Symbol symbol) throws ParseException {
+    private void parsePrimary(@Nonnull Tokenizer tt, @Nonnull Node parent, String token, @Nonnull Symbol symbol) throws ParseException {
         Node child;
         switch (symbol) {
             case NOP:
@@ -710,7 +721,7 @@ public class ScriptParser {
      * @param parent the parent
      * @throws ParseException on parsing failure
      */
-    private void parseRepetition(Tokenizer tt, Node parent) throws ParseException {
+    private void parseRepetition(@Nonnull Tokenizer tt, @Nonnull Node parent) throws ParseException {
         if (tt.nextToken() != Tokenizer.TT_NUMBER) {
             throw new ParseException("Repetition: Number expected.", tt.getStartPosition(), tt.getEndPosition());
         }
@@ -756,7 +767,8 @@ public class ScriptParser {
         parent.add(repetitionNode);
     }
 
-    private SequenceNode parseScript(Tokenizer tt) throws ParseException {
+    @Nonnull
+    private SequenceNode parseScript(@Nonnull Tokenizer tt) throws ParseException {
         var script = new SequenceNode();
         script.setStartPosition(tt.getStartPosition());
         while (tt.nextToken() != Tokenizer.TT_EOF) {
@@ -777,7 +789,7 @@ public class ScriptParser {
      * @param parent the parent of the statement
      * @throws ParseException
      */
-    private void parseStatement(Tokenizer tt, Node parent) throws ParseException {
+    private void parseStatement(@Nonnull Tokenizer tt, @Nonnull Node parent) throws ParseException {
         switch (tt.nextToken()) {
             case Tokenizer.TT_NUMBER:
                 tt.pushBack();
@@ -804,7 +816,7 @@ public class ScriptParser {
      * @param symbol the symbol with suffix syntax
      * @throws ParseException on parsing failure
      */
-    private void parseSuffix(Tokenizer tt, Node parent, Symbol symbol) throws ParseException {
+    private void parseSuffix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         if (parent.getChildCount() < 1) {
             throw new ParseException("Suffix: No sibling for suffix.", tt.getStartPosition(), tt.getEndPosition());
         }
@@ -833,7 +845,7 @@ public class ScriptParser {
      * @param tt     the tokenizer
      * @param parent the parent of the statement
      */
-    private void parseSuffixes(Tokenizer tt, Node parent) {
+    private void parseSuffixes(@Nonnull Tokenizer tt, @Nonnull Node parent) {
         var savedTT = new Tokenizer();
         savedTT.setTo(tt);
         Outer:

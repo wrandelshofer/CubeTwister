@@ -3,14 +3,14 @@
  */
 package ch.randelshofer.gui.event;
 
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.AWTEvent;
 import java.awt.Toolkit;
 import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.LinkedList;
-import javax.swing.event.ChangeListener;
 
 /**
  * ModifierTracker.
@@ -20,7 +20,9 @@ import javax.swing.event.ChangeListener;
 public class ModifierTracker {
 
     public final static String MODIFIERS_EX_PROPERTY = "modifiersEx";
+    @Nullable
     private static PropertyChangeSupport listeners;
+    @Nullable
     private static Handler handler;
     private static int modifiersEx;
 

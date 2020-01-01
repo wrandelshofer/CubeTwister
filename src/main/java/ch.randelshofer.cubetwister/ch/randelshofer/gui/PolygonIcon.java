@@ -4,8 +4,13 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Polygon;
 /**
  * An Icon which is composed of java.awt.Polygon's.
  *
@@ -64,23 +69,25 @@ implements javax.swing.Icon, Cloneable {
     public Color getForeground() {
         return color;
     }
+
     public Color getFillColor() {
         return fillColor;
     }
+
     /**
      * Draws the icon at the specified location. Icon implementations
      * may use the Component argument to get properties useful for
      * painting, e.g. the foreground or background color.
      */
-    public void paintIcon(Component c, Graphics g, int x, int y) {
+    public void paintIcon(@Nonnull Component c, @Nonnull Graphics g, int x, int y) {
         Color bcol = (c.isEnabled())
-            ? ((getForeground() != null) ? getForeground() : c.getForeground())
-            : Color.gray;
+                ? ((getForeground() != null) ? getForeground() : c.getForeground())
+                : Color.gray;
         Color fcol = getFillColor();
         g.setColor(bcol);
-        g.translate(x,y);
+        g.translate(x, y);
         if (polygons != null) {
-            for (int i=0; i < polygons.length; i++) {
+            for (int i = 0; i < polygons.length; i++) {
                 if (fcol != null) {
                     g.setColor(fcol);
                     g.fillPolygon(polygons[i]);

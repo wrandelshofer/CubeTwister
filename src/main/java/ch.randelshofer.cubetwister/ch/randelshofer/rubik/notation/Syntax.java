@@ -4,6 +4,8 @@
 
 package ch.randelshofer.rubik.notation;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -97,7 +99,8 @@ public enum Syntax {
     public String toString() {
         return name;
     }
-    
+
+    @Nonnull
     public static Map<String,Syntax> getSyntaxValueSet() {
         if (syntaxValueSet == null) {
             syntaxValueSet = new HashMap<String,Syntax>();

@@ -3,14 +3,22 @@
  */
 package ch.randelshofer.gui.table;
 
-import ch.randelshofer.gui.tree.*;
-import java.awt.datatransfer.*;
-import java.io.*;
+import ch.randelshofer.gui.tree.DefaultMutableTreeModel;
+import ch.randelshofer.gui.tree.MutableTreeModel;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.Action;
+import javax.swing.event.TreeModelEvent;
+import javax.swing.event.TreeModelListener;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.List;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.table.*;
-import javax.swing.tree.*;
 /**
  * Wraps a TreeNode of a MutableTreeModel into a MutableTableModel.
  *
@@ -20,6 +28,7 @@ public class TreeNodeTableModel
 extends AbstractTableModel
 implements MutableTableModel, TreeModelListener {
     private final static long serialVersionUID = 1L;
+    @Nullable
     protected MutableTreeModel treeModel;
     protected javax.swing.tree.DefaultMutableTreeNode treeNode;
     
@@ -33,23 +42,26 @@ implements MutableTableModel, TreeModelListener {
         treeModel = m;
         treeNode = n;
     }
-    
-    /** Sets the model. */
-    public void setModel(MutableTreeModel treeModel, javax.swing.tree.DefaultMutableTreeNode treeNode) {
+
+    /**
+     * Sets the model.
+     */
+    public void setModel(@Nullable MutableTreeModel treeModel, javax.swing.tree.DefaultMutableTreeNode treeNode) {
         if (this.treeModel != null) {
             this.treeModel.removeTreeModelListener(this);
             fireTableRowsDeleted(0, getRowCount());
         }
-        
+
         this.treeModel = treeModel;
         this.treeNode = treeNode;
-        
+
         if (treeModel != null) {
             treeModel.addTreeModelListener(this);
             fireTableRowsInserted(0, getRowCount());
         }
     }
 
+    @Nonnull
     public javax.swing.tree.DefaultMutableTreeNode getRow(int row) {
         return (javax.swing.tree.DefaultMutableTreeNode) treeNode.getChildAt(row);
     }
@@ -92,16 +104,16 @@ implements MutableTableModel, TreeModelListener {
     public int getColumnCount() {
         return 1;
     }
-    
+
     /**
      * Gets actions for the indicated row.
      *
-     * @param   rows   The rows.
+     * @param rows The rows.
      */
     @Override
-    public Action[] getRowActions(int[] rows) {
+    public Action[] getRowActions(@Nonnull int[] rows) {
         DefaultMutableTreeNode nodes[] = new DefaultMutableTreeNode[rows.length];
-        for (int i=0; i < rows.length; i++) {
+        for (int i = 0; i < rows.length; i++) {
             nodes[i] = (DefaultMutableTreeNode) treeNode.getChildAt(rows[i]);
         }
         return treeModel.getNodeActions(nodes);
@@ -155,7 +167,7 @@ implements MutableTableModel, TreeModelListener {
     public boolean isRowRemovable(int row) {
         return treeModel.isNodeRemovable((DefaultMutableTreeNode) treeNode.getChildAt(row));
     }
-    
+
     /**
      * Invoked after the tree has drastically changed structure from a
      * given node down.  If the path returned by e.getPath() is of length
@@ -166,13 +178,13 @@ implements MutableTableModel, TreeModelListener {
      * <p>e.childIndices() returns null.</p>
      */
     @Override
-    public void treeStructureChanged(TreeModelEvent e) {
+    public void treeStructureChanged(@Nonnull TreeModelEvent e) {
         if (e.getTreePath().getLastPathComponent() == treeNode
-        || e.getTreePath().getLastPathComponent() == treeNode.getParent()) {
+                || e.getTreePath().getLastPathComponent() == treeNode.getParent()) {
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * <p>Invoked after nodes have been inserted into the tree.</p>
      *
@@ -181,7 +193,7 @@ implements MutableTableModel, TreeModelListener {
      * ascending order.
      */
     @Override
-    public void treeNodesInserted(TreeModelEvent e) {
+    public void treeNodesInserted(@Nonnull TreeModelEvent e) {
         if (e.getTreePath().getLastPathComponent() == treeNode) {
             int[] indices = e.getChildIndices();
             //FIXME should analyse indices to make sure that
@@ -191,7 +203,7 @@ implements MutableTableModel, TreeModelListener {
             fireTableRowsInserted(indices[0], indices[indices.length - 1]);
         }
     }
-    
+
     /**
      * <p>Invoked after nodes have been removed from the tree.  Note that
      * if a subtree is removed from the tree, this method may only be
@@ -203,7 +215,7 @@ implements MutableTableModel, TreeModelListener {
      * <p>e.childIndices() returns the indices the nodes had before they were deleted in ascending order.</p>
      */
     @Override
-    public void treeNodesRemoved(TreeModelEvent e) {
+    public void treeNodesRemoved(@Nonnull TreeModelEvent e) {
         if (e.getTreePath().getLastPathComponent() == treeNode) {
             int[] indices = e.getChildIndices();
             //FIXME should analyse indices to make sure that
@@ -229,7 +241,7 @@ implements MutableTableModel, TreeModelListener {
      * <p>e.childIndices() returns the index(es) of the changed node(s).</p>
      */
     @Override
-    public void treeNodesChanged(TreeModelEvent e) {
+    public void treeNodesChanged(@Nonnull TreeModelEvent e) {
         if (e.getTreePath().getLastPathComponent() == treeNode) {
             int[] indices = e.getChildIndices();
             //FIXME should analyse indices to make sure that
@@ -258,18 +270,19 @@ implements MutableTableModel, TreeModelListener {
     
     // Datatransfer operations
     // =======================
+
     /**
      * Creates a Transferable to use as the source for a data
      * transfer of the specified elements.
      * Returns the representation of the rows
      * to be transferred, or null if transfer is not possible.
      *
-     * @param   rows     Row indices.
+     * @param rows Row indices.
      */
     @Override
-    public Transferable exportRowTransferable(int[] rows) {
+    public Transferable exportRowTransferable(@Nonnull int[] rows) {
         DefaultMutableTreeNode nodes[] = new DefaultMutableTreeNode[rows.length];
-        for (int i=0; i < rows.length; i++) {
+        for (int i = 0; i < rows.length; i++) {
             nodes[i] = (DefaultMutableTreeNode) treeNode.getChildAt(rows[i]);
         }
         return treeModel.exportTransferable(nodes);

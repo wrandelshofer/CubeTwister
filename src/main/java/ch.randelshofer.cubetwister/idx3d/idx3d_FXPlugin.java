@@ -36,28 +36,33 @@
 
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 public abstract class idx3d_FXPlugin
 // fx plugin superclass
 {
-	// F I E L D S
+    // F I E L D S
 
-		public  idx3d_Scene scene=null;
-		public idx3d_Screen screen=null;
-		public idx3d_RenderPipeline renderPipeline=null;
+    @Nullable
+    public idx3d_Scene scene = null;
+    @Nullable
+    public idx3d_Screen screen = null;
+    @Nullable
+    public idx3d_RenderPipeline renderPipeline = null;
 
 
-	// C O N S T R U C T O R    M E T H O D S
-	
-		public idx3d_FXPlugin(idx3d_Scene scene, idx3d_RenderPipeline renderPipeline)
-		{
-			this.scene=scene;
-                        this.renderPipeline = renderPipeline;
-			screen=renderPipeline.screen;
-		}
-		
-	// A B S T R A C T   M E T H O D S
-	
-		public abstract void apply();
-		// Applys the effect on the scene / screen
+    // C O N S T R U C T O R    M E T H O D S
+
+    public idx3d_FXPlugin(idx3d_Scene scene, @Nonnull idx3d_RenderPipeline renderPipeline) {
+        this.scene = scene;
+        this.renderPipeline = renderPipeline;
+        screen = renderPipeline.screen;
+    }
+
+    // A B S T R A C T   M E T H O D S
+
+    public abstract void apply();
+    // Applys the effect on the scene / screen
 
 }

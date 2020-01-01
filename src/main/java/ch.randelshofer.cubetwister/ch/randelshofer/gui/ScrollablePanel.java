@@ -4,8 +4,13 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JScrollBar;
+import javax.swing.JViewport;
+import javax.swing.SwingConstants;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 
 /**
  *
@@ -50,8 +55,8 @@ public class ScrollablePanel extends javax.swing.JPanel implements javax.swing.S
      *        This value should always be positive.
      * @see JScrollBar#setBlockIncrement
      */
-    public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
-        switch(orientation) {
+    public int getScrollableBlockIncrement(@Nonnull Rectangle visibleRect, int orientation, int direction) {
+        switch (orientation) {
             case SwingConstants.VERTICAL:
                 return visibleRect.height;
             case SwingConstants.HORIZONTAL:
@@ -120,8 +125,8 @@ public class ScrollablePanel extends javax.swing.JPanel implements javax.swing.S
      *        This value should always be positive.
      * @see JScrollBar#setUnitIncrement
      */
-    public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
-        switch(orientation) {
+    public int getScrollableUnitIncrement(@Nonnull Rectangle visibleRect, int orientation, int direction) {
+        switch (orientation) {
             case SwingConstants.VERTICAL:
                 return visibleRect.height / 10;
             case SwingConstants.HORIZONTAL:

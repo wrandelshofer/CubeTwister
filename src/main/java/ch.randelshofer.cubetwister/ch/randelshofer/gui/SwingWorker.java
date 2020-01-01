@@ -4,6 +4,8 @@
  */
 package ch.randelshofer.gui;
 
+import org.jhotdraw.annotation.Nullable;
+
 import javax.swing.SwingUtilities;
 
 /**
@@ -25,16 +27,27 @@ public abstract class SwingWorker {
 	private Object value;  // see getValue(), setValue()
 	private Thread thread;
 
-	/**
-	 * Class to maintain reference to current worker thread
-	 * under separate synchronization control.
-	 */
-	private static class ThreadVar {
-		private Thread thread;
-		ThreadVar(Thread t) { thread = t; }
-		synchronized Thread get() { return thread; }
-		synchronized void clear() { thread = null; }
-	}
+    /**
+     * Class to maintain reference to current worker thread
+     * under separate synchronization control.
+     */
+    private static class ThreadVar {
+        @Nullable
+        private Thread thread;
+
+        ThreadVar(Thread t) {
+            thread = t;
+        }
+
+        @Nullable
+        synchronized Thread get() {
+            return thread;
+        }
+
+        synchronized void clear() {
+            thread = null;
+        }
+    }
 
 	private ThreadVar threadVar;
 
@@ -70,27 +83,28 @@ public abstract class SwingWorker {
 	/**
 	 * Called on the event dispatching thread (not on the worker thread)
 	 * after the <code>construct</code> method has returned.
-	 */
-	public void finished() {
-	}
-	/**
-	 * Return the value created by the <code>construct</code> method.
-	 * Returns null if either the constructing thread or the current
-	 * thread was interrupted before a value was produced.
-	 *
-	 * @return the value created by the <code>construct</code> method
-	 */
-	public Object get() {
-		while (true) {
-			Thread t = threadVar.get();
-			if (t == null) {
-				return getValue();
-			}
-			try {
-				t.join();
-			}
-			catch (InterruptedException e) {
-				Thread.currentThread().interrupt(); // propagate
+     */
+    public void finished() {
+    }
+
+    /**
+     * Return the value created by the <code>construct</code> method.
+     * Returns null if either the constructing thread or the current
+     * thread was interrupted before a value was produced.
+     *
+     * @return the value created by the <code>construct</code> method
+     */
+    @Nullable
+    public Object get() {
+        while (true) {
+            Thread t = threadVar.get();
+            if (t == null) {
+                return getValue();
+            }
+            try {
+                t.join();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt(); // propagate
 				return null;
 			}
 		}

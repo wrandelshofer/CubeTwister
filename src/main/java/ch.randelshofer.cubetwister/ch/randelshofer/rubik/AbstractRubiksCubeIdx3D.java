@@ -12,6 +12,7 @@ import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Vector;
+import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 
@@ -347,11 +348,13 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
     /**
      * These matrices are reused on each invocation of validateTwist.
      */
+    @Nonnull
     private idx3d_Matrix updateTwistRotation = new idx3d_Matrix();
+    @Nonnull
     private idx3d_Matrix updateTwistOrientation = new idx3d_Matrix();
 
     @Override
-    public void cubeTwisted(CubeEvent evt) {
+    public void cubeTwisted(@Nonnull CubeEvent evt) {
         int layerMask = evt.getLayerMask();
         final int axis = evt.getAxis();
         final int angle = evt.getAngle();
@@ -386,7 +389,7 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
             }
 
             @Override
-            public boolean isSequential(Interpolator that) {
+            public boolean isSequential(@Nonnull Interpolator that) {
                 return (that.getClass() == this.getClass());
             }
         };

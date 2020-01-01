@@ -4,15 +4,49 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.undo.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.tree.TreeNodeImpl;
-import ch.randelshofer.rubik.*;
-import java.awt.*;
-import java.beans.*;
-import java.util.*;
-import javax.swing.undo.*;
-import javax.swing.event.*;
+import ch.randelshofer.gui.DefaultImageWellModel;
+import ch.randelshofer.gui.ImageWellModel;
+import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.Cube6;
+import ch.randelshofer.rubik.Cube6Geom3D;
+import ch.randelshofer.rubik.Cube6Idx3D;
+import ch.randelshofer.rubik.Cube7;
+import ch.randelshofer.rubik.Cube7Geom3D;
+import ch.randelshofer.rubik.Cube7Idx3D;
+import ch.randelshofer.rubik.CubeAttributes;
+import ch.randelshofer.rubik.CubeKind;
+import ch.randelshofer.rubik.PocketCube;
+import ch.randelshofer.rubik.PocketCubeGeom3D;
+import ch.randelshofer.rubik.PocketCubeIdx3D;
+import ch.randelshofer.rubik.ProfessorCube;
+import ch.randelshofer.rubik.ProfessorCubeGeom3D;
+import ch.randelshofer.rubik.ProfessorCubeIdx3D;
+import ch.randelshofer.rubik.RevengeCube;
+import ch.randelshofer.rubik.RevengeCubeGeom3D;
+import ch.randelshofer.rubik.RevengeCubeIdx3D;
+import ch.randelshofer.rubik.RubiksBarrelGeom3D;
+import ch.randelshofer.rubik.RubiksBarrelIdx3D;
+import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.RubiksCubeGeom3D;
+import ch.randelshofer.rubik.RubiksCubeIdx3D;
+import ch.randelshofer.rubik.RubiksCuboctahedronIdx3D;
+import ch.randelshofer.rubik.RubiksDiamondIdx3D;
+import ch.randelshofer.rubik.VCube6Idx3D;
+import ch.randelshofer.rubik.VCube7Idx3D;
+import ch.randelshofer.undo.CompositeEdit;
+import ch.randelshofer.undo.UndoableIntEdit;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.undo.AbstractUndoableEdit;
+import javax.swing.undo.UndoableEdit;
+import java.awt.Color;
+import java.awt.Image;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.Iterator;
 
 /**
  * Holds a description of a Cube.
@@ -36,6 +70,7 @@ public class CubeModel
     public static final String INT_BETA_PROPERTY = "intBeta";
     
     private CubeKind kind;
+    @Nullable
     private Class<?> cube3DClass, simpleCube3DClass;
     private int alpha = -25, beta = 45, scale = 100, explode;
     private int stickerCount;
@@ -45,8 +80,11 @@ public class CubeModel
     
     protected Color frontBgColor;
     protected Color rearBgColor;
+    @Nullable
     protected DefaultImageWellModel stickersImageModel = new DefaultImageWellModel();
+    @Nullable
     protected DefaultImageWellModel frontBgImageModel = new DefaultImageWellModel();
+    @Nullable
     protected DefaultImageWellModel rearBgImageModel = new DefaultImageWellModel();
     
     protected boolean rearBgImageVisible;
@@ -62,28 +100,33 @@ public class CubeModel
      */
     private int suppressPropertyChangeEvents = 0;
     //private Throwable constructed;
-    /** Creates new CubeScript */
+
+    /**
+     * Creates new CubeScript
+     */
     public CubeModel() {
         //  this(null);
         this(CubeKind.RUBIK);
     }
-    public CubeModel(CubeKind kind) {
+
+    public CubeModel(@Nullable CubeKind kind) {
         //constructed = new Throwable();
         setAllowsChildren(true);
-        
+
         add(new EntityModel("Parts", true));
         add(new EntityModel("Stickers", true));
         add(new CubeColorsModel("Colors", true));
-        
+
         if (kind != null) {
             basicSetKind(kind);
         }
-        
+
         stickersImageModel.addChangeListener(this);
         frontBgImageModel.addChangeListener(this);
         rearBgImageModel.addChangeListener(this);
     }
 
+    @Nullable
     public Cube createCube() {
         switch (getLayerCount()) {
             case 2 :
@@ -244,7 +287,9 @@ public class CubeModel
                 simpleCube3DClass = oldSimpleCube3DClass;
                 firePropertyChange(KIND_PROPERTY, value, oldValue);
             }
-            @Override
+
+                    @Nonnull
+                    @Override
             public String getPresentationName() {
                 return "Kind";
             }
@@ -267,7 +312,9 @@ public class CubeModel
                 simpleCube3DClass = newSimpleCube3DClass;
                 firePropertyChange(KIND_PROPERTY, oldValue, value);
             }
-            @Override
+
+                    @Nonnull
+                    @Override
             public String getPresentationName() {
                 return "Kind";
             }
@@ -309,46 +356,54 @@ public class CubeModel
         suppressPropertyChangeEvents--;
         firePropertyChange(KIND_PROPERTY, oldValue, value);
     }
-    
+
     public Class<?> getCube3DClass() {
         //return simpleCube3DClass;
         return cube3DClass;
     }
-    
+
+    @Nonnull
     public EntityModel getParts() {
         return getChildAt(PARTS_INDEX);
     }
+
+    @Nonnull
     public EntityModel getColors() {
         return getChildAt(COLORS_INDEX);
     }
+
+    @Nonnull
     public EntityModel getStickers() {
         return getChildAt(STICKERS_INDEX);
     }
-    
+
+    @Nullable
     public Class<?> getSimpleCube3DClass() {
         Iterator<EntityModel> enumer = getParts().getChildren().iterator();
         while (enumer.hasNext()) {
             CubePartModel m = (CubePartModel) enumer.next();
             if (! m.isVisible()) break;
         }
-        
+
         if (! enumer.hasNext() && explode == 0) {
             return simpleCube3DClass;
         } else {
             return cube3DClass;
         }
     }
-    
+
+    @Nonnull
     public CubeAttributes getCubeAttributes() {
         return this;
     }
-    
-    public void addNotify(EntityModel m) {
+
+    public void addNotify(@Nonnull EntityModel m) {
         if (m.getParent() == getColors()) {
             m.addPropertyChangeListener(this);
         }
     }
-    public void removeNotify(EntityModel m) {
+
+    public void removeNotify(@Nonnull EntityModel m) {
         if (m.getParent() == getColors()) {
             m.removePropertyChangeListener(this);
         }
@@ -2226,6 +2281,7 @@ public class CubeModel
     /**
      * Creates a deep copy of this cube model.
      */
+    @Nonnull
     @Override
     public CubeModel clone() {
         int i;
@@ -2280,7 +2336,8 @@ public class CubeModel
     public int getStickerCount() {
         return stickerCount;
     }
-    
+
+    @Nullable
     @Override
     public Color getStickerFillColor(int stickerIndex) {
         if (stickerIndex >= getStickers().getChildCount()) return null;
@@ -2307,22 +2364,23 @@ public class CubeModel
     public Color getPartFillColor(int partIndex) {
         return ((CubePartModel) getParts().getChildAt(partIndex)).getFillColorModel().getColor();
     }
-    
+
     /**
      * This method gets called when a bound property is changed.
+     *
      * @param evt A PropertyChangeEvent object describing the event source
-     *  	and the property that has changed.
+     *            and the property that has changed.
      */
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         if (suppressPropertyChangeEvents == 0) {
             Object source = evt.getSource();
             if (source instanceof CubeColorModel) {
-                firePropertyChange(evt.getPropertyName()+"."+getColors().getIndex((CubeColorModel) source), evt.getOldValue(), evt.getNewValue());
+                firePropertyChange(evt.getPropertyName() + "." + getColors().getIndex((CubeColorModel) source), evt.getOldValue(), evt.getNewValue());
             } else if (source instanceof CubePartModel) {
-                firePropertyChange(evt.getPropertyName()+"."+getParts().getIndex((CubePartModel) source), evt.getOldValue(), evt.getNewValue());
+                firePropertyChange(evt.getPropertyName() + "." + getParts().getIndex((CubePartModel) source), evt.getOldValue(), evt.getNewValue());
             } else if (source instanceof CubeStickerModel) {
-                firePropertyChange(evt.getPropertyName()+"."+getStickers().getIndex((CubeStickerModel) source), evt.getOldValue(), evt.getNewValue());
+                firePropertyChange(evt.getPropertyName() + "." + getStickers().getIndex((CubeStickerModel) source), evt.getOldValue(), evt.getNewValue());
             }
         }
     }
@@ -2388,14 +2446,16 @@ public class CubeModel
     public int getStickerCount(int face) {
         return stickerCountPerFace[face];
     }
-    
+
+    @Nullable
     @Override
     public Color getStickerOutlineColor(int index) {
         // Sticker outline colors are not (yet) supported.
         // Maybe we don't need them at all?
         return null;
     }
-    
+
+    @Nullable
     @Override
     public Image getStickersImage() {
         return stickersImageModel.getImage();
@@ -2417,7 +2477,8 @@ public class CubeModel
     public Color getFrontBgColor() {
         return frontBgColor;
     }
-    
+
+    @Nullable
     @Override
     public Image getFrontBgImage() {
         return frontBgImageModel.getImage();
@@ -2438,18 +2499,22 @@ public class CubeModel
     public Color getRearBgColor() {
         return rearBgColor;
     }
-    
+
+    @Nullable
     @Override
     public Image getRearBgImage() {
         return rearBgImageModel.getImage();
     }
     
+    @Nullable
     public ImageWellModel getStickersImageModel() {
         return stickersImageModel;
     }
+    @Nullable
     public ImageWellModel getRearBgImageModel() {
         return rearBgImageModel;
     }
+    @Nullable
     public ImageWellModel getFrontBgImageModel() {
         return frontBgImageModel;
     }
@@ -2493,9 +2558,9 @@ public class CubeModel
         basicSetStickersImageVisible(newValue);
         firePropertyChange(STICKERS_IMAGE_VISIBLE_PROPERTY, oldValue, newValue);
     }
-    
+
     @Override
-    public void stateChanged(ChangeEvent e) {
+    public void stateChanged(@Nonnull ChangeEvent e) {
         Object src = e.getSource();
         if (src == stickersImageModel) {
             firePropertyChange(STICKERS_IMAGE_PROPERTY, null, stickersImageModel.getImage());

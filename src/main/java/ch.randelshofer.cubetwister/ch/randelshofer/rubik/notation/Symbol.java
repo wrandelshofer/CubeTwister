@@ -4,6 +4,8 @@
 
 package ch.randelshofer.rubik.notation;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -244,7 +246,7 @@ public enum Symbol {
         return compositeSymbolMap;
     }
 
-    static public boolean isBegin(Symbol s) {
+    static public boolean isBegin(@Nonnull Symbol s) {
         switch (s) {
             case CONJUGATION_BEGIN:
             case COMMUTATION_BEGIN:
@@ -261,7 +263,7 @@ public enum Symbol {
         }
     }
 
-    static public boolean isOperator(Symbol s) {
+    static public boolean isOperator(@Nonnull Symbol s) {
         switch (s) {
             case CONJUGATION_OPERATOR:
             case COMMUTATION_OPERATOR:
@@ -275,7 +277,7 @@ public enum Symbol {
         }
     }
 
-    static public boolean isDelimiter(Symbol s) {
+    static public boolean isDelimiter(@Nonnull Symbol s) {
         switch (s) {
             case ROTATION_DELIMITER:
             case CONJUGATION_DELIMITER:
@@ -286,7 +288,7 @@ public enum Symbol {
         }
     }
 
-    static public boolean isEnd(Symbol s) {
+    static public boolean isEnd(@Nonnull Symbol s) {
         switch (s) {
             case CONJUGATION_END:
             case COMMUTATION_END:
@@ -302,7 +304,7 @@ public enum Symbol {
         }
     }
 
-    static public boolean isFaceSymbol(Symbol s) {
+    static public boolean isFaceSymbol(@Nonnull Symbol s) {
         switch (s) {
             case PERMUTATION_FACE_R:
             case PERMUTATION_FACE_U:
@@ -316,7 +318,7 @@ public enum Symbol {
         }
     }
 
-    static public boolean isPermutationSign(Symbol s) {
+    static public boolean isPermutationSign(@Nonnull Symbol s) {
         switch (s) {
             case PERMUTATION_PLUS:
             case PERMUTATION_PLUSPLUS:

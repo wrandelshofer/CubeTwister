@@ -4,22 +4,28 @@
 
 package ch.randelshofer.gui.plaf;
 
-import ch.randelshofer.gui.*;
+import ch.randelshofer.gui.VectorIcon;
 import ch.randelshofer.gui.border.BackdropBorder;
 import ch.randelshofer.gui.border.ImageBevelBorder;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JSlider;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
-
-import javax.swing.plaf.basic.*;
-import java.awt.*;
-import java.awt.geom.*;
-import java.io.*;
-import java.beans.*;
-
-import javax.swing.border.*;
-
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.plaf.*;
+import javax.swing.plaf.ComponentUI;
+import javax.swing.plaf.basic.BasicSliderUI;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.geom.Rectangle2D;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * CustomSliderUI draws a BackdropBorder in the background of the slider, and
@@ -56,7 +62,8 @@ implements PlafConstants {
     private ImageIcon thumbIcon;
     private ImageIcon disabledThumbIcon;
     private ImageIcon pressedThumbIcon;
-    
+
+    @Nonnull
     private static Insets thumbInsets = new Insets(-1, 0, -3, 0);
 
     protected final int TICK_BUFFER = 4;
@@ -124,10 +131,13 @@ implements PlafConstants {
             );
         }
     }
+
+    @Nonnull
     public static ComponentUI createUI(JComponent c)    {
         return new CustomSliderUI();
     }
 
+    @Nonnull
     protected String getPropertyPrefix() {
         return propertyPrefix;
     }
@@ -135,14 +145,14 @@ implements PlafConstants {
     // ********************************
     //          Install
     // ********************************
-    public void installUI( JComponent c ) {
-        trackWidth = (UIManager.get( "Slider.trackWidth" ) == null) ? 4 : ((Integer)UIManager.get( "Slider.trackWidth" )).intValue();
-        tickLength = (UIManager.get( "Slider.majorTickLength") == null) ? 4 : ((Integer)UIManager.get( "Slider.majorTickLength" )).intValue();
+    public void installUI(@Nonnull JComponent c) {
+        trackWidth = (UIManager.get("Slider.trackWidth") == null) ? 4 : ((Integer) UIManager.get("Slider.trackWidth")).intValue();
+        tickLength = (UIManager.get("Slider.majorTickLength") == null) ? 4 : ((Integer) UIManager.get("Slider.majorTickLength")).intValue();
         //horizThumbIcon = UIManager.getIcon( "Slider.horizontalThumbIcon" );
         //vertThumbIcon = UIManager.getIcon( "Slider.verticalThumbIcon" );
-	super.installUI( c );
+        super.installUI(c);
 
-        LookAndFeel.installColors(c, getPropertyPrefix()+".background", getPropertyPrefix()+".foreground");
+        LookAndFeel.installColors(c, getPropertyPrefix() + ".background", getPropertyPrefix() + ".foreground");
 
         thumbColor = Color.black; //UIManager.getColor("Slider.thumb");
         highlightColor = Color.white; //UIManager.getColor("Slider.highlight");
@@ -150,49 +160,51 @@ implements PlafConstants {
         darkShadowColor = Color.darkGray; //UIManager.getColor("Slider.darkShadow");
 
         horizThumbIcon = vertThumbIcon = new VectorIcon(new Rectangle2D.Float(0f, 0f, 8f, 8f), thumbColor, thumbColor);
-        scrollListener.setScrollByBlock( false );
+        scrollListener.setScrollByBlock(false);
 
-        Object sliderFillProp = c.getClientProperty( SLIDER_FILL );
-        if ( sliderFillProp != null ) {
-            filledSlider = ((Boolean)sliderFillProp).booleanValue();
+        Object sliderFillProp = c.getClientProperty(SLIDER_FILL);
+        if (sliderFillProp != null) {
+            filledSlider = ((Boolean) sliderFillProp).booleanValue();
         }
     }
-    protected void installDefaults(JSlider c) {
+
+    protected void installDefaults(@Nonnull JSlider c) {
         super.installDefaults(c);
-        
+
         //We don't draw focus on our slider
         //focusInsets = (Insets)UIManager.get( "Slider.focusInsets" );
         focusInsets = new Insets(0, 0, 0, 0);
-        
+
         // The bevel border draws the border and fills the background
         // area of the slider.
         PlafUtils.installBevelBorder(c, getPropertyPrefix() + "border");
     }
 
-    protected PropertyChangeListener createPropertyChangeListener( JSlider slider ) {
+    @Nonnull
+    protected PropertyChangeListener createPropertyChangeListener(JSlider slider) {
         return new MetalPropertyListener();
     }
 
     protected class MetalPropertyListener extends BasicSliderUI.PropertyChangeHandler {
-        public void propertyChange( PropertyChangeEvent e ) {  // listen for slider fill
-	    super.propertyChange( e );
+        public void propertyChange(@Nonnull PropertyChangeEvent e) {  // listen for slider fill
+            super.propertyChange(e);
 
-	    String name = e.getPropertyName();
-	    if ( name.equals( SLIDER_FILL ) ) {
-	        if ( e.getNewValue() != null ) {
-		    filledSlider = ((Boolean)e.getNewValue()).booleanValue();
-		}
-		else {
-		    filledSlider = false;
-		}
+            String name = e.getPropertyName();
+            if (name.equals(SLIDER_FILL)) {
+                if (e.getNewValue() != null) {
+                    filledSlider = ((Boolean) e.getNewValue()).booleanValue();
+                } else {
+                    filledSlider = false;
+                }
 	    }
 	}
     }
+
     // ********************************
     //          Paint Methods
     // ********************************
-    public void paint(Graphics g, JComponent c) {
-        
+    public void paint(@Nonnull Graphics g, @Nonnull JComponent c) {
+
         g.setColor(c.getBackground());
         g.fillRect(0, 0, c.getWidth(), c.getHeight());
 
@@ -223,7 +235,7 @@ implements PlafConstants {
 	}
     }
 
-    public void paintThumb(Graphics g)  {
+    public void paintThumb(@Nonnull Graphics g) {
         if (slider.isEnabled()) {
             if (slider.getValueIsAdjusting()) {
                 pressedThumbIcon.paintIcon(slider, g, thumbRect.x, thumbRect.y);
@@ -276,6 +288,7 @@ implements PlafConstants {
     public void paintFocus(Graphics g)  {        
     }
 
+    @Nonnull
     protected Dimension getThumbSize() {
         return new Dimension(thumbIcon.getIconWidth(), thumbIcon.getIconHeight());
     }
@@ -288,12 +301,14 @@ implements PlafConstants {
     /**
      * Gets the preferred size for the component.
      */
+    @Nonnull
     public Dimension getPreferredSize(JComponent c) {
         return getRequiredSize(c, PREFERRED_TRACK_LENGTH);
     }
     /**
      * Gets the minimal size for the component.
      */
+    @Nonnull
     public Dimension getMinimumSize(JComponent c)  {
         return getRequiredSize(c, MINIMUM_TRACK_LENGTH);
     }
@@ -305,6 +320,7 @@ implements PlafConstants {
      * @param trackLength The amount of pixels, we want to
      *   be able to move the slider thumb.
      */
+    @Nonnull
     protected Dimension getRequiredSize(JComponent c, int trackLength) {
         recalculateIfInsetsChanged();
         

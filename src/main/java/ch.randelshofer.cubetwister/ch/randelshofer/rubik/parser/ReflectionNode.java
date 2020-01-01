@@ -7,6 +7,7 @@ import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -42,10 +43,10 @@ public class ReflectionNode extends UnaryNode {
             child.applyTo(cube, inverse);
         }
     }
-    
+
     @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String,MacroNode> macroMap)
-    throws IOException {
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
+            throws IOException {
         // Short cut: If two reflections are nested, they cancel each other out.
         // We print the children of the inner reflection without having to
         // reflect them.
@@ -87,6 +88,7 @@ public class ReflectionNode extends UnaryNode {
      * Special operators (i. e. repeat and inverse) are
      * resolved before the children are returned.
      */
+    @Nonnull
     @Override
     public Iterator<Node> resolvedIterator(boolean inverse) {
         return new ReflectedIterator(super.resolvedIterator(inverse));

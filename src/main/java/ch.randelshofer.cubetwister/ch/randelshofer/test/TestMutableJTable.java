@@ -3,7 +3,8 @@
  */
 package ch.randelshofer.test;
 
-import ch.randelshofer.gui.table.*;
+import ch.randelshofer.gui.table.DefaultMutableTableModel;
+import org.jhotdraw.annotation.Nonnull;
 
 /**
  * TestMutableJTable.
@@ -110,7 +111,7 @@ public class TestMutableJTable extends javax.swing.JFrame {
         public void windowClosed(java.awt.event.WindowEvent evt) {
         }
 
-        public void windowClosing(java.awt.event.WindowEvent evt) {
+        public void windowClosing(@Nonnull java.awt.event.WindowEvent evt) {
             if (evt.getSource() == TestMutableJTable.this) {
                 TestMutableJTable.this.exitForm(evt);
             }

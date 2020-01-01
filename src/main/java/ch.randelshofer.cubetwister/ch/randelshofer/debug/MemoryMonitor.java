@@ -3,9 +3,23 @@
  */
 package ch.randelshofer.debug;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 /**
  * Tracks Memory allocated and used, displayed in graph form.
@@ -13,6 +27,7 @@ import javax.swing.*;
 public class MemoryMonitor extends JPanel {
     private final static long serialVersionUID = 1L;
 
+    @Nonnull
     static JCheckBox dateStampCB = new JCheckBox("Output Date Stamp");
     public Surface surf;
     JPanel controls;
@@ -63,6 +78,7 @@ memoryLabel.setFont(new Font("Dialog",Font.PLAIN,11));
     public class Surface extends JPanel implements Runnable {
     private final static long serialVersionUID = 1L;
 
+        @Nullable
         public Thread thread;
         public long sleepAmount = 1000;
         private Runtime r = Runtime.getRuntime();
@@ -96,7 +112,9 @@ memoryLabel.setFont(new Font("Dialog",Font.PLAIN,11));
         private long freeMemory;
         private String totalMemoryStr;
         private String usedMemoryStr;
+        @Nonnull
         private Color graphColor = new Color(46, 139, 87);
+        @Nonnull
         private Color mfColor = new Color(0, 100, 0);
         private int ascent, descent;
         private int blockHeight;
@@ -126,7 +144,7 @@ memoryLabel.setFont(new Font("Dialog",Font.PLAIN,11));
             blockWidth = 60; // 1 minute
         }
 
-        public void paintComponent(Graphics g) {
+        public void paintComponent(@Nonnull Graphics g) {
             if (ascent == 0) {
                 ascent = g.getFontMetrics().getAscent();
                 descent = g.getFontMetrics().getDescent();
@@ -346,8 +364,10 @@ memoryLabel.setFont(new Font("Dialog",Font.PLAIN,11));
     // Code for dispatching events from components to event handlers.
 
     private class FormListener implements java.awt.event.ActionListener {
-        FormListener() {}
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
+        FormListener() {
+        }
+
+        public void actionPerformed(@Nonnull java.awt.event.ActionEvent evt) {
             if (evt.getSource() == gcButton) {
                 MemoryMonitor.this.gc(evt);
             }

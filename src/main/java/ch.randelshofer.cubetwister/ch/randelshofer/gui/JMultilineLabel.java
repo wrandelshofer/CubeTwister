@@ -5,9 +5,18 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JComponent;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 /**
  * Displays multiple lines of text.
  *
@@ -16,7 +25,9 @@ import javax.swing.*;
 public class JMultilineLabel extends JComponent {
     private final static long serialVersionUID = 1L;
     private String text = "";
+    @Nullable
     private String[] lines;
+    @Nonnull
     private Insets insets = new Insets(2,3,3,3);
     private int selectionStart, selectionEnd;
     private Color selectionBackground = new Color(181,213,255);
@@ -168,28 +179,31 @@ public class JMultilineLabel extends JComponent {
         lines = null;
         super.invalidate();
     }
-    
-    public void setInsets(Insets insets) {
+
+    public void setInsets(@Nonnull Insets insets) {
         this.insets = (Insets) insets.clone();
         invalidate();
     }
+
+    @Nonnull
     public Insets getInsets() {
         return (Insets) insets.clone();
     }
-    
+
+    @Nonnull
     public Dimension getPreferredSize() {
         Dimension size = new Dimension();
         Insets insets = getInsets();
         if (lines == null) {
             wrapText();
         }
-        
+
         FontMetrics fm = getFontMetrics(getFont());
         for (int i=0; i < lines.length; i++) {
             size.width = Math.max(size.width, fm.stringWidth(lines[i]));
         }
         size.height = fm.getHeight() * Math.max(minRows, lines.length);
-        
+
         size.width += insets.left + insets.right;
         size.height += insets.top + insets.bottom;
         return size;
@@ -199,14 +213,14 @@ public class JMultilineLabel extends JComponent {
         minRows = rows;
         invalidate();
         }
-    
-    public void paintComponent(Graphics g) {
+
+    public void paintComponent(@Nonnull Graphics g) {
         Dimension size = getSize();
 
         // draw border
         g.setColor(borderColor);
-        g.drawRect(0, -1, size.width -1 , size.height);
-        
+        g.drawRect(0, -1, size.width - 1, size.height);
+
         if (text == null) {
             return;
         }

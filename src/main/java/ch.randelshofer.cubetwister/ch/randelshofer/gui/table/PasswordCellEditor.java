@@ -4,8 +4,13 @@
 
 package ch.randelshofer.gui.table;
 
-import java.awt.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JPasswordField;
+import javax.swing.JTable;
+import javax.swing.JTree;
+import java.awt.Component;
 
 /**
  * PassworCellEditor.
@@ -33,17 +38,19 @@ public class PasswordCellEditor extends DefaultCellEditor {
 //  Implementing the TreeCellEditor Interface
 //
 
-    /** Implements the <code>TreeCellEditor</code> interface. */
-    public Component getTreeCellEditorComponent(JTree tree, Object value,
-						boolean isSelected,
-						boolean expanded,
-						boolean leaf, int row) {
-	String stringValue = tree.convertValueToText(value, isSelected,
-					    expanded, leaf, row, false);
+    /**
+     * Implements the <code>TreeCellEditor</code> interface.
+     */
+    public Component getTreeCellEditorComponent(@Nonnull JTree tree, Object value,
+                                                boolean isSelected,
+                                                boolean expanded,
+                                                boolean leaf, int row) {
+        String stringValue = tree.convertValueToText(value, isSelected,
+                expanded, leaf, row, false);
 
-	delegate.setValue(stringValue);
+        delegate.setValue(stringValue);
         ((JPasswordField) editorComponent).selectAll();
-	return editorComponent;
+        return editorComponent;
     }
 
 //

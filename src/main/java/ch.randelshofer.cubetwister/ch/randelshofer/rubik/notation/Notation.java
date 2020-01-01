@@ -7,6 +7,7 @@ package ch.randelshofer.rubik.notation;
 import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.parser.MacroNode;
 import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -117,7 +118,8 @@ public interface Notation {
      * @param compositeSymbol the composite symbol being parsed
      * @return the symbol for the token in this composite symbol
      */
-    default Symbol getSymbolInCompositeSymbol(String token, Symbol compositeSymbol) {
+    @Nullable
+    default Symbol getSymbolInCompositeSymbol(String token, @Nonnull Symbol compositeSymbol) {
         for (Symbol s : getSymbols(token)) {
             if (compositeSymbol.isSubSymbol(s)) {
                 return s;

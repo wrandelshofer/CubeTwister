@@ -4,8 +4,9 @@
 
 package idx3d;
 
-import ch.randelshofer.util.EmptyEnumeration;
-import java.util.*;
+import org.jhotdraw.annotation.Nullable;
+
+import java.util.Collections;
 /**
  * idx3d_Node objects divide into group node objects and leaf node objects.
  * idx3d_Group node objects serve to group their child node objects together
@@ -21,6 +22,7 @@ public class idx3d_Node extends idx3d_CoreObject {
      * FIXME: This should be package protected, and should not be accessed from
      * outside this package!
      */
+    @Nullable
     public idx3d_Group parent = null;
     
     /**
@@ -32,7 +34,8 @@ public class idx3d_Node extends idx3d_CoreObject {
     /** Creates a new instance. */
     public idx3d_Node() {
     }
-    
+
+    @Nullable
     public final idx3d_Group getParent() {
         return parent;
     }

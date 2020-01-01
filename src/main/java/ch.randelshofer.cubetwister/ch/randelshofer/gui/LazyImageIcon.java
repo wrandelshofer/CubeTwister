@@ -4,13 +4,18 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.awt.image.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.gui.Worker;
+
+import javax.swing.ImageIcon;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import javax.swing.*;
-import org.jhotdraw.gui.Worker;
 
 /**
  * LazyImageIcon.
@@ -50,26 +55,27 @@ public class LazyImageIcon extends ImageIcon {
     public LazyImageIcon(final URL image, int width, int height, int xOffset, int yOffset) {
         this.width = width;
         this.height = height;
-        this.xOffset=xOffset;
-        this.yOffset=yOffset;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
         worker = new Worker<BufferedImage>() {
             @Override
             public BufferedImage construct() {
-                return  Images.toBufferedImage(Toolkit.getDefaultToolkit().createImage(image));
+                return Images.toBufferedImage(Toolkit.getDefaultToolkit().createImage(image));
             }
         };
         worker.start();
     }
-    public LazyImageIcon(final InputStream image, int width, int height, int xOffset, int yOffset) {
+
+    public LazyImageIcon(@Nonnull final InputStream image, int width, int height, int xOffset, int yOffset) {
         this.width = width;
         this.height = height;
-        this.xOffset=xOffset;
-        this.yOffset=yOffset;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
         worker = new Worker<BufferedImage>() {
             @Override
             public BufferedImage construct() {
-                try (image){
-                    return  Images.toBufferedImage(Toolkit.getDefaultToolkit().createImage(image.readAllBytes()));
+                try (image) {
+                    return Images.toBufferedImage(Toolkit.getDefaultToolkit().createImage(image.readAllBytes()));
                 } catch (IOException e) {
                     return null;
                 }
@@ -85,10 +91,10 @@ public class LazyImageIcon extends ImageIcon {
         }
         return bufferedImage;
     }
-    
+
     @Override
-    public void paintIcon(Component c, Graphics g, int x, int y) {
-        g.drawImage(getImage(), x+xOffset, y+yOffset, c);
+    public void paintIcon(Component c, @Nonnull Graphics g, int x, int y) {
+        g.drawImage(getImage(), x + xOffset, y + yOffset, c);
     }
     
     @Override

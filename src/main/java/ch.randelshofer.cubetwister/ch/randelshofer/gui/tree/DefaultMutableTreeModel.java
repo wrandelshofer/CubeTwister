@@ -3,20 +3,33 @@
  */
 package ch.randelshofer.gui.tree;
 
-import ch.randelshofer.gui.datatransfer.*;
+import ch.randelshofer.gui.datatransfer.CompositeTransferable;
+import ch.randelshofer.gui.datatransfer.JVMLocalObjectTransferable;
 import ch.randelshofer.gui.list.ListModels;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
-import java.awt.datatransfer.*;
+import org.jhotdraw.beans.WeakPropertyChangeListener;
+
+import javax.swing.Action;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+import javax.swing.undo.UndoableEdit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import javax.swing.*;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.tree.*;
-import java.util.*;
-import java.io.*;
-import javax.swing.event.UndoableEditEvent;
-import javax.swing.undo.UndoableEdit;
-import org.jhotdraw.beans.WeakPropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A simple mutable tree model.
@@ -30,6 +43,7 @@ public class DefaultMutableTreeModel
         implements MutableTreeModel {
     private final static long serialVersionUID = 1L;
 
+    @Nonnull
     protected PropertyChangeSupport propertySupport = new PropertyChangeSupport(this);
     protected Object[] childTypes = new Object[]{"Leaf", "Folder"};
     private boolean enabled = true;
@@ -74,10 +88,11 @@ public class DefaultMutableTreeModel
      * @param   type       the type of the new child to be created.
      * @param   parent     a node from the tree, obtained from this data source.
      * @param   index      index of the child.
-     * @exception   IllegalStateException if the parent node does not allow children.
+     * @exception IllegalStateException if the parent node does not allow children.
      */
+    @Nonnull
     @Override
-    public TreePath createNodeAt(Object type, MutableTreeNode parent, int index) throws IllegalStateException {
+    public TreePath createNodeAt(@Nonnull Object type, @Nonnull MutableTreeNode parent, int index) throws IllegalStateException {
         // determine if the new node may be inserted
         int i;
         Object[] allowedTypes = getCreatableNodeTypes(parent);
@@ -99,7 +114,7 @@ public class DefaultMutableTreeModel
     }
 
     @Override
-    public void insertNodeInto(MutableTreeNode newChild, MutableTreeNode parent, int index) {
+    public void insertNodeInto(MutableTreeNode newChild, @Nonnull MutableTreeNode parent, int index) {
         if (!isNodeAddable((DefaultMutableTreeNode) parent, index)) {
             throw new IllegalStateException("Cannot insert node");
         }
@@ -110,8 +125,9 @@ public class DefaultMutableTreeModel
      * Returns the type of children that may be created at
      * this node.
      */
+    @Nonnull
     @Override
-    public Object[] getCreatableNodeTypes(Object node) {
+    public Object[] getCreatableNodeTypes(@Nonnull Object node) {
         return (!isEnabled() || isLeaf(node)) ? new Object[]{} : childTypes;
     }
 
@@ -119,8 +135,9 @@ public class DefaultMutableTreeModel
      * Returns the type of children that may be created at
      * this node.
      */
+    @Nullable
     @Override
-    public Object getCreatableNodeType(Object node) {
+    public Object getCreatableNodeType(@Nonnull Object node) {
         return (!isEnabled() || isLeaf(node)) ? null : childTypes[0];
     }
 
@@ -170,10 +187,10 @@ public class DefaultMutableTreeModel
     /**
      * Removes a child from its parent.
      *
-     * @param   node   a node from the tree, obtained from this data source.
+     * @param node a node from the tree, obtained from this data source.
      */
     @Override
-    public void removeNodeFromParent(MutableTreeNode node) {
+    public void removeNodeFromParent(@Nonnull MutableTreeNode node) {
         // determine if the node may be removed
         if (!isNodeRemovable(node)) {
             throw new IllegalStateException("Can't remove node.");
@@ -217,7 +234,7 @@ public class DefaultMutableTreeModel
      * IllegalArgumentException if <code>root</code> is null.
      */
     @Override
-    public void setRoot(TreeNode aRoot) {
+    public void setRoot(@Nullable TreeNode aRoot) {
         if (aRoot == null) {
             throw new IllegalArgumentException("Root must not be null.");
         }
@@ -234,7 +251,7 @@ public class DefaultMutableTreeModel
      * false otherwise
      */
     @Override
-    public boolean isImportable(DataFlavor[] transferFlavors, int action, MutableTreeNode parent, int index) {
+    public boolean isImportable(@Nonnull DataFlavor[] transferFlavors, int action, @Nonnull MutableTreeNode parent, int index) {
         if (isLeaf(parent)) {
             return false;
         }
@@ -253,6 +270,7 @@ public class DefaultMutableTreeModel
         return false;
     }
 
+    @Nonnull
     @Override
     public Transferable exportTransferable(MutableTreeNode[] nodes) {
         nodes = removeDescendantsFromNodeArray(nodes);
@@ -280,9 +298,10 @@ public class DefaultMutableTreeModel
         return t;
     }
 
+    @Nonnull
     @Override
     @SuppressWarnings("unchecked")
-    public List<TreePath> importTransferable(Transferable t, int action, MutableTreeNode parent, int index)
+    public List<TreePath> importTransferable(@Nonnull Transferable t, int action, @Nonnull MutableTreeNode parent, int index)
             throws UnsupportedFlavorException, IOException {
         if (!isImportable(t.getTransferDataFlavors(), action, parent, index)) {
             return Collections.emptyList();
@@ -312,13 +331,14 @@ public class DefaultMutableTreeModel
         return Collections.emptyList();
     }
 
-    public List<TreePath> insertAllInto(List<Object> l, MutableTreeNode parent, int index) {
+    @Nonnull
+    public List<TreePath> insertAllInto(@Nonnull List<Object> l, @Nonnull MutableTreeNode parent, int index) {
         if (index == -1) {
             index = parent.getChildCount();
         }
 
         LinkedList<TreePath> insertedPaths = new LinkedList<TreePath>();
-        TreePath parentPath = new TreePath(((DefaultMutableTreeNode)parent).getPath());
+        TreePath parentPath = new TreePath(((DefaultMutableTreeNode) parent).getPath());
         for (Object userObject : l) {
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(userObject);
             insertNodeInto(node, parent, index++);
@@ -327,7 +347,8 @@ public class DefaultMutableTreeModel
         return insertedPaths;
     }
 
-    public List<TreePath> insertNodesInto(List<? extends DefaultMutableTreeNode> newChilds, DefaultMutableTreeNode parent, int index) {
+    @Nonnull
+    public List<TreePath> insertNodesInto(@Nonnull List<? extends DefaultMutableTreeNode> newChilds, @Nonnull DefaultMutableTreeNode parent, int index) {
         if (index == -1) {
             index = parent.getChildCount();
         }
@@ -350,6 +371,7 @@ public class DefaultMutableTreeModel
      *
      * @param   nodes   The nodes.
      */
+    @Nonnull
     @Override
     public Action[] getNodeActions(MutableTreeNode[] nodes) {
         return new Action[0];
@@ -361,7 +383,8 @@ public class DefaultMutableTreeModel
      * A node is removed from the array when it is a descendant from
      * another node in the array.
      */
-    private MutableTreeNode[] removeDescendantsFromNodeArray(MutableTreeNode[] nodes) {
+    @Nonnull
+    private MutableTreeNode[] removeDescendantsFromNodeArray(@Nonnull MutableTreeNode[] nodes) {
         int i, j;
         TreePath[] paths = new TreePath[nodes.length];
         for (i = 0; i < nodes.length; i++) {

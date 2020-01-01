@@ -3,27 +3,36 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
+import ch.randelshofer.gui.Fonts;
 import ch.randelshofer.gui.border.PlacardButtonBorder;
-import ch.randelshofer.undo.*;
-import ch.randelshofer.util.*;
-
-import java.awt.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import java.util.prefs.*;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
-import javax.swing.text.*;
+import ch.randelshofer.undo.Undoable;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.util.ResourceBundleUtil;
 import org.jhotdraw.util.prefs.PreferencesUtil;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.EventListenerList;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.PlainDocument;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 /**
  * NotationView.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class NotationView extends JPanel
         implements PropertyChangeListener,
@@ -42,7 +51,7 @@ public class NotationView extends JPanel
             super(new String[]{"2x2", "3x3", "4x4", "5x5", "6x6", "7x7"});
         }
 
-        public void setSelectedItem(Object item) {
+        public void setSelectedItem(@Nonnull Object item) {
             int number = ((String) item).charAt(0) - '0';
 
             if (model != null) {
@@ -55,6 +64,7 @@ public class NotationView extends JPanel
             fireContentsChanged();
         }
 
+        @Nullable
         public Object getSelectedItem() {
             return (model == null) ? null : getElementAt(model.getLayerCount() - 2);
         }
@@ -63,8 +73,11 @@ public class NotationView extends JPanel
             fireContentsChanged(this, -1, -1);
         }
     }
+
+    @Nullable
     private NotationModel model;
     /** The listeners waiting for model changes. */
+    @Nonnull
     private EventListenerList listenerList = new javax.swing.event.EventListenerList();
     private Preferences prefs;
     /**
@@ -146,7 +159,7 @@ public class NotationView extends JPanel
         setModel((NotationModel) newValue);
     }
 
-    public void setModel(NotationModel value) {
+    public void setModel(@Nullable NotationModel value) {
         //long start = System.currentTimeMillis();
         NotationModel oldValue = model;
 
@@ -208,6 +221,7 @@ public class NotationView extends JPanel
          */
     }
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

@@ -4,11 +4,13 @@
 
 package ch.randelshofer.gui.datatransfer;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.Externalizable;
-import java.io.ObjectOutput;
-import java.io.ObjectInput;
 import java.io.IOException;
-import java.util.Enumeration;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 /**
  * A Multipurpose Internet Mail Extension (MIME) type, as defined
  * in RFC 2045 and 2046.
@@ -32,46 +34,46 @@ public class MimeType implements Externalizable, Cloneable {
      */
     public MimeType() {
     }
-    
+
     /**
      * Builds a <code>MimeType</code> from a <code>String</code>.
      *
      * @param rawdata text used to initialize the <code>MimeType</code>
      */
-    public MimeType(String rawdata) throws MimeTypeParseException {
+    public MimeType(@Nonnull String rawdata) throws MimeTypeParseException {
         parse(rawdata);
     }
-    
+
     /**
      * Builds a <code>MimeType</code> with the given primary and sub
      * type but has an empty parameter list.
      *
      * @param primary the primary type of this <code>MimeType</code>
-     * @param sub the subtype of this <code>MimeType</code>
+     * @param sub     the subtype of this <code>MimeType</code>
      */
-    public MimeType(String primary, String sub) throws MimeTypeParseException {
+    public MimeType(@Nonnull String primary, @Nonnull String sub) throws MimeTypeParseException {
         this(primary, sub, new MimeTypeParameterList());
     }
-    
+
     /**
      * Builds a <code>MimeType</code> with a pre-defined
      * and valid (or empty) parameter list.
      *
      * @param primary the primary type of this <code>MimeType</code>
-     * @param sub the subtype of this <code>MimeType</code>
-     * @param mtpl the requested parameter list
+     * @param sub     the subtype of this <code>MimeType</code>
+     * @param mtpl    the requested parameter list
      */
-    public MimeType(String primary, String sub, MimeTypeParameterList mtpl) throws
-    MimeTypeParseException {
+    public MimeType(@Nonnull String primary, @Nonnull String sub, @Nonnull MimeTypeParameterList mtpl) throws
+            MimeTypeParseException {
         //    check to see if primary is valid
-        if(isValidToken(primary)) {
+        if (isValidToken(primary)) {
             primaryType = primary.toLowerCase();
         } else {
             throw new MimeTypeParseException("Primary type is invalid.");
         }
-        
+
         //    check to see if sub is valid
-        if(isValidToken(sub)) {
+        if (isValidToken(sub)) {
             subType = sub.toLowerCase();
         } else {
             throw new MimeTypeParseException("Sub type is invalid.");
@@ -111,19 +113,19 @@ public class MimeType implements Externalizable, Cloneable {
         (this.parameters.equals(that.parameters)));
         return isIt;
     } // equals()
-    
+
     /**
      * A routine for parsing the MIME type out of a String.
      */
-    private void parse(String rawdata) throws MimeTypeParseException {
+    private void parse(@Nonnull String rawdata) throws MimeTypeParseException {
         //System.out.println("MimeType.parse("+rawdata+")");
         int slashIndex = rawdata.indexOf('/');
         int semIndex = rawdata.indexOf(';');
-        if((slashIndex < 0) && (semIndex < 0)) {
+        if ((slashIndex < 0) && (semIndex < 0)) {
             //    neither character is present, so treat it
             //    as an error
             throw new MimeTypeParseException("Unable to find a sub type.");
-        } else if((slashIndex < 0) && (semIndex >= 0)) {
+        } else if ((slashIndex < 0) && (semIndex >= 0)) {
             //    we have a ';' (and therefore a parameter list),
             //    but no '/' indicating a sub type is present
             throw new MimeTypeParseException("Unable to find a sub type.");
@@ -181,37 +183,38 @@ public class MimeType implements Externalizable, Cloneable {
     public MimeTypeParameterList getParameters() {
         return parameters.clone();
     }
-    
+
     /**
      * Retrieve the value associated with the given name, or null if there
      * is no current association.
      */
-    public String getParameter(String name) {
+    public String getParameter(@Nonnull String name) {
         return parameters.get(name);
     }
-    
+
     /**
      * Set the value to be associated with the given name, replacing
      * any previous association.
      *
      * @throws IllegalArgumentException if parameter or value is illegal
      */
-    public void setParameter(String name, String value) {
+    public void setParameter(@Nonnull String name, String value) {
         parameters.set(name, value);
     }
-    
+
     /**
      * Remove any value associated with the given name.
      *
      * @throws IllegalArgumentException if parameter may not be deleted
      */
-    public void removeParameter(String name) {
+    public void removeParameter(@Nonnull String name) {
         parameters.remove(name);
     }
     
     /**
      * Return the String representation of this object.
      */
+    @Nonnull
     public String toString() {
         return getBaseType() + parameters.toString();
     }
@@ -220,10 +223,11 @@ public class MimeType implements Externalizable, Cloneable {
      * Return a String representation of this object
      * without the parameter list.
      */
+    @Nonnull
     public String getBaseType() {
         return primaryType + "/" + subType;
     }
-    
+
     /**
      * Returns <code>true</code> if the primary type and the
      * subtype of this object are the same as the specified
@@ -231,17 +235,18 @@ public class MimeType implements Externalizable, Cloneable {
      *
      * @param type the type to compare to <code>this</code>'s type
      * @return <code>true</code> if the primary type and the
-     *    subtype of this object are the same as the
-     *    specified <code>type</code>; otherwise returns
-     *    <code>false</code>
+     * subtype of this object are the same as the
+     * specified <code>type</code>; otherwise returns
+     * <code>false</code>
      */
-    public boolean match(MimeType type) {
-        if (type == null)
+    public boolean match(@Nullable MimeType type) {
+        if (type == null) {
             return false;
+        }
         return primaryType.equals(type.getPrimaryType())
-        && ("*".equals(subType)
-        || "*".equals(type.getSubType())
-        || (subType.equals(type.getSubType())));
+                && ("*".equals(subType)
+                || "*".equals(type.getSubType())
+                || (subType.equals(type.getSubType())));
     }
     
     /**
@@ -257,37 +262,40 @@ public class MimeType implements Externalizable, Cloneable {
      *    <code>false</code>; if <code>rawdata</code> is
      *    <code>null</code>, returns <code>false</code>
      */
-    public boolean match(String rawdata) throws MimeTypeParseException {
-        if (rawdata == null)
+    public boolean match(@Nullable String rawdata) throws MimeTypeParseException {
+        if (rawdata == null) {
             return false;
+        }
         return match(new MimeType(rawdata));
     }
-    
+
     /**
      * The object implements the writeExternal method to save its contents
      * by calling the methods of DataOutput for its primitive values or
      * calling the writeObject method of ObjectOutput for objects, strings
      * and arrays.
-     * @exception IOException Includes any I/O exceptions that may occur
+     *
+     * @throws IOException Includes any I/O exceptions that may occur
      */
-    public void writeExternal(ObjectOutput out) throws IOException {
+    public void writeExternal(@Nonnull ObjectOutput out) throws IOException {
         out.writeUTF(toString());
     }
-    
+
     /**
      * The object implements the readExternal method to restore its
      * contents by calling the methods of DataInput for primitive
      * types and readObject for objects, strings and arrays.  The
      * readExternal method must read the values in the same sequence
      * and with the same types as were written by writeExternal.
-     * @exception ClassNotFoundException If the class for an object being
-     *              restored cannot be found.
+     *
+     * @throws ClassNotFoundException If the class for an object being
+     *                                restored cannot be found.
      */
-    public void readExternal(ObjectInput in) throws IOException,
-    ClassNotFoundException {
+    public void readExternal(@Nonnull ObjectInput in) throws IOException,
+            ClassNotFoundException {
         try {
             parse(in.readUTF());
-        } catch(MimeTypeParseException e) {
+        } catch (MimeTypeParseException e) {
             throw new IOException(e.toString());
         }
     }
@@ -297,6 +305,7 @@ public class MimeType implements Externalizable, Cloneable {
      * @return a clone of this object
      */
     
+    @Nullable
     public Object clone() {
         MimeType that = null;
         try {
@@ -319,13 +328,13 @@ public class MimeType implements Externalizable, Cloneable {
     private static boolean isTokenChar(char c) {
         return ((c > 040) && (c < 0177)) && (TSPECIALS.indexOf(c) < 0);
     }
-    
+
     /**
      * Determines whether or not a given string is a legal token.
      */
-    private boolean isValidToken(String s) {
+    private boolean isValidToken(@Nonnull String s) {
         int len = s.length();
-        if(len > 0) {
+        if (len > 0) {
             for (int i = 0; i < len; ++i) {
                 char c = s.charAt(i);
                 if (!isTokenChar(c)) {

@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Represents the state of a 2-times sliced cube (Pocket Cube) by the location 
  * and orientation of its parts.
@@ -392,6 +394,7 @@ public class PocketCube extends AbstractCube {
      * @return A two dimensional array. First dimension: faces.
      * Second dimension: sticker index on the faces.
      */
+    @Nonnull
     public int[][] toStickers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

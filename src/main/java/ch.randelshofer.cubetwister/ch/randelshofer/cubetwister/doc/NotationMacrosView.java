@@ -5,9 +5,13 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.table.DefaultCellEditor2;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.text.PlainDocument;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.event.UndoableEditListener;
 /**
  * NotationMacrosView.
  *
@@ -65,7 +69,8 @@ public class NotationMacrosView extends JPanel implements EntityView {
         }
         tableModel.setModel(s);
     }
-    
+
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

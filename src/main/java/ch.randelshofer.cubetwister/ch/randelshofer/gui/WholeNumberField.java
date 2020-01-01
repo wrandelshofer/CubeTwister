@@ -3,9 +3,13 @@
  */
 package ch.randelshofer.gui;
 
-import javax.swing.*; 
-import javax.swing.text.*; 
+import org.jhotdraw.annotation.Nonnull;
 
+import javax.swing.JTextField;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.PlainDocument;
 import java.awt.Toolkit;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -43,24 +47,26 @@ public class WholeNumberField extends JTextField {
         setText(integerFormatter.format(value));
     }
 
+    @Nonnull
     protected Document createDefaultModel() {
         return new WholeNumberDocument();
     }
 
     protected class WholeNumberDocument extends PlainDocument {
-    private final static long serialVersionUID = 1L;
-        public void insertString(int offs, 
-                                 String str,
-                                 AttributeSet a) 
+        private final static long serialVersionUID = 1L;
+
+        public void insertString(int offs,
+                                 @Nonnull String str,
+                                 AttributeSet a)
                 throws BadLocationException {
             char[] source = str.toCharArray();
             char[] result = new char[source.length];
             int j = 0;
 
             for (int i = 0; i < result.length; i++) {
-                if (Character.isDigit(source[i]))
+                if (Character.isDigit(source[i])) {
                     result[j++] = source[i];
-                else {
+                } else {
                     toolkit.beep();
                     System.err.println("insertString: " + source[i]);
                 }

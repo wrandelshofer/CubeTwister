@@ -3,10 +3,26 @@
  */
 package ch.randelshofer.gui.border;
 
-import java.awt.*;
-import java.awt.image.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Paint;
+import java.awt.Rectangle;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
 
 /**
  * Quaqua14PlacardButtonBorder.
@@ -86,6 +102,7 @@ public class PlacardButtonBorder implements Border {
         this.orientation = orientation;
     }
 
+    @Nonnull
     public Insets getBorderInsets(Component c) {
         if (c instanceof AbstractButton) {
             return new Insets(2, 7, 2, 7);
@@ -101,14 +118,14 @@ public class PlacardButtonBorder implements Border {
     /**
      * Creates the image to cache.  This returns a translucent image.
      *
-     * @param c Component painting to
-     * @param w Width of image to create
-     * @param h Height to image to create
+     * @param c      Component painting to
+     * @param w      Width of image to create
+     * @param h      Height to image to create
      * @param config GraphicsConfiguration that will be
-     *        rendered to, this may be null.
+     *               rendered to, this may be null.
      */
     protected Image createImage(Component c, int w, int h,
-            GraphicsConfiguration config) {
+                                @Nullable GraphicsConfiguration config) {
         if (config == null) {
             return new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB_PRE);
         }
@@ -116,7 +133,7 @@ public class PlacardButtonBorder implements Border {
     }
 
     @Override
-    public void paintBorder(Component c, Graphics gr, int x, int y, int width, int height) {
+    public void paintBorder(Component c, @Nonnull Graphics gr, int x, int y, int width, int height) {
         if (height <= 0 || width <= 0) {
             return;
         }
@@ -151,7 +168,7 @@ public class PlacardButtonBorder implements Border {
         }
     }
 
-    protected void paint(Component c, Graphics gr, int x, int y, int width, int height, Color[] args) {
+    protected void paint(Component c, @Nonnull Graphics gr, int x, int y, int width, int height, Color[] args) {
         // Cast Graphics to Graphics2D
         // Workaround for Java 1.4 and 1.4 on Mac OS X 10.4. We create a new
         // Graphics object instead of just casting the provided one. This is

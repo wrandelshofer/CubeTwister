@@ -7,14 +7,27 @@
  */
 package ch.randelshofer.binary;
 
-import org.monte.media.math.ExtendedReal;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.monte.media.io.ByteArrayImageInputStream;
-import java.io.*;
 import org.monte.media.io.StreamPosTokenizer;
-import java.util.*;
-import java.text.*;
+import org.monte.media.math.ExtendedReal;
+
 import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.MemoryCacheImageInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Parses structured binary data using C-like data declarations.
@@ -59,20 +72,23 @@ public class StructParser extends Object {
     public StructParser() {
     }
 
-    public StructParser(Reader r) throws IOException, ParseException {
+    public StructParser(@Nonnull Reader r) throws IOException, ParseException {
         parse(r);
     }
 
+    @Nullable
     public String getName(String magic) {
         return getName((Object) magic);
     }
 
+    @Nullable
     public String getName(Object magic) {
         MagicDeclaration md = declarations.magics.get(magic);
         DescriptionDeclaration dd = (md == null) ? null : declarations.descriptions.get(md.identifier);
         return (dd == null) ? null : dd.name;
     }
 
+    @Nullable
     public String getIdentifierName(String magic) {
         MagicDeclaration md = declarations.magics.get(magic);
         DescriptionDeclaration dd = (md == null) ? null : declarations.descriptions.get(md.identifier);
@@ -104,26 +120,31 @@ public class StructParser extends Object {
         return typedef != null;
     }
 
+    @Nullable
     public String getDescription(String magic) {
         return getDescription((Object) magic);
     }
 
+    @Nullable
     public String getDescription(Object magic) {
         MagicDeclaration md = declarations.magics.get(magic);
         DescriptionDeclaration dd = (md == null) ? null : declarations.descriptions.get(md.identifier);
         return (dd == null) ? null : dd.description;
     }
 
-    public StructTableModel readStruct(String magic, byte[] data)
+    @Nonnull
+    public StructTableModel readStruct(String magic, @Nonnull byte[] data)
             throws IOException {
         return declarations.readStruct(magic, new ByteArrayImageInputStream(data));
     }
 
-    public StructTableModel readStruct(int magic, byte[] data)
+    @Nonnull
+    public StructTableModel readStruct(int magic, @Nonnull byte[] data)
             throws IOException {
         return declarations.readStruct(magic, new ByteArrayImageInputStream(data));
     }
 
+    @Nonnull
     public StructTableModel readStruct(String magic, InputStream data)
             throws IOException {
         if (data instanceof ImageInputStream) {
@@ -133,6 +154,7 @@ public class StructParser extends Object {
         }
     }
 
+    @Nonnull
     public StructTableModel readStruct(int magic, InputStream data)
             throws IOException {
         if (data instanceof ImageInputStream) {
@@ -146,7 +168,8 @@ public class StructParser extends Object {
      * Consumes the number of bytes needed by the specified struct from the
      * input stream, and returns them as a byte array.
      */
-    private static String errorMsg(String text, StreamPosTokenizer scanner) {
+    @Nonnull
+    private static String errorMsg(String text, @Nonnull StreamPosTokenizer scanner) {
         StringBuilder b = new StringBuilder();
         b.append("line ");
         b.append(Integer.toString(scanner.lineno()));
@@ -189,7 +212,7 @@ public class StructParser extends Object {
         return b.toString();
     }
 
-    protected void parse(Reader r)
+    protected void parse(@Nonnull Reader r)
             throws IOException, ParseException {
         StreamPosTokenizer scanner = new StreamPosTokenizer(r);
         scanner.resetSyntax();
@@ -226,13 +249,18 @@ public class StructParser extends Object {
     protected static class Declarations {
 
         /** Magic key can be either a String or an Integer. */
+        @Nonnull
         public HashMap<Object,MagicDeclaration> magics = new HashMap<Object,MagicDeclaration>();
+        @Nonnull
         public HashMap<String,DescriptionDeclaration> descriptions = new HashMap<String,DescriptionDeclaration>();
+        @Nonnull
         public HashMap<String,EnumDeclaration> enums = new HashMap<String,EnumDeclaration>();
+        @Nonnull
         public HashMap<String,SetDeclaration> sets = new HashMap<String,SetDeclaration>();
+        @Nonnull
         public HashMap<String,TypedefDeclaration> typedefs = new HashMap<String,TypedefDeclaration>();
 
-        public Declarations(StreamPosTokenizer scanner)
+        public Declarations(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             while (scanner.nextToken() != StreamPosTokenizer.TT_EOF) {
                 if (scanner.ttype == StreamPosTokenizer.TT_WORD) {
@@ -269,7 +297,8 @@ public class StructParser extends Object {
             }
         }
 
-        private StructTableModel readStruct(Object magic, ImageInputStream in)
+        @Nonnull
+        private StructTableModel readStruct(Object magic, @Nonnull ImageInputStream in)
                 throws IOException {
             ArrayList<StructTableModel.Value> result = new ArrayList<StructTableModel.Value>();
             TypedefDeclaration typedef = null;
@@ -319,7 +348,7 @@ public class StructParser extends Object {
         public int ushortMagicFrom;
         public int ushortMagicTo;
 
-        public MagicDeclaration(StreamPosTokenizer scanner)
+        public MagicDeclaration(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() != StreamPosTokenizer.TT_WORD || !scanner.sval.equals("magic")) {
                 throw new ParseException(errorMsg("MagicDeclaration: 'magic' expected", scanner));
@@ -383,7 +412,7 @@ public class StructParser extends Object {
         public String name;
         public String description;
 
-        public DescriptionDeclaration(StreamPosTokenizer scanner)
+        public DescriptionDeclaration(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() != StreamPosTokenizer.TT_WORD || !scanner.sval.equals("description")) {
                 throw new ParseException(errorMsg("DescriptionDeclaration: 'magic' expected", scanner));
@@ -428,7 +457,7 @@ public class StructParser extends Object {
         public EnumSpecifier enumSpecifier;
         public String identifier;
 
-        public EnumDeclaration(StreamPosTokenizer scanner)
+        public EnumDeclaration(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             enumSpecifier = new EnumSpecifier(scanner);
 
@@ -455,7 +484,7 @@ public class StructParser extends Object {
         public SetSpecifier setSpecifier;
         public String identifier;
 
-        public SetDeclaration(StreamPosTokenizer scanner)
+        public SetDeclaration(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             setSpecifier = new SetSpecifier(scanner);
 
@@ -482,7 +511,7 @@ public class StructParser extends Object {
         public TypeSpecifier typeSpecifier;
         public String identifier;
 
-        public TypedefDeclaration(StreamPosTokenizer scanner)
+        public TypedefDeclaration(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() != StreamPosTokenizer.TT_WORD || !scanner.sval.equals("typedef")) {
                 throw new ParseException(errorMsg("TypedefDeclaration: 'typedef' expected", scanner));
@@ -501,11 +530,12 @@ public class StructParser extends Object {
             //System.out.println("typedef "+typeSpecifier+" "+identifier+";");
         }
 
-        private int getResolvedType(Declarations declarations) throws IOException {
+        private int getResolvedType(@Nonnull Declarations declarations) throws IOException {
             return typeSpecifier.getResolvedPrimitiveType(declarations);
         }
 
-        private Object read(ImageInputStream in, String parentIdentifier, Declarations declarations, ArrayList<StructTableModel.Value> result)
+        @Nullable
+        private Object read(@Nonnull ImageInputStream in, String parentIdentifier, @Nonnull Declarations declarations, @Nonnull ArrayList<StructTableModel.Value> result)
                 throws IOException {
             return typeSpecifier.read(in, parentIdentifier, declarations, identifier, result);
         }
@@ -524,7 +554,7 @@ public class StructParser extends Object {
         public String identifier;
         public boolean isMagicEnum;
 
-        public EnumSpecifier(StreamPosTokenizer scanner)
+        public EnumSpecifier(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() != StreamPosTokenizer.TT_WORD || !scanner.sval.equals("enum")) {
                 throw new ParseException(errorMsg("EnumSpecifier: 'enum' expected", scanner));
@@ -566,7 +596,8 @@ public class StructParser extends Object {
             identifier = scanner.sval;
         }
 
-        public String toEnumString(int value, Declarations declarations) {
+        @Nonnull
+        public String toEnumString(int value, @Nonnull Declarations declarations) {
             if (identifier != null) {
                 EnumDeclaration enumDecl = declarations.enums.get(identifier);
                 if (enumDecl == null) {
@@ -595,7 +626,8 @@ public class StructParser extends Object {
             }
         }
 
-        public String toEnumString(String value, Declarations declarations) {
+        @Nullable
+        public String toEnumString(@Nullable String value, @Nonnull Declarations declarations) {
             if (identifier != null) {
                 EnumDeclaration enumDecl = declarations.enums.get(identifier);
                 if (enumDecl == null) {
@@ -624,7 +656,7 @@ public class StructParser extends Object {
         public HashMap<Integer,String> members;
         public String identifier;
 
-        public SetSpecifier(StreamPosTokenizer scanner)
+        public SetSpecifier(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() != StreamPosTokenizer.TT_WORD || !scanner.sval.equals("set")) {
                 throw new ParseException(errorMsg("SetSpecifier: 'set' expected", scanner));
@@ -660,7 +692,8 @@ public class StructParser extends Object {
             identifier = scanner.sval;
         }
 
-        public String toSetString(int value, Declarations declarations) {
+        @Nonnull
+        public String toSetString(int value, @Nonnull Declarations declarations) {
             if (identifier != null) {
                 SetDeclaration setDecl = declarations.sets.get(identifier);
                 if (setDecl == null) {
@@ -706,7 +739,7 @@ public class StructParser extends Object {
         public SetSpecifier setSpecifier;
         public ArrayList<ArraySize> arrayList;
 
-        public TypeSpecifier(StreamPosTokenizer scanner)
+        public TypeSpecifier(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() == StreamPosTokenizer.TT_WORD && scanner.sval.equals("struct")) {
                 scanner.pushBack();
@@ -743,7 +776,7 @@ public class StructParser extends Object {
             // ArrayList End
         }
 
-        private int getResolvedPrimitiveType(Declarations declarations) throws IOException {
+        private int getResolvedPrimitiveType(@Nonnull Declarations declarations) throws IOException {
             if (structSpecifier != null) {
                 return PrimitiveSpecifier.NON_PRIMITIVE;
             } else if (primitiveSpecifier != null) {
@@ -753,16 +786,17 @@ public class StructParser extends Object {
             }
         }
 
-        private Object read(ImageInputStream in, String parentIdentifier, Declarations declarations, String identifier, ArrayList<StructTableModel.Value> result)
+        @Nullable
+        private Object read(@Nonnull ImageInputStream in, String parentIdentifier, @Nonnull Declarations declarations, String identifier, @Nonnull ArrayList<StructTableModel.Value> result)
                 throws IOException {
             if (structSpecifier != null) {
                 if (arrayList != null) {
                     // ArrayList Begin
-                    for (ArraySize arraySize:arrayList) {
+                    for (ArraySize arraySize : arrayList) {
                         int size = arraySize.getArraySize(declarations, result);
                         if (size == ArraySize.REMAINDER) {
                             try {
-                                for (int i = 0;; i++) {
+                                for (int i = 0; ; i++) {
                                     int loc = result.size();
                                     structSpecifier.read(in, parentIdentifier, declarations, result);
 
@@ -958,7 +992,8 @@ public class StructParser extends Object {
             }
         }
 
-        private Object readValue(ImageInputStream in, String parentIdentifier, Declarations declarations, ArrayList<StructTableModel.Value> result)
+        @Nullable
+        private Object readValue(@Nonnull ImageInputStream in, String parentIdentifier, @Nonnull Declarations declarations, @Nonnull ArrayList<StructTableModel.Value> result)
                 throws IOException {
             Object value = primitiveSpecifier.read(in, parentIdentifier, declarations, result);
             if (value != null) {
@@ -978,6 +1013,7 @@ public class StructParser extends Object {
             return value;
         }
 
+        @Nonnull
         @Override
         public String toString() {
             StringBuilder buf = new StringBuilder();
@@ -1003,7 +1039,7 @@ public class StructParser extends Object {
         public String identifier;
         public ArrayList<MemberDeclaration> members;
 
-        public StructSpecifier(StreamPosTokenizer scanner)
+        public StructSpecifier(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() != StreamPosTokenizer.TT_WORD || !scanner.sval.equals("struct")) {
                 throw new ParseException(errorMsg("StructSpecifier: 'struct' expected", scanner));
@@ -1024,11 +1060,11 @@ public class StructParser extends Object {
             }
         }
 
-        private void read(ImageInputStream in, String parentIdentifier, Declarations declarations, ArrayList<StructTableModel.Value> result)
+        private void read(@Nonnull ImageInputStream in, String parentIdentifier, @Nonnull Declarations declarations, @Nonnull ArrayList<StructTableModel.Value> result)
                 throws IOException {
             //try {
-            for (MemberDeclaration aMember:members) {
-               aMember.read(in, parentIdentifier, declarations, result);
+            for (MemberDeclaration aMember : members) {
+                aMember.read(in, parentIdentifier, declarations, result);
             }
             /*
             } catch (IOException e) {
@@ -1053,7 +1089,7 @@ public class StructParser extends Object {
         public String identifier;
         public ArrayList<ArraySize> arrayList;
 
-        public MemberDeclaration(StreamPosTokenizer scanner)
+        public MemberDeclaration(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             typeSpecifier = new TypeSpecifier(scanner);
 
@@ -1085,15 +1121,15 @@ public class StructParser extends Object {
             }
         }
 
-        private void read(ImageInputStream in, String parentIdentifier, Declarations declarations, ArrayList<StructTableModel.Value> result)
+        private void read(@Nonnull ImageInputStream in, String parentIdentifier, @Nonnull Declarations declarations, @Nonnull ArrayList<StructTableModel.Value> result)
                 throws IOException {
             if (arrayList != null) {
                 // ArrayList Begin
-                for (ArraySize arraySize :arrayList) {
+                for (ArraySize arraySize : arrayList) {
                     int size = arraySize.getArraySize(declarations, result);
                     if (size == ArraySize.REMAINDER) {
                         try {
-                            for (int i = 0;; i++) {
+                            for (int i = 0; ; i++) {
                                 int loc = result.size();
                                 Object obj = typeSpecifier.read(in, parentIdentifier + "." + identifier + "[" + i + "]", declarations, identifier, result);
                                 if (obj != null) {
@@ -1241,7 +1277,7 @@ public class StructParser extends Object {
         public int type;
         public String typedef;
 
-        public PrimitiveSpecifier(StreamPosTokenizer scanner)
+        public PrimitiveSpecifier(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
 
             if (scanner.nextToken() != StreamPosTokenizer.TT_WORD) {
@@ -1340,7 +1376,7 @@ public class StructParser extends Object {
             }
         }
 
-        private int getResolvedPrimitveType(Declarations declarations) throws IOException {
+        private int getResolvedPrimitveType(@Nonnull Declarations declarations) throws IOException {
             switch (type) {
                 case TYPEDEF_TYPE:
                     TypedefDeclaration typedefDeclaration = declarations.typedefs.get(typedef);
@@ -1353,7 +1389,8 @@ public class StructParser extends Object {
             }
         }
 
-        private Object read(ImageInputStream in, String parentIdentifier, Declarations declarations, ArrayList<StructTableModel.Value> result)
+        @Nullable
+        private Object read(@Nonnull ImageInputStream in, String parentIdentifier, @Nonnull Declarations declarations, @Nonnull ArrayList<StructTableModel.Value> result)
                 throws IOException {
             switch (type) {
                 case BYTE:
@@ -1680,7 +1717,7 @@ public class StructParser extends Object {
         public int offset;
         public Object equal;
 
-        public ArraySize(StreamPosTokenizer scanner)
+        public ArraySize(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() == ']') {
                 scanner.pushBack();
@@ -1773,7 +1810,7 @@ public class StructParser extends Object {
             }
         }
 
-        public int getArraySize(Declarations declarations, ArrayList<StructTableModel.Value> result) {
+        public int getArraySize(Declarations declarations, @Nonnull ArrayList<StructTableModel.Value> result) {
             switch (type) {
                 case LITERAL:
                     return size;
@@ -1852,12 +1889,12 @@ public class StructParser extends Object {
 
         public int value;
 
-        public IntLiteral(StreamPosTokenizer scanner)
+        public IntLiteral(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             if (scanner.nextToken() != StreamPosTokenizer.TT_NUMBER) {
                 throw new ParseException(errorMsg("IntLiteral: numeric value expected", scanner));
             }
-            value = (int)((long) scanner.nval);// Must cast like this to get proper signs
+            value = (int) ((long) scanner.nval);// Must cast like this to get proper signs
             if (scanner.nval == 0.0) {
                 if (scanner.nextToken() == StreamPosTokenizer.TT_WORD && scanner.sval.startsWith("x")) {
                     value = Integer.valueOf(scanner.sval.substring(1), 16).intValue();
@@ -1884,7 +1921,7 @@ public class StructParser extends Object {
         public int intValue;
         public String magicValue;
 
-        public MagicOrIntLiteral(StreamPosTokenizer scanner)
+        public MagicOrIntLiteral(@Nonnull StreamPosTokenizer scanner)
                 throws IOException, ParseException {
             switch (scanner.nextToken()) {
                 case StreamPosTokenizer.TT_NUMBER:
@@ -1923,14 +1960,16 @@ public class StructParser extends Object {
             return intValue;
         }
 
+        @Nonnull
         public String stringValue() {
             return (magicValue == null) ? Integer.toString(intValue) : magicValue;
         }
 
-        public static int toInt(String magic) {
+        public static int toInt(@Nonnull String magic) {
             return ((magic.charAt(0) & 0xff) << 24) | ((magic.charAt(1) & 0xff) << 16) | ((magic.charAt(2) & 0xff) << 8) | ((magic.charAt(3) & 0xff) << 0);
         }
 
+        @Nonnull
         public static String toMagic(int value) {
             byte[] buf = new byte[4];
             buf[0] = (byte) ((value & 0xff000000) >>> 24);

@@ -3,18 +3,38 @@
  */
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.table.*;
-import java.awt.datatransfer.*;
-import java.awt.dnd.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
+import ch.randelshofer.gui.table.DefaultMutableTableModel;
+import ch.randelshofer.gui.table.MutableTableModel;
+import ch.randelshofer.gui.table.MutableTableTransferHandler;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.app.action.edit.CopyAction;
 import org.jhotdraw.app.action.edit.CutAction;
 import org.jhotdraw.app.action.edit.PasteAction;
 import org.jhotdraw.gui.EditableComponent;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JViewport;
+import javax.swing.KeyStroke;
+import javax.swing.UIManager;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.datatransfer.Transferable;
+import java.awt.dnd.DnDConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 /**
@@ -88,12 +108,13 @@ public class MutableJTable
         // The popup listener provides an alternative way for
         // opening the popup menu.
         popupListener = new MouseAdapter() {
-            public void mousePressed(MouseEvent evt) {
+            public void mousePressed(@Nonnull MouseEvent evt) {
                 if (isEnabled() && evt.isPopupTrigger()) {
                     createPopup().show(evt.getComponent(), evt.getX(), evt.getY());
                 }
             }
-            public void mouseReleased(MouseEvent evt) {
+
+            public void mouseReleased(@Nonnull MouseEvent evt) {
                 if (isEnabled() && evt.isPopupTrigger()) {
                     createPopup().show(evt.getComponent(), evt.getX(), evt.getY());
                 }
@@ -111,11 +132,11 @@ public class MutableJTable
     public JButton getPopupButton() {
         return popupButton;
     }
-    
+
     /**
      * Initializes the labels in a locale specific way.
      */
-    private void initLabels(Locale locale) {
+    private void initLabels(@Nonnull Locale locale) {
         // remove previously installed key strokes
         KeyStroke keyStroke;
         if (labels != null) {
@@ -235,6 +256,7 @@ public class MutableJTable
      *
      * @return The popup menu.
      */
+    @Nonnull
     protected JPopupMenu createPopup() {
         final int[] selectedRows = getSelectedRows();
         int leadSelectionRow = (selectedRows.length == 0) ? -1 : getSelectionModel().getLeadSelectionIndex();
@@ -466,14 +488,16 @@ public class MutableJTable
                 }
             }
         }
-        
+
         super.unconfigureEnclosingScrollPane();
     }
+
     /**
      * Sets the locale of this component.
+     *
      * @param l The locale to become this component's locale.
      */
-    public void setLocale(Locale l) {
+    public void setLocale(@Nonnull Locale l) {
         super.setLocale(l);
         initLabels(l);
     }

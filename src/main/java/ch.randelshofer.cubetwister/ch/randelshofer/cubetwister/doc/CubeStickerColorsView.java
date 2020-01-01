@@ -4,12 +4,15 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.table.*;
-import java.awt.*;
-import javax.swing.*;
+import ch.randelshofer.gui.DefaultCellRenderer;
+import ch.randelshofer.gui.Fonts;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
 
 /**
  * Stickers View.
@@ -99,6 +102,7 @@ public class CubeStickerColorsView extends AbstractEntityView {
         add(scrollPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

@@ -36,98 +36,105 @@
 
 package idx3d;
 
-import java.io.*;
-import java.net.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 public class idx3d_3ds_Importer
 // Imports a scene from a 3ds (3d Studio Max) Ressource
 {
-	// F I E L D S
+    // F I E L D S
 
-		private int currentJunkId;
-		private int nextJunkOffset;
+    private int currentJunkId;
+    private int nextJunkOffset;
 
-		private idx3d_Scene scene;
-		private String currentObjectName=null;
-		private idx3d_Object currentObject=null;
-		private boolean endOfStream=false;
+    private idx3d_Scene scene;
+    @Nullable
+    private String currentObjectName = null;
+    @Nullable
+    private idx3d_Object currentObject = null;
+    private boolean endOfStream = false;
 
-                private float[] u, v;
+    private float[] u, v;
 
-	// C O N S T R U C T O R S
+    // C O N S T R U C T O R S
 
-		public idx3d_3ds_Importer()
-		{
-		}
-
-
-	// P U B L I C   M E T H O D S
-
-		public void importFromURL(URL url, idx3d_Scene targetscene) throws IOException
-		{
-			importFromStream(url.openStream(),targetscene);
-		}
+    public idx3d_3ds_Importer() {
+    }
 
 
-		public void importFromStream(InputStream inStream, idx3d_Scene targetscene)
-		{
-			System.out.println(">> Importing scene from 3ds stream ...");
-			scene=targetscene;
-			BufferedInputStream in=new BufferedInputStream(inStream);
-			try
-			{
-				readJunkHeader(in);
-				if (currentJunkId!=0x4D4D) {System.out.println("Error: This is no valid 3ds file."); return; }
-				while (!endOfStream) readNextJunk(in);
-			}
-			catch (Throwable ignored){}
-		}
-		
+    // P U B L I C   M E T H O D S
 
-	// P R I V A T E   M E T H O D S
-
-		private String readString(InputStream in) throws IOException
-		{
-			String result=new String();
-			byte inByte;
-			while ((inByte=(byte)in.read())!=0) result+=(char)inByte;
-			return result;
-		}
-
-		private int readInt(InputStream in) throws IOException
-		{
-			return in.read()|(in.read()<<8)|(in.read()<<16)|(in.read()<<24);
-		}
-
-		private int readShort(InputStream in) throws IOException
-		{
-			return (in.read()|(in.read()<<8));
-		}
-
-		private float readFloat(InputStream in) throws IOException
-		{
-			return Float.intBitsToFloat(readInt(in));
-		}
+    public void importFromURL(@Nonnull URL url, idx3d_Scene targetscene) throws IOException {
+        importFromStream(url.openStream(), targetscene);
+    }
 
 
-		private void readJunkHeader(InputStream in) throws IOException
-		{
-			currentJunkId=readShort(in);
-			nextJunkOffset=readInt(in);
-			endOfStream=currentJunkId<0;
-		}
+    public void importFromStream(@Nonnull InputStream inStream, idx3d_Scene targetscene) {
+        System.out.println(">> Importing scene from 3ds stream ...");
+        scene = targetscene;
+        BufferedInputStream in = new BufferedInputStream(inStream);
+        try {
+            readJunkHeader(in);
+            if (currentJunkId != 0x4D4D) {
+                System.out.println("Error: This is no valid 3ds file.");
+                return;
+            }
+            while (!endOfStream) {
+                readNextJunk(in);
+            }
+        } catch (Throwable ignored) {
+        }
+    }
 
-		private void readNextJunk(InputStream in) throws IOException
-		{
-			readJunkHeader(in);
-			
-			if (currentJunkId==0x3D3D) return; // Mesh block
-			if (currentJunkId==0x4000) // Object block
-			{
-				currentObjectName=readString(in);
-				System.out.println(">> Importing object: "+currentObjectName);
-				return;
-			}
+
+    // P R I V A T E   M E T H O D S
+
+    @Nonnull
+    private String readString(@Nonnull InputStream in) throws IOException {
+        String result = new String();
+        byte inByte;
+        while ((inByte = (byte) in.read()) != 0) {
+            result += (char) inByte;
+        }
+        return result;
+    }
+
+    private int readInt(@Nonnull InputStream in) throws IOException {
+        return in.read() | (in.read() << 8) | (in.read() << 16) | (in.read() << 24);
+    }
+
+    private int readShort(@Nonnull InputStream in) throws IOException {
+        return (in.read() | (in.read() << 8));
+    }
+
+    private float readFloat(@Nonnull InputStream in) throws IOException {
+        return Float.intBitsToFloat(readInt(in));
+    }
+
+
+    private void readJunkHeader(@Nonnull InputStream in) throws IOException {
+        currentJunkId = readShort(in);
+        nextJunkOffset = readInt(in);
+        endOfStream = currentJunkId < 0;
+    }
+
+    private void readNextJunk(@Nonnull InputStream in) throws IOException {
+        readJunkHeader(in);
+
+        if (currentJunkId == 0x3D3D) {
+            return; // Mesh block
+        }
+        if (currentJunkId == 0x4000) // Object block
+        {
+            currentObjectName = readString(in);
+            System.out.println(">> Importing object: " + currentObjectName);
+            return;
+        }
 			if (currentJunkId==0x4100)  // Triangular polygon object
 			{
 				currentObject=new idx3d_Object();
@@ -143,45 +150,41 @@ public class idx3d_3ds_Importer
 			{
 				readPointList(in);
 				return;
-			}
-			if (currentJunkId==0x4140) // Mapping coordinates
-			{
-				readMappingCoordinates(in);
-				return;
-			}
+            }
+        if (currentJunkId == 0x4140) // Mapping coordinates
+        {
+            readMappingCoordinates(in);
+            return;
+        }
 
-			skipJunk(in);
-		}
+        skipJunk(in);
+    }
 
-		private void skipJunk(InputStream in) throws IOException, OutOfMemoryError
-		{
-			for (int i=0; (i<nextJunkOffset-6)&&(!endOfStream);i++)
-				endOfStream=in.read()<0;
-		}
+    private void skipJunk(@Nonnull InputStream in) throws IOException, OutOfMemoryError {
+        for (int i = 0; (i < nextJunkOffset - 6) && (!endOfStream); i++) {
+            endOfStream = in.read() < 0;
+        }
+    }
 
-		private void readVertexList(InputStream in) throws IOException
-		{
-			float x,y,z;
-			int vertices=readShort(in);
-			for (int i=0; i<vertices; i++)
-			{
-				x=readFloat(in);
-				y=readFloat(in);
-				z=readFloat(in);
-				currentObject.addVertex(x,-y,z);
-			}
-		}
+    private void readVertexList(@Nonnull InputStream in) throws IOException {
+        float x, y, z;
+        int vertices = readShort(in);
+        for (int i = 0; i < vertices; i++) {
+            x = readFloat(in);
+            y = readFloat(in);
+            z = readFloat(in);
+            currentObject.addVertex(x, -y, z);
+        }
+    }
 
-		private void readPointList(InputStream in) throws IOException
-		{
-			int v1,v2,v3;
-			int triangles=readShort(in);
-			for (int i=0; i<triangles; i++)
-			{
-				v1=readShort(in);
-				v2=readShort(in);
-				v3=readShort(in);
-				readShort(in);
+    private void readPointList(@Nonnull InputStream in) throws IOException {
+        int v1, v2, v3;
+        int triangles = readShort(in);
+        for (int i = 0; i < triangles; i++) {
+            v1 = readShort(in);
+            v2 = readShort(in);
+            v3 = readShort(in);
+            readShort(in);
                                 
                                 if (u == null || u.length == 0) {
                                     currentObject.addTriangle(
@@ -197,19 +200,17 @@ public class idx3d_3ds_Importer
                                             u[v1], v[v1], u[v2], v[v2], u[v3], v[v3]
                                     );
                                 }
-                                
-			}
-		}
 
-		private void readMappingCoordinates(InputStream in) throws IOException
-		{
-			int vertices=readShort(in);
-                        u = new float[vertices];
-                        v = new float[vertices];
-			for (int i=0; i<vertices; i++)
-			{
-                            u[i] = readFloat(in);
-                            v[i] = readFloat(in);
-			}
-		}
+        }
+    }
+
+    private void readMappingCoordinates(@Nonnull InputStream in) throws IOException {
+        int vertices = readShort(in);
+        u = new float[vertices];
+        v = new float[vertices];
+        for (int i = 0; i < vertices; i++) {
+            u[i] = readFloat(in);
+            v[i] = readFloat(in);
+        }
+    }
 }

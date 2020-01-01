@@ -4,9 +4,20 @@
 
 package ch.randelshofer.io;
 
-import java.io.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.EventListenerList;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FilterReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 /**
  * BoundedRangeReader.
  *
@@ -24,49 +35,55 @@ implements BoundedRangeModel {
      * event's only (read-only) state is the source property.  The source
      * of events generated here is always "this".
      */
+    @Nullable
     protected transient ChangeEvent changeEvent = null;
     
     /** The listeners waiting for model changes. */
+    @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
-    
+
     /**
      * Create a new instance.
      */
-    public BoundedRangeReader(File file, boolean isBuffered) throws IOException {
-        super((isBuffered) 
-        ? (Reader) new BufferedReader(new InputStreamReader(new FileInputStream(file)))
-        : (Reader) new InputStreamReader(new FileInputStream(file))
+    public BoundedRangeReader(@Nonnull File file, boolean isBuffered) throws IOException {
+        super((isBuffered)
+                ? (Reader) new BufferedReader(new InputStreamReader(new FileInputStream(file)))
+                : (Reader) new InputStreamReader(new FileInputStream(file))
         );
-        
+
         size = (int) file.length();
     }
+
     /**
      * Create a new instance.
      */
-    public BoundedRangeReader(File file, String charsetName, boolean isBuffered) throws IOException {
-        super((isBuffered) 
-        ? (Reader) new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName))
-        : (Reader) new InputStreamReader(new FileInputStream(file), charsetName)
+    public BoundedRangeReader(@Nonnull File file, @Nonnull String charsetName, boolean isBuffered) throws IOException {
+        super((isBuffered)
+                ? (Reader) new BufferedReader(new InputStreamReader(new FileInputStream(file), charsetName))
+                : (Reader) new InputStreamReader(new FileInputStream(file), charsetName)
         );
-        
+
         size = (int) file.length();
     }
+
     /**
      * Creates a new instance.
+     *
      * @param file The file is used to determine the maximum value of the bounded
-     * range model. The maximum value is only approximate, because the characters
-     * may be encoded by multiple bytes.
+     *             range model. The maximum value is only approximate, because the characters
+     *             may be encoded by multiple bytes.
      */
-    public BoundedRangeReader(File file, Reader in) throws IOException {
+    public BoundedRangeReader(@Nonnull File file, @Nonnull Reader in) throws IOException {
         super(in);
-        size = (int) file.length();   
+        size = (int) file.length();
     }
+
     /**
      * Create a new instance.
      * Note that you to set the maximum value using setMaximum to get
      * a bounded range.
      */
-    public BoundedRangeReader(Reader in) throws IOException {
+    public BoundedRangeReader(@Nonnull Reader in) throws IOException {
         super(in);
         //size = in.available();
     }
@@ -88,9 +105,9 @@ implements BoundedRangeModel {
     /**
      * Read characters into a portion of an array.
      *
-     * @exception  IOException  If an I/O error occurs
+     * @throws IOException If an I/O error occurs
      */
-    public int read(char cbuf[], int off, int len) throws IOException {
+    public int read(@Nonnull char cbuf[], int off, int len) throws IOException {
         int nr = in.read(cbuf, off, len);
         incrementValue(nr);
         return nr;

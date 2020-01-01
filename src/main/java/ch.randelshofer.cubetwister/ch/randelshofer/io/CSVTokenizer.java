@@ -4,7 +4,11 @@
 
 package ch.randelshofer.io;
 
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.io.IOException;
+import java.io.Reader;
 /**
  * Parses a comma separated values (CSV) stream into tokens.
  * <p>
@@ -113,7 +117,8 @@ public class CSVTokenizer {
      * made available as the part of the API in a future release.
      */
     private static final int TT_NOTHING = -4;
-    
+
+    @Nonnull
     private char buf[] = new char[20];
     
     /** Creates a new instance. */
@@ -133,6 +138,7 @@ public class CSVTokenizer {
      * @see     #TT_VALUE
      * @see     #ttype
      */
+    @Nullable
     public static String value = null;
     
     

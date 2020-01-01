@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class ReverseListIterator<T>
     private List<T> list;
     private int index;
 
-    public ReverseListIterator(List<T> list) {
+    public ReverseListIterator(@Nonnull List<T> list) {
         this.list = list;
         index = list.size() - 1;
     }

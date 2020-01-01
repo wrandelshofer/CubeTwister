@@ -3,15 +3,17 @@
  */
 package ch.randelshofer.debug;
 // ----------------------------------------------------------------------------
+
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * A simple class to experiment with your JVM's garbage collector
  * and memory sizes for various data types.
  *
  * @author <a href="mailto:vlad@trilogy.com">Vladimir Roubtsov</a>
  */
-public class Sizeof
-{
-    public static void main (String [] args) throws Exception
+public class Sizeof {
+    public static void main(String[] args) throws Exception
     {
         // "warm up" all classes/methods that we are going to use:
         runGC ();
@@ -61,6 +63,7 @@ public class Sizeof
     
     // a helper method for creating Strings of desired length
     // and avoiding getting tricked by String interning:
+    @Nonnull
     public static String createString (final int length)
     {
         final char [] result = new char [length];

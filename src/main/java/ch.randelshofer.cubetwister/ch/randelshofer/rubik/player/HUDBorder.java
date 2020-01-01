@@ -4,6 +4,8 @@
 
 package ch.randelshofer.rubik.player;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.border.Border;
 import java.awt.Color;
 import java.awt.Component;
@@ -35,9 +37,10 @@ public class HUDBorder implements Border {
                         g.drawRoundRect(x + 3, y + 3, width - 8, height - 8, 12, 12);
                     }
 
-                    public Insets getBorderInsets(Component c) {
-                        return new Insets(9, 9, 9, 9);
-                    }
+    @Nonnull
+    public Insets getBorderInsets(Component c) {
+        return new Insets(9, 9, 9, 9);
+    }
 
                     public boolean isBorderOpaque() {
                         return false;

@@ -3,20 +3,26 @@
  */
 package ch.randelshofer.cubetwister;
 
-import ch.randelshofer.cubetwister.doc.*;
-import ch.randelshofer.gui.*;
+import ch.randelshofer.cubetwister.doc.CubeModel;
+import ch.randelshofer.cubetwister.doc.CubeView;
+import ch.randelshofer.cubetwister.doc.DocumentModel;
+import ch.randelshofer.cubetwister.doc.DocumentModelTreeCellRenderer;
+import ch.randelshofer.cubetwister.doc.NotationModel;
+import ch.randelshofer.cubetwister.doc.NotationView;
+import ch.randelshofer.cubetwister.doc.ScriptModel;
+import ch.randelshofer.cubetwister.doc.ScriptView;
+import ch.randelshofer.cubetwister.doc.TextModel;
+import ch.randelshofer.cubetwister.doc.TextView;
+import ch.randelshofer.gui.JExplorer;
+import ch.randelshofer.gui.ProgressView;
+import ch.randelshofer.gui.Viewer;
 import ch.randelshofer.rubik.impexp.csv.CSVExporter;
 import ch.randelshofer.rubik.impexp.cubeexplorer.CubeExplorerExporter;
-import ch.randelshofer.undo.*;
-
-import java.awt.*;
-import java.io.*;
-import java.net.URI;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import nanoxml.*;
-import org.jhotdraw.app.*;
+import ch.randelshofer.undo.UndoRedoManager;
+import nanoxml.XMLElement;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+import org.jhotdraw.app.AbstractView;
 import org.jhotdraw.app.action.edit.RedoAction;
 import org.jhotdraw.app.action.edit.UndoAction;
 import org.jhotdraw.gui.BackgroundTask;
@@ -26,10 +32,30 @@ import org.jhotdraw.gui.Worker;
 import org.jhotdraw.gui.filechooser.ExtensionFileFilter;
 import org.jhotdraw.net.URIUtil;
 
+import javax.swing.SwingUtilities;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.StringWriter;
+import java.net.URI;
+import java.util.HashMap;
+
 /**
  * CubeTwisterView.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class CubeTwisterView extends AbstractView implements Viewer {
 
@@ -37,24 +63,31 @@ public class CubeTwisterView extends AbstractView implements Viewer {
     /**
      * The Cube view.
      */
+    @Nullable
     private CubeView cubeView;
     /**
      * The Notation view.
      */
+    @Nullable
     private NotationView notationView;
     /**
      * The script view.
      */
+    @Nullable
     private ScriptView scriptView;
     /**
      * The text view.
      */
+    @Nullable
     private TextView textView;
     /**
      * The Undo Manager.
      */
+    @Nullable
     private UndoRedoManager undo;
+    @Nullable
     private JExplorer explorer;
+    @Nullable
     private ChangeListener changeListener;
     /**
      * We cache the template document, so that we can faster open new
@@ -115,7 +148,7 @@ public class CubeTwisterView extends AbstractView implements Viewer {
     }
 
     @Override
-    public boolean canSaveTo(URI uri) {
+    public boolean canSaveTo(@Nonnull URI uri) {
         return new File(uri).getName().endsWith(".xml");
     }
 
@@ -164,6 +197,7 @@ public class CubeTwisterView extends AbstractView implements Viewer {
         setHasUnsavedChanges(undo.hasSignificantEdits());
     }
 
+    @Nonnull
     public static DocumentModel readTemplate() {
         DocumentModel documentModel = new DocumentModel();
 
@@ -173,10 +207,10 @@ public class CubeTwisterView extends AbstractView implements Viewer {
             try {
                 File userTemplate = userTemplate = new File(
                         System.getProperty("user.home")
-                        + File.separatorChar + "Library"
-                        + File.separatorChar + "Preferences"
-                        + File.separatorChar + "CubeTwister"
-                        + File.separatorChar + "template.xml");
+                                + File.separatorChar + "Library"
+                                + File.separatorChar + "Preferences"
+                                + File.separatorChar + "CubeTwister"
+                                + File.separatorChar + "template.xml");
 
                 if (userTemplate.exists()) {
                     in = new FileInputStream(userTemplate);
@@ -226,6 +260,7 @@ public class CubeTwisterView extends AbstractView implements Viewer {
      * embedded.
      * @param value This is the object to be displayed.
      */
+    @Nullable
     @Override
     public Component getComponent(Component parent, final Object value) {
         // FIXME - Get rid of all these instanceof tests.
@@ -297,12 +332,12 @@ public class CubeTwisterView extends AbstractView implements Viewer {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
     @Override
-    public void read(URI uri, URIChooser chooser) throws IOException {
+    public void read(@Nonnull URI uri, URIChooser chooser) throws IOException {
         File f = new File(uri);
 
         final DocumentModel newModel = new DocumentModel();
 
-        try (InputStream in =new BufferedInputStream(new FileInputStream(f))) {
+        try (InputStream in = new BufferedInputStream(new FileInputStream(f))) {
             newModel.addSerializedNode(in);
         }
         // We need a worker here, because we must avoid race conditions
@@ -354,12 +389,13 @@ public class CubeTwisterView extends AbstractView implements Viewer {
         });
     }
 
+    @Nonnull
     public DocumentModel getModel() {
         return (DocumentModel) explorer.getTreeModel();
     }
 
     @Override
-    public void write(URI uri, URIChooser chooser) throws IOException {
+    public void write(@Nonnull URI uri, URIChooser chooser) throws IOException {
         JFileURIChooser fc = (JFileURIChooser) chooser;
         // ------
         if (fc != null && (fc.getFileFilter() instanceof ExtensionFileFilter)) {

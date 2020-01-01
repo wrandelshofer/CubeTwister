@@ -4,7 +4,11 @@
 
 package ch.randelshofer.gui.datatransfer;
 
-import java.awt.datatransfer.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 /**
  *
@@ -14,24 +18,27 @@ public class JVMLocalObjectTransferable
 implements Transferable {
     private DataFlavor[] flavors;
     private Object data;
-    
-    /** Creates new JVMLocalObjectTransferable */
-    public JVMLocalObjectTransferable(Class<?> transferClass, Object data) {
+
+    /**
+     * Creates new JVMLocalObjectTransferable
+     */
+    public JVMLocalObjectTransferable(@Nonnull Class<?> transferClass, Object data) {
         this.data = data;
-        flavors = new DataFlavor[] { 
-            new DataFlavor(transferClass, "Object")
+        flavors = new DataFlavor[]{
+                new DataFlavor(transferClass, "Object")
         };
     }
 
-    public Object getTransferData(DataFlavor dataFlavor) 
-    throws UnsupportedFlavorException, IOException {
-        if (! dataFlavor.equals(flavors[0])) {
+    @Nonnull
+    public Object getTransferData(@Nonnull DataFlavor dataFlavor)
+            throws UnsupportedFlavorException, IOException {
+        if (!dataFlavor.equals(flavors[0])) {
             throw new UnsupportedFlavorException(dataFlavor);
         }
         return data;
     }
-    
-    public boolean isDataFlavorSupported(DataFlavor dataFlavor) {
+
+    public boolean isDataFlavorSupported(@Nonnull DataFlavor dataFlavor) {
         return dataFlavor.equals(flavors[0]);
     }
     

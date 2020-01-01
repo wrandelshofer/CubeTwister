@@ -5,9 +5,13 @@
 
 package ch.randelshofer.gui.table;
 
-import java.awt.datatransfer.*;
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.JTable;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 /**
  * The MutableTableTransferable is a proxy for the actual Transferable of a JTable,
@@ -43,6 +47,7 @@ public class MutableTableTransferable implements Transferable {
         return target.isDataFlavorSupported(flavor);
     }
 
+    @Nonnull
     @Override
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         return target.getTransferData(flavor);

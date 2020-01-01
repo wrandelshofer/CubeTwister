@@ -1,6 +1,12 @@
 package idx3d.debug;
 
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Event;
+import java.awt.Panel;
+import java.awt.Scrollbar;
 import java.util.Vector;
 
 @SuppressWarnings({"deprecation","unchecked"})
@@ -9,7 +15,7 @@ public class ScrollList extends Panel {
     private final static long serialVersionUID = 1L;
     int cellheight;
     Scrollbar scrollbar;
-    Vector entry = new Vector();
+    @Nonnull Vector entry = new Vector();
 
 	// C O N S T R U C T O R S
     private ScrollList() {
@@ -28,7 +34,7 @@ public class ScrollList extends Panel {
         return super.add(comp);
     }
 
-    public void remove(Component comp) {
+    public void remove(@Nonnull Component comp) {
         entry.removeElement(comp);
         super.remove(comp);
     }
@@ -72,7 +78,7 @@ public class ScrollList extends Panel {
         scrollbar.reshape(width - 18, 0, 18, height);
     }
 
-    public boolean handleEvent(Event evt) {
+    public boolean handleEvent(@Nonnull Event evt) {
         if (evt.target == scrollbar) {
             layout();
         }

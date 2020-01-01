@@ -9,9 +9,12 @@
 
 package ch.randelshofer.debug;
 
-import java.awt.event.*;
-import javax.swing.*;
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JFrame;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 /**
  *
  * @author  Werner Randelshofer
@@ -42,10 +45,13 @@ public class Debugger extends javax.swing.JFrame {
         memoryMonitor.stop();
         super.dispose();
     }
-    
+
+    @Nonnull
     public Dimension getMinimumSize() {
         return new Dimension(300, 200);
     }
+
+    @Nonnull
     public Dimension getPreferredSize() {
         return new Dimension(300, 200);
     }

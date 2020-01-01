@@ -4,8 +4,11 @@
 
 package ch.randelshofer.io;
 
-import java.io.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nullable;
+
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
 /**
  * Reads values from a comma separated (CSV) stream.
  * <p>
@@ -68,6 +71,7 @@ public class CSVReader {
     /**
      * Returns null, if EOF has been reached.
      */
+    @Nullable
     public String[] readln() throws IOException {
         record.clear();
         

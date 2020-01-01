@@ -3,13 +3,17 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import javax.swing.table.*;
-import javax.swing.undo.*;
 import ch.randelshofer.gui.table.DefaultCellEditor2;
-import javax.swing.text.PlainDocument;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * NotationMovesView.
@@ -49,6 +53,7 @@ public class NotationMovesView extends JPanel implements EntityView {
         table.setDefaultEditor(String.class, editor);
     }
 
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;

@@ -36,15 +36,17 @@
 
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+
 public final class idx3d_Color
 // Faster Color handling for 24bit colors
 {
-	public static final int ALPHA=0xFF000000; // alpha mask
-	public static final int RED=0xFF0000;  // red mask
-	public static final int GREEN=0xFF00;  // green mask
-	public static final int BLUE=0xFF;  // blue mask
-	public static final int MASK7Bit=0xFEFEFF;  // mask for additive/subtractive shading
-	public static final int MASK6Bit=0xFCFCFC;  // mask for additive/subtractive shading
+    public static final int ALPHA = 0xFF000000; // alpha mask
+    public static final int RED = 0xFF0000;  // red mask
+    public static final int GREEN = 0xFF00;  // green mask
+    public static final int BLUE = 0xFF;  // blue mask
+    public static final int MASK7Bit = 0xFEFEFF;  // mask for additive/subtractive shading
+    public static final int MASK6Bit = 0xFCFCFC;  // mask for additive/subtractive shading
 	public static final int RGB=0xFFFFFF;  // rgb mask
 	
 	private static int pixel,color,overflow,scale,r,g,b;
@@ -183,27 +185,27 @@ public final class idx3d_Color
 			int g=(color>>8)&255;
 			int b=color&255;
 			r+=(int)(idx3d_Math.random()*(float)delta);
-			g+=(int)(idx3d_Math.random()*(float)delta);
-			b+=(int)(idx3d_Math.random()*(float)delta);
-			return getCropColor(r,g,b);
-		}
-		
-		public static final int random()
-		{
-			return (int)(Math.random()*16777216);
-		}
-			
-		public static int[] makeGradient(int colors[], int size)
-		{
-			int[] pal=new int[size];
-			int c1,c2,pos1,pos2,range;
-			int r,g,b,r1,g1,b1,r2,g2,b2,dr,dg,db;
-			if (colors.length==1)
-			{
-				c1=colors[0];
-				for (int i=0;i<size;i++) pal[i]=c1;
-				return pal;
-			}
+            g += (int) (idx3d_Math.random() * (float) delta);
+            b += (int) (idx3d_Math.random() * (float) delta);
+            return getCropColor(r, g, b);
+        }
+
+    public static final int random() {
+        return (int) (Math.random() * 16777216);
+    }
+
+    @Nonnull
+    public static int[] makeGradient(@Nonnull int colors[], int size) {
+        int[] pal = new int[size];
+        int c1, c2, pos1, pos2, range;
+        int r, g, b, r1, g1, b1, r2, g2, b2, dr, dg, db;
+        if (colors.length == 1) {
+            c1 = colors[0];
+            for (int i = 0; i < size; i++) {
+                pal[i] = c1;
+            }
+            return pal;
+        }
 			
 			for (int c=0;c<colors.length-1;c++)
 			{

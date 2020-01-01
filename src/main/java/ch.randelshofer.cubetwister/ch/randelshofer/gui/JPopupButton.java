@@ -4,12 +4,18 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.beans.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.event.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.Action;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.JToolBar;
+import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 /**
  * JPopupButton.
  * @author  Wermer Randelshofer
@@ -26,18 +32,18 @@ public class JPopupButton extends javax.swing.JButton {
     public JPopupButton() {
         initComponents();
     }
-    
-    public void setAction(Action action, Rectangle actionArea) {
+
+    public void setAction(@Nonnull Action action, Rectangle actionArea) {
         this.action = action;
         this.actionArea = actionArea;
         action.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                if ("enabled".equals(evt.getPropertyName())) {
-                    setEnabled(((Boolean) evt.getNewValue()).booleanValue());
-                } else {
-                    repaint();
-                }
-            }
+                                             public void propertyChange(@Nonnull PropertyChangeEvent evt) {
+                                                 if ("enabled".equals(evt.getPropertyName())) {
+                                                     setEnabled(((Boolean) evt.getNewValue()).booleanValue());
+                                                 } else {
+                                                     repaint();
+                                                 }
+                                             }
         }
         );
     }
@@ -98,40 +104,40 @@ public class JPopupButton extends javax.swing.JButton {
         public void mouseExited(java.awt.event.MouseEvent evt) {
         }
 
-        public void mousePressed(java.awt.event.MouseEvent evt) {
+        public void mousePressed(@Nonnull java.awt.event.MouseEvent evt) {
             if (evt.getSource() == JPopupButton.this) {
                 JPopupButton.this.showPopup(evt);
             }
         }
 
-        public void mouseReleased(java.awt.event.MouseEvent evt) {
+        public void mouseReleased(@Nonnull java.awt.event.MouseEvent evt) {
             if (evt.getSource() == JPopupButton.this) {
                 JPopupButton.this.performAction(evt);
             }
         }
     }//GEN-END:initComponents
-    
-    private void performAction(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_performAction
+
+    private void performAction(@Nonnull java.awt.event.MouseEvent evt) {//GEN-FIRST:event_performAction
         // Add your handling code here:
-        if (actionArea != null && actionArea.contains(evt.getX()-getInsets().left, evt.getY()-getInsets().top)) {
+        if (actionArea != null && actionArea.contains(evt.getX() - getInsets().left, evt.getY() - getInsets().top)) {
             action.actionPerformed(
-            new ActionEvent(this,
-            ActionEvent.ACTION_PERFORMED,
-            null,
-            //evt.getWhen(), <- requires JDK 1.4
-            evt.getModifiers())
+                    new ActionEvent(this,
+                            ActionEvent.ACTION_PERFORMED,
+                            null,
+                            //evt.getWhen(), <- requires JDK 1.4
+                            evt.getModifiers())
             );
             
         }
     }//GEN-LAST:event_performAction
-    
-    private void showPopup(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPopup
+
+    private void showPopup(@Nonnull java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPopup
         // Add your handling code here:
         if (popupMenu != null
-        && (actionArea == null || ! actionArea.contains(evt.getX()-getInsets().left, evt.getY()-getInsets().top))
+                && (actionArea == null || !actionArea.contains(evt.getX() - getInsets().left, evt.getY() - getInsets().top))
         ) {
             int x, y;
-            
+
             x = 0;
             y = getHeight();
             if (getParent() instanceof JToolBar) {

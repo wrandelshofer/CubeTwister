@@ -35,7 +35,11 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
-/** defines a 3d vector. */
+import org.jhotdraw.annotation.Nonnull;
+
+/**
+ * defines a 3d vector.
+ */
 public class idx3d_Vector implements Cloneable {
     // F I E L D S
 
@@ -65,6 +69,7 @@ public class idx3d_Vector implements Cloneable {
     }
 
     /** Normalizes the vector. */
+    @Nonnull
     public idx3d_Vector normalize() {
         float dist = length();
         if (dist == 0) {
@@ -78,6 +83,7 @@ public class idx3d_Vector implements Cloneable {
     }
 
     /** Reverses the vector. */
+    @Nonnull
     public idx3d_Vector reverse() {
         x = -x;
         y = -y;
@@ -90,16 +96,22 @@ public class idx3d_Vector implements Cloneable {
         return (float) Math.sqrt(x * x + y * y + z * z);
     }
 
-    /** Modifies the vector by matrix m. */
-    public idx3d_Vector transform(idx3d_Matrix m) {
+    /**
+     * Modifies the vector by matrix m.
+     */
+    @Nonnull
+    public idx3d_Vector transform(@Nonnull idx3d_Matrix m) {
         float newx = x * m.m00 + y * m.m01 + z * m.m02 + m.m03;
         float newy = x * m.m10 + y * m.m11 + z * m.m12 + m.m13;
         float newz = x * m.m20 + y * m.m21 + z * m.m22 + m.m23;
         return new idx3d_Vector(newx, newy, newz);
     }
 
-    /** Modifies the vector by matrix m. */
-    public idx3d_Vector transformInto(idx3d_Matrix m, idx3d_Vector resultVector) {
+    /**
+     * Modifies the vector by matrix m.
+     */
+    @Nonnull
+    public idx3d_Vector transformInto(@Nonnull idx3d_Matrix m, @Nonnull idx3d_Vector resultVector) {
         float newx = x * m.m00 + y * m.m01 + z * m.m02 + m.m03;
         float newy = x * m.m10 + y * m.m11 + z * m.m12 + m.m13;
         float newz = x * m.m20 + y * m.m21 + z * m.m22 + m.m23;
@@ -107,8 +119,10 @@ public class idx3d_Vector implements Cloneable {
         return resultVector;
     }
 
-    /** Modifies the vector by matrix m. */
-    public float transformIntoW(idx3d_Matrix m, idx3d_Vector resultVector) {
+    /**
+     * Modifies the vector by matrix m.
+     */
+    public float transformIntoW(@Nonnull idx3d_Matrix m, @Nonnull idx3d_Vector resultVector) {
         float newx = x * m.m00 + y * m.m01 + z * m.m02 + m.m03;
         float newy = x * m.m10 + y * m.m11 + z * m.m12 + m.m13;
         float newz = x * m.m20 + y * m.m21 + z * m.m22 + m.m23;
@@ -129,28 +143,43 @@ public class idx3d_Vector implements Cloneable {
         y = r * idx3d_Math.sin(theta);
     }
 
-    /** returns the normal vector of the plane defined by the two vectors. */
-    public static idx3d_Vector getNormal(idx3d_Vector a, idx3d_Vector b) {
+    /**
+     * returns the normal vector of the plane defined by the two vectors.
+     */
+    @Nonnull
+    public static idx3d_Vector getNormal(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b) {
         return vectorProduct(a, b).normalize();
     }
 
-    /** returns the normal vector of the plane defined by the two vectors. */
-    public static idx3d_Vector getNormal(idx3d_Vector a, idx3d_Vector b, idx3d_Vector c) {
+    /**
+     * returns the normal vector of the plane defined by the two vectors.
+     */
+    @Nonnull
+    public static idx3d_Vector getNormal(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b, @Nonnull idx3d_Vector c) {
         return vectorProduct(a, b, c).normalize();
     }
 
-    /** returns the normal vector of the plane defined by the two vectors. */
-    public static idx3d_Vector getNormalInto(idx3d_Vector a, idx3d_Vector b, idx3d_Vector c, idx3d_Vector resultVector) {
+    /**
+     * returns the normal vector of the plane defined by the two vectors.
+     */
+    @Nonnull
+    public static idx3d_Vector getNormalInto(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b, @Nonnull idx3d_Vector c, @Nonnull idx3d_Vector resultVector) {
         return vectorProductInto(a, b, c, resultVector).normalize();
     }
 
-    /** returns a x b. */
-    public static idx3d_Vector vectorProduct(idx3d_Vector a, idx3d_Vector b) {
+    /**
+     * returns a x b.
+     */
+    @Nonnull
+    public static idx3d_Vector vectorProduct(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b) {
         return new idx3d_Vector(a.y * b.z - b.y * a.z, a.z * b.x - b.z * a.x, a.x * b.y - b.x * a.y);
     }
 
-    /** returns a x b. */
-    public static idx3d_Vector vectorProductInto(idx3d_Vector a, idx3d_Vector b, idx3d_Vector resultVector) {
+    /**
+     * returns a x b.
+     */
+    @Nonnull
+    public static idx3d_Vector vectorProductInto(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b, @Nonnull idx3d_Vector resultVector) {
         resultVector.setTo(
                 a.y * b.z - b.y * a.z,
                 a.z * b.x - b.z * a.x,
@@ -158,14 +187,20 @@ public class idx3d_Vector implements Cloneable {
         return resultVector;
     }
 
-    /** returns (b-a) x (c-a). */
-    public static idx3d_Vector vectorProduct(idx3d_Vector a, idx3d_Vector b, idx3d_Vector c) {
+    /**
+     * returns (b-a) x (c-a).
+     */
+    @Nonnull
+    public static idx3d_Vector vectorProduct(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b, @Nonnull idx3d_Vector c) {
         //	return vectorProduct(sub(b,a),sub(c,a));
         return vectorProductInto(a, b, c, new idx3d_Vector());
     }
 
-    /** returns (b-a) x (c-a). */
-    public static idx3d_Vector vectorProductInto(idx3d_Vector a, idx3d_Vector b, idx3d_Vector c, idx3d_Vector resultVector) {
+    /**
+     * returns (b-a) x (c-a).
+     */
+    @Nonnull
+    public static idx3d_Vector vectorProductInto(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b, @Nonnull idx3d_Vector c, @Nonnull idx3d_Vector resultVector) {
         float bax = b.x - a.x;
         float bay = b.y - a.y;
         float baz = b.z - a.z;
@@ -178,45 +213,58 @@ public class idx3d_Vector implements Cloneable {
         resultVector.z = bax * cay - cax * bay;
 
         return resultVector;
-    //return vectorProductInto(sub(b,a),sub(c,a), resultVector);
+        //return vectorProductInto(sub(b,a),sub(c,a), resultVector);
     }
 
-    /** returns the angle between 2 vectors. */
-    public static float angle(idx3d_Vector a, idx3d_Vector b) {
+    /**
+     * returns the angle between 2 vectors.
+     */
+    public static float angle(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b) {
         a.normalize();
         b.normalize();
         return (a.x * b.x + a.y * b.y + a.z * b.z);
     }
 
-    /** adds 2 vectors. */
-    public static idx3d_Vector add(idx3d_Vector a, idx3d_Vector b) {
+    /**
+     * adds 2 vectors.
+     */
+    @Nonnull
+    public static idx3d_Vector add(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b) {
         return new idx3d_Vector(a.x + b.x, a.y + b.y, a.z + b.z);
     }
 
-    /** subtracts 2 vectors. */
-    public static idx3d_Vector sub(idx3d_Vector a, idx3d_Vector b) {
+    /**
+     * subtracts 2 vectors.
+     */
+    @Nonnull
+    public static idx3d_Vector sub(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b) {
         return new idx3d_Vector(a.x - b.x, a.y - b.y, a.z - b.z);
     }
 
     /** dotProduct product of 2 vectors. */
-    public static float dotProduct(idx3d_Vector a, idx3d_Vector b) {
+    public static float dotProduct(@Nonnull idx3d_Vector a, @Nonnull idx3d_Vector b) {
         return a.x * b.x + a.y * b.y + a.z * b.z;
     }
 
     /** substracts 2 vectors. */
-    public static idx3d_Vector scale(float f, idx3d_Vector a) {
+    @Nonnull
+    public static idx3d_Vector scale(float f, @Nonnull idx3d_Vector a) {
         return new idx3d_Vector(f * a.x, f * a.y, f * a.z);
     }
 
     /** length of vector. */
-    public static float len(idx3d_Vector a) {
+    public static float len(@Nonnull idx3d_Vector a) {
         return (float) Math.sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
     }
 
-    /** returns a random vector. */
+    /**
+     * returns a random vector.
+     */
+    @Nonnull
     public static idx3d_Vector random(float fact) {
         return new idx3d_Vector(fact * idx3d_Math.random(), fact * idx3d_Math.random(), fact * idx3d_Math.random());
     }
+
     /**
      * Computes the plane equation a*x + b*y + c*z + d = 0 from three given
      * points in space.
@@ -225,7 +273,8 @@ public class idx3d_Vector implements Cloneable {
      * @param v2
      * @param v3
      */
-    public static float[] planeEquation(idx3d_Vector v1, idx3d_Vector v2, idx3d_Vector v3) {
+    @Nonnull
+    public static float[] planeEquation(@Nonnull idx3d_Vector v1, @Nonnull idx3d_Vector v2, @Nonnull idx3d_Vector v3) {
         float x1 = v1.x;
         float x2 = v2.x;
         float x3 = v3.x;
@@ -243,10 +292,12 @@ public class idx3d_Vector implements Cloneable {
         return new float[]{a, b, c, d};
     }
 
+    @Nonnull
     public String toString() {
         return new String("<vector x=" + x + " y=" + y + " z=" + z + ">\r\n");
     }
 
+    @Nonnull
     public idx3d_Vector getClone() {
         return new idx3d_Vector(x, y, z);
     }
@@ -259,7 +310,7 @@ public class idx3d_Vector implements Cloneable {
         }
     }
 
-    public boolean equals(idx3d_Vector that) {
+    public boolean equals(@Nonnull idx3d_Vector that) {
         return this.x - that.x < 0.001 &&
                 this.y - that.y < 0.001 &&
                 this.z - that.z < 0.001;
@@ -278,6 +329,7 @@ public class idx3d_Vector implements Cloneable {
     }
     }*/
 
+    @Nonnull
     @Override
     public idx3d_Vector clone() {
         try {

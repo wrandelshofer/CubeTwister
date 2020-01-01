@@ -3,9 +3,14 @@
  */
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.applet.Applet;
 import java.awt.Color;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 /**
  * Usefull methods for applets.
@@ -28,14 +33,15 @@ public class Applets extends Object {
         debug = newValue;
     }
 
-    /** Sets command line arguments. These arguments are used as fallback,
+    /**
+     * Sets command line arguments. These arguments are used as fallback,
      * when the applet is run as an application.
      *
      * @param args
      */
-    public static void setMainArgs(Applet applet, String[] args) {
-        fallback = new HashMap<String,String>();
-        
+    public static void setMainArgs(@Nonnull Applet applet, @Nonnull String[] args) {
+        fallback = new HashMap<String, String>();
+
         HashMap<String, String[]> info = new HashMap<String, String[]>();
         for (String[] pinf : applet.getParameterInfo()) {
             info.put(pinf[0], pinf);
@@ -137,7 +143,7 @@ public class Applets extends Object {
      * @return Returns the value of the parameter, or the default value, if
      * the parameter does not exist, or does not represent a double.
      */
-    public static Color getParameter(Applet applet, String name, Color defaultValue) {
+    public static Color getParameter(@Nonnull Applet applet, String name, Color defaultValue) {
         String value = getParameter(applet, name);
         if (value != null) {
             value = value.toLowerCase();
@@ -162,12 +168,13 @@ public class Applets extends Object {
      * Returns the String value of an applet parameter or the
      * default value if the parameter is null.
      *
-     * @param   applet  The applet from which we want to get the parameter.
-     * @param   name    The name of the parameter.
-     * @param   defaultValue This value is returned when the applet returns
-     *                  null for the parameter.
+     * @param applet       The applet from which we want to get the parameter.
+     * @param name         The name of the parameter.
+     * @param defaultValue This value is returned when the applet returns
+     *                     null for the parameter.
      */
-    public static String getParameter(Applet applet, String name, String defaultValue) {
+    @Nullable
+    public static String getParameter(@Nonnull Applet applet, String name, String defaultValue) {
         String value = getParameter(applet, name);
         value = value != null ? value : defaultValue;
         if (debug) {
@@ -188,7 +195,8 @@ public class Applets extends Object {
      * @param   defaultValue This value is returned when the applet returns
      *                  null for the parameter.
      */
-    public static String[] getParameters(Applet applet, String name, String[] defaultValue) {
+    @Nullable
+    public static String[] getParameters(@Nonnull Applet applet, String name, @Nullable String[] defaultValue) {
         String param = getParameter(applet, name);
         if (param != null) {
             StringTokenizer scanner = new StringTokenizer(param, ", ");
@@ -211,10 +219,11 @@ public class Applets extends Object {
      * Returns the parameter value for the specified applet or the
      * command line parameter (main args) when the applet is run as an application.
      *
-     * @param   applet  The applet from which we want to get the parameter.
-     * @param   name    The name of the parameter.
+     * @param applet The applet from which we want to get the parameter.
+     * @param name   The name of the parameter.
      */
-    public static String getParameter(Applet applet, String name) {
+    @Nullable
+    public static String getParameter(@Nonnull Applet applet, String name) {
         try {
             return applet.getParameter(name);
         } catch (NullPointerException e) {
@@ -228,14 +237,13 @@ public class Applets extends Object {
     /**
      * Reads a parameter as an int value.
      *
-     * @param applet The applet.
-     * @param name   The name of the parameter.
+     * @param applet       The applet.
+     * @param name         The name of the parameter.
      * @param defaultValue The default value.
-     *
      * @return Returns the value of the parameter, or the default value, if
      * the parameter does not exist, or does not represent an int.
      */
-    public static int getParameter(Applet applet, String name, int defaultValue) {
+    public static int getParameter(@Nonnull Applet applet, String name, int defaultValue) {
         String value = getParameter(applet, name);
         if (value != null) {
             try {
@@ -258,14 +266,13 @@ public class Applets extends Object {
     /**
      * Reads a parameter as a boolean value.
      *
-     * @param applet The applet.
-     * @param name   The name of the parameter.
+     * @param applet       The applet.
+     * @param name         The name of the parameter.
      * @param defaultValue The default value.
-     *
      * @return Returns the value of the parameter, or the default value, if
      * the parameter does not exist, or does not represent a boolean.
      */
-    public static boolean getParameter(Applet applet, String name, boolean defaultValue) {
+    public static boolean getParameter(@Nonnull Applet applet, String name, boolean defaultValue) {
         String value = getParameter(applet, name);
         if (value != null) {
             boolean booleanValue = Boolean.valueOf(value).booleanValue();
@@ -283,14 +290,14 @@ public class Applets extends Object {
     /**
      * Reads a parameter as an array of comma separated int values.
      *
-     * @param applet The applet.
-     * @param name   The name of the parameter.
+     * @param applet       The applet.
+     * @param name         The name of the parameter.
      * @param defaultValue The default value.
-     *
      * @return Returns the value of the parameter, or the default value, if
      * the parameter does not exist, or does not represent an array of int's.
      */
-    public static int[] getParameters(Applet applet, String name, int[] defaultValue) {
+    @Nullable
+    public static int[] getParameters(@Nonnull Applet applet, String name, @Nullable int[] defaultValue) {
         String value = getParameter(applet, name);
         if (value != null) {
             try {
@@ -315,14 +322,13 @@ public class Applets extends Object {
     /**
      * Reads a parameter as a double value.
      *
-     * @param applet The applet.
-     * @param name   The name of the parameter.
+     * @param applet       The applet.
+     * @param name         The name of the parameter.
      * @param defaultValue The default value.
-     *
      * @return Returns the value of the parameter, or the default value, if
      * the parameter does not exist, or does not represent a double.
      */
-    public static double getParameter(Applet applet, String name, double defaultValue) {
+    public static double getParameter(@Nonnull Applet applet, String name, double defaultValue) {
         String value = getParameter(applet, name);
         if (value != null) {
             try {
@@ -365,15 +371,15 @@ public class Applets extends Object {
      * @param   name    The name of the parameter.
      * @param   defaultValue This value is returned when the applet returns
      *                  null for the parameter.
-     * @return  A hashtable containing a key value pair for each entry.
+     * @return A hashtable containing a key value pair for each entry.
      */
-    public static HashMap<String,String> getIndexedKeyValueParameters(Applet applet, String name, HashMap<String,String> defaultValue) {
+    public static HashMap<String, String> getIndexedKeyValueParameters(@Nonnull Applet applet, String name, HashMap<String, String> defaultValue) {
 
         String entry, key, value, generatedKey;
         int pos;
         String param = getParameter(applet, name);
         if (param != null) {
-            HashMap<String,String> map = new HashMap<String,String>();
+            HashMap<String, String> map = new HashMap<String, String>();
             StringTokenizer scanner = new StringTokenizer(param, ", ");
             int count = scanner.countTokens();
             for (int i = 0; i < count; i++) {
@@ -424,12 +430,12 @@ public class Applets extends Object {
      * <code>String</code>.
      *
      * @param     nm the <code>String</code> to decode.
-     * @return    the <code>Integer</code> represented by the specified string.
+     * @return the <code>Integer</code> represented by the specified string.
      * @exception NumberFormatException  if the <code>String</code> does not
      *            contain a parsable integer.
      * @see java.lang.Integer#parseInt(String, int)
      */
-    public static Integer decode(String nm) throws NumberFormatException {
+    public static Integer decode(@Nonnull String nm) throws NumberFormatException {
         int radix = 10;
         int index = 0;
         boolean negative = false;

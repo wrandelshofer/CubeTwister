@@ -13,15 +13,17 @@ import ch.randelshofer.rubik.Cube3DEvent;
 import ch.randelshofer.rubik.Cube3DListener;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import ch.randelshofer.rubik.parser.SequenceNode;
-import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.undo.CompositeEdit;
 import ch.randelshofer.undo.UndoableObjectEdit;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.monte.media.swing.player.JPlayerControlAqua;
 
 import javax.swing.event.ChangeEvent;
@@ -52,6 +54,7 @@ public class ScriptModel
      *
      * The progress view must not be made persistent and must not be cloned.
      */
+    @Nullable
     private transient ProgressObserver progressView;
     public static final String PROP_NAME = "Name";
     public static final String PROP_SCRIPT = "Script";
@@ -64,6 +67,7 @@ public class ScriptModel
     /** Macros is the only permitted child. It always has index 0. */
     private final static int MACRO_INDEX = 0;
     // Persistent attributes
+    @Nonnull
     private StyledDocumentProxy script = new StyledDocumentProxy();
     private NotationModel notationModel;
     private CubeModel cubeModel;
@@ -72,11 +76,13 @@ public class ScriptModel
     private Node parsedScript;
     private transient boolean isChecked;
     private transient String stateInfo;
+    @Nullable
     private ParseException parseException;
     /**
      * The solver model is used for putting stickers on
      * the cube and to invoke the solver.
      */
+    @Nullable
     private SolverModel solverModel;
 
     /** Handler for changes in the script. */
@@ -143,15 +149,17 @@ public class ScriptModel
         uncheck();
     }
 
+    @Nullable
     public String getScript() {
         return script.getText();
     }
 
+    @Nonnull
     public StyledDocument getScriptDocument() {
         return script;
     }
 
-    public void setScript(String value) {
+    public void setScript(@Nullable String value) {
         String oldValue = script.getText();
         if (oldValue == null || value == null || !oldValue.equals(value)) {
             basicSetScript(value);
@@ -215,6 +223,7 @@ public class ScriptModel
         return getNotationModel().getParser(localMacros);
     }
 
+    @Nullable
     public ParseException getParseException() {
         return parseException;
     }
@@ -288,8 +297,9 @@ public class ScriptModel
         firePropertyChange(PROP_IS_GENERATOR, oldValue, value);
         UndoableEdit edit = new UndoableObjectEdit(this, "Script Type", new Boolean(oldValue), new Boolean(value)) {
     private final static long serialVersionUID = 1L;
+
             @Override
-            public void revert(Object a, Object b) {
+            public void revert(Object a, @Nonnull Object b) {
                 isGenerator = ((Boolean) b).booleanValue();
                 firePropertyChange(PROP_IS_GENERATOR, a, b);
             }
@@ -313,6 +323,7 @@ public class ScriptModel
         firePropertyChange(PROP_STATE_INFO, oldValue, value);
     }
 
+    @Nonnull
     public String getStateInfo() {
         return (stateInfo == null) ? "" : stateInfo;
     }
@@ -332,6 +343,7 @@ public class ScriptModel
         return parsedScript;
     }
 
+    @Nonnull
     public List<MacroNode> getMacros() {
         List<MacroNode> macros = new LinkedList<MacroNode>();
         DefaultMutableTreeNode mms = getMacroModels();
@@ -346,6 +358,7 @@ public class ScriptModel
         return macros;
     }
 
+    @Nonnull
     public EntityModel getMacroModels() {
         return getChildAt(MACRO_INDEX);
     }
@@ -405,6 +418,7 @@ public class ScriptModel
         }
     }
 
+    @Nonnull
     @Override
     public ScriptModel clone() {
         ScriptModel that = (ScriptModel) super.clone();
@@ -439,6 +453,7 @@ public class ScriptModel
      * Gets the progress view of a running solver that writes its results
      * into this script model.
      */
+    @Nullable
     public ProgressObserver getProgressView() {
         return progressView;
     }
@@ -459,14 +474,16 @@ public class ScriptModel
     public final static int MODE_STICKER = 1;
     public final static int MODE_RECORD = 2;
     private int interactionMode = MODE_TWIST;
+    @Nonnull
     private Random random = new Random();
+    @Nonnull
     private Cube3DListener cube3DHandler = new Cube3DAdapter() {
 
         /**
          * Invoked when a mouse event on a part of the cube occurs.
          */
         @Override
-        public void actionPerformed(Cube3DEvent evt) {
+        public void actionPerformed(@Nonnull Cube3DEvent evt) {
             switch (getInteractionMode()) {
                 case MODE_TWIST:
                     handleTwistEvent(evt);
@@ -480,7 +497,7 @@ public class ScriptModel
             }
         }
 
-        private void handleStickerEvent(Cube3DEvent evt) {
+        private void handleStickerEvent(@Nonnull Cube3DEvent evt) {
             System.err.println("ScriptPrimaryView stickermode not implemented");
             getPlayer().stop();
             int i = evt.getStickerIndex();
@@ -518,7 +535,7 @@ public class ScriptModel
             }
         }
 
-        private void handleTwistEvent(final Cube3DEvent evt) {
+        private void handleTwistEvent(@Nonnull final Cube3DEvent evt) {
             getPlayer().stop();
             if (evt.getOrientation() != -1) {
                 final Cube oldState = (Cube) getCube().clone();
@@ -591,7 +608,9 @@ public class ScriptModel
      */
     private ScriptParser parser;
     private ScriptPlayer player;
+    @Nullable
     private ch.randelshofer.rubik.Cube cube;
+    @Nullable
     private Cube3D cube3D;
 
     /*
@@ -644,6 +663,7 @@ public class ScriptModel
         return player;
     }
 
+    @Nullable
     public ch.randelshofer.rubik.Cube getCube() {
         if (cube == null) {
             cube = getCube3D().getCube();
@@ -651,44 +671,45 @@ public class ScriptModel
         return cube;
     }
 
+    @Nullable
     public Cube3D getCube3D() {
         if (cube3D == null) {
             try {
                 if (getCubeModel() == null) {
-                        CubeKind kind;
+                    CubeKind kind;
                     NotationModel nm = notationModel;
                     if (nm == null) {
-                       CubeModel defaultCube = getDocument().getDefaultCube();
-                       if (defaultCube != null) {
-                           nm = getDocument().getDefaultNotation(defaultCube.getLayerCount());
-                       } else {
-                           for (int i=2; i < 8 && nm == null; i++) {
-                           nm = getDocument().getDefaultNotation(i);
-                                   }
-                       }
+                        CubeModel defaultCube = getDocument().getDefaultCube();
+                        if (defaultCube != null) {
+                            nm = getDocument().getDefaultNotation(defaultCube.getLayerCount());
+                        } else {
+                            for (int i=2; i < 8 && nm == null; i++) {
+                                nm = getDocument().getDefaultNotation(i);
+                            }
+                        }
                     }
                     if (nm == null) {
                         kind = CubeKind.RUBIK;
                     } else {
                         switch (nm.getLayerCount()) {
                             case 2:
-                        kind = CubeKind.POCKET;
+                                kind = CubeKind.POCKET;
                                 break;
                             case 3:
                             default:
-                        kind = CubeKind.RUBIK;
+                                kind = CubeKind.RUBIK;
                                 break;
                             case 4:
-                        kind = CubeKind.REVENGE;
+                                kind = CubeKind.REVENGE;
                                 break;
                             case 5:
-                        kind = CubeKind.PROFESSOR;
+                                kind = CubeKind.PROFESSOR;
                                 break;
                             case 6:
-                        kind = CubeKind.VCUBE_6;
+                                kind = CubeKind.VCUBE_6;
                                 break;
                             case 7:
-                        kind = CubeKind.VCUBE_7;
+                                kind = CubeKind.VCUBE_7;
                                 break;
                         }
                     }
@@ -716,6 +737,7 @@ public class ScriptModel
         return cube3D;
     }
 
+    @Nullable
     public SolverModel getSolverModel() {
         if (solverModel == null) {
             getCube3D();

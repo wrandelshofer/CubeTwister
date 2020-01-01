@@ -2,10 +2,12 @@
  * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
  */
 /* @(#)Rasterizer.java
- * 
+ *
  * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
  */
 package demos.perspective;
+
+import org.jhotdraw.annotation.Nonnull;
 
 /**
  * Rasterizer.
@@ -20,7 +22,7 @@ public class Rasterizer {
     int[] texture;
     int[] screen;
 
-    void render(Triangle tri) {
+    void render(@Nonnull Triangle tri) {
         float x1, y1, x2, y2, x3, y3;
         float iz1, txiz1, tyiz1, iz2, txiz2, tyiz2, iz3, txiz3, tyiz3;
         float dxdy1, dxdy2, dxdy3;

@@ -7,6 +7,9 @@
  */
 package ch.randelshofer.binary;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -27,21 +30,24 @@ public class FileBasedBinaryModel implements BinaryModel {
     private int segsize = 1024;
     private long offset;
     private long length;
+    @Nullable
     private RandomAccessFile racf;
+    @Nonnull
     private WeakHashMap<Long, byte[]> cache = new WeakHashMap<Long, byte[]>();
     private File file;
 
-    public FileBasedBinaryModel(File file) throws IOException {
+    public FileBasedBinaryModel(@Nonnull File file) throws IOException {
         this(file, 0, file.length());
     }
 
-    public FileBasedBinaryModel(File file, long offset, long length) throws IOException {
+    public FileBasedBinaryModel(@Nonnull File file, long offset, long length) throws IOException {
         racf = new RandomAccessFile(file, "r");
         this.offset = offset;
         this.length = length;
         this.file = file;
     }
 
+    @Nonnull
     @Override
     public String toString() {
         return "FileBasedBinaryModel " + file.getName() + " " + offset + " " + length;
@@ -53,7 +59,7 @@ public class FileBasedBinaryModel implements BinaryModel {
     }
 
     @Override
-    public int getBytes(long off, int len, byte[] target) {
+    public int getBytes(long off, int len, @Nonnull byte[] target) {
         byte[] cdat = cache.get(off);
 
         if (off + len > length) {

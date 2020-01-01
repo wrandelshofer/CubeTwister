@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.Cube3DEvent;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.rubik.RubiksDiamondIdx3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.event.InputEvent;
 
@@ -21,6 +22,7 @@ import java.awt.event.InputEvent;
 public class VirtualRubiksDiamondApplet extends AbstractVirtualCubeApplet {
     private final static long serialVersionUID = 1L;
 
+    @Nonnull
     protected AbstractCubeIdx3D createCube3D() {
         return new RubiksDiamondIdx3D();
     }
@@ -31,7 +33,7 @@ public class VirtualRubiksDiamondApplet extends AbstractVirtualCubeApplet {
             partsHandler = new AbstractVirtualCubeApplet.EventHandler() {
 
                 @Override
-                public void actionPerformed(Cube3DEvent evt) {
+                public void actionPerformed(@Nonnull Cube3DEvent evt) {
                     DefaultCubeAttributes attr = (DefaultCubeAttributes) cube3d.getAttributes();
                     int modifiersEx = evt.getModifiersEx();
                     int partIndex = evt.getPartIndex();

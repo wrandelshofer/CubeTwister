@@ -4,7 +4,11 @@
  */
 package ch.randelshofer.io;
 
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.io.IOException;
+import java.io.Reader;
 import java.util.LinkedList;
 
 /**
@@ -18,6 +22,7 @@ import java.util.LinkedList;
 
 public class StreamPosTokenizer
 /*extends StreamTokenizer*/ {
+    @Nullable
     private Reader reader = null;
     
     /**
@@ -31,8 +36,10 @@ public class StreamPosTokenizer
      * rlw
      */
     private int startpos = -1, endpos = -1;
+    @Nonnull
     private LinkedList<Integer> unread = new LinkedList<Integer>();
-    
+
+    @Nonnull
     private char buf[] = new char[20];
     
     /**
@@ -57,10 +64,14 @@ public class StreamPosTokenizer
     private boolean slashStarCommentsP = false;
     
     // rlw
+    @Nonnull
     private char[] slashSlash = new char[] {'/','/'};
+    @Nonnull
     private char[] slashStar = new char[] {'/','*'};
+    @Nonnull
     private char[] starSlash = new char[] {'*','/'};
-    
+
+    @Nonnull
     private byte ctype[] = new byte[256];
     private static final byte CT_WHITESPACE = 1;
     private static final byte CT_DIGIT = 2;
@@ -136,6 +147,7 @@ public class StreamPosTokenizer
      * @see     java.io.StreamTokenizer#TT_WORD
      * @see     java.io.StreamTokenizer#ttype
      */
+    @Nullable
     public String sval;
     
     /**
@@ -159,13 +171,14 @@ public class StreamPosTokenizer
         quoteChar('\'');
         parseNumbers();
     }
-    
-    
+
+
     /**
      * Create a tokenizer that parses the given character stream.
-     * @since   JDK1.1
+     *
+     * @since JDK1.1
      */
-    public StreamPosTokenizer(Reader r) {
+    public StreamPosTokenizer(@Nullable Reader r) {
         this();
         if (r == null) {
             throw new NullPointerException();
@@ -760,32 +773,33 @@ public class StreamPosTokenizer
         endpos = readpos - 1;
         return ttype = c;
     }
-    
+
     /**
      * Sets the slash star and star slash tokens.
      * Due to limitations by this implementation, both tokens must have the
      * same number of characters and the character length must be either 1
      * or 2.
      */
-    public void setSlashStarTokens(String slashStar, String starSlash) {
+    public void setSlashStarTokens(@Nonnull String slashStar, @Nonnull String starSlash) {
         if (slashStar.length() != starSlash.length()) {
-            throw new IllegalArgumentException("SlashStar and StarSlash tokens must be of same length: '"+slashStar+"' '"+starSlash+"'");
+            throw new IllegalArgumentException("SlashStar and StarSlash tokens must be of same length: '" + slashStar + "' '" + starSlash + "'");
         }
         if (slashStar.length() < 1 || slashStar.length() > 2) {
-            throw new IllegalArgumentException("SlashStar and StarSlash tokens must be of length 1 or 2: '"+slashStar+"' '"+starSlash+"'");
+            throw new IllegalArgumentException("SlashStar and StarSlash tokens must be of length 1 or 2: '" + slashStar + "' '" + starSlash + "'");
         }
         this.slashStar = slashStar.toCharArray();
         this.starSlash = starSlash.toCharArray();
         commentChar(this.slashStar[0]);
     }
+
     /**
      * Sets the slash slash token.
      * Due to limitations by this implementation, the character length must be
      * either 1 or 2.
      */
-    public void setSlashSlashToken(String slashSlash) {
+    public void setSlashSlashToken(@Nonnull String slashSlash) {
         if (slashSlash.length() < 1 || slashSlash.length() > 2) {
-            throw new IllegalArgumentException("SlashSlash token must be of length 1 or 2: '"+slashSlash+"'");
+            throw new IllegalArgumentException("SlashSlash token must be of length 1 or 2: '" + slashSlash + "'");
         }
         this.slashSlash = slashSlash.toCharArray();
         commentChar(this.slashSlash[0]);
@@ -842,27 +856,29 @@ public class StreamPosTokenizer
     public int getEndPosition() {
         return endpos;
     }
-    
+
     /**
      * Consumes a substring from the current sval of the StreamPosTokenizer.
      */
-    public void consumeGreedy(String greedyToken) {
+    public void consumeGreedy(@Nonnull String greedyToken) {
         if (greedyToken.length() < sval.length()) {
             pushBack();
             setStartPosition(getStartPosition() + greedyToken.length());
             sval = sval.substring(greedyToken.length());
         }
     }
+
     /**
      * Returns the string representation of the current stream token.
      *
-     * @return  a string representation of the token specified by the
+     * @return a string representation of the token specified by the
      *          <code>ttype</code>, <code>nval</code>, and <code>sval</code>
      *          fields.
      * @see     java.io.StreamTokenizer#nval
      * @see     java.io.StreamTokenizer#sval
      * @see     java.io.StreamTokenizer#ttype
      */
+    @Nonnull
     public String toString() {
         String ret;
         switch (ttype) {

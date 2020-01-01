@@ -4,12 +4,18 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.io.*;
-import java.util.*;
-import javax.imageio.*;
-import javax.imageio.stream.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import java.awt.Image;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Iterator;
 /**
  * ImageWellTransferable.
  *
@@ -20,20 +26,20 @@ public class ImageWellTransferable implements Transferable {
     private Image image;
     private byte[] imageData;
     private DataFlavor imageDataFlavor;
-    
+
     /**
      * Creates a new instance.
      */
-    public ImageWellTransferable(ImageWellModel model) {
+    public ImageWellTransferable(@Nonnull ImageWellModel model) {
         // FIXME - We should copy the image data
         image = model.getImage();
         imageData = model.getBinaryImage();
         if (imageData != null) {
             try {
                 ImageInputStream in = ImageIO.createImageInputStream(new ByteArrayInputStream(imageData));
-                for (Iterator<ImageReader> i=ImageIO.getImageReaders(in); i.hasNext(); ) {
+                for (Iterator<ImageReader> i = ImageIO.getImageReaders(in); i.hasNext(); ) {
                     ImageReader reader = i.next();
-                    imageDataFlavor = new DataFlavor("image/"+reader.getFormatName(),reader.getFormatName());
+                    imageDataFlavor = new DataFlavor("image/" + reader.getFormatName(), reader.getFormatName());
                     break;
                 }
                 in.close();
@@ -42,8 +48,9 @@ public class ImageWellTransferable implements Transferable {
             }
         }
     }
-    
-    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+
+    @Nonnull
+    public Object getTransferData(@Nonnull DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         if (flavor.equals(DataFlavor.imageFlavor)) {
             return image;
         } else if (flavor.equals(imageDataFlavor)) {
@@ -51,12 +58,13 @@ public class ImageWellTransferable implements Transferable {
         }
         throw new UnsupportedFlavorException(flavor);
     }
-    
+
+    @Nonnull
     public DataFlavor[] getTransferDataFlavors() {
         return new DataFlavor[] {DataFlavor.imageFlavor, imageDataFlavor };
     }
-    
-    public boolean isDataFlavorSupported(DataFlavor flavor) {
+
+    public boolean isDataFlavorSupported(@Nonnull DataFlavor flavor) {
         return flavor.equals(DataFlavor.imageFlavor) || flavor.equals(imageDataFlavor);
     }
     

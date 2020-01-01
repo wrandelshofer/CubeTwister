@@ -8,6 +8,7 @@ import ch.randelshofer.beans.AbstractBean;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_RenderPipeline;
 import idx3d.idx3d_Scene;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -27,22 +28,29 @@ public class Cube3DCanvasIdx3D
     private idx3d_JCanvas canvas3D;
     private Cube3D cube3D;
     private float alpha, beta, gamma;
-    
-    /** Creates a new instance. */
+
+    /**
+     * Creates a new instance.
+     */
     public Cube3DCanvasIdx3D() {
         this(new idx3d_JCanvas());
     }
-    /** Creates a new instance. */
-    public Cube3DCanvasIdx3D(idx3d_JCanvas canvas3D) {
+
+    /**
+     * Creates a new instance.
+     */
+    public Cube3DCanvasIdx3D(@Nonnull idx3d_JCanvas canvas3D) {
         this(canvas3D, null);
     }
-    public Cube3DCanvasIdx3D(idx3d_JCanvas canvas3D, Cube3D cube3D) {
+
+    public Cube3DCanvasIdx3D(@Nonnull idx3d_JCanvas canvas3D, Cube3D cube3D) {
         this.canvas3D = canvas3D;
         canvas3D.setSwipeTimeout(Integer.MAX_VALUE);
         canvas3D.setInteractionMode(idx3d_JCanvas.Interaction.ROTATE_AND_SWIPE);
         setCube3D(cube3D);
     }
- public void setSharedRenderPipeline(idx3d_RenderPipeline sharedPipeline) {
+
+    public void setSharedRenderPipeline(idx3d_RenderPipeline sharedPipeline) {
         canvas3D.setSharedRenderPipeline(sharedPipeline);
     }
     

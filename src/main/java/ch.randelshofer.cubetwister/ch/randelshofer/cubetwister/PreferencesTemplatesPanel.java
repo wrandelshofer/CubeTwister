@@ -7,6 +7,7 @@ import ch.randelshofer.util.Files;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.gui.BackgroundTask;
 import org.jhotdraw.gui.filechooser.ExtensionFileFilter;
 import org.jhotdraw.util.ResourceBundleUtil;
@@ -31,6 +32,7 @@ public class PreferencesTemplatesPanel extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;
 
     private Preferences userPrefs = Preferences.userNodeForPackage(PreferencesTemplatesPanel.class);
+    @Nonnull
     private ResourceBundleUtil labels = new ResourceBundleUtil(
             ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
     private JFileChooser importFileChooser;
@@ -148,11 +150,11 @@ public class PreferencesTemplatesPanel extends javax.swing.JPanel {
                     }
                 }
 
-                private void exportTarBZasZip(InputStream in, OutputStream out) throws IOException {
+                private void exportTarBZasZip(InputStream in, @Nonnull OutputStream out) throws IOException {
                     ZipOutputStream zout = new ZipOutputStream(out);
                     TarInputStream tin = new TarInputStream(new BZip2CompressorInputStream(in));
 
-                    for (TarArchiveEntry inEntry = tin.getNextEntry(); inEntry != null;) {
+                    for (TarArchiveEntry inEntry = tin.getNextEntry(); inEntry != null; ) {
                         ZipEntry outEntry = new ZipEntry(inEntry.getName());
                         zout.putNextEntry(outEntry);
                         if (!inEntry.isDirectory()) {

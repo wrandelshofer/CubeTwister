@@ -3,11 +3,16 @@
  */
 package ch.randelshofer.cubetwister;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.Locale;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.app.Application;
+import org.jhotdraw.app.OSXApplication;
+import org.jhotdraw.app.SDIApplication;
+import org.jhotdraw.app.View;
+
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import org.jhotdraw.app.*;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Locale;
 
 /**
  * Main.
@@ -22,6 +27,7 @@ public class Main {
     public Main() {
     }
 
+    @Nonnull
     public static String getVersion() {
         String version = Main.class.getPackage().getImplementationVersion();
         return version == null ? "unknown" : version;

@@ -8,15 +8,28 @@ package ch.randelshofer.test;
 
 /**
  * RectangleHighlighter.
- *
+ * <p>
  * The original code is copyright camickr as seen at
  * http://forums.sun.com/thread.jspa?forumID=57&threadID=708866
  *
  * @author Werner Randelshofer
  */
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.text.*;
+
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.Position;
+import javax.swing.text.View;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
 public class RectangleHighlighter extends DefaultHighlighter.DefaultHighlightPainter {
 
@@ -24,8 +37,9 @@ public class RectangleHighlighter extends DefaultHighlighter.DefaultHighlightPai
         super(color);
     }
 
-    public Shape paintLayer(Graphics g, int offs0, int offs1,
-            Shape bounds, JTextComponent c, View view) {
+    @Nullable
+    public Shape paintLayer(@Nonnull Graphics g, int offs0, int offs1,
+                            Shape bounds, @Nonnull JTextComponent c, @Nonnull View view) {
         Color color = getColor();
 
         if (color == null) {

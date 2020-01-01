@@ -4,6 +4,8 @@
 
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -24,13 +26,14 @@ public class SequenceIterator<T>
      */
     private Iterator<Iterator<T>> iterators;
 
-    public SequenceIterator(Iterator<T> first, Iterator<T> second) {
+    public SequenceIterator(@Nonnull Iterator<T> first, @Nonnull Iterator<T> second) {
         this(List.of(first, second).iterator());
     }
 
-    public SequenceIterator(Iterable<Iterator<T>> iterators) {
+    public SequenceIterator(@Nonnull Iterable<Iterator<T>> iterators) {
         this(iterators.iterator());
     }
+
     public SequenceIterator(Iterator<Iterator<T>> iterators) {
         this.current = Collections.emptyIterator();
         this.iterators = iterators;

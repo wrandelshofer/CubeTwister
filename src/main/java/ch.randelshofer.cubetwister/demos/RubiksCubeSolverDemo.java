@@ -6,10 +6,17 @@ package demos;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.ProgressView;
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.Cube3DCanvas;
+import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.Cube3DListener;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.DefaultCubeAttributes;
+import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.RubiksCubeIdx3D;
 import ch.randelshofer.rubik.notation.DefaultNotation;
-import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.SequenceNode;
 import ch.randelshofer.rubik.solver.CubeParser;
@@ -17,8 +24,13 @@ import ch.randelshofer.rubik.solver.FaceletCube;
 import ch.randelshofer.rubik.solver.KociembaCube;
 import ch.randelshofer.rubik.solver.Solver;
 import ch.randelshofer.util.RunnableWorker;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import java.io.IOException;
-import javax.swing.*;
 
 /**
  * A JPanel with an interactive Rubik's Cube, a script field and a solver.
@@ -28,6 +40,7 @@ import javax.swing.*;
 public class RubiksCubeSolverDemo extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;
 
+    @Nonnull
     private Notation notation = new DefaultNotation();
     private Cube3DCanvas canvas;
     private RubiksCubeIdx3D cube3d;
@@ -53,7 +66,7 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
         // Add a listener to the 3D cube, which twists the cube when clicked
         cube3d.addCube3DListener(new Cube3DListener() {
 
-            public void actionPerformed(Cube3DEvent evt) {
+            public void actionPerformed(@Nonnull Cube3DEvent evt) {
                 if (isEnabled()) {
                     evt.applyTo(evt.getCube3D().getCube());
                 }
@@ -177,15 +190,15 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
     // Code for dispatching events from components to event handlers.
 
     private class FormListener implements java.awt.event.ActionListener {
-        FormListener() {}
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
+        FormListener() {
+        }
+
+        public void actionPerformed(@Nonnull java.awt.event.ActionEvent evt) {
             if (evt.getSource() == applyButton) {
                 RubiksCubeSolverDemo.this.apply(evt);
-            }
-            else if (evt.getSource() == solveButton) {
+            } else if (evt.getSource() == solveButton) {
                 RubiksCubeSolverDemo.this.solve(evt);
-            }
-            else if (evt.getSource() == resetButton) {
+            } else if (evt.getSource() == resetButton) {
                 RubiksCubeSolverDemo.this.reset(evt);
             }
         }
@@ -203,6 +216,7 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
 
             new Thread(new RunnableWorker() {
 
+                @Nullable
                 @Override
                 public Object construct() {
                     script.applyTo(cube, false);
@@ -238,6 +252,7 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
         setEnabled(false);
         RunnableWorker worker = new RunnableWorker() {
 
+            @Nullable
             public Object construct() {
                 try {
                     if (progressMonitor.isCanceled()) {

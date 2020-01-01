@@ -18,6 +18,8 @@
  */
 package org.apache.commons.compress.archivers.tar;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.io.FilterOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,44 +74,41 @@ public class TarOutputStream
      * @see TarBuffer#DEFAULT_BLOCKSIZE
      * @see TarBuffer#DEFAULT_RECORDSIZE
      */
-    public TarOutputStream( final OutputStream output )
-    {
-        this( output, TarBuffer.DEFAULT_BLOCKSIZE, TarBuffer.DEFAULT_RECORDSIZE );
+    public TarOutputStream(@Nonnull final OutputStream output) {
+        this(output, TarBuffer.DEFAULT_BLOCKSIZE, TarBuffer.DEFAULT_RECORDSIZE);
     }
 
     /**
      * Construct a TarOutputStream using specified input
      * stream, block size and default record sizes.
      *
-     * @param output stream to create TarOutputStream from
+     * @param output    stream to create TarOutputStream from
      * @param blockSize the block size
      * @see TarBuffer#DEFAULT_RECORDSIZE
      */
-    public TarOutputStream( final OutputStream output,
-                            final int blockSize )
-    {
-        this( output, blockSize, TarBuffer.DEFAULT_RECORDSIZE );
+    public TarOutputStream(@Nonnull final OutputStream output,
+                           final int blockSize) {
+        this(output, blockSize, TarBuffer.DEFAULT_RECORDSIZE);
     }
 
     /**
      * Construct a TarOutputStream using specified input
      * stream, block size and record sizes.
      *
-     * @param output stream to create TarOutputStream from
-     * @param blockSize the block size
+     * @param output     stream to create TarOutputStream from
+     * @param blockSize  the block size
      * @param recordSize the record size
      */
-    public TarOutputStream( final OutputStream output,
-                            final int blockSize,
-                            final int recordSize )
-    {
-        super( output );
+    public TarOutputStream(@Nonnull final OutputStream output,
+                           final int blockSize,
+                           final int recordSize) {
+        super(output);
 
-        m_buffer = new TarBuffer( output, blockSize, recordSize );
+        m_buffer = new TarBuffer(output, blockSize, recordSize);
         m_assemLen = 0;
-        m_assemBuf = new byte[ recordSize ];
-        m_recordBuf = new byte[ recordSize ];
-        m_oneBuf = new byte[ 1 ];
+        m_assemBuf = new byte[recordSize];
+        m_recordBuf = new byte[recordSize];
+        m_oneBuf = new byte[1];
     }
 
     /**
@@ -218,19 +217,16 @@ public class TarOutputStream
      * written to the output stream.
      *
      * @param entry The TarArchiveEntry to be written to the archive.
-     * @exception IOException when an IO error causes operation to fail
+     * @throws IOException when an IO error causes operation to fail
      */
-    public void putNextEntry( final TarArchiveEntry entry )
-        throws IOException
-    {
-        if( entry.getName().length() >= TarArchiveEntry.NAMELEN )
-        {
-            if( m_longFileMode == LONGFILE_GNU )
-            {
+    public void putNextEntry(@Nonnull final TarArchiveEntry entry)
+            throws IOException {
+        if (entry.getName().length() >= TarArchiveEntry.NAMELEN) {
+            if (m_longFileMode == LONGFILE_GNU) {
                 // create a TarArchiveEntry for the LongLink, the contents
                 // of which are the entry's name
                 final TarArchiveEntry longLinkEntry =
-                    new TarArchiveEntry( TarConstants.GNU_LONGLINK,
+                        new TarArchiveEntry(TarConstants.GNU_LONGLINK,
                                   TarConstants.LF_GNUTYPE_LONGNAME );
 
                 longLinkEntry.setSize( entry.getName().length() );
@@ -267,17 +263,14 @@ public class TarOutputStream
      * archive entry.
      *
      * @param input The InputStream from which to read entrys data
-     * @exception IOException when an IO error causes operation to fail
+     * @throws IOException when an IO error causes operation to fail
      */
-    public void copyEntryContents( final InputStream input )
-        throws IOException
-    {
-        final byte[] buffer = new byte[ 32 * 1024 ];
-        while( true )
-        {
-            final int numRead = input.read( buffer, 0, buffer.length );
-            if( numRead == -1 )
-            {
+    public void copyEntryContents(@Nonnull final InputStream input)
+            throws IOException {
+        final byte[] buffer = new byte[32 * 1024];
+        while (true) {
+            final int numRead = input.read(buffer, 0, buffer.length);
+            if (numRead == -1) {
                 break;
             }
 
@@ -305,12 +298,11 @@ public class TarOutputStream
      * write( byte[], int, int ).
      *
      * @param buffer The buffer to write to the archive.
-     * @exception IOException when an IO error causes operation to fail
+     * @throws IOException when an IO error causes operation to fail
      */
-    public void write( final byte[] buffer )
-        throws IOException
-    {
-        write( buffer, 0, buffer.length );
+    public void write(@Nonnull final byte[] buffer)
+            throws IOException {
+        write(buffer, 0, buffer.length);
     }
 
     /**
@@ -326,18 +318,16 @@ public class TarOutputStream
      * @param count The number of bytes to write.
      * @exception IOException when an IO error causes operation to fail
      */
-    public void write( final byte[] buffer,
-                       final int offset,
-                       final int count )
-        throws IOException
-    {
+    public void write(@Nonnull final byte[] buffer,
+                      final int offset,
+                      final int count)
+            throws IOException {
         int position = offset;
         int numToWrite = count;
-        if( ( m_currBytes + numToWrite ) > m_currSize )
-        {
+        if ((m_currBytes + numToWrite) > m_currSize) {
             final String message = "request to write '" + numToWrite +
-                "' bytes exceeds size in header of '" + m_currSize + "' bytes";
-            throw new IOException( message );
+                    "' bytes exceeds size in header of '" + m_currSize + "' bytes";
+            throw new IOException(message);
             //
             // We have to deal with assembly!!!
             // The programmer can be writing little 32 byte chunks for all

@@ -36,15 +36,16 @@
 
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Singleton class for accelerated mathematical operations.
  */
-public final class idx3d_Math
-{
-	private static float sinus[];
-	private static float cosinus[];
-	private static boolean trig=false;
-	public static float pi=3.1415926535f;
+public final class idx3d_Math {
+    private static float sinus[];
+    private static float cosinus[];
+    private static boolean trig = false;
+    public static float pi = 3.1415926535f;
 	private static float rad2scale=4096f/3.14159265f/2f;
 	private static float pad=256*3.14159265f;
 	
@@ -116,27 +117,24 @@ public final class idx3d_Math
 		
 		public static final float crop(float num, float min, float max)
 		{
-			return (num<min)?min:(num>max)?max:num;
-		}
-		
-		public static final boolean inrange(int num, int min, int max)
-		{
-			return ((num>=min)&&(num<max));
-		}
+            return (num < min) ? min : (num > max) ? max : num;
+        }
 
-	// B U F F E R   O P E R A T I O N S
-	
-		public static final void clearBuffer(int[] buffer, int value)
-		{
-			int size=buffer.length-1;
-			int cleared=1;
-			int index=1;
-			buffer[0]=value;
+    public static final boolean inrange(int num, int min, int max) {
+        return ((num >= min) && (num < max));
+    }
 
-			while (cleared<size)
-			{
-				System.arraycopy(buffer,0,buffer,index,cleared);
-				size-=cleared;
+    // B U F F E R   O P E R A T I O N S
+
+    public static final void clearBuffer(@Nonnull int[] buffer, int value) {
+        int size = buffer.length - 1;
+        int cleared = 1;
+        int index = 1;
+        buffer[0] = value;
+
+        while (cleared < size) {
+            System.arraycopy(buffer, 0, buffer, index, cleared);
+            size -= cleared;
 				index+=cleared;
 				cleared<<=1;
 			}
@@ -160,22 +158,20 @@ public final class idx3d_Math
 			System.arraycopy(buffer,0,buffer,index,size);
 		}
                 */
-                public static final void cropBuffer(int[] buffer, int min, int max)
-		{
-			for (int i=buffer.length-1;i>=0;i--) buffer[i]=crop(buffer[i],min,max);
-		}
-		
-		public static final void copyBuffer(int[] source, int[] target)
-		{
-			System.arraycopy(source,0,target,0,crop(source.length,0,target.length));
-		}
-		
-		
+        public static final void cropBuffer(@Nonnull int[] buffer, int min, int max) {
+            for (int i = buffer.length - 1; i >= 0; i--) {
+                buffer[i] = crop(buffer[i], min, max);
+            }
+        }
 
-	// R A N D O M  N U M B E R S
-	
-		public static final float random()
-		{
+    public static final void copyBuffer(@Nonnull int[] source, @Nonnull int[] target) {
+        System.arraycopy(source, 0, target, 0, crop(source.length, 0, target.length));
+    }
+
+
+    // R A N D O M  N U M B E R S
+
+    public static final float random() {
 			return (float)(Math.random()*2-1);
 		}
 	

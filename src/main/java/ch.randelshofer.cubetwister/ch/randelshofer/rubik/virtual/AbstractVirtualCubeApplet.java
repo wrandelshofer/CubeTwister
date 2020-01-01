@@ -27,6 +27,8 @@ import ch.randelshofer.util.Images;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_Scene;
 import nanoxml.XMLElement;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 
@@ -76,12 +78,16 @@ import java.util.zip.ZipInputStream;
  */
 public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
 
+    @Nullable
     protected AbstractCubeIdx3D cube3d;
     protected int tool;
+    @Nullable
     protected idx3d_JCanvas canvas;
     //protected idx3d_CanvasAWT canvas;
     protected Random random;
+    @Nullable
     protected idx3d_Scene scene;
+    @Nullable
     protected ResourceBundle labels;
     protected float defaultScaleFactor;
     /**
@@ -96,8 +102,10 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
      * These attributes are used to reset the cube.
      */
     private CubeAttributes resetAttributes;
+    @Nullable
     private EventHandler previousHandler;
     private ScriptParser parser;
+    @Nullable
     private String cookieName;
 
     public class EventHandler implements Cube3DListener, MouseListener, MouseMotionListener {
@@ -136,7 +144,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         }
 
         @Override
-        public void mouseExited(Cube3DEvent evt) {
+        public void mouseExited(@Nonnull Cube3DEvent evt) {
             if (evt.getStickerIndex() != -1) {
                 isEntered = false;
                 updateCursor();
@@ -144,7 +152,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         }
 
         @Override
-        public void mouseEntered(Cube3DEvent evt) {
+        public void mouseEntered(@Nonnull Cube3DEvent evt) {
             if (evt.getStickerIndex() != -1) {
                 isEntered = true;
                 updateCursor();
@@ -197,6 +205,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
     /**
      * Target frame for sticker links. Is not null, when sticker links are present.
      */
+    @Nullable
     protected String linkTarget;
 
     public AbstractVirtualCubeApplet() {
@@ -290,6 +299,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         labels = null;
     }
 
+    @Nullable
     @Override
     public String getParameter(String name) {
         try {
@@ -587,7 +597,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         ActionListener resetButtonHandler = new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent evt) {
+            public void actionPerformed(@Nonnull ActionEvent evt) {
                 if ((evt.getModifiers() & (ActionEvent.ALT_MASK | ActionEvent.CTRL_MASK)) == 0) {
                     reset();
                 } else {
@@ -686,10 +696,10 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
     /**
      * Reads cube attributes from the specified XML Element.
      *
-     * @param resources The XML element which holds the attribute data. 
-     * @param attr The CubeAttributes onto which we set the attribute values.
+     * @param resources The XML element which holds the attribute data.
+     * @param attr      The CubeAttributes onto which we set the attribute values.
      */
-    protected void readCubeAttributes(XMLElement resources, DefaultCubeAttributes attr) {
+    protected void readCubeAttributes(@Nullable XMLElement resources, @Nonnull DefaultCubeAttributes attr) {
         XMLElement cubeElem = null;
 
         // Find the cube in the resource file
@@ -697,7 +707,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         if (resources != null) {
             String cubeName = getParameter("cube");
             if (cubeName == null) {
-        for (XMLElement elem : resources.iterableChildren()) {
+                for (XMLElement elem : resources.iterableChildren()) {
                     if (elem.getName().equals("Cube")) {
                         if (elem.getBooleanAttribute("default", false)) {
                             cubeElem = elem;
@@ -780,7 +790,8 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
 
     }
 
-    protected Image decodeBase64Image(String base64) {
+    @Nullable
+    protected Image decodeBase64Image(@Nonnull String base64) {
         try {
             byte[] bytes = Base64.decode(base64);
             return ImageIO.read(new ByteArrayInputStream(bytes));
@@ -797,6 +808,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         return true;
     }
 
+    @Nullable
     private EventHandler getCurrentHandler() {
         EventHandler currentHandler = null;
 
@@ -833,12 +845,12 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
                 }
 
                 @Override
-                public void mouseExited(Cube3DEvent evt) {
+                public void mouseExited(@Nonnull Cube3DEvent evt) {
                     getCurrentHandler().mouseExited(evt);
                 }
 
                 @Override
-                public void mouseEntered(Cube3DEvent evt) {
+                public void mouseEntered(@Nonnull Cube3DEvent evt) {
                     getCurrentHandler().mouseEntered(evt);
                 }
 
@@ -912,7 +924,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
                 }
 
                 @Override
-                public void actionPerformed(Cube3DEvent evt) {
+                public void actionPerformed(@Nonnull Cube3DEvent evt) {
                     DefaultCubeAttributes attr = (DefaultCubeAttributes) cube3d.getAttributes();
                     int partIndex = evt.getPartIndex();
                     int stickerIndex = evt.getStickerIndex();
@@ -935,7 +947,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
             linkHandler = new EventHandler() {
 
                 @Override
-                public void actionPerformed(Cube3DEvent evt) {
+                public void actionPerformed(@Nonnull Cube3DEvent evt) {
                     if (evt.getStickerIndex() == -1
                             || stickerLinks[evt.getStickerIndex()] == null) {
                         getToolkit().beep();
@@ -956,7 +968,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
                 }
 
                 @Override
-                public void mouseExited(Cube3DEvent evt) {
+                public void mouseExited(@Nonnull Cube3DEvent evt) {
                     if (evt.getStickerIndex() != -1
                             && stickerLinks[evt.getStickerIndex()] != null) {
                         isEntered = false;
@@ -966,7 +978,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
                 }
 
                 @Override
-                public void mouseEntered(Cube3DEvent evt) {
+                public void mouseEntered(@Nonnull Cube3DEvent evt) {
                     if (evt.getStickerIndex() != -1
                             && stickerLinks[evt.getStickerIndex()] != null) {
                         DefaultCubeAttributes attr = (DefaultCubeAttributes) cube3d.getAttributes();
@@ -986,7 +998,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
             stickersHandler = new EventHandler() {
 
                 @Override
-                public void actionPerformed(Cube3DEvent evt) {
+                public void actionPerformed(@Nonnull Cube3DEvent evt) {
                     DefaultCubeAttributes attr = (DefaultCubeAttributes) cube3d.getAttributes();
                     int modifiersEx = evt.getModifiersEx();
                     int partIndex = evt.getPartIndex();
@@ -1082,7 +1094,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
             partsHandler = new EventHandler() {
 
                 @Override
-                public void actionPerformed(Cube3DEvent evt) {
+                public void actionPerformed(@Nonnull Cube3DEvent evt) {
                     DefaultCubeAttributes attr = (DefaultCubeAttributes) cube3d.getAttributes();
                     int modifiersEx = evt.getModifiersEx();
                     int partIndex = evt.getPartIndex();
@@ -1173,7 +1185,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
                 }
 
                 @Override
-                public void mouseExited(Cube3DEvent evt) {
+                public void mouseExited(@Nonnull Cube3DEvent evt) {
                     if (evt.getStickerIndex() == -1) {
                         isEntered = false;
                         updateCursor();
@@ -1181,7 +1193,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
                 }
 
                 @Override
-                public void mouseEntered(Cube3DEvent evt) {
+                public void mouseEntered(@Nonnull Cube3DEvent evt) {
                     if (evt.getStickerIndex() == -1) {
                         isEntered = true;
                         updateCursor();
@@ -1257,6 +1269,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
      *
      * @return  an array describing the parameters this applet looks for.
      */
+    @Nonnull
     @Override
     public String[][] getParameterInfo() {
         return new String[][]{
@@ -1282,6 +1295,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
                 };
     }
 
+    @Nonnull
     protected String getAppletVersion() {
         String version = AbstractVirtualCubeApplet.class.getPackage().getImplementationVersion();
         return version == null ? "" : version;
@@ -1298,13 +1312,14 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
      * @return  a string containing information about the author, version, and
      *          copyright of the applet.
      */
+    @Nonnull
     @Override
     public String getAppletInfo() {
         return "VirtualCube " + getAppletVersion() + "\n"
                 + "© Werner Randelshofer";
     }
 
-    public static void main(final AbstractVirtualCubeApplet applet) {
+    public static void main(@Nonnull final AbstractVirtualCubeApplet applet) {
         applet.init();
         SwingUtilities.invokeLater(new Runnable() {
 
@@ -1348,7 +1363,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
         }
 
         @Override
-        public boolean replaces(Interpolator that) {
+        public boolean replaces(@Nonnull Interpolator that) {
             return that.getClass() == this.getClass();
         }
     }

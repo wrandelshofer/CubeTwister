@@ -37,9 +37,12 @@
 //package com.sun.j2ee.blueprints.admin.client;
 package ch.randelshofer.gui.table;
 
-import javax.swing.table.*;
-import javax.swing.event.TableModelListener;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  * In a chain of data manipulators some behaviour is common. TableMap provides
@@ -59,7 +62,7 @@ public class TableMap extends DefaultTableModel implements TableModelListener {
         return model;
     }
 
-    public void setModel(TableModel model) {
+    public void setModel(@Nonnull TableModel model) {
         this.model = model;
         model.addTableModelListener(this);
     }

@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
 import ch.randelshofer.rubik.RevengeCube;
 import ch.randelshofer.rubik.RevengeCubeGeom3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.InputStream;
 
@@ -20,7 +21,8 @@ import java.io.InputStream;
 
 public class RevengeCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet {
     private final static long serialVersionUID = 1L;
-    
+
+    @Nonnull
     protected ScriptPlayer createPlayer() {
         ScriptPlayer player = new ScriptPlayer();
         player.setResetCube(new RevengeCube());

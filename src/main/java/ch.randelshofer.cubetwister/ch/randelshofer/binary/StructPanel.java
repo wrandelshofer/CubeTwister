@@ -7,6 +7,8 @@
  */
 package ch.randelshofer.binary;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Panel for structured binary data.
  *
@@ -22,7 +24,7 @@ public class StructPanel extends javax.swing.JPanel {
         initComponents ();
     }
 
-    public void setModel(StructTableModel model) {
+    public void setModel(@Nonnull StructTableModel model) {
         table.setModel(model);
         table.sizeColumnsToFit(-1);
     }

@@ -36,8 +36,14 @@
 package idx3d;
 
 import ch.randelshofer.gui.event.SwipeListener;
-import java.awt.event.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Represents a scene in three dimensional space.
@@ -52,7 +58,9 @@ public class idx3d_Scene extends idx3d_Group {
     public idx3d_RenderPipeline renderPipeline;
     public int width,height;
      */
-    public idx3d_Environment environment = new idx3d_Environment();
+                @Nonnull
+                public idx3d_Environment environment = new idx3d_Environment();
+    @Nonnull
     public idx3d_Camera defaultCamera = idx3d_Camera.FRONT();
     public idx3d_Object object[];
     public idx3d_Light light[];
@@ -60,24 +68,32 @@ public class idx3d_Scene extends idx3d_Group {
     public int lights = 0;
     private boolean lightsNeedRebuild = true;
     protected boolean preparedForRendering = false;
+    @Nonnull
     public idx3d_Vector normalizedOffset = new idx3d_Vector(0f, 0f, 0f);
     public float normalizedScale = 1f;
     private static boolean instancesRunning = false;    // D A T A   S T R U C T U R E S
+    @Nonnull
     public HashMap<String,idx3d_Object> objectData = new HashMap<String,idx3d_Object>();
+    @Nonnull
     public HashMap<String,idx3d_Light> lightData = new HashMap<String,idx3d_Light>();
+    @Nonnull
     public HashMap<String,idx3d_InternalMaterial> materialData = new HashMap<String,idx3d_InternalMaterial>();
+    @Nonnull
     public HashMap<String,idx3d_Camera> cameraData = new HashMap<String,idx3d_Camera>();
     /**
      * Maps a triangle or an object to an ActionListener.
      */
+    @Nonnull
     private HashMap<Object,ActionListener[]> actionMap = new HashMap<Object,ActionListener[]>();
     /**
      * Maps a triangle or an object to a MouseListener.
      */
+    @Nonnull
     private HashMap<Object,MouseListener[]> mouseMap = new HashMap<Object,MouseListener[]>();
     /**
      * Maps a triangle or an object to a SwipeListener.
      */
+    @Nonnull
     private HashMap<Object,SwipeListener[]> scrapeMap = new HashMap<Object,SwipeListener[]>();
     /* Werner Randelshofer. Added. */
     private boolean isAdjusting;
@@ -165,9 +181,9 @@ public class idx3d_Scene extends idx3d_Group {
     public idx3d_Camera camera(String key) {
         return cameraData.get(key);
     }
-    
+
     // O B J E C T   M A N A G E M E N T
-    public void addObject(String key, idx3d_Object obj) {
+    public void addObject(String key, @Nonnull idx3d_Object obj) {
         obj.name = key;
         objectData.put(key, obj);
         addChild(obj);
@@ -213,6 +229,7 @@ public class idx3d_Scene extends idx3d_Group {
         basicRemoveActionListener(object, listener);
     }
 
+    @Nonnull
     public ActionListener[] getActionListeners(idx3d_Object object) {
         ActionListener[] listeners = actionMap.get(object);
         return (listeners == null) ? new ActionListener[0] : listeners;
@@ -226,6 +243,7 @@ public class idx3d_Scene extends idx3d_Group {
         basicRemoveActionListener(object, listener);
     }
 
+    @Nonnull
     public ActionListener[] getActionListeners(idx3d_Triangle triangle) {
         ActionListener[] listeners = actionMap.get(triangle);
         return (listeners == null) ? new ActionListener[0] : listeners;
@@ -281,18 +299,21 @@ public class idx3d_Scene extends idx3d_Group {
     public void removeSwipeListener(idx3d_Object object, SwipeListener listener) {
         basicRemoveSwipeListener(object, listener);
     }
+
+    @Nonnull
     public SwipeListener[] getSwipeListeners(idx3d_Object object) {
         SwipeListener[] listeners = scrapeMap.get(object);
         return (listeners == null) ? new SwipeListener[0] : listeners;
     }
 
+    @Nonnull
     public SwipeListener[] getSwipeListeners(idx3d_Triangle triangle) {
         SwipeListener[] listeners = scrapeMap.get(triangle);
         return (listeners == null) ? new SwipeListener[0] : listeners;
     }
 
 
-
+    @Nonnull
     public MouseListener[] getMouseListeners(idx3d_Object object) {
         MouseListener[] listeners = mouseMap.get(object);
         return (listeners == null) ? new MouseListener[0] : listeners;
@@ -306,6 +327,7 @@ public class idx3d_Scene extends idx3d_Group {
         basicRemoveMouseListener(object, listener);
     }
 
+    @Nonnull
     public MouseListener[] getMouseListeners(idx3d_Triangle triangle) {
         MouseListener[] listeners = mouseMap.get(triangle);
         return (listeners == null) ? new MouseListener[0] : listeners;
@@ -406,6 +428,7 @@ public class idx3d_Scene extends idx3d_Group {
     }
 
     /* Werner Randelshofer. Added. */
+    @Nonnull
     public idx3d_Camera getDefaultCamera() {
         return this.defaultCamera;
     }
@@ -452,7 +475,8 @@ public class idx3d_Scene extends idx3d_Group {
     renderPipeline.useIdBuffer(useIdBuffer);
     }
      */
-    public idx3d_Triangle identifyTriangleAt(int[] idBuffer, int width, int height, int xpos, int ypos) {
+    @Nullable
+    public idx3d_Triangle identifyTriangleAt(@Nullable int[] idBuffer, int width, int height, int xpos, int ypos) {
 //System.out.println("scene.identifyTriangleAt idBuffer="+renderPipeline.useIdBuffer+" wh="+renderPipeline.getWidth()+" "+renderPipeline.getHeight());
         if (idBuffer == null || idBuffer.length != width * height) {
             return null;
@@ -471,7 +495,9 @@ public class idx3d_Scene extends idx3d_Group {
         }
         return object[idCode >> 16].triangle[idCode & 0xFFFF];
     }
-    public idx3d_Triangle identifyTriangleAt(idx3d_RenderPipeline renderPipeline, int xpos, int ypos) {
+
+    @Nullable
+    public idx3d_Triangle identifyTriangleAt(@Nullable idx3d_RenderPipeline renderPipeline, int xpos, int ypos) {
 //System.out.println("scene.identifyTriangleAt idBuffer="+renderPipeline.useIdBuffer+" wh="+renderPipeline.getWidth()+" "+renderPipeline.getHeight());
         if (renderPipeline == null || !renderPipeline.useIdBuffer) {
             return null;
@@ -491,6 +517,7 @@ public class idx3d_Scene extends idx3d_Group {
         return object[idCode >> 16].triangle[idCode & 0xFFFF];
     }
 
+    @Nullable
     public idx3d_Object identifyObjectAt(idx3d_RenderPipeline renderPipeline, int xpos, int ypos) {
         idx3d_Triangle tri = identifyTriangleAt(renderPipeline, xpos, ypos);
         if (tri == null) {
@@ -571,6 +598,7 @@ public class idx3d_Scene extends idx3d_Group {
         return counter;
     }
 
+    @Nonnull
     public String toString() {
         StringBuilder buffer = new StringBuilder();
         buffer.append("<scene>\r\n");

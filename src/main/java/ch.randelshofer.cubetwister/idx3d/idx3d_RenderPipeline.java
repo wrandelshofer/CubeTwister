@@ -38,19 +38,22 @@
  */
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.Image;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 /**
  * Renders a scene in a sequence of stages.
- *
  */
 public class idx3d_RenderPipeline {
     // F I E L D S
 
+    @Nullable
     public idx3d_Screen screen;
-    idx3d_Scene scene;
+    @Nullable idx3d_Scene scene;
+    @Nullable
     public idx3d_Lightmap lightmap;
     private boolean resizingRequested = false;
     private boolean antialiasChangeRequested = false;
@@ -58,13 +61,15 @@ public class idx3d_RenderPipeline {
     private int requestedHeight;
     private boolean requestedAntialias;
     boolean useIdBuffer = false;
-    idx3d_Rasterizer rasterizer;
-    ArrayList<idx3d_Triangle> opaqueQueue = new ArrayList<idx3d_Triangle>();
-    ArrayList<idx3d_Triangle> transparentQueue = new ArrayList<idx3d_Triangle>();
-    idx3d_Matrix vertexProjection = new idx3d_Matrix();
-    idx3d_Matrix normalProjection = new idx3d_Matrix();
+    @Nullable idx3d_Rasterizer rasterizer;
+    @Nonnull ArrayList<idx3d_Triangle> opaqueQueue = new ArrayList<idx3d_Triangle>();
+    @Nonnull ArrayList<idx3d_Triangle> transparentQueue = new ArrayList<idx3d_Triangle>();
+    @Nonnull idx3d_Matrix vertexProjection = new idx3d_Matrix();
+    @Nonnull idx3d_Matrix normalProjection = new idx3d_Matrix();
     final int zFar = 0xFFFFFFF;    // B U F F E R S
+    @Nullable
     public int zBuffer[];
+    @Nullable
     public int idBuffer[];
     // C O N S T R U C T O R S
 
@@ -99,7 +104,7 @@ public class idx3d_RenderPipeline {
         rasterizer.loadLightmap(lightmap);
     }
 
-    public final void render(idx3d_Camera cam) {
+    public final void render(@Nonnull idx3d_Camera cam) {
         long start = System.currentTimeMillis();
 
         // Resize if requested
@@ -269,7 +274,7 @@ public class idx3d_RenderPipeline {
         transparentQueue.clear();
     }
 
-    private void enqueueTriangle(idx3d_Triangle tri) {
+    private void enqueueTriangle(@Nonnull idx3d_Triangle tri) {
         //if (tri.parent.material==null) return;
         if (tri.getMaterial() == null) {
             return;
@@ -291,6 +296,7 @@ public class idx3d_RenderPipeline {
         }
     }
 
+    @Nullable
     private idx3d_Triangle[] getOpaqueQueue() {
         if (opaqueQueue.size() == 0) {
             return null;
@@ -299,6 +305,7 @@ public class idx3d_RenderPipeline {
         return sortTriangles(tri, 0, tri.length - 1);
     }
 
+    @Nullable
     public idx3d_Rasterizer getRasterizer() {
         return rasterizer;
     }
@@ -319,10 +326,12 @@ public class idx3d_RenderPipeline {
     }
     // END PATCH Perspective correct rasterizer
 
+    @Nullable
     public idx3d_Screen getScreen() {
         return screen;
     }
 
+    @Nullable
     private idx3d_Triangle[] getTransparentQueue() {
         if (transparentQueue.size() == 0) {
             return null;
@@ -331,7 +340,8 @@ public class idx3d_RenderPipeline {
         return sortTriangles(tri, 0, tri.length - 1);
     }
 
-    private idx3d_Triangle[] sortTriangles(idx3d_Triangle[] tri, int L, int R) {
+    @Nonnull
+    private idx3d_Triangle[] sortTriangles(@Nonnull idx3d_Triangle[] tri, int L, int R) {
         float m = (tri[L].dist + tri[R].dist) / 2;
         int i = L;
         int j = R;
@@ -363,6 +373,7 @@ public class idx3d_RenderPipeline {
     }
 
     /* Werner Randelshofer. Moved from Scene. */
+    @Nonnull
     public java.awt.Dimension size() {
         if (screen != null) {
             return new java.awt.Dimension(screen.width, screen.height);
@@ -380,6 +391,7 @@ public class idx3d_RenderPipeline {
         return (screen != null) ? screen.height : 0;
     }
 
+    @Nullable
     public idx3d_Scene getScene() {
         return scene;
     }
@@ -391,6 +403,7 @@ public class idx3d_RenderPipeline {
         }
     }
 
+    @Nullable
     public final Image getImage() {
         return screen.getImage();
     }

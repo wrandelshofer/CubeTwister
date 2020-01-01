@@ -3,9 +3,12 @@
  */
 package ch.randelshofer.beans;
 
-import ch.randelshofer.reflect.*;
-import java.beans.*;
-import javax.swing.*;
+import ch.randelshofer.reflect.Methods;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.BoundedRangeModel;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * Provides a BoundedRangeModel interface for a JavaBeans property.
@@ -50,7 +53,7 @@ public class BoundedRangeModelBeanAdapter
         }
     }
 
-    public void setPropertyName(String newValue) {
+    public void setPropertyName(@Nonnull String newValue) {
         propertyName = newValue;
         setterName = "set" + Character.toUpperCase(newValue.charAt(0)) + propertyName.substring(1);
         getterName = "get" + Character.toUpperCase(newValue.charAt(0)) + propertyName.substring(1);
@@ -148,7 +151,7 @@ public class BoundedRangeModelBeanAdapter
         return extent;
     }
 
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         if (evt.getPropertyName() == propertyName) {
             fireStateChanged();
         }

@@ -11,6 +11,7 @@ import ch.randelshofer.io.BoundedRangeReader;
 import ch.randelshofer.rubik.impexp.Importer;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -59,9 +60,10 @@ public class CubeExplorerImporter extends JPanel implements Importer {
         add(jLabel1, java.awt.BorderLayout.CENTER);
 
     }//GEN-END:initComponents
-    
+
+    @Nonnull
     @Override
-    public ArrayList<ScriptModel> importFile(File file, ProgressObserver p) throws IOException {
+    public ArrayList<ScriptModel> importFile(@Nonnull File file, @Nonnull ProgressObserver p) throws IOException {
         LineNumberReader in = null;
         try {
             /*
@@ -75,29 +77,34 @@ public class CubeExplorerImporter extends JPanel implements Importer {
             p.setModel(bris);
             in = new LineNumberReader(bris);
             ArrayList<ScriptModel> result = new ArrayList<ScriptModel>();
-            
+
             @SuppressWarnings("unchecked")
             ScriptParser defaultParser = documentModel.getDefaultNotation(documentModel.getDefaultCube().getLayerCount()).getParser((List)Collections.emptyList());
-            
+
             // Read all subsequent lines
             String line;
             while ((line = in.readLine()) != null) {
-                p.setNote("Importing line "+(in.getLineNumber())+"...");
+                p.setNote("Importing line " + (in.getLineNumber()) + "...");
                 result.add(importScript(line, defaultParser));
             }
             return result;
         } finally {
-            if (in != null) in.close();
+            if (in != null) {
+                in.close();
+            }
         }
     }
-    
-    private ScriptModel importScript(String line, ScriptParser defaultParser)
-    throws IOException {
+
+    @Nonnull
+    private ScriptModel importScript(@Nonnull String line, ScriptParser defaultParser)
+            throws IOException {
         int pbr = line.indexOf('(');
         int pss = line.indexOf("//");
-        if (pbr == -1 || pbr > pss) pbr = pss;
+        if (pbr == -1 || pbr > pss) {
+            pbr = pss;
+        }
         ScriptModel scriptModel = new ScriptModel();
-        
+
         String script;
         if (pbr == -1) {
             script = line;
@@ -124,6 +131,7 @@ public class CubeExplorerImporter extends JPanel implements Importer {
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 
+    @Nonnull
     @Override
     public JComponent getComponent() {
         return this;

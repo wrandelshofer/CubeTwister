@@ -5,6 +5,7 @@
 package ch.randelshofer.test;
 
 import ch.randelshofer.gui.list.DefaultMutableListModel;
+import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.UIManager;
 
@@ -75,7 +76,7 @@ public class TestJDnDList extends javax.swing.JFrame {
         scrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         list1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            @Nonnull String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -91,7 +92,7 @@ public class TestJDnDList extends javax.swing.JFrame {
         getContentPane().add(scrollPane1, gridBagConstraints);
 
         list2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            @Nonnull String[] strings = {"Item 1", "Item 2", "Item 3", "Item 4", "Item 5"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

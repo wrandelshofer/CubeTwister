@@ -3,7 +3,8 @@
  */
 package ch.randelshofer.util;
 
-import java.util.Collections;
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.Enumeration;
 import java.util.NoSuchElementException;
 
@@ -25,14 +26,16 @@ implements Enumeration<T> {
     return false;
   }
 
-  @Override
-  public T nextElement() {
-    throw new NoSuchElementException();
-  }
+    @Nonnull
+    @Override
+    public T nextElement() {
+        throw new NoSuchElementException();
+    }
 
-  @SuppressWarnings("unchecked")
-  public static <T> Enumeration<T> getInstance() {
-    return (Enumeration<T>) EMPTY_ENUMERATION;
-  }
+    @Nonnull
+    @SuppressWarnings("unchecked")
+    public static <T> Enumeration<T> getInstance() {
+        return (Enumeration<T>) EMPTY_ENUMERATION;
+    }
 }
 

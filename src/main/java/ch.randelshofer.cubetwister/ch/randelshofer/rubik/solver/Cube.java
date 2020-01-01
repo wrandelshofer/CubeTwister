@@ -9,6 +9,7 @@
 package ch.randelshofer.rubik.solver;
 
 import ch.randelshofer.rubik.notation.Move;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.util.Arrays;
 /**
@@ -223,16 +224,21 @@ public class Cube implements Cloneable {
         backToHome();
     }
 
-    /** Overriden equality test method. */
+    /**
+     * Overriden equality test method.
+     */
     public boolean equals(Object o) {
         return (o instanceof Cube) ? equals((Cube) o) : false;
     }
-    /** Overloaded equality test method. */
-    public boolean equals(Cube cube) {
+
+    /**
+     * Overloaded equality test method.
+     */
+    public boolean equals(@Nonnull Cube cube) {
         return Arrays.equals(this.cornerCubiePermutations, cube.cornerCubiePermutations)
-            && Arrays.equals(this.cornerCubieOrientations, cube.cornerCubieOrientations)
-            && Arrays.equals(this.edgeCubiePermutations, cube.edgeCubiePermutations)
-            && Arrays.equals(this.edgeCubieOrientations, cube.edgeCubieOrientations);
+                && Arrays.equals(this.cornerCubieOrientations, cube.cornerCubieOrientations)
+                && Arrays.equals(this.edgeCubiePermutations, cube.edgeCubiePermutations)
+                && Arrays.equals(this.edgeCubieOrientations, cube.edgeCubieOrientations);
     }
 
     /** Overriden hashCode method. */
@@ -322,8 +328,10 @@ public class Cube implements Cloneable {
         return MOVE_NAMES[move];
     }
 
-    /** Get the move from the move name. */
-    public static int moveNameToMove(String moveName) {
+    /**
+     * Get the move from the move name.
+     */
+    public static int moveNameToMove(@Nonnull String moveName) {
         for (int i = 0; i < NUMBER_OF_MOVES; i++) {
             if (moveName.equals(MOVE_NAMES[i])) {
                 return i;
@@ -346,6 +354,7 @@ public class Cube implements Cloneable {
         System.out.println(toString());
     }
 
+    @Nonnull
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("Cube(\n  cornerPerm:{");
@@ -577,6 +586,7 @@ public class Cube implements Cloneable {
     /**
      * Clones the cube.
      */
+    @Nonnull
     @Override
     public Cube clone() {
         try {

@@ -4,10 +4,17 @@
  */
 package ch.randelshofer.gui;
 
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JLayeredPane;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.LayoutManager2;
 import java.util.HashMap;
 import java.util.Iterator;
-import javax.swing.JLayeredPane;
 
 /**
  * LayoutManager which supports overlapping border layouts for use with 
@@ -69,6 +76,7 @@ public class LayeredBorderLayout implements LayoutManager2 {
      *
      * @serial
      */
+    @Nonnull
     protected HashMap<Component, Object> comptable = new HashMap<Component, Object>();
     /**
      * The horizontal gap between components.
@@ -85,10 +93,11 @@ public class LayeredBorderLayout implements LayoutManager2 {
     }
 
     @Override
-    public void addLayoutComponent(Component comp, Object constraints) {
+    public void addLayoutComponent(Component comp, @Nullable Object constraints) {
         comptable.put(comp, (constraints == null) ? CENTER : constraints);
     }
 
+    @Nonnull
     @Override
     public Dimension maximumLayoutSize(Container parent) {
         return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -119,6 +128,7 @@ public class LayeredBorderLayout implements LayoutManager2 {
         comptable.remove(comp);
     }
 
+    @Nonnull
     @Override
     public Dimension preferredLayoutSize(Container container) {
         JLayeredPane target = (JLayeredPane) container;
@@ -186,6 +196,7 @@ public class LayeredBorderLayout implements LayoutManager2 {
         }
     }
 
+    @Nonnull
     public Dimension minimumLayoutSize(Container container) {
         JLayeredPane target = (JLayeredPane) container;
         synchronized (target.getTreeLock()) {

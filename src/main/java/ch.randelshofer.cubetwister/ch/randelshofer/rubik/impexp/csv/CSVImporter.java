@@ -11,6 +11,8 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.io.BoundedRangeReader;
 import ch.randelshofer.io.CSVReader;
 import ch.randelshofer.rubik.impexp.Importer;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
@@ -103,7 +105,8 @@ public class CSVImporter extends JPanel implements Importer {
         }
     }
 
-    private String[] readColumnTitles(File f) throws IOException {
+    @Nullable
+    private String[] readColumnTitles(@Nullable File f) throws IOException {
         if (f == null) {
             return new String[0];
         }
@@ -142,8 +145,9 @@ public class CSVImporter extends JPanel implements Importer {
 
     }//GEN-END:initComponents
 
+    @Nonnull
     @Override
-    public ArrayList<ScriptModel> importFile(File file, ProgressObserver p) throws IOException {
+    public ArrayList<ScriptModel> importFile(@Nonnull File file, @Nonnull ProgressObserver p) throws IOException {
         int[] columnIndices = columnMapping.getColumnMapping();
 
         CSVReader in = null;
@@ -178,7 +182,8 @@ public class CSVImporter extends JPanel implements Importer {
         }
     }
 
-    private ScriptModel importScript(String[] columns, int[] columnIndices)
+    @Nonnull
+    private ScriptModel importScript(@Nonnull String[] columns, int[] columnIndices)
             throws IOException {
         ScriptModel item = new ScriptModel();
 
@@ -236,6 +241,7 @@ public class CSVImporter extends JPanel implements Importer {
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 
+    @Nonnull
     @Override
     public JComponent getComponent() {
         return this;

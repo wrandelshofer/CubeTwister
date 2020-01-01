@@ -14,6 +14,8 @@ import ch.randelshofer.rubik.Cube3DCanvas;
 import ch.randelshofer.rubik.Cube3DEvent;
 import ch.randelshofer.rubik.Cube3DListener;
 import ch.randelshofer.util.Images;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.monte.media.player.AbstractPlayer;
 import org.monte.media.player.PlayerControl;
 import org.monte.media.swing.player.JPlayerControlAqua;
@@ -51,7 +53,9 @@ import java.util.ResourceBundle;
  */
 public class ScriptPlayer extends AbstractPlayer {
 
+    @Nonnull
     private BoundedRangeModel cachingModel = new DefaultBoundedRangeModel(1, 0, 0, 1);
+    @Nonnull
     private BoundedRangeModel progress = new DefaultBoundedRangeModel();
     private PlayerControl movieControl;
     private Container controlPanelComponent;
@@ -60,15 +64,21 @@ public class ScriptPlayer extends AbstractPlayer {
     private JButton scrambleButton;
     private Cube cube;
     private Cube resetCube;
+    @Nullable
     private Cube3D cube3D;
     private Cube3DCanvas canvas;
+    @Nullable
     private Node script;
+    @Nonnull
     private java.util.List<Node> resolvedScript = new ArrayList<Node>();
     private int scriptIndex;
+    @Nonnull
     private Random random = new Random();
     private boolean isEnabled = true;
     private boolean isHideControlsIfNoScript = false;
+    @Nullable
     private ImageIcon partialResetIcon;
+    @Nullable
     private ImageIcon resetIcon;
     /**
      * Move count in face turn metric.
@@ -96,6 +106,7 @@ public class ScriptPlayer extends AbstractPlayer {
      * Holds the node which is currently being processed.
      * This can be null, when the player is not active.
      */
+    @Nullable
     private Node activeNode;
     /**
      * Holds the current node which is currently being processed or will
@@ -103,6 +114,7 @@ public class ScriptPlayer extends AbstractPlayer {
      * This can be null, when the player has no script, or when the playhead
      * is at the end of a script.
      */
+    @Nullable
     private Node currentNode;
 
     public void setPlayerControl(PlayerControl mc) {
@@ -123,7 +135,7 @@ public class ScriptPlayer extends AbstractPlayer {
     private class Handler implements ChangeListener, ActionListener, Cube3DListener, PropertyChangeListener {
 
         @Override
-        public void stateChanged(ChangeEvent evt) {
+        public void stateChanged(@Nonnull ChangeEvent evt) {
             if (evt.getSource() == progress) {
                 fireStateChanged();
             }
@@ -191,7 +203,7 @@ public class ScriptPlayer extends AbstractPlayer {
         }
 
         @Override
-        public void actionPerformed(ActionEvent evt) {
+        public void actionPerformed(@Nonnull ActionEvent evt) {
             Object src = evt.getSource();
             if (src == resetButton) {
                 if ((evt.getModifiers() & (ActionEvent.ALT_MASK | ActionEvent.CTRL_MASK)) == 0) {
@@ -223,27 +235,29 @@ public class ScriptPlayer extends AbstractPlayer {
         }
 
         @Override
-        public void actionPerformed(Cube3DEvent evt) {
+        public void actionPerformed(@Nonnull Cube3DEvent evt) {
             if (isHandling3DEvents && evt.getOrientation() != -1) {
                 evt.applyTo(cube);
             }
         }
 
-        private void updateResetButton(InputEvent evt) {
+        private void updateResetButton(@Nonnull InputEvent evt) {
             if (evt.getSource() == resetButton) {
             }
         }
 
         @Override
-        public void propertyChange(PropertyChangeEvent evt) {
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
             if (evt.getPropertyName() == ModifierTracker.MODIFIERS_EX_PROPERTY) {
                 int modifiersEx = (Integer) evt.getNewValue();
                 resetButton.setIcon(//
                         (modifiersEx & (InputEvent.ALT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK)) != 0//
-                        ? partialResetIcon : resetIcon);
+                                ? partialResetIcon : resetIcon);
             }
         }
     }
+
+    @Nonnull
     private Handler handler = new Handler();
 
     /** Creates a new instance. */
@@ -254,7 +268,7 @@ public class ScriptPlayer extends AbstractPlayer {
         controlPanelComponent.addPropertyChangeListener(new PropertyChangeListener() {
 
             @Override
-            public void propertyChange(PropertyChangeEvent evt) {
+            public void propertyChange(@Nonnull PropertyChangeEvent evt) {
                 if (evt.getPropertyName() == "locale") {
                     updateLocale();
                 }
@@ -381,7 +395,7 @@ public class ScriptPlayer extends AbstractPlayer {
         return isEnabled;
     }
 
-    public void setCube3D(Cube3D newValue) {
+    public void setCube3D(@Nullable Cube3D newValue) {
         Cube3D oldValue = this.cube3D;
         if (oldValue != null) {
             oldValue.removeCube3DListener(handler);
@@ -393,11 +407,12 @@ public class ScriptPlayer extends AbstractPlayer {
         propertyChangeSupport.firePropertyChange("cube3D", oldValue, newValue);
     }
 
+    @Nullable
     public Cube3D getCube3D() {
         return cube3D;
     }
 
-    public void setScript(Node newValue) {
+    public void setScript(@Nullable Node newValue) {
         stop();
         Node oldValue = this.script;
         this.script = newValue;
@@ -428,6 +443,7 @@ public class ScriptPlayer extends AbstractPlayer {
         propertyChangeSupport.firePropertyChange("script", oldValue, newValue);
     }
 
+    @Nullable
     public Node getScript() {
         return script;
     }
@@ -438,6 +454,7 @@ public class ScriptPlayer extends AbstractPlayer {
         propertyChangeSupport.firePropertyChange("canvas", oldValue, newValue);
     }
 
+    @Nullable
     @Override
     public Component getVisualComponent() {
         return (canvas == null) ? null : canvas.getVisualComponent();
@@ -447,6 +464,7 @@ public class ScriptPlayer extends AbstractPlayer {
         return canvas;
     }
 
+    @Nullable
     public Node getCurrentNode() {
         return currentNode;
         /*
@@ -667,6 +685,7 @@ public class ScriptPlayer extends AbstractPlayer {
     protected void doUnrealized() {
     }
 
+    @Nonnull
     @Override
     public BoundedRangeModel getCachingModel() {
         return cachingModel;
@@ -677,6 +696,7 @@ public class ScriptPlayer extends AbstractPlayer {
         return controlPanelComponent;
     }
 
+    @Nonnull
     @Override
     public BoundedRangeModel getTimeModel() {
         return progress;

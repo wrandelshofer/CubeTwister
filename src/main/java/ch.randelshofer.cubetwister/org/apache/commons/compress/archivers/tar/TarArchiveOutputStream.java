@@ -18,17 +18,20 @@
  */
 package org.apache.commons.compress.archivers.tar;
 
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.apache.commons.compress.archivers.ArchiveOutputStream;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.apache.commons.compress.archivers.ArchiveEntry;
-import org.apache.commons.compress.archivers.ArchiveOutputStream;
-
 public class TarArchiveOutputStream extends ArchiveOutputStream {
 
+    @Nullable
     private TarOutputStream out = null;
-    
-    public TarArchiveOutputStream(OutputStream out) {
+
+    public TarArchiveOutputStream(@Nonnull OutputStream out) {
         this.out = new TarOutputStream(out);
     }
     
@@ -44,19 +47,22 @@ public class TarArchiveOutputStream extends ArchiveOutputStream {
         this.out.putNextEntry((TarArchiveEntry)entry);
     }
 
-    public void write(byte[] buffer, int offset, int length) throws IOException {
+    public void write(@Nonnull byte[] buffer, int offset, int length) throws IOException {
         this.out.write(buffer, offset, length);
     }
 
+    @Nonnull
     public String getDefaultFileExtension() {
         return "tar";
     }
 
+    @Nullable
     public byte[] getHeader() {
         // TODO Auto-generated method stub
         return null;
     }
 
+    @Nonnull
     public String getName() {
         return "tar";
     }

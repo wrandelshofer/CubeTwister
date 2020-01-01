@@ -8,6 +8,7 @@ import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -38,7 +39,7 @@ public class MoveNode extends Node {
         this(layerCount, 0, 0, 0, -1, -1);
     }
 
-    public MoveNode( Move t) {
+    public MoveNode(@Nonnull Move t) {
         this(t.getLayerCount(), t.getAxis(), t.getLayerMask(), t.getAngle(), -1, -1);
     }
 
@@ -55,9 +56,8 @@ public class MoveNode extends Node {
     }
 
 
-
     @Override
-    public void applyTo(Cube cube, boolean inverse) {
+    public void applyTo(@Nonnull Cube cube, boolean inverse) {
         int normalizedAngle = angle % 4;
         if (normalizedAngle == 3) {
             normalizedAngle = -1;
@@ -101,6 +101,7 @@ public class MoveNode extends Node {
         layerCount = newValue;
     }
 
+    @Nonnull
     @Override
     public Iterator<Node> resolvedIterator(boolean isInverse) {
         if (isInverse) {
@@ -142,7 +143,7 @@ public class MoveNode extends Node {
     }
 
     @Override
-    public void transform(MoveNode move, boolean inverse) {
+    public void transform(@Nonnull MoveNode move, boolean inverse) {
         transform(move.axis, move.layerMask, (inverse) ? -move.angle : move.angle);
     }
 
@@ -171,7 +172,7 @@ public class MoveNode extends Node {
         }
     }
 
-    public void setTo(MoveNode that) {
+    public void setTo(@Nonnull MoveNode that) {
         this.layerMask = that.layerMask;
         this.angle = that.angle;
         this.axis = that.axis;
@@ -183,6 +184,7 @@ public class MoveNode extends Node {
         return layerMask == allLayers;
     }
 
+    @Nonnull
     @Override
     public String toString() {
         StringBuilder b= new StringBuilder( );
@@ -200,7 +202,7 @@ public class MoveNode extends Node {
      * Returns a string representation of this node using the specified notation.
      */
     @Override
-    public void writeTokens(PrintWriter w, Notation notation, Map<String, MacroNode> macroMap)
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation notation, Map<String, MacroNode> macroMap)
             throws IOException {
         Move move = new Move(3, axis, layerMask, angle);
         String token = notation.getMoveToken(move);

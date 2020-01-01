@@ -8,6 +8,7 @@ import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -727,6 +728,7 @@ public class RubiksCubeIdx3D extends AbstractRubiksCubeIdx3D {
         return 54;
     }
 
+    @Nonnull
     @Override
     public CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, getStickerCount(),
@@ -754,7 +756,7 @@ public class RubiksCubeIdx3D extends AbstractRubiksCubeIdx3D {
     }
 
     @Override
-    protected void initActions(idx3d_Scene scene) {
+    protected void initActions(@Nonnull idx3d_Scene scene) {
         int i, j;
         PartAction action;
 
@@ -876,6 +878,7 @@ public class RubiksCubeIdx3D extends AbstractRubiksCubeIdx3D {
         }
     }
 
+    @Nonnull
     @Override
     public CubeKind getKind() {
         return CubeKind.RUBIK;

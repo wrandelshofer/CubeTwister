@@ -3,16 +3,52 @@
  */
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.list.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.image.*;
-import java.awt.dnd.*;
-import java.awt.datatransfer.*;
-import java.util.*;
+import ch.randelshofer.gui.list.DefaultMutableListModel;
+import ch.randelshofer.gui.list.ListModels;
+import ch.randelshofer.gui.list.MutableListModel;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JList;
+import javax.swing.KeyStroke;
+import javax.swing.ListCellRenderer;
+import javax.swing.ListModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.TransferHandler;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.dnd.Autoscroll;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragGestureRecognizer;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * A JList that supports drag and drop operations if its model
@@ -73,7 +109,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
          * @param dtde the <code>DropTargetDropEvent</code>
          */
         @Override
-        public void drop(DropTargetDropEvent evt) {
+        public void drop(@Nonnull DropTargetDropEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt drop dropAction(" + dndAction.get(new Integer(evt.getDropAction())));
             }
@@ -155,11 +191,12 @@ public class JDnDList extends MutableJList implements Autoscroll {
         /**
          * Called when a drag operation has
          * encountered the <code>DropTarget</code>.
-         * <P>
+         * <p>
+         *
          * @param dtde the <code>DropTargetDragEvent</code>
          */
         @Override
-        public void dragEnter(DropTargetDragEvent evt) {
+        public void dragEnter(@Nonnull DropTargetDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt dragEnter action:" + dndAction.get(new Integer(evt.getDropAction())) + " " + evt.getLocation());
                 DataFlavor[] flavors = evt.getCurrentDataFlavors();
@@ -183,11 +220,12 @@ public class JDnDList extends MutableJList implements Autoscroll {
         /**
          * Called when a drag operation is ongoing
          * on the <code>DropTarget</code>.
-         * <P>
+         * <p>
+         *
          * @param dtde the <code>DropTargetDragEvent</code>
          */
         @Override
-        public void dragOver(DropTargetDragEvent evt) {
+        public void dragOver(@Nonnull DropTargetDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt dragOver action:" + dndAction.get(new Integer(evt.getDropAction())) + " " + evt.getLocation());
             }
@@ -223,11 +261,12 @@ public class JDnDList extends MutableJList implements Autoscroll {
         /**
          * Called if the user has modified
          * the current drop gesture.
-         * <P>
+         * <p>
+         *
          * @param dtde the <code>DropTargetDragEvent</code>
          */
         @Override
-        public void dropActionChanged(DropTargetDragEvent evt) {
+        public void dropActionChanged(@Nonnull DropTargetDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt drpActionChanged dropAction:" + dndAction.get(new Integer(evt.getDropAction())));
             }
@@ -271,10 +310,10 @@ public class JDnDList extends MutableJList implements Autoscroll {
          * interval have been inserted in the data model.
          * The new interval includes both index0 and index1.
          *
-         * @param e  a ListDataEvent encapuslating the event information
+         * @param e a ListDataEvent encapuslating the event information
          */
         @Override
-        public void intervalAdded(ListDataEvent evt) {
+        public void intervalAdded(@Nonnull ListDataEvent evt) {
             if (draggedIndices != null) {
                 int index0 = evt.getIndex0();
                 int count = evt.getIndex1() - index0 + 1;
@@ -291,10 +330,10 @@ public class JDnDList extends MutableJList implements Autoscroll {
          * have been removed from the data model.  The interval
          * includes both index0 and index1.
          *
-         * @param e  a ListDataEvent encapuslating the event information
+         * @param e a ListDataEvent encapuslating the event information
          */
         @Override
-        public void intervalRemoved(ListDataEvent evt) {
+        public void intervalRemoved(@Nonnull ListDataEvent evt) {
             if (draggedIndices != null) {
                 int index0 = evt.getIndex0();
                 int index1 = evt.getIndex1();
@@ -309,6 +348,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
             }
         }
     }
+    @Nonnull
     private EventHandler eventHandler = new EventHandler();
 
     private class ListTransferHandler extends TransferHandler {
@@ -362,6 +402,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
             }
         }
     }
+    @Nonnull
     private ListTransferHandler transferHandler = new ListTransferHandler();
     /**
      * Methods print diagnostic output to System.out, if true.
@@ -376,6 +417,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * The autoscroll border shows a highlight color when the
      * DnDJList has focus or when the user drags an item over it.
      */
+    @Nonnull
     private Border autoscrollBorder = new MatteBorder(2, 2, 2, 2, UIManager.getColor("List.selectionBackground"));
     /**
      * Name of DragAction/DropAction. Used for diagnostic output only.
@@ -492,7 +534,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * the model is an instance of MutableListModel.
      */
     @Override
-    public void setModel(ListModel m) {
+    public void setModel(@Nonnull ListModel m) {
         if (getModel() != null) {
             getModel().removeListDataListener(this.eventHandler);
         }
@@ -617,7 +659,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
     /**
      * Updates the value of dropIndex and dropAsChild instance variables.
      */
-    private void updateDropIndexAndDropAsChild(int dropAction, Point location, DataFlavor[] flavors) {
+    private void updateDropIndexAndDropAsChild(int dropAction, @Nonnull Point location, DataFlavor[] flavors) {
         MutableListModel m = (MutableListModel) getModel();
 
         dropIndex = locationToDropIndex(location);
@@ -747,7 +789,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * @see #addListSelectionListener
      */
     @Override
-    public void setSelectedIndices(int[] indices) {
+    public void setSelectedIndices(@Nonnull int[] indices) {
         // Allow changes of the selection only, if no drag and drop operation
         // is in progress.
         if (draggedIndices == null) {
@@ -786,6 +828,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * <P>
      * @return the Insets
      */
+    @Nonnull
     @Override
     public Insets getAutoscrollInsets() {
         // FIXME - We are returning here the whole are of the
@@ -795,12 +838,13 @@ public class JDnDList extends MutableJList implements Autoscroll {
 
     /**
      * notify the <code>Component</code> to autoscroll
-     * <P>
+     * <p>
+     *
      * @param location A <code>Point</code> indicating the
-     * location of the cursor that triggered this operation.
+     *                 location of the cursor that triggered this operation.
      */
     @Override
-    public void autoscroll(Point location) {
+    public void autoscroll(@Nonnull Point location) {
         if (isUnderDrag) {
 
             Rectangle visibleRect = getVisibleRect();
@@ -879,10 +923,10 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * if the model actually allows insertion of an object here.
      *
      * @param location the coordinates of the cell, relative to
-     *			<code>JList</code>
+     *                 <code>JList</code>
      * @return the nearest index for dropping the object.
      */
-    private int locationToDropIndex(Point location) {
+    private int locationToDropIndex(@Nonnull Point location) {
         MutableListModel m = (MutableListModel) getModel();
 
 
@@ -906,11 +950,11 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * if the model actually allows insertion of an object here.
      *
      * @param location the coordinates of the cell, relative to
-     *			<code>JList</code>
+     *                 <code>JList</code>
      * @return the nearest index for dropping the object or -1 if
      * the object can not be dropped as a child here.
      */
-    private int locationToDropAsChildIndex(Point location) {
+    private int locationToDropAsChildIndex(@Nonnull Point location) {
         MutableListModel m = (MutableListModel) getModel();
 
         int index = locationToIndex(location);
@@ -932,7 +976,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * region if the DnDJList is an active drop target.
      */
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(@Nonnull Graphics g) {
         super.paintComponent(g);
 
         if (isUnderDrag) {
@@ -962,10 +1006,10 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * <p>
      * Note that you have to change method repaintInsertPoint
      * if you change the shape of the drop cursor.
-     *
-     *�@see
+     * <p>
+     * �@see
      */
-    protected void paintDropCursor(Graphics g) {
+    protected void paintDropCursor(@Nonnull Graphics g) {
         Rectangle r;
         if (dropAsChild) {
             int rgb = UIManager.getColor("TextField.caretForeground").getRGB();
@@ -1051,7 +1095,7 @@ public class JDnDList extends MutableJList implements Autoscroll {
      * @return The drag image. To be used along with the imageOffset in a call
      *                    to start drag.
      */
-    protected Image createDragImage(Point dragOrigin, int dragOriginItemIndex, int[] draggedIndices, boolean isSelected, Point imageOffset) {
+    protected Image createDragImage(@Nonnull Point dragOrigin, int dragOriginItemIndex, @Nonnull int[] draggedIndices, boolean isSelected, @Nonnull Point imageOffset) {
         MutableListModel m = (MutableListModel) getModel();
 
         // Compute the size of the image

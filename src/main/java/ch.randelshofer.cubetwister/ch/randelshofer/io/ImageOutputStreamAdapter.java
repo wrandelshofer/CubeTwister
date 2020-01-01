@@ -3,10 +3,11 @@
  */
 package ch.randelshofer.io;
 
-import java.io.FilterOutputStream;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.imageio.stream.ImageOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import javax.imageio.stream.ImageOutputStream;
 
 /**
  * Adapts an {@code ImageOutputStream} for classes requiring an
@@ -64,11 +65,11 @@ public class ImageOutputStreamAdapter extends OutputStream {
      * argument <code>b</code>.
      *
      * @param      b   the data to be written.
-     * @exception  IOException  if an I/O error occurs.
+     * @exception IOException  if an I/O error occurs.
      * @see        java.io.FilterOutputStream#write(byte[], int, int)
      */
     @Override
-    public void write(byte b[]) throws IOException {
+    public void write(@Nonnull byte b[]) throws IOException {
         write(b, 0, b.length);
     }
 

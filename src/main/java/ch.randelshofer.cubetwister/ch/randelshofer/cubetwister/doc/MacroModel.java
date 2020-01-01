@@ -3,13 +3,13 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import java.beans.*;
-import ch.randelshofer.undo.*;
+import ch.randelshofer.undo.UndoableObjectEdit;
+import org.jhotdraw.annotation.Nonnull;
+
 /**
- *
  * @author Werner Randelshofer
  */
-public class MacroModel extends InfoModel  {
+public class MacroModel extends InfoModel {
     private final static long serialVersionUID = 1L;
     public static final String PROP_IDENTIFIER = "Identifier";
     public static final String PROP_SCRIPT = "Script";
@@ -25,13 +25,14 @@ public class MacroModel extends InfoModel  {
         return identifier;
     }
 
-    public void setIdentifier(String value) {
+    public void setIdentifier(@Nonnull String value) {
         String oldValue = identifier;
-        if (value.equals(oldValue))
+        if (value.equals(oldValue)) {
             return;
-        
+        }
+
         basicSetIdentifier(value);
-        firePropertyChange (PROP_IDENTIFIER, oldValue, value);
+        firePropertyChange(PROP_IDENTIFIER, oldValue, value);
         /*
         if (getParent() instanceof ScriptModel) {
             ((ScriptModel) getParent()).uncheck();
@@ -55,14 +56,15 @@ public class MacroModel extends InfoModel  {
         return script;
     }
 
-    public void setScript(String value) {
+    public void setScript(@Nonnull String value) {
         String oldValue = script;
-        if (value.equals(oldValue))
+        if (value.equals(oldValue)) {
             return;
+        }
 
         basicSetScript(value);
 
-        firePropertyChange (PROP_SCRIPT, oldValue, value);
+        firePropertyChange(PROP_SCRIPT, oldValue, value);
         /*
         if (getParent() instanceof ScriptModel) {
             ((ScriptModel) getParent()).uncheck();

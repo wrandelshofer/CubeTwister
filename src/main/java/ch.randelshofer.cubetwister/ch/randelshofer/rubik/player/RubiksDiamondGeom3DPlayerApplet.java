@@ -10,6 +10,7 @@ import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
 import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.RubiksDiamondGeom3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
+import org.jhotdraw.annotation.Nonnull;
 
 /**
  * RubiksDiamondGeom3DPlayerApplet.
@@ -18,7 +19,8 @@ import ch.randelshofer.rubik.parser.ScriptPlayer;
  */
 public class RubiksDiamondGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet {
     private final static long serialVersionUID = 1L;
-    
+
+    @Nonnull
     @Override
     protected ScriptPlayer createPlayer() {
         ScriptPlayer p = new ScriptPlayer();

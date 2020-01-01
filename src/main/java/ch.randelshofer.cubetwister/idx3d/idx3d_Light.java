@@ -36,68 +36,65 @@
 
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+
 public class idx3d_Light extends idx3d_CoreObject
 // defines a light in the scene
 {
-	// F I E L D S
+    // F I E L D S
 
-		public idx3d_Vector v;               //Light direction
-		public idx3d_Vector v2;             //projected Light direction
-		public int diffuse=0;
-		public int specular=0;
+    public idx3d_Vector v;               //Light direction
+    public idx3d_Vector v2;             //projected Light direction
+    public int diffuse = 0;
+    public int specular = 0;
 		public int highlightSheen=0;
 		public int highlightSpread=0;
-	
-		idx3d_Matrix matrix2;
+
+    idx3d_Matrix matrix2;
 
 
-	// C O N S T R U C T O R S
-	
-		private idx3d_Light()
-		// Default constructor not accessible
-		{
-		}		
+    // C O N S T R U C T O R S
 
-		public idx3d_Light(idx3d_Vector direction)
-		{
-			v=direction.getClone();
-			v.normalize();
-		}
+    private idx3d_Light()
+    // Default constructor not accessible
+    {
+    }
 
-		public idx3d_Light(idx3d_Vector direction,int diffuse)
-		{
-			v=direction.getClone();
-			v.normalize();
-			this.diffuse=diffuse;
-		}
-		
-		public idx3d_Light(idx3d_Vector direction, int color, int highlightSheen, int highlightSpread)
-		{
-			v=direction.getClone();
-			v.normalize();
-			this.diffuse=color;
-			this.specular=color;
-			this.highlightSheen=highlightSheen;
-			this.highlightSpread=highlightSpread;
-		}
-		
-		public idx3d_Light(idx3d_Vector direction, int diffuse, int specular, int highlightSheen, int highlightSpread)
-		{
-			v=direction.getClone();
-			v.normalize();
-			this.diffuse=diffuse;
-			this.specular=specular;
-			this.highlightSheen=highlightSheen;
-			this.highlightSpread=highlightSpread;
-		}
+    public idx3d_Light(@Nonnull idx3d_Vector direction) {
+        v = direction.getClone();
+        v.normalize();
+    }
+
+    public idx3d_Light(@Nonnull idx3d_Vector direction, int diffuse) {
+        v = direction.getClone();
+        v.normalize();
+        this.diffuse = diffuse;
+    }
+
+    public idx3d_Light(@Nonnull idx3d_Vector direction, int color, int highlightSheen, int highlightSpread) {
+        v = direction.getClone();
+        v.normalize();
+        this.diffuse = color;
+        this.specular = color;
+        this.highlightSheen = highlightSheen;
+        this.highlightSpread = highlightSpread;
+    }
+
+    public idx3d_Light(@Nonnull idx3d_Vector direction, int diffuse, int specular, int highlightSheen, int highlightSpread) {
+        v = direction.getClone();
+        v.normalize();
+        this.diffuse = diffuse;
+        this.specular = specular;
+        this.highlightSheen = highlightSheen;
+        this.highlightSpread = highlightSpread;
+    }
 
 
-	// P U B L I C   M E T H O D S
+    // P U B L I C   M E T H O D S
 
-		public void project(idx3d_Matrix m)
-		{
-			matrix2=matrix.getClone();
-			matrix2.transform(m);
-			v2=v.transform(matrix2);
-		}
+    public void project(@Nonnull idx3d_Matrix m) {
+        matrix2 = matrix.getClone();
+        matrix2.transform(m);
+        v2 = v.transform(matrix2);
+    }
 }

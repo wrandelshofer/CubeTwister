@@ -36,7 +36,14 @@
 
 package idx3d;
 
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.awt.Component;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Panel;
+import java.awt.Toolkit;
 import java.awt.image.PixelGrabber;
 import java.net.URL;
 
@@ -51,8 +58,10 @@ public class idx3d_Texture {
     public int height;
     public int bitWidth;
     public int bitHeight;
+    @Nullable
     public int pixel[];
-    
+
+    @Nullable
     public String path=null;
     
     // C O N S T R U C T O R S
@@ -71,29 +80,33 @@ public class idx3d_Texture {
         //pixel=new int[width*height];
         //System.arraycopy(data,0,pixel,0,width*height);
     }
-    
-    public idx3d_Texture(Image img) {
+
+    public idx3d_Texture(@Nonnull Image img) {
         loadTexture(img);
     }
-    
-    public idx3d_Texture(URL docURL, String filename)
+
+    public idx3d_Texture(@Nonnull URL docURL, String filename)
     // Call from Applet
     {
-        int pos=0;
-        String temp=docURL.toString();
-        while (temp.indexOf("/",pos)>0) pos=temp.indexOf("/",pos)+1;
-        temp=temp.substring(0,pos)+filename;
-        while (temp.indexOf("/",pos)>0) pos=temp.indexOf("/",pos)+1;
-        String file=temp.substring(pos);
-        String base=temp.substring(0,pos);
+        int pos = 0;
+        String temp = docURL.toString();
+        while (temp.indexOf("/", pos) > 0) {
+            pos = temp.indexOf("/", pos) + 1;
+        }
+        temp = temp.substring(0, pos) + filename;
+        while (temp.indexOf("/", pos) > 0) {
+            pos = temp.indexOf("/", pos) + 1;
+        }
+        String file = temp.substring(pos);
+        String base = temp.substring(0, pos);
         
         try{
             loadTexture(Toolkit.getDefaultToolkit().getImage(new URL(base+file)));
         } catch (Exception e){System.err.println(e+"");}
     }
-    
-    public idx3d_Texture(String filename) {
-        path=new java.io.File(filename).getName();
+
+    public idx3d_Texture(@Nonnull String filename) {
+        path = new java.io.File(filename).getName();
         loadTexture(Toolkit.getDefaultToolkit().getImage(filename));
     }
     
@@ -101,70 +114,84 @@ public class idx3d_Texture {
     // P U B L I C   M E T H O D S
     
     public void resize() {
-        double log2inv=1/Math.log(2);
-        int w=(int)Math.pow(2,bitWidth=(int)(Math.log(width)*log2inv));
-        int h=(int)Math.pow(2,bitHeight=(int)(Math.log(height)*log2inv));
-        resize(w,h);
+        double log2inv = 1 / Math.log(2);
+        int w = (int) Math.pow(2, bitWidth = (int) (Math.log(width) * log2inv));
+        int h = (int) Math.pow(2, bitHeight = (int) (Math.log(height) * log2inv));
+        resize(w, h);
     }
-    
+
     public void resize(int w, int h) {
-        setSize(w,h);
+        setSize(w, h);
     }
-    
-    public idx3d_Texture put(idx3d_Texture newData)
+
+    @Nonnull
+    public idx3d_Texture put(@Nonnull idx3d_Texture newData)
     // assigns new data for the texture
     {
-        System.arraycopy(newData.pixel,0,pixel,0,width*height);
+        System.arraycopy(newData.pixel, 0, pixel, 0, width * height);
         return this;
     }
-    
-    public idx3d_Texture mix(idx3d_Texture newData)
+
+    @Nonnull
+    public idx3d_Texture mix(@Nonnull idx3d_Texture newData)
     // mixes the texture with another one
     {
-        for (int i=width*height-1;i>=0;i--)
-            pixel[i]=idx3d_Color.mix(pixel[i],newData.pixel[i]);
+        for (int i = width * height - 1; i >= 0; i--) {
+            pixel[i] = idx3d_Color.mix(pixel[i], newData.pixel[i]);
+        }
         return this;
     }
-    
-    public idx3d_Texture add(idx3d_Texture additive)
+
+    @Nonnull
+    public idx3d_Texture add(@Nonnull idx3d_Texture additive)
     // additive blends another texture with this
     {
-        for (int i=width*height-1;i>=0;i--)
-            pixel[i]=idx3d_Color.add(pixel[i],additive.pixel[i]);
+        for (int i = width * height - 1; i >= 0; i--) {
+            pixel[i] = idx3d_Color.add(pixel[i], additive.pixel[i]);
+        }
         return this;
     }
-    
-    public idx3d_Texture sub(idx3d_Texture subtractive)
+
+    @Nonnull
+    public idx3d_Texture sub(@Nonnull idx3d_Texture subtractive)
     // subtractive blends another texture with this
     {
-        for (int i=width*height-1;i>=0;i--)
-            pixel[i]=idx3d_Color.sub(pixel[i],subtractive.pixel[i]);
+        for (int i = width * height - 1; i >= 0; i--) {
+            pixel[i] = idx3d_Color.sub(pixel[i], subtractive.pixel[i]);
+        }
         return this;
     }
-    
+
+    @Nonnull
     public idx3d_Texture inv()
     // inverts the texture
     {
-        for (int i=width*height-1;i>=0;i--)
-            pixel[i]=idx3d_Color.inv(pixel[i]);
+        for (int i = width * height - 1; i >= 0; i--) {
+            pixel[i] = idx3d_Color.inv(pixel[i]);
+        }
         return this;
     }
-    
-    public idx3d_Texture multiply(idx3d_Texture multiplicative)
+
+    @Nonnull
+    public idx3d_Texture multiply(@Nonnull idx3d_Texture multiplicative)
     // inverts the texture
     {
-        for (int i=width*height-1;i>=0;i--)
-            pixel[i]=idx3d_Color.multiply(pixel[i],multiplicative.pixel[i]);
+        for (int i = width * height - 1; i >= 0; i--) {
+            pixel[i] = idx3d_Color.multiply(pixel[i], multiplicative.pixel[i]);
+        }
         return this;
     }
-    
-    
-    /** Clears the texture. */
+
+
+    /**
+     * Clears the texture.
+     */
     public void cls() {
         idx3d_Math.clearBuffer(pixel,0);
     }
     
     /** Builds the average of the channels. */
+    @Nonnull
     public idx3d_Texture toAverage() {
         for (int i=width*height-1;i>=0;i--)
             pixel[i]=idx3d_Color.getAverage(pixel[i]);
@@ -172,38 +199,43 @@ public class idx3d_Texture {
     }
     
     /** Converts this texture to gray. */
+    @Nonnull
     public idx3d_Texture toGray() {
-        for (int i=width*height-1;i>=0;i--)
+        for (int i = width*height-1; i>=0; i--)
             pixel[i]=idx3d_Color.getGray(pixel[i]);
         return this;
     }
-    
+
+    @Nonnull
     public idx3d_Texture valToGray() {
         int intensity;
-        for (int i=width*height-1;i>=0;i--) {
-            intensity=idx3d_Math.crop(pixel[i],0,255);
-            pixel[i]=idx3d_Color.getColor(intensity,intensity,intensity);
+        for (int i = width * height - 1; i >= 0; i--) {
+            intensity = idx3d_Math.crop(pixel[i], 0, 255);
+            pixel[i] = idx3d_Color.getColor(intensity, intensity, intensity);
         }
-        
+
         return this;
     }
-    
-    public idx3d_Texture colorize(int[] pal) {
-        int range=pal.length-1;
-        for (int i=width*height-1;i>=0;i--)
-            pixel[i]=pal[idx3d_Math.crop(pixel[i],0,range)];
+
+    @Nonnull
+    public idx3d_Texture colorize(@Nonnull int[] pal) {
+        int range = pal.length - 1;
+        for (int i = width * height - 1; i >= 0; i--) {
+            pixel[i] = pal[idx3d_Math.crop(pixel[i], 0, range)];
+        }
         return this;
     }
-    
-    public static idx3d_Texture blendTopDown(idx3d_Texture top, idx3d_Texture down) {
-        down.resize(top.width,top.height);
-        idx3d_Texture t=new idx3d_Texture(top.width,top.height);
-        int pos=0;
+
+    @Nonnull
+    public static idx3d_Texture blendTopDown(@Nonnull idx3d_Texture top, @Nonnull idx3d_Texture down) {
+        down.resize(top.width, top.height);
+        idx3d_Texture t = new idx3d_Texture(top.width, top.height);
+        int pos = 0;
         int alpha;
-        for (int y=0;y<top.height;y++) {
-            alpha=255*y/(top.height-1);
-            for (int x=0;x<top.width;x++) {
-                t.pixel[pos]=idx3d_Color.transparency(down.pixel[pos],top.pixel[pos],alpha);
+        for (int y = 0; y < top.height; y++) {
+            alpha = 255 * y / (top.height - 1);
+            for (int x = 0; x < top.width; x++) {
+                t.pixel[pos] = idx3d_Color.transparency(down.pixel[pos], top.pixel[pos], alpha);
                 pos++;
             }
         }
@@ -211,17 +243,20 @@ public class idx3d_Texture {
     }
     
     // P R I V A T E   M E T H O D S
-    
-    
-    /** Grabs the pixels out of an image. */
-    private void loadTexture(Image img) {
+
+
+    /**
+     * Grabs the pixels out of an image.
+     */
+    private void loadTexture(@Nonnull Image img) {
         Component component = new Panel();
         MediaTracker tracker = new MediaTracker(component);
         tracker.addImage(img, 0);
         try {
             tracker.waitForID(0);
-        } catch (InterruptedException e) {}
-        
+        } catch (InterruptedException e) {
+        }
+
         width = img.getWidth(component);
         height = img.getHeight(component);
         // defensively free memory before allocating
@@ -260,9 +295,10 @@ public class idx3d_Texture {
     }
     
     private boolean inrange(int a, int b, int c) {
-        return (a>=b)&(a<c);
+        return (a>=b) & (a < c);
     }
     
+    @Nonnull
     public idx3d_Texture getClone() {
         idx3d_Texture t=new idx3d_Texture(width,height);
         idx3d_Math.copyBuffer(pixel,t.pixel);

@@ -21,18 +21,20 @@ import ch.randelshofer.rubik.CubeListener;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.rubik.notation.CubeMarkupNotation;
+import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptKeyboardHandler;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
-import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.util.AppletParameterException;
 import ch.randelshofer.util.Applets;
 import ch.randelshofer.util.ArrayUtil;
 import ch.randelshofer.util.Images;
 import ch.randelshofer.util.PooledSequentialDispatcher;
 import nanoxml.XMLElement;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -109,9 +111,11 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     private JPanel controlsPanel;
     private final static Color inactiveSelectionBackground = new Color(213, 213, 213);
     private final static Color activeSelectionBackground = new Color(255, 255, 64);
+    @Nullable
     protected Cube3DCanvas frontCanvas, rearCanvas;
     protected CubeMarkupNotation notation;
     protected boolean isRearViewVisible;
+    @Nullable
     private String script;
     private ScriptParser parser;
     /**
@@ -138,6 +142,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
      */
     private JPanel settingsPanel;
     private DefaultCubeAttributes attributes;
+    @Nullable
     private Cube3D cube3D;
     private int defaultTwistDuration;
 
@@ -177,7 +182,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
         super.destroy();
     }
 
-    public static void main(final AbstractPlayerApplet applet, String[] args) {
+    public static void main(@Nonnull final AbstractPlayerApplet applet, @Nonnull String[] args) {
         Applets.setMainArgs(applet, args);
         // System.setProperty("apple.awt.graphics.UseQuartz","false");
         applet.init();
@@ -195,6 +200,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
         });
     }
 
+    @Nonnull
     protected String getAppletVersion() {
         String version = AbstractPlayerApplet.class.getPackage().getImplementationVersion();
         return version == null ? "" : version;
@@ -204,6 +210,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
 
     protected abstract int getLayerCount();
 
+    @Nullable
     protected Cube3DCanvas createRearCanvas() {
         // Netbeans form editor does not support abstract classes. :(
         //throw new InternalError("Subclass responsibility");
@@ -253,7 +260,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
         scriptTextArea.addMouseListener(new MouseAdapter() {
 
             @Override
-            public void mousePressed(MouseEvent event) {
+            public void mousePressed(@Nonnull MouseEvent event) {
                 int caret = scriptTextArea.viewToModel(event.getX(), event.getY());
                 player.moveToCaret(caret);
             }
@@ -1269,12 +1276,14 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     /**
      * Returns version and copyright information.
      */
+    @Nonnull
     @Override
     public String getAppletInfo() {
         return getAppletName() + " " + getAppletVersion() + "\n"
                 + getAppletCopyright();
     }
 
+    @Nonnull
     public String getAppletCopyright() {
         return "© Werner Randelshofer";
     }
@@ -1298,9 +1307,9 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
      * be the root of a CubeTwister document.
      *
      * @param resources The XML element which holds the attribute data.
-     * @param attr The CubeAttributes onto which we store the attribute values.
+     * @param attr      The CubeAttributes onto which we store the attribute values.
      */
-    protected void readCubeAttributes(XMLElement resources, CubeKind kind, DefaultCubeAttributes attr) {
+    protected void readCubeAttributes(@Nullable XMLElement resources, @Nonnull CubeKind kind, @Nonnull DefaultCubeAttributes attr) {
         XMLElement cubeElem = null;
 
         // Find the cube in the resource file
@@ -1398,10 +1407,12 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
 
     }
 
+    @Nullable
     protected Image decodeBase64Image(String base64) {
         return null;
     }
 
+    @Nonnull
     private String repeat(String str, int times) {
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < times; i++) {
@@ -1413,6 +1424,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
         return buf.toString();
     }
 
+    @Nullable
     @Override
     public String getParameter(String name) {
         try {
@@ -1425,6 +1437,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     /**
      * Returns information about the parameters supported by this applet.
      */
+    @Nonnull
     @Override
     public String[][] getParameterInfo() {
 
@@ -1555,6 +1568,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     /**
      * Returns information about the JavaScript API supported by this applet.
      */
+    @Nonnull
     public String[][] getAPIInfo() {
         String[][] info = {
             // API, Description
@@ -1743,6 +1757,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     /**
      * JavaScript API: Gets a script.
      */
+    @Nullable
     public String getScript() {
         return script;
     }
@@ -1750,7 +1765,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     /**
      * JavaScript API: Sets the script type.
      */
-    public void setScriptType(String newValue) {
+    public void setScriptType(@Nullable String newValue) {
         if (newValue == null) {
             throw new IllegalArgumentException("Illegal scriptType:null. \"solver\" or \"generator\" expected");
         } else if ("solver".equals(newValue)) {
@@ -1777,6 +1792,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     /**
      * JavaScript API: Gets the script type.
      */
+    @Nonnull
     public String getScriptType() {
         return isSolver ? "solver" : "generator";
     }
@@ -1784,6 +1800,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     /**
      * JavaScript API: Gets the current permutation of the cube.
      */
+    @Nonnull
     public String getPermutation() {
         return Cubes.toPermutationString(cube3D.getCube(), notation);
     }

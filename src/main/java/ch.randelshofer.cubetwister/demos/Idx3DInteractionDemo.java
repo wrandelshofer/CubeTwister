@@ -9,13 +9,28 @@
  */
 package demos;
 
-import idx3d.*;
+import idx3d.idx3d_Camera;
+import idx3d.idx3d_JCanvas;
+import idx3d.idx3d_Light;
+import idx3d.idx3d_Material;
+import idx3d.idx3d_Matrix;
+import idx3d.idx3d_Object;
+import idx3d.idx3d_ObjectFactory;
+import idx3d.idx3d_Scene;
+import idx3d.idx3d_Triangle;
+import idx3d.idx3d_Vector;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.geom.Geom;
 
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.awt.Color;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
-import javax.swing.*;
 
 /**
  *
@@ -37,12 +52,16 @@ public class Idx3DInteractionDemo extends javax.swing.JPanel {
             private boolean isAntialiased;
             private float screenScale, fovFact;
             /** world coordinates. */
+            @Nonnull
             private idx3d_Vector[] w = new idx3d_Vector[3];
             /** projected coordinates. */
+            @Nonnull
             private idx3d_Vector[] p = new idx3d_Vector[3];
             /** triangle p2 coordinates. */
+            @Nonnull
             private idx3d_Vector[] p2 = new idx3d_Vector[3];
             /** orthogonal versions of the projected coordinates. */
+            @Nonnull
             private idx3d_Vector[] o = new idx3d_Vector[3];
             /** projected mouse coordinates */
             private int pmx,  pmy;
@@ -336,18 +355,18 @@ public class Idx3DInteractionDemo extends javax.swing.JPanel {
             }
 
             @Override
-            protected void fireMouseDragged(MouseEvent evt, idx3d_Triangle triangle) {
+            protected void fireMouseDragged(@Nonnull MouseEvent evt, idx3d_Triangle triangle) {
                 super.fireMouseDragged(evt, triangle);
                 update(evt, triangle);
             }
 
             @Override
-            protected void fireMousePressed(MouseEvent evt, idx3d_Triangle triangle) {
+            protected void fireMousePressed(@Nonnull MouseEvent evt, idx3d_Triangle triangle) {
                 super.fireMousePressed(evt, triangle);
                 update(evt, triangle);
             }
 
-            protected void update(MouseEvent evt, idx3d_Triangle triangle) {
+            protected void update(@Nonnull MouseEvent evt, @Nullable idx3d_Triangle triangle) {
                 if (triangle == null) {
                     w[0] = null;
                     p[0] = null;
@@ -418,7 +437,7 @@ public class Idx3DInteractionDemo extends javax.swing.JPanel {
      * Author: Tomas Moller, 1999
      * As seen at http://lists.apple.com/archives/mac-opengl/2001/Jan/msg00059.html
      */
-    public static idx3d_Matrix fromToRotation(idx3d_Vector from, idx3d_Vector to) {
+    public static idx3d_Matrix fromToRotation(@Nonnull idx3d_Vector from, @Nonnull idx3d_Vector to) {
 //#define M(row,col) mtx9[col*4+row]
         final float EPSILON = 0.00001f;
         idx3d_Vector v;

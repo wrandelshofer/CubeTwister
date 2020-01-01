@@ -18,29 +18,29 @@
  */
 package org.apache.commons.compress.archivers.tar;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * This class provides static utility methods to work with byte streams.
  */
-class TarUtils
-{
+class TarUtils {
     /**
      * Parse the checksum octal integer from a header buffer.
      *
      * @param offset The offset into the buffer from which to parse.
      * @param length The number of header bytes to parse.
-     * @param value Description of Parameter
-     * @param buf Description of Parameter
+     * @param value  Description of Parameter
+     * @param buf    Description of Parameter
      * @return The integer value of the entry's checksum.
      */
-    public static int getCheckSumOctalBytes( final long value,
-                                             final byte[] buf,
-                                             final int offset,
-                                             final int length )
-    {
-        getOctalBytes( value, buf, offset, length );
+    public static int getCheckSumOctalBytes(final long value,
+                                            @Nonnull final byte[] buf,
+                                            final int offset,
+                                            final int length) {
+        getOctalBytes(value, buf, offset, length);
 
-        buf[ offset + length - 1 ] = (byte)' ';
-        buf[ offset + length - 2 ] = 0;
+        buf[offset + length - 1] = (byte) ' ';
+        buf[offset + length - 2] = 0;
 
         return offset + length;
     }
@@ -50,19 +50,18 @@ class TarUtils
      *
      * @param offset The offset into the buffer from which to parse.
      * @param length The number of header bytes to parse.
-     * @param value Description of Parameter
-     * @param buf Description of Parameter
+     * @param value  Description of Parameter
+     * @param buf    Description of Parameter
      * @return The long value of the octal bytes.
      */
-    public static int getLongOctalBytes( final long value,
-                                         final byte[] buf,
-                                         final int offset,
-                                         final int length )
-    {
-        byte[] temp = new byte[ length + 1 ];
+    public static int getLongOctalBytes(final long value,
+                                        @Nonnull final byte[] buf,
+                                        final int offset,
+                                        final int length) {
+        byte[] temp = new byte[length + 1];
 
-        getOctalBytes( value, temp, 0, length + 1 );
-        System.arraycopy( temp, 0, buf, offset, length );
+        getOctalBytes(value, temp, 0, length + 1);
+        System.arraycopy(temp, 0, buf, offset, length);
 
         return offset + length;
     }
@@ -72,24 +71,21 @@ class TarUtils
      *
      * @param offset The offset into the buffer from which to parse.
      * @param length The number of header bytes to parse.
-     * @param name Description of Parameter
+     * @param name   Description of Parameter
      * @param buffer Description of Parameter
      * @return The number of bytes in a header's entry name.
      */
-    public static int getNameBytes( final StringBuilder name,
-                                    final byte[] buffer,
-                                    final int offset,
-                                    final int length )
-    {
+    public static int getNameBytes(@Nonnull final StringBuilder name,
+                                   final byte[] buffer,
+                                   final int offset,
+                                   final int length) {
         int i;
 
-        for( i = 0; i < length && i < name.length(); ++i )
-        {
-            buffer[ offset + i ] = (byte)name.charAt( i );
+        for (i = 0; i < length && i < name.length(); ++i) {
+            buffer[offset + i] = (byte) name.charAt(i);
         }
 
-        for( ; i < length; ++i )
-        {
+        for (; i < length; ++i) {
             buffer[ offset + i ] = 0;
         }
 
@@ -146,13 +142,11 @@ class TarUtils
      * @param buffer The tar entry's header buffer.
      * @return The computed checksum.
      */
-    public static long computeCheckSum( final byte[] buffer )
-    {
+    public static long computeCheckSum(@Nonnull final byte[] buffer) {
         long sum = 0;
 
-        for( int i = 0; i < buffer.length; ++i )
-        {
-            sum += 255 & buffer[ i ];
+        for (int i = 0; i < buffer.length; ++i) {
+            sum += 255 & buffer[i];
         }
 
         return sum;
@@ -166,17 +160,15 @@ class TarUtils
      * @param length The number of header bytes to parse.
      * @return The header's entry name.
      */
-    public static StringBuilder parseName( final byte[] header,
+    @Nonnull
+    public static StringBuilder parseName(final byte[] header,
                                           final int offset,
-                                          final int length )
-    {
-        StringBuilder result = new StringBuilder( length );
+                                          final int length) {
+        StringBuilder result = new StringBuilder(length);
         int end = offset + length;
 
-        for( int i = offset; i < end; ++i )
-        {
-            if( header[ i ] == 0 )
-            {
+        for (int i = offset; i < end; ++i) {
+            if (header[i] == 0) {
                 break;
             }
 

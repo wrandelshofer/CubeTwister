@@ -4,12 +4,15 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.util.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
+import ch.randelshofer.gui.DefaultImageWellModel;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.JComponent;
+import javax.swing.UIManager;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 /**
  * PicturesView.
  *
@@ -102,7 +105,8 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
         }
         validate();
     }//GEN-LAST:event_stickersImageStateChanged
-    
+
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;
@@ -125,8 +129,8 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
             updateStickersImageVisible();
         }
     }
-    
-    public void propertyChange(PropertyChangeEvent evt) {
+
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         String name = evt.getPropertyName();
         if (name.equals(CubeModel.STICKERS_IMAGE_VISIBLE_PROPERTY)) {
             updateStickersImageVisible();

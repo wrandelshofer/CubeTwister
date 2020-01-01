@@ -4,9 +4,16 @@
 
 package ch.randelshofer.gui.border;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.AbstractButton;
+import javax.swing.ButtonModel;
+import javax.swing.JButton;
+import javax.swing.border.Border;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Insets;
 /**
  * ButtonStateBorder.
  *
@@ -87,12 +94,13 @@ public class ButtonStateBorder implements Border {
         borders[DI] = dis;
         borders[DIS] = dis;
     }
+
     /**
      * Creates a new instance.
      * All borders must have the same insets.
      */
-    public ButtonStateBorder(Border[] borders) {
-        this.borders = new Border[DEFAULT+1];
+    public ButtonStateBorder(@Nonnull Border[] borders) {
+        this.borders = new Border[DEFAULT + 1];
         System.arraycopy(borders, 0, this.borders, 0, Math.min(borders.length, this.borders.length));
     }
 
@@ -115,6 +123,7 @@ public class ButtonStateBorder implements Border {
     }
 
 
+    @Nonnull
     public Insets getBorderInsets(Component c) {
         if (borderInsets != null) {
             return (Insets) borderInsets.clone();

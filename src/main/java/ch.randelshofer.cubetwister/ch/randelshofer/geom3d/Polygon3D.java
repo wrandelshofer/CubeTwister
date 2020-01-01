@@ -3,7 +3,7 @@
  */
 package ch.randelshofer.geom3d;
 
-import java.awt.Polygon;
+import org.jhotdraw.annotation.Nonnull;
 
 /**
 A polygon located in three dimensional (x, y, z) coordinate space.
@@ -61,26 +61,27 @@ public class Polygon3D
     {
     xpoints = new double[capacity];
     ypoints = new double[capacity];
-    zpoints = new double[capacity];
-    npoints = 0;
+        zpoints = new double[capacity];
+        npoints = 0;
     }
-    /**
-     * Constructs and initializes a Polygon from the specified parameters.
-     * @param xpoints the array of x coordinates
-     * @param ypoints the array of y coordinates
-     * @param zpoints the array of z coordinates
-     * @param npoints the total number of points in the Polygon
-     */
-    public Polygon3D(double xpoints[], double ypoints[], double zpoints[], int npoints)
-      {
-    this.npoints = npoints;
-    this.xpoints = new double[npoints];
-    this.ypoints = new double[npoints];
-    this.zpoints = new double[npoints];
-    System.arraycopy(xpoints, 0, this.xpoints, 0, npoints);
-    System.arraycopy(ypoints, 0, this.ypoints, 0, npoints);
-    System.arraycopy(zpoints, 0, this.zpoints, 0, npoints);
-    }
+
+      /**
+       * Constructs and initializes a Polygon from the specified parameters.
+       *
+       * @param xpoints the array of x coordinates
+       * @param ypoints the array of y coordinates
+       * @param zpoints the array of z coordinates
+       * @param npoints the total number of points in the Polygon
+       */
+      public Polygon3D(@Nonnull double xpoints[], @Nonnull double ypoints[], @Nonnull double zpoints[], int npoints) {
+          this.npoints = npoints;
+          this.xpoints = new double[npoints];
+          this.ypoints = new double[npoints];
+          this.zpoints = new double[npoints];
+          System.arraycopy(xpoints, 0, this.xpoints, 0, npoints);
+          System.arraycopy(ypoints, 0, this.ypoints, 0, npoints);
+          System.arraycopy(zpoints, 0, this.zpoints, 0, npoints);
+      }
 
     /**
      * Constructs and initializes a Polygon from the specified parameters.

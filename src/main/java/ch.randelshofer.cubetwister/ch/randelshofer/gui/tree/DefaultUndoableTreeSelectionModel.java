@@ -5,10 +5,16 @@
 package ch.randelshofer.gui.tree;
 
 
-import javax.swing.event.*;
-import javax.swing.tree.*;
-import javax.swing.undo.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.tree.DefaultTreeSelectionModel;
+import javax.swing.tree.TreePath;
+import javax.swing.undo.StateEdit;
+import javax.swing.undo.StateEditable;
+import javax.swing.undo.UndoableEdit;
+import java.util.Hashtable;
 
 /**
  * Supports UndoableEditListeners.
@@ -195,7 +201,7 @@ implements UndoableTreeSelectionModel {
      * state out of <EM>state</EM>.
      */
     @Override
-    public void restoreState(Hashtable<?,?> state) {
+    public void restoreState(@Nonnull Hashtable<?, ?> state) {
         Object value = state.get("selection");
 
         if (value != null) {
@@ -212,8 +218,11 @@ implements UndoableTreeSelectionModel {
      * state into <EM>state</EM>.
      */
     @Override
-    public void storeState(Hashtable<Object,Object> state) {
-        if (selection != null) state.put("selection", selection.clone());
-        else state.put("selection", "EMPTY");
+    public void storeState(@Nonnull Hashtable<Object, Object> state) {
+        if (selection != null) {
+            state.put("selection", selection.clone());
+        } else {
+            state.put("selection", "EMPTY");
+        }
     }
 }

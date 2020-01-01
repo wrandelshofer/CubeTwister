@@ -4,11 +4,14 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.undo.*;
+import ch.randelshofer.rubik.CubeAttributes;
+import ch.randelshofer.undo.UndoableBooleanEdit;
+import ch.randelshofer.undo.UndoableObjectEdit;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.undo.*;
 
 /**
  * Model for the properties of a cube part.
@@ -28,17 +31,19 @@ public class CubeStickerModel extends EntityModel {
     /** 
      * The fill color property.
      */
+    @Nullable
     private CubeColorModel fillColor;
     /**
      * The name property.
      */
     private String name;
 
+    @Nonnull
     private PropertyChangeListener fillColorHandler = new PropertyChangeListener() {
 
         @Override
-        public void propertyChange(PropertyChangeEvent evt) {
-            if (evt.getPropertyName()==CubeColorModel.PROP_COLOR) {
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
+            if (evt.getPropertyName() == CubeColorModel.PROP_COLOR) {
                 firePropertyChange(PROP_FILL_COLOR, evt.getOldValue(), evt.getNewValue());
             }
         }
@@ -107,6 +112,7 @@ public class CubeStickerModel extends EntityModel {
         }
     }
 
+    @Nullable
     public CubeColorModel getFillColorModel() {
         return fillColor;
     }
@@ -128,17 +134,19 @@ public class CubeStickerModel extends EntityModel {
             firePropertyChange(PROP_FILL_COLOR, oldValue, value);
 
             fireUndoableEditHappened(
-                new UndoableObjectEdit(this, "Fill Color", oldValue, value) {
-    private final static long serialVersionUID = 1L;
-                    public void revert(Object a, Object b) {
-                        fillColor = (CubeColorModel) b;
-                        firePropertyChange(PROP_FILL_COLOR, a, b);
+                    new UndoableObjectEdit(this, "Fill Color", oldValue, value) {
+                        private final static long serialVersionUID = 1L;
+
+                        public void revert(Object a, Object b) {
+                            fillColor = (CubeColorModel) b;
+                            firePropertyChange(PROP_FILL_COLOR, a, b);
+                        }
                     }
-                }
             );
         }
     }
-    public void removeNotify(EntityModel m) {
+
+    public void removeNotify(@Nonnull EntityModel m) {
         if (m == fillColor) {
             EntityModel colors = m.getParent();
             if (colors.getChildCount() < 2) {

@@ -3,7 +3,13 @@ package idx3d;
 /* @(#)idx3d_Group.java
  * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
  */
-import java.util.*;
+
+import org.jhotdraw.annotation.Nonnull;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Iterator;
 
 /**
  * The idx3d_Group node object is a general-purpose grouping node. Group nodes
@@ -16,6 +22,7 @@ import java.util.*;
  */
 public class idx3d_Group extends idx3d_Node {
 
+    @Nonnull
     private ArrayList<idx3d_Node> children = new ArrayList<idx3d_Node>();
 
     /**
@@ -41,7 +48,7 @@ public class idx3d_Group extends idx3d_Node {
     /**
      * Replace the child at the specified index.
      */
-    public final void setChild(idx3d_Node child, int index) {
+    public final void setChild(@Nonnull idx3d_Node child, int index) {
         if (child.parent != null) {
             child.parent.removeChild(child);
         }
@@ -52,7 +59,7 @@ public class idx3d_Group extends idx3d_Node {
     /**
      * Insert a new child before the specified index.
      */
-    public final void insertChild(idx3d_Node child, int index) {
+    public final void insertChild(@Nonnull idx3d_Node child, int index) {
         if (child.parent != null) {
             child.parent.removeChild(child);
         }
@@ -72,7 +79,7 @@ public class idx3d_Group extends idx3d_Node {
     /**
      * Returns the specified child.
      */
-    public final void removeChild(idx3d_Node child) {
+    public final void removeChild(@Nonnull idx3d_Node child) {
         if (child.parent == this) {
             children.remove(child);
             child.parent = null;
@@ -82,6 +89,7 @@ public class idx3d_Group extends idx3d_Node {
     /**
      * Return an enumeration of all children.
      */
+    @Nonnull
     @Override
     public final Iterable<idx3d_Node> children() {
         return children;
@@ -101,7 +109,7 @@ public class idx3d_Group extends idx3d_Node {
     /**
      * Add a new child as the last child in the group.
      */
-    public final void addChild(idx3d_Node child) {
+    public final void addChild(@Nonnull idx3d_Node child) {
         if (child.parent != null) {
             child.parent.removeChild(child);
         }
@@ -119,9 +127,11 @@ public class idx3d_Group extends idx3d_Node {
      *
      * @return	an enumeration for traversing the tree in preorder
      */
+    @Nonnull
     public Iterable<idx3d_Node> preorderIterator() {
         return new Iterable<idx3d_Node>() {
 
+            @Nonnull
             @Override
             public Iterator<idx3d_Node> iterator() {
                 return new PreorderIterator(idx3d_Group.this);

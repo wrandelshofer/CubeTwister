@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.geom3d.Shape3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -57,6 +58,8 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
     protected float getUnitScaleFactor() {
         return 1.07f;
     }
+
+    @Nonnull
     public CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(27, getStickerCount(), new int[] {9,9,9,9,9,9,4,4,4,4,4,4,4,4});
         Color partsFillColor = new Color(16, 16, 16);
@@ -78,9 +81,9 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
         Arrays.fill(stickers, 74, 78, new Color(31,203,69)); // Down-Back-Right: light green
         Arrays.fill(stickers, 78, 82, new Color(102,102,0)); // Down-Back-Left: gold
         Arrays.fill(stickers, 82, 86, new Color(0,220,220)); // Down-Front-Left: cyan
-        
+
         a.setStickerFillColor(stickers);
-        
+
         for (int i=0; i < 6; i++) {
             for (int j=0; j < 9; j++) {
                 int index = i*9+j;
@@ -91,7 +94,7 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
             a.setPartFillColor(i, partsFillColor);
             a.setPartOutlineColor(i, partsOutlineColor);
         }
-        
+
         return a;
     }
     private final static int[] stickerToFaceMap = {
@@ -480,11 +483,13 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
             shapes[centerOffset].setAction(i, new AbstractRubiksCubeGeom3D.PartAction(centerOffset, i, -1));
         }
     }
-    
+
+    @Nonnull
     public String getName() {
         return "Rubik's Cuboctahedron";
     }
 
+    @Nonnull
     public CubeKind getKind() {
         return CubeKind.CUBOCTAHEDRON;
     }

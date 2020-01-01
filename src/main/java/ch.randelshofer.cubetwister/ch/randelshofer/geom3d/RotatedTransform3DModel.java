@@ -4,8 +4,11 @@
 
 package ch.randelshofer.geom3d;
 
-import ch.randelshofer.beans.*;
-import javax.swing.event.*;
+import ch.randelshofer.beans.AbstractStateModel;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  * This model wraps another Transform3DModel.
@@ -66,13 +69,14 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
         t.concatenate(rotator);
         return t;
     }
-    
+
     /**
      * Copies the current state of the model
      * into the given Transform3D object and
      * returns it.
      */
-    public Transform3D getTransform(Transform3D t) {
+    @Nonnull
+    public Transform3D getTransform(@Nonnull Transform3D t) {
         model.getTransform(t);
         t.concatenate(rotator);
         return t;

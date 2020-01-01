@@ -4,8 +4,15 @@
 
 package ch.randelshofer.gui.datatransfer;
 
-import java.awt.datatransfer.*;
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.StringReader;
 /**
  * PlainTextTransferable.
  * <p>
@@ -20,16 +27,19 @@ public class PlainTextTransferable extends AbstractTransferable {
     public PlainTextTransferable(String plainText) {
         this(getDefaultFlavors(), plainText);
     }
+
     public PlainTextTransferable(DataFlavor flavor, String plainText) {
-        this(new DataFlavor[] { flavor }, plainText);
+        this(new DataFlavor[]{flavor}, plainText);
     }
+
     public PlainTextTransferable(DataFlavor[] flavors, String plainText) {
         super(flavors);
         this.plainText = plainText;
     }
 
-    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-        if (! isDataFlavorSupported(flavor)) {
+    @Nonnull
+    public Object getTransferData(@Nonnull DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+        if (!isDataFlavorSupported(flavor)) {
             throw new UnsupportedFlavorException(flavor);
         }
         plainText = (plainText == null) ? "" : plainText;
@@ -46,12 +56,13 @@ public class PlainTextTransferable extends AbstractTransferable {
 	throw new UnsupportedFlavorException(flavor);
     }
 
+    @Nonnull
     protected static DataFlavor[] getDefaultFlavors() {
         try {
             return new DataFlavor[] {
-                new DataFlavor("text/plain;class=java.lang.String"),
-                new DataFlavor("text/plain;class=java.io.Reader"),
-                new DataFlavor("text/plain;charset=unicode;class=java.io.InputStream")
+                    new DataFlavor("text/plain;class=java.lang.String"),
+                    new DataFlavor("text/plain;class=java.io.Reader"),
+                    new DataFlavor("text/plain;charset=unicode;class=java.io.InputStream")
             };
         } catch (ClassNotFoundException cle) {
             InternalError ie = new InternalError(

@@ -3,8 +3,8 @@
  */
 package ch.randelshofer.geom3d;
 
-import ch.randelshofer.beans.*;
-import ch.randelshofer.gui.event.*;
+import ch.randelshofer.beans.AbstractStateModel;
+import org.jhotdraw.annotation.Nonnull;
 //import javax.swing.event.*;
 /**
  * The default implementation of the Transform3DModel interface.
@@ -28,16 +28,17 @@ implements Transform3DModel {
      */
     public DefaultTransform3DModel(double m00, double m10, double m20, double m30, double m01, double m11, double m21, double m31, double m02, double m12, double m22, double m32) {
         transform = new Transform3D(
-        m00, m10, m20, m30,
-        m01, m11, m21, m31,
-        m02, m12, m22, m32
+                m00, m10, m20, m30,
+                m01, m11, m21, m31,
+                m02, m12, m22, m32
         );
     }
+
     /**
      * Constructs a new transform from 12 double precision values
      * representing the 12 specifiable entries of the 4x4 transformation matrix.
      */
-    public DefaultTransform3DModel(double[][] matrix) {
+    public DefaultTransform3DModel(@Nonnull double[][] matrix) {
         transform = new Transform3D(matrix);
     }
     
@@ -150,7 +151,7 @@ implements Transform3DModel {
      * @param t The transform object to be concatenated with
      * this transform object.
      */
-    public void concatenate(Transform3D t) {
+    public void concatenate(@Nonnull Transform3D t) {
         transform.concatenate(t);
         fireStateChanged();
     }
@@ -158,10 +159,11 @@ implements Transform3DModel {
     /**
      * Sets this transform to a copy of the transform in the specified
      * <code>Transform3D</code> object.
+     *
      * @param t the <code>Transform3D</code> object from which to
-     * copy the transform
+     *          copy the transform
      */
-    public void setTransform(Transform3D t) {
+    public void setTransform(@Nonnull Transform3D t) {
         transform.setTransform(t);
         fireStateChanged();
     }
@@ -169,16 +171,18 @@ implements Transform3DModel {
     /**
      * Returns the current state of the model.
      */
+    @Nonnull
     public Transform3D getTransform() {
         return (Transform3D) transform.clone();
     }
-    
+
     /**
      * Copies the current state of the model
      * into the given Transform3D object and
      * returns it.
      */
-    public Transform3D getTransform(Transform3D t) {
+    @Nonnull
+    public Transform3D getTransform(@Nonnull Transform3D t) {
         t.setTransform(transform);
         return t;
     }

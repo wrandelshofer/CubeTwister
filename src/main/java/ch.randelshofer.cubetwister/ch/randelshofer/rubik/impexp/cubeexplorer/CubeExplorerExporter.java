@@ -12,6 +12,7 @@ import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.impexp.Exporter;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -65,11 +66,11 @@ implements Exporter {
 
     }//GEN-END:initComponents
 
-    public void exportFile(File file, ProgressObserver p) throws IOException {
+    public void exportFile(@Nonnull File file, @Nonnull ProgressObserver p) throws IOException {
         PrintWriter out = null;
         RubiksCube cube = new RubiksCube();
         RubiksCube translatedCube = new RubiksCube();
-        
+
         try {
             LFWriter lfout;
             out = new PrintWriter(new LFWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "ISO-8859-1")), "\r\n"));
@@ -112,6 +113,7 @@ throw new InternalError("not implemented");
     private javax.swing.JLabel noOptionsLabel;
     // End of variables declaration//GEN-END:variables
 
+    @Nonnull
     @Override
     public JComponent getComponent() {
         return this;

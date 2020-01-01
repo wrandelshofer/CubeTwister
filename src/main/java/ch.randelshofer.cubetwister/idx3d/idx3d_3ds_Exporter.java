@@ -36,8 +36,11 @@
 
 package idx3d;
 
-import java.io.*;
-import java.net.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.io.BufferedOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 /**
  * Exports a scene to a 3ds (3d Studio Max) Ressource.
@@ -48,88 +51,81 @@ public class idx3d_3ds_Exporter
 {
 	// F I E L D S
 
-	// C O N S T R U C T O R S
+    // C O N S T R U C T O R S
 
-		private idx3d_3ds_Exporter()
-		{
-		}
-
-
-	// P U B L I C   M E T H O D S
-
-		public static void exportToStream(OutputStream outStream, idx3d_Scene source)
-		{
-			System.out.println(">> Exporting scene to 3ds stream ...");
-			BufferedOutputStream out=new BufferedOutputStream(outStream);
-			try{ 
-				exportScene(source,out);
-				outStream.close();
-			}
-			catch (Throwable ignored){System.out.println(ignored+"");}
-		}
+    private idx3d_3ds_Exporter() {
+    }
 
 
+    // P U B L I C   M E T H O D S
 
-	// P R I V A T E   M E T H O D S
-
-		private static void writeString(String outString, OutputStream out) throws IOException
-		{
-			byte[] data=new byte[(int)(outString.length())];
-			outString.getBytes(0,(int)outString.length(),data,0);
-			out.write(data);
-			out.write(0);
-		}
-
-		private static void writeInt(int outInt, OutputStream out) throws IOException
-		{
-			out.write(outInt&255);
-			out.write((outInt>>8)&255);
-			out.write((outInt>>16)&255);
-			out.write((outInt>>24)&255);
-		}
-
-		private static void writeShort(int outShort, OutputStream out) throws IOException
-		{
-			out.write(outShort&255);
-			out.write((outShort>>8)&255);
-		}
-
-		private static void writeFloat(float outFloat, OutputStream out) throws IOException
-		{
-			writeInt(Float.floatToIntBits(outFloat),out);
-		}
+    public static void exportToStream(@Nonnull OutputStream outStream, @Nonnull idx3d_Scene source) {
+        System.out.println(">> Exporting scene to 3ds stream ...");
+        BufferedOutputStream out = new BufferedOutputStream(outStream);
+        try {
+            exportScene(source, out);
+            outStream.close();
+        } catch (Throwable ignored) {
+            System.out.println(ignored + "");
+        }
+    }
 
 
-	// J U N K   E X P O R T
+    // P R I V A T E   M E T H O D S
 
-		private static void exportScene(idx3d_Scene scene, OutputStream out) throws IOException
-		{
-			scene.rebuild();
-			int runlength=0;
-			for (int i=0;i<scene.objects;i++)
-			{
-				runlength+=scene.object[i].name.length()+1;
-				runlength+=36+20*scene.object[i].vertices+8*scene.object[i].triangles;
-			}
-			writeShort(0x4D4D,out);
-			writeInt(12+runlength,out);
-			writeShort(0x3D3D,out);
-			writeInt(6+runlength,out);
+    private static void writeString(@Nonnull String outString, @Nonnull OutputStream out) throws IOException {
+        byte[] data = new byte[(int) (outString.length())];
+        outString.getBytes(0, (int) outString.length(), data, 0);
+        out.write(data);
+        out.write(0);
+    }
 
-			for (int i=0;i<scene.objects;i++) exportObject(scene.object[i], out);
-		}
+    private static void writeInt(int outInt, @Nonnull OutputStream out) throws IOException {
+        out.write(outInt & 255);
+        out.write((outInt >> 8) & 255);
+        out.write((outInt >> 16) & 255);
+        out.write((outInt >> 24) & 255);
+    }
 
-		private static void exportObject(idx3d_Object obj, OutputStream out) throws IOException
-		{
-			int vJunkSize=2+12*obj.vertices; 
-			int tJunkSize=2+8*obj.triangles;
-			int mcJunkSize=2+8*obj.vertices;
-			
-			writeShort(0x4000,out);
-			writeInt(30+vJunkSize+tJunkSize+mcJunkSize+obj.name.length()+1,out);
-			writeString(obj.name,out);
-			writeShort(0x4100,out);
-			writeInt(24+vJunkSize+tJunkSize+mcJunkSize,out);
+    private static void writeShort(int outShort, @Nonnull OutputStream out) throws IOException {
+        out.write(outShort & 255);
+        out.write((outShort >> 8) & 255);
+    }
+
+    private static void writeFloat(float outFloat, @Nonnull OutputStream out) throws IOException {
+        writeInt(Float.floatToIntBits(outFloat), out);
+    }
+
+
+    // J U N K   E X P O R T
+
+    private static void exportScene(@Nonnull idx3d_Scene scene, @Nonnull OutputStream out) throws IOException {
+        scene.rebuild();
+        int runlength = 0;
+        for (int i = 0; i < scene.objects; i++) {
+            runlength += scene.object[i].name.length() + 1;
+            runlength += 36 + 20 * scene.object[i].vertices + 8 * scene.object[i].triangles;
+        }
+        writeShort(0x4D4D, out);
+        writeInt(12 + runlength, out);
+        writeShort(0x3D3D, out);
+        writeInt(6 + runlength, out);
+
+        for (int i = 0; i < scene.objects; i++) {
+            exportObject(scene.object[i], out);
+        }
+    }
+
+    private static void exportObject(@Nonnull idx3d_Object obj, @Nonnull OutputStream out) throws IOException {
+        int vJunkSize = 2 + 12 * obj.vertices;
+        int tJunkSize = 2 + 8 * obj.triangles;
+        int mcJunkSize = 2 + 8 * obj.vertices;
+
+        writeShort(0x4000, out);
+        writeInt(30 + vJunkSize + tJunkSize + mcJunkSize + obj.name.length() + 1, out);
+        writeString(obj.name, out);
+        writeShort(0x4100, out);
+        writeInt(24 + vJunkSize + tJunkSize + mcJunkSize, out);
 
 			writeShort(0x4110,out);
 			writeInt(6+vJunkSize,out);
@@ -137,39 +133,41 @@ public class idx3d_3ds_Exporter
 			for (int i=0;i<obj.vertices;i++) exportVertex(obj.vertex[i], out);
 
 			writeShort(0x4120,out);
-			writeInt(6+tJunkSize,out);
-			writeShort(obj.triangles,out);
-			for (int i=0;i<obj.triangles;i++) exportTriangle(obj.triangle[i], out);
+        writeInt(6 + tJunkSize, out);
+        writeShort(obj.triangles, out);
+        for (int i = 0; i < obj.triangles; i++) {
+            exportTriangle(obj.triangle[i], out);
+        }
 
-			writeShort(0x4140,out);	
-			writeInt(6+mcJunkSize,out);
-			writeShort(obj.vertices,out);		
-			for (int i=0;i<obj.vertices;i++) exportMappingCoordinates(obj.vertex[i], out);
-		}
+        writeShort(0x4140, out);
+        writeInt(6 + mcJunkSize, out);
+        writeShort(obj.vertices, out);
+        for (int i = 0; i < obj.vertices; i++) {
+            exportMappingCoordinates(obj.vertex[i], out);
+        }
+    }
 
-		private static void exportVertex(idx3d_Vertex v, OutputStream out) throws IOException
-		{
-			writeFloat(v.pos.x,out);
-			writeFloat(-v.pos.y,out);
-			writeFloat(v.pos.z,out);
-		}
+    private static void exportVertex(@Nonnull idx3d_Vertex v, @Nonnull OutputStream out) throws IOException {
+        writeFloat(v.pos.x, out);
+        writeFloat(-v.pos.y, out);
+        writeFloat(v.pos.z, out);
+    }
 
-		private static void exportTriangle(idx3d_Triangle t, OutputStream out) throws IOException
-		{
-			writeShort(t.p1.id,out);
-			writeShort(t.p2.id,out);
-			writeShort(t.p3.id,out);
-			writeShort(0,out);
-		}
+    private static void exportTriangle(@Nonnull idx3d_Triangle t, @Nonnull OutputStream out) throws IOException {
+        writeShort(t.p1.id, out);
+        writeShort(t.p2.id, out);
+        writeShort(t.p3.id, out);
+        writeShort(0, out);
+    }
 
-		private static void exportMappingCoordinates(idx3d_Vertex v, OutputStream out) throws IOException
-		{
-                    // XXX - Texture Mapping is broken
-                    writeFloat(0f, out);writeFloat(0f, out);
+    private static void exportMappingCoordinates(idx3d_Vertex v, @Nonnull OutputStream out) throws IOException {
+        // XXX - Texture Mapping is broken
+        writeFloat(0f, out);
+        writeFloat(0f, out);
                     /*
 			writeFloat(v.u,out);
 			writeFloat(v.v,out);
                      */
-		}
-			
+    }
+
 }

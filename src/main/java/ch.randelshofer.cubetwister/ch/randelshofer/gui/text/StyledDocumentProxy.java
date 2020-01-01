@@ -4,11 +4,20 @@
 
 package ch.randelshofer.gui.text;
 
-import ch.randelshofer.gui.*;
-import javax.swing.event.DocumentEvent;
-import javax.swing.text.*;
-import java.awt.*;
+import ch.randelshofer.gui.Fonts;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.text.AttributeSet;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Document;
+import javax.swing.text.Element;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 import javax.swing.undo.UndoableEdit;
+import java.awt.Color;
+import java.awt.Font;
 /**
  * This class is designed to be less memory expensive than
  * a standard StyledDocument object.
@@ -208,7 +217,8 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
         ((StyledDocument) getDocumentModel()).setParagraphAttributes(offset, length, s, replace);
         isEditingAttributes--;
     }
-    
+
+    @Nonnull
     protected Document createDocumentModel() {
         StyleContext styles = new StyleContext();
         Style style = styles.getStyle(StyleContext.DEFAULT_STYLE);

@@ -4,18 +4,32 @@
 
 package ch.randelshofer.gui.table;
 
-import ch.randelshofer.gui.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import ch.randelshofer.gui.Colors;
+import ch.randelshofer.gui.PolygonIcon;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JColorChooser;
+import javax.swing.JDialog;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Polygon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 /**
  * ColorTableCellEditor..
  */
 public class ColorTableCellEditor extends DefaultCellEditor {
     private final static long serialVersionUID = 1L;
     private PolygonIcon icon;
-    Color currentColor = null;
+    @Nullable Color currentColor = null;
     
     public ColorTableCellEditor() {
         super(new JCheckBox()); //Unfortunately, the constructor
@@ -69,15 +83,17 @@ public class ColorTableCellEditor extends DefaultCellEditor {
         });
         setClickCountToStart(1); //This is usually 1 or 2.
     }
-    
-    /** Creates new ColorTableCellEditor */
-    public ColorTableCellEditor(JButton b) {
+
+    /**
+     * Creates new ColorTableCellEditor
+     */
+    public ColorTableCellEditor(@Nonnull JButton b) {
         super(new JCheckBox()); //Unfortunately, the constructor
         //expects a check box, combo box,
         //or text field.
         editorComponent = b;
         setClickCountToStart(1); //This is usually 1 or 2.
-        
+
         //Must do this so that editing stops when appropriate.
         b.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -85,29 +101,29 @@ public class ColorTableCellEditor extends DefaultCellEditor {
             }
         });
     }
-    
+
     protected void fireEditingStopped() {
         super.fireEditingStopped();
     }
-    
+
+    @Nullable
     public Object getCellEditorValue() {
         return currentColor;
     }
-    
-    public Component getTableCellEditorComponent(JTable table,
-    Object value,
-    boolean isSelected,
-    int row,
-    int column) {
 
-        JButton button = (JButton) editorComponent; 
-	if (isSelected) {
-	   button.setForeground(table.getSelectionForeground());
-	   button.setBackground(table.getSelectionBackground());
-	}
-	else {
-	    button.setForeground(table.getForeground());
-	    button.setBackground(table.getBackground());
+    public Component getTableCellEditorComponent(@Nonnull JTable table,
+                                                 Object value,
+                                                 boolean isSelected,
+                                                 int row,
+                                                 int column) {
+
+        JButton button = (JButton) editorComponent;
+        if (isSelected) {
+            button.setForeground(table.getSelectionForeground());
+            button.setBackground(table.getSelectionBackground());
+        } else {
+            button.setForeground(table.getForeground());
+            button.setBackground(table.getBackground());
 	}
 
         

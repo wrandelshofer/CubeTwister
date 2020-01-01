@@ -3,13 +3,16 @@
  */
 package ch.randelshofer.gui;
 
-import ch.randelshofer.util.*;
-import ch.randelshofer.beans.*;
-import java.awt.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.io.*;
-import base64.*;
+import base64.Base64;
+import ch.randelshofer.beans.AbstractStateModel;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.imageio.ImageIO;
+import java.awt.Image;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 /**
  * DefaultImageModel.
@@ -19,13 +22,16 @@ import base64.*;
 public class DefaultImageWellModel extends AbstractStateModel implements ImageWellModel {
 
     /** Image. */
+    @Nullable
     private Image image;
     /** Binary Image data, */
+    @Nullable
     private byte[] binary;
     /** Base64 Image data. We may discard this data in favor of the binary data.
      * This is conversion from/to binary data is lossless, and binary data is
      * more memory efficient than Base64.
      */
+    @Nullable
     private String base64;
 
     /**
@@ -37,7 +43,7 @@ public class DefaultImageWellModel extends AbstractStateModel implements ImageWe
     /**
      * Sets the image.
      */
-    public void setImage(Image newValue) {
+    public void setImage(@Nullable Image newValue) {
         if (newValue == null) {
             new Throwable().printStackTrace();
         }
@@ -77,6 +83,7 @@ public class DefaultImageWellModel extends AbstractStateModel implements ImageWe
     /**
      * Gets the image.
      */
+    @Nullable
     public Image getImage() {
         if (image == null) {
             try {
@@ -101,6 +108,7 @@ public class DefaultImageWellModel extends AbstractStateModel implements ImageWe
     /**
      * Gets the image data.
      */
+    @Nullable
     public byte[] getBinaryImage() {
         if (binary == null) {
             if (base64 != null) {
@@ -121,6 +129,7 @@ public class DefaultImageWellModel extends AbstractStateModel implements ImageWe
         return binary;
     }
 
+    @Nullable
     public String getBase64Image() {
         if (base64 == null) {
             base64 = Base64.encodeBytes(getBinaryImage());

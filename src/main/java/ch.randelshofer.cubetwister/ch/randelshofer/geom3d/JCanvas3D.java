@@ -5,17 +5,39 @@ package ch.randelshofer.geom3d;
 
 import ch.randelshofer.gui.event.SwipeEvent;
 import ch.randelshofer.gui.event.SwipeListener;
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JComponent;
+import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.MediaTracker;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.geom.GeneralPath;
-import java.awt.image.ImageObserver;
-import java.awt.event.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
-import java.beans.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.Timer;
-import javax.swing.event.*;
+import java.awt.image.ImageObserver;
+import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A canvas for rendering three dimensional geometry.
@@ -27,16 +49,20 @@ public class JCanvas3D extends JComponent implements ChangeListener {
 
     private Dimension preferredSize = new Dimension(200, 200);
     protected Scene3D scene;
+    @Nullable
     protected Graphics backGfx;
+    @Nullable
     protected Image backImg;
     protected Dimension backSize = new Dimension(0, 0);
     protected Transform3DModel transformModel;
     //    private double xrot, yrot;
     protected Object lock = new Object();
+    @Nonnull
     protected Point3D observer = new Point3D(0, 0, 260);
     protected Point3D lightSource = new Point3D(-500, 500, 1000);
     protected double ambientLightIntensity = 0.6;
     protected double lightSourceIntensity = 1.0;
+    @Nullable
     private Image backgroundImage;
     /** This flag is true during mouse drag events. */
     protected boolean isAdjusting;
@@ -61,6 +87,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
      */
     private long antialiasRenderTime = 1000 / (maxFPS - 1);
     private boolean isSwiping;
+    @Nullable
     private Point2D.Double swipeStartPos;
     private Point2D.Double debugSwipeEndPos;
     private GeneralPath debugOverlayPathVerifyOrthogonal;
@@ -89,6 +116,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
      * A pair of elements contains the 2d polygon of the face
      * and the action of the face.
      */
+    @Nonnull
     private ArrayList<ActiveEntry> activeFaces = new ArrayList<ActiveEntry>();
     /**
      * This flag is true when a mouse down or a mouse up evt was a popup evt.
@@ -98,7 +126,9 @@ public class JCanvas3D extends JComponent implements ChangeListener {
     private boolean isRotateOnMouseDrag = false;
     private java.beans.PropertyChangeSupport changeSupport;
     private boolean isPressed;
+    @Nullable
     protected Face3D swipedFace;
+    @Nullable
     private Face3D armedFace;
     /** Defines the delay between mouse pressed and mouse dragged where swipe
      * events are accepted. Set this to Integer.MAX_VALUE for infinite delay.
@@ -130,6 +160,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         setTransformModel(new DefaultTransform3DModel());
     }
 
+    @Nonnull
     protected EventHandler createEventHandler() {
         return new EventHandler();
     }
@@ -144,7 +175,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         return interactionMode;
     }
 
-    public void setTransformModel(Transform3DModel value) {
+    public void setTransformModel(@Nonnull Transform3DModel value) {
         Transform3DModel oldValue = this.transformModel;
         if (oldValue != null) {
             oldValue.removeChangeListener(this);
@@ -312,7 +343,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
     /**
      * Draws the background.
      */
-    protected void paintBackground(Graphics g) {
+    protected void paintBackground(@Nonnull Graphics g) {
         if (isOpaque()) {
             g.setColor(getBackground());
             g.fillRect(0, 0, backSize.width, backSize.height);
@@ -348,7 +379,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
 
     @Override
     public void addPropertyChangeListener(
-            PropertyChangeListener listener) {
+            @Nullable PropertyChangeListener listener) {
         if (listener == null) {
             return;
         }
@@ -360,7 +391,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
 
     @Override
     public void removePropertyChangeListener(
-            PropertyChangeListener listener) {
+            @Nullable PropertyChangeListener listener) {
         if (listener == null || changeSupport == null) {
             return;
         }
@@ -376,7 +407,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
     }
     //--------
 
-    private void fireFaceSwiped(MouseEvent evt, Face3D face, float angle) {
+    private void fireFaceSwiped(@Nonnull MouseEvent evt, @Nonnull Face3D face, float angle) {
         SwipeListener[] listeners = face.getSwipeListeners();
         SwipeEvent sevt = null;
         if (listeners.length > 0) {
@@ -407,7 +438,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         g.setStroke(new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL));
     }
 
-    protected void createBackGraphics(Dimension s) {
+    protected void createBackGraphics(@Nonnull Dimension s) {
         backImg = createImage(s.width, s.height);
         backGfx = backImg.getGraphics();
     }
@@ -514,6 +545,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         }
     }
 
+    @Nullable
     public Face3D getFaceAt(int x, int y) {
         for (int i = activeFaces.size() - 1; i >= 0; i--) {
             Shape poly = activeFaces.get(i).path;
@@ -525,7 +557,8 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         return null;
     }
 
-    public Point2D.Double canvasToFace(int x, int y, Face3D face) {
+    @Nonnull
+    public Point2D.Double canvasToFace(int x, int y, @Nonnull Face3D face) {
         // We only need a triangle from the first three points of a face to
         // perform the computations.
 //        Point3D[] triangle = new Point3D[3];
@@ -759,7 +792,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
     private int pressedModifiersEx;
 
         @Override
-        public void mouseClicked(MouseEvent evt) {
+        public void mouseClicked(@Nonnull MouseEvent evt) {
             try {
                 if (isEnabled() && !isPopupTrigger
                         && pressedWhen != -1 && evt.getWhen() - pressedWhen < swipeDelay) {
@@ -781,7 +814,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         }
 
         @Override
-        public void mouseDragged(MouseEvent evt) {
+        public void mouseDragged(@Nonnull MouseEvent evt) {
             isPopupTrigger = false;
             if (isAdjusting /*&& isArmed*/ && isEnabled()) {
 
@@ -824,18 +857,19 @@ public class JCanvas3D extends JComponent implements ChangeListener {
                 prevy = y;
             }
         }
+
         @Override
-    public void mouseWheelMoved(MouseWheelEvent evt) {
-        if (isEnabled() && evt.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
-            pressedModifiersEx = evt.getModifiersEx();
-            float dx;
-            float dy;
-            if ((pressedModifiersEx & InputEvent.SHIFT_DOWN_MASK) != 0) {
-                dx = (float) (evt.getUnitsToScroll()) / -50;
-                dy = 0;
-            } else {
-                dy = (float) (evt.getUnitsToScroll()) / -50;
-                dx = 0;
+        public void mouseWheelMoved(@Nonnull MouseWheelEvent evt) {
+            if (isEnabled() && evt.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+                pressedModifiersEx = evt.getModifiersEx();
+                float dx;
+                float dy;
+                if ((pressedModifiersEx & InputEvent.SHIFT_DOWN_MASK) != 0) {
+                    dx = (float) (evt.getUnitsToScroll()) / -50;
+                    dy = 0;
+                } else {
+                    dy = (float) (evt.getUnitsToScroll()) / -50;
+                    dx = 0;
             }
 
             if (scene != null) {
@@ -852,7 +886,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
     }
 
         @Override
-        public void mouseMoved(MouseEvent event) {
+        public void mouseMoved(@Nonnull MouseEvent event) {
             isPopupTrigger = false;
             int x = event.getX();
             int y = event.getY();
@@ -861,7 +895,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         }
 
         @Override
-        public void mouseEntered(MouseEvent event) {
+        public void mouseEntered(@Nonnull MouseEvent event) {
             isArmed = true;
             int x = event.getX();
             int y = event.getY();
@@ -877,7 +911,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         }
 
         @Override
-        public void mousePressed(MouseEvent evt) {
+        public void mousePressed(@Nonnull MouseEvent evt) {
             // Workaround for http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6634290
             pressedModifiersEx = evt.getModifiersEx();
 
@@ -926,7 +960,7 @@ public class JCanvas3D extends JComponent implements ChangeListener {
         }
 
         @Override
-        public void mouseReleased(MouseEvent event) {
+        public void mouseReleased(@Nonnull MouseEvent event) {
             int x = event.getX();
             int y = event.getY();
             isPressed = false;

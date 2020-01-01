@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik.tokenizer;
 
 import ch.randelshofer.rubik.notation.DefaultNotation;
+import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 class TokenizerTest {
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testTokenizerWithDefaultNotation() {
         DefaultNotation defaultNotation = new DefaultNotation();
@@ -29,6 +31,8 @@ class TokenizerTest {
         );
 
     }
+
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testTokenizer() {
         Tokenizer ttNone=new Tokenizer();
@@ -54,7 +58,6 @@ class TokenizerTest {
         ttWhitespaceNumberKeyComment.addKeyword("3three");
         ttWhitespaceNumberKeyComment.addComment("/*", "*/");
         ttWhitespaceNumberKeyComment.addComment("//", "\n");
-
 
 
         return Arrays.asList(
@@ -94,9 +97,9 @@ class TokenizerTest {
         );
     }
 
-    private void doTokenizer(Tokenizer instance, String input, String expected) {
-        doNextToken(instance,input,expected);
-        doPushBack(instance,input,expected);
+    private void doTokenizer(@Nonnull Tokenizer instance, String input, String expected) {
+        doNextToken(instance, input, expected);
+        doPushBack(instance, input, expected);
     }
 
     /**
@@ -106,33 +109,33 @@ class TokenizerTest {
      * @param input    the input
      * @param expected the expected output
      */
-    private void doNextToken(Tokenizer instance, String input, String expected) {
+    private void doNextToken(@Nonnull Tokenizer instance, String input, String expected) {
         instance.setInput(input);
-        StringBuffer buf=new StringBuffer();
-        while (instance.nextToken()!=Tokenizer.TT_EOF) {
+        StringBuffer buf = new StringBuffer();
+        while (instance.nextToken() != Tokenizer.TT_EOF) {
             appendToken(instance, buf);
         }
-        String actual=buf.toString();
-        assertEquals(expected,actual);
+        String actual = buf.toString();
+        assertEquals(expected, actual);
     }
 
     /**
      * Tokenizes the input. Calls nextToken(),pushBack(),nextToken() for each token.
      *
      * @param instance the tokenizer
-     * @param input the input
+     * @param input    the input
      * @param expected the expected output
      */
-    private void doPushBack(Tokenizer instance, String input, String expected) {
+    private void doPushBack(@Nonnull Tokenizer instance, String input, String expected) {
         instance.setInput(input);
-        StringBuffer buf=new StringBuffer();
-        while (instance.nextToken()!=Tokenizer.TT_EOF) {
+        StringBuffer buf = new StringBuffer();
+        while (instance.nextToken() != Tokenizer.TT_EOF) {
             instance.pushBack();
             instance.nextToken();
             appendToken(instance, buf);
         }
-        String actual=buf.toString();
-        assertEquals(expected,actual);
+        String actual = buf.toString();
+        assertEquals(expected, actual);
     }
 
     /**
@@ -142,7 +145,7 @@ class TokenizerTest {
      * @param instance the tokenizer
      * @param buf      the buffer
      */
-    private void appendToken(Tokenizer instance, StringBuffer buf) {
+    private void appendToken(@Nonnull Tokenizer instance, @Nonnull StringBuffer buf) {
         if (buf.length() != 0) {
             buf.append(", ");
         }

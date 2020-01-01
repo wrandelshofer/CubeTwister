@@ -4,14 +4,17 @@
 
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.event.*;
-import ch.randelshofer.util.*;
-import java.awt.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
-import javax.swing.event.*;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.AbstractListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.Component;
+import java.awt.Font;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 /**
  * A wizard is a dialog which guides the user step by step through a task.
  *
@@ -77,18 +80,19 @@ implements PropertyChangeListener, ListSelectionListener {
         stepList.setSelectedIndex(0);
         super.show();
     }
-    
+
     public WizardModel getModel() {
         return model;
     }
-    public void setModel(WizardModel m) {
+
+    public void setModel(@Nonnull WizardModel m) {
         if (model != null) {
             model.removePropertyChangeListener(this);
             stepList.clearSelection();
         }
-        
+
         this.model = m;
-        
+
         if (model != null) {
             if (listModelAdapter == null) {
                 listModelAdapter = new ListModelAdapter();
@@ -303,8 +307,8 @@ implements PropertyChangeListener, ListSelectionListener {
     public static void main(String args[]) {
         new Wizard(new javax.swing.JFrame(), true).show();
     }
-    
-    public void propertyChange(PropertyChangeEvent evt) {
+
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         String name = evt.getPropertyName();
         if ("title".equals(name)) {
             setTitle(model.getTitle());
@@ -312,11 +316,11 @@ implements PropertyChangeListener, ListSelectionListener {
             finishButton.setEnabled(model.canFinish());
         }
     }
-    
-    public void valueChanged(ListSelectionEvent e) {
-        if (! e.getValueIsAdjusting()) {
+
+    public void valueChanged(@Nonnull ListSelectionEvent e) {
+        if (!e.getValueIsAdjusting()) {
             int index = stepList.getSelectedIndex();
-            
+
             stepPanel.removeAll();
             if (index != -1) {
                 stepPanel.add(model.getPanel(index));

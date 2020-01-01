@@ -3,14 +3,21 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.datatransfer.*;
-import ch.randelshofer.gui.table.*;
-import java.awt.datatransfer.*;
-import java.awt.dnd.DnDConstants;
-import java.io.*;
-import java.beans.*;
-import java.text.Normalizer;
+import ch.randelshofer.gui.datatransfer.CompositeTransferable;
+import ch.randelshofer.gui.table.TableModels;
+import ch.randelshofer.gui.table.TreeNodeTableModel;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.text.Normalizer;
 /**
  * Wraps the macros provided by NotationModel to make them
  * accessible by a MutableJTable.
@@ -33,15 +40,16 @@ public class NotationMacrosTableModel
         DataFlavor.stringFlavor,
         DataFlavor.getTextPlainUnicodeFlavor()
     };
+    @Nullable
     private NotationModel model;
-    
-    public void setModel(NotationModel m) {
+
+    public void setModel(@Nullable NotationModel m) {
         if (treeNode != null && treeNode.getParent() != null) {
             ((EntityModel) treeNode.getParent()).removePropertyChangeListener(this);
         }
-        
+
         this.model = m;
-        
+
         if (m == null) {
             setModel(null, null);
         } else {
@@ -49,12 +57,14 @@ public class NotationMacrosTableModel
             m.addPropertyChangeListener(this);
         }
     }
+
+    @Nullable
     public NotationModel getModel() {
         return model;
     }
-    
+
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         if (evt.getSource() == treeNode && evt.getPropertyName() == ScriptModel.NOTATION_PROPERTY) {
             fireTableDataChanged();
         }
@@ -78,6 +88,7 @@ public class NotationMacrosTableModel
      * @param	column 	the column whose value is to be looked up
      * @return	the value Object at the specified cell
      */
+    @Nullable
     @Override
     public Object getValueAt(int row, int column) {
         MacroModel item = (MacroModel) treeNode.getChildAt(row);
@@ -133,24 +144,27 @@ public class NotationMacrosTableModel
      * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to
      * <I>aValue</I> is the new value.
      *
-     * @param	aValue		 the new value
-     * @param	row	 the row whose value is to be changed
-     * @param	column 	 the column whose value is to be changed
+     * @param    aValue         the new value
+     * @param    row     the row whose value is to be changed
+     * @param    column     the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
     @Override
-    public void setValueAt(Object aValue, int row, int column) {
+    public void setValueAt(@Nullable Object aValue, int row, int column) {
         MacroModel item = (MacroModel) treeNode.getChildAt(row);
-        
+
         String str = (aValue == null) ? null : aValue.toString();
         switch (column) {
-            case 0 :
-                item.setIdentifier(Normalizer.normalize(str, Normalizer.Form.NFC)); break;
-            case 1 :
-                item.setScript(Normalizer.normalize(str, Normalizer.Form.NFC)); break;
-            case 2 :
-                item.setDescription(str); break;
+            case 0:
+                item.setIdentifier(Normalizer.normalize(str, Normalizer.Form.NFC));
+                break;
+            case 1:
+                item.setScript(Normalizer.normalize(str, Normalizer.Form.NFC));
+                break;
+            case 2:
+                item.setDescription(str);
+                break;
         }
     }
     
@@ -166,10 +180,14 @@ public class NotationMacrosTableModel
     public int getColumnCount() {
         return columnNames.length;
     }
+
+    @Nonnull
     @Override
     public Object[] getCreatableRowTypes(int row) {
         return new Object[] { "Macro" };
     }
+
+    @Nonnull
     @Override
     public Object getCreatableRowType(int row) {
         return "Macro";
@@ -189,22 +207,25 @@ public class NotationMacrosTableModel
     
     // Datatransfer operations
     // =======================
+
     /**
      * Creates a Transferable to use as the source for a data
      * transfer of the specified elements.
      * Returns the representation of the rows
      * to be transferred, or null if transfer is not possible.
      *
-     * @param   rows     Row indices.
+     * @param rows Row indices.
      */
+    @Nonnull
     @Override
-    public Transferable exportRowTransferable(int[] rows) {
+    public Transferable exportRowTransferable(@Nonnull int[] rows) {
         CompositeTransferable t = new CompositeTransferable();
         t.add(TableModels.createLocalTransferable(this, rows));
         t.add(TableModels.createHTMLTransferable(this, rows));
         t.add(TableModels.createPlainTransferable(this, rows));
         return t;
     }
+
     /**
      * Causes a transfer to the model from a clipboard or
      * a DND drop operation.
@@ -220,11 +241,12 @@ public class NotationMacrosTableModel
      * @return The number of imported elements.
      */
     @Override
-    public int importRowTransferable(Transferable t, int action, int row, boolean asChild)
-    throws UnsupportedFlavorException, IOException {
-        if (! isRowImportable(t.getTransferDataFlavors(), action, row, asChild))
+    public int importRowTransferable(@Nonnull Transferable t, int action, int row, boolean asChild)
+            throws UnsupportedFlavorException, IOException {
+        if (!isRowImportable(t.getTransferDataFlavors(), action, row, asChild)) {
             throw new UnsupportedFlavorException(null);
-        
+        }
+
         Object[][] transferData;
         try {
             if (t.isDataFlavorSupported(tableFlavor)) {
@@ -261,7 +283,7 @@ public class NotationMacrosTableModel
             }
             //justifyRows(row, row + transferData.length - 1);
             fireTableRowsInserted(row, row + transferData.length);
-            
+
         } catch (UnsupportedFlavorException e) {
             e.printStackTrace();
             return 0;
@@ -271,12 +293,15 @@ public class NotationMacrosTableModel
         }
         return transferData.length;
     }
+
     @Override
-    public boolean isRowImportable(DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
-        if (action == DnDConstants.ACTION_LINK || asChild || ! isRowAddable(row)) return false;
-        
-        for (int i=0; i < transferFlavors.length; i++) {
-            for (int j=0; j < importableFlavors.length; j++) {
+    public boolean isRowImportable(@Nonnull DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
+        if (action == DnDConstants.ACTION_LINK || asChild || !isRowAddable(row)) {
+            return false;
+        }
+
+        for (int i = 0; i < transferFlavors.length; i++) {
+            for (int j = 0; j < importableFlavors.length; j++) {
                 if (transferFlavors[i].equals(importableFlavors[j])) {
                     return true;
                 }

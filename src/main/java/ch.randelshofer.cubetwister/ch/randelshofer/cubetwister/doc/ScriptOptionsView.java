@@ -5,6 +5,8 @@ package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.Fonts;
 import ch.randelshofer.io.ParseException;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.util.ResourceBundleUtil;
 
 import javax.swing.JComponent;
@@ -32,6 +34,7 @@ implements EntityView, PropertyChangeListener {
     /**
      * The model
      */
+    @Nullable
     private ScriptModel model = new ScriptModel();
     
     
@@ -45,11 +48,11 @@ implements EntityView, PropertyChangeListener {
         model.addPropertyChangeListener(this);
         
     }
-    
+
     /**
      * Sets the model.
      */
-    public void setModel(ScriptModel newValue) {
+    public void setModel(@Nullable ScriptModel newValue) {
         ScriptModel oldValue = model;
         if (oldValue != null) {
             oldValue.removePropertyChangeListener(this);
@@ -83,6 +86,7 @@ implements EntityView, PropertyChangeListener {
     /**
      * Gets the model.
      */
+    @Nullable
     public ScriptModel getModel() {
         return model;
     }
@@ -155,8 +159,8 @@ implements EntityView, PropertyChangeListener {
             }
         }
     }//GEN-LAST:event_generatorStateChanged
-    
-    public void propertyChange(PropertyChangeEvent evt) {
+
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         if (evt.getPropertyName().equals(ScriptModel.PROP_IS_GENERATOR)) {
             if (model.isGenerator()) {
                 generatorRadioButton.setSelected(true);
@@ -165,10 +169,12 @@ implements EntityView, PropertyChangeListener {
             }
         }
     }
+
     public void setModel(EntityModel newValue) {
         setModel((ScriptModel) newValue);
     }
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

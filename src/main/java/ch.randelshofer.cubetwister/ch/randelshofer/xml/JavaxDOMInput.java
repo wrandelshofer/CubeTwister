@@ -4,14 +4,24 @@
 
 package ch.randelshofer.xml;
 
-import java.util.*;
-import javax.xml.parsers.*;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
-import javax.xml.transform.stream.*;
-import org.w3c.dom.*;
-import java.io.*;
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMResult;
+import javax.xml.transform.stream.StreamSource;
+import java.awt.Color;
+import java.awt.Font;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.util.HashMap;
 /**
  * DOMInput.
  *
@@ -23,6 +33,7 @@ public class JavaxDOMInput implements DOMInput {
      * the XML DOM. A key in this map is a String representing a marshalled
      * reference. A value in this map is an unmarshalled Object.
      */
+    @Nonnull
     private HashMap<String,Object> idobjects = new HashMap<String,Object>();
     
     /**
@@ -91,20 +102,26 @@ public class JavaxDOMInput implements DOMInput {
      * Gets the text of the current element of the DOM Document.
      */
     public String getText(String defaultValue) {
-        if (current.getChildNodes().getLength() == 0) return defaultValue;
-        
+        if (current.getChildNodes().getLength() == 0) {
+            return defaultValue;
+        }
+
         StringBuilder buf = new StringBuilder();
         getText(current, buf);
-        
+
         return buf.toString();
     }
-    private static void getText(Node n, StringBuilder buf) {
-        if (n.getNodeValue() != null) buf.append(n.getNodeValue());
+
+    private static void getText(@Nonnull Node n, @Nonnull StringBuilder buf) {
+        if (n.getNodeValue() != null) {
+            buf.append(n.getNodeValue());
+        }
         NodeList children = n.getChildNodes();
-        for (int i=0; i < children.getLength(); i++) {
+        for (int i = 0; i < children.getLength(); i++) {
             getText(children.item(i), buf);
         }
     }
+
     /**
      * Gets an attribute of the current element of the DOM Document.
      */
@@ -236,12 +253,14 @@ public class JavaxDOMInput implements DOMInput {
     /**
      * Reads an object from the current element.
      */
+    @Nullable
     public Object readObject() {
         return readObject(0);
     }
     /**
      * Reads an object from the current element.
      */
+    @Nullable
     public Object readObject(int index) {
         openElement(index);
         Object o;

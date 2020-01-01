@@ -7,6 +7,7 @@ import ch.randelshofer.math.IntMath;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.io.StreamPosTokenizer;
 
 import java.io.IOException;
@@ -22,6 +23,7 @@ import java.util.Arrays;
 public class Cubes {
 
     /** Creates a cube with the specified layer count. */
+    @Nonnull
     public static Cube create(int layerCount) {
         String n;
         switch (layerCount) {
@@ -55,7 +57,8 @@ public class Cubes {
         }
     }
 
-    public static String toVisualPermutationString(RubiksCube cube, Notation notation) {
+    @Nonnull
+    public static String toVisualPermutationString(@Nonnull RubiksCube cube, @Nonnull Notation notation) {
 
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toVisualPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
@@ -76,12 +79,13 @@ public class Cubes {
         }
     }
 
-    private static String toVisualPermutationString(Cube cube,
-            Syntax syntax,
-            String tR, String tU, String tF,
-            String tL, String tD, String tB,
-            String tPlus, String tPlusPlus, String tMinus,
-            String tBegin, String tEnd, String tDelimiter) {
+    @Nonnull
+    private static String toVisualPermutationString(@Nonnull Cube cube,
+                                                    Syntax syntax,
+                                                    String tR, String tU, String tF,
+                                                    String tL, String tD, String tB,
+                                                    String tPlus, String tPlusPlus, String tMinus,
+                                                    String tBegin, String tEnd, String tDelimiter) {
 
         StringBuilder buf = new StringBuilder();
 
@@ -127,11 +131,11 @@ public class Cubes {
      * The order says how many times the permutation
      * has to be applied to the cube to get the
      * initial state.
-     * 
+     *
      * @param cube A cube
      * @return the order of the permutation of the cube
      */
-    public static int getOrder(Cube cube) {
+    public static int getOrder(@Nonnull Cube cube) {
         int[] cornerLoc = cube.getCornerLocations();
         int[] cornerOrient = cube.getCornerOrientations();
         int[] edgeLoc = cube.getEdgeLocations();
@@ -289,11 +293,11 @@ public class Cubes {
      * The order says how many times the permutation
      * has to be applied to the cube to get the
      * initial state.
-     * 
+     *
      * @param cube A cube
      * @return the order of the permutation of the cube
      */
-    public static int getVisibleOrder(Cube cube) {
+    public static int getVisibleOrder(@Nonnull Cube cube) {
         int[] cornerLoc = cube.getCornerLocations();
         int[] cornerOrient = cube.getCornerOrientations();
         int[] edgeLoc = cube.getEdgeLocations();
@@ -426,7 +430,8 @@ public class Cubes {
      * location of the stickers. Ignores the rotation
      * of the cube.
      */
-    public static String toNormalizedStickersString(Cube cube) {
+    @Nonnull
+    public static String toNormalizedStickersString(@Nonnull Cube cube) {
         char[] faces = new char[]{'R', 'U', 'F', 'L', 'D', 'B'};
         int[][] stickers = cube.toStickers();
 
@@ -457,7 +462,8 @@ public class Cubes {
      * location of the stickers. Ignores the rotation
      * of the cube.
      */
-    public static String toMappedStickersString(Cube cube, int[] mappings) {
+    @Nonnull
+    public static String toMappedStickersString(@Nonnull Cube cube, int[] mappings) {
         //char[] faces = new char[]{'F', 'R', 'D', 'B', 'L', 'U'};
         char[] faces = new char[]{'R', 'U', 'F', 'L', 'D', 'B'};
         int[][] stickers = getMappedStickers(cube, mappings);
@@ -491,11 +497,11 @@ public class Cubes {
     /**
      * Returns the stickers reflecting the current permutation of the cube.
      *
-     * @param  mappings An array with sticker mappings. It must have the
-     *  same structure as described for method setStickers().
-     * @return  Array of stickers: int[6][9]. Same structure as in method setStickers().
+     * @param mappings An array with sticker mappings. It must have the
+     *                 same structure as described for method setStickers().
+     * @return Array of stickers: int[6][9]. Same structure as in method setStickers().
      */
-    public static int[][] getMappedStickers(Cube cube, int[] mappings) {
+    public static int[][] getMappedStickers(@Nonnull Cube cube, int[] mappings) {
         int[][] perFaceMappings = new int[6][cube.getLayerCount() * cube.getLayerCount()];
         int index = 0;
         for (int face = 0; face < perFaceMappings.length; face++) {
@@ -509,11 +515,11 @@ public class Cubes {
     /**
      * Returns the stickers reflecting the current permutation of the cube.
      *
-     * @param  mappings An array with sticker mappings. It must have the
-     *  same structure as described for method setStickers().
-     * @return  Array of stickers: int[6][9]. Same structure as in method setStickers().
+     * @param mappings An array with sticker mappings. It must have the
+     *                 same structure as described for method setStickers().
+     * @return Array of stickers: int[6][9]. Same structure as in method setStickers().
      */
-    public static int[][] getMappedStickers(Cube cube, int[][] mappings) {
+    public static int[][] getMappedStickers(@Nonnull Cube cube, int[][] mappings) {
         int[][] stickers = cube.toStickers();
         int[][] mappedStickers = stickers.clone();
 
@@ -525,7 +531,7 @@ public class Cubes {
         return mappedStickers;
     }
 
-    public static int getFaceOfSticker(CubeAttributes attr, int stickerIndex) {
+    public static int getFaceOfSticker(@Nonnull CubeAttributes attr, int stickerIndex) {
         int face;
         for (face = 0; face < attr.getFaceCount(); face++) {
             if (attr.getStickerOffset(face) > stickerIndex) {
@@ -542,21 +548,24 @@ public class Cubes {
      * @param cube a cube
      * @return a permutation String
      */
-    public static String toPermutationString(Cube cube) {
+    @Nonnull
+    public static String toPermutationString(@Nonnull Cube cube) {
         return toPermutationString(cube, Syntax.PRECIRCUMFIX,
                 "r", "u", "f", "l", "d", "b",
                 "+", "++", "-",
                 "(", ")", ",");
     }
 
-    public static String toVisualPermutationString(Cube cube) {
+    @Nonnull
+    public static String toVisualPermutationString(@Nonnull Cube cube) {
         return toVisualPermutationString(cube, Syntax.PRECIRCUMFIX,
                 "r", "u", "f", "l", "d", "b",
                 "+", "++", "-",
                 "(", ")", ",");
     }
 
-    public static String toPermutationString(Cube cube, Notation notation) {
+    @Nonnull
+    public static String toPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.PERMUTATION_FACE_R),
@@ -576,7 +585,8 @@ public class Cubes {
         }
     }
 
-    public static String toCornerPermutationString(Cube cube, Notation notation) {
+    @Nonnull
+    public static String toCornerPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toCornerPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.PERMUTATION_FACE_R),
@@ -596,13 +606,15 @@ public class Cubes {
         }
     }
 
-    public static String toCornerPermutationString(Cube cube) {
+    @Nonnull
+    public static String toCornerPermutationString(@Nonnull Cube cube) {
         return toCornerPermutationString(cube, Syntax.PRECIRCUMFIX,
                 "r", "u", "f", "l", "d", "b",
                 "+", "++", "-", "(", ")", ",");
     }
 
-    public static String toEdgePermutationString(Cube cube, Notation notation) {
+    @Nonnull
+    public static String toEdgePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toEdgePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.PERMUTATION_FACE_R),
@@ -622,13 +634,15 @@ public class Cubes {
         }
     }
 
-    public static String toEdgePermutationString(Cube cube) {
+    @Nonnull
+    public static String toEdgePermutationString(@Nonnull Cube cube) {
         return toEdgePermutationString(cube, Syntax.PRECIRCUMFIX,
                 "r", "u", "f", "l", "d", "b",
                 "+", "++", "-", "(", ")", ",");
     }
 
-    public static String toSidePermutationString(Cube cube, Notation notation) {
+    @Nonnull
+    public static String toSidePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toSidePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.PERMUTATION_FACE_R),
@@ -648,7 +662,8 @@ public class Cubes {
         }
     }
 
-    public static String toVisualSidePermutationString(Cube cube, Notation notation) {
+    @Nonnull
+    public static String toVisualSidePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toVisualSidePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.PERMUTATION_FACE_R),
@@ -668,7 +683,8 @@ public class Cubes {
         }
     }
 
-    public static String toSidePermutationString(Cube cube) {
+    @Nonnull
+    public static String toSidePermutationString(@Nonnull Cube cube) {
         return toSidePermutationString(cube, Syntax.PRECIRCUMFIX,
                 "r", "u", "f", "l", "d", "b",
                 "+", "++", "-", "(", ")", ",");
@@ -676,7 +692,7 @@ public class Cubes {
 
     /**
      * Returns a String describing the permutation cycles of the parts in a cube.
-     * 
+     *
      * @param cube
      * @param syntax
      * @param tR
@@ -693,12 +709,13 @@ public class Cubes {
      * @param tDelimiter
      * @return
      */
-    private static String toPermutationString(Cube cube,
-            Syntax syntax,
-            String tR, String tU, String tF,
-            String tL, String tD, String tB,
-            String tPlus, String tPlusPlus, String tMinus,
-            String tBegin, String tEnd, String tDelimiter) {
+    @Nonnull
+    private static String toPermutationString(@Nonnull Cube cube,
+                                              Syntax syntax,
+                                              String tR, String tU, String tF,
+                                              String tL, String tD, String tB,
+                                              String tPlus, String tPlusPlus, String tMinus,
+                                              String tBegin, String tEnd, String tDelimiter) {
 
         StringBuilder buf = new StringBuilder();
 
@@ -751,11 +768,12 @@ public class Cubes {
      * @param tDelimiter
      * @return
      */
-    private static String toCornerPermutationString(Cube cube, Syntax syntax,
-            String tR, String tU, String tF,
-            String tL, String tD, String tB,
-            String tPlus, String tPlusPlus, String tMinus,
-            String tBegin, String tEnd, String tDelimiter) {
+    @Nonnull
+    private static String toCornerPermutationString(@Nonnull Cube cube, Syntax syntax,
+                                                    String tR, String tU, String tF,
+                                                    String tL, String tD, String tB,
+                                                    String tPlus, String tPlusPlus, String tMinus,
+                                                    String tBegin, String tEnd, String tDelimiter) {
 
         int[] cornerLoc = cube.getCornerLocations();
         int[] edgeLoc = cube.getEdgeLocations();
@@ -897,11 +915,12 @@ public class Cubes {
      * @param tDelimiter
      * @return
      */
-    private static String toEdgePermutationString(Cube cube, Syntax syntax,
-            String tR, String tU, String tF,
-            String tL, String tD, String tB,
-            String tPlus, String tPlusPlus, String tMinus,
-            String tBegin, String tEnd, String tDelimiter) {
+    @Nonnull
+    private static String toEdgePermutationString(@Nonnull Cube cube, Syntax syntax,
+                                                  String tR, String tU, String tF,
+                                                  String tL, String tD, String tB,
+                                                  String tPlus, String tPlusPlus, String tMinus,
+                                                  String tBegin, String tEnd, String tDelimiter) {
 
         int[] cornerLoc = cube.getCornerLocations();
         int[] edgeLoc = cube.getEdgeLocations();
@@ -1047,11 +1066,12 @@ public class Cubes {
      * @param tDelimiter
      * @return
      */
-    private static String toSidePermutationString(Cube cube, Syntax syntax,
-            String tR, String tU, String tF,
-            String tL, String tD, String tB,
-            String tPlus, String tPlusPlus, String tMinus,
-            String tBegin, String tEnd, String tDelimiter) {
+    @Nonnull
+    private static String toSidePermutationString(@Nonnull Cube cube, Syntax syntax,
+                                                  String tR, String tU, String tF,
+                                                  String tL, String tD, String tB,
+                                                  String tPlus, String tPlusPlus, String tMinus,
+                                                  String tBegin, String tEnd, String tDelimiter) {
 
         int[] sideLoc = cube.getSideLocations();
         int[] sideOrient = cube.getSideOrientations();
@@ -1206,11 +1226,12 @@ public class Cubes {
      * @param tDelimiter
      * @return
      */
-    private static String toVisualSidePermutationString(Cube cube, Syntax syntax,
-            String tR, String tU, String tF,
-            String tL, String tD, String tB,
-            String tPlus, String tPlusPlus, String tMinus,
-            String tBegin, String tEnd, String tDelimiter) {
+    @Nonnull
+    private static String toVisualSidePermutationString(@Nonnull Cube cube, Syntax syntax,
+                                                        String tR, String tU, String tF,
+                                                        String tL, String tD, String tB,
+                                                        String tPlus, String tPlusPlus, String tMinus,
+                                                        String tBegin, String tEnd, String tDelimiter) {
 
         int[] sideLoc = cube.getSideLocations();
         int[] sideOrient = cube.getSideOrientations();
@@ -1345,8 +1366,10 @@ public class Cubes {
         return buf.toString();
     }
 
-    /** Sets the cube to the specified stickers. */
-    public static void setToStickers(Cube cube, int[] stickers) {
+    /**
+     * Sets the cube to the specified stickers.
+     */
+    public static void setToStickers(@Nonnull Cube cube, int[] stickers) {
         int[][] perFaceStickers = new int[6][cube.getLayerCount() * cube.getLayerCount()];
         int index = 0;
         for (int face = 0; face < perFaceStickers.length; face++) {
@@ -1364,13 +1387,13 @@ public class Cubes {
      * faceString     = face, ':', face{9}, '\n'
      * face     = 'U'|'R'|'F'|'L'|'D'|'B'
      * </pre>
-     * 
+     *
      * @param cube The cube to be set to the stickers string.
      * @param stickersString A string with 6*12 characters. 
      * @param faces A string with 6 characters identifying each face of the cube , e.g. "RUFLDB".
      * @throws java.io.IOException If stickersString has bad syntax
      */
-    public static void setToStickersString(Cube cube, String stickersString, String faces) throws IOException {
+    public static void setToStickersString(@Nonnull Cube cube, @Nonnull String stickersString, @Nonnull String faces) throws IOException {
         int[][] perFaceStickers = new int[6][9];
         StreamPosTokenizer t = new StreamPosTokenizer(new StringReader(stickersString));
         t.resetSyntax();

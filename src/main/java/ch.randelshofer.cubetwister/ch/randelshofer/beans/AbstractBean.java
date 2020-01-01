@@ -3,7 +3,10 @@
  */
 package ch.randelshofer.beans;
 
-import java.beans.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * Abstract class for models that have to support property change listeners.<p>
@@ -14,6 +17,7 @@ import java.beans.*;
  */
 public abstract class AbstractBean extends Object implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
+    @Nonnull
     protected PropertyChangeSupport propertySupport = new PropertyChangeSupport(this);
     
     public void addPropertyChangeListener(PropertyChangeListener listener) {

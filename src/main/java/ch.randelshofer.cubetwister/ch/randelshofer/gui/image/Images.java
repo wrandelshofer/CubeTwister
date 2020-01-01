@@ -4,13 +4,26 @@
 
 package ch.randelshofer.gui.image;
 
-import java.awt.*;
-import java.awt.image.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.PixelGrabber;
+import java.awt.image.Raster;
+import java.awt.image.RenderedImage;
+import java.awt.image.WritableRaster;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.*;
-
-import javax.swing.*;
+import java.net.URL;
 
 /**
  * Image processing methods.
@@ -32,22 +45,26 @@ public class Images {
         return graphiteFilter;
     }*/
 
-    public static Image createImage(String moduleName, String location) {
+    @Nullable
+    public static Image createImage(@Nonnull String moduleName, @Nonnull String location) {
         try (InputStream resource = ModuleLayer.boot().findModule(moduleName).get().getResourceAsStream(location);) {
-        return createImage(resource);
+            return createImage(resource);
         } catch (IOException e) {
-            System.err.println("Warning: Images.createImage no resource found for "+moduleName+" "+location);
+            System.err.println("Warning: Images.createImage no resource found for " + moduleName + " " + location);
             return null;
         }
     }
-    public static Image createImage(Class<?> baseClass, String location) {
+
+    @Nullable
+    public static Image createImage(@Nonnull Class<?> baseClass, @Nonnull String location) {
         URL resource = baseClass.getResource(location);
         if (resource == null) {
-            System.err.println("Warning: Images.createImage no resource found for "+baseClass+" "+location);
+            System.err.println("Warning: Images.createImage no resource found for " + baseClass + " " + location);
             return null;
         }
         return createImage(resource);
     }
+
     public static Image createImage(URL resource) {
         Image image = Toolkit.getDefaultToolkit().createImage(resource);
         /*
@@ -58,7 +75,8 @@ public class Images {
         }*/
         return image;
     }
-    public static Image createImage(InputStream resource) throws IOException {
+
+    public static Image createImage(@Nonnull InputStream resource) throws IOException {
         Image image = Toolkit.getDefaultToolkit().createImage(resource.readAllBytes());
         /*
         if ("6".equals(Preferences.getString("AppleAquaColorVariant"))) {
@@ -151,6 +169,7 @@ public class Images {
     }*/
 
     /** Converts the image to a buffered image. */
+    @Nullable
     public static BufferedImage toBufferedImage(RenderedImage rImg) {
         BufferedImage image;
         if (rImg instanceof BufferedImage) {
@@ -169,18 +188,19 @@ public class Images {
         }
         return image;
     }
-    
+
+    @Nullable
     public static BufferedImage toBufferedImage(Image image) {
         if (image instanceof BufferedImage) {
             return (BufferedImage)image;
         }
-        
+
         // This code ensures that all the pixels in the image are loaded
         image = new ImageIcon(image).getImage();
-        
+
         // Create a buffered image with a format that's compatible with the screen
         BufferedImage bimage = null;
-        
+
         if (System.getProperty("java.version").startsWith("1.4.1_")) {
             // Workaround for Java 1.4.1 on Mac OS X.
             // For this JVM, we always create an ARGB image to prevent a class
@@ -199,8 +219,8 @@ public class Images {
                 // in order not to loose data.
                 hasAlpha = true;
             }
-            
-            
+
+
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             try {
                 // Determine the type of transparency of the new buffered image
@@ -208,7 +228,7 @@ public class Images {
                 if (hasAlpha) {
                     transparency = Transparency.TRANSLUCENT;
                 }
-                
+
                 // Create the buffered image
                 GraphicsDevice gs = ge.getDefaultScreenDevice();
                 GraphicsConfiguration gc = gs.getDefaultConfiguration();
@@ -218,7 +238,7 @@ public class Images {
                 //} catch (HeadlessException e) {
                 // The system does not have a screen
             }
-            
+
             if (bimage == null) {
                 // Create a buffered image using the default color model
                 int type = BufferedImage.TYPE_INT_RGB;
@@ -228,16 +248,16 @@ public class Images {
                 bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), type);
             }
         }
-        
+
         // Copy image to buffered image
         Graphics g = bimage.createGraphics();
-        
+
         // Paint the image onto the buffered image
         g.drawImage(image, 0, 0, null);
         g.dispose();
-        
+
         return bimage;
-        
+
         // My own implementation:
         /*
         if (image instanceof BufferedImage) {
@@ -297,6 +317,7 @@ public class Images {
     /**
      * Splits an image into count subimages.
      */
+    @Nonnull
     public static BufferedImage[] split(Image image, int count, boolean isHorizontal) {
         BufferedImage src = Images.toBufferedImage(image);
         if (count == 1) {

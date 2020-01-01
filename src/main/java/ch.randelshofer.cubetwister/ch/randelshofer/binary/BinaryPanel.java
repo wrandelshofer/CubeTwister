@@ -7,20 +7,21 @@
  */
 package ch.randelshofer.binary;
 
-import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.util.Arrays;
-
-import java.awt.Dimension;
-import java.awt.FontMetrics;
-import java.awt.Rectangle;
-import java.awt.Graphics;
-import java.awt.Font;
-import java.util.ArrayList;
-import java.util.List;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.JComponent;
 import javax.swing.UIManager;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Panel for untyped binary data.
@@ -64,11 +65,14 @@ public class BinaryPanel
             this.label = label;
         }
 
+        @Nonnull
         @Override
         public String toString() {
             return "Highlight[" + label + ", " + from + ".." + to + ", color:" + Integer.toHexString(color.getRGB()) + "]";
         }
     }
+
+    @Nonnull
     private ArrayList<Highlight> highlights = new ArrayList<Highlight>();
 
     public BinaryPanel() {
@@ -77,6 +81,7 @@ public class BinaryPanel
         setToolTipText("Hi");
     }
 
+    @Nonnull
     @Override
     public Dimension getPreferredSize() {
         FontMetrics fm = getFontMetrics(getFont());
@@ -112,7 +117,7 @@ public class BinaryPanel
         highlights.add(h);
     }
 
-    public void addHighlights(List<Highlight> h) {
+    public void addHighlights(@Nullable List<Highlight> h) {
         if (h != null) {
             highlights.addAll(h);
         }
@@ -173,6 +178,7 @@ public class BinaryPanel
         return offset;
     }
 
+    @Nullable
     private Highlight getHighlightAt(int x, int y) {
         int offset = getOffsetAt(x, y);
         //System.out.println("BinaryPanel offset:" + offset);
@@ -189,7 +195,7 @@ public class BinaryPanel
     }
 
     @Override
-    public void paintComponent(Graphics g) {
+    public void paintComponent(@Nonnull Graphics g) {
         Rectangle clipRect = g.getClipBounds();
         FontMetrics fm = g.getFontMetrics(getFont());
 
@@ -276,8 +282,9 @@ public class BinaryPanel
         }
     }
 
+    @Nullable
     @Override
-    public String getToolTipText(MouseEvent event) {
+    public String getToolTipText(@Nonnull MouseEvent event) {
         Highlight h = getHighlightAt(event.getX(), event.getY());
         return h == null ? null : h.label;
     }

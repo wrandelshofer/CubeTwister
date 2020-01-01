@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik.notation;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
@@ -71,6 +73,7 @@ public class Move implements Comparable<Move> {
     /**
      * Returns an inverse Move of this Move.
      */
+    @Nonnull
     public Move toInverse() {
         return new Move(3, axis, layerMask, -angle);
     }
@@ -91,6 +94,7 @@ public class Move implements Comparable<Move> {
     }
 
 
+    @Nonnull
     public String getLayerList() {
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < 8; i++) {
@@ -104,7 +108,7 @@ public class Move implements Comparable<Move> {
         return buf.toString();
     }
 
-    public static int toLayerMask(String str) {
+    public static int toLayerMask(@Nonnull String str) {
         StreamTokenizer tt = new StreamTokenizer(new StringReader(str));
         tt.resetSyntax();
         tt.parseNumbers();
@@ -126,7 +130,7 @@ public class Move implements Comparable<Move> {
         return layerMask;
     }
 
-    public boolean equals(Move that) {
+    public boolean equals(@Nonnull Move that) {
         return that.axis == this.axis &&
                 that.layerMask == this.layerMask &&
                 that.angle == this.angle;
@@ -136,15 +140,17 @@ public class Move implements Comparable<Move> {
         return /*symbol.hashCode() |*/ (axis << 24) | (layerMask << 10) | (angle << 8);
     }
 
+    @Nonnull
     public String toString() {
         return "Move axis=" + axis + " mask=" + layerMask + " angle=" + angle;
     }
 
+    @Nonnull
     public List<Move> getResolvedList() {
         return List.of(this);
     }
 
-    public int compareTo(Move that) {
+    public int compareTo(@Nonnull Move that) {
 
         int result;
         result = this.layerMask - that.layerMask;

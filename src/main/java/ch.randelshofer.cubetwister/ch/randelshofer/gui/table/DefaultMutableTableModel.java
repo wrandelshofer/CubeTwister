@@ -3,13 +3,20 @@
  */
 package ch.randelshofer.gui.table;
 
-import ch.randelshofer.gui.datatransfer.*;
-import java.awt.datatransfer.*;
-import java.awt.dnd.*;
-import java.io.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import ch.randelshofer.gui.datatransfer.CompositeTransferable;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.Action;
+import javax.swing.table.AbstractTableModel;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Default implementation of a MutableTableModel.
@@ -26,9 +33,11 @@ implements MutableTableModel {
      * The <code>ArrayList</code> of <code>ArrayList</code> of
      * <code>Object</code> values.
      */
+    @Nullable
     protected ArrayList<ArrayList<Object>>    dataList;
     
     /** The <code>ArrayList</code> of column identifiers. */
+    @Nullable
     protected ArrayList<Object>    columnIdentifiers;
     
     /** The <code>ArrayList</code> of column classes. When
@@ -68,6 +77,7 @@ implements MutableTableModel {
      * Creates an array list of the specified size and fills
      * it with <code>null</code> values.
      */
+    @Nonnull
     private static ArrayList<ArrayList<Object>> createList(int size) {
         ArrayList<ArrayList<Object>> l = new ArrayList<ArrayList<Object>>(size);
         for (int i=0; i < size; i++) {
@@ -83,22 +93,23 @@ implements MutableTableModel {
     public DefaultMutableTableModel(int rowCount, int columnCount) {
         this(new Object[rowCount][columnCount], new Object[columnCount]);
     }
-    
-    
+
+
     /**
      * Constructs a DefaultMutableTableModel and initializes the
      * table by passing dataList and columnNames to the setDataList()
      * method.
      */
-    public DefaultMutableTableModel(Object[][] dataList, Object[] columnNames) {
+    public DefaultMutableTableModel(@Nonnull Object[][] dataList, Object[] columnNames) {
         setDataVector(dataList, columnNames);
     }
+
     /**
      * Constructs a DefaultMutableTableModel and initializes the
      * table by passing dataList and columnNames to the setDataList()
      * method.
      */
-    public DefaultMutableTableModel(Object[][] dataList, Object[] columnNames, Class<?>[] columnClasses) {
+    public DefaultMutableTableModel(@Nonnull Object[][] dataList, Object[] columnNames, Class<?>[] columnClasses) {
         setDataVector(dataList, columnNames);
         this.columnClasses = new ArrayList<Class<?>>(Arrays.asList(columnClasses));
     }
@@ -142,26 +153,26 @@ implements MutableTableModel {
      * @param   dataVector         the new dataList vector
      * @param   columnIdentifiers     the names of the columns
      */
-    public void setDataVector(List<ArrayList<Object>> dataVector, List<Object> columnIdentifiers) {
+    public void setDataVector(@Nullable List<ArrayList<Object>> dataVector, @Nullable List<Object> columnIdentifiers) {
         this.dataList = (dataVector == null) ? new ArrayList<ArrayList<Object>>() : new ArrayList<ArrayList<Object>>(dataVector);
         this.columnIdentifiers = (columnIdentifiers == null) ? new ArrayList<Object>() : new ArrayList<Object>(columnIdentifiers);
         justifyRows(0, getRowCount());
         fireTableStructureChanged();
     }
-    
+
     /**
-     *  Replaces the value in the <code>dataVector</code> instance
-     *  variable with the values in the array <code>dataVector</code>.
-     *  The first index in the <code>Object[][]</code>
-     *  array is the row index and the second is the column index.
-     *  <code>columnIdentifiers</code> are the names of the new columns.
+     * Replaces the value in the <code>dataVector</code> instance
+     * variable with the values in the array <code>dataVector</code>.
+     * The first index in the <code>Object[][]</code>
+     * array is the row index and the second is the column index.
+     * <code>columnIdentifiers</code> are the names of the new columns.
      *
-     * @param dataVector		the new dataList vector
-     * @param columnIdentifiers	the names of the columns
+     * @param dataVector        the new dataList vector
+     * @param columnIdentifiers the names of the columns
      */
-    public void setDataVector(Object[][] dataVector, Object[] columnIdentifiers) {
+    public void setDataVector(@Nonnull Object[][] dataVector, Object[] columnIdentifiers) {
         ArrayList<ArrayList<Object>> l = new ArrayList<ArrayList<Object>>(dataVector.length);
-        for (int i=0; i < dataVector.length; i++) {
+        for (int i = 0; i < dataVector.length; i++) {
             l.add(new ArrayList<Object>(Arrays.asList(dataVector[i])));
         }
         setDataVector(l, new ArrayList<Object>(Arrays.asList(columnIdentifiers)));
@@ -170,13 +181,14 @@ implements MutableTableModel {
     //
     // Manipulating rows
     //
+
     /**
      * Removes elements from the end of the provided array list
      * if it has more elements than <code>size</code> elements,
      * or adds <code>null</code> elements at the end of the array list
      * if it has less than <code>size</code> elements.
      */
-    private void setListSize(ArrayList<?> l, int size) {
+    private void setListSize(@Nonnull ArrayList<?> l, int size) {
         while (l.size() < size) {
             l.add(null);
         }
@@ -212,9 +224,13 @@ implements MutableTableModel {
     public void createRow(int row, Object type) {
         addRow(row, new Object[getColumnCount()]);
     }
+
+    @Nonnull
     public Object[] getCreatableRowTypes(int row) {
         return new Object[] { getCreatableRowType(row) };
     }
+
+    @Nonnull
     public Object getCreatableRowType(int row) {
         return "Row";
     }
@@ -278,20 +294,22 @@ implements MutableTableModel {
     /**
      * Returns an array of compound actions for the indicated rows.
      */
+    @Nonnull
     public Action[] getRowActions(int[] rows) {
         return new Action[0];
     }
-    
-    
+
+
     /**
      * Creates a Transferable to use as the source for a dataList
      * transfer of the specified elements.
      * Returns the representation of the rows
      * to be transferred, or null if transfer is not possible.
      *
-     * @param   rows     Row rows.
+     * @param rows Row rows.
      */
-    public Transferable exportRowTransferable(int[] rows) {
+    @Nonnull
+    public Transferable exportRowTransferable(@Nonnull int[] rows) {
         CompositeTransferable t = new CompositeTransferable();
         t.add(TableModels.createLocalTransferable(this, rows));
         t.add(TableModels.createHTMLTransferable(this, rows));
@@ -316,11 +334,13 @@ implements MutableTableModel {
      *
      * @see java.awt.dnd.DnDConstants
      */
-    public boolean isRowImportable(DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
-        if (action == DnDConstants.ACTION_LINK || asChild || ! isRowAddable(row)) return false;
-        
-        for (int i=0; i < transferFlavors.length; i++) {
-            for (int j=0; j < importableFlavors.length; j++) {
+    public boolean isRowImportable(@Nonnull DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
+        if (action == DnDConstants.ACTION_LINK || asChild || !isRowAddable(row)) {
+            return false;
+        }
+
+        for (int i = 0; i < transferFlavors.length; i++) {
+            for (int j = 0; j < importableFlavors.length; j++) {
                 if (transferFlavors[i].equals(importableFlavors[j])) {
                     return true;
                 }
@@ -343,11 +363,12 @@ implements MutableTableModel {
      *
      * @return The number of imported elements.
      */
-    public int importRowTransferable(Transferable t, int action, int row, boolean asChild)
-    throws UnsupportedFlavorException, IOException {
-        if (! isRowImportable(t.getTransferDataFlavors(), action, row, asChild))
+    public int importRowTransferable(@Nonnull Transferable t, int action, int row, boolean asChild)
+            throws UnsupportedFlavorException, IOException {
+        if (!isRowImportable(t.getTransferDataFlavors(), action, row, asChild)) {
             throw new UnsupportedFlavorException(null);
-        
+        }
+
         Object[][] transferData;
         try {
             if (t.isDataFlavorSupported(tableFlavor)) {
@@ -440,6 +461,7 @@ implements MutableTableModel {
         fireTableRowsInserted(row, row);
     }
     
+    @Nonnull
     @Override
     public Class<?> getColumnClass(int column) {
         if (columnClasses == null) {

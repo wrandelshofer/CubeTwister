@@ -5,6 +5,7 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,6 +37,7 @@ public class NOPNode extends Node {
         setAllowsChildren(false);
     }
 
+    @Nonnull
     @Override
     public Iterator<Node> resolvedIterator(boolean isInverse) {
         return Collections.emptyIterator();
@@ -46,7 +48,7 @@ public class NOPNode extends Node {
      * Returns a string representation of this node using the specified notation.
      */
     @Override
-    public void writeTokens(PrintWriter w, Notation notation, Map<String, MacroNode> macroMap)
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation notation, Map<String, MacroNode> macroMap)
             throws IOException {
         if (notation.isSupported(Symbol.NOP)) {
             w.append(notation.getToken(Symbol.NOP));

@@ -5,6 +5,7 @@
 package ch.randelshofer.rubik.impexp.cubeexplorer;
 
 import ch.randelshofer.rubik.parser.ScriptParser;
+import org.jhotdraw.annotation.Nullable;
 
 /**
  * KociembaENGParser.
@@ -25,6 +26,7 @@ public class KociembaENGParser extends ScriptParser {
         );*/
     }
 
+    @Nullable
     private static String[] getTokens() {
         /*
         String[] t = new String[ScriptParser.TOKEN_COUNT];

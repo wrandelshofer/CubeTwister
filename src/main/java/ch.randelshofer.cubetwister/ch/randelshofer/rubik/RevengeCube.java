@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Represents the state of a 4-times sliced cube (Revenge Cube) by the location 
  * and orientation of its parts.
@@ -1095,6 +1097,7 @@ public class RevengeCube extends AbstractCube {
         }
     }
 
+    @Nonnull
     public int[][] toStickers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

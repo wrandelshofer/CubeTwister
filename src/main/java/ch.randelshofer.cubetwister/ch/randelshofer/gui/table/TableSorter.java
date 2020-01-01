@@ -36,26 +36,28 @@
  */
 package ch.randelshofer.gui.table;
 
-import java.awt.Component;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.ImageIcon;
-import javax.swing.SwingConstants;
-import javax.swing.table.TableModel;
-import javax.swing.event.TableModelEvent;
-
-// Imports for picking up mouse events from the JTable. 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.InputEvent;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
-import javax.swing.table.JTableHeader;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableCellRenderer;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import java.awt.Component;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import java.util.Date;
+
+// Imports for picking up mouse events from the JTable.
 
 /**
  * A sorter for TableModels. The sorter has a model (conforming to TableModel)
@@ -75,7 +77,7 @@ public class TableSorter extends TableMap {
     private final static long serialVersionUID = 1L;
 
     int indexes[];
-    ArrayList<Integer> sortingColumns = new ArrayList<Integer>();
+    @Nonnull ArrayList<Integer> sortingColumns = new ArrayList<Integer>();
     boolean ascending = true;
     int sortingColumn = -1;
     int compares;
@@ -84,11 +86,11 @@ public class TableSorter extends TableMap {
         indexes = new int[0]; // For consistency.        
     }
 
-    public TableSorter(TableModel model) {
+    public TableSorter(@Nonnull TableModel model) {
         setModel(model);
     }
 
-    public void setModel(TableModel model) {
+    public void setModel(@Nonnull TableModel model) {
         super.setModel(model);
         reallocateIndexes();
     }
@@ -330,7 +332,7 @@ public class TableSorter extends TableMap {
         final JTable tableView = table;
         tableView.setColumnSelectionAllowed(false);
         MouseAdapter listMouseListener = new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
+            public void mouseClicked(@Nonnull MouseEvent e) {
                 TableColumnModel columnModel = tableView.getColumnModel();
                 int viewColumn = columnModel.getColumnIndexAtX(e.getX());
                 int column = tableView.convertColumnIndexToModel(viewColumn);
@@ -347,40 +349,42 @@ public class TableSorter extends TableMap {
         th.setDefaultRenderer(createDefaultRenderer());
     }
 
+    @Nonnull
     protected TableCellRenderer createDefaultRenderer() {
         DefaultTableCellRenderer label
                 = new DefaultTableCellRenderer() {
-                    private final static long serialVersionUID = 1L;
+            private final static long serialVersionUID = 1L;
 
-                    public Component getTableCellRendererComponent(JTable table,
-                            Object value, boolean isSelected, boolean hasFocus,
-                            int row, int column) {
-                        if (table != null) {
-                            JTableHeader header = table.getTableHeader();
-                            if (header != null) {
-                                setForeground(header.getForeground());
-                                setBackground(header.getBackground());
-                                setFont(header.getFont());
-                                if (column == sortingColumn) {
-                                    if (ascending) {
-                                        setIcon(new ImageIcon(getClass().getResource(
-                                                                "/resources/arrowDown.gif")));
-                                    } else {
-                                        setIcon(new ImageIcon(getClass().getResource(
-                                                                "/resources/arrowUp.gif")));
-                                    }
-                                } else {
-                                    setIcon(null);
-                                }
+            @Nonnull
+            public Component getTableCellRendererComponent(@Nullable JTable table,
+                                                           @Nullable Object value, boolean isSelected, boolean hasFocus,
+                                                           int row, int column) {
+                if (table != null) {
+                    JTableHeader header = table.getTableHeader();
+                    if (header != null) {
+                        setForeground(header.getForeground());
+                        setBackground(header.getBackground());
+                        setFont(header.getFont());
+                        if (column == sortingColumn) {
+                            if (ascending) {
+                                setIcon(new ImageIcon(getClass().getResource(
+                                        "/resources/arrowDown.gif")));
+                            } else {
+                                setIcon(new ImageIcon(getClass().getResource(
+                                        "/resources/arrowUp.gif")));
                             }
-
+                        } else {
+                            setIcon(null);
                         }
-
-                        setText((value == null) ? "" : value.toString());
-                        setBorder(UIManager.getBorder("TableHeader.cellBorder"));
-                        return this;
                     }
-                };
+
+                }
+
+                setText((value == null) ? "" : value.toString());
+                setBorder(UIManager.getBorder("TableHeader.cellBorder"));
+                return this;
+            }
+        };
         label.setHorizontalAlignment(JLabel.CENTER);
         label.setHorizontalTextPosition(SwingConstants.LEFT);
         return label;

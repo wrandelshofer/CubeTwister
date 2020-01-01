@@ -5,15 +5,23 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.ProgressObserver;
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.gui.filechooser.ExtensionFileFilter;
+
+import javax.swing.JFileChooser;
+import javax.swing.JSlider;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.prefs.Preferences;
-import javax.swing.*;
-import org.jhotdraw.gui.filechooser.ExtensionFileFilter;
 
 /**
  * ScriptExportVideoAccessoryPanel with file filters.
@@ -29,22 +37,34 @@ public class ScriptExportVideoAccessoryPanel extends javax.swing.JPanel {
 
     private JFileChooser fileChooser;
     private Preferences prefs;
+    @Nonnull
     private ExtensionFileFilter tsccAVI = new ExtensionFileFilter("AVI Screen Capture video", "avi");
     //private ExtensionFileFilter pngAVI = new ExtensionFileFilter("AVI PNG video", "avi");
+    @Nonnull
     private ExtensionFileFilter jpgAVI = new ExtensionFileFilter("AVI JPEG video", "avi");
+    @Nonnull
     private ExtensionFileFilter animMovie = new ExtensionFileFilter("QuickTime Animation video", "mov");
+    @Nonnull
     private ExtensionFileFilter pngMovie = new ExtensionFileFilter("QuickTime PNG video", "mov");
+    @Nonnull
     private ExtensionFileFilter tsccMovie = new ExtensionFileFilter("QuickTime Screen Capture video", "mov");
+    @Nonnull
     private ExtensionFileFilter jpgMovie = new ExtensionFileFilter("QuickTime JPEG video", "mov");
+    @Nonnull
     private ExtensionFileFilter pngStills = new ExtensionFileFilter("PNG still images", "png");
+    @Nonnull
     private ExtensionFileFilter jpgStills = new ExtensionFileFilter("JPEG still images", "jpg");
     private ScriptModel m;
+    @Nonnull
     private HashMap<String,ExtensionFileFilter> effMap=new HashMap<String,ExtensionFileFilter>();
+    @Nonnull
     private HashMap<ExtensionFileFilter,String> invEffMap=new HashMap<ExtensionFileFilter,String>();
 
-    /** Creates the accessory panel and adds its file filters to
-    the file chooser. */
-    public ScriptExportVideoAccessoryPanel(ScriptModel m, JFileChooser fileChooser) {
+    /**
+     * Creates the accessory panel and adds its file filters to
+     * the file chooser.
+     */
+    public ScriptExportVideoAccessoryPanel(ScriptModel m, @Nonnull JFileChooser fileChooser) {
         initComponents();
         fromLabel.setVisible(false);
         fromField.setVisible(false);
@@ -115,9 +135,9 @@ public class ScriptExportVideoAccessoryPanel extends javax.swing.JPanel {
         fileChooser.addPropertyChangeListener(new PropertyChangeListener() {
 
             @Override
-            public void propertyChange(PropertyChangeEvent evt) {
+            public void propertyChange(@Nonnull PropertyChangeEvent evt) {
                 if ("fileFilterChanged".equals(evt.getPropertyName())) {
-                    String format = invEffMap.get((ExtensionFileFilter)evt.getNewValue());
+                    String format = invEffMap.get((ExtensionFileFilter) evt.getNewValue());
                     prefs.put("Script.exportVideoFormat", format);
                     updateOptions();
                 }
@@ -231,6 +251,7 @@ public class ScriptExportVideoAccessoryPanel extends javax.swing.JPanel {
         this.m=newValue;
     }
 
+    @Nonnull
     public ScriptVideoExporter createExporter(File file, ProgressObserver progressMonitor) {
         ScriptVideoExporter sve = new ScriptVideoExporter(m, file, progressMonitor);
         sve.setFirstFrame(getFirstFrame());

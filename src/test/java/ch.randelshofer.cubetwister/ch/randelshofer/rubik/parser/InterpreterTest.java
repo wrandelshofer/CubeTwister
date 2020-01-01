@@ -7,6 +7,7 @@ import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.notation.Notation;
+import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 public class InterpreterTest {
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testMoves() {
         Notation defaultNotation = new DefaultNotation();
@@ -33,7 +35,8 @@ public class InterpreterTest {
         );
     }
 
-    private Cube buildRubik(Move... moves) {
+    @Nonnull
+    private Cube buildRubik(@Nonnull Move... moves) {
         final RubiksCube cube = new RubiksCube();
         for (Move m : moves) {
             cube.transform(m.getAxis(), m.getLayerMask(), m.getAngle());
@@ -42,7 +45,7 @@ public class InterpreterTest {
     }
 
 
-    private void doTestMove(Notation notation, String script, Cube expected) throws ParseException {
+    private void doTestMove(@Nonnull Notation notation, String script, @Nonnull Cube expected) throws ParseException {
         ScriptParser instance = new ScriptParser(notation);
         final Node parsed = instance.parse(script);
         final RubiksCube actual = new RubiksCube();

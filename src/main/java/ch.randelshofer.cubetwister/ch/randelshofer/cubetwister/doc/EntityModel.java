@@ -4,23 +4,17 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.cubetwister.doc.*;
-import ch.randelshofer.beans.*;
-import ch.randelshofer.geom3d.*;
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.undo.*;
-import ch.randelshofer.gui.text.*;
 import ch.randelshofer.gui.tree.TreeNodeImpl;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
-import java.awt.event.*;
-import java.beans.*;
-import java.util.*;
-import java.text.*;
-import javax.swing.undo.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
-import javax.swing.tree.*;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.undo.UndoableEdit;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * Holds an entity which can be managed by a DocumentModel.
@@ -39,6 +33,7 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
     /**
      * Listener support.
      */
+    @Nullable
     private PropertyChangeSupport propertySupport;
     
     private boolean removable = true;
@@ -93,18 +88,19 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
      * an instance of EntityModel and that
      * its user object is the DocumentModel.
      */
+    @Nullable
     public DocumentModel getDocument() {
         Object obj = ((DefaultMutableTreeNode) getRoot()).getUserObject();
         return (obj instanceof DocumentModel) ? (DocumentModel) obj : null;
     }
-    
+
     /**
      * Notify all listeners that have registered interest
      * at the DocumentModel for notification on this event type.
      * The event instance is lazily created using the parameters
      * passed into the fire method.
      */
-    protected void fireUndoableEditHappened(UndoableEdit edit) {
+    protected void fireUndoableEditHappened(@Nonnull UndoableEdit edit) {
         DocumentModel root = getDocument();
         if (root != null) {
             root.fireUndoableEdit(edit);
@@ -156,14 +152,15 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
     public void setRemovable(boolean b) {
         removable = b;
     }
-    
+
+    @Nullable
     public String toString() {
         return super.toString()+" ("+getChildCount()+")";
     }
-    
-        public void undoableEditHappened(UndoableEditEvent e) {
-            fireUndoableEditHappened(e.getEdit());
-        }
+
+    public void undoableEditHappened(@Nonnull UndoableEditEvent e) {
+        fireUndoableEditHappened(e.getEdit());
+    }
     
     public void dispose() {
         for (EntityModel child : getChildren()) {

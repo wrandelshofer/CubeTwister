@@ -4,16 +4,19 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.util.*;
-
-import java.beans.*;
-import java.util.ResourceBundle;
-
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.undo.*;
+import ch.randelshofer.rubik.Cube3DCanvas;
+import ch.randelshofer.rubik.JCubeCanvasIdx3D;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.undo.UndoableEdit;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
 /**
  * ScriptSecondaryView.
  *
@@ -26,13 +29,14 @@ public class ScriptSecondaryView extends JPanel implements EntityView {
     /**
      * The listeners waiting for UndoableEdit events.
      */
+    @Nonnull
     private javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
-    
-    
-    
+
+
+    @Nonnull
     private PropertyChangeListener propertyHandler = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent evt) {
-                String n = evt.getPropertyName();
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
+            String n = evt.getPropertyName();
             if (evt.getSource() == model) {
                 if (n == ScriptModel.CUBE_PROPERTY) {
                     updateCube3D();
@@ -172,7 +176,8 @@ public class ScriptSecondaryView extends JPanel implements EntityView {
             }
         }*/
     }
-    
+
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

@@ -4,11 +4,20 @@
 
 package ch.randelshofer.gui.border;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import java.awt.image.*;
-import javax.swing.plaf.basic.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.border.Border;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Insets;
+import java.awt.MediaTracker;
+import java.awt.Rectangle;
+import java.awt.TexturePaint;
+import java.awt.image.BufferedImage;
 
 /**
  * Takes an image and insets. The image must consist of a
@@ -85,6 +94,7 @@ public class ImageBevelBorder implements Border {
      * Returns the insets of the border.  
      * @param c the component for which this border insets value applies
      */
+    @Nonnull
     public Insets getBorderInsets(Component c) {
         return (Insets) borderInsets.clone();
     }

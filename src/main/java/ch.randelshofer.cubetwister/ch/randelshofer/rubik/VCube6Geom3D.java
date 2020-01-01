@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.geom3d.Shape3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -415,6 +416,8 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
     //            shapes[centerOffset].setAction(i, new AbstractRubiksCubeFlat3D.PartAction(8+12*3+6*9, i, -1));
     //}
     }
+
+    @Nonnull
     public String getName() {
         return "V-Cube 6";
     }
@@ -571,7 +574,8 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
     public int getStickerCount() {
         return STICKER_COUNT;
     }
-    
+
+    @Nonnull
     @Override
     protected CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, getStickerCount(), new int[]{6*6, 6*6, 6*6, 6*6, 6*6, 6*6});
@@ -652,8 +656,9 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
         }
     }
 
+    @Nonnull
     @Override
     public CubeKind getKind() {
-       return CubeKind.CUBE_6;
+        return CubeKind.CUBE_6;
     }
 }

@@ -4,9 +4,13 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.undo.*;
-import javax.swing.undo.*;
+import ch.randelshofer.rubik.CubeAttributes;
+import ch.randelshofer.undo.UndoableBooleanEdit;
+import ch.randelshofer.undo.UndoableObjectEdit;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.undo.UndoableEdit;
 /**
  * Model for the properties of a cube part.
  *
@@ -26,10 +30,12 @@ public class CubePartModel extends EntityModel {
     /** 
      * The fill color property.
      */
+    @Nullable
     private CubeColorModel fillColor;
     /**
      * The outline color property.
      */
+    @Nullable
     private CubeColorModel outlineColor;
     
     /**
@@ -98,6 +104,7 @@ public class CubePartModel extends EntityModel {
         }
     }
 
+    @Nullable
     public CubeColorModel getFillColorModel() {
         return fillColor;
     }
@@ -123,6 +130,7 @@ public class CubePartModel extends EntityModel {
         }
     }
 
+    @Nullable
     public CubeColorModel getOutlineColorModel() {
         return outlineColor;
     }
@@ -138,7 +146,8 @@ public class CubePartModel extends EntityModel {
             firePropertyChange(PROP_OUTLINE_COLOR, oldValue, value);
 
             UndoableEdit edit = new UndoableObjectEdit(this, "Outline Color", oldValue, value) {
-    private final static long serialVersionUID = 1L;
+                private final static long serialVersionUID = 1L;
+
                 public void revert(Object a, Object b) {
                     outlineColor = (CubeColorModel) b;
                     firePropertyChange(PROP_OUTLINE_COLOR, a, b);
@@ -147,7 +156,8 @@ public class CubePartModel extends EntityModel {
             fireUndoableEditHappened(edit);
         }
     }
-    public void removeNotify(EntityModel m) {
+
+    public void removeNotify(@Nonnull EntityModel m) {
         if (m == fillColor) {
             EntityModel colors = m.getParent();
             if (colors.getChildCount() < 2) {

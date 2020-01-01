@@ -7,6 +7,7 @@ import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -52,14 +53,14 @@ public class InversionNode extends UnaryNode {
     }
 
     @Override
-    public void writeTokens(PrintWriter w, Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (getChildCount() == 1 && (getChildAt(0) instanceof InversionNode)) {
             // Short cut: If two inversions are nested, they cancel each other out.
             // We print the children of the inner inversion without having to invert
             // them.
             InversionNode nestedInversion = (InversionNode) getChildAt(0);
-            for (Iterator<Node> enumer = nestedInversion.getChildren().iterator(); enumer.hasNext();) {
+            for (Iterator<Node> enumer = nestedInversion.getChildren().iterator(); enumer.hasNext(); ) {
                 ((SequenceNode) enumer.next()).writeTokens(w, p, macroMap);
                 if (enumer.hasNext()) {
                     p.writeToken(w, Symbol.DELIMITER);

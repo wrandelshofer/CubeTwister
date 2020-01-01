@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.geom3d.Shape3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -63,9 +64,11 @@ public class PocketCubeGeom3D extends AbstractPocketCubeGeom3D {
             }
         }
     }
+
+    @Nonnull
     @Override
     public CubeAttributes createAttributes() {
-        DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, getStickerCount(), 
+        DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, getStickerCount(),
                 new int[]{4, 4, 4, 4, 4, 4});
         Color[] partsFillColor = new Color[partCount];
         Color[] partsOutlineColor = new Color[partCount];
@@ -129,6 +132,8 @@ public class PocketCubeGeom3D extends AbstractPocketCubeGeom3D {
             shapes[centerOffset].setAction(i, new AbstractPocketCubeGeom3D.PartAction(9, i, -1));
         }
     }
+
+    @Nonnull
     public String getName() {
         return "Pocket Cube";
     }
@@ -323,8 +328,10 @@ public class PocketCubeGeom3D extends AbstractPocketCubeGeom3D {
     public int getStickerCount() {
         return 6*4;
     }
+
+    @Nonnull
     @Override
     public CubeKind getKind() {
-       return CubeKind.POCKET;
+        return CubeKind.POCKET;
     }
 }

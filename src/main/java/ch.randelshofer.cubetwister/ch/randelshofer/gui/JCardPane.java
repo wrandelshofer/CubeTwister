@@ -4,9 +4,11 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.DefaultComboBoxModel;
+import java.awt.CardLayout;
+import java.awt.Container;
 /**
  * JCardPane.
  *
@@ -61,7 +63,7 @@ public class JCardPane extends javax.swing.JPanel {
         public void componentMoved(java.awt.event.ComponentEvent evt) {
         }
 
-        public void componentResized(java.awt.event.ComponentEvent evt) {
+        public void componentResized(@Nonnull java.awt.event.ComponentEvent evt) {
             if (evt.getSource() == contentPane) {
                 JCardPane.this.componentRemoved(evt);
             }
@@ -70,7 +72,7 @@ public class JCardPane extends javax.swing.JPanel {
         public void componentShown(java.awt.event.ComponentEvent evt) {
         }
 
-        public void componentAdded(java.awt.event.ContainerEvent evt) {
+        public void componentAdded(@Nonnull java.awt.event.ContainerEvent evt) {
             if (evt.getSource() == contentPane) {
                 JCardPane.this.componentAdded(evt);
             }
@@ -79,7 +81,7 @@ public class JCardPane extends javax.swing.JPanel {
         public void componentRemoved(java.awt.event.ContainerEvent evt) {
         }
 
-        public void itemStateChanged(java.awt.event.ItemEvent evt) {
+        public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
             if (evt.getSource() == comboBox) {
                 JCardPane.this.itemStateChanged(evt);
             }

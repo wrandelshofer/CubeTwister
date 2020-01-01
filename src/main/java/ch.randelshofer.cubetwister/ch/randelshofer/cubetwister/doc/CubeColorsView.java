@@ -4,11 +4,18 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.table.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.gui.table.ColorTableCellEditor;
+import ch.randelshofer.gui.table.ColorTableCellRenderer;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
+import java.awt.Color;
 /**
  * CubeColorsView is used to present the "Colors" page of CubeView.
  *
@@ -70,6 +77,7 @@ public class CubeColorsView extends AbstractEntityView {
 
     }//GEN-END:initComponents
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

@@ -9,6 +9,8 @@ import ch.randelshofer.rubik.Cube3DCanvas;
 import ch.randelshofer.rubik.CubeEvent;
 import ch.randelshofer.rubik.CubeListener;
 import ch.randelshofer.rubik.Cubes;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.JComponent;
 import javax.swing.Timer;
@@ -31,7 +33,9 @@ import java.io.IOException;
 public class ScriptKeyboardHandler extends AbstractBean {
     private final static long serialVersionUID = 1L;
 
+    @Nonnull
     public static String KEY_BUFFER_PROPERTY = "keyBuffer";
+    @Nonnull
     public static String INVERSE_CASE_PROPERTY = "inverseCase";
     /**
      * The cube on which the parser acts.
@@ -44,10 +48,12 @@ public class ScriptKeyboardHandler extends AbstractBean {
     /**
      * The keyboard buffer holds the contents of the keyboard.
      */
+    @Nonnull
     private StringBuilder keyBuffer = new StringBuilder();
     /**
      * The sequence buffer holds the parsed sequence so far.
      */
+    @Nullable
     private Node currentSeq = null;
     /**
      * This parser is used to decode the contents of the keyboard buffer.
@@ -65,6 +71,7 @@ public class ScriptKeyboardHandler extends AbstractBean {
      * Whether the case of characters is inverted.
      */
     private boolean isInvertingCase = true;
+    @Nonnull
     private Handler handler = new Handler();
     private Cube3DCanvas canvas;
     private int isChanging;
@@ -83,7 +90,7 @@ public class ScriptKeyboardHandler extends AbstractBean {
         }
 
         @Override
-        public void keyTyped(KeyEvent e) {
+        public void keyTyped(@Nonnull KeyEvent e) {
             if (!e.getComponent().isEnabled()) {
                 return;
             }
@@ -100,7 +107,7 @@ public class ScriptKeyboardHandler extends AbstractBean {
         }
 
         @Override
-        public void keyPressed(KeyEvent e) {
+        public void keyPressed(@Nonnull KeyEvent e) {
             if (!e.getComponent().isEnabled()) {
                 return;
             }
@@ -129,7 +136,7 @@ public class ScriptKeyboardHandler extends AbstractBean {
         }
 
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(@Nonnull MouseEvent e) {
             ((JComponent) e.getSource()).requestFocus();
         }
 
@@ -177,7 +184,7 @@ public class ScriptKeyboardHandler extends AbstractBean {
         return parser;
     }
 
-    public void setParser(ScriptParser parser) {
+    public void setParser(@Nonnull ScriptParser parser) {
         this.parser = parser;
         tmpCube = Cubes.create(parser.getNotation().getLayerCount());
     }
@@ -193,7 +200,7 @@ public class ScriptKeyboardHandler extends AbstractBean {
     /**
      * Sets the canvas on which this keyboard parser acts.
      */
-    public void setCanvas(Cube3DCanvas c) {
+    public void setCanvas(@Nonnull Cube3DCanvas c) {
         if (canvas != null) {
             removeFrom(canvas.getVisualComponent());
         }
@@ -207,14 +214,14 @@ public class ScriptKeyboardHandler extends AbstractBean {
         return canvas;
     }
 
-    public void addTo(Component c) {
+    public void addTo(@Nonnull Component c) {
         c.addKeyListener(handler);
         c.addFocusListener(handler);
         c.addMouseListener(handler);
         c.setFocusable(true);
     }
 
-    public void removeFrom(Component c) {
+    public void removeFrom(@Nonnull Component c) {
         c.removeKeyListener(handler);
         c.removeFocusListener(handler);
         c.removeMouseListener(handler);
@@ -295,6 +302,7 @@ public class ScriptKeyboardHandler extends AbstractBean {
         firePropertyChange(KEY_BUFFER_PROPERTY, oldValue, keyBuffer.toString());
     }
 
+    @Nonnull
     public String getKeyBuffer() {
         return keyBuffer.toString();
     }

@@ -36,14 +36,15 @@
 
 package idx3d;
 
-public class idx3d_Camera
-{
-	// F I E L D S
+import org.jhotdraw.annotation.Nonnull;
 
-		public idx3d_Matrix matrix=new idx3d_Matrix();
-		public idx3d_Matrix normalmatrix=new idx3d_Matrix();
-	
-		boolean needsRebuild=true;   // Flag indicating changes on matrix
+public class idx3d_Camera {
+    // F I E L D S
+
+    public idx3d_Matrix matrix = new idx3d_Matrix();
+    public idx3d_Matrix normalmatrix = new idx3d_Matrix();
+
+    boolean needsRebuild = true;   // Flag indicating changes on matrix
 
 		// Camera settings
 		public idx3d_Vector pos=new idx3d_Vector(0f,0f,0f);
@@ -159,61 +160,57 @@ public class idx3d_Camera
 			screenheight=h;
 			screenscale=(w<h)?w:h;
 		}
-		
-	// MATRIX MODIFIERS
-	
-		public final void shift(float dx, float dy, float dz)
-		{
-			pos=pos.transform(idx3d_Matrix.shiftMatrix(dx,dy,dz));
-			lookat=lookat.transform(idx3d_Matrix.shiftMatrix(dx,dy,dz));
-			needsRebuild=true;
-			
-		}
-		
-		public final void shift(idx3d_Vector v)
-		{
-			shift(v.x,v.y,v.z);
 
-		}
-	
-		public final void rotate(float dx, float dy, float dz)
-		{
-			pos=pos.transform(idx3d_Matrix.rotateMatrix(dx,dy,dz));
-			needsRebuild=true;
-		}
-		
-		public final void rotate(idx3d_Vector v)
-		{
-			rotate(v.x,v.y,v.z);
-		}
-		
-		public static idx3d_Camera FRONT()
-		{
-			idx3d_Camera cam=new idx3d_Camera();
-			cam.setPos(0,0,-2f);
-			return cam;
-		}
-		
-		public static idx3d_Camera LEFT()
-		{
-			idx3d_Camera cam=new idx3d_Camera();
-			cam.setPos(2f,0,0);
-			return cam;
-		}
-		
-		public static idx3d_Camera RIGHT()
-		{
-			idx3d_Camera cam=new idx3d_Camera();
-			cam.setPos(-2f,0,0);
-			return cam;
-		}
-		
-		public static idx3d_Camera TOP()
-		{
-			idx3d_Camera cam=new idx3d_Camera();
-			cam.setPos(0,-2f,0);
-			return cam;
-		}
-		
-			
+    // MATRIX MODIFIERS
+
+    public final void shift(float dx, float dy, float dz) {
+        pos = pos.transform(idx3d_Matrix.shiftMatrix(dx, dy, dz));
+        lookat = lookat.transform(idx3d_Matrix.shiftMatrix(dx, dy, dz));
+        needsRebuild = true;
+
+    }
+
+    public final void shift(@Nonnull idx3d_Vector v) {
+        shift(v.x, v.y, v.z);
+
+    }
+
+    public final void rotate(float dx, float dy, float dz) {
+        pos = pos.transform(idx3d_Matrix.rotateMatrix(dx, dy, dz));
+        needsRebuild = true;
+    }
+
+    public final void rotate(@Nonnull idx3d_Vector v) {
+        rotate(v.x, v.y, v.z);
+    }
+
+    @Nonnull
+    public static idx3d_Camera FRONT() {
+        idx3d_Camera cam = new idx3d_Camera();
+        cam.setPos(0, 0, -2f);
+        return cam;
+    }
+
+    @Nonnull
+    public static idx3d_Camera LEFT() {
+        idx3d_Camera cam = new idx3d_Camera();
+        cam.setPos(2f, 0, 0);
+        return cam;
+    }
+
+    @Nonnull
+    public static idx3d_Camera RIGHT() {
+        idx3d_Camera cam = new idx3d_Camera();
+        cam.setPos(-2f, 0, 0);
+        return cam;
+    }
+
+    @Nonnull
+    public static idx3d_Camera TOP() {
+        idx3d_Camera cam = new idx3d_Camera();
+        cam.setPos(0, -2f, 0);
+        return cam;
+    }
+
+
 }

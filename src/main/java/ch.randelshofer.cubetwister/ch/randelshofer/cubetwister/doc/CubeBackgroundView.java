@@ -3,15 +3,19 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import java.awt.*;
-import javax.swing.*;
-import java.beans.*;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.gui.Dialogs;
+
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
+import java.awt.Color;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * CubeBackgroundView is used in the "Options &gt; Background" panel of CubeTwister.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class CubeBackgroundView extends AbstractEntityView {
     private final static long serialVersionUID = 1L;
@@ -21,7 +25,7 @@ public class CubeBackgroundView extends AbstractEntityView {
 
     private class ModelHandler implements PropertyChangeListener {
 
-        public void propertyChange(PropertyChangeEvent evt) {
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
             String name = evt.getPropertyName();
             if (name == CubeModel.FRONT_BG_COLOR_PROPERTY) {
                 frontViewColorWell.setBackground((Color) evt.getNewValue());
@@ -243,6 +247,7 @@ public class CubeBackgroundView extends AbstractEntityView {
         }
     }
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

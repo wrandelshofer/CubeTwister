@@ -5,8 +5,14 @@
 
 package ch.randelshofer.gui.datatransfer;
 
-import java.awt.datatransfer.*;
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 /**
  *
  * @author  Werner Randelshofer
@@ -14,9 +20,11 @@ import java.io.*;
 public class XMLTransferable implements java.awt.datatransfer.Transferable, java.awt.datatransfer.ClipboardOwner {
     private byte[] data;
     private DataFlavor flavor;
-    
-    /** Creates new XMLTransferable */
-    public XMLTransferable(byte[] data, String mimeType, String humanPresentableName) {
+
+    /**
+     * Creates new XMLTransferable
+     */
+    public XMLTransferable(byte[] data, @Nonnull String mimeType, String humanPresentableName) {
         this.data = data;
         this.flavor = new DataFlavor(mimeType, humanPresentableName);
     }
@@ -42,6 +50,7 @@ public class XMLTransferable implements java.awt.datatransfer.Transferable, java
      * @exception UnsupportedFlavorException if the requested data flavor is
      *             not supported.
      */
+    @Nonnull
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         if (this.flavor.equals(flavor)) {
             return new ByteArrayInputStream(data);
@@ -56,6 +65,7 @@ public class XMLTransferable implements java.awt.datatransfer.Transferable, java
      * for providing the data (from most richly descriptive to least descriptive).
      * @return an array of data flavors in which this data can be transferred
      */
+    @Nonnull
     public DataFlavor[] getTransferDataFlavors() {
         return new DataFlavor[] {flavor};
     }

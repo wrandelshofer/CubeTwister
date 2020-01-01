@@ -12,6 +12,8 @@ import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.rubik.parser.MoveNode;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.undo.UndoableObjectEdit;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,35 +42,42 @@ public class NotationModel extends InfoModel implements Notation {
      * Key = Move
      * Value = String
      */
+    @Nonnull
     private HashMap<Move, String> twistToTokenMap = new HashMap<Move, String>();
     /**
      * Key = Symbol
      * Value = String
      */
+    @Nonnull
     private HashMap<Symbol, String> symbolToTokenMap = new HashMap<Symbol, String>();
     /**
      * A set of supported symbols.
      */
+    @Nonnull
     private HashSet<Symbol> supportedSymbols = new HashSet<Symbol>();
     /**
      * A set of supported twists.
      */
+    @Nonnull
     private HashSet<Move> supportedTwists = new HashSet<Move>();
     /**
      * We create the token to symbol map lazily.
      * We set this variable to null, each time a token or a twist token of the notation changes.
      */
+    @Nullable
     private HashMap<String, HashSet<Symbol>> tokenToSymbolMap = null;
     /**
      * We create the token to twist map lazily.
      * We set this variable to null, each time a token or a twist token of the notation changes.
      */
+    @Nullable
     private HashMap<String, Move> tokenToTwistMap = null;
     /**
      * A map with symbol syntaxes.
      * Key = Symbol
      * Value = Syntax
      */
+    @Nonnull
     private HashMap<Symbol, Syntax> symbolToSyntaxMap = new HashMap<Symbol, Syntax>();
     private final static int MACRO_INDEX = 0;
     /**
@@ -162,6 +171,7 @@ public class NotationModel extends InfoModel implements Notation {
         validateTwists();
     }
 
+    @Nonnull
     @Override
     public Map<String, String> getMacros() {
         Map<String, String> macros = new LinkedHashMap<>();
@@ -176,6 +186,7 @@ public class NotationModel extends InfoModel implements Notation {
         return macros;
     }
 
+    @Nonnull
     public EntityModel getMacroModels() {
         return getChildAt(MACRO_INDEX);
     }
@@ -224,10 +235,12 @@ public class NotationModel extends InfoModel implements Notation {
         }
     }
 
+    @Nonnull
     public Set<Move> getAllMoveSymbols() {
         return twistToTokenMap.keySet();
     }
 
+    @Nullable
     @Override
     public String getMoveToken(Move s) {
         String tokens = twistToTokenMap.get(s);
@@ -247,7 +260,7 @@ public class NotationModel extends InfoModel implements Notation {
         return twistToTokenMap.get(key);
     }
 
-    public void setMoveToken(final Move key, String newValue) {
+    public void setMoveToken(final Move key, @Nullable String newValue) {
         String oldValue = twistToTokenMap.get(key);
         basicSetMoveToken(key, newValue);
         if (oldValue != newValue &&
@@ -257,7 +270,7 @@ public class NotationModel extends InfoModel implements Notation {
             // FIXME - Undo/Redo must be handled by the view and not by the model!!
             fireUndoableEditHappened(
                     new UndoableObjectEdit(this, "Twist Token", oldValue, newValue) {
-    private final static long serialVersionUID = 1L;
+                        private final static long serialVersionUID = 1L;
 
                         public void revert(Object a, Object b) {
                             twistToTokenMap.put(key, (String) b);
@@ -302,7 +315,8 @@ public class NotationModel extends InfoModel implements Notation {
     return new ScriptParser(this, localMacros);
     }*/
 
-    public ScriptParser getParser(List<MacroNode> localMacros) {
+    @Nonnull
+    public ScriptParser getParser(@Nonnull List<MacroNode> localMacros) {
         return new ScriptParser(this, localMacros);
     }
 
@@ -327,6 +341,7 @@ public class NotationModel extends InfoModel implements Notation {
      * @param cube A transformed cube.
      * @param localMacros A Map with local macros.
      */
+    @Nullable
     @Override
     public String getEquivalentMacro(Cube cube, Map<String,MacroNode> localMacros) {
         // XXX - Implement me
@@ -336,16 +351,16 @@ public class NotationModel extends InfoModel implements Notation {
     /**
      * Writes a token for the specified symbol to the print writer.
      *
-     * @exception IOException If the symbol is not supported by the notation,
-     * and if no alternative symbols could be found.
+     * @throws IOException If the symbol is not supported by the notation,
+     *                     and if no alternative symbols could be found.
      */
     @Override
-    public void writeToken(PrintWriter w, Symbol symbol) throws IOException {
-        String str=symbolToTokenMap.get(symbol);
-        if (str==null) {
-            throw new IOException("No token for "+symbol);
+    public void writeToken(@Nonnull PrintWriter w, Symbol symbol) throws IOException {
+        String str = symbolToTokenMap.get(symbol);
+        if (str == null) {
+            throw new IOException("No token for " + symbol);
         }
-        String[] tokens=str.split("\\w+",1);
+        String[] tokens = str.split("\\w+", 1);
         w.write(tokens[0]);
     }
 
@@ -370,6 +385,7 @@ public class NotationModel extends InfoModel implements Notation {
      * Returns the syntax for the specified symbol.
      * Note: This makes only sense for composite symbols.
      */
+    @Nonnull
     @Override
     public Syntax getSyntax(Symbol s) {
         return symbolToSyntaxMap.getOrDefault(s, Syntax.PRIMARY);
@@ -395,6 +411,7 @@ public class NotationModel extends InfoModel implements Notation {
      *
      * Returns null, if symbol is not supported.
      */
+    @Nullable
     public String getToken(Symbol key) {
         String str = symbolToTokenMap.get(key);
         return (str == null || str.trim().length() == 0) ? null : str.split(" ")[0];
@@ -416,11 +433,13 @@ public class NotationModel extends InfoModel implements Notation {
         return getTokenToTwistMap().get(moveToken);
     }
 
+    @Nonnull
     @Override
     public Collection<String> getTokens() {
        return getTokenToSymbolMap().keySet();
     }
 
+    @Nonnull
     @Override
     public List<Symbol> getSymbols(String token) {
         return new ArrayList<>(tokenToSymbolMap.get(token));
@@ -429,7 +448,7 @@ public class NotationModel extends InfoModel implements Notation {
     /**
      * Configures a MoveNode from the specified twist token.
      */
-    public void configureMoveFromToken(MoveNode twist, String moveToken) {
+    public void configureMoveFromToken(@Nonnull MoveNode twist, String moveToken) {
         Move tw = getTokenToTwistMap().get(moveToken);
         if (tw != null) {
             twist.setAxis(tw.getAxis());
@@ -445,6 +464,7 @@ public class NotationModel extends InfoModel implements Notation {
         }
     }
 
+    @Nonnull
     public NotationModel clone() {
         NotationModel that = (NotationModel) super.clone();
 
@@ -463,12 +483,14 @@ public class NotationModel extends InfoModel implements Notation {
     }
 
 
+    @Nullable
     private Map<String, Move> getTokenToTwistMap() {
         validateTokenMaps();
         return tokenToTwistMap;
 
     }
 
+    @Nullable
     private Map<String, HashSet<Symbol>> getTokenToSymbolMap() {
         validateTokenMaps();
         return tokenToSymbolMap;

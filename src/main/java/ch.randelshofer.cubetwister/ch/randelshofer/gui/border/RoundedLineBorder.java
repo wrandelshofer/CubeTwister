@@ -4,14 +4,16 @@
 
 package ch.randelshofer.gui.border;
 
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.Rectangle;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.border.AbstractBorder;
+import javax.swing.border.Border;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.RenderingHints;
-import javax.swing.border.*;
 /**
  *
  * @author Werner Randelshofer
@@ -110,16 +112,19 @@ g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALI
      * Returns the insets of the border.
      * @param c the component for which this border insets value applies
      */
+    @Nonnull
     public Insets getBorderInsets(Component c)       {
         return new Insets(insetThickness, insetThickness, insetThickness, insetThickness);
     }
 
-    /** 
-     * Reinitialize the insets parameter with this Border's current Insets. 
-     * @param c the component for which this border insets value applies
+    /**
+     * Reinitialize the insets parameter with this Border's current Insets.
+     *
+     * @param c      the component for which this border insets value applies
      * @param insets the object to be reinitialized
      */
-    public Insets getBorderInsets(Component c, Insets insets) {
+    @Nonnull
+    public Insets getBorderInsets(Component c, @Nonnull Insets insets) {
         insets.left = insets.top = insets.right = insets.bottom = insetThickness;
         return insets;
     }

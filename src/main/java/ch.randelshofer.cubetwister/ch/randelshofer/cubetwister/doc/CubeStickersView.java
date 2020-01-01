@@ -5,13 +5,15 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.undo.*;
+import ch.randelshofer.undo.Undoable;
+import org.jhotdraw.annotation.Nonnull;
 
-import java.util.prefs.*;
-
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
+import javax.swing.event.UndoableEditListener;
+import java.util.prefs.Preferences;
 /**
  * CubeStickersView.
  *
@@ -84,6 +86,7 @@ prefs.putInt("CubeStickersView.selectedTab", tabbedPane.getSelectedIndex());    
          imageView.setModel(model);
     }
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

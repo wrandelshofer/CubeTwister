@@ -4,7 +4,9 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.Component;
 
 /**
  * Calls object.toString() and displays this in a JLabel.
@@ -20,6 +22,7 @@ extends javax.swing.JPanel implements Viewer {
         initComponents();
     }
 
+    @Nonnull
     public Component getComponent(Component parent, Object value) {
         if (value instanceof Object[]) {
             return getComponent(parent, (Object[]) value);
@@ -28,16 +31,20 @@ extends javax.swing.JPanel implements Viewer {
         }
         return this;
     }
-    public Component getComponent(Component parent, Object[] values) {
+
+    @Nonnull
+    public Component getComponent(Component parent, @Nonnull Object[] values) {
         StringBuilder buf = new StringBuilder();
-        for (int i=0; i < values.length; i++) {
-            if (i > 0) buf.append(' ');
+        for (int i = 0; i < values.length; i++) {
+            if (i > 0) {
+                buf.append(' ');
+            }
             buf.append((values[i] == null) ? "" : values[i].toString());
         }
         label.setText(buf.toString());
         return this;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

@@ -4,7 +4,10 @@
 
 package ch.randelshofer.undo;
 
-import javax.swing.undo.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.undo.CompoundEdit;
+import javax.swing.undo.UndoableEdit;
 
 /**
  * This is basically the same like javax.swing.undo.CompoundEdit but
@@ -92,6 +95,7 @@ public class CompositeEdit extends CompoundEdit {
      * is returned.
      * @see javax.swing.undo.CompoundEdit#getUndoPresentationName()
      */
+    @Nonnull
     public String getUndoPresentationName() {
         return ((presentationName != null) ? "Undo "+presentationName : super.getUndoPresentationName());
     }
@@ -101,6 +105,7 @@ public class CompositeEdit extends CompoundEdit {
      * is returned.
      * @see javax.swing.undo.CompoundEdit#getRedoPresentationName()
      */
+    @Nonnull
     public String getRedoPresentationName() {
         return ((presentationName != null) ? "Redo "+presentationName : super.getRedoPresentationName());
     }

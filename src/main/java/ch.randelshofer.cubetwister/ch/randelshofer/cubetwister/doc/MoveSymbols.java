@@ -5,8 +5,9 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.rubik.notation.Move;
+import org.jhotdraw.annotation.Nonnull;
 
-import java.util.*;
+import java.util.HashMap;
 /**
  * MoveSymbols.
  * 
@@ -45,7 +46,8 @@ public class MoveSymbols {
         }
         return new HashMap<String, Move>();
     }
-    
+
+    @Nonnull
     private static HashMap<String, Move> createTwistValueSet2() {
         HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};
@@ -77,6 +79,8 @@ public class MoveSymbols {
         }
         return twistValueSet;
     }
+
+    @Nonnull
     private static HashMap<String, Move> createTwistValueSet3() {
         HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};
@@ -108,6 +112,8 @@ public class MoveSymbols {
         }
         return twistValueSet;
     }
+
+    @Nonnull
     private static HashMap<String, Move> createTwistValueSet4() {
         HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};
@@ -139,6 +145,8 @@ public class MoveSymbols {
         }
         return twistValueSet;
     }
+
+    @Nonnull
     private static HashMap<String, Move> createTwistValueSet5() {
         HashMap<String, Move> twistValueSet = new HashMap<String, Move>();
         String[] prefixes = {"", "M", "C", "T", "S"};

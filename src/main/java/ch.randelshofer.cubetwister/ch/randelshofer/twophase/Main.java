@@ -6,19 +6,21 @@ import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
-
-import java.io.IOException;
+import org.jhotdraw.annotation.Nonnull;
 import org.kociemba.twophase.Search;
 import org.kociemba.twophase.Tools;
+
+import java.io.IOException;
 
 
 /**
  * Main class for Kociemba's two-phase solver.
+ *
  * @author Werner Randelshofer
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(@Nonnull String[] args) throws IOException {
         if (args.length == 0) {
             doRandom(1);
         }
@@ -50,7 +52,8 @@ public class Main {
         }
     }
 
-    public static String faceletsToStickers(String facelets) {
+    @Nonnull
+    public static String faceletsToStickers(@Nonnull String facelets) {
         StringBuilder stickers = new StringBuilder();
         String faces = "URFDLB";
         for (int i = 0; i < 6; i++) {

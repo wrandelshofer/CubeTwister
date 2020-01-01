@@ -9,6 +9,7 @@
 package ch.randelshofer.rubik.solver;
 
 import ch.randelshofer.gui.ProgressObserver;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -67,28 +68,29 @@ public class PruningTable extends Object {
     private final static int[] OFFSET_TO_ENTRY_MASK = {
         EMPTY<<0,  EMPTY<<4
     };
-    
+
+    @Nonnull
     private static int[] OFFSET_TO_SHIFT_COUNT =  {
-        0, 4
+            0, 4
     };
-    
+
     /**
      * Constructor - Must provide a pair of move mapping tables
      * and the associated ordinal corresponding to the cube's
      * "home" configuration.  The home ordinals correspond to
      * the root node of the search.
      */
-    public PruningTable(MoveTable moveTable1, MoveTable moveTable2,
-    int homeOrdinal1, int homeOrdinal2) {
+    public PruningTable(@Nonnull MoveTable moveTable1, @Nonnull MoveTable moveTable2,
+                        int homeOrdinal1, int homeOrdinal2) {
         this.moveTable1 = moveTable1;
         this.moveTable2 = moveTable2;
         this.homeOrdinal1 = homeOrdinal1;
         this.homeOrdinal2 = homeOrdinal2;
-        
+
         // Initialize table sizes
         moveTable1Size = moveTable1.size();
         moveTable2Size = moveTable2.size();
-        tableSize = moveTable1Size*moveTable2Size;
+        tableSize = moveTable1Size * moveTable2Size;
         
         // Allocate the table
         //   round up to an int and determine
@@ -99,18 +101,18 @@ public class PruningTable extends Object {
         table = new byte[allocationSize];
         
     }
-    
+
     /**
      * Initialize the pruning table by either generating it
      * or loading it from an existing file.
      */
-    public void initialize(File file, ProgressObserver  pm, String pmNote) {
+    public void initialize(@Nonnull File file, @Nonnull ProgressObserver pm, String pmNote) {
         if (!file.exists()) {
             // If the pruning table file is absent...
             // Generate the table and save it to a file
-            pm.setNote(pmNote+"Generating pruning table.");
+            pm.setNote(pmNote + "Generating pruning table.");
             generate(pm, pmNote);
-            pm.setNote(pmNote+"Saving move table "+file.getName()+".");
+            pm.setNote(pmNote + "Saving move table " + file.getName() + ".");
             try {
                 OutputStream out = new FileOutputStream(file);
                 save(out);
@@ -193,16 +195,19 @@ public class PruningTable extends Object {
             System.out.println(index + ": " + getValue(index));
         }
     }
-    
-    /** Generate the table using breadth first search. */
-    private void generate(ProgressObserver  pm, String pmNote) {
-        /*unsigned*/ int depth = 0; // Current search depth
+
+    /**
+     * Generate the table using breadth first search.
+     */
+    private void generate(@Nonnull ProgressObserver pm, String pmNote) {
+        /*unsigned*/
+        int depth = 0; // Current search depth
         int numberOfNodes;              // Number of nodes generated
         int ordinal1, ordinal2; // Table coordinates
         int index, index2;              // Table indices
         int move;
         int power;
-        
+
         // Initialize all tables entries to "empty"
         for (index = 0; index < tableSize; index++) {
             setValue(index, EMPTY);
@@ -252,10 +257,12 @@ public class PruningTable extends Object {
             }
         }
     }
-    
-    /** Save the table to a file. */
-    private void save(OutputStream outputStream)
-    throws IOException {
+
+    /**
+     * Save the table to a file.
+     */
+    private void save(@Nonnull OutputStream outputStream)
+            throws IOException {
         /*
         DataOutputStream out = new DataOutputStream(new BufferedOutputStream(outputStream));
         for (int i=0; i < table.length; i++) {
@@ -266,10 +273,12 @@ public class PruningTable extends Object {
         outputStream.write(table);
         outputStream.flush();
     }
-    
-    /** Load the table from a file. */
-    private void load(InputStream inputStream)
-    throws IOException {
+
+    /**
+     * Load the table from a file.
+     */
+    private void load(@Nonnull InputStream inputStream)
+            throws IOException {
         DataInputStream in = new DataInputStream(/*new BufferedOutputStream(*/inputStream/*)*/);
         in.readFully(table);
     }

@@ -8,18 +8,30 @@ import ch.randelshofer.gui.event.ChangeEvent;
 import ch.randelshofer.gui.event.EventListenerList;
 import ch.randelshofer.gui.BoundedRangeModel;
  */
-import java.io.*;
-import javax.swing.*;
-import javax.swing.event.*;
+
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.EventListenerList;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * This input stream implements the BoundedRangeModel and allows
  * the observation of the input reading process.
  *
- *@author Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class BoundedRangeInputStream
-extends FilterInputStream
-implements BoundedRangeModel {
+        extends FilterInputStream
+        implements BoundedRangeModel {
     private int nread = 0;
     private int size = 0;
     private boolean valueIsAdjusting;
@@ -29,28 +41,31 @@ implements BoundedRangeModel {
      * event's only (read-only) state is the source property.  The source
      * of events generated here is always "this".
      */
+    @Nullable
     protected transient ChangeEvent changeEvent = null;
     
     /** The listeners waiting for model changes. */
+    @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
-    
+
     /**
      * Create a new instance.
      */
-    public BoundedRangeInputStream(File file, boolean isBuffered) throws IOException {
-        super((isBuffered) 
-        ? (InputStream) new BufferedInputStream(new FileInputStream(file))
-        : (InputStream) new FileInputStream(file));
-        
+    public BoundedRangeInputStream(@Nonnull File file, boolean isBuffered) throws IOException {
+        super((isBuffered)
+                ? (InputStream) new BufferedInputStream(new FileInputStream(file))
+                : (InputStream) new FileInputStream(file));
+
         size = (int) file.length();
     }
+
     /**
      * Create a new instance.
      * Note that you should to set the maximum value using setMaximum to get
      * good results. This constructor tries to determine the maximum by calling
      * in.available(). This is appropriate for byte array input streams.
      */
-    public BoundedRangeInputStream(InputStream in) throws IOException {
+    public BoundedRangeInputStream(@Nonnull InputStream in) throws IOException {
         super(in);
         size = in.available();
     }
@@ -62,32 +77,34 @@ implements BoundedRangeModel {
     public int read()
     throws IOException {
         int c = in.read();
-        if (c >=0) {
+        if (c >= 0) {
             incrementValue(1);
         }
         return c;
     }
+
     /**
      * Overrides <code>FilterInputStream.read</code>
      * to update the value after the read.
      */
-    public int read(byte b[])
-    throws IOException {
+    public int read(@Nonnull byte b[])
+            throws IOException {
         int nr = in.read(b);
         incrementValue(nr);
         return nr;
     }
-    
+
     /**
      * Overrides <code>FilterInputStream.read</code>
      * to update the value after the read.
      */
-    public int read(byte b[],int off,int len)
-    throws IOException {
+    public int read(@Nonnull byte b[], int off, int len)
+            throws IOException {
         int nr = in.read(b, off, len);
         incrementValue(nr);
         return nr;
     }
+
     /**
      * Overrides <code>FilterInputStream.skip</code>
      * to update the value after the skip.

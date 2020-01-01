@@ -36,23 +36,24 @@
 
 package idx3d;
 
-public class idx3d_Environment
-{
-	// F I E L D S
+import org.jhotdraw.annotation.Nullable;
 
-		public int ambient=0;
+public class idx3d_Environment {
+    // F I E L D S
 
-		public int fogcolor=0;
-		public int fogfact=0;
-		public int bgcolor=0xFF000000;
-		public idx3d_Texture background=null;
+    public int ambient = 0;
 
-	// P U B L I C   M E T H O D S
+    public int fogcolor = 0;
+    public int fogfact = 0;
+    public int bgcolor = 0xFF000000;
+    @Nullable
+    public idx3d_Texture background = null;
+
+    // P U B L I C   M E T H O D S
 
 
-		public void setBackground(idx3d_Texture t)
-		{
-			background=t;
-		}
-	
+    public void setBackground(idx3d_Texture t) {
+        background = t;
+    }
+
 }

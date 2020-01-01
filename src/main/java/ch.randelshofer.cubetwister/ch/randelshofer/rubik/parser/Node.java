@@ -8,6 +8,8 @@ import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.util.ReverseListIterator;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.tree.TreeNode;
 import java.io.IOException;
@@ -46,7 +48,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
         this.endpos = endpos;
     }
 
-    public void addAll(List<Node> children) {
+    public void addAll(@Nonnull List<Node> children) {
         for (Node n : children) {
             add(n);
         }
@@ -114,7 +116,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
      * Returns a string representation of this node using the specified
      * notation.
      */
-    public final String toString(Notation notation) throws IOException {
+    public final String toString(@Nonnull Notation notation) throws IOException {
         return toString(notation, null);
     }
 
@@ -122,7 +124,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
      * Returns a string representation of this node using the specified notation
      * and the specified local macros.
      */
-    public final String toString(Notation notation, List<MacroNode> localMacros) throws IOException {
+    public final String toString(@Nonnull Notation notation, @Nullable List<MacroNode> localMacros) throws IOException {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
 
@@ -148,7 +150,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
         }
     }
 
-    public void transform(MoveNode move, boolean inverse) {
+    public void transform(@Nonnull MoveNode move, boolean inverse) {
         transform(move.getAxis(), move.getLayerMask(), (inverse) ? -move.getAngle() : move.getAngle());
     }
 
@@ -191,16 +193,19 @@ public abstract class Node extends TreeNodeImpl<Node> {
         return new ResolvedIterator(this, inverse);
     }
 
+    @Nonnull
     public Iterable<Node> resolvedIterable(final boolean inverse) {
         return () -> resolvedIterator(inverse);
     }
 
+    @Nonnull
     public List<Node> toResolvedList(boolean inverse) {
         List<Node> list = new ArrayList<>();
         resolvedIterator(inverse).forEachRemaining(list::add);
         return list;
     }
 
+    @Nonnull
     @SuppressWarnings("unchecked")
     public Iterator<Node> childIterator() {
         Iterator<Node> empty = ((List) Collections.emptyList()).iterator();
@@ -235,7 +240,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
          */
         private final boolean inverse;
 
-        public ResolvedIterator(Node root, boolean inverse) {
+        public ResolvedIterator(@Nonnull Node root, boolean inverse) {
             this.inverse = inverse;
             children = (inverse) ? root.reversedChildIterator() : root.childIterator();
             current = Collections.emptyIterator();
@@ -279,7 +284,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
      * @param n        The notation which provides the tokens.
      * @param macroMap Local macros which are preserved by the translation.
      */
-    public void writeTokens(PrintWriter w, Notation n, Map<String, MacroNode> macroMap)
+    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation n, Map<String, MacroNode> macroMap)
             throws IOException {
         // FIXME - Implement macro coercion
         String macroName = null; // n.getEquivalentMacro(cube, macroMap);

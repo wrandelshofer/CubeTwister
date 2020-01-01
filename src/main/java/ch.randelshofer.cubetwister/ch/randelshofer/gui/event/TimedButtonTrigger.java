@@ -4,9 +4,14 @@
 
 package ch.randelshofer.gui.event;
 
-import java.awt.event.*;
-import javax.swing.event.*;
-import javax.swing.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.AbstractButton;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 /**
@@ -22,9 +27,11 @@ implements ActionListener {
     private Timer timer;
     private AbstractButton button;
     private boolean isPressed;
-    
-    /** Creates new TimedButtonTrigger */
-    public TimedButtonTrigger(AbstractButton button) {
+
+    /**
+     * Creates new TimedButtonTrigger
+     */
+    public TimedButtonTrigger(@Nonnull AbstractButton button) {
         this.button = button;
         button.addMouseListener(this);
         timer = new Timer(60, this);

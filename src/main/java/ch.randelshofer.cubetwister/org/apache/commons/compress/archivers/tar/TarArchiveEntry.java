@@ -18,11 +18,12 @@
  */
 package org.apache.commons.compress.archivers.tar;
 
+import org.apache.commons.compress.archivers.ArchiveEntry;
+import org.jhotdraw.annotation.Nonnull;
+
 import java.io.File;
 import java.util.Date;
 import java.util.Locale;
-
-import org.apache.commons.compress.archivers.ArchiveEntry;
 
 /**
  * This class represents an entry in a Tar archive. It consists of the entry's
@@ -150,17 +151,16 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @param name the name of the entry
      */
-    public TarArchiveEntry( final String name )
-    {
+    public TarArchiveEntry(@Nonnull final String name) {
         this();
 
-        final boolean isDir = name.endsWith( "/" );
+        final boolean isDir = name.endsWith("/");
 
-        m_name = new StringBuilder( name );
+        m_name = new StringBuilder(name);
         m_mode = isDir ? 040755 : 0100644;
         m_linkFlag = isDir ? TarConstants.LF_DIR : TarConstants.LF_NORMAL;
-        m_modTime = ( new Date() ).getTime() / 1000;
-        m_linkName = new StringBuilder( "" );
+        m_modTime = (new Date()).getTime() / 1000;
+        m_linkName = new StringBuilder("");
         m_userName = new StringBuilder( "" );
         m_groupName = new StringBuilder( "" );
     }
@@ -168,12 +168,11 @@ public class TarArchiveEntry implements ArchiveEntry {
     /**
      * Construct an entry with a name an a link flag.
      *
-     * @param name Description of Parameter
+     * @param name     Description of Parameter
      * @param linkFlag Description of Parameter
      */
-    public TarArchiveEntry( final String name, final byte linkFlag )
-    {
-        this( name );
+    public TarArchiveEntry(@Nonnull final String name, final byte linkFlag) {
+        this(name);
         m_linkFlag = linkFlag;
     }
 
@@ -183,8 +182,7 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @param file The file that the entry represents.
      */
-    public TarArchiveEntry( final File file )
-    {
+    public TarArchiveEntry(@Nonnull final File file) {
         this();
 
         m_file = file;
@@ -193,7 +191,7 @@ public class TarArchiveEntry implements ArchiveEntry {
 
         // Strip off drive letters!
         final String osName =
-            System.getProperty( "os.name" ).toLowerCase( Locale.US );
+                System.getProperty("os.name").toLowerCase(Locale.US );
         if( -1 != osName.indexOf( "netware" ) )
         {
             if( name.length() > 2 )
@@ -311,9 +309,8 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @param groupName This entry's new group name.
      */
-    public void setGroupName( final String groupName )
-    {
-        m_groupName = new StringBuilder( groupName );
+    public void setGroupName(@Nonnull final String groupName) {
+        m_groupName = new StringBuilder(groupName);
     }
 
     /**
@@ -332,8 +329,7 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @param time This entry's new modification time.
      */
-    public void setModTime( final Date time )
-    {
+    public void setModTime(@Nonnull final Date time) {
         m_modTime = time.getTime() / 1000;
     }
 
@@ -352,9 +348,8 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @param name This entry's new name.
      */
-    public void setName( final String name )
-    {
-        m_name = new StringBuilder( name );
+    public void setName(@Nonnull final String name) {
+        m_name = new StringBuilder(name);
     }
 
     /**
@@ -394,9 +389,8 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @param userName This entry's new user name.
      */
-    public void setUserName( final String userName )
-    {
-        m_userName = new StringBuilder( userName );
+    public void setUserName(@Nonnull final String userName) {
+        m_userName = new StringBuilder(userName);
     }
 
     /**
@@ -405,6 +399,7 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @return An array of TarEntry's for this entry's children.
      */
+    @Nonnull
     public TarArchiveEntry[] getDirectoryEntries()
     {
         if( null == m_file || !m_file.isDirectory() )
@@ -460,6 +455,7 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @return This entry's group name.
      */
+    @Nonnull
     public String getGroupName()
     {
         return m_groupName.toString();
@@ -470,6 +466,7 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @return The ModTime value
      */
+    @Nonnull
     public Date getModTime()
     {
         return new Date( m_modTime * 1000 );
@@ -490,6 +487,7 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @return This entry's name.
      */
+    @Nonnull
     public String getName()
     {
         return m_name.toString();
@@ -542,6 +540,7 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @return This entry's user name.
      */
+    @Nonnull
     public String getUserName()
     {
         return m_userName.toString();
@@ -555,9 +554,8 @@ public class TarArchiveEntry implements ArchiveEntry {
      * @param desc Entry to be checked as a descendent of
      * @return True if entry is a descendant of
      */
-    public boolean isDescendent( final TarArchiveEntry desc )
-    {
-        return desc.getName().startsWith( getName() );
+    public boolean isDescendent(@Nonnull final TarArchiveEntry desc) {
+        return desc.getName().startsWith(getName());
     }
 
     /**
@@ -603,9 +601,8 @@ public class TarArchiveEntry implements ArchiveEntry {
      * @param other Entry to be checked for equality.
      * @return True if the entries are equal.
      */
-    public boolean equals( final TarArchiveEntry other )
-    {
-        return getName().equals( other.getName() );
+    public boolean equals(@Nonnull final TarArchiveEntry other) {
+        return getName().equals(other.getName());
     }
 
     /**
@@ -650,16 +647,15 @@ public class TarArchiveEntry implements ArchiveEntry {
      *
      * @param buffer The tar entry header buffer to fill in.
      */
-    public void writeEntryHeader( final byte[] buffer )
-    {
+    public void writeEntryHeader(@Nonnull final byte[] buffer) {
         int offset = 0;
 
-        offset = TarUtils.getNameBytes( m_name, buffer, offset, NAMELEN );
-        offset = TarUtils.getOctalBytes( m_mode, buffer, offset, TarConstants.MODELEN );
-        offset = TarUtils.getOctalBytes( m_userID, buffer, offset, TarConstants.UIDLEN );
-        offset = TarUtils.getOctalBytes( m_groupID, buffer, offset, TarConstants.GIDLEN );
-        offset = TarUtils.getLongOctalBytes( m_size, buffer, offset, TarConstants.SIZELEN );
-        offset = TarUtils.getLongOctalBytes( m_modTime, buffer, offset, TarConstants.MODTIMELEN );
+        offset = TarUtils.getNameBytes(m_name, buffer, offset, NAMELEN);
+        offset = TarUtils.getOctalBytes(m_mode, buffer, offset, TarConstants.MODELEN);
+        offset = TarUtils.getOctalBytes(m_userID, buffer, offset, TarConstants.UIDLEN);
+        offset = TarUtils.getOctalBytes(m_groupID, buffer, offset, TarConstants.GIDLEN);
+        offset = TarUtils.getLongOctalBytes(m_size, buffer, offset, TarConstants.SIZELEN);
+        offset = TarUtils.getLongOctalBytes(m_modTime, buffer, offset, TarConstants.MODTIMELEN );
 
         final int checkSumOffset = offset;
         for( int i = 0; i < TarConstants.CHKSUMLEN; ++i )

@@ -18,10 +18,12 @@
  */
 package org.apache.commons.compress.compressors.bzip2;
 
+import org.apache.commons.compress.compressors.CompressorInputStream;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
-
-import org.apache.commons.compress.compressors.CompressorInputStream;
 
 /**
  * An input stream that decompresses from the BZip2 format (without the file
@@ -82,31 +84,45 @@ public class BZip2CompressorInputStream extends CompressorInputStream implements
 
     private int bsBuff;
     private int bsLive;
+    @Nonnull
     private CRC mCrc = new CRC();
 
+    @Nonnull
     private boolean[] inUse = new boolean[256];
     private int nInUse;
 
+    @Nonnull
     private char[] seqToUnseq = new char[256];
+    @Nonnull
     private char[] unseqToSeq = new char[256];
 
+    @Nonnull
     private char[] selector = new char[MAX_SELECTORS];
+    @Nonnull
     private char[] selectorMtf = new char[MAX_SELECTORS];
 
+    @Nullable
     private int[] tt;
+    @Nullable
     private char[] ll8;
 
     /*
       freq table collected to save a pass over the data
       during decompression.
     */
+    @Nonnull
     private int[] unzftab = new int[256];
 
+    @Nonnull
     private int[][] limit = new int[N_GROUPS][MAX_ALPHA_SIZE];
+    @Nonnull
     private int[][] base = new int[N_GROUPS][MAX_ALPHA_SIZE];
+    @Nonnull
     private int[][] perm = new int[N_GROUPS][MAX_ALPHA_SIZE];
+    @Nonnull
     private int[] minLens = new int[N_GROUPS];
 
+    @Nullable
     private InputStream bsStream;
 
     private boolean streamEnd = false;

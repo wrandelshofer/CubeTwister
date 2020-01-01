@@ -10,6 +10,7 @@ import ch.randelshofer.rubik.Cube7;
 import ch.randelshofer.rubik.VCube7Idx3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import idx3d.idx3d_JCanvas;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.io.InputStream;
 
@@ -20,7 +21,8 @@ import java.io.InputStream;
  */
 public class VCube7Idx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;
-    
+
+    @Nonnull
     @Override
     protected ScriptPlayer createPlayer() {
         ScriptPlayer p = new ScriptPlayer();

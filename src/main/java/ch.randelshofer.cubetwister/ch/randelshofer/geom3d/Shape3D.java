@@ -3,9 +3,12 @@
  */
 package ch.randelshofer.geom3d;
 
-import java.awt.event.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.Color;
-import java.util.*;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Represents a 3 dimensional shape consisting of an
@@ -43,6 +46,7 @@ public class Shape3D
     private boolean isWireframe = false;
     private boolean isReduced = false;
     private int reducedFaceCount;
+    @Nullable
     private Face3D[] faces3D;
     private Transform3D transform = new Transform3D();
 
@@ -64,7 +68,7 @@ public class Shape3D
      *                  can be specified: a fill color (index 0 of the inner array)
      *                  and a wireframe color (index 1 of the inner array).
      */
-    public Shape3D(float[] coords, int[][] faces, Color[][] colors) {
+    public Shape3D(float[] coords, @Nonnull int[][] faces, Color[][] colors) {
         this(coords, faces, colors, faces.length);
     }
 
@@ -103,6 +107,7 @@ public class Shape3D
         return vertices;
     }
 
+    @Nullable
     public Face3D[] getFaces() {
         createFaces();
         return faces3D;
@@ -152,7 +157,7 @@ public class Shape3D
      *                  and added to the list.
      * @param   observer Coords of the observer.
      */
-    public void addVisibleFacesTo(List<Face3D> v, Transform3D t, Point3D observer) {
+    public void addVisibleFacesTo(@Nonnull List<Face3D> v, @Nonnull Transform3D t, @Nonnull Point3D observer) {
         Transform3D t2;
         if (isVisible) {
             t2 = (Transform3D) transform.clone();

@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik.impexp;
 
 import ch.randelshofer.cubetwister.doc.DocumentModel;
+import org.jhotdraw.annotation.Nonnull;
 
 /**
  * A combo box model which lets the user choose a notation to translate
@@ -26,11 +27,12 @@ public class TranslateNotationComboBoxModel extends javax.swing.AbstractListMode
     public void setDocumentModel(DocumentModel model) {
         this.model = model;
     }
-    
+
+    @Nonnull
     public Object getElementAt(int index) {
-        return (index == 0) 
-        ? (Object) DO_NOT_TRANSLATE
-        : (Object) model.getNotations().getChildAt(index - 1);
+        return (index == 0)
+                ? (Object) DO_NOT_TRANSLATE
+                : (Object) model.getNotations().getChildAt(index - 1);
     }
     
     public Object getSelectedItem() {

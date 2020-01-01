@@ -3,14 +3,17 @@
  */
 package ch.randelshofer.gui.table;
 
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import javax.swing.JOptionPane;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TableSorterDemo extends JFrame {
     private final static long serialVersionUID = 1L;
@@ -103,16 +106,16 @@ public class TableSorterDemo extends JFrame {
          * Don't need to implement this method unless your table's
          * data can change.
          */
-        public void setValueAt(Object value, int row, int col) {
+        public void setValueAt(@Nonnull Object value, int row, int col) {
             if (DEBUG) {
                 System.out.println("Setting value at " + row + "," + col
-                                   + " to " + value
-                                   + " (an instance of " 
-                                   + value.getClass() + ")");
+                        + " to " + value
+                        + " (an instance of "
+                        + value.getClass() + ")");
             }
 
             if (data[0][col] instanceof Integer
-                    && !(value instanceof Integer)) { 
+                    && !(value instanceof Integer)) {
                 //With JFC/Swing 1.1 and JDK 1.2, we need to create
                 //an Integer from the value; otherwise, the column
                 //switches to contain Strings.  Starting with v 1.3, 

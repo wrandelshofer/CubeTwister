@@ -5,6 +5,9 @@ package ch.randelshofer.rubik;
 
 //import ch.randelshofer.gui.event.*;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.Color;
 import java.awt.Image;
 import java.beans.PropertyChangeListener;
@@ -18,6 +21,7 @@ import java.util.Arrays;
  */
 public class DefaultCubeAttributes implements CubeAttributes {
 
+    @Nonnull
     protected PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
     /**
      * Is true, when the part is visible.
@@ -48,6 +52,7 @@ public class DefaultCubeAttributes implements CubeAttributes {
     protected float scaleFactor = 1f;
     protected float alpha = (float) (-25 / 180d * Math.PI);
     protected float beta = (float) (45  / 180d * Math.PI);
+    @Nullable
     protected Image stickersImage;
     protected int[] stickerCountPerFace;
     protected Color frontBgColor;
@@ -130,6 +135,7 @@ public class DefaultCubeAttributes implements CubeAttributes {
         changeSupport.firePropertyChange(STICKERS_IMAGE_PROPERTY, oldValue, newValue);
     }
 
+    @Nullable
     @Override
     public Image getStickersImage() {
         return stickersImage;
@@ -222,25 +228,25 @@ public class DefaultCubeAttributes implements CubeAttributes {
         changeSupport.firePropertyChange(STICKER_OUTLINE_COLOR_PROPERTY + "." + index, oldValue, newValue);
     }
 
-    public void setPartOutlineColor(Color[] newValue) {
+    public void setPartOutlineColor(@Nonnull Color[] newValue) {
         Color[] oldValue = partsOutlineColor.clone();
         System.arraycopy(newValue, 0, partsOutlineColor, 0, partsOutlineColor.length);
         changeSupport.firePropertyChange(PART_OUTLINE_COLOR_PROPERTY, oldValue, newValue);
     }
 
-    public void setPartFillColor(Color[] newValue) {
+    public void setPartFillColor(@Nonnull Color[] newValue) {
         Color[] oldValue = partsFillColor.clone();
         System.arraycopy(newValue, 0, partsFillColor, 0, partsFillColor.length);
         changeSupport.firePropertyChange(PART_FILL_COLOR_PROPERTY, oldValue, newValue);
     }
 
-    public void setStickerFillColor(Color[] newValue) {
+    public void setStickerFillColor(@Nonnull Color[] newValue) {
         Color[] oldValue = stickersFillColor.clone();
         System.arraycopy(newValue, 0, stickersFillColor, 0, stickersFillColor.length);
         changeSupport.firePropertyChange(STICKER_FILL_COLOR_PROPERTY, oldValue, newValue);
     }
 
-    public void setStickerOutlineColor(Color[] newValue) {
+    public void setStickerOutlineColor(@Nonnull Color[] newValue) {
         Color[] oldValue = stickersOutlineColor.clone();
         System.arraycopy(newValue, 0, stickersOutlineColor, 0, stickersOutlineColor.length);
         changeSupport.firePropertyChange(STICKER_OUTLINE_COLOR_PROPERTY, oldValue, newValue);
@@ -389,16 +395,17 @@ public class DefaultCubeAttributes implements CubeAttributes {
         changeSupport.firePropertyChange(TWIST_DURATION_PROPERTY, new Integer(oldValue), new Integer(newValue));
     }
 
-    public void setTo(CubeAttributes that) {
+    public void setTo(@Nonnull CubeAttributes that) {
         for (int i = 0; i < getPartCount(); i++) {
             setPartVisible(i, that.isPartVisible(i));
         }
         for (int i = 0; i < getStickerCount(); i++) {
             setStickerVisible(i, that.isStickerVisible(i));
         }
-    // FIXME - Implement the rest
+        // FIXME - Implement the rest
     }
 
+    @Nonnull
     public Object clone() {
         try {
             DefaultCubeAttributes that = (DefaultCubeAttributes) super.clone();

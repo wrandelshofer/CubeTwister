@@ -3,26 +3,23 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.event.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.rubik.parser.*;
-import ch.randelshofer.undo.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
-import javax.swing.text.*;
-import javax.swing.undo.*;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.undo.Undoable;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.util.ResourceBundleUtil;
 
+import javax.swing.JComponent;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.PlainDocument;
+import java.awt.Font;
+import java.util.ResourceBundle;
+
 /**
- * Info view for notes, author and creation date of a document element. 
+ * Info view for notes, author and creation date of a document element.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class InfoView extends javax.swing.JPanel implements Undoable, EntityView {
     private final static long serialVersionUID = 1L;
@@ -162,6 +159,7 @@ public class InfoView extends javax.swing.JPanel implements Undoable, EntityView
         add(dateTextField, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
+    @Nonnull
     public JComponent getViewComponent() {
         return this;
     }

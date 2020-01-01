@@ -4,17 +4,34 @@
 package ch.randelshofer.gui;
 
 import ch.randelshofer.gui.border.PlacardButtonBorder;
-import ch.randelshofer.gui.tree.*;
-import ch.randelshofer.undo.*;
-import java.awt.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import javax.swing.*;
-import javax.swing.event.*;
+import ch.randelshofer.gui.tree.DefaultUndoableTreeSelectionModel;
+import ch.randelshofer.gui.tree.MutableTreeModel;
+import ch.randelshofer.gui.tree.UndoableTreeSelectionModel;
+import ch.randelshofer.undo.Undoable;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.plaf.ButtonUI;
 import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.tree.*;
-import javax.swing.undo.*;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.undo.UndoManager;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * This panel acts like an Explorer Window as commonly used on Windows.
@@ -38,6 +55,7 @@ public class JExplorer extends javax.swing.JPanel {
      * This variable holds the Component which displays
      * the current viewedObject.
      */
+    @Nullable
     private Component view;
     /**
      * Undo Manager for undo/redo support.
@@ -53,6 +71,7 @@ public class JExplorer extends javax.swing.JPanel {
     private JComponent infoPanel;
     /** This split pane is non-null only, if infoPanel is non-null.
      */
+    @Nullable
     private JSplitPane infoSplitPane;
 
     /** Creates new form JExplorer */
@@ -122,7 +141,7 @@ public class JExplorer extends javax.swing.JPanel {
     /**
      * Sets the tree model.
      */
-    public void setTreeModel(TreeModel m) {
+    public void setTreeModel(@Nonnull TreeModel m) {
         tree.setModel(m);
         updateAddButton();
     }
@@ -174,7 +193,7 @@ public class JExplorer extends javax.swing.JPanel {
         return tree;
     }
 
-    public void dispatch(Runnable r) {
+    public void dispatch(@Nonnull Runnable r) {
         if (dispatcher == null) {
             dispatcher = Executors.newSingleThreadExecutor();
         }

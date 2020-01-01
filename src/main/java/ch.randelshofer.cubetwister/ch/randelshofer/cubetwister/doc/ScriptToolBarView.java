@@ -3,25 +3,43 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
+import ch.randelshofer.gui.Colors;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.gui.Icons;
+import ch.randelshofer.gui.PolygonIcon;
 import ch.randelshofer.gui.border.PlacardButtonBorder;
 import ch.randelshofer.gui.event.ModifierTracker;
-import ch.randelshofer.gui.plaf.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.plaf.ButtonUI;
-import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.undo.*;
+import ch.randelshofer.gui.plaf.CustomButtonUI;
+import ch.randelshofer.gui.plaf.CustomToggleButtonUI;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.jhotdraw.beans.WeakPropertyChangeListener;
 import org.jhotdraw.util.ResourceBundleUtil;
 
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.plaf.ButtonUI;
+import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.undo.UndoableEdit;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Polygon;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.ResourceBundle;
+
 /**
  * ScriptToolBarView.
- *
  *
  * @author Werner Randelshofer
  */
@@ -37,10 +55,11 @@ public class ScriptToolBarView extends JPanel implements EntityView {
      * /
     private javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
      */
+    @Nonnull
     private PropertyChangeListener propertyHandler = new PropertyChangeListener() {
 
         @Override
-        public void propertyChange(PropertyChangeEvent evt) {
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
             String n = evt.getPropertyName();
             if (evt.getSource() == model) {
                 if (n == ScriptModel.CUBE_PROPERTY) {
@@ -51,7 +70,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
                     int modifiersEx = (Integer) evt.getNewValue();
                     resetButton.setIcon(//
                             (modifiersEx & (InputEvent.ALT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK)) != 0//
-                            ? Icons.get(Icons.PLAYER_PARTIAL_RESET_PLACARD) : Icons.get(Icons.PLAYER_RESET_PLACARD));
+                                    ? Icons.get(Icons.PLAYER_PARTIAL_RESET_PLACARD) : Icons.get(Icons.PLAYER_RESET_PLACARD));
 
                 }
             }
@@ -77,6 +96,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
             this.stickerIndex = stickerIndex;
         }
 
+        @Nullable
         @Override
         public Color getFillColor() {
             return (model == null || model.getSolverModel() == null)
@@ -84,6 +104,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
                     : model.getSolverModel().getStickerFillColor(stickerIndex);
         }
 
+        @Nullable
         @Override
         public Color getForeground() {
             return (model == null || model.getSolverModel() == null)
@@ -195,14 +216,14 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         MouseAdapter popupListener = new MouseAdapter() {
 
             @Override
-            public void mousePressed(MouseEvent evt) {
+            public void mousePressed(@Nonnull MouseEvent evt) {
                 if (evt.isPopupTrigger()) {
                     showPopup(evt, false);
                 }
             }
 
             @Override
-            public void mouseReleased(MouseEvent evt) {
+            public void mouseReleased(@Nonnull MouseEvent evt) {
                 if (evt.isPopupTrigger()) {
                     showPopup(evt, false);
                 }
@@ -221,7 +242,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
      *        popup menu has been triggered by a button. The popup menu must
      *        be placed outside the bounds of the buttons.
      */
-    public void showPopup(MouseEvent evt, boolean isTriggeredByButton) {
+    public void showPopup(@Nonnull MouseEvent evt, boolean isTriggeredByButton) {
         if (scriptView != null) {
             scriptView.showPopup(evt, isTriggeredByButton);
         }
@@ -322,6 +343,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         repaint(); // repaint all buttons
     }
 
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;
@@ -360,7 +382,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         resetButton.setFocusable(false);
         resetButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(@Nonnull java.awt.event.ActionEvent evt) {
                 reset(evt);
             }
         });
@@ -377,7 +399,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         twistToggleButton.setFocusable(false);
         twistToggleButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         twistToggleButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
                 toggleButtonChanged(evt);
             }
         });
@@ -391,7 +413,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         rightToggleButton.setFocusable(false);
         rightToggleButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         rightToggleButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
                 toggleButtonChanged(evt);
             }
         });
@@ -405,7 +427,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         upToggleButton.setFocusable(false);
         upToggleButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         upToggleButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
                 toggleButtonChanged(evt);
             }
         });
@@ -419,7 +441,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         frontToggleButton.setFocusable(false);
         frontToggleButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         frontToggleButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
                 toggleButtonChanged(evt);
             }
         });
@@ -433,7 +455,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         leftToggleButton.setFocusable(false);
         leftToggleButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         leftToggleButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
                 toggleButtonChanged(evt);
             }
         });
@@ -447,7 +469,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         downToggleButton.setFocusable(false);
         downToggleButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         downToggleButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
                 toggleButtonChanged(evt);
             }
         });
@@ -461,7 +483,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         backToggleButton.setFocusable(false);
         backToggleButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         backToggleButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+            public void itemStateChanged(@Nonnull java.awt.event.ItemEvent evt) {
                 toggleButtonChanged(evt);
             }
         });
@@ -474,7 +496,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         popupButton.setFocusable(false);
         popupButton.setMargin(new java.awt.Insets(2, 4, 2, 4));
         popupButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(@Nonnull java.awt.event.MouseEvent evt) {
                 popup(evt);
             }
         });
@@ -488,7 +510,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         add(toolBar, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void toggleButtonChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_toggleButtonChanged
+    private void toggleButtonChanged(@Nonnull java.awt.event.ItemEvent evt) {//GEN-FIRST:event_toggleButtonChanged
         JToggleButton source = (JToggleButton) evt.getSource();
         if (source.getIcon() instanceof ColorIcon) {
             ColorIcon icon = (ColorIcon) source.getIcon();
@@ -498,11 +520,11 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         }
     }//GEN-LAST:event_toggleButtonChanged
 
-    private void popup(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_popup
+    private void popup(@Nonnull java.awt.event.MouseEvent evt) {//GEN-FIRST:event_popup
         showPopup(evt, true);
     }//GEN-LAST:event_popup
 
-    private void reset(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset
+    private void reset(@Nonnull java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset
         if ((evt.getModifiers() & (ActionEvent.ALT_MASK | ActionEvent.CTRL_MASK)) == 0) {
             model.reset();
             scriptView.resetViews();
@@ -511,6 +533,7 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         }
 
     }//GEN-LAST:event_reset
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton backToggleButton;
     private javax.swing.JToggleButton downToggleButton;

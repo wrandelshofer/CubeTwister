@@ -13,6 +13,7 @@ import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.util.AppletParameterException;
 import ch.randelshofer.util.Applets;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -25,12 +26,13 @@ import java.net.URL;
  * @author Werner Randelshofer
  */
 public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApplet {
-    
+
+    @Nonnull
     @Override
     final protected Cube3DCanvas createRearCanvas() {
         Cube3D cube3D = frontCanvas.getCube3D();
         JCanvas3D frontCanvas3D = ((Cube3DCanvasGeom3D) frontCanvas).getCanvas3D();
-        
+
         JCanvas3D canvas3D = new JCanvas3D();
         canvas3D.setTransformModel(new RotatedTransform3DModel(0,Math.PI,Math.PI,frontCanvas3D.getTransformModel()));
         Cube3DCanvas c3d = new Cube3DCanvasGeom3D(canvas3D, cube3D);

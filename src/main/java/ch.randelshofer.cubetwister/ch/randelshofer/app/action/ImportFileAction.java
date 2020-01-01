@@ -6,38 +6,52 @@ package ch.randelshofer.app.action;
 import ch.randelshofer.cubetwister.CubeTwisterView;
 import ch.randelshofer.cubetwister.doc.DocumentModel;
 import ch.randelshofer.cubetwister.doc.ScriptModel;
-import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.ProgressView;
 import ch.randelshofer.rubik.impexp.csv.CSVImporter;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
+import org.jhotdraw.app.Application;
+import org.jhotdraw.app.View;
+import org.jhotdraw.app.action.AbstractViewAction;
+import org.jhotdraw.app.action.file.ClearFileAction;
+import org.jhotdraw.app.action.file.CloseFileAction;
+import org.jhotdraw.app.action.file.LoadDirectoryAction;
+import org.jhotdraw.app.action.file.LoadFileAction;
+import org.jhotdraw.app.action.file.NewWindowAction;
+import org.jhotdraw.app.action.file.OpenFileAction;
+import org.jhotdraw.gui.BackgroundTask;
+import org.jhotdraw.gui.JFileURIChooser;
+import org.jhotdraw.gui.JSheet;
+import org.jhotdraw.gui.URIChooser;
+import org.jhotdraw.gui.event.SheetEvent;
+import org.jhotdraw.gui.event.SheetListener;
+import org.jhotdraw.net.URIUtil;
+import org.jhotdraw.util.ResourceBundleUtil;
 
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.filechooser.FileFilter;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowStateListener;
-import java.io.*;
+import java.io.IOException;
 import java.net.URI;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
-import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
-
-import org.jhotdraw.app.Application;
-import org.jhotdraw.app.View;
-import org.jhotdraw.app.action.AbstractViewAction;
-import org.jhotdraw.app.action.file.*;
-import org.jhotdraw.gui.*;
-import org.jhotdraw.gui.URIChooser;
-import org.jhotdraw.gui.event.*;
-import org.jhotdraw.net.URIUtil;
-import org.jhotdraw.util.*;
 
 /**
  * Lets the user save unsaved changes of the active view, then presents
@@ -84,7 +98,7 @@ public class ImportFileAction extends AbstractViewAction {
     /**
      * Creates a new instance.
      */
-    public ImportFileAction(Application app, @Nullable View view) {
+    public ImportFileAction(@Nonnull Application app, @Nullable View view) {
         super(app, view);
         ResourceBundleUtil labels = new ResourceBundleUtil(
                 ResourceBundle.getBundle("ch.randelshofer.app.Labels",
@@ -108,7 +122,7 @@ public class ImportFileAction extends AbstractViewAction {
                 JSheet.showOpenSheet(fileChooser, view.getComponent(), new SheetListener() {
 
                     @Override
-                    public void optionSelected(final SheetEvent evt) {
+                    public void optionSelected(@Nonnull final SheetEvent evt) {
                         if (evt.getOption() == JFileChooser.APPROVE_OPTION) {
                             final URI uri = evt.getChooser().getSelectedURI();
 
@@ -126,7 +140,7 @@ public class ImportFileAction extends AbstractViewAction {
     }
 
 
-    protected URIChooser getChooser(View view) {
+    protected URIChooser getChooser(@Nonnull View view) {
         URIChooser chsr = (URIChooser) (view.getComponent()).getClientProperty("importChooser");
         if (chsr == null) {
             chsr = getApplication().getModel().createImportChooser(getApplication(), view);
@@ -136,7 +150,7 @@ public class ImportFileAction extends AbstractViewAction {
     }
 
 
-    public void importViewFromURI(final View view, final URI uri, final URIChooser chooser) {
+    public void importViewFromURI(@Nonnull final View view, @Nonnull final URI uri, final URIChooser chooser) {
         JFileURIChooser fileChooser = (JFileURIChooser) chooser;
         FileFilter fileFilter = fileChooser.getFileFilter();
         if (fileFilter.getDescription().contains("CSV")) {
@@ -146,7 +160,7 @@ public class ImportFileAction extends AbstractViewAction {
         }
     }
 
-    public void importCsvFromURI(final View view, final URI uri, final URIChooser chooser) {
+    public void importCsvFromURI(@Nonnull final View view, @Nonnull final URI uri, final URIChooser chooser) {
         System.out.println("CSV YAY!");
         CSVImporter csvImporter = new CSVImporter(',');
         csvImporter.getComponent();
@@ -194,7 +208,7 @@ public class ImportFileAction extends AbstractViewAction {
         dialog.setVisible(true);
     }
 
-    public void importFileFromURI(final View view, final URI uri, final URIChooser chooser) {
+    public void importFileFromURI(@Nonnull final View view, @Nonnull final URI uri, final URIChooser chooser) {
         view.setEnabled(false);
 
         // Open the file
@@ -213,7 +227,7 @@ public class ImportFileAction extends AbstractViewAction {
             }
 
             @Override
-            protected void failed(Throwable value) {
+            protected void failed(@Nonnull Throwable value) {
                 value.printStackTrace();
 
                 ResourceBundleUtil labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.app.Labels"));
@@ -233,7 +247,7 @@ public class ImportFileAction extends AbstractViewAction {
         });
     }
 
-    public void doImportCsvFromURI(final View view, final URI uri, final CSVImporter csvImporter) {
+    public void doImportCsvFromURI(@Nonnull final View view, @Nonnull final URI uri, @Nonnull final CSVImporter csvImporter) {
         view.setEnabled(false);
 
         ProgressView p = new ProgressView("Import CSV", "Importing " + uri);
@@ -265,7 +279,7 @@ public class ImportFileAction extends AbstractViewAction {
             }
 
             @Override
-            protected void failed(Throwable value) {
+            protected void failed(@Nonnull Throwable value) {
                 p.close();
                 value.printStackTrace();
 

@@ -4,14 +4,25 @@
 
 package ch.randelshofer.xml;
 
-import java.awt.*;
-import java.util.*;
-import javax.xml.parsers.*;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
-import javax.xml.transform.stream.*;
-import org.w3c.dom.*;
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.awt.Color;
+import java.awt.Font;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.util.HashMap;
 /**
  * DOMOutput.
  *
@@ -111,6 +122,7 @@ public class JavaxDOMOutput implements DOMOutput {
     public void addComment(String comment) {
         current.appendChild(document.createComment(comment));
     }
+
     /**
      * Adds a text to current element of the DOM Document.
      * Note: Multiple consecutives texts will be merged.
@@ -118,14 +130,16 @@ public class JavaxDOMOutput implements DOMOutput {
     public void addText(String text) {
         current.appendChild(document.createTextNode(text));
     }
+
     /**
      * Adds an attribute to current element of the DOM Document.
      */
-    public void setAttribute(String name, String value) {
+    public void setAttribute(String name, @Nullable String value) {
         if (value != null) {
             ((Element) current).setAttribute(name, value);
         }
     }
+
     /**
      * Adds an attribute to current element of the DOM Document.
      */
@@ -150,8 +164,8 @@ public class JavaxDOMOutput implements DOMOutput {
     public void setAttribute(String name, double value) {
         ((Element) current).setAttribute(name, Double.toString(value));
     }
-    
-    public void writeObject(Object o) {
+
+    public void writeObject(@Nullable Object o) {
         if (o == null) {
             addElement("null");
             closeElement();
@@ -208,12 +222,15 @@ public class JavaxDOMOutput implements DOMOutput {
             setAttribute("size", f.getSize());
             closeElement();
         } else {
-            throw new IllegalArgumentException("unable to store: "+o+" "+o.getClass());
+            throw new IllegalArgumentException("unable to store: " + o + " " + o.getClass());
         }
     }
-    private void writeStorable(DOMStorable o) {
+
+    private void writeStorable(@Nonnull DOMStorable o) {
         String tagName = factory.getTagName(o);
-        if (tagName == null) throw new IllegalArgumentException("no tag name for:"+o);
+        if (tagName == null) {
+            throw new IllegalArgumentException("no tag name for:" + o);
+        }
         addElement(tagName);
         if (objectids.containsKey(o)) {
             setAttribute("ref", objectids.get(o));

@@ -8,6 +8,8 @@
  */
 package ch.randelshofer.rubik.solver;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.util.StringTokenizer;
 
 /**
@@ -47,8 +49,10 @@ public class CubeParser extends Object {
     public CubeParser() {
     }
 
-    /** Parse the input and initialize a FaceletCube. */
-    public int parseInput(String input, FaceletCube faceletCube) {
+    /**
+     * Parse the input and initialize a FaceletCube.
+     */
+    public int parseInput(@Nonnull String input, @Nonnull FaceletCube faceletCube) {
         int face;
         int[] faces = new int[6];
         int i;
@@ -105,13 +109,15 @@ public class CubeParser extends Object {
 
     }
 
-    /** Return the text associated with an error return code. */
-    private int parseFace(FaceletCube faceletCube, String faceString) {
+    /**
+     * Return the text associated with an error return code.
+     */
+    private int parseFace(@Nonnull FaceletCube faceletCube, @Nonnull String faceString) {
         int face;
         int facelet;
 
         // Check specifier length f:mmmmmmmmm
-        if (faceString.length() != 1+1+9) {
+        if (faceString.length() != 1 + 1 + 9) {
             return SYNTAX_ERROR;
         }
 

@@ -7,8 +7,11 @@
  */
 package ch.randelshofer.binary;
 
-import java.util.ArrayList;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 
 /**
  * Table model for structured binary data.
@@ -40,6 +43,8 @@ public class StructTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return 2;
     }
+
+    @Nullable
     @Override
     public Object getValueAt(int row, int column) {
         StructTableModel.Value elem = data.get(row);
@@ -48,14 +53,15 @@ public class StructTableModel extends AbstractTableModel {
             // value = identifierToString(((elem.index == null) ? elem.declaration : elem.declaration+elem.index).toString());
             int p = elem.qualifiedIdentifier.indexOf('.');
             String identifier = (p == -1) ? elem.qualifiedIdentifier : elem.qualifiedIdentifier.substring(p + 1);
-            value = identifierToString(((elem.index == null) ? identifier : identifier+elem.index).toString());
+            value = identifierToString(((elem.index == null) ? identifier : identifier + elem.index).toString());
         } else {
             value = elem.value;
         }
         return value;
     }
-    
-    public static String identifierToString(String s) {
+
+    @Nonnull
+    public static String identifierToString(@Nonnull String s) {
         StringBuilder b = new StringBuilder();
         boolean wasUpperCase = true;
         for (int i = 0; i < s.length(); i++) {
@@ -72,7 +78,8 @@ public class StructTableModel extends AbstractTableModel {
         }
         return b.toString();
     }
-    
+
+    @Nonnull
     @Override
     public String getColumnName(int column) {
         return (column == 0) ? "Name" : "Value";
@@ -84,6 +91,7 @@ public class StructTableModel extends AbstractTableModel {
         public String qualifiedIdentifier;
         public Object declaration;
         public String index;
+        @Nullable
         public Object value;
         public int intValue;
         public Value() {

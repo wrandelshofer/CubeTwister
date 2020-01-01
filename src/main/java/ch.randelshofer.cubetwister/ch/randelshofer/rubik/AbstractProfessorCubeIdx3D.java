@@ -12,6 +12,7 @@ import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Vector;
+import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 
@@ -399,7 +400,7 @@ public abstract class AbstractProfessorCubeIdx3D extends AbstractCubeIdx3D {
     }
 
     @Override
-    public void cubeTwisted(CubeEvent evt) {
+    public void cubeTwisted(@Nonnull CubeEvent evt) {
         int loc;
 
         int layerMask = evt.getLayerMask();
@@ -428,7 +429,7 @@ public abstract class AbstractProfessorCubeIdx3D extends AbstractCubeIdx3D {
             }
 
             @Override
-            public boolean isSequential(Interpolator that) {
+            public boolean isSequential(@Nonnull Interpolator that) {
                 return (that.getClass() == this.getClass());
             }
 

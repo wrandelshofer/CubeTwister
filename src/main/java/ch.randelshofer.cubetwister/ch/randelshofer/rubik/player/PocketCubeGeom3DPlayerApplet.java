@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
 import ch.randelshofer.rubik.PocketCube;
 import ch.randelshofer.rubik.PocketCubeGeom3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
+import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.swing.player.JPlayerControlAqua;
 
 import java.io.InputStream;
@@ -20,7 +21,8 @@ import java.io.InputStream;
  */
 public class PocketCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet {
     private final static long serialVersionUID = 1L;
-    
+
+    @Nonnull
     @Override
     protected ScriptPlayer createPlayer() {
         ScriptPlayer player = new ScriptPlayer();

@@ -6,6 +6,7 @@ package ch.randelshofer.rubik.parser;
 import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.util.SequenceIterator;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.util.Collections;
 import java.util.Iterator;
@@ -24,6 +25,7 @@ public class CommutationNode extends BinaryNode {
         super(-1, -1);
     }
 
+    @Nonnull
     @Override
     protected Symbol getSymbol() {
         return Symbol.COMMUTATION;
@@ -75,6 +77,7 @@ public class CommutationNode extends BinaryNode {
      * Special operators (i. e. repeat and inverse) are
      * resolved before the children are returned.
      */
+    @Nonnull
     public Iterator<Node> resolvedIterator(boolean inverse) {
         if (getChildCount() != 2) {
             return Collections.emptyIterator();

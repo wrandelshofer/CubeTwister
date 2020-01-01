@@ -4,15 +4,24 @@
 
 package ch.randelshofer.xml;
 
+import nanoxml.XMLElement;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.awt.Color;
 import java.awt.Font;
-import java.util.*;
-import java.io.*;
-import nanoxml.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Stack;
+
 /**
  * NanoXMLDOMInput.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class NanoXMLDOMInput implements DOMInput {
     /**
@@ -20,6 +29,7 @@ public class NanoXMLDOMInput implements DOMInput {
      * the XML DOM. A key in this map is a String representing a marshalled
      * reference. A value in this map is an unmarshalled Object.
      */
+    @Nonnull
     private HashMap<String,Object> idobjects = new HashMap<String,Object>();
     
     /**
@@ -39,20 +49,22 @@ public class NanoXMLDOMInput implements DOMInput {
     /**
      * The stack.
      */
+    @Nonnull
     private Stack<XMLElement> stack = new Stack<XMLElement>();
     
-    public NanoXMLDOMInput(DOMFactory factory, InputStream in) throws IOException {
+    public NanoXMLDOMInput(DOMFactory factory, @Nonnull InputStream in) throws IOException {
         this(factory, new InputStreamReader(in, "UTF8"));
     }
+
     public NanoXMLDOMInput(DOMFactory factory, Reader in) throws IOException {
         this.factory = factory;
-        current = new XMLElement(new HashMap<String,char[]>(), false, false);
+        current = new XMLElement(new HashMap<String, char[]>(), false, false);
         current.parseFromReader(in);
-        document = new XMLElement(new HashMap<String,char[]>(), false, false);
+        document = new XMLElement(new HashMap<String, char[]>(), false, false);
         document.addChild(current);
         current = document;
     }
-    
+
     /**
      * Returns the tag name of the current element.
      */
@@ -191,6 +203,7 @@ public class NanoXMLDOMInput implements DOMInput {
     /**
      * Reads an object from the current element.
      */
+    @Nullable
     @Override
     public Object readObject() {
         return readObject(0);
@@ -198,6 +211,7 @@ public class NanoXMLDOMInput implements DOMInput {
     /**
      * Reads an object from the current element.
      */
+    @Nullable
     public Object readObject(int index) {
         openElement(index);
         Object o;

@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.geom3d.Shape3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -425,19 +426,20 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
     protected float getUnitScaleFactor() {
         return 1.1f;
     }
-    
+
+    @Nonnull
     protected CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, STICKER_COUNT, new int[] {3,3,3,3,3,3,3,3,9,9});
-        
+
         Color[] partsFillColor = new Color[partCount];
         Color[] partsOutlineColor = new Color[partCount];
         Color[] stickersFillColor = new Color[STICKER_COUNT];
-        
+
         Arrays.fill(partsFillColor, 0, 26, new Color(24, 24, 24));
         Arrays.fill(partsOutlineColor, 0, 26, new Color(16, 16, 16));
         Arrays.fill(partsFillColor, 26, 27, new Color(240, 240, 240));
         Arrays.fill(partsOutlineColor, 26, 27, new Color(240, 240, 240));
-        
+
         Arrays.fill(stickersFillColor, 0, 3, new Color(140,0,15)); //Front: red
         Arrays.fill(stickersFillColor, 3, 6, new Color(155,0,97)); //Front Right: dark purple
         Arrays.fill(stickersFillColor, 6, 9, new Color(70,188,218)); //Right: cyan
@@ -446,17 +448,18 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
         Arrays.fill(stickersFillColor, 15, 18, new Color(255,70,0)); //Back Left: orange
         Arrays.fill(stickersFillColor, 18, 21, new Color(124,83,0)); //Left: gold
         Arrays.fill(stickersFillColor, 21, 24, new Color(255,210,0)); //Front-Left: yellow
-        
+
         Arrays.fill(stickersFillColor, 24, 33, new Color(248,248,248)); //Down: white
         Arrays.fill(stickersFillColor, 33, 42, new Color(0,41,103)); //Up: blue
 
         a.setPartFillColor(partsFillColor);
         a.setPartOutlineColor(partsOutlineColor);
         a.setStickerFillColor(stickersFillColor);
-        
+
         return a;
     }
 
+    @Nonnull
     public String getName() {
         return "Rubik's Barrel";
     }
@@ -579,7 +582,9 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             }
         }
     }
+
+    @Nonnull
     public CubeKind getKind() {
-       return CubeKind.BARREL;
+        return CubeKind.BARREL;
     }
 }

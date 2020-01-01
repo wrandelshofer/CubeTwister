@@ -3,12 +3,16 @@
  */
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.applet.Applet;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.Locale;
 //import netscape.javascript.JSObject;
 
 /**
@@ -35,6 +39,7 @@ public class Cookies extends Object {
     /**
      * This DateFormat object is used to format the elapsed date of a cookie.
      */
+    @Nonnull
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd-MMM-yyyy hh:mm:ss z", Locale.ENGLISH);
 
     /**
@@ -50,6 +55,7 @@ public class Cookies extends Object {
      * @param applet
      * @return All cookies as key, value pairs.
      */
+    @Nullable
     public static String getEncodedCookie(Applet applet) {
         try {
             String encodedCookie = null;//(String) JSObject.getWindow(applet).eval("document.cookie");
@@ -95,12 +101,12 @@ public class Cookies extends Object {
     /**
      * Puts the specified cookie value.
      *
-     * @param applet the applet
-     * @param name the name of the cookie
-     * @param value the value of the cooke
+     * @param applet  the applet
+     * @param name    the name of the cookie
+     * @param value   the value of the cooke
      * @param expires the expiration date, specify null, for a session cookie.
      */
-    public static void putCookie(Applet applet, String name, String value, Date expires) {
+    public static void putCookie(Applet applet, @Nonnull String name, @Nonnull String value, @Nullable Date expires) {
         try {
             String encodedCookie = URLEncoder.encode(name, "UTF-8") + "=" + URLEncoder.encode(value, "UTF-8");
             if (expires != null) {

@@ -8,9 +8,11 @@
  */
 package ch.randelshofer.rubik.solver;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Combinatorial algorithms.
- *
+ * <p>
  * This class has been derived from Combinat.cpp and Combinat.h
  * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
  *
@@ -82,7 +84,7 @@ public class Combinatorials {
      * largest element. This process yields the i coefficients.
      *
      */
-    public static int permutationToOrdinal(int[] vector, int off, int len) {
+    public static int permutationToOrdinal(@Nonnull int[] vector, int off, int len) {
         int ordinal = 0;
         int[] v;
         int limit;

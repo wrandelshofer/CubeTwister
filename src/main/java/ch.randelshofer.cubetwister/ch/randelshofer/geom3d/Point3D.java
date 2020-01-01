@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.geom3d;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * A point representing a location in (x, y, z) coordinate space.
  *
@@ -41,6 +43,7 @@ public class Point3D implements Cloneable {
     /**
      * Returns a String that represents the value of this Object.
      */
+    @Nonnull
     public String toString() {
         return "Point3D[" + x + ", " + y + ", " + z + "]";
     }
@@ -74,7 +77,8 @@ public class Point3D implements Cloneable {
      * @param v2
      * @param v3
      */
-    public static double[] planeEquation(Point3D v1, Point3D v2, Point3D v3) {
+    @Nonnull
+    public static double[] planeEquation(@Nonnull Point3D v1, @Nonnull Point3D v2, @Nonnull Point3D v3) {
         double x1 = v1.x;
         double x2 = v2.x;
         double x3 = v3.x;
@@ -91,20 +95,34 @@ public class Point3D implements Cloneable {
         double d = -(x1 * (y2 * z3 - y3 * z2) + x2 * (y3 * z1 - y1 * z3) + x3 * (y1 * z2 - y2 * z1));
         return new double[]{a, b, c, d};
     }
-    /** returns a x b. */
-    public static Point3D vectorProduct(Point3D a, Point3D b) {
+
+    /**
+     * returns a x b.
+     */
+    @Nonnull
+    public static Point3D vectorProduct(@Nonnull Point3D a, @Nonnull Point3D b) {
         return new Point3D(a.y * b.z - b.y * a.z, a.z * b.x - b.z * a.x, a.x * b.y - b.x * a.y);
     }
-    /** dotProduct product of 2 vectors. */
-    public static double dotProduct(Point3D a, Point3D b) {
+
+    /**
+     * dotProduct product of 2 vectors.
+     */
+    public static double dotProduct(@Nonnull Point3D a, @Nonnull Point3D b) {
         return a.x * b.x + a.y * b.y + a.z * b.z;
     }
 
-    /** subtracts 2 vectors. */
-    public static Point3D sub(Point3D a, Point3D b) {
+    /**
+     * subtracts 2 vectors.
+     */
+    @Nonnull
+    public static Point3D sub(@Nonnull Point3D a, @Nonnull Point3D b) {
         return new Point3D(a.x - b.x, a.y - b.y, a.z - b.z);
     }
-    /** Normalizes the vector. */
+
+    /**
+     * Normalizes the vector.
+     */
+    @Nonnull
     public Point3D normalize() {
         double dist = length();
         if (dist == 0) {
@@ -122,6 +140,7 @@ public class Point3D implements Cloneable {
     }
 
 
+    @Nonnull
     @Override
     public Point3D clone() {
         try {

@@ -5,6 +5,8 @@ package ch.randelshofer.rubik.notation;
 
 import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.parser.MacroNode;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -43,19 +45,21 @@ public abstract class AbstractNotation implements Notation {
         return layerCount;
     }
 
+    @Nullable
     @Override
     public String getEquivalentMacro(Cube cube, Map<String, MacroNode> localMacros) {
         // FIXME implement me
         return null;
     }
 
+    @Nonnull
     @Override
     public Map<String, String> getMacros() {
         return macros;
     }
 
     @Override
-    public void writeToken(PrintWriter w, Symbol symbol) throws IOException {
+    public void writeToken(@Nonnull PrintWriter w, Symbol symbol) throws IOException {
         List<String> tokens = symbolToTokensMap.getOrDefault(symbol, Collections.emptyList());
         if (!tokens.isEmpty()) {
             w.print(tokens.get(0));
@@ -63,7 +67,7 @@ public abstract class AbstractNotation implements Notation {
     }
 
     @Override
-    public void writeMoveToken(PrintWriter w, int axis, int layerMask, int angle) throws IOException {
+    public void writeMoveToken(@Nonnull PrintWriter w, int axis, int layerMask, int angle) throws IOException {
         Move move = new Move(layerCount, axis, layerMask, angle);
         List<String> tokens = moveToTokensMap.getOrDefault(move, Collections.emptyList());
         if (!tokens.isEmpty()) {
@@ -77,17 +81,20 @@ public abstract class AbstractNotation implements Notation {
                 || symbolToTokensMap.containsKey(s);
     }
 
+    @Nonnull
     @Override
-    public Syntax getSyntax(Symbol s) {
-        return symbolToSyntaxMap.getOrDefault(s.getCompositeSymbol(),Syntax.PRIMARY);
+    public Syntax getSyntax(@Nonnull Symbol s) {
+        return symbolToSyntaxMap.getOrDefault(s.getCompositeSymbol(), Syntax.PRIMARY);
     }
 
+    @Nullable
     @Override
     public String getToken(Symbol symbol) {
         List<String> tokens = symbolToTokensMap.getOrDefault(symbol, Collections.emptyList());
         return tokens.isEmpty() ? null : tokens.get(0);
     }
 
+    @Nullable
     @Override
     public String getMoveToken(Move s) {
         List<String> tokens = moveToTokensMap.getOrDefault(s, Collections.emptyList());
@@ -103,6 +110,7 @@ public abstract class AbstractNotation implements Notation {
         return move;
     }
 
+    @Nonnull
     @Override
     public Collection<String> getTokens() {
         return tokenToSymbolsMap.keySet();

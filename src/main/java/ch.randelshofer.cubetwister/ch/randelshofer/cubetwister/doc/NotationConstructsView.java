@@ -3,23 +3,36 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.event.*;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.gui.ScrollablePanel;
+import ch.randelshofer.gui.event.DocumentAdapter;
+import ch.randelshofer.gui.event.GenericListener;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import java.text.Normalizer;
-import javax.swing.*;
-import javax.swing.event.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.UndoableEditListener;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 /**
  * The NotationConstructsView is an editor for the expression tokens of a notation.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class NotationConstructsView extends ScrollablePanel
@@ -46,20 +59,22 @@ public class NotationConstructsView extends ScrollablePanel
      * The resource bundle used for internationalisation.
      */
     private ResourceBundleUtil labels;
-    
+
+    @Nonnull
     private ArrayList<TokenAdapter> tokenFields = new ArrayList<TokenAdapter>();
+    @Nonnull
     private ArrayList<SyntaxAdapter> syntaxFields = new ArrayList<SyntaxAdapter>();
     
     private class TokenAdapter
             extends DocumentAdapter {
         private Symbol symbol;
         
-        public TokenAdapter(Symbol symbol, JTextField textField) {
+        public TokenAdapter(Symbol symbol, @Nonnull JTextField textField) {
             super(textField);
             this.symbol = symbol;
             tokenFields.add(this);
         }
-        
+
         public void updateFromModel() {
             if (NotationConstructsView.this.model != null) {
                 setText(NotationConstructsView.this.model.getAllTokens(symbol));
@@ -67,7 +82,7 @@ public class NotationConstructsView extends ScrollablePanel
         }
         
         @Override
-        public void documentChanged(DocumentEvent evt) {
+        public void documentChanged(@Nonnull DocumentEvent evt) {
             if (NotationConstructsView.this.model != null) {
                 NotationConstructsView.this.model.setToken(symbol, Normalizer.normalize(getText(evt), Normalizer.Form.NFC));
             }
@@ -78,14 +93,14 @@ public class NotationConstructsView extends ScrollablePanel
         private Syntax syntax;
         private JRadioButton radio;
         
-        public SyntaxAdapter(Symbol symbol, Syntax syntax, JRadioButton radio) {
+        public SyntaxAdapter(Symbol symbol, Syntax syntax, @Nonnull JRadioButton radio) {
             this.symbol = symbol;
             this.syntax = syntax;
             this.radio = radio;
             radio.addActionListener(this);
             syntaxFields.add(this);
         }
-        
+
         public void updateFromModel() {
             if (NotationConstructsView.this.model != null) {
                 radio.setSelected(
@@ -369,13 +384,13 @@ public class NotationConstructsView extends ScrollablePanel
         updateEnabled();
     }
     
-    public void symbolSupportChanged(ItemEvent evt) {
+    public void symbolSupportChanged(@Nonnull ItemEvent evt) {
         if (model != null) {
             JCheckBox cb = (JCheckBox) evt.getSource();
             model.setSupported((Symbol) cb.getClientProperty("symbol"), cb.isSelected());
         }
     }
-    
+
     private void updateFields() {
         if (model != null) {
             for (TokenAdapter ta : tokenFields) {
@@ -411,12 +426,13 @@ public class NotationConstructsView extends ScrollablePanel
         setVisible(commentFields, m.isSupported(Symbol.COMMENT));
         validate();
     }
-    private void setVisible(JComponent[] c, boolean b) {
-        for (int i=0; i < c.length; i++) {
+
+    private void setVisible(@Nonnull JComponent[] c, boolean b) {
+        for (int i = 0; i < c.length; i++) {
             c[i].setVisible(b);
         }
     }
-    
+
     @Override
     public void setEnabled(boolean b) {
         super.setEnabled(b);
@@ -433,7 +449,7 @@ public class NotationConstructsView extends ScrollablePanel
     }
     
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         if (evt.getSource() == model) {
             String n = evt.getPropertyName();
             if (n == NotationModel.PROP_STATEMENT_TOKEN) {
@@ -443,7 +459,7 @@ public class NotationConstructsView extends ScrollablePanel
             } else if (n == NotationModel.PROP_SYMBOL_SUPPORTED) {
                 updateLanguageFeatures();
                 updateEnabled();
- }
+            }
         }
     }
     
@@ -459,7 +475,8 @@ public class NotationConstructsView extends ScrollablePanel
     public void setModel(EntityModel newValue) {
         setModel((NotationModel) newValue);
     }
-    
+
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;

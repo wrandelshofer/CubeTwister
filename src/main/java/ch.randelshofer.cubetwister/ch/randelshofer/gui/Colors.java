@@ -4,7 +4,9 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
+import org.jhotdraw.annotation.Nullable;
+
+import java.awt.Color;
 /**
  * Colors.
  *
@@ -17,17 +19,18 @@ public class Colors {
     }
 
     /**
-     * Blackens the specified color by casting a black shadow of the specified 
+     * Blackens the specified color by casting a black shadow of the specified
      * amount on the color.
      */
-    public static Color shadow(Color c, int amount) {
-       return (c == null) ? null :
-           new Color(
-        Math.max(0, c.getRed() - amount),
-        Math.max(0, c.getGreen() - amount),
-        Math.max(0, c.getBlue() - amount),
-        c.getAlpha()
-        );
+    @Nullable
+    public static Color shadow(@Nullable Color c, int amount) {
+        return (c == null) ? null :
+                new Color(
+                        Math.max(0, c.getRed() - amount),
+                        Math.max(0, c.getGreen() - amount),
+                        Math.max(0, c.getBlue() - amount),
+                        c.getAlpha()
+                );
     }
     
 }

@@ -4,8 +4,10 @@
 
 package ch.randelshofer.gui.datatransfer;
 
-import java.awt.*;
-import java.awt.datatransfer.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
 /**
  * StringTransferable.
@@ -36,19 +38,21 @@ public class StringTransferable extends AbstractTransferable {
         super(flavors);
         this.string = string;
     }
-    
+
+    @Nonnull
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         if (! isDataFlavorSupported(flavor)) {
             throw new UnsupportedFlavorException(flavor);
         }
         return string;
     }
-    
+
+    @Nonnull
     protected static DataFlavor[] getDefaultFlavors() {
         try {
             return new DataFlavor[] {
-                new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType+";class=java.lang.String"),
-                DataFlavor.stringFlavor
+                    new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType+";class=java.lang.String"),
+                    DataFlavor.stringFlavor
             };
         } catch (ClassNotFoundException cle) {
             InternalError ie = new InternalError(

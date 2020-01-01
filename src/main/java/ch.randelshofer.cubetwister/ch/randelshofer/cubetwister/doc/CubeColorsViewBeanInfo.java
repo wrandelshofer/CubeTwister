@@ -3,7 +3,13 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import java.beans.*;
+import org.jhotdraw.annotation.Nullable;
+
+import java.beans.BeanDescriptor;
+import java.beans.EventSetDescriptor;
+import java.beans.MethodDescriptor;
+import java.beans.PropertyDescriptor;
+import java.beans.SimpleBeanInfo;
 
 /**
  * CubeColorsViewBeanInfo.
@@ -13,48 +19,68 @@ import java.beans.*;
 public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     
     // Bean descriptor information will be obtained from introspection.//GEN-FIRST:BeanDescriptor
+    @Nullable
     private static BeanDescriptor beanDescriptor = null;
+
+    @Nullable
     private static BeanDescriptor getBdescriptor(){
 //GEN-HEADEREND:BeanDescriptor
-        
+
         // Here you can add code for customizing the BeanDescriptor.
         if (beanDescriptor == null) beanDescriptor = new BeanDescriptor(CubeColorsViewBeanInfo.class);
         beanDescriptor.setValue("isContainer", Boolean.FALSE);
-        
+
         return beanDescriptor;     }//GEN-LAST:BeanDescriptor
     
     
     // Properties information will be obtained from introspection.//GEN-FIRST:Properties
+    @Nullable
     private static PropertyDescriptor[] properties = null;
+
+    @Nullable
     private static PropertyDescriptor[] getPdescriptor(){//GEN-HEADEREND:Properties
-        
+
         // Here you can add code for customizing the properties array.
-        
+
         return properties;     }//GEN-LAST:Properties
     
     // Event set information will be obtained from introspection.//GEN-FIRST:Events
+    @Nullable
     private static EventSetDescriptor[] eventSets = null;
+
+    @Nullable
     private static EventSetDescriptor[] getEdescriptor(){//GEN-HEADEREND:Events
-        
+
         // Here you can add code for customizing the event sets array.
-        
+
         return eventSets;     }//GEN-LAST:Events
     
     // Method information will be obtained from introspection.//GEN-FIRST:Methods
+    @Nullable
     private static MethodDescriptor[] methods = null;
+
+    @Nullable
     private static MethodDescriptor[] getMdescriptor(){//GEN-HEADEREND:Methods
-        
+
         // Here you can add code for customizing the methods array.
-        
+
         return methods;     }//GEN-LAST:Methods
-    
+
+    @Nullable
     private static java.awt.Image iconColor16 = null;//GEN-BEGIN:IconsDef
+    @Nullable
     private static java.awt.Image iconColor32 = null;
+    @Nullable
     private static java.awt.Image iconMono16 = null;
+    @Nullable
     private static java.awt.Image iconMono32 = null;//GEN-END:IconsDef
+    @Nullable
     private static String iconNameC16 = null;//GEN-BEGIN:Icons
+    @Nullable
     private static String iconNameC32 = null;
+    @Nullable
     private static String iconNameM16 = null;
+    @Nullable
     private static String iconNameM32 = null;//GEN-END:Icons
     
     private static int defaultPropertyIndex = -1;//GEN-BEGIN:Idx
@@ -74,6 +100,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
      * properties of this bean.  May return null if the
      * information should be obtained by automatic analysis.
      */
+    @Nullable
     public BeanDescriptor getBeanDescriptor() {
         return getBdescriptor();
     }
@@ -90,6 +117,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
      * A client of getPropertyDescriptors can use "instanceof" to check
      * if a given PropertyDescriptor is an IndexedPropertyDescriptor.
      */
+    @Nullable
     public PropertyDescriptor[] getPropertyDescriptors() {
         return getPdescriptor();
     }
@@ -101,6 +129,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
      * events fired by this bean.  May return null if the information
      * should be obtained by automatic analysis.
      */
+    @Nullable
     public EventSetDescriptor[] getEventSetDescriptors() {
         return getEdescriptor();
     }
@@ -112,6 +141,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
      * implemented by this bean.  May return null if the information
      * should be obtained by automatic analysis.
      */
+    @Nullable
     public MethodDescriptor[] getMethodDescriptors() {
         return getMdescriptor();
     }
@@ -160,6 +190,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
      * @return  An image object representing the requested icon.  May
      *    return null if no suitable icon is available.
      */
+    @Nullable
     public java.awt.Image getIcon(int iconKind) {
         switch ( iconKind ) {
             case ICON_COLOR_16x16:

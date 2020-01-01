@@ -7,13 +7,30 @@
  */
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.awt.image.*;
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Transparency;
+import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.PixelGrabber;
+import java.awt.image.RGBImageFilter;
+import java.awt.image.Raster;
+import java.awt.image.RenderedImage;
+import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Properties;
 
 /**
  * Image processing methods.
@@ -34,9 +51,11 @@ public class Images {
         return graphiteFilter;
     }
 
-    public static Image createImage(Class baseClass, String location) {
-        URL resource=baseClass.getResource(location);
-        if (resource==null) throw new IllegalArgumentException("no resource found for location:"+location);
+    public static Image createImage(@Nonnull Class baseClass, @Nonnull String location) {
+        URL resource = baseClass.getResource(location);
+        if (resource == null) {
+            throw new IllegalArgumentException("no resource found for location:" + location);
+        }
         return createImage(resource);
     }
 
@@ -51,7 +70,7 @@ public class Images {
     }
     private static volatile Properties canGraphite;
 
-    private static boolean canGraphite(URL resource) {
+    private static boolean canGraphite(@Nonnull URL resource) {
         if (canGraphite == null) {
             synchronized (Images.class) {
                 if (canGraphite == null) {
@@ -82,11 +101,11 @@ public class Images {
 
     /**
      * This method returns a buffered image with the contents of an image.
-     *
+     * <p>
      * Code derived from the Java Developers Almanac 1.4
      * http://javaalmanac.com/egs/java.awt.image/Image2Buf.html?l=rel
      */
-    private static Image toGraphite(Image image) {
+    private static Image toGraphite(@Nonnull Image image) {
         return Toolkit.getDefaultToolkit().
                 createImage(new FilteredImageSource(image.getSource(), getGraphiteFilter()));
     }
@@ -117,6 +136,7 @@ public class Images {
         }
     }
 
+    @Nullable
     public static BufferedImage toBufferedImage(RenderedImage rImg) {
         BufferedImage image;
         if (rImg instanceof BufferedImage) {
@@ -135,6 +155,7 @@ public class Images {
         return image;
     }
 
+    @Nullable
     public static BufferedImage toBufferedImage(Image image) {
         if (image instanceof BufferedImage) {
             return (BufferedImage) image;
@@ -264,6 +285,7 @@ public class Images {
     /**
      * Splits an image into count subimages.
      */
+    @Nonnull
     public static BufferedImage[] split(Image image, int count, boolean isHorizontal) {
         BufferedImage src = Images.toBufferedImage(image);
         if (count == 1) {

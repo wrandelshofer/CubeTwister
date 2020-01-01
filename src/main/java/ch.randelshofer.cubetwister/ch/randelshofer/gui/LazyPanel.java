@@ -4,11 +4,14 @@
 package ch.randelshofer.gui;
 
 import ch.randelshofer.gui.icon.BusyIcon;
-import java.awt.BorderLayout;
-import java.awt.Graphics;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+import org.jhotdraw.gui.Worker;
+
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import org.jhotdraw.gui.Worker;
+import java.awt.BorderLayout;
+import java.awt.Graphics;
 
 /**
  * LazyPanel lazily creates and adds a child component to it when the
@@ -21,6 +24,7 @@ public class LazyPanel extends javax.swing.JPanel {
     private String viewClassName;
     private boolean isRealized = false;
     private JComponent lazyView;
+    @Nullable
     private Worker<JComponent> worker;
 
     /** Creates new form LazyPanel */
@@ -71,8 +75,8 @@ public class LazyPanel extends javax.swing.JPanel {
                     }
 
                     @Override
-                    protected void failed(Throwable error) {
-                        System.err.println("LazyPanel couldn't construct "+viewClassName);
+                    protected void failed(@Nonnull Throwable error) {
+                        System.err.println("LazyPanel couldn't construct " + viewClassName);
                         error.printStackTrace();
                     }
 

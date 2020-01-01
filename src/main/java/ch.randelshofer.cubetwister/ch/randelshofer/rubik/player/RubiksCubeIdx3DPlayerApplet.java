@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.RubiksCubeIdx3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import idx3d.idx3d_JCanvas;
+import org.jhotdraw.annotation.Nonnull;
 
 /**
  * RubiksCubeIdx3DPlayerApplet.
@@ -17,7 +18,8 @@ import idx3d.idx3d_JCanvas;
  */
 public class RubiksCubeIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
     private final static long serialVersionUID = 1L;
-    
+
+    @Nonnull
     @Override
     protected ScriptPlayer createPlayer() {
         ScriptPlayer p = new ScriptPlayer();

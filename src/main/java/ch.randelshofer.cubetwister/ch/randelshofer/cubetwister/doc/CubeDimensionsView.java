@@ -3,22 +3,25 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import javax.swing.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.beans.*;
-import java.beans.PropertyChangeListener;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
+import ch.randelshofer.beans.BoundedRangeModelBeanAdapter;
+import ch.randelshofer.gui.Fonts;
+import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.gui.JLifeFormattedTextField;
 import org.jhotdraw.text.JavaNumberFormatter;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.JComponent;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.Font;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 /**
  * CubeDimensionsView is used to present the "Options &gt; Dimensions" page of
  * CubeView.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class CubeDimensionsView extends AbstractEntityView {
     private final static long serialVersionUID = 1L;
@@ -35,7 +38,7 @@ public class CubeDimensionsView extends AbstractEntityView {
         private BoundedRangeModel model;
         private int isAdjusting;
 
-        public FieldHandler(JLifeFormattedTextField field, BoundedRangeModel model) {
+        public FieldHandler(@Nonnull JLifeFormattedTextField field, @Nonnull BoundedRangeModel model) {
             this.field = field;
             this.model = model;
             field.addPropertyChangeListener(this);
@@ -300,6 +303,7 @@ public class CubeDimensionsView extends AbstractEntityView {
             explodeModel.setBean(model);
     }
 
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;

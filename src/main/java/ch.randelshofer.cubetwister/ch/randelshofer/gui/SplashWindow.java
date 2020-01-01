@@ -3,11 +3,22 @@
  */
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.net.*;
-import java.io.*;
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.awt.Dimension;
+import java.awt.EventQueue;
+import java.awt.FontMetrics;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.MediaTracker;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URL;
+import java.util.StringTokenizer;
 /**
  * A Splash window.
  *  <p>
@@ -31,6 +42,7 @@ public class SplashWindow extends Window {
     /**
      * The current instance of the splash window.
      */
+    @Nullable
     private static SplashWindow instance;
     
     /**
@@ -62,22 +74,24 @@ public class SplashWindow extends Window {
      * @see #splash
      */
     private boolean paintCalled = false;
-    
+
     /**
      * Creates a new instance.
+     *
      * @param parent the parent of the window.
-     * @param image the splash image.
+     * @param image  the splash image.
      */
-    public SplashWindow(Frame parent, Image image) {
+    public SplashWindow(Frame parent, @Nonnull Image image) {
         super(parent);
         this.image = image;
-        
+
         // Load the image
         MediaTracker mt = new MediaTracker(this);
-        mt.addImage(image,0);
+        mt.addImage(image, 0);
         try {
             mt.waitForID(0);
-        } catch(InterruptedException ie){}
+        } catch (InterruptedException ie) {
+        }
         
         // Center the window on the screen
         int imgWidth = image.getWidth(this);
@@ -108,23 +122,24 @@ public class SplashWindow extends Window {
         };
         addMouseListener(disposeOnClick);
     }
-    
+
     /**
      * Updates the display area of the window.
      */
-    public void update(Graphics g) {
+    public void update(@Nonnull Graphics g) {
         // Note: Since the paint method is going to draw an
         // image that covers the complete area of the component we
         // do not fill the component with its background color
         // here. This avoids flickering.
         paint(g);
     }
+
     /**
      * Paints the image on the window.
      */
-    public void paint(Graphics g) {
+    public void paint(@Nonnull Graphics g) {
         g.drawImage(image, 0, 0, this);
-        
+
         if (text != null) {
             FontMetrics fm = g.getFontMetrics();
             int ty = y + fm.getAscent();
@@ -143,24 +158,25 @@ public class SplashWindow extends Window {
             synchronized (this) { notifyAll(); }
         }
     }
-    
+
     /**
      * Open's a splash window using the specified image.
+     *
      * @param image The splash image.
-     * @param text The text to display.
-     * @param x The x coordinate of the text.
-     * @param y The y coordinate of the text.
+     * @param text  The text to display.
+     * @param x     The x coordinate of the text.
+     * @param y     The y coordinate of the text.
      */
-    public static void splash(Image image, String text, int x, int y) {
+    public static void splash(@Nullable Image image, String text, int x, int y) {
         if (instance == null && image != null) {
             Frame f = new Frame();
-            
+
             // Initiate the image loading process
             MediaTracker mt = new MediaTracker(f);
-            mt.addImage(image,0);
+            mt.addImage(image, 0);
             mt.checkID(0, true);
-            
-            
+
+
             // Create the splash image
             instance = new SplashWindow(f, image);
             
@@ -177,27 +193,34 @@ public class SplashWindow extends Window {
             // called at least once by the AWT event dispatcher thread.
             if (! EventQueue.isDispatchThread()) {
                 synchronized (instance) {
-                    while (! instance.paintCalled) {
-                        try { instance.wait(); } catch (InterruptedException e) {}
+                    while (!instance.paintCalled) {
+                        try {
+                            instance.wait();
+                        } catch (InterruptedException e) {
+                        }
                     }
                 }
             }
         }
     }
+
     /**
      * Open's a splash window using the specified image.
+     *
      * @param imageURL The url of the splash image.
      */
-    public static void splash(URL imageURL) {
+    public static void splash(@Nullable URL imageURL) {
         if (imageURL != null) {
             splash(Toolkit.getDefaultToolkit().createImage(imageURL), null, 0, 0);
         }
     }
+
     /**
      * Open's a splash window using the specified image.
+     *
      * @param imageURL The url of the splash image.
      */
-    public static void splash(URL imageURL, String text, int x, int y) {
+    public static void splash(@Nullable URL imageURL, String text, int x, int y) {
         if (imageURL != null) {
             splash(Toolkit.getDefaultToolkit().createImage(imageURL), text, x, y);
         }

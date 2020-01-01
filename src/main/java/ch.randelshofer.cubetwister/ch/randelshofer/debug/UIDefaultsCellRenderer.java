@@ -4,11 +4,18 @@
 
 package ch.randelshofer.debug;
 
-import ch.randelshofer.gui.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.table.*;
+import ch.randelshofer.gui.PolygonIcon;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Polygon;
 
 /**
  * ObjectTableCellRenderer.
@@ -17,13 +24,14 @@ import javax.swing.table.*;
  */
 public class UIDefaultsCellRenderer extends DefaultTableCellRenderer {
     private final static long serialVersionUID = 1L;
+    @Nonnull
     private PolygonIcon colorIcon = new PolygonIcon(
-    new Polygon(
-    new int[] {0, 20, 20, 0},
-    new int[] {0, 0, 12, 12},
-    4
-    ),
-    new Dimension(20, 12)
+            new Polygon(
+                    new int[] {0, 20, 20, 0},
+                    new int[] {0, 0, 12, 12},
+                    4
+            ),
+            new Dimension(20, 12)
     );
     
     /** Creates a new instance. */
@@ -39,14 +47,15 @@ public class UIDefaultsCellRenderer extends DefaultTableCellRenderer {
             super.paint(g);
         }
     }
-    
+
+    @Nonnull
     public Component getTableCellRendererComponent(
-    JTable table, Object object,
-    boolean isSelected, boolean hasFocus,
-    int row, int column) {
+            JTable table, Object object,
+            boolean isSelected, boolean hasFocus,
+            int row, int column) {
         Object value = object;
-            setIcon(null);
-        
+        setIcon(null);
+
         if (object instanceof Color) {
             Color v = (Color) object;
             setIcon(colorIcon);
@@ -72,9 +81,9 @@ public class UIDefaultsCellRenderer extends DefaultTableCellRenderer {
             setIcon(new BorderIcon(v, 20, 12));
          */
         }
-        
-         super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-            setFont(new Font("Lucida Grande", Font.PLAIN, 11));
-         return this;
+
+        super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        setFont(new Font("Lucida Grande", Font.PLAIN, 11));
+        return this;
     }
 }

@@ -5,6 +5,7 @@ package ch.randelshofer.rubik.impexp;
 
 import ch.randelshofer.cubetwister.doc.DocumentModel;
 import ch.randelshofer.gui.ProgressObserver;
+import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JComponent;
 import java.io.File;
@@ -30,8 +31,10 @@ public interface Importer {
      * 
      * @return Returns an ArrayList of ScriptModel's.
      */
+    @Nonnull
     public ArrayList importFile(File file, ProgressObserver p)
     throws IOException;
-    
+
+    @Nonnull
     public JComponent getComponent();
 }

@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.geom3d.Shape3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -161,6 +162,7 @@ public class RubiksCubeGeom3D extends AbstractRubiksCubeGeom3D {
         }
     }
 
+    @Nonnull
     @Override
     public CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(partCount, getStickerCount(),
@@ -187,6 +189,7 @@ public class RubiksCubeGeom3D extends AbstractRubiksCubeGeom3D {
         return a;
     }
 
+    @Nonnull
     public String getName() {
         return "Rubik's Cube";
     }
@@ -378,6 +381,7 @@ public class RubiksCubeGeom3D extends AbstractRubiksCubeGeom3D {
         }
     }
 
+    @Nonnull
     @Override
     public CubeKind getKind() {
         return CubeKind.RUBIK;

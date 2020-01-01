@@ -5,10 +5,11 @@ package ch.randelshofer.rubik;
 
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
-import ch.randelshofer.rubik.parser.Node;
-import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import ch.randelshofer.rubik.parser.Node;
+import ch.randelshofer.rubik.parser.ScriptParser;
+import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
@@ -17,9 +18,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 
@@ -32,12 +31,13 @@ public class CubesTest {
     public CubesTest() {
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testToVisualPermutationString_RubiksCube_Notation() {
         return Arrays.asList(
                 dynamicTest("-",()->doToVisualPermutationString_RubiksCube_Notation("","()")),
-               dynamicTest("R", ()->doToVisualPermutationString_RubiksCube_Notation("R","(ubr,bdr,dfr,fur)\n" +
-                       "(ur,br,dr,fr)"))
+                dynamicTest("R", ()->doToVisualPermutationString_RubiksCube_Notation("R","(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)"))
         );
     }
 
@@ -57,6 +57,7 @@ public class CubesTest {
         assertEquals(expected, actual);
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testToPermutationString_Cube_Notation() {
         DefaultNotation precircumfixNotation = new DefaultNotation();
@@ -68,39 +69,40 @@ public class CubesTest {
         postcircumfixNotation.putSyntax(Symbol.PERMUTATION, Syntax.POSTCIRCUMFIX);
         DefaultNotation suffixNotation = new DefaultNotation();
         suffixNotation.putSyntax(Symbol.PERMUTATION, Syntax.SUFFIX);
-      return  Arrays.asList(
-          dynamicTest(".",()-> doToPermutationString_Cube_Notation(".",precircumfixNotation,"()")),
-              dynamicTest("R,precircumfix",()-> doToPermutationString_Cube_Notation("R",precircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
-                      "(ur,br,dr,fr)\n" +
-                      "(+r)")),
-              dynamicTest("R,prefix",()-> doToPermutationString_Cube_Notation("R",prefixNotation,"(ubr,bdr,dfr,fur)\n" +
-                      "(ur,br,dr,fr)\n" +
-                      "+(r)")),
-              dynamicTest("R,suffix",()-> doToPermutationString_Cube_Notation("R",suffixNotation,"(ubr,bdr,dfr,fur)\n" +
-                      "(ur,br,dr,fr)\n" +
-                      "(r)+")),
-              dynamicTest("R,postcirfumix",()-> doToPermutationString_Cube_Notation("R",postcircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
-                      "(ur,br,dr,fr)\n" +
-                      "(r+)")),
+        return  Arrays.asList(
+                dynamicTest(".",()-> doToPermutationString_Cube_Notation(".",precircumfixNotation,"()")),
+                dynamicTest("R,precircumfix",()-> doToPermutationString_Cube_Notation("R",precircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "(+r)")),
+                dynamicTest("R,prefix",()-> doToPermutationString_Cube_Notation("R",prefixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "+(r)")),
+                dynamicTest("R,suffix",()-> doToPermutationString_Cube_Notation("R",suffixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "(r)+")),
+                dynamicTest("R,postcirfumix",()-> doToPermutationString_Cube_Notation("R",postcircumfixNotation,"(ubr,bdr,dfr,fur)\n" +
+                        "(ur,br,dr,fr)\n" +
+                        "(r+)")),
 
-              dynamicTest("corners,precircumfix",()-> doToPermutationString_Cube_Notation("(+urf) (-dbl)",precircumfixNotation,"(+urf) (-dbl)")),
-              dynamicTest("corners,prefix",()-> doToPermutationString_Cube_Notation("+(urf) -(dbl)",prefixNotation,"+(urf) -(dbl)")),
-              dynamicTest("corners,suffix",()-> doToPermutationString_Cube_Notation("(urf)+ (dbl)-",suffixNotation,"(urf)+ (dbl)-")),
-              dynamicTest("corners,postcirfumcix",()-> doToPermutationString_Cube_Notation("(urf+) (dbl-)",postcircumfixNotation,"(urf+) (dbl-)"))
+                dynamicTest("corners,precircumfix", () -> doToPermutationString_Cube_Notation("(+urf) (-dbl)", precircumfixNotation, "(+urf) (-dbl)")),
+                dynamicTest("corners,prefix", () -> doToPermutationString_Cube_Notation("+(urf) -(dbl)", prefixNotation, "+(urf) -(dbl)")),
+                dynamicTest("corners,suffix", () -> doToPermutationString_Cube_Notation("(urf)+ (dbl)-", suffixNotation, "(urf)+ (dbl)-")),
+                dynamicTest("corners,postcirfumcix", () -> doToPermutationString_Cube_Notation("(urf+) (dbl-)", postcircumfixNotation, "(urf+) (dbl-)"))
         );
     }
+
     /**
      * Test of toPermutationString method, of class Cubes.
      */
-    public void doToPermutationString_Cube_Notation(String input, Notation notation, String expected) throws IOException {
-        System.out.println("toPermutationString input: "+input);
+    public void doToPermutationString_Cube_Notation(String input, @Nonnull Notation notation, String expected) throws IOException {
+        System.out.println("toPermutationString input: " + input);
         Cube cube = new RubiksCube();
-        ScriptParser parser =new ScriptParser(notation);
+        ScriptParser parser = new ScriptParser(notation);
         Node ast = parser.parse(input);
-        ast.applyTo(cube,false);
+        ast.applyTo(cube, false);
         String actual = Cubes.toPermutationString(cube, notation);
-        System.out.println("  expected: "+expected);
-        System.out.println("  actual: "+actual);
+        System.out.println("  expected: " + expected);
+        System.out.println("  actual: " + actual);
         assertEquals(expected, actual);
     }
 

@@ -6,13 +6,34 @@ package idx3d;
 
 import ch.randelshofer.gui.event.SwipeEvent;
 import ch.randelshofer.gui.event.SwipeListener;
-import java.awt.*;
-import java.awt.event.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JComponent;
+import javax.swing.Timer;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.Panel;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Float;
-import javax.swing.*;
-import javax.swing.event.*;
 
 /**
  * idx3d_JCanvas.
@@ -31,6 +52,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     /**
      * The 3d Render Pipeline.
      */
+    @Nullable
     protected idx3d_RenderPipeline renderPipeline;
     private Object lock;
     /**
@@ -49,6 +71,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
      * This variable is null, if the mouse was pressed over an inactive
      * area of the canvas, or outside of the canvas.
      */
+    @Nullable
     private idx3d_Triangle pressedTriangle;
     /**
      * Holds the mouse location over which the mouse was pressed.
@@ -63,22 +86,26 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
      * Holds the triangle over which the mouse is being scraped.
      * This variable is set to null, if a scrape event is fired.
      */
+    @Nullable
     private idx3d_Triangle swipedTriangle;
     /**
      * Holds the location where the scraping started in the coordinate
      * system of the scraped triangle.
      */
+    @Nullable
     private Point2D.Float swipeStartPos;
     /**
      * Holds the triangle which is currently under the mouse pointer.
      * This variable is null, if the mouse is over an inactive
      * area of the canvas, or outside of the canvas.
      */
+    @Nullable
     private idx3d_Triangle armedTriangle;
     /**
      * The current mouse position over the canvas.
      * This variable is null, if the mouse is not over the canvas.
      */
+    @Nullable
     private Point mousePosition;
     /**
      * The current pressedModifiersEx of the mouse.
@@ -147,7 +174,9 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     /** Whether the idx3d_JCanvas should update the mouse cursor or not. */
     private boolean isUpdateCursor = true;
     private idx3d_RenderPipeline sharedRenderPipeline;
+    @Nullable
     private int[] idBuffer;
+    @Nonnull
     private Rectangle idBufferBounds = new Rectangle();
 
     /** Creates a new instance. */
@@ -216,7 +245,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     }
 
     @Override
-    public void paintComponent(Graphics gr) {
+    public void paintComponent(@Nonnull Graphics gr) {
         Graphics2D g = (Graphics2D) gr;
         Dimension size = getSize();
         Insets insets = getInsets();
@@ -300,7 +329,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         minFPS = newValue;
     }
 
-    private void paintScene(Graphics g, int x, int y, int width, int height) {
+    private void paintScene(@Nonnull Graphics g, int x, int y, int width, int height) {
         // Reuse an existing render pipeline or create a new one
         if (renderPipeline == null) {
             if (sharedRenderPipeline != null) {
@@ -368,6 +397,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
+    @Nullable
     private idx3d_Triangle identifyTriangleAt(int x, int y) {
         idx3d_Triangle triangle = scene.identifyTriangleAt(idBuffer,//
                 idBufferBounds.width, idBufferBounds.height, x - idBufferBounds.x, y - idBufferBounds.y);
@@ -375,7 +405,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     }
 
     @Override
-    public void mouseClicked(MouseEvent evt) {
+    public void mouseClicked(@Nonnull MouseEvent evt) {
         if (isEnabled()) {
             if (pressedWhen != -1 && evt.getWhen() - pressedWhen < swipeTimeout) {
                 mousePosition = evt.getPoint();
@@ -405,7 +435,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     }
 
     @Override
-    public void mouseDragged(MouseEvent evt) {
+    public void mouseDragged(@Nonnull MouseEvent evt) {
         if (isEnabled()) {
             int x = evt.getX();
             int y = evt.getY();
@@ -465,7 +495,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     }
 
     @Override
-    public void mouseEntered(MouseEvent evt) {
+    public void mouseEntered(@Nonnull MouseEvent evt) {
         if (isEnabled()) {
             mousePosition = evt.getPoint();
             pressedModifiersEx = evt.getModifiers();
@@ -488,7 +518,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     }
 
     @Override
-    public void mouseMoved(MouseEvent evt) {
+    public void mouseMoved(@Nonnull MouseEvent evt) {
         if (isEnabled()) {
             mousePosition = evt.getPoint();
             pressedModifiersEx = evt.getModifiersEx();
@@ -500,7 +530,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     }
 
     @Override
-    public void mousePressed(MouseEvent evt) {
+    public void mousePressed(@Nonnull MouseEvent evt) {
         if (isEnabled()) {
             mousePosition = evt.getPoint();
             pressedModifiersEx = evt.getModifiersEx();
@@ -546,7 +576,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     }
 
     @Override
-    public void mouseReleased(MouseEvent evt) {
+    public void mouseReleased(@Nonnull MouseEvent evt) {
         if (isEnabled()) {
             mousePosition = evt.getPoint();
             // Workaround for http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=6634290
@@ -566,7 +596,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    public void mouseWheelMoved(MouseWheelEvent evt) {
+    public void mouseWheelMoved(@Nonnull MouseWheelEvent evt) {
         if (isEnabled() && evt.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
             pressedModifiersEx = evt.getModifiersEx();
             float dx;
@@ -637,7 +667,8 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
      * @param triangle
      * @return Point on triangle.
      */
-    protected Point2D.Float canvasToTriangle(int x, int y, idx3d_Triangle triangle) {
+    @Nonnull
+    protected Point2D.Float canvasToTriangle(int x, int y, @Nonnull idx3d_Triangle triangle) {
 //System.out.println("canvasToTriangle @"+triangle.hashCode()+" x:"+triangle.p1.x);
         idx3d_Camera camera = scene.camera(cameraName);
         {
@@ -826,6 +857,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         repaint();
     }
 
+    @Nullable
     @Override
     public Point getMousePosition() {
         return mousePosition;
@@ -834,11 +866,11 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
     /**
      * Updates the currently armed triangle.
      *
-     * @param evt The mouse event which caused the arming.
+     * @param evt         The mouse event which caused the arming.
      * @param newTriangle The newly armed triangle. Pass null, to dearm the currently
-     * armed triangle.
+     *                    armed triangle.
      */
-    private void updateArmedTriangle(MouseEvent evt, idx3d_Triangle newTriangle) {
+    private void updateArmedTriangle(MouseEvent evt, @Nullable idx3d_Triangle newTriangle) {
         idx3d_Object oldObject = (armedTriangle == null) ? null : armedTriangle.parent;
         idx3d_Object newObject = (newTriangle == null) ? null : newTriangle.parent;
         if (armedTriangle != newTriangle) {
@@ -857,7 +889,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    private void fireObjectExited(MouseEvent evt, idx3d_Object obj) {
+    private void fireObjectExited(MouseEvent evt, @Nullable idx3d_Object obj) {
         if (!quiet) {
             if (obj != null) {
                 MouseListener[] listeners = scene.getMouseListeners(obj);
@@ -869,7 +901,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    private void fireObjectEntered(MouseEvent evt, idx3d_Object obj) {
+    private void fireObjectEntered(MouseEvent evt, @Nullable idx3d_Object obj) {
         if (!quiet) {
             if (obj != null) {
                 MouseListener[] listeners = scene.getMouseListeners(obj);
@@ -901,7 +933,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    private void fireTriangleSwiped(MouseEvent evt, idx3d_Triangle triangle, float angle) {
+    private void fireTriangleSwiped(@Nonnull MouseEvent evt, idx3d_Triangle triangle, float angle) {
         if (!quiet) {
 //System.out.println("Triangle Swiped "+(int)(angle/Math.PI*180)+"°");
             SwipeListener[] listeners = scene.getSwipeListeners(triangle);
@@ -916,7 +948,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    private void fireMouseClicked(MouseEvent evt, idx3d_Triangle triangle) {
+    private void fireMouseClicked(MouseEvent evt, @Nonnull idx3d_Triangle triangle) {
         if (!quiet) {
             MouseListener[] listeners = scene.getMouseListeners(triangle);
             if (listeners.length == 0) {
@@ -929,7 +961,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    protected void fireMousePressed(MouseEvent evt, idx3d_Triangle triangle) {
+    protected void fireMousePressed(MouseEvent evt, @Nullable idx3d_Triangle triangle) {
         if (!quiet) {
             // Fire scene event
             if (triangle != null) {
@@ -945,7 +977,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    private void fireMouseReleased(MouseEvent evt, idx3d_Triangle triangle) {
+    private void fireMouseReleased(MouseEvent evt, @Nullable idx3d_Triangle triangle) {
         if (!quiet) {
             if (triangle != null) {
                 MouseListener[] listeners = scene.getMouseListeners(triangle);
@@ -960,7 +992,7 @@ public class idx3d_JCanvas extends JComponent implements MouseListener, MouseMot
         }
     }
 
-    protected void fireMouseDragged(MouseEvent evt, idx3d_Triangle triangle) {
+    protected void fireMouseDragged(MouseEvent evt, @Nullable idx3d_Triangle triangle) {
         if (!quiet) {
             // Fire scene event
             if (triangle != null) {

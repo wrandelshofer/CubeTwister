@@ -4,18 +4,27 @@
 
 package ch.randelshofer.xml;
 
-import java.awt.*;
-import java.util.*;
-import java.io.*;
-import nanoxml.*;
+import nanoxml.XMLElement;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.Stack;
+
 /**
  * DOMOutput using Nano XML.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class NanoXMLDOMOutput implements DOMOutput {
-    
-    
+
+
     /**
      * This map is used to marshall references to objects to
      * the XML DOM. A key in this map is a Java Object, a value in this map
@@ -53,18 +62,19 @@ public class NanoXMLDOMOutput implements DOMOutput {
     /**
      * Writes the contents of the DOMOutput into the specified output stream.
      */
-    public void save(OutputStream out) throws IOException {
+    public void save(@Nonnull OutputStream out) throws IOException {
         Writer w = new OutputStreamWriter(out, "UTF8");
         save(w);
         w.flush();
     }
+
     /**
      * Writes the contents of the DOMOutput into the specified output stream.
      */
     public void save(Writer out) throws IOException {
         document.getChildren().get(0).write(out);
     }
-    
+
     /**
      * Puts a new element into the DOM Document.
      * The new element is added as a child to the current element in the DOM
@@ -104,23 +114,26 @@ public class NanoXMLDOMOutput implements DOMOutput {
         if (old == null) {
             current.setContent(text);
         } else {
-            current.setContent(old+text);
+            current.setContent(old + text);
         }
     }
+
     /**
      * Adds an attribute to current element of the DOM Document.
      */
-    public void setAttribute(String name, String value) {
+    public void setAttribute(String name, @Nullable String value) {
         if (value != null) {
             current.setAttribute(name, value);
         }
     }
+
     /**
      * Adds an attribute to current element of the DOM Document.
      */
     public void setAttribute(String name, int value) {
         current.setAttribute(name, Integer.toString(value));
     }
+
     /**
      * Adds an attribute to current element of the DOM Document.
      */
@@ -140,7 +153,7 @@ public class NanoXMLDOMOutput implements DOMOutput {
         current.setAttribute(name, Double.toString(value));
     }
     
-    public void writeObject(Object o) {
+    public void writeObject(@Nullable Object o) {
         if (o == null) {
             addElement("null");
             closeElement();
@@ -197,12 +210,15 @@ public class NanoXMLDOMOutput implements DOMOutput {
             setAttribute("size", f.getSize());
             closeElement();
         } else {
-            throw new IllegalArgumentException("unable to store: "+o+" "+o.getClass());
+            throw new IllegalArgumentException("unable to store: " + o + " " + o.getClass());
         }
     }
-    private XMLElement writeStorable(DOMStorable o) {
+
+    private XMLElement writeStorable(@Nonnull DOMStorable o) {
         String tagName = factory.getTagName(o);
-        if (tagName == null) throw new IllegalArgumentException("no tag name for:"+o);
+        if (tagName == null) {
+            throw new IllegalArgumentException("no tag name for:" + o);
+        }
         addElement(tagName);
         XMLElement element = current;
         if (objectids.containsKey(o)) {

@@ -5,9 +5,13 @@
 
 package ch.randelshofer.gui.list;
 
-import java.awt.datatransfer.*;
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.JList;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 /**
  * The MutableListTransferable is a proxy for the actual Transferable of a JList,
@@ -42,6 +46,7 @@ public class MutableListTransferable implements Transferable {
         return target.isDataFlavorSupported(flavor);
     }
 
+    @Nonnull
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         return target.getTransferData(flavor);
     }

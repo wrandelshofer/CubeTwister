@@ -9,6 +9,7 @@ import ch.randelshofer.geom3d.JCanvas3D;
 import ch.randelshofer.geom3d.Point3D;
 import ch.randelshofer.geom3d.Scene3D;
 import ch.randelshofer.geom3d.Transform3D;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -27,16 +28,22 @@ public class Cube3DCanvasGeom3D
     private JCanvas3D canvas3D;
     private Cube3D cube3D;
     private Transform3D transform;
-    
-    /** Creates a new instance. */
+
+    /**
+     * Creates a new instance.
+     */
     public Cube3DCanvasGeom3D() {
         this(new JCanvas3D());
     }
- /** Creates a new instance. */
-    public Cube3DCanvasGeom3D(JCanvas3D canvas3D) {
+
+    /**
+     * Creates a new instance.
+     */
+    public Cube3DCanvasGeom3D(@Nonnull JCanvas3D canvas3D) {
         this(canvas3D, null);
     }
-    public Cube3DCanvasGeom3D(JCanvas3D canvas3D, Cube3D cube3D) {
+
+    public Cube3DCanvasGeom3D(@Nonnull JCanvas3D canvas3D, Cube3D cube3D) {
         this.canvas3D = canvas3D;
         canvas3D.setSwipeDelay(Integer.MAX_VALUE);
         transform = new Transform3D();

@@ -4,13 +4,20 @@
 
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.text.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
-import java.beans.*;
+import ch.randelshofer.gui.text.NumericDocument;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.BoundedRangeModel;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
 
 /**
  * A text field which takes integer values. A <code>BoundedRangeModel</code>
@@ -45,22 +52,22 @@ public class IntegerTextField extends JTextField {
     public IntegerTextField() {
         this(new javax.swing.DefaultBoundedRangeModel());
     }
-    
+
     /**
      * Creates a new IntegerTextField with the specified
      * bounded range model.
      */
-    public IntegerTextField(javax.swing.BoundedRangeModel m) {
+    public IntegerTextField(@Nonnull javax.swing.BoundedRangeModel m) {
         super(
-        new NumericDocument(m),
-        String.valueOf(m.getValue()),
-        Math.max(String.valueOf(m.getMinimum()).length(), String.valueOf(m.getMaximum()).length()) + 1
+                new NumericDocument(m),
+                String.valueOf(m.getValue()),
+                Math.max(String.valueOf(m.getMinimum()).length(), String.valueOf(m.getMaximum()).length()) + 1
         );
-        
+
         installKeyboardActions();
         addFocusListener(new FocusListener() {
-            public void focusGained(FocusEvent evt) {
-            }
+                             public void focusGained(FocusEvent evt) {
+                             }
             public void focusLost(FocusEvent evt) {
                     NumericDocument doc = (NumericDocument) getDocument();
                     javax.swing.BoundedRangeModel brm = doc.getBoundedRangeModel();
@@ -100,8 +107,8 @@ public class IntegerTextField extends JTextField {
             actionMap.put("decrementValue", new ValueDelta(-1));
         }
     }
-    
-    public void setBoundedRangeModel(BoundedRangeModel m) {
+
+    public void setBoundedRangeModel(@Nonnull BoundedRangeModel m) {
         ((NumericDocument) getDocument()).setBoundedRangeModel(m);
     }
     

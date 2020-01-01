@@ -7,6 +7,9 @@
  */
 package ch.randelshofer.binary;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ public class ByteArrayBinaryModel implements BinaryModel {
     // need a contiguous area of memory.
 
     /** Table of elements. */
+    @Nullable
     private ArrayList<byte[]> elemTable;
     /** Number of bytes in the model. */
     private long length;
@@ -33,7 +37,7 @@ public class ByteArrayBinaryModel implements BinaryModel {
         length = 0;
     }
 
-    public ByteArrayBinaryModel(byte[] data) {
+    public ByteArrayBinaryModel(@Nullable byte[] data) {
         elemTable = new ArrayList<byte[]>();
         if (data == null || data.length == 0) {
             length = 0;
@@ -43,7 +47,7 @@ public class ByteArrayBinaryModel implements BinaryModel {
         }
     }
 
-    public ByteArrayBinaryModel(InputStream in)
+    public ByteArrayBinaryModel(@Nonnull InputStream in)
             throws IOException {
         this();
 

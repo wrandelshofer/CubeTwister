@@ -5,6 +5,7 @@ package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Symbol;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +25,7 @@ public class RotationNode extends BinaryNode {
         super(-1, -1);
     }
 
+    @Nonnull
     @Override
     protected Symbol getSymbol() {
         return Symbol.ROTATION;
@@ -55,6 +57,7 @@ public class RotationNode extends BinaryNode {
      * Enumerate this symbol and all of its children. Special operators (i. e.
      * repeat and inverse) are resolved before the children are returned.
      */
+    @Nonnull
     public Iterator<Node> resolvedIterator(boolean inverse) {
         if (getChildCount() != 2) {
             return Collections.emptyIterator();

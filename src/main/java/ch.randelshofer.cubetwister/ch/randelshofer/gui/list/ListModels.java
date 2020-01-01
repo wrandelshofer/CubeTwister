@@ -4,11 +4,25 @@
 
 package ch.randelshofer.gui.list;
 
-import ch.randelshofer.gui.datatransfer.*;
-import java.awt.datatransfer.*;
-import java.util.*;
-import java.io.*;
+import ch.randelshofer.gui.datatransfer.CharArrayReaderTransferable;
+import ch.randelshofer.gui.datatransfer.CompositeTransferable;
+import ch.randelshofer.gui.datatransfer.FileListTransferable;
+import ch.randelshofer.gui.datatransfer.JVMLocalObjectTransferable;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.ListModel;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.BufferedReader;
+import java.io.CharArrayWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringTokenizer;
 /**
  * This class provides static utility operations for
  * <code>MutableListModel</code>'s.
@@ -22,30 +36,33 @@ public class ListModels {
      */
     private ListModels() {
     }
-    
+
     /**
      * Creates a transferable in a number of default formats for a ListModel.
      *
      * @return A transferable for a list model.
      */
-    public static Transferable createDefaultTransferable(ListModel model, int[] indices) {
+    @Nonnull
+    public static Transferable createDefaultTransferable(@Nonnull ListModel model, @Nonnull int[] indices) {
         CompositeTransferable t = new CompositeTransferable();
         t.add(createLocalTransferable(model, indices, Object.class));
         t.add(createHTMLTransferable(model, indices));
         t.add(createPlainTransferable(model, indices));
         return t;
     }
+
     /**
      * Creates a transferable in text/html format from
      * a mutable list model.
      *
      * @return A transferable of type text/html
      */
-    public static Transferable createHTMLTransferable(ListModel model, int[] indices) {
+    @Nonnull
+    public static Transferable createHTMLTransferable(@Nonnull ListModel model, @Nonnull int[] indices) {
         CharArrayWriter w = new CharArrayWriter();
         try {
             w.write("<html><body><ol>");
-            for (int i=0; i < indices.length; i++) {
+            for (int i = 0; i < indices.length; i++) {
                 Object elem = model.getElementAt(indices[i]);
                 w.write("<li>");
                 writeHTMLEncoded(w, elem.toString());
@@ -58,17 +75,17 @@ public class ListModels {
         }
         return new CharArrayReaderTransferable(w.toCharArray(), "text/html", "HTML");
     }
-    
-    private static void writeHTMLEncoded(Writer w, String str) throws IOException  {
+
+    private static void writeHTMLEncoded(@Nonnull Writer w, @Nonnull String str) throws IOException {
         for (char ch : str.toCharArray()) {
             switch (ch) {
-                case '&' :
+                case '&':
                     w.write("&amp;");
                     break;
-                case '<' :
+                case '<':
                     w.write("&lt;");
                     break;
-                case '>' :
+                case '>':
                     w.write("&gt;");
                     break;
                 default :
@@ -77,22 +94,25 @@ public class ListModels {
             }
         }
     }
-    
+
     /**
      * Creates a transferable in text/plain format from
      * a mutable list model.
      *
      * @return A transferable of type java.awt.datatransfer.StringSelection
      */
-    public static Transferable createPlainTransferable(ListModel model, int[] indices) {
+    @Nonnull
+    public static Transferable createPlainTransferable(@Nonnull ListModel model, @Nonnull int[] indices) {
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < indices.length; i++) {
-            if (i != 0) buf.append('\n');
+            if (i != 0) {
+                buf.append('\n');
+            }
             buf.append(model.getElementAt(indices[i]).toString());
         }
         return new StringSelection(buf.toString());
     }
-    
+
     /**
      * Creates a local JVM transferable from
      * a mutable list model.
@@ -101,7 +121,8 @@ public class ListModels {
      * indices.length &gt; 1. A JVM local object transferable of type
      * model.getElementAt(indices[0]).getClass() if indices.length = 1.
      */
-    public static Transferable createLocalTransferable(ListModel model, int[] indices, Class<?> baseclass) {
+    @Nonnull
+    public static Transferable createLocalTransferable(@Nonnull ListModel model, @Nonnull int[] indices, Class<?> baseclass) {
         if (indices.length == 1) {
             return new JVMLocalObjectTransferable(baseclass, model.getElementAt(indices[0]));
         } else {
@@ -112,33 +133,34 @@ public class ListModels {
             return new JVMLocalObjectTransferable(List.class, list);
         }
     }
-    
+
     /**
      * Creates a Java file list transferable from
      * a mutable list model.
      *
      * @return A Java filelist transferable.
      */
+    @Nonnull
     public static Transferable createFileListTransferable(
-            MutableListModel model, int[] indices) {
-            LinkedList<File> list = new LinkedList<File>();
-            for (int i = 0; i < indices.length; i++) {
-                list.add((File)model.getElementAt(indices[i]));
-            }
-           return new FileListTransferable(list);
+            @Nonnull MutableListModel model, @Nonnull int[] indices) {
+        LinkedList<File> list = new LinkedList<File>();
+        for (int i = 0; i < indices.length; i++) {
+            list.add((File) model.getElementAt(indices[i]));
         }
-    
-    
+        return new FileListTransferable(list);
+    }
+
+
     /**
      * Returns the contents of the transferable as
      * a list of strings. Where each string is determined
      * by reading a line of text from the transferable.
      *
-     * @exception UnsupportedFlavorException
-     * If the transferable does not support <code>DataFlavor.stringFlavor</code>
+     * @throws UnsupportedFlavorException If the transferable does not support <code>DataFlavor.stringFlavor</code>
      */
-    public static LinkedList<String> getStringList(Transferable t)
-    throws UnsupportedFlavorException, IOException {
+    @Nonnull
+    public static LinkedList<String> getStringList(@Nonnull Transferable t)
+            throws UnsupportedFlavorException, IOException {
         LinkedList<String> list = new LinkedList<String>();
         StringTokenizer scanner = new StringTokenizer((String) t.getTransferData(DataFlavor.stringFlavor), "\n");
         while (scanner.hasMoreTokens()) {
@@ -156,8 +178,9 @@ public class ListModels {
      * If the transferable does not support 
      * <code>DataFlavor.getTextPlainUnicodeFlavor()</code>
      */
-    public static LinkedList<String> getPlainList(Transferable t)
-    throws UnsupportedFlavorException, IOException {
+    @Nonnull
+    public static LinkedList<String> getPlainList(@Nonnull Transferable t)
+            throws UnsupportedFlavorException, IOException {
         LinkedList<String> list = new LinkedList<String>();
         BufferedReader in = new BufferedReader(DataFlavor.getTextPlainUnicodeFlavor().getReaderForText(t));
         try {

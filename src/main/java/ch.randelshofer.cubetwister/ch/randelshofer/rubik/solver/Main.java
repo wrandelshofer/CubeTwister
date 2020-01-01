@@ -13,6 +13,7 @@ import ch.randelshofer.gui.ProgressPrinter;
 import ch.randelshofer.gui.ProgressView;
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
+import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -78,7 +79,7 @@ public class Main extends Object {
      * or the program is aborted by the user.
      *
      */
-    public static void main(String[] args) {
+    public static void main(@Nonnull String[] args) {
         //args = new String[] {"L:WWGROOYWG R:BROBROYBB U:RRWYWWWRR D:BOBGBGWOG F:OYYYYYOWO B:YGGBGBRGR"};
         if (args.length == 0) {
             startGUI();
@@ -87,7 +88,7 @@ public class Main extends Object {
         }
     }
 
-    public static void startBatch(String[] args) {
+    public static void startBatch(@Nonnull String[] args) {
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < args.length; i++) {
             if (i > 0) {

@@ -12,6 +12,8 @@ import ch.randelshofer.rubik.JCubeCanvasIdx3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_RenderPipeline;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
 import javax.imageio.ImageIO;
 import javax.swing.JComponent;
@@ -25,15 +27,17 @@ import java.io.IOException;
  */
 public abstract class AbstractCubeIdx3DPlayerApplet extends AbstractPlayerApplet {
     private static idx3d_RenderPipeline sharedPipeline;
+
     @Override
-    protected void configurePlayer(ScriptPlayer p) {
-        if (sharedPipeline==null) {
-            sharedPipeline=new idx3d_RenderPipeline(null, 0, 0);
+    protected void configurePlayer(@Nonnull ScriptPlayer p) {
+        if (sharedPipeline == null) {
+            sharedPipeline = new idx3d_RenderPipeline(null, 0, 0);
         }
-       Cube3DCanvasIdx3D canvas= (Cube3DCanvasIdx3D)p.getCanvas();
-       canvas.setSharedRenderPipeline(sharedPipeline);
+        Cube3DCanvasIdx3D canvas = (Cube3DCanvasIdx3D) p.getCanvas();
+        canvas.setSharedRenderPipeline(sharedPipeline);
     }
 
+    @Nonnull
     @Override
     final protected Cube3DCanvas createRearCanvas() {
         Cube3D cube3D = frontCanvas.getCube3D();
@@ -42,11 +46,13 @@ public abstract class AbstractCubeIdx3DPlayerApplet extends AbstractPlayerApplet
         c3d.setCube3D(cube3D);
         c3d.setLock(cube3D.getCube());
         c3d.setCamera("Rear");
-       ((idx3d_JCanvas) c3d.getVisualComponent()).setMinFPS(30);
+        ((idx3d_JCanvas) c3d.getVisualComponent()).setMinFPS(30);
         return c3d;
     }
+
+    @Nullable
     @Override
-    protected Image decodeBase64Image(String base64) {
+    protected Image decodeBase64Image(@Nonnull String base64) {
         try {
             byte[] bytes = Base64.decode(base64);
             return ImageIO.read(new ByteArrayInputStream(bytes));

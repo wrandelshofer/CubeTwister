@@ -36,118 +36,130 @@
 
 package idx3d;
 
-/** Generates idx3d_Textures. */
-@SuppressWarnings("cast")
-public class idx3d_TextureFactory
-{
-	public final static float pi=3.1415926535f;
-	public final static float deg2rad=pi/180;
-	private static float[][] noiseBuffer;
-	private static boolean noiseBufferInitialized=false;
-	static int minx,maxx,miny,maxy;
-	
-	// C O N S T R U C T O R S
-	
-		private idx3d_TextureFactory() {} // Allow no instances
-		
-	// E X A M P L E   M A T E R I A L S
-	
-		public static idx3d_Texture SKY(int w, int h, float density)
-		{
-			int[] colors=new int[2];
-			colors[0]=0x003399;
-			colors[1]=0xFFFFFF;
-			return PERLIN(w,h, 0.5f, 2.8f*density, 8, 1024).colorize(
-				idx3d_Color.makeGradient(colors,1024));
-		}
-		
-		public static idx3d_Texture MARBLE(int w, int h, float density)
-		{
-			int[] colors=new int[3];
-			colors[0]=0x111111;
-			colors[1]=0x696070;
-			colors[2]=0xFFFFFF;
-			return WAVE(w,h,0.5f,0.64f*density,6,1024).colorize(
-				idx3d_Color.makeGradient(colors,1024));
-		}
-		
-		public static idx3d_Texture WOOD(int w, int h, float density)
-		{
-			int[] colors=new int[3];
-			colors[0]=0x332211;
-			colors[1]=0x523121;
-			colors[2]=0x996633;		
-			
-			return GRAIN(w,h, 0.5f, 3f*density, 3, 8, 1024).colorize(
-				idx3d_Color.makeGradient(colors,1024));
-		}
-		
-		public static idx3d_Texture RANDOM(int w, int h)
-		{
-			int nc=(int)idx3d_Math.random(2,6);
-			int[] colors=new int[nc];
-			for (int i=0;i<nc;i++)
-				colors[i]=idx3d_Color.random();
-			
-			float persistency=idx3d_Math.random(0.4f,0.9f);
-			float density=idx3d_Math.random(0.5f,3f);
-			int samples=(int)idx3d_Math.random(1,7f);
-			
-			return PERLIN(w,h, persistency, density, samples, 1024).colorize(
-				idx3d_Color.makeGradient(colors,1024));
-		}
-		
-		public static idx3d_Texture CHECKERBOARD(int w, int h, int cellbits, int oddColor, int evenColor)
-		{
-			idx3d_Texture t=new idx3d_Texture(w,h);
-			
-			int pos=0;
-			for (int y=0;y<h;y++)
-				for (int x=0;x<w;x++)
-					t.pixel[pos++]=(((x>>cellbits)+(y>>cellbits))&1)==0 ? evenColor : oddColor;
-					
-			return t;
-		}
+import org.jhotdraw.annotation.Nonnull;
 
-	// B A S E  T Y P E S
-		
-		public static idx3d_Texture PERLIN(int w, int h, float persistency, float density, int samples, int scale)
-		{
-			initNoiseBuffer();
-			idx3d_Texture t=new idx3d_Texture(w,h);
-			int pos=0;
-			float wavelength=(float)((w>h)?w:h)/density;
-			
-			for(int y=0;y<h;y++)
-				for(int x=0;x<w;x++)
-					t.pixel[pos++]=(int)((float)scale*perlin2d(x,y,wavelength,persistency,samples));
-			return t;
-		}
-		
-		public static idx3d_Texture WAVE(int w, int h, float persistency, float density, int samples, int scale)
-		{
-			initNoiseBuffer();
-			idx3d_Texture t=new idx3d_Texture(w,h);
-			int pos=0;
-			float wavelength=(float)((w>h)?w:h)/density;
-			
-			for(int y=0;y<h;y++)
-				for(int x=0;x<w;x++)
-					t.pixel[pos++]=(int)((double)scale*(Math.sin(32*perlin2d(x,y,wavelength,persistency,samples))*0.5+0.5));
-			return t;
-		}
-		
-		public static idx3d_Texture GRAIN(int w, int h, float persistency, float density, int samples, int levels, int scale)
-		// TIP: For wooden textures
-		{
-			initNoiseBuffer();
-			idx3d_Texture t=new idx3d_Texture(w,h);
-			int pos=0;
-			float wavelength=(float)((w>h)?w:h)/density;
-			float perlin;
-			
-			for(int y=0;y<h;y++)
-				for(int x=0;x<w;x++)
+/**
+ * Generates idx3d_Textures.
+ */
+@SuppressWarnings("cast")
+public class idx3d_TextureFactory {
+    public final static float pi = 3.1415926535f;
+    public final static float deg2rad = pi / 180;
+    private static float[][] noiseBuffer;
+    private static boolean noiseBufferInitialized = false;
+    static int minx, maxx, miny, maxy;
+
+    // C O N S T R U C T O R S
+
+    private idx3d_TextureFactory() {
+    } // Allow no instances
+
+    // E X A M P L E   M A T E R I A L S
+
+    @Nonnull
+    public static idx3d_Texture SKY(int w, int h, float density) {
+        int[] colors = new int[2];
+        colors[0] = 0x003399;
+        colors[1] = 0xFFFFFF;
+        return PERLIN(w, h, 0.5f, 2.8f * density, 8, 1024).colorize(
+                idx3d_Color.makeGradient(colors, 1024));
+    }
+
+    @Nonnull
+    public static idx3d_Texture MARBLE(int w, int h, float density) {
+        int[] colors = new int[3];
+        colors[0] = 0x111111;
+        colors[1] = 0x696070;
+        colors[2] = 0xFFFFFF;
+        return WAVE(w, h, 0.5f, 0.64f * density, 6, 1024).colorize(
+                idx3d_Color.makeGradient(colors, 1024));
+    }
+
+    @Nonnull
+    public static idx3d_Texture WOOD(int w, int h, float density) {
+        int[] colors = new int[3];
+        colors[0] = 0x332211;
+        colors[1] = 0x523121;
+        colors[2] = 0x996633;
+
+        return GRAIN(w, h, 0.5f, 3f * density, 3, 8, 1024).colorize(
+                idx3d_Color.makeGradient(colors, 1024));
+    }
+
+    @Nonnull
+    public static idx3d_Texture RANDOM(int w, int h) {
+        int nc = (int) idx3d_Math.random(2, 6);
+        int[] colors = new int[nc];
+        for (int i = 0; i < nc; i++) {
+            colors[i] = idx3d_Color.random();
+        }
+
+        float persistency = idx3d_Math.random(0.4f, 0.9f);
+        float density = idx3d_Math.random(0.5f, 3f);
+        int samples = (int) idx3d_Math.random(1, 7f);
+
+        return PERLIN(w, h, persistency, density, samples, 1024).colorize(
+                idx3d_Color.makeGradient(colors, 1024));
+    }
+
+    @Nonnull
+    public static idx3d_Texture CHECKERBOARD(int w, int h, int cellbits, int oddColor, int evenColor) {
+        idx3d_Texture t = new idx3d_Texture(w, h);
+
+        int pos = 0;
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                t.pixel[pos++] = (((x >> cellbits) + (y >> cellbits)) & 1) == 0 ? evenColor : oddColor;
+            }
+        }
+
+        return t;
+    }
+
+    // B A S E  T Y P E S
+
+    @Nonnull
+    public static idx3d_Texture PERLIN(int w, int h, float persistency, float density, int samples, int scale) {
+        initNoiseBuffer();
+        idx3d_Texture t = new idx3d_Texture(w, h);
+        int pos = 0;
+        float wavelength = (float) ((w > h) ? w : h) / density;
+
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                t.pixel[pos++] = (int) ((float) scale * perlin2d(x, y, wavelength, persistency, samples));
+            }
+        }
+        return t;
+    }
+
+    @Nonnull
+    public static idx3d_Texture WAVE(int w, int h, float persistency, float density, int samples, int scale) {
+        initNoiseBuffer();
+        idx3d_Texture t = new idx3d_Texture(w, h);
+        int pos = 0;
+        float wavelength = (float) ((w > h) ? w : h) / density;
+
+        for (int y = 0; y < h; y++) {
+            for (int x = 0; x < w; x++) {
+                t.pixel[pos++] = (int) ((double) scale * (Math.sin(32 * perlin2d(x, y, wavelength, persistency, samples)) * 0.5 + 0.5));
+            }
+        }
+        return t;
+    }
+
+    @Nonnull
+    public static idx3d_Texture GRAIN(int w, int h, float persistency, float density, int samples, int levels, int scale)
+    // TIP: For wooden textures
+    {
+        initNoiseBuffer();
+        idx3d_Texture t = new idx3d_Texture(w, h);
+        int pos = 0;
+        float wavelength = (float) ((w > h) ? w : h) / density;
+        float perlin;
+
+        for (int y = 0; y < h; y++)
+            for (int x = 0; x < w; x++)
 				{
 					perlin=(float)levels*perlin2d(x,y,wavelength,persistency,samples);
 					t.pixel[pos++]=(int)((float)scale*(perlin-(float)(int)perlin));

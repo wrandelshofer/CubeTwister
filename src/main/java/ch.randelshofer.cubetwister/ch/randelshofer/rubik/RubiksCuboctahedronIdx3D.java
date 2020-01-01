@@ -9,6 +9,7 @@ import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
+import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;
 import java.util.Arrays;
@@ -742,13 +743,14 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
     public int getStickerCount() {
         return 86;
     }
-    
+
+    @Nonnull
     public CubeAttributes createAttributes() {
         DefaultCubeAttributes a = new DefaultCubeAttributes(27, getStickerCount(), new int[] {9,9,9,9,9,9,4,4,4,4,4,4,4,4});
         Color partsFillColor = new Color(16, 16, 16);
         Color partsOutlineColor = Color.black;
         Color[] stickers = new Color[getStickerCount()];
-        
+
         Arrays.fill(stickers,  0,  9, new Color(140,0,15)); // Front: red
         Arrays.fill(stickers,  9, 18, new Color(255,210,0)); // Right: yellow
         Arrays.fill(stickers, 18, 27, new Color(0,115,47)); // Down: green
@@ -766,7 +768,7 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
         Arrays.fill(stickers, 82, 86, new Color(0,220,220)); // Down-Front-Left: cyan
 
         a.setStickerFillColor(stickers);
-        
+
         for (int i=0; i < 6; i++) {
             for (int j=0; j < 9; j++) {
                 int index = i*9+j;
@@ -779,20 +781,20 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
         }
         a.setPartFillColor(26, new Color(240, 240, 240));
         a.setPartOutlineColor(26, new Color(240, 240, 240));
-        
+
         return a;
     }
-    
-    protected void initActions(idx3d_Scene scene) {
+
+    protected void initActions(@Nonnull idx3d_Scene scene) {
         int i, j;
         PartAction action;
-        
+
         // Corners
-        for (i=0; i < 8; i++) {
+        for (i = 0; i < 8; i++) {
             int index = cornerOffset + i;
-            for (j=0; j < 3; j++) {
+            for (j = 0; j < 3; j++) {
                 action = new AbstractCube3D.PartAction(
-                index, j, getStickerIndexForPart(index, j)
+                        index, j, getStickerIndexForPart(index, j)
                 );
                 
                 scene.addMouseListener(parts[index].triangle(j), action);
@@ -860,7 +862,9 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
 
     public void setStickerBeveling(float newValue) {
     }
+
+    @Nonnull
     public CubeKind getKind() {
-       return CubeKind.CUBOCTAHEDRON;
+        return CubeKind.CUBOCTAHEDRON;
     }
 }

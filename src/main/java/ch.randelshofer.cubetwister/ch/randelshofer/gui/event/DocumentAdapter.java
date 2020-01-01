@@ -3,9 +3,14 @@
  */
 package ch.randelshofer.gui.event;
 
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
 
 /**
  * An abstract adapter class for receiving window events.
@@ -23,11 +28,13 @@ private JTextComponent textComponent;
      */
     private int isUpdating;
 
-    /** Creates new DocumentAdapter */
-    public DocumentAdapter(JTextComponent c) {
+    /**
+     * Creates new DocumentAdapter
+     */
+    public DocumentAdapter(@Nonnull JTextComponent c) {
         textComponent = c;
         c.getDocument().addDocumentListener(this);
-        
+
     }
 
     /**
@@ -64,14 +71,16 @@ private JTextComponent textComponent;
      */
     public void changedUpdate(DocumentEvent evt) {
         if (isUpdating++ == 0) {
-        documentChanged(evt);
+            documentChanged(evt);
         }
         isUpdating--;
     }
-    
+
     public void documentChanged(DocumentEvent evt) {
     }
-    public String getText(DocumentEvent evt) {
+
+    @Nullable
+    public String getText(@Nonnull DocumentEvent evt) {
         Document doc = evt.getDocument();
         String txt;
         try {
@@ -81,6 +90,7 @@ private JTextComponent textComponent;
         }
         return txt;
     }
+
     public void setText(String text) {
         if (isUpdating++ == 0) {
         textComponent.setText(text);

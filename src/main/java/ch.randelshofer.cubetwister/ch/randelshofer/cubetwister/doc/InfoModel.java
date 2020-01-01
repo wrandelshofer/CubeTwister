@@ -4,21 +4,14 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.beans.*;
-import ch.randelshofer.geom3d.*;
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.undo.*;
-import ch.randelshofer.gui.text.*;
+import ch.randelshofer.gui.text.DocumentProxy;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 
-import java.awt.event.*;
-import java.beans.*;
-import java.util.*;
-import java.text.*;
-import javax.swing.undo.*;
-import javax.swing.event.*;
-import javax.swing.text.*;
-import javax.swing.tree.*;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.text.Document;
+import java.text.DateFormat;
+import java.util.Date;
 
 /**
  * Holds general information: a title, a description field, an author field
@@ -38,9 +31,13 @@ public class InfoModel extends EntityModel {
     public static final String PROP_AUTHOR = "Author";
     public static final String PROP_DATE = "Date";
 
+    @Nullable
     protected DocumentProxy name = new DocumentProxy();
+    @Nullable
     protected DocumentProxy description = new DocumentProxy();
+    @Nullable
     protected DocumentProxy author = new DocumentProxy();
+    @Nullable
     protected DocumentProxy date = new DocumentProxy();
 
     /** 
@@ -61,9 +58,12 @@ public class InfoModel extends EntityModel {
         date.addUndoableEditListener(this);
     }
 
+    @Nullable
     public String getName() {
         return name.getText();
     }
+
+    @Nullable
     public Document getNameDocument() {
         return name;
     }
@@ -80,9 +80,12 @@ public class InfoModel extends EntityModel {
     /**
      * Returns the description property.
      */
+    @Nullable
     public String getDescription() {
         return description.getText();
     }
+
+    @Nullable
     public DocumentProxy getDescriptionDocument() {
         return description;
     }
@@ -90,14 +93,16 @@ public class InfoModel extends EntityModel {
     /**
      * Sets the description property.
      */
-    public void setDescription(String value) {
+    public void setDescription(@Nullable String value) {
         String oldValue = description.getText();
-        if (value != null && value.equals(oldValue))
+        if (value != null && value.equals(oldValue)) {
             return;
-        
+        }
+
         basicSetDescription(value);
         firePropertyChange(PROP_DESCRIPTION, oldValue, value);
     }
+
     public void basicSetDescription(String value) {
         description.setText(value);
     }
@@ -105,9 +110,12 @@ public class InfoModel extends EntityModel {
     /**
      * Returns the author property.
      */
+    @Nullable
     public String getAuthor() {
         return author.getText();
     }
+
+    @Nullable
     public DocumentProxy getAuthorDocument() {
         return author;
     }
@@ -127,9 +135,12 @@ public class InfoModel extends EntityModel {
     /**
      * Returns the date property.
      */
+    @Nullable
     public String getDate() {
         return date.getText();
     }
+
+    @Nullable
     public DocumentProxy getDateDocument() {
         return date;
     }
@@ -142,26 +153,32 @@ public class InfoModel extends EntityModel {
         basicSetDate(value);
         firePropertyChange(PROP_DATE, oldValue, value);
     }
+
     public void basicSetDate(String value) {
         date.setText(value);
     }
+
     /**
      * An undoable edit happened
      */
-    public void undoableEditHappened(UndoableEditEvent e) {
+    public void undoableEditHappened(@Nonnull UndoableEditEvent e) {
         if (e.getSource() == name) {
             fireNodeChanged();
         }
         super.undoableEditHappened(e);
     }
-    @Override public Object getUserObject() {
+
+    @Nullable
+    @Override
+    public Object getUserObject() {
         return getName();
     }
     
     @Override public void setUserObject(Object obj) {
         setName((String) obj);
     }
-    
+
+    @Nullable
     @Override public String toString() {
         return getName();
     }

@@ -3,13 +3,17 @@
  */
 package ch.randelshofer.geom3d;
 
-import java.util.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  * This node applies its Transform3D to all its children.
  *
  * @author Werner Randelshofer
  */
 public class TransformNode3D implements Node3D {
+    @Nonnull
     private ArrayList<Node3D> children = new ArrayList<Node3D>();
     private Transform3D transform = new Transform3D();
     private boolean isVisible = true;
@@ -42,7 +46,7 @@ public class TransformNode3D implements Node3D {
      *                  and added to the vector.
      * @param   observer Coords of the observer.
      */
-    public void addVisibleFacesTo(List<Face3D> v, Transform3D t, Point3D observer) {
+    public void addVisibleFacesTo(List<Face3D> v, @Nonnull Transform3D t, Point3D observer) {
         if (isVisible) {
             Transform3D t2 = (Transform3D) transform.clone();
             t2.concatenate(t);

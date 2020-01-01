@@ -30,6 +30,8 @@
 package nanoxml;
 
 
+import org.jhotdraw.annotation.Nullable;
+
 /**
  * An XMLParseException is thrown when an error occures while parsing an XML
  * string.
@@ -74,12 +76,11 @@ public class XMLParseException extends RuntimeException {
      * <ul><li>getLineNr() => NO_LINE
      * </ul></dd></dl><dl>
      */
-    public XMLParseException(String name, String message)
-    {
+    public XMLParseException(@Nullable String name, String message) {
         super("XML Parse Exception during parsing of "
-              + ((name == null) ? "the XML definition"
-                                : ("a " + name + " element"))
-              + ": " + message);
+                + ((name == null) ? "the XML definition"
+                : ("a " + name + " element"))
+                + ": " + message);
         this.lineNr = XMLParseException.NO_LINE;
     }
 
@@ -100,12 +101,11 @@ public class XMLParseException extends RuntimeException {
      * <ul><li>getLineNr() => lineNr
      * </ul></dd></dl><dl>
      */
-    public XMLParseException(String name, int lineNr, String message)
-    {
+    public XMLParseException(@Nullable String name, int lineNr, String message) {
         super("XML Parse Exception during parsing of "
-              + ((name == null) ? "the XML definition"
-                                : ("a " + name + " element"))
-              + " at line " + lineNr + ": " + message);
+                + ((name == null) ? "the XML definition"
+                : ("a " + name + " element"))
+                + " at line " + lineNr + ": " + message);
         this.lineNr = lineNr;
     }
 

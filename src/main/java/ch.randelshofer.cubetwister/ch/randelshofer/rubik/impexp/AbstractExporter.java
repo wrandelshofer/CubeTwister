@@ -15,6 +15,7 @@ import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -33,6 +34,7 @@ public class AbstractExporter extends JPanel implements Exporter {
     private final static long serialVersionUID = 1L;
     protected DocumentModel documentModel;
 
+    @Nonnull
     @Override
     public JComponent getComponent() {
         return this;
@@ -65,20 +67,21 @@ public class AbstractExporter extends JPanel implements Exporter {
     public void setDocumentModel(DocumentModel documentModel) {
         this.documentModel = documentModel;
     }
-    
+
     /**
      * Creates script records.
      */
-    public ArrayList<ScriptRecord> createScriptRecords(ProgressObserver p) throws IOException {
+    @Nonnull
+    public ArrayList<ScriptRecord> createScriptRecords(@Nonnull ProgressObserver p) throws IOException {
         p.setMaximum(documentModel.getScripts().getChildCount());
         int progress = 0;
         RubiksCube cube = new RubiksCube();
-        
+
         ArrayList<ScriptRecord> records = new ArrayList<ScriptRecord>(documentModel.getScripts().getChildCount());
-        
+
         for (Enumeration i = documentModel.getScripts().children(); i.hasMoreElements(); ) {
             ScriptModel item = (ScriptModel) i.nextElement();
-            
+
             p.setProgress(++progress);
             p.setNote("Exporting \""+item.getName()+"\"");
             
@@ -121,20 +124,21 @@ public class AbstractExporter extends JPanel implements Exporter {
         }
         return records;
     }
-    
+
     /**
      * Creates translated script records.
      */
-    public ArrayList createScriptRecords(NotationModel translator, ProgressObserver p) throws IOException {
-        p.setMaximum(documentModel.getScripts().getChildCount()+1);
+    @Nonnull
+    public ArrayList createScriptRecords(@Nonnull NotationModel translator, @Nonnull ProgressObserver p) throws IOException {
+        p.setMaximum(documentModel.getScripts().getChildCount() + 1);
         int progress = 0;
-        
+
         RubiksCube cube = new RubiksCube();
         ArrayList<ScriptRecord> records = new ArrayList<ScriptRecord>(documentModel.getScripts().getChildCount());
-        
+
         for (Enumeration i = documentModel.getScripts().children(); i.hasMoreElements(); ) {
             ScriptModel item = (ScriptModel) i.nextElement();
-            
+
             p.setProgress(++progress);
             p.setNote("Exporting \""+item.getName()+"\"");
             

@@ -18,6 +18,9 @@
  */
 package org.apache.commons.compress.archivers.tar;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -44,7 +47,9 @@ class TarBuffer
     private int m_currRecIdx;
     private boolean m_debug;
 
+    @Nullable
     private InputStream m_input;
+    @Nullable
     private OutputStream m_output;
     private int m_recordSize;
     private int m_recsPerBlock;
@@ -195,6 +200,7 @@ class TarBuffer
      * @return The record data.
      * @exception IOException Description of Exception
      */
+    @Nullable
     public byte[] readRecord()
         throws IOException
     {
@@ -266,17 +272,15 @@ class TarBuffer
      *
      * @param record The record data to write to the archive.
      */
-    public void writeRecord( final byte[] record )
-        throws IOException
-    {
-        if( m_debug )
-        {
+    public void writeRecord(@Nonnull final byte[] record)
+            throws IOException {
+        if (m_debug) {
             final String message = "WriteRecord: recIdx = " + m_currRecIdx +
-                " blkIdx = " + m_currBlkIdx;
-            debug( message );
+                    " blkIdx = " + m_currBlkIdx;
+            debug(message);
         }
 
-        if( null == m_output )
+        if (null == m_output)
         {
             final String message = "writing to an input buffer";
             throw new IOException( message );
@@ -311,17 +315,15 @@ class TarBuffer
      * @param buffer The buffer containing the record data to write.
      * @param offset The offset of the record data within buf.
      */
-    public void writeRecord( final byte[] buffer, final int offset )
-        throws IOException
-    {
-        if( m_debug )
-        {
+    public void writeRecord(@Nonnull final byte[] buffer, final int offset)
+            throws IOException {
+        if (m_debug) {
             final String message = "WriteRecord: recIdx = " + m_currRecIdx +
-                " blkIdx = " + m_currBlkIdx;
-            debug( message );
+                    " blkIdx = " + m_currBlkIdx;
+            debug(message);
         }
 
-        if( null == m_output )
+        if (null == m_output)
         {
             final String message = "writing to an input buffer";
             throw new IOException( message );

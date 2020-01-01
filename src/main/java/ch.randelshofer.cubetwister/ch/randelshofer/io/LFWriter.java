@@ -3,7 +3,11 @@
  */
 package ch.randelshofer.io;
 
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.io.FilterWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * A character-output stream that converts line terminators into a configurable
@@ -21,18 +25,19 @@ public class LFWriter extends FilterWriter {
     
     /** If the next character is a line feed, skip it */
     private boolean skipLF;
-    
+
     /**
      * Create a new line-numbering writer.
      */
-    public LFWriter(Writer out) {
+    public LFWriter(@Nonnull Writer out) {
         super(out);
         lineSeparator = System.getProperty("line.separator");
     }
+
     /**
      * Create a new line-numbering writer.
      */
-    public LFWriter(Writer out, String lineSeparator) {
+    public LFWriter(@Nonnull Writer out, String lineSeparator) {
         super(out);
         this.lineSeparator = lineSeparator;
     }
@@ -72,19 +77,18 @@ public class LFWriter extends FilterWriter {
                 break;
         }
     }
-    
+
     /**
      * Write a portion of an array of characters.
      *
-     * @param  cbuf  Buffer of characters to be written
-     * @param  off   Offset from which to start reading characters
-     * @param  len   Number of characters to be written
-     *
-     * @exception  IOException  If an I/O error occurs
+     * @param cbuf Buffer of characters to be written
+     * @param off  Offset from which to start reading characters
+     * @param len  Number of characters to be written
+     * @throws IOException If an I/O error occurs
      */
-    public void write(char cbuf[], int off, int len) throws IOException {
+    public void write(@Nonnull char cbuf[], int off, int len) throws IOException {
         int end = off + len;
-        for (int i=off; i < end; i++) {
+        for (int i = off; i < end; i++) {
             switch (cbuf[i]) {
                 case '\r':
                     out.write(cbuf, off, i - off);
@@ -116,9 +120,9 @@ public class LFWriter extends FilterWriter {
      * @param  off  Offset from which to start reading characters
      * @param  len  Number of characters to be written
      *
-     * @exception  IOException  If an I/O error occurs
+     * @exception IOException  If an I/O error occurs
      */
-    public void write(String str, int off, int len) throws IOException {
+    public void write(@Nonnull String str, int off, int len) throws IOException {
         write(str.toCharArray(), off, len);
     }
 }

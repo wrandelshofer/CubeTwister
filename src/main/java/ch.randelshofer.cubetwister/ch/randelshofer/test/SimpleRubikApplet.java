@@ -3,7 +3,13 @@
  */
 package ch.randelshofer.test;
 
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.Cube3DAdapter;
+import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.RubiksCubeIdx3D;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.JApplet;
 
 /**
@@ -34,7 +40,7 @@ public class SimpleRubikApplet extends JApplet {
         cube3d.addCube3DListener(new Cube3DAdapter() {
 
             @Override
-            public void actionPerformed(Cube3DEvent evt) {
+            public void actionPerformed(@Nonnull Cube3DEvent evt) {
                 evt.applyTo(evt.getCube3D().getCube());
             }
         });

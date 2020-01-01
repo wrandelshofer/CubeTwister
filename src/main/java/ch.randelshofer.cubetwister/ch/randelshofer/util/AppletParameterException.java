@@ -3,6 +3,9 @@
  */
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 /**
  * AppletParameterException.
  *
@@ -27,16 +30,16 @@ public class AppletParameterException extends Exception {
      */
     private int end;
 
-    public AppletParameterException(String name, String value) {
-        this(name, value, 0, value==null?0:value.length());
+    public AppletParameterException(String name, @Nullable String value) {
+        this(name, value, 0, value == null ? 0 : value.length());
     }
 
-    public AppletParameterException(String message, String name, String value) {
-        this(message, name, value, 0, value==null?0:value.length());
+    public AppletParameterException(String message, String name, @Nullable String value) {
+        this(message, name, value, 0, value == null ? 0 : value.length());
     }
 
-    public AppletParameterException(String name, String value, Throwable cause) {
-        this(name, value, 0, value==null?0:value.length(), cause);
+    public AppletParameterException(String name, @Nullable String value, Throwable cause) {
+        this(name, value, 0, value == null ? 0 : value.length(), cause);
     }
 
     public AppletParameterException(String name, String value, int start, int end) {
@@ -52,9 +55,9 @@ public class AppletParameterException extends Exception {
         this.end = end;
     }
 
-    public AppletParameterException(String name, String value, int start, int end, Throwable cause) {
-        this("The Applet parameter \"" + name + "\" has an illegal value."+(cause==null?"":" "+cause.getMessage()),
-                name, value, 0, value==null?0:value.length(), cause);
+    public AppletParameterException(String name, @Nullable String value, int start, int end, @Nullable Throwable cause) {
+        this("The Applet parameter \"" + name + "\" has an illegal value." + (cause == null ? "" : " " + cause.getMessage()),
+                name, value, 0, value == null ? 0 : value.length(), cause);
     }
 
     public AppletParameterException(String message, String name, String value, int start, int end, Throwable cause) {
@@ -85,6 +88,7 @@ public class AppletParameterException extends Exception {
         return super.getMessage();
     }
 
+    @Nonnull
     @Override
     public String getMessage() {
         if (value==null || start == 0 && end == value.length()) {
@@ -95,7 +99,7 @@ public class AppletParameterException extends Exception {
             return super.getMessage() + " Value=\"" +
                     value.substring(0, start) + "[" +
                     value.substring(start, end+1) + "]" +
-                   ((end < value.length()) ? value.substring(end+1) : "")+
+                    ((end < value.length()) ? value.substring(end+1) : "")+
                     "\"";
         }
     }

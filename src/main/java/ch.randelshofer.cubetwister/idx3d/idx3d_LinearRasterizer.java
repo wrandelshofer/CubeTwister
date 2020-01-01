@@ -35,6 +35,9 @@
 // | -----------------------------------------------------------------
 package idx3d;
 
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 /**
  * Linear rasterizer stage of the render pipeline.
  * <p>
@@ -62,10 +65,15 @@ public final class idx3d_LinearRasterizer extends idx3d_Rasterizer {
     // END PATCH texture transparency
     private int reflectivity = 0;
     private int refraction = 0;
+    @Nullable
     private idx3d_Texture texture = null;
+    @Nullable
     private int[] envmap = null;
+    @Nullable
     private int[] diffuse = null;
+    @Nullable
     private int[] specular = null;
+    @Nullable
     private short[] refractionMap = null;
     private int tw = 0;
     private int th = 0;
@@ -90,29 +98,30 @@ public final class idx3d_LinearRasterizer extends idx3d_Rasterizer {
             xL, xR, xBase, zBase, xMax, yMax, dxL, dxR, dzBase,
             nx1, nx2, nx3, nx4, ny1, ny2, ny3, ny4,
             nxBase, nyBase,
-            dnx4, dny4,
-            dnx, dny, nx, ny,
-            dnxBase, dnyBase,
-            tx1, tx2, tx3, tx4, ty1, ty2, ty3, ty4,
-            txBase, tyBase,
-            dtx4, dty4,
-            dtx, dty, tx, ty,
-            dtxBase, dtyBase,
-            idyBase;
+                    dnx4, dny4,
+                    dnx, dny, nx, ny,
+                    dnxBase, dnyBase,
+                    tx1, tx2, tx3, tx4, ty1, ty2, ty3, ty4,
+                    txBase, tyBase,
+                    dtx4, dty4,
+                    dtx, dty, tx, ty,
+                    dtxBase, dtyBase,
+                    idyBase;
 
-    idx3d_Screen screen;
-    int[] zBuffer;
-    int[] idBuffer;
+    @Nullable idx3d_Screen screen;
+    @Nullable int[] zBuffer;
+    @Nullable int[] idBuffer;
     int width, height;
     boolean useIdBuffer;
     boolean antialias;
     final int zFar = 0xFFFFFFF;
     int currentId = 0;
 
+    @Nullable
     private idx3d_Lightmap lightmap;
 
     // Constructor
-    public idx3d_LinearRasterizer(idx3d_RenderPipeline pipeline) {
+    public idx3d_LinearRasterizer(@Nullable idx3d_RenderPipeline pipeline) {
         // BEGIN PATCH Perspective correct rasterizer
         if (pipeline != null) {
             setPipeline(pipeline);
@@ -125,14 +134,14 @@ public final class idx3d_LinearRasterizer extends idx3d_Rasterizer {
     }
 
     // BEGIN PATCH Perspective correct rasterizer
-    public void setPipeline(idx3d_RenderPipeline pipeline) {
+    public void setPipeline(@Nonnull idx3d_RenderPipeline pipeline) {
         rebuildReferences(pipeline);
         loadLightmap(pipeline.lightmap);
     }
         // END PATCH Perspective correct rasterizer
 
     // References    
-    void rebuildReferences(idx3d_RenderPipeline pipeline) {
+    void rebuildReferences(@Nonnull idx3d_RenderPipeline pipeline) {
         screen = pipeline.screen;
         zBuffer = pipeline.zBuffer;
         idBuffer = pipeline.idBuffer;
@@ -157,7 +166,7 @@ public final class idx3d_LinearRasterizer extends idx3d_Rasterizer {
     }
 
     // Lightmap loader
-    public void loadLightmap(idx3d_Lightmap lm) {
+    public void loadLightmap(@Nullable idx3d_Lightmap lm) {
         this.lightmap = lm;
         if (lm == null) {
             return;
@@ -169,7 +178,7 @@ public final class idx3d_LinearRasterizer extends idx3d_Rasterizer {
     }
 
     // Material loader
-    public void loadMaterial(idx3d_InternalMaterial material) {
+    public void loadMaterial(@Nonnull idx3d_InternalMaterial material) {
         color = material.color;
         transparency = material.transparency;
         // BEGIN PATCH texture transparency
@@ -208,7 +217,7 @@ public final class idx3d_LinearRasterizer extends idx3d_Rasterizer {
     }
 
     @Override
-    public void render(idx3d_Triangle tri) {
+    public void render(@Nonnull idx3d_Triangle tri) {
         if (!ready) {
             return;
         }
@@ -697,13 +706,13 @@ public final class idx3d_LinearRasterizer extends idx3d_Rasterizer {
         }
     }
 
-    private void drawWireframe(idx3d_Triangle tri, int defaultcolor) {
+    private void drawWireframe(@Nonnull idx3d_Triangle tri, int defaultcolor) {
         drawLine(tri.p1, tri.p2, defaultcolor);
         drawLine(tri.p2, tri.p3, defaultcolor);
         drawLine(tri.p3, tri.p1, defaultcolor);
     }
 
-    private void drawLine(idx3d_Vertex a, idx3d_Vertex b, int color) {
+    private void drawLine(@Nonnull idx3d_Vertex a, @Nonnull idx3d_Vertex b, int color) {
         idx3d_Vertex temp;
         if ((a.clipcode & b.clipcode) != 0) {
             return;

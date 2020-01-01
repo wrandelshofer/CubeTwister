@@ -5,9 +5,14 @@ package ch.randelshofer.geom3d;
 
 import ch.randelshofer.gui.event.SwipeEvent;
 import ch.randelshofer.gui.event.SwipeListener;
-import java.awt.*;
-import java.awt.event.*;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.event.EventListenerList;
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 
 /**
  * Represents a planar and convex polygon in 3 dimensional space.
@@ -131,7 +136,7 @@ public class Face3D implements Comparable<Face3D> {
         this.action = action;
     }
 
-    public boolean handleEvent(MouseEvent evt) {
+    public boolean handleEvent(@Nonnull MouseEvent evt) {
         if (action != null) {
 //System.out.println("Face3D evt.modifiers:"+evt.getModifiers()+" ex:"+evt.getModifiersEx());
 // FIXME - Find another way to pass modifiersEx to actionListener.
@@ -145,7 +150,7 @@ public class Face3D implements Comparable<Face3D> {
         return action;
     }
 
-    public boolean isVisible(Point3D observer) {
+    public boolean isVisible(@Nonnull Point3D observer) {
         double sx, sy, sz;
         double q;
 
@@ -172,13 +177,13 @@ public class Face3D implements Comparable<Face3D> {
 
     /**
      * Returns ambient light intensity + the intensity of this
-     * face's diffuse reflection to the light source. 
+     * face's diffuse reflection to the light source.
      * If the light source is behind the face, the ambient
      * light intensity is returned.
      * FIXME: The brightness must be determined before a
      * perspective distortion is applied to the face.
      */
-    public double getBrightness(Point3D light, double lightSourceIntensity, double ambientLightIntensity) {
+    public double getBrightness(@Nonnull Point3D light, double lightSourceIntensity, double ambientLightIntensity) {
         getNormal();
 
         // Vector from face to lightsource
@@ -211,7 +216,7 @@ public class Face3D implements Comparable<Face3D> {
     }
      */
 
-    public int compareTo(Face3D that) {
+    public int compareTo(@Nonnull Face3D that) {
         double c;
         /*
         // Quick comparison for faces that do not
@@ -393,7 +398,7 @@ public class Face3D implements Comparable<Face3D> {
     // notification on this event type.  The event instance
     // is lazily created using the parameters passed into
     // the fire method.
-    protected void fireSwipeEvent(MouseEvent evt, float angle) {
+    protected void fireSwipeEvent(@Nonnull MouseEvent evt, float angle) {
         if (listenerList != null) {
             SwipeEvent swipeEvent = null;
             // Guaranteed to return a non-null array

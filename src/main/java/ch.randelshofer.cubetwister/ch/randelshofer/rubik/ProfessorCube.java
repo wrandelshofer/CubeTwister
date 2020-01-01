@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.rubik;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Represents the state of a 5-times sliced cube (Professor Cube) by the 
  * location and orientation of its parts.
@@ -1299,6 +1301,7 @@ public class ProfessorCube extends AbstractCube {
         }
     }
 
+    @Nonnull
     public int[][] toStickers() {
         throw new UnsupportedOperationException("Not supported yet.");
     }

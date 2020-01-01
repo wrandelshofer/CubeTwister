@@ -8,6 +8,8 @@
  */
 package ch.randelshofer.rubik.solver;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * The FaceletCube represents the cube by the markings
  * of the 54 individual facelets.  The FaceletCube can
@@ -115,8 +117,10 @@ public class FaceletCube extends Object {
     private final static int BR = facesToEdge(B,R);
 
     /** The 9 markings for each of the 6 faces. */
+    @Nonnull
     private char[] faceletMarkings = new char[6*9];
     /** Markings mapped to each face. */
+    @Nonnull
     private char[] faceMarkings = new char[6+1];
 
     /**
@@ -207,13 +211,18 @@ public class FaceletCube extends Object {
     };
 
     /** The resulting cubie permutation and orientations */
+    @Nonnull
     private int[] cornerCubiePermutations = new int[Cube.NUMBER_OF_CORNER_CUBIES];
+    @Nonnull
     private int[] cornerCubieOrientations = new int[Cube.NUMBER_OF_CORNER_CUBIES];
 
+    @Nonnull
     private int[] edgeCubiePermutations = new int[Cube.NUMBER_OF_EDGE_CUBIES];
+    @Nonnull
     private int[] edgeCubieOrientations = new int[Cube.NUMBER_OF_EDGE_CUBIES];
 
     /** Error messages. */
+    @Nonnull
     private static String[] errorText = {
         "",
         "Facelet marking does not match any center marking",
@@ -239,8 +248,10 @@ public class FaceletCube extends Object {
         }
     }
 
-    /** Validate markings, permutation, and parity. */
-    public int validate(Cube cube) {
+    /**
+     * Validate markings, permutation, and parity.
+     */
+    public int validate(@Nonnull Cube cube) {
         int status;
 
         // Must validate centers first!
@@ -296,6 +307,8 @@ public class FaceletCube extends Object {
     public void dump() {
         System.out.println(toString());
     }
+
+    @Nonnull
     public String toString() {
         StringBuilder b = new StringBuilder();
         b.append("FaceletCube(\n  cornerPerm:{");

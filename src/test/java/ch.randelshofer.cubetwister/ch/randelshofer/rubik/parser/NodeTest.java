@@ -3,6 +3,7 @@ package ch.randelshofer.rubik.parser;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.notation.DefaultNotation;
+import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -13,9 +14,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class NodeTest {
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testApply() {
         return Arrays.asList(
@@ -138,10 +140,10 @@ class NodeTest {
 
     private static boolean html = false;
 
-    void doApply(String script, String expected) throws Exception {
+    void doApply(@Nonnull String script, String expected) throws Exception {
         if (!html) {
-              //  System.out.println("doApply script: " + script);
-              //  System.out.println("  expected: " + expected);
+            //  System.out.println("doApply script: " + script);
+            //  System.out.println("  expected: " + expected);
         }
 
         DefaultNotation notation = new DefaultNotation();
@@ -168,12 +170,14 @@ class NodeTest {
         assertEquals(expected, actual);
     }
 
-    private String htmlEscape(String actual) {
+    @Nonnull
+    private String htmlEscape(@Nonnull String actual) {
         return actual.replaceAll("\n", "\\\\n")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;");
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;");
     }
 
+    @Nonnull
     @TestFactory
     public List<DynamicTest> testResolvedIterable() {
         return Arrays.asList(

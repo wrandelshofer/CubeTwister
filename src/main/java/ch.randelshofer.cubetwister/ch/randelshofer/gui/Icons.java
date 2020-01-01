@@ -4,13 +4,13 @@
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.awt.geom.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.Icon;
+import java.awt.Color;
+import java.awt.Polygon;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-
-import javax.swing.*;
 
 /**
  * Provides constants for commonly used Icons.
@@ -45,7 +45,9 @@ public class Icons {
     public final static int PLAYER_HOME_PLACARD = 21;
     public final static int EDIT_ADD_PLACARD = 22;
 
+    @Nonnull
     private static Icon[] icons = new Icon[23];
+    @Nonnull
     private static String[] names = {
             "PlayerStart.png",
             "PlayerStop.png",

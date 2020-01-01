@@ -3,6 +3,8 @@
  */
 package ch.randelshofer.util;
 
+import org.jhotdraw.annotation.Nullable;
+
 import javax.swing.SwingUtilities;
 
 /**
@@ -39,6 +41,7 @@ public abstract class RunnableWorker<T> implements Runnable {
     /**
      * Compute the value to be returned by the <code>get</code> method.
      */
+    @Nullable
     public abstract T construct();
     /**
      * Called on the event dispatching thread (not on the worker thread)

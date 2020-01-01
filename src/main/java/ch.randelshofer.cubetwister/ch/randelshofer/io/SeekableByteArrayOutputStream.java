@@ -3,11 +3,14 @@
  */
 package ch.randelshofer.io;
 
+import org.jhotdraw.annotation.Nonnull;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Arrays;
-import static java.lang.Math.*;
+
+import static java.lang.Math.max;
 /**
  * {@code SeekableByteArrayOutputStream}.
  *
@@ -62,19 +65,19 @@ public class SeekableByteArrayOutputStream extends ByteArrayOutputStream {
      * Writes <code>len</code> bytes from the specified byte array
      * starting at offset <code>off</code> to this byte array output stream.
      *
-     * @param   b     the data.
-     * @param   off   the start offset in the data.
-     * @param   len   the number of bytes to write.
+     * @param b   the data.
+     * @param off the start offset in the data.
+     * @param len the number of bytes to write.
      */
     @Override
-    public synchronized void write(byte b[], int off, int len) {
-	if ((off < 0) || (off > b.length) || (len < 0) ||
-            ((off + len) > b.length) || ((off + len) < 0)) {
-	    throw new IndexOutOfBoundsException();
-	} else if (len == 0) {
-	    return;
-	}
-        int newcount = max(pos+len,count);
+    public synchronized void write(@Nonnull byte b[], int off, int len) {
+        if ((off < 0) || (off > b.length) || (len < 0) ||
+                ((off + len) > b.length) || ((off + len) < 0)) {
+            throw new IndexOutOfBoundsException();
+        } else if (len == 0) {
+            return;
+        }
+        int newcount = max(pos + len, count);
         if (newcount > buf.length) {
             buf = Arrays.copyOf(buf, Math.max(buf.length << 1, newcount));
         }
@@ -137,7 +140,7 @@ public class SeekableByteArrayOutputStream extends ByteArrayOutputStream {
      * stream.
      * @param out
      */
-    public void toOutputStream(OutputStream out) throws IOException {
+    public void toOutputStream(@Nonnull OutputStream out) throws IOException {
         out.write(buf, 0, count);
     }
 

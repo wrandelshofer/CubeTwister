@@ -5,7 +5,11 @@
 
 package ch.randelshofer.io;
 
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 /**
  *
  * @author Werner Randelshofer
@@ -15,12 +19,14 @@ public class ByteFilterInputStream extends FilterInputStream {
     public ByteFilterInputStream(InputStream in) {
         super(in);
     }
-    
-    public int read(byte[] b, int off, int len) throws IOException {
+
+    public int read(@Nonnull byte[] b, int off, int len) throws IOException {
         int count = in.read(b, off, len);
         if (count > 0) {
-            for (int i=off; i < off + count; i++) {
-                if (b[i] == 0x0b) b[i] = 0x20;
+            for (int i = off; i < off + count; i++) {
+                if (b[i] == 0x0b) {
+                    b[i] = 0x20;
+                }
             }
         }
         return count;

@@ -7,6 +7,8 @@ import ch.randelshofer.gui.event.SwipeEvent;
 import ch.randelshofer.gui.event.SwipeListener;
 import ch.randelshofer.util.Dispatcher;
 import ch.randelshofer.util.PooledSequentialDispatcher;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
 import org.monte.media.player.Animator;
@@ -31,11 +33,15 @@ import java.beans.PropertyChangeListener;
 public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyChangeListener,
         ChangeListener {
 
+    @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
     protected ChangeEvent changeEvent;
+    @Nullable
     private Cube cube;
+    @Nullable
     protected CubeAttributes attributes;
     protected boolean isAnimated;
+    @Nullable
     private Animator animator;
     private boolean isShowGhostParts;
     private Object lock = new Object();
@@ -55,7 +61,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
         }
 
         @Override
-        public void faceSwiped(SwipeEvent evt) {
+        public void faceSwiped(@Nonnull SwipeEvent evt) {
 //System.out.println("AbstractCube3D.faceSwiped evt:"+SwipeEvent.getModifiersExText(evt.getModifiersEx())+" @"+evt.hashCode()+" t:"+evt.getWhen());
             int fa = (int) ((evt.getAngle() + angle) / Math.PI * 180) % 360;
             if (fa < 0) {
@@ -73,6 +79,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
                     partIndex, orientation, sideIndex, stickerIndex, direction, evt));
         }
 
+        @Nonnull
         @Override
         public String toString() {
             return getClass().getName() + "@" + System.identityHashCode(this) + " [partIndex=" + partIndex + ",orientation=" + orientation + ",stickerIndex=" + stickerIndex + "]";
@@ -100,24 +107,25 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
          * getModifiers() is called!
          */
         @Override
-        public void actionPerformed(ActionEvent evt) {
+        public void actionPerformed(@Nonnull ActionEvent evt) {
             int sideIndex = (orientation == -1) ? -1 : AbstractCube3D.this.cube.getPartFace(partIndex, orientation);
             // System.out.println("PartAction part="+partIndex+" sticker="+stickerIndex+" orientation:"+orientation+" side:"+sideIndex);
             fireActionPerformed(
                     new Cube3DEvent(
-                    AbstractCube3D.this,
-                    // Fixme - When we get here, ActionEvent.getModifiers actually returns
-                    // modifiersEx!!!
-                    partIndex, orientation, sideIndex, stickerIndex, evt.getModifiers()));
+                            AbstractCube3D.this,
+                            // Fixme - When we get here, ActionEvent.getModifiers actually returns
+                            // modifiersEx!!!
+                            partIndex, orientation, sideIndex, stickerIndex, evt.getModifiers()));
         }
 
+        @Nonnull
         @Override
         public String toString() {
             return getClass().getName() + "@" + System.identityHashCode(this) + " [partIndex=" + partIndex + ",orientation=" + orientation + ",stickerIndex=" + stickerIndex + "]";
         }
 
         @Override
-        public void mouseClicked(MouseEvent evt) {
+        public void mouseClicked(@Nonnull MouseEvent evt) {
             int sideIndex = (orientation == -1) ? -1 : AbstractCube3D.this.cube.getPartFace(partIndex, orientation);
             fireActionPerformed(new Cube3DEvent(
                     AbstractCube3D.this,
@@ -126,7 +134,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
         }
 
         @Override
-        public void mousePressed(MouseEvent evt) {
+        public void mousePressed(@Nonnull MouseEvent evt) {
             int sideIndex = (orientation == -1) ? -1 : AbstractCube3D.this.cube.getPartFace(partIndex, orientation);
             fireMousePressed(new Cube3DEvent(
                     AbstractCube3D.this,
@@ -134,7 +142,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
         }
 
         @Override
-        public void mouseReleased(MouseEvent evt) {
+        public void mouseReleased(@Nonnull MouseEvent evt) {
             int sideIndex = (orientation == -1) ? -1 : AbstractCube3D.this.cube.getPartFace(partIndex, orientation);
             fireMouseReleased(new Cube3DEvent(
                     AbstractCube3D.this,
@@ -142,7 +150,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
         }
 
         @Override
-        public void mouseEntered(MouseEvent evt) {
+        public void mouseEntered(@Nonnull MouseEvent evt) {
             int sideIndex = (orientation == -1) ? -1 : AbstractCube3D.this.cube.getPartFace(partIndex, orientation);
             fireMouseEntered(new Cube3DEvent(
                     AbstractCube3D.this,
@@ -150,7 +158,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
         }
 
         @Override
-        public void mouseExited(MouseEvent evt) {
+        public void mouseExited(@Nonnull MouseEvent evt) {
             int sideIndex = (orientation == -1) ? -1 : AbstractCube3D.this.cube.getPartFace(partIndex, orientation);
             fireMouseExited(new Cube3DEvent(
                     AbstractCube3D.this,
@@ -248,6 +256,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
         }
     }
 
+    @Nullable
     @Override
     public Animator getAnimator() {
         return animator;
@@ -279,7 +288,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
      * Sets the underlying permutation model.
      */
     @Override
-    public void setCube(Cube cube) {
+    public void setCube(@Nullable Cube cube) {
         if (cube != null && cube.getLayerCount() != layerCount) {
             throw new IllegalArgumentException("cube has " + cube.getLayerCount() + " layers, but should have " + layerCount + " layers.");
         }
@@ -303,6 +312,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
     /**
      * Gets the underlying permutation model.
      */
+    @Nullable
     @Override
     public Cube getCube() {
         return cube;
@@ -337,6 +347,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
     /**
      * Gets cube attributees.
      */
+    @Nullable
     @Override
     public CubeAttributes getAttributes() {
         return attributes;
@@ -380,7 +391,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
     protected abstract void updateScaleFactor(float factor);
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
+    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         // Suppress property change events, if we have no attributes
         if (attributes == null) {
             return;
@@ -464,7 +475,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
                     }
 
                     @Override
-                    public boolean replaces(Interpolator that) {
+                    public boolean replaces(@Nonnull Interpolator that) {
                         return (that.getClass() == this.getClass());
                     }
 
@@ -490,7 +501,7 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
                     }
 
                     @Override
-                    public boolean replaces(Interpolator that) {
+                    public boolean replaces(@Nonnull Interpolator that) {
                         return (that.getClass() == this.getClass());
                     }
 

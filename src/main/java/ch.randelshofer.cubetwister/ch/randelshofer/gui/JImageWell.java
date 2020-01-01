@@ -3,8 +3,39 @@
  */
 package ch.randelshofer.gui;
 
-import ch.randelshofer.gui.icon.BusyIcon;
 import ch.randelshofer.gui.border.ImageBevelBorder;
+import ch.randelshofer.gui.icon.BusyIcon;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+import org.jhotdraw.app.action.edit.CopyAction;
+import org.jhotdraw.app.action.edit.CutAction;
+import org.jhotdraw.app.action.edit.DeleteAction;
+import org.jhotdraw.app.action.edit.PasteAction;
+import org.jhotdraw.gui.BackgroundTask;
+import org.jhotdraw.gui.EditableComponent;
+import org.jhotdraw.gui.Worker;
+import org.jhotdraw.util.Images;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.SwingUtilities;
+import javax.swing.TransferHandler;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -17,29 +48,49 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Rectangle;
-import javax.accessibility.AccessibleContext;
-import org.jhotdraw.app.action.edit.*;
-import javax.swing.*;
-import javax.swing.border.*;
-import javax.swing.event.*;
-import java.awt.event.*;
-import java.awt.image.*;
-import java.awt.dnd.*;
-import java.awt.datatransfer.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragGestureRecognizer;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DragSourceDragEvent;
+import java.awt.dnd.DragSourceDropEvent;
+import java.awt.dnd.DragSourceEvent;
+import java.awt.dnd.DragSourceListener;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.geom.Rectangle2D;
-import java.io.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import javax.accessibility.Accessible;
-import javax.accessibility.AccessibleSelection;
-import javax.imageio.*;
-import javax.imageio.stream.*;
-import org.jhotdraw.gui.BackgroundTask;
-import org.jhotdraw.gui.EditableComponent;
-import org.jhotdraw.gui.Worker;
-import org.jhotdraw.gui.datatransfer.ImageTransferable;
-import org.jhotdraw.util.Images;
 
 /**
  * JImageWell.
@@ -68,13 +119,16 @@ public class JImageWell extends JComponent implements EditableComponent {
      * The preview dialog. This variable is only non-null, when the preview
      * dialog is showing.
      */
+    @Nullable
     private PreviewDialog previewDialog;
     /**
      * The text is displayed in the center of the color well. Default value:
      * null.
      */
     private String text;
+    @Nullable
     private Worker<BufferedImage> thumbnailWorker;
+    @Nullable
     private BufferedImage thumbnailImage;
     private Image thumbnailSource;
 
@@ -118,7 +172,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         // Methods for drag source behaviour
         // ===================================================================
 
-        public void dragGestureRecognized(DragGestureEvent evt) {
+        public void dragGestureRecognized(@Nonnull DragGestureEvent evt) {
             if (VERBOSE) {
                 System.out.println("src dragGestureRecognized dragAction:" + dndAction.get(evt.getDragAction()));
             }
@@ -159,7 +213,7 @@ public class JImageWell extends JComponent implements EditableComponent {
             isDragSource = true;
         }
 
-        public void dragEnter(DragSourceDragEvent evt) {
+        public void dragEnter(@Nonnull DragSourceDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("src dragEnter dropAction:" + dndAction.get(evt.getDropAction()));
             }
@@ -169,7 +223,7 @@ public class JImageWell extends JComponent implements EditableComponent {
             //if (VERBOSE) System.out.println("src dragOver dropAction:"+dndAction.get(new Integer(evt.getDropAction())));
         }
 
-        public void dropActionChanged(DragSourceDragEvent evt) {
+        public void dropActionChanged(@Nonnull DragSourceDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("src dropActionChanged dropAction:" + dndAction.get(evt.getDropAction()));
             }
@@ -181,7 +235,7 @@ public class JImageWell extends JComponent implements EditableComponent {
             }
         }
 
-        public void dragDropEnd(DragSourceDropEvent evt) {
+        public void dragDropEnd(@Nonnull DragSourceDropEvent evt) {
             if (VERBOSE) {
                 System.out.println("src dragDropEnd success:" + evt.getDropSuccess() + " dropAction:" + dndAction.get(evt.getDropAction()));
             }
@@ -197,7 +251,7 @@ public class JImageWell extends JComponent implements EditableComponent {
             isDragSource = false;
         }
 
-        public void drop(DropTargetDropEvent evt) {
+        public void drop(@Nonnull DropTargetDropEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt drop dropAction:" + dndAction.get(evt.getDropAction()));
             }
@@ -264,7 +318,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         // Methods for drop target behaviour
         // ===================================================================
 
-        public void dragEnter(DropTargetDragEvent evt) {
+        public void dragEnter(@Nonnull DropTargetDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt dragEnter action:" + dndAction.get(evt.getDropAction()) + " " + evt.getLocation());
                 DataFlavor[] flavors = evt.getCurrentDataFlavors();
@@ -286,10 +340,11 @@ public class JImageWell extends JComponent implements EditableComponent {
         /**
          * Called when a drag operation is ongoing on the
          * <code>DropTarget</code>.
-         * <P>
+         * <p>
+         *
          * @param evt the <code>DropTargetDragEvent</code>
          */
-        public void dragOver(DropTargetDragEvent evt) {
+        public void dragOver(@Nonnull DropTargetDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt dragOver action:" + dndAction.get(evt.getDropAction()) + " " + evt.getLocation());
             }
@@ -305,7 +360,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         }
 
         @Override
-        public void dropActionChanged(DropTargetDragEvent evt) {
+        public void dropActionChanged(@Nonnull DropTargetDragEvent evt) {
             if (VERBOSE) {
                 System.out.println("tgt drpActionChanged dropAction:" + dndAction.get(evt.getDropAction()));
             }
@@ -335,7 +390,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         public void keyPressed(KeyEvent e) {
         }
 
-        public void keyReleased(KeyEvent e) {
+        public void keyReleased(@Nonnull KeyEvent e) {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_DELETE:
                 case KeyEvent.VK_BACK_SPACE:
@@ -368,7 +423,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         }
 
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(@Nonnull MouseEvent e) {
             if (isEnabled()) {
                 if (e.getClickCount() == 2 && e.getButton() == MouseEvent.BUTTON1
                         && model.getImage() != null) {
@@ -406,7 +461,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         public void mouseExited(MouseEvent e) {
         }
 
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(@Nonnull MouseEvent e) {
             if (isEnabled()) {
                 e.getComponent().requestFocus();
                 if (e.isPopupTrigger()) {
@@ -415,7 +470,7 @@ public class JImageWell extends JComponent implements EditableComponent {
             }
         }
 
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(@Nonnull MouseEvent e) {
             if (isEnabled()) {
                 if (e.isPopupTrigger()) {
                     createPopupMenu().show(e.getComponent(), e.getX(), e.getY());
@@ -449,6 +504,8 @@ public class JImageWell extends JComponent implements EditableComponent {
             loadImage();
         }
     }
+
+    @Nonnull
     private EventHandler eventHandler = new EventHandler();
     private ImageBevelBorder regularBgBorder;
     private ImageBevelBorder armedBgBorder;
@@ -484,15 +541,15 @@ public class JImageWell extends JComponent implements EditableComponent {
                 return exportTransferable();
             }
 
-            public boolean canImport(JComponent comp, DataFlavor[] transferFlavors) {
+            public boolean canImport(JComponent comp, @Nonnull DataFlavor[] transferFlavors) {
                 return isImportable(transferFlavors, DnDConstants.ACTION_COPY);
             }
 
-            public boolean importData(JComponent comp, Transferable t) {
+            public boolean importData(JComponent comp, @Nonnull Transferable t) {
                 return importTransferable(t, DnDConstants.ACTION_COPY);
             }
 
-            public void exportToClipboard(JComponent comp, Clipboard clip, int action)
+            public void exportToClipboard(JComponent comp, @Nonnull Clipboard clip, int action)
                     throws IllegalStateException {
 
                 int clipboardAction = getSourceActions(comp) & action;
@@ -539,6 +596,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         repaint();
     }
 
+    @Nonnull
     public JPopupMenu createPopupMenu() {
         JPopupMenu m = new JPopupMenu();
 
@@ -604,6 +662,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         }
     }
 
+    @Nullable
     private Image getDragImage() {
         if (model.getImage() != null) {
             Rectangle r = getImageRect();
@@ -613,6 +672,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         return null;
     }
 
+    @Nonnull
     private Rectangle getImageRect() {
         Insets insets = getInsets();
         Rectangle r = new Rectangle(
@@ -730,6 +790,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         super.removeNotify();
     }
 
+    @Nullable
     private Transferable exportTransferable() {
         if (model != null && model.hasImage()) {
             return new ImageWellTransferable(model);
@@ -802,7 +863,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         return getPermittedDropActions() != DnDConstants.ACTION_NONE;
     }
 
-    protected boolean isImportable(DataFlavor[] flavors, int dropAction) {
+    protected boolean isImportable(@Nonnull DataFlavor[] flavors, int dropAction) {
         for (int i = 0; i
                 < flavors.length; i++) {
             if (flavors[i].equals(DataFlavor.imageFlavor)
@@ -815,7 +876,7 @@ public class JImageWell extends JComponent implements EditableComponent {
         return false;
     }
 
-    protected boolean importTransferable(Transferable transferable, int dropAction) {
+    protected boolean importTransferable(@Nonnull Transferable transferable, int dropAction) {
         try {
 
             // Handle file list
@@ -910,7 +971,8 @@ public class JImageWell extends JComponent implements EditableComponent {
         repaint();
     }
 
-    protected byte[] readFile(File f) throws IOException {
+    @Nonnull
+    protected byte[] readFile(@Nonnull File f) throws IOException {
         byte[] data = new byte[(int) f.length()];
         DataInputStream in = null;
         try {
@@ -927,7 +989,8 @@ public class JImageWell extends JComponent implements EditableComponent {
         return data;
     }
 
-    protected byte[] readStream(InputStream in) throws IOException {
+    @Nonnull
+    protected byte[] readStream(@Nonnull InputStream in) throws IOException {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         byte[] buf = new byte[512];
         int count;
@@ -938,7 +1001,8 @@ public class JImageWell extends JComponent implements EditableComponent {
         return out.toByteArray();
     }
 
-    protected byte[] readImage(Image img) throws IOException {
+    @Nullable
+    protected byte[] readImage(@Nonnull Image img) throws IOException {
         Image buf = createImage(img.getWidth(this), img.getHeight(this));
         Graphics g = buf.getGraphics();
         g.drawImage(img, 0, 0, this);

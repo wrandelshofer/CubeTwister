@@ -16,7 +16,11 @@ import ch.randelshofer.gui.image.Images;
 import ch.randelshofer.gui.plaf.CustomButtonUI;
 import ch.randelshofer.gui.text.WavyHighlighter;
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.*;
+import ch.randelshofer.rubik.Cube3DAdapter;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.Cube3DListener;
+import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.RubiksCube;
 import ch.randelshofer.rubik.parser.MoveNode;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.SequenceNode;
@@ -28,8 +32,56 @@ import ch.randelshofer.undo.CompositeEdit;
 import ch.randelshofer.undo.Undoable;
 import ch.randelshofer.undo.UndoableBooleanEdit;
 import ch.randelshofer.util.RunnableWorker;
-import java.awt.*;
-import java.awt.event.*;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+import org.jhotdraw.beans.WeakPropertyChangeListener;
+import org.jhotdraw.gui.BackgroundTask;
+import org.jhotdraw.util.ResourceBundleUtil;
+import org.jhotdraw.util.prefs.PreferencesUtil;
+
+import javax.swing.BoundedRangeModel;
+import javax.swing.ButtonGroup;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTabbedPane;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.plaf.ButtonUI;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.MutableAttributeSet;
+import javax.swing.text.PlainDocument;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import javax.swing.undo.UndoableEdit;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Insets;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -38,17 +90,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
-import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
-import javax.swing.plaf.ButtonUI;
-import javax.swing.text.*;
-import javax.swing.undo.UndoableEdit;
-import org.jhotdraw.beans.WeakPropertyChangeListener;
-import org.jhotdraw.gui.BackgroundTask;
-import org.jhotdraw.util.ResourceBundleUtil;
-import org.jhotdraw.util.prefs.PreferencesUtil;
 
 /**
  * The ScriptView is an editor for ScriptModel's. Users can record,
@@ -71,7 +112,9 @@ public class ScriptView
      * The ScriptModel of the ScriptView.
      */
     private ScriptModel model;
+    @Nullable
     private Object wavyLineHighlightTag;
+    @Nullable
     private Object playheadHighlightTag;
 
     /*
@@ -100,6 +143,7 @@ public class ScriptView
      * The resource bundle used for internationalisation.
      */
     private ResourceBundleUtil labels;
+    @Nonnull
     private ChangeListener playerHandler = new ChangeListener() {
 
         @Override
@@ -114,10 +158,11 @@ public class ScriptView
                     });
         }
     };
+    @Nonnull
     private PropertyChangeListener propertyHandler = new PropertyChangeListener() {
 
         @Override
-        public void propertyChange(PropertyChangeEvent evt) {
+        public void propertyChange(@Nonnull PropertyChangeEvent evt) {
             String n = evt.getPropertyName();
             if (evt.getSource() == model) {
                 if (n == ScriptModel.CHECKED_PROPERTY) {
@@ -143,18 +188,20 @@ public class ScriptView
                     int modifiersEx = (Integer) evt.getNewValue();
                     resetButton.setIcon(//
                             (modifiersEx & (InputEvent.ALT_DOWN_MASK | InputEvent.CTRL_DOWN_MASK)) != 0//
-                            ? Icons.get(Icons.PLAYER_PARTIAL_RESET) : Icons.get(Icons.PLAYER_RESET));
+                                    ? Icons.get(Icons.PLAYER_PARTIAL_RESET) : Icons.get(Icons.PLAYER_RESET));
 
                 }
             }
         }
     };
+    @Nullable
     private Cube3DListener scriptRecorder;
     private Preferences prefs;
     /**
      * This listener listens for changes in the script document, and resets
      * the colors of the script.
      */
+    @Nonnull
     private DocumentListener scriptColorResetter = new DocumentListener() {
 
         @Override
@@ -287,14 +334,14 @@ public class ScriptView
         MouseAdapter popupListener = new MouseAdapter() {
 
             @Override
-            public void mousePressed(MouseEvent evt) {
+            public void mousePressed(@Nonnull MouseEvent evt) {
                 if (evt.isPopupTrigger()) {
                     showPopup(evt, false);
                 }
             }
 
             @Override
-            public void mouseReleased(MouseEvent evt) {
+            public void mouseReleased(@Nonnull MouseEvent evt) {
                 if (evt.isPopupTrigger()) {
                     showPopup(evt, false);
                 }
@@ -450,12 +497,12 @@ public class ScriptView
     /**
      * Dynamically creates and shows the popup menu if the component is enabled.
      *
-     * @param evt The mouse event which triggered the popup menu.
+     * @param evt                 The mouse event which triggered the popup menu.
      * @param isTriggeredByButton This parameter is set to true, when the
-     *        popup menu has been triggered by a button. The popup menu must
-     *        be placed outside the bounds of the buttons.
+     *                            popup menu has been triggered by a button. The popup menu must
+     *                            be placed outside the bounds of the buttons.
      */
-    public void showPopup(MouseEvent evt, boolean isTriggeredByButton) {
+    public void showPopup(@Nonnull MouseEvent evt, boolean isTriggeredByButton) {
         if (isEnabled() && model != null) {
             cubeMenu.removeAll();
             translateMenu.removeAll();
@@ -482,7 +529,7 @@ public class ScriptView
                             new ItemListener() {
 
                                 @Override
-                                public void itemStateChanged(ItemEvent evt) {
+                                public void itemStateChanged(@Nonnull ItemEvent evt) {
                                     if (evt.getStateChange() == ItemEvent.SELECTED) {
                                         model.setNotationModel(notation);
                                     }
@@ -507,7 +554,7 @@ public class ScriptView
                     new ItemListener() {
 
                         @Override
-                        public void itemStateChanged(ItemEvent evt) {
+                        public void itemStateChanged(@Nonnull ItemEvent evt) {
                             if (evt.getStateChange() == ItemEvent.SELECTED) {
                                 model.setNotationModel(null);
                             }
@@ -528,7 +575,7 @@ public class ScriptView
                         new ItemListener() {
 
                             @Override
-                            public void itemStateChanged(ItemEvent evt) {
+                            public void itemStateChanged(@Nonnull ItemEvent evt) {
                                 if (evt.getStateChange() == ItemEvent.SELECTED) {
                                     model.setCubeModel(cube);
                                 }
@@ -544,7 +591,7 @@ public class ScriptView
                     new ItemListener() {
 
                         @Override
-                        public void itemStateChanged(ItemEvent evt) {
+                        public void itemStateChanged(@Nonnull ItemEvent evt) {
                             if (evt.getStateChange() == ItemEvent.SELECTED) {
                                 model.setCubeModel(null);
                             }
@@ -788,7 +835,7 @@ public class ScriptView
 
         CRItem.setText("Rotate Right");
         CRItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(@Nonnull java.awt.event.ActionEvent evt) {
                 transformScript(evt);
             }
         });
@@ -882,7 +929,7 @@ public class ScriptView
         splitPane.setDividerLocation(200);
         splitPane.setOneTouchExpandable(true);
         splitPane.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            public void propertyChange(@Nonnull java.beans.PropertyChangeEvent evt) {
                 splitPaneChanged(evt);
             }
         });
@@ -919,7 +966,7 @@ public class ScriptView
         resetButton.setFocusable(false);
         resetButton.setRequestFocusEnabled(false);
         resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            public void actionPerformed(@Nonnull java.awt.event.ActionEvent evt) {
                 reset(evt);
             }
         });
@@ -968,7 +1015,7 @@ public class ScriptView
         popupButton.setFocusable(false);
         popupButton.setRequestFocusEnabled(false);
         popupButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(@Nonnull java.awt.event.MouseEvent evt) {
                 popup(evt);
             }
         });
@@ -1034,14 +1081,15 @@ public class ScriptView
 
         add(splitPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-    private void splitPaneChanged(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_splitPaneChanged
+
+    private void splitPaneChanged(@Nonnull java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_splitPaneChanged
         if ("dividerLocation".equals(evt.getPropertyName())) {
             prefs.putInt("ScriptView.dividerLocation", ((Integer) evt.getNewValue()).intValue());
         }
 
     }//GEN-LAST:event_splitPaneChanged
 
-    private void popup(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_popup
+    private void popup(@Nonnull java.awt.event.MouseEvent evt) {//GEN-FIRST:event_popup
         showPopup(evt, true);
 
     }//GEN-LAST:event_popup
@@ -1094,6 +1142,7 @@ public class ScriptView
         m.getDocument().dispatchSolver(
                 new RunnableWorker<Object>() {
 
+                    @Nullable
                     @Override
                     public Object construct() {
                         try {
@@ -1227,6 +1276,7 @@ public class ScriptView
         m.getDocument().dispatchSolver(
                 new RunnableWorker<Object>() {
 
+                    @Nullable
                     @Override
                     public Object construct() {
                         try {
@@ -1312,7 +1362,7 @@ public class ScriptView
                 scriptRecorder = new Cube3DAdapter() {
 
                     @Override
-                    public void actionPerformed(Cube3DEvent evt) {
+                    public void actionPerformed(@Nonnull Cube3DEvent evt) {
                         model.getPlayer().stop();
 
                         try {
@@ -1361,7 +1411,7 @@ public class ScriptView
 
     }//GEN-LAST:event_recordButtonStateChanged
 
-    private void reset(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset
+    private void reset(@Nonnull java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset
         if ((evt.getModifiers() & (ActionEvent.ALT_MASK | ActionEvent.CTRL_MASK)) == 0) {
             model.reset();
             resetViews();
@@ -1371,7 +1421,7 @@ public class ScriptView
 
     }//GEN-LAST:event_reset
 
-    private void check(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check
+    private void check(@Nullable java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check
         try {
             model.check();
             model.reset();
@@ -1458,7 +1508,7 @@ public class ScriptView
                         }
 
                         @Override
-                        public void failed(Throwable e) {
+                        public void failed(@Nonnull Throwable e) {
                             e.printStackTrace();
                             JOptionPane.showMessageDialog(
                                     ScriptView.this,
@@ -1471,7 +1521,7 @@ public class ScriptView
         }
     }//GEN-LAST:event_exportVideo
 
-    private void transformScript(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transformScript
+    private void transformScript(@Nonnull java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transformScript
         Object src = evt.getSource();
         Node sn = model.getParsedScript();
         int layerMask = (2 << model.getCube().getLayerCount()) - 1;
@@ -1559,6 +1609,7 @@ public class ScriptView
         setModel((ScriptModel) newValue);
     }
 
+    @Nonnull
     @Override
     public JComponent getViewComponent() {
         return this;

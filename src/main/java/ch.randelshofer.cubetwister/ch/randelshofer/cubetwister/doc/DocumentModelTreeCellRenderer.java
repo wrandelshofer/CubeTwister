@@ -3,10 +3,12 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import javax.swing.*;
-import javax.swing.tree.*;
-import java.awt.*;
+import ch.randelshofer.gui.Fonts;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JTree;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import java.awt.Component;
 
 /**
  *
@@ -30,7 +32,7 @@ public class DocumentModelTreeCellRenderer extends DefaultTreeCellRenderer {
      * is set based on on leaf and expanded.
      */
     public Component getTreeCellRendererComponent(
-            JTree tree,
+            @Nonnull JTree tree,
             Object value,
             boolean sel,
             boolean expanded,

@@ -18,12 +18,15 @@
  */
 package org.apache.commons.compress.archivers;
 
+import org.jhotdraw.annotation.Nonnull;
+
 /**
  * Represents an entry of an archive.
  */
 public interface ArchiveEntry {
 
-	public String getName();
-	
-	public long getSize();
+    @Nonnull
+    public String getName();
+
+    public long getSize();
 }

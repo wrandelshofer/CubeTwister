@@ -5,10 +5,14 @@
 
 package ch.randelshofer.gui.tree;
 
-import java.awt.datatransfer.*;
-import java.io.*;
+import org.jhotdraw.annotation.Nonnull;
+
 import javax.swing.JComponent;
 import javax.swing.tree.TreePath;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 /**
  * The MutableTreeTransferable is a proxy for the actual Transferable of a JTree,
@@ -46,6 +50,7 @@ public class MutableTreeTransferable implements Transferable {
         return target.isDataFlavorSupported(flavor);
     }
 
+    @Nonnull
     @Override
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         return target.getTransferData(flavor);

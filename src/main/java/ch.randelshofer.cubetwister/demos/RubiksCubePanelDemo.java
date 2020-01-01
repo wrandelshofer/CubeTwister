@@ -3,9 +3,16 @@
  */
 package demos;
 
-import ch.randelshofer.rubik.*;
-import java.awt.Color;
-import javax.swing.*;
+import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
+import ch.randelshofer.rubik.Cube3DEvent;
+import ch.randelshofer.rubik.Cube3DListener;
+import ch.randelshofer.rubik.DefaultCubeAttributes;
+import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.RubiksCubeIdx3D;
+import org.jhotdraw.annotation.Nonnull;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 /**
  * A JPanel with an interactive Rubik's Cube.
@@ -34,7 +41,7 @@ public class RubiksCubePanelDemo extends javax.swing.JPanel {
         // Add a listener to the 3D cube, which twists the cube when clicked
         cube3d.addCube3DListener(new Cube3DListener() {
 
-            public void actionPerformed(Cube3DEvent evt) {
+            public void actionPerformed(@Nonnull Cube3DEvent evt) {
                 evt.applyTo(evt.getCube3D().getCube());
             }
 

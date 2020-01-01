@@ -18,10 +18,12 @@
  */
 package org.apache.commons.compress.compressors.bzip2;
 
+import org.apache.commons.compress.compressors.CompressorOutputStream;
+import org.jhotdraw.annotation.Nonnull;
+import org.jhotdraw.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.OutputStream;
-
-import org.apache.commons.compress.compressors.CompressorOutputStream;
 
 /**
  * An output stream that compresses into the BZip2 format (without the file
@@ -231,25 +233,35 @@ public class BZip2CompressorOutputStream extends CompressorOutputStream implemen
     int bytesOut;
     int bsBuff;
     int bsLive;
-    CRC mCrc = new CRC();
+    @Nonnull CRC mCrc = new CRC();
 
+    @Nonnull
     private boolean[] inUse = new boolean[256];
     private int nInUse;
 
+    @Nonnull
     private char[] seqToUnseq = new char[256];
+    @Nonnull
     private char[] unseqToSeq = new char[256];
 
+    @Nonnull
     private char[] selector = new char[MAX_SELECTORS];
+    @Nonnull
     private char[] selectorMtf = new char[MAX_SELECTORS];
 
+    @Nullable
     private char[] block;
+    @Nullable
     private int[] quadrant;
+    @Nullable
     private int[] zptr;
     private short[] szptr;
+    @Nullable
     private int[] ftab;
 
     private int nMTF;
 
+    @Nonnull
     private int[] mtfFreq = new int[MAX_ALPHA_SIZE];
 
     /*
@@ -1492,6 +1504,7 @@ public class BZip2CompressorOutputStream extends CompressorOutputStream implemen
       because the number of elems to sort is
       usually small, typically <= 20.
     */
+    @Nonnull
     private int[] incs = { 1, 4, 13, 40, 121, 364, 1093, 3280,
                            9841, 29524, 88573, 265720,
                            797161, 2391484 };

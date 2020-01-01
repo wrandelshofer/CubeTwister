@@ -3,13 +3,28 @@
  */
 package demos;
 
-import idx3d.*;
+import idx3d.idx3d_Camera;
+import idx3d.idx3d_JCanvas;
+import idx3d.idx3d_Light;
+import idx3d.idx3d_LinearRasterizer;
+import idx3d.idx3d_Material;
+import idx3d.idx3d_Object;
+import idx3d.idx3d_ObjectFactory;
+import idx3d.idx3d_PerspectiveRasterizer;
+import idx3d.idx3d_Rasterizer;
+import idx3d.idx3d_Scene;
 import idx3d.idx3d_Texture;
-import java.awt.*;
+import idx3d.idx3d_Vector;
+import org.jhotdraw.annotation.Nullable;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import javax.swing.*;
 
 /**
  *
@@ -20,7 +35,8 @@ public class Idx3DPerspectiveRasterizerDemo extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;
 
     private idx3d_JCanvas canvas;
-    
+
+    @Nullable
     private idx3d_Rasterizer linearRasterizer,perspectiveRasterizer;
 
     /** Creates new form Idx3DInteractionDemo */
