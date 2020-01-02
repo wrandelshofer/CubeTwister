@@ -20,14 +20,30 @@ class TokenizerTest {
     @TestFactory
     public List<DynamicTest> testTokenizerWithDefaultNotation() {
         DefaultNotation defaultNotation = new DefaultNotation();
-        Tokenizer tt=new Tokenizer();
+        Tokenizer tt = new Tokenizer();
         tt.skipWhitespace();
         for (String token : defaultNotation.getTokens()) {
             tt.addKeyword(token);
         }
 
         return Arrays.asList(
-                dynamicTest("1",()->doTokenizer(tt,"<CU CF>'(R)","0..1:KEY:<, 1..3:KEY:CU, 4..6:KEY:CF, 6..8:KEY:>', 8..9:KEY:(, 9..10:KEY:R, 10..11:KEY:)"))
+                dynamicTest("1", () -> doTokenizer(tt, "<CU CF>'(R)", "0..1:KEY:<, 1..3:KEY:CU, 4..6:KEY:CF, 6..8:KEY:>', 8..9:KEY:(, 9..10:KEY:R, 10..11:KEY:)"))
+        );
+
+    }
+
+    @Nonnull
+    @TestFactory
+    public List<DynamicTest> testTokenizerSetTo() {
+        DefaultNotation defaultNotation = new DefaultNotation();
+        Tokenizer tt = new Tokenizer();
+        tt.skipWhitespace();
+        for (String token : defaultNotation.getTokens()) {
+            tt.addKeyword(token);
+        }
+
+        return Arrays.asList(
+                dynamicTest("1", () -> doTokenizerSetTo(tt, "<CU CF>'(R)", "0..1:KEY:<, 1..3:KEY:CU, 4..6:KEY:CF, 6..8:KEY:>', 8..9:KEY:(, 9..10:KEY:R, 10..11:KEY:)"))
         );
 
     }
@@ -35,10 +51,10 @@ class TokenizerTest {
     @Nonnull
     @TestFactory
     public List<DynamicTest> testTokenizer() {
-        Tokenizer ttNone=new Tokenizer();
-        Tokenizer ttWhitespace=new Tokenizer();
+        Tokenizer ttNone = new Tokenizer();
+        Tokenizer ttWhitespace = new Tokenizer();
         ttWhitespace.skipWhitespace();
-        Tokenizer ttWhitespaceNumber=new Tokenizer();
+        Tokenizer ttWhitespaceNumber = new Tokenizer();
         ttWhitespaceNumber.skipWhitespace();
         ttWhitespaceNumber.addNumbers();
         Tokenizer ttWhitespaceNumberKey=new Tokenizer();
@@ -93,13 +109,27 @@ class TokenizerTest {
                 dynamicTest("comment.24 - on", () -> doTokenizer(ttWhitespaceNumberKeyComment, "lorem // comment\nipsum", "0..5:WORD:lorem, 17..22:WORD:ipsum")),
                 dynamicTest("comment.25 - on", () -> doTokenizer(ttWhitespaceNumberKeyComment, "tom/* comment */tom", "0..3:KEY:tom, 16..19:KEY:tom")),
                 dynamicTest("comment.26 - on", () -> doTokenizer(ttWhitespaceNumberKeyComment, "tom// comment\ntom", "0..3:KEY:tom, 14..17:KEY:tom")),
-                dynamicTest("1",()->doTokenizer(ttNone,"lorem ipsum","0..11:WORD:lorem ipsum"))
+                dynamicTest("1", () -> doTokenizer(ttNone, "lorem ipsum", "0..11:WORD:lorem ipsum"))
         );
     }
 
     private void doTokenizer(@Nonnull Tokenizer instance, String input, String expected) {
         doNextToken(instance, input, expected);
         doPushBack(instance, input, expected);
+    }
+
+    private void doTokenizerSetTo(@Nonnull Tokenizer instance, String input, String expected) {
+        Tokenizer tt = instance;
+        tt.setInput(input);
+        StringBuffer buf = new StringBuffer();
+        while (tt.nextToken() != Tokenizer.TT_EOF) {
+            Tokenizer copy = new Tokenizer();
+            copy.setTo(tt);
+            tt = copy;
+            appendToken(tt, buf);
+        }
+        String actual = buf.toString();
+        assertEquals(expected, actual);
     }
 
     /**

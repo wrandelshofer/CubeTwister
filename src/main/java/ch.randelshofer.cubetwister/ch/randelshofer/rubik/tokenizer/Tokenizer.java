@@ -138,10 +138,6 @@ public class Tokenizer {
         return this.tend;
     }
 
-    public int getInputLength() {
-        return this.input.length();
-    }
-
     /**
      * Returns the current token numeric value.
      *
