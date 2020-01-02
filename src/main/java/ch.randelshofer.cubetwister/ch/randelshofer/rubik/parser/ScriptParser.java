@@ -840,7 +840,7 @@ public class ScriptParser {
      * Tries to replace the last child of the parent with a suffix expression(s).
      * <p>
      * This method replaces the last child of the parent, each time a
-     * suffix has been parsed succesfully.
+     * suffix has been parsed successfully.
      *
      * @param tt     the tokenizer
      * @param parent the parent of the statement

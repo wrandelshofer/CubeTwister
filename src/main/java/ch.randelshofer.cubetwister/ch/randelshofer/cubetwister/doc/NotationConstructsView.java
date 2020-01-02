@@ -324,7 +324,7 @@ public class NotationConstructsView extends ScrollablePanel
         new TokenAdapter(Symbol.PERMUTATION_FACE_R, permRField);
         new TokenAdapter(Symbol.PERMUTATION_FACE_U, permUField);
         new TokenAdapter(Symbol.PERMUTATION_FACE_F, permFField);
-        new TokenAdapter(Symbol.PEMRUTATION_FACE_L, permLField);
+        new TokenAdapter(Symbol.PERMUTATION_FACE_L, permLField);
         new TokenAdapter(Symbol.PERMUTATION_FACE_D, permDField);
         new TokenAdapter(Symbol.PERMUTATION_FACE_B, permBField);
         new TokenAdapter(Symbol.PERMUTATION_PLUS, permPlusField);

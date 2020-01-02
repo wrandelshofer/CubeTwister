@@ -186,7 +186,7 @@ public class PermutationNode extends Node implements Cloneable {
                     loc = 1;
                 } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_F) {
                     loc = 2;
-                } else if (faceSymbols[0] == Symbol.PEMRUTATION_FACE_L) {
+                } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_L) {
                     loc = 3;
                 } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
                     loc = 4;
@@ -239,19 +239,19 @@ public class PermutationNode extends Node implements Cloneable {
                 } else if (low == Symbol.PERMUTATION_FACE_D && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 5;
                     rotated = first == Symbol.PERMUTATION_FACE_D;
-                } else if (low == Symbol.PERMUTATION_FACE_U && high == Symbol.PEMRUTATION_FACE_L) {
+                } else if (low == Symbol.PERMUTATION_FACE_U && high == Symbol.PERMUTATION_FACE_L) {
                     loc = 6;
-                    rotated = first == Symbol.PEMRUTATION_FACE_L;
-                } else if (low == Symbol.PEMRUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_B) {
+                    rotated = first == Symbol.PERMUTATION_FACE_L;
+                } else if (low == Symbol.PERMUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 7;
                     rotated = first == Symbol.PERMUTATION_FACE_B;
-                } else if (low == Symbol.PEMRUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_D) {
+                } else if (low == Symbol.PERMUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_D) {
                     loc = 8;
-                    rotated = first == Symbol.PEMRUTATION_FACE_L;
+                    rotated = first == Symbol.PERMUTATION_FACE_L;
                 } else if (low == Symbol.PERMUTATION_FACE_U && high == Symbol.PERMUTATION_FACE_F) {
                     loc = 9;
                     rotated = first == Symbol.PERMUTATION_FACE_U;
-                } else if (low == Symbol.PERMUTATION_FACE_F && high == Symbol.PEMRUTATION_FACE_L) {
+                } else if (low == Symbol.PERMUTATION_FACE_F && high == Symbol.PERMUTATION_FACE_L) {
                     loc = 10;
                     rotated = first == Symbol.PERMUTATION_FACE_F;
                 } else if (low == Symbol.PERMUTATION_FACE_F && high == Symbol.PERMUTATION_FACE_D) {
@@ -344,45 +344,45 @@ public class PermutationNode extends Node implements Cloneable {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
                     }
                 } else if (low == Symbol.PERMUTATION_FACE_U
-                        && mid == Symbol.PEMRUTATION_FACE_L
+                        && mid == Symbol.PERMUTATION_FACE_L
                         && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 4;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
-                        rotation = (faceSymbols[1] == Symbol.PEMRUTATION_FACE_L) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PEMRUTATION_FACE_L) {
+                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_L) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 2 : 5;
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PEMRUTATION_FACE_L
+                } else if (low == Symbol.PERMUTATION_FACE_L
                         && mid == Symbol.PERMUTATION_FACE_D
                         && high == Symbol.PERMUTATION_FACE_B) {
                     loc = 5;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 0 : 3;
                     } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_B) {
-                        rotation = (faceSymbols[1] == Symbol.PEMRUTATION_FACE_L) ? 2 : 5;
+                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 2 : 5;
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
                     }
                 } else if (low == Symbol.PERMUTATION_FACE_U
                         && mid == Symbol.PERMUTATION_FACE_F
-                        && high == Symbol.PEMRUTATION_FACE_L) {
+                        && high == Symbol.PERMUTATION_FACE_L) {
                     loc = 6;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 0 : 3;
                     } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_F) {
-                        rotation = (faceSymbols[1] == Symbol.PEMRUTATION_FACE_L) ? 2 : 5;
+                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 2 : 5;
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
                     }
                 } else if (low == Symbol.PERMUTATION_FACE_F
-                        && mid == Symbol.PEMRUTATION_FACE_L
+                        && mid == Symbol.PERMUTATION_FACE_L
                         && high == Symbol.PERMUTATION_FACE_D) {
                     loc = 7;
                     if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
-                        rotation = (faceSymbols[1] == Symbol.PEMRUTATION_FACE_L) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PEMRUTATION_FACE_L) {
+                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_L) {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 2 : 5;
                     } else {
                         rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
@@ -791,7 +791,7 @@ public class PermutationNode extends Node implements Cloneable {
             {Symbol.PERMUTATION_FACE_R},
             {Symbol.PERMUTATION_FACE_U},//
             {Symbol.PERMUTATION_FACE_F},
-            {Symbol.PEMRUTATION_FACE_L},
+            {Symbol.PERMUTATION_FACE_L},
             {Symbol.PERMUTATION_FACE_D},
             {Symbol.PERMUTATION_FACE_B},//
     };
@@ -802,11 +802,11 @@ public class PermutationNode extends Node implements Cloneable {
             {Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_U}, //"bu"
             {Symbol.PERMUTATION_FACE_R, Symbol.PERMUTATION_FACE_B}, //"rb"
             {Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_D}, //"bd"
-            {Symbol.PERMUTATION_FACE_U, Symbol.PEMRUTATION_FACE_L}, //"ul"
-            {Symbol.PEMRUTATION_FACE_L, Symbol.PERMUTATION_FACE_B}, //"lb"
-            {Symbol.PERMUTATION_FACE_D, Symbol.PEMRUTATION_FACE_L}, //"dl"
+            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_L}, //"ul"
+            {Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_B}, //"lb"
+            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_L}, //"dl"
             {Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_U}, //"fu"
-            {Symbol.PEMRUTATION_FACE_L, Symbol.PERMUTATION_FACE_F}, //"lf"
+            {Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_F}, //"lf"
             {Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_D} //"fd"
     };
     private final static Symbol[][] CORNER_SYMBOLS = {
@@ -814,10 +814,10 @@ public class PermutationNode extends Node implements Cloneable {
             {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_R},// dfr
             {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_R},// ubr
             {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_R, Symbol.PERMUTATION_FACE_B},// drb
-            {Symbol.PERMUTATION_FACE_U, Symbol.PEMRUTATION_FACE_L, Symbol.PERMUTATION_FACE_B},// ulb
-            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_B, Symbol.PEMRUTATION_FACE_L},// dbl
-            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_F, Symbol.PEMRUTATION_FACE_L},// ufl
-            {Symbol.PERMUTATION_FACE_D, Symbol.PEMRUTATION_FACE_L, Symbol.PERMUTATION_FACE_F}// dlf
+            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_B},// ulb
+            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_L},// dbl
+            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_L},// ufl
+            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_F}// dlf
     };
 
     @Override

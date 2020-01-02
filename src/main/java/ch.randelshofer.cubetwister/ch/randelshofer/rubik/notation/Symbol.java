@@ -29,7 +29,7 @@ public enum Symbol {
     PERMUTATION_FACE_R("permR"),
     PERMUTATION_FACE_U("permU"),
     PERMUTATION_FACE_F("permF"),
-    PEMRUTATION_FACE_L("permL"),
+    PERMUTATION_FACE_L("permL"),
     PERMUTATION_FACE_D("permD"),
     PERMUTATION_FACE_B("permB"),
 
@@ -98,7 +98,7 @@ public enum Symbol {
             PERMUTATION_FACE_R,
             PERMUTATION_FACE_U,
             PERMUTATION_FACE_F,
-            PEMRUTATION_FACE_L,
+            PERMUTATION_FACE_L,
             PERMUTATION_FACE_D,
             PERMUTATION_FACE_B,
             PERMUTATION_PLUS,
@@ -313,7 +313,7 @@ public enum Symbol {
             case PERMUTATION_FACE_R:
             case PERMUTATION_FACE_U:
             case PERMUTATION_FACE_F:
-            case PEMRUTATION_FACE_L:
+            case PERMUTATION_FACE_L:
             case PERMUTATION_FACE_D:
             case PERMUTATION_FACE_B:
                 return true;

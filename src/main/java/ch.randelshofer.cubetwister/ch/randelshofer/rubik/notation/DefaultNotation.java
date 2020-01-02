@@ -25,7 +25,7 @@ public class DefaultNotation extends AbstractNotation {
         addToken(Symbol.PERMUTATION_FACE_R, "r");
         addToken(Symbol.PERMUTATION_FACE_U, "u");
         addToken(Symbol.PERMUTATION_FACE_F, "f");
-        addToken(Symbol.PEMRUTATION_FACE_L, "l");
+        addToken(Symbol.PERMUTATION_FACE_L, "l");
         addToken(Symbol.PERMUTATION_FACE_D, "d");
         addToken(Symbol.PERMUTATION_FACE_B, "b");
         addToken(Symbol.PERMUTATION_PLUS, "+");
