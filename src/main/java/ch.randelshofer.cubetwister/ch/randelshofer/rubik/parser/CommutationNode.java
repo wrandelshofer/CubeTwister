@@ -84,7 +84,7 @@ public class CommutationNode extends BinaryNode {
         }
         final Node operand1 = getChildAt(0);
         final Node operand2 = getChildAt(1);
-        return new SequenceIterator<Node>(
+        return new SequenceIterator<>(
                 List.of(
                         operand1.resolvedIterator(inverse),
                         operand2.resolvedIterator(inverse),

@@ -50,24 +50,26 @@ public class MoveNode extends Node {
         super(startpos, endpos);
         this.axis = axis;
         this.layerMask = layerMask;
-        this.angle = angle;
+        this.layerCount = layerCount;
+
+        // Normalize angle to range [-2, +2].
+        int a = angle % 4;
+        if (a == 3) {
+            a = -1;
+        }
+        if (a == -3) {
+            a = 1;
+        }
+        this.angle = a;
+
+
         setAllowsChildren(false);
-        this.layerCount=layerCount;
     }
 
 
     @Override
     public void applyTo(@Nonnull Cube cube, boolean inverse) {
-        int normalizedAngle = angle % 4;
-        if (normalizedAngle == 3) {
-            normalizedAngle = -1;
-        }
-        if (normalizedAngle == -3) {
-            normalizedAngle = 1;
-        }
-
-        var appliedMask = (layerMask << cube.getLayerCount()) >>> layerCount;
-        cube.transform(axis, appliedMask, (inverse) ? -normalizedAngle : normalizedAngle);
+        cube.transform(axis, layerMask, inverse ? -angle : angle);
     }
 
     public int getAxis() {
@@ -123,11 +125,9 @@ public class MoveNode extends Node {
         if (layerMask == (2 << getLayerCount()) - 1) {
             // XXX - To be implemented
             if (axis != this.axis) {
-                boolean swapLayers = false;
                 switch (axis) {
                     case 0:
                         this.axis = ((this.axis - 1) + angle) % 2 + 1;
-                        swapLayers = this.axis == 2 && angle > 1;
                         break;
                     case 1:
                         this.axis = ((this.axis / 2) + angle) % 2 * 2;

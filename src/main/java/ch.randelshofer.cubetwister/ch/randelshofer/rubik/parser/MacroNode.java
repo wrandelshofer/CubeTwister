@@ -30,11 +30,7 @@ public class MacroNode extends Node {
      * Holds the source of the script macro.
      */
     private String script;
-    /**
-     * Holds the parser for the script macro.
-     */
-    private ScriptParser parser;
-    
+
     /** Creates new MacroNode */
     public MacroNode(String identifier, String script) {
         this(identifier,script,-1,-1);
@@ -44,17 +40,6 @@ public class MacroNode extends Node {
         this.identifier = identifier;
         this.script = script;
         setAllowsChildren(true);
-    }
-    
-    /**
-     * Transformes the subtree starting at this node by
-     * the given ScriptParserAWT.symbol constant.
-     * Does nothing if the transformation can not be done.
-     */
-    @Override
-    public void transform(int axis, int layerMask, int angle) {
-        identifier = null; // macro must be expanded.
-        super.transform(axis, layerMask, angle);
     }
 
     @Nullable

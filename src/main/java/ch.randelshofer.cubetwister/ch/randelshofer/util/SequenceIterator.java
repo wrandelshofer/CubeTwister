@@ -39,21 +39,29 @@ public class SequenceIterator<T>
         this.iterators = iterators;
     }
 
+    /**
+     * Moves to a non-empty iterator if the current has no more elements.
+     *
+     * @return true if are on a non-empty iterator or have moved to a non-empty
+     * iterator, false if we have not found a non-empty iterator.
+     */
     private boolean move() {
-        if (!current.hasNext()) {
+        if (current.hasNext()) {
+            return true;
+        } else {
             while (iterators.hasNext()) {
                 current = iterators.next();
                 if (current.hasNext()) {
                     return true;
                 }
             }
+            return false;
         }
-        return false;
     }
 
     @Override
     public boolean hasNext() {
-        return current.hasNext()|| move();
+        return current.hasNext() || move();
     }
 
     @Override
