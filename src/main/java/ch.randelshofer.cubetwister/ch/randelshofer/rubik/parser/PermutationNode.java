@@ -418,25 +418,22 @@ public class PermutationNode extends Node implements Cloneable {
         if (inverse) {
             applyInverseTo(cube);
         } else {
-            applyTo(cube);
+            applyForwardTo(cube);
         }
     }
 
-    private void applyTo(@Nonnull Cube cube) {
+    private void applyForwardTo(@Nonnull Cube cube) {
         if (getChildCount() == 0) {
             return;
         }
 
-        int[] loc = null;
-        int[] orient = null;
-        int i;
-        int newOrient;
-
         PermutationItemNode[] seq = new PermutationItemNode[getChildCount()];
-        for (i = 0; i < seq.length; i++) {
+        for (int i = 0; i < seq.length; i++) {
             seq[i] = (PermutationItemNode) getChildAt(i);
         }
 
+        int[] loc = null;
+        int[] orient = null;
         int modulo = 0;
         switch (type) {
             case SIDE_PERMUTATION:
@@ -457,26 +454,22 @@ public class PermutationNode extends Node implements Cloneable {
         }
 
         // Adjust the orientation of the parts
-        /*
-        for (i=0; i < seq.length - 1; i++) {
-        newOrient = (seq[i + 1].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
-        orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
-        }
-        newOrient = (-sign - seq[0].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
-        orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
-         */
-        for (i = 0; i < seq.length - 1; i++) {
-            newOrient = (seq[i + 1].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
+        {
+            int newOrient;
+            int i;
+            for (i = 0; i < seq.length - 1; i++) {
+                newOrient = (seq[i + 1].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
+                orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
+            }
+
+            newOrient = (sign - seq[i].getOrientation() + seq[0].getOrientation() + orient[seq[i].getLocation()]) % modulo;
             orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
         }
-
-        newOrient = (sign - seq[i].getOrientation() + seq[0].getOrientation() + orient[seq[i].getLocation()]) % modulo;
-        orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
 
         // Adjust the location of the parts
         int tempLoc = loc[seq[seq.length - 1].getLocation()];
         int tempOrient = orient[seq[seq.length - 1].getLocation()];
-        for (i = seq.length - 1; i > 0; i--) {
+        for (int i = seq.length - 1; i > 0; i--) {
             loc[seq[i].getLocation()] = loc[seq[i - 1].getLocation()];
             orient[seq[i].getLocation()] = orient[seq[i - 1].getLocation()];
         }
@@ -500,20 +493,17 @@ public class PermutationNode extends Node implements Cloneable {
     }
 
     private void applyInverseTo(@Nonnull Cube cube) {
-        if (getChildren().isEmpty()) {
+        if (getChildCount() == 0) {
             return;
+        }
+
+        PermutationItemNode[] seq = new PermutationItemNode[getChildCount()];
+        for (int i = 0; i < seq.length; i++) {
+            seq[i] = (PermutationItemNode) getChildAt(i);
         }
 
         int[] loc = null;
         int[] orient = null;
-        int i;
-        int newOrient;
-
-        PermutationItemNode[] seq = new PermutationItemNode[getChildCount()];
-        for (i = 0; i < seq.length; i++) {
-            seq[i] = (PermutationItemNode) getChildAt(i);
-        }
-
         int modulo = 0;
         switch (type) {
             case SIDE_PERMUTATION:
@@ -534,25 +524,21 @@ public class PermutationNode extends Node implements Cloneable {
         }
 
         // Adjust the orientation of the parts
-        /*
-        for (i=1; i < seq.length; i++) {
-        change = (seq[i].getOrientation() - seq[i - 1].getOrientation() - orient[seq[i].getLocation()]) % modulo;
-        orient[seq[i].getLocation()] = (change < 0) ? modulo + change : change;
-        }
-        change = -(-seq[seq.length - 1].getOrientation() + sign - orient[seq[0].getLocation()] + seq[0].getOrientation()) % modulo;
-        orient[seq[0].getLocation()] = (change < 0) ? modulo + change : change;
-         */
-        for (i = seq.length - 1; i > 0; i--) {
-            newOrient = (seq[i - 1].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
+        {
+            int newOrient;
+            int i;
+            for (i = seq.length - 1; i > 0; i--) {
+                newOrient = (seq[i - 1].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
+                orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
+            }
+            newOrient = (-sign + seq[seq.length - 1].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
             orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
         }
-        newOrient = (-sign + seq[seq.length - 1].getOrientation() - seq[i].getOrientation() + orient[seq[i].getLocation()]) % modulo;
-        orient[seq[i].getLocation()] = (newOrient < 0) ? modulo + newOrient : newOrient;
 
         // Adjust the location of the parts
         int tempLoc = loc[seq[0].getLocation()];
         int tempOrient = orient[seq[0].getLocation()];
-        for (i = 1; i < seq.length; i++) {
+        for (int i = 1; i < seq.length; i++) {
             loc[seq[i - 1].getLocation()] = loc[seq[i].getLocation()];
             orient[seq[i - 1].getLocation()] = orient[seq[i].getLocation()];
         }
@@ -658,7 +644,7 @@ public class PermutationNode extends Node implements Cloneable {
             return;
         }
         cube.transform(axis, layerMask, angle);
-        applyTo(cube);
+        applyForwardTo(cube);
         cube.transform(axis, layerMask, -angle);
 
         //sequence.clear();
