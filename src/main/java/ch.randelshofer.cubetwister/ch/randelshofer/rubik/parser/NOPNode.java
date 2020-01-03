@@ -8,7 +8,7 @@ import ch.randelshofer.rubik.notation.Symbol;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
@@ -48,7 +48,7 @@ public class NOPNode extends Node {
      * Returns a string representation of this node using the specified notation.
      */
     @Override
-    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation notation, Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, @Nonnull Notation notation, Map<String, MacroNode> macroMap)
             throws IOException {
         if (notation.isSupported(Symbol.NOP)) {
             w.append(notation.getToken(Symbol.NOP));

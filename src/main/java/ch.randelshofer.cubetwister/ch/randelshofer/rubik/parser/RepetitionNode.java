@@ -3,7 +3,6 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
@@ -12,7 +11,7 @@ import ch.randelshofer.util.ReverseListIterator;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
@@ -49,13 +48,6 @@ public class RepetitionNode extends Node {
         return repeatCount;
     }
 
-    @Override
-    public void applyTo(Cube cube, boolean inverse) {
-        for (int i = 0; i < repeatCount; i++) {
-            super.applyTo(cube, inverse);
-        }
-    }
-
     /**
      * Enumerate this symbol and all of its children.
      * Special operators (i. e. repeat and inverse) are
@@ -77,7 +69,7 @@ public class RepetitionNode extends Node {
     }
 
     @Override
-    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         Syntax pos = (p.isSupported(Symbol.GROUPING)) ? p.getSyntax(Symbol.REPETITION) : null;
         if (pos == null) {

@@ -3,7 +3,6 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.util.SequenceIterator;
 import org.jhotdraw.annotation.Nonnull;
@@ -21,40 +20,11 @@ import java.util.List;
 public class CommutationNode extends BinaryNode {
     private final static long serialVersionUID = 1L;
 
-    public CommutationNode() {
-        super(-1, -1);
-    }
 
     @Nonnull
     @Override
     protected Symbol getSymbol() {
         return Symbol.COMMUTATION;
-    }
-
-    /**
-     * Applies the symbol represented by this node to the cube.
-     *
-     * @param cube    A cube to be transformed by this symbol.
-     * @param inverse If true, the transform will be done in inverse order.
-     */
-    @Override
-    public void applyTo(Cube cube, boolean inverse) {
-        if (getChildCount() != 2) {
-            return;
-        }
-        final Node operand1 = getChildAt(0);
-        final Node operand2 = getChildAt(1);
-        if (inverse) {
-            operand2.applyTo(cube, false);
-            operand1.applyTo(cube, false);
-            operand2.applyTo(cube, true);
-            operand1.applyTo(cube, true);
-        } else {
-            operand1.applyTo(cube, false);
-            operand2.applyTo(cube, false);
-            operand1.applyTo(cube, true);
-            operand2.applyTo(cube, true);
-        }
     }
 
     /**
@@ -65,11 +35,11 @@ public class CommutationNode extends BinaryNode {
         if (getChildCount() != 2) {
             return;
         }
-        final Node operand1 = getChildAt(0);
-        final Node operand2 = getChildAt(1);
+        var a = getChildAt(0);
+        var b = getChildAt(1);
         removeAllChildren();
-        add(operand2);
-        add(operand1);
+        add(b);
+        add(a);
     }
 
     /**
@@ -82,14 +52,23 @@ public class CommutationNode extends BinaryNode {
         if (getChildCount() != 2) {
             return Collections.emptyIterator();
         }
-        final Node operand1 = getChildAt(0);
-        final Node operand2 = getChildAt(1);
-        return new SequenceIterator<>(
+        final Node a = getChildAt(0);
+        final Node b = getChildAt(1);
+        return inverse
+                ? new SequenceIterator<>(
                 List.of(
-                        operand1.resolvedIterator(inverse),
-                        operand2.resolvedIterator(inverse),
-                        operand1.resolvedIterator(!inverse),
-                        operand2.resolvedIterator(!inverse)
+                        b.resolvedIterator(false),
+                        a.resolvedIterator(false),
+                        b.resolvedIterator(true),
+                        a.resolvedIterator(true)
+                )
+        )
+                : new SequenceIterator<>(
+                List.of(
+                        a.resolvedIterator(false),
+                        b.resolvedIterator(false),
+                        a.resolvedIterator(true),
+                        b.resolvedIterator(true)
                 )
         );
     }

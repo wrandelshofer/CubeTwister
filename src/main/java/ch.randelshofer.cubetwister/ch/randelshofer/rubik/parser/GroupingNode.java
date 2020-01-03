@@ -8,7 +8,7 @@ import ch.randelshofer.rubik.notation.Symbol;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Map;
 
 /**
@@ -20,19 +20,8 @@ import java.util.Map;
 public class GroupingNode extends UnaryNode {
     private final static long serialVersionUID = 1L;
 
-    /**
-     * Creates new SequenceNode
-     */
-    public GroupingNode() {
-        this(-1, -1);
-    }
-
-    public GroupingNode(int startpos, int endpos) {
-        super(startpos, endpos);
-    }
-
     @Override
-    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (p.isSupported(Symbol.GROUPING)) {
             p.writeToken(w, Symbol.GROUPING_BEGIN);

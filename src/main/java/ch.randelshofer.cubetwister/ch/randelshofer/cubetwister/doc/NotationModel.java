@@ -17,6 +17,7 @@ import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -355,7 +356,7 @@ public class NotationModel extends InfoModel implements Notation {
      *                     and if no alternative symbols could be found.
      */
     @Override
-    public void writeToken(@Nonnull PrintWriter w, Symbol symbol) throws IOException {
+    public void writeToken(Writer w, Symbol symbol) throws IOException {
         String str = symbolToTokenMap.get(symbol);
         if (str == null) {
             throw new IOException("No token for " + symbol);

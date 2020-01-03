@@ -10,6 +10,7 @@ import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -59,10 +60,10 @@ public abstract class AbstractNotation implements Notation {
     }
 
     @Override
-    public void writeToken(@Nonnull PrintWriter w, Symbol symbol) throws IOException {
+    public void writeToken(Writer w, Symbol symbol) throws IOException {
         List<String> tokens = symbolToTokensMap.getOrDefault(symbol, Collections.emptyList());
         if (!tokens.isEmpty()) {
-            w.print(tokens.get(0));
+            w.write(tokens.get(0));
         }
     }
 

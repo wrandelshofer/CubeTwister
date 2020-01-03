@@ -11,7 +11,7 @@ import ch.randelshofer.rubik.notation.Syntax;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -203,7 +203,7 @@ public class MoveNode extends Node {
      * Returns a string representation of this node using the specified notation.
      */
     @Override
-    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation notation, Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, @Nonnull Notation notation, Map<String, MacroNode> macroMap)
             throws IOException {
         Move move = new Move(3, axis, layerMask, angle);
         String token = notation.getMoveToken(move);

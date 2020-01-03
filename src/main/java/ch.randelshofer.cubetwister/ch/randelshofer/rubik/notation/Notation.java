@@ -11,6 +11,7 @@ import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -49,12 +50,12 @@ public interface Notation {
     String getName();
 
     /**
-     * Writes a token for the specified symbol to the print writer.
+     * Writes a token for the specified symbol to the writer.
      *
-     * @exception IOException If the symbol is not supported by the notation, 
-     * and if no alternative symbols could be found.
+     * @throws IOException If the symbol is not supported by the notation,
+     *                     and if no alternative symbols could be found.
      */
-    void writeToken(PrintWriter w, Symbol symbol) throws IOException;
+    void writeToken(Writer w, Symbol symbol) throws IOException;
     
     /**
      * Writes a token for the specified transformation to the print writer.

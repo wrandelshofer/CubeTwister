@@ -14,6 +14,7 @@ import org.jhotdraw.annotation.Nullable;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -349,7 +350,7 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public void writeToken(@Nonnull PrintWriter w, Symbol symbol) throws IOException {
+    public void writeToken(Writer w, Symbol symbol) throws IOException {
         w.write(getToken(symbol));
     }
 

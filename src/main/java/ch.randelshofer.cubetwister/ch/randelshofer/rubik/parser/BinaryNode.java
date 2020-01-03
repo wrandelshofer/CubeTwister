@@ -6,7 +6,7 @@ import ch.randelshofer.rubik.notation.Syntax;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -18,17 +18,10 @@ import java.util.Map;
 public abstract class BinaryNode extends Node {
     private final static long serialVersionUID = 1L;
 
-    public BinaryNode() {
-    }
-
-    public BinaryNode(int startpos, int endpos) {
-        super(startpos, endpos);
-    }
-
     protected abstract Symbol getSymbol();
 
     @Override
-    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (getChildCount() != 2) {
             return;

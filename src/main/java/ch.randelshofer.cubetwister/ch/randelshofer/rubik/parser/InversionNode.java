@@ -3,14 +3,13 @@
  */
 package ch.randelshofer.rubik.parser;
 
-import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -23,25 +22,6 @@ import java.util.Map;
 public class InversionNode extends UnaryNode {
     private final static long serialVersionUID = 1L;
 
-    public InversionNode() {
-        this(-1, -1);
-    }
-
-    public InversionNode(int startpos, int endpos) {
-        super(startpos, endpos);
-    }
-
-    /**
-     * Applies the symbol represented by this node to the cube.
-     *
-     * @param cube A cube to be transformed by this symbol.
-     * @param inverse If true, the transform will be done in inverse order.
-     */
-    @Override
-    public void applyTo(Cube cube, boolean inverse) {
-        super.applyTo(cube, !inverse);
-    }
-
     /**
      * Enumerate this symbol and all of its children.
      * Special operators (i. e. repeat and inverse) are
@@ -53,7 +33,7 @@ public class InversionNode extends UnaryNode {
     }
 
     @Override
-    public void writeTokens(@Nonnull PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (getChildCount() == 1 && (getChildAt(0) instanceof InversionNode)) {
             // Short cut: If two inversions are nested, they cancel each other out.

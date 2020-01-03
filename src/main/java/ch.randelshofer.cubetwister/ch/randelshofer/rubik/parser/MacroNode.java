@@ -10,7 +10,7 @@ import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.Map;
 /**
  * A MacroNode holds a macro identifier and an unparsed script String. 
@@ -82,7 +82,7 @@ public class MacroNode extends Node {
     }
 
     @Override
-    public void writeTokens(@Nonnull PrintWriter w, Notation p, @Nonnull Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, Notation p, @Nonnull Map<String, MacroNode> macroMap)
             throws IOException {
         if (macroMap.containsKey(identifier)) {
             w.write(identifier);

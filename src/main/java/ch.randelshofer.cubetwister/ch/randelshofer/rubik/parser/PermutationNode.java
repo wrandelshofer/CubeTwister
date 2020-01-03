@@ -15,6 +15,7 @@ import javax.swing.tree.MutableTreeNode;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -821,7 +822,7 @@ public class PermutationNode extends Node implements Cloneable {
     };
 
     @Override
-    public void writeTokens(PrintWriter w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
+    public void writeTokens(Writer w, @Nonnull Notation p, Map<String, MacroNode> macroMap)
             throws IOException {
         if (!p.isSupported(Symbol.PERMUTATION)) {
             //throw new IOException("This notation does not support permutations.");
