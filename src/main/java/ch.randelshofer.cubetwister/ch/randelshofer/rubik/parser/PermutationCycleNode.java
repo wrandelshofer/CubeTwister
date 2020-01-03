@@ -30,7 +30,7 @@ import java.util.Map;
  *
  * @author Werner Randelshofer
  */
-public class PermutationNode extends Node implements Cloneable {
+public class PermutationCycleNode extends Node implements Cloneable {
     private final static long serialVersionUID = 1L;
     //private int signSymbol = -1;
 
@@ -64,7 +64,7 @@ public class PermutationNode extends Node implements Cloneable {
     /**
      * Creates a new PermutationNode.
      */
-    public PermutationNode() {
+    public PermutationCycleNode() {
         this(-1, -1);
     }
 
@@ -74,7 +74,7 @@ public class PermutationNode extends Node implements Cloneable {
      * @param startpos The start position of the node in the source code.
      * @param endpos   The end position of the node in the source code.
      */
-    public PermutationNode(int startpos, int endpos) {
+    public PermutationCycleNode(int startpos, int endpos) {
         super(startpos, endpos);
         setAllowsChildren(true);
         this.layerCount = layerCount;
@@ -100,7 +100,7 @@ public class PermutationNode extends Node implements Cloneable {
         return type;
     }
 
-    public void setSign(@Nullable Symbol signSymbol) {
+    public void setSignSymbol(@Nullable Symbol signSymbol) {
         int s;
         if (signSymbol == Symbol.PERMUTATION_MINUS) {
             s = MINUS_SIGN;
@@ -150,16 +150,22 @@ public class PermutationNode extends Node implements Cloneable {
 
         // Evaluate the sign symbol.
         int s;
-        if (signSymbol == Symbol.PERMUTATION_MINUS) {
-            s = MINUS_SIGN;
-        } else if (signSymbol == Symbol.PERMUTATION_PLUSPLUS) {
-            s = PLUSPLUS_SIGN;
-        } else if (signSymbol == Symbol.PERMUTATION_PLUS) {
-            s = PLUS_SIGN;
-        } else if (signSymbol == null) {
+        if (signSymbol == null) {
             s = NO_SIGN;
         } else {
-            throw new IllegalArgumentException("Illegal sign symbol:" + signSymbol);
+            switch (signSymbol) {
+                case PERMUTATION_MINUS:
+                    s = MINUS_SIGN;
+                    break;
+                case PERMUTATION_PLUSPLUS:
+                    s = PLUSPLUS_SIGN;
+                    break;
+                case PERMUTATION_PLUS:
+                    s = PLUS_SIGN;
+                    break;
+                default:
+                    throw new IllegalArgumentException("Illegal sign symbol:" + signSymbol);
+            }
         }
         if (s == PLUS_SIGN) {
             if (type == CORNER_PERMUTATION) {
@@ -181,18 +187,25 @@ public class PermutationNode extends Node implements Cloneable {
             case UNDEFINED_PERMUTATION:
                 break;
             case SIDE_PERMUTATION: {
-                if (faceSymbols[0] == Symbol.PERMUTATION_FACE_R) {
-                    loc = 0;
-                } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
-                    loc = 1;
-                } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_F) {
-                    loc = 2;
-                } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_L) {
-                    loc = 3;
-                } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
-                    loc = 4;
-                } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_B) {
-                    loc = 5;
+                switch (faceSymbols[0]) {
+                    case FACE_R:
+                        loc = 0;
+                        break;
+                    case FACE_U:
+                        loc = 1;
+                        break;
+                    case FACE_F:
+                        loc = 2;
+                        break;
+                    case FACE_L:
+                        loc = 3;
+                        break;
+                    case FACE_D:
+                        loc = 4;
+                        break;
+                    case FACE_B:
+                        loc = 5;
+                        break;
                 }
 
                 if (layerCount <= 3) {
@@ -222,42 +235,42 @@ public class PermutationNode extends Node implements Cloneable {
                 Symbol high = (faceSymbols[0].compareTo(faceSymbols[1]) > 0) ? faceSymbols[0] : faceSymbols[1];
                 Symbol first = faceSymbols[0];
                 boolean rotated = false;
-                if (low == Symbol.PERMUTATION_FACE_R && high == Symbol.PERMUTATION_FACE_U) {
+                if (low == Symbol.FACE_R && high == Symbol.FACE_U) {
                     loc = 0;
-                    rotated = first == Symbol.PERMUTATION_FACE_R;
-                } else if (low == Symbol.PERMUTATION_FACE_R && high == Symbol.PERMUTATION_FACE_F) {
+                    rotated = first == Symbol.FACE_R;
+                } else if (low == Symbol.FACE_R && high == Symbol.FACE_F) {
                     loc = 1;
-                    rotated = first == Symbol.PERMUTATION_FACE_F;
-                } else if (low == Symbol.PERMUTATION_FACE_R && high == Symbol.PERMUTATION_FACE_D) {
+                    rotated = first == Symbol.FACE_F;
+                } else if (low == Symbol.FACE_R && high == Symbol.FACE_D) {
                     loc = 2;
-                    rotated = first == Symbol.PERMUTATION_FACE_R;
-                } else if (low == Symbol.PERMUTATION_FACE_U && high == Symbol.PERMUTATION_FACE_B) {
+                    rotated = first == Symbol.FACE_R;
+                } else if (low == Symbol.FACE_U && high == Symbol.FACE_B) {
                     loc = 3;
-                    rotated = first == Symbol.PERMUTATION_FACE_U;
-                } else if (low == Symbol.PERMUTATION_FACE_R && high == Symbol.PERMUTATION_FACE_B) {
+                    rotated = first == Symbol.FACE_U;
+                } else if (low == Symbol.FACE_R && high == Symbol.FACE_B) {
                     loc = 4;
-                    rotated = first == Symbol.PERMUTATION_FACE_B;
-                } else if (low == Symbol.PERMUTATION_FACE_D && high == Symbol.PERMUTATION_FACE_B) {
+                    rotated = first == Symbol.FACE_B;
+                } else if (low == Symbol.FACE_D && high == Symbol.FACE_B) {
                     loc = 5;
-                    rotated = first == Symbol.PERMUTATION_FACE_D;
-                } else if (low == Symbol.PERMUTATION_FACE_U && high == Symbol.PERMUTATION_FACE_L) {
+                    rotated = first == Symbol.FACE_D;
+                } else if (low == Symbol.FACE_U && high == Symbol.FACE_L) {
                     loc = 6;
-                    rotated = first == Symbol.PERMUTATION_FACE_L;
-                } else if (low == Symbol.PERMUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_B) {
+                    rotated = first == Symbol.FACE_L;
+                } else if (low == Symbol.FACE_L && high == Symbol.FACE_B) {
                     loc = 7;
-                    rotated = first == Symbol.PERMUTATION_FACE_B;
-                } else if (low == Symbol.PERMUTATION_FACE_L && high == Symbol.PERMUTATION_FACE_D) {
+                    rotated = first == Symbol.FACE_B;
+                } else if (low == Symbol.FACE_L && high == Symbol.FACE_D) {
                     loc = 8;
-                    rotated = first == Symbol.PERMUTATION_FACE_L;
-                } else if (low == Symbol.PERMUTATION_FACE_U && high == Symbol.PERMUTATION_FACE_F) {
+                    rotated = first == Symbol.FACE_L;
+                } else if (low == Symbol.FACE_U && high == Symbol.FACE_F) {
                     loc = 9;
-                    rotated = first == Symbol.PERMUTATION_FACE_U;
-                } else if (low == Symbol.PERMUTATION_FACE_F && high == Symbol.PERMUTATION_FACE_L) {
+                    rotated = first == Symbol.FACE_U;
+                } else if (low == Symbol.FACE_F && high == Symbol.FACE_L) {
                     loc = 10;
-                    rotated = first == Symbol.PERMUTATION_FACE_F;
-                } else if (low == Symbol.PERMUTATION_FACE_F && high == Symbol.PERMUTATION_FACE_D) {
+                    rotated = first == Symbol.FACE_F;
+                } else if (low == Symbol.FACE_F && high == Symbol.FACE_D) {
                     loc = 11;
-                    rotated = first == Symbol.PERMUTATION_FACE_D;
+                    rotated = first == Symbol.FACE_D;
 
                 } else {
                     throw new IllegalArgumentException("Impossible edge part \"" + low.getName() + high.getName() + "\".");
@@ -300,93 +313,93 @@ public class PermutationNode extends Node implements Cloneable {
                 //   4 = Orientation 1 counterclockwise
                 //   5 = Orientation 2 counterclockwise
                 int rotation = 0;
-                if (low == Symbol.PERMUTATION_FACE_R
-                        && mid == Symbol.PERMUTATION_FACE_U
-                        && high == Symbol.PERMUTATION_FACE_F) {
+                if (low == Symbol.FACE_R
+                        && mid == Symbol.FACE_U
+                        && high == Symbol.FACE_F) {
                     loc = 0;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_R) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_R) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_U) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_R) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_R) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_F) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_R
-                        && mid == Symbol.PERMUTATION_FACE_F
-                        && high == Symbol.PERMUTATION_FACE_D) {
+                } else if (low == Symbol.FACE_R
+                        && mid == Symbol.FACE_F
+                        && high == Symbol.FACE_D) {
                     loc = 1;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_F) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_R) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_D) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_F) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_F) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_R) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_D) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_R
-                        && mid == Symbol.PERMUTATION_FACE_U
-                        && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.FACE_R
+                        && mid == Symbol.FACE_U
+                        && high == Symbol.FACE_B) {
                     loc = 2;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_B) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_R) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_U) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_B) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_B) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_R) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_R
-                        && mid == Symbol.PERMUTATION_FACE_D
-                        && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.FACE_R
+                        && mid == Symbol.FACE_D
+                        && high == Symbol.FACE_B) {
                     loc = 3;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_R) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_R) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_D) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_R) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_R) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_B) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_D) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_U
-                        && mid == Symbol.PERMUTATION_FACE_L
-                        && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.FACE_U
+                        && mid == Symbol.FACE_L
+                        && high == Symbol.FACE_B) {
                     loc = 4;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_L) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_U) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_L) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_L) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_B) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_L
-                        && mid == Symbol.PERMUTATION_FACE_D
-                        && high == Symbol.PERMUTATION_FACE_B) {
+                } else if (low == Symbol.FACE_L
+                        && mid == Symbol.FACE_D
+                        && high == Symbol.FACE_B) {
                     loc = 5;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_B) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_B) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_D) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_B) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_B) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_L) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_D) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_U
-                        && mid == Symbol.PERMUTATION_FACE_F
-                        && high == Symbol.PERMUTATION_FACE_L) {
+                } else if (low == Symbol.FACE_U
+                        && mid == Symbol.FACE_F
+                        && high == Symbol.FACE_L) {
                     loc = 6;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_U) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_F) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_U) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_F) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_F) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_L) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_U) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_U) ? 1 : 4;
                     }
-                } else if (low == Symbol.PERMUTATION_FACE_F
-                        && mid == Symbol.PERMUTATION_FACE_L
-                        && high == Symbol.PERMUTATION_FACE_D) {
+                } else if (low == Symbol.FACE_F
+                        && mid == Symbol.FACE_L
+                        && high == Symbol.FACE_D) {
                     loc = 7;
-                    if (faceSymbols[0] == Symbol.PERMUTATION_FACE_D) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_L) ? 0 : 3;
-                    } else if (faceSymbols[0] == Symbol.PERMUTATION_FACE_L) {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_F) ? 2 : 5;
+                    if (faceSymbols[0] == Symbol.FACE_D) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_L) ? 0 : 3;
+                    } else if (faceSymbols[0] == Symbol.FACE_L) {
+                        rotation = (faceSymbols[1] == Symbol.FACE_F) ? 2 : 5;
                     } else {
-                        rotation = (faceSymbols[1] == Symbol.PERMUTATION_FACE_D) ? 1 : 4;
+                        rotation = (faceSymbols[1] == Symbol.FACE_D) ? 1 : 4;
                     }
                 } else {
                     throw new IllegalArgumentException("Impossible corner part \"" + low.getName() + mid.getName() + high.getName() + "\".");
@@ -562,23 +575,23 @@ public class PermutationNode extends Node implements Cloneable {
     }
 
     @Override
-    public void inverse() {
-        List<Node> l = new ArrayList<>(getChildren());
+    public void invert() {
+        List<Node> a = new ArrayList<>(getChildren());
         removeAllChildren();
 
-        if (l.size() > 0) {
-            PermutationItemNode old = (PermutationItemNode) l.get(0);
-            PermutationItemNode inverseItem = new PermutationItemNode();
-            inverseItem.setOrientation(old.getOrientation());
-            inverseItem.setLocation(old.getLocation());
-            add(inverseItem);
+        if (a.size() > 0) {
+            var old = (PermutationItemNode) a.get(0);
+            var inverted = new PermutationItemNode();
+            inverted.setOrientation(old.getOrientation());
+            inverted.setLocation(old.getLocation());
+            add(inverted);
         }
-        for (int i = l.size() - 1; i >= 1; i--) {
-            PermutationItemNode old = (PermutationItemNode) l.get(i);
-            PermutationItemNode inverseItem = new PermutationItemNode();
-            inverseItem.setOrientation(old.getOrientation());
-            inverseItem.setLocation(old.getLocation());
-            add(inverseItem);
+        for (int i = a.size() - 1; i >= 1; i--) {
+            var old = (PermutationItemNode) a.get(i);
+            var inverted = new PermutationItemNode();
+            inverted.setOrientation(old.getOrientation());
+            inverted.setLocation(old.getLocation());
+            add(inverted);
         }
         switch (type) {
             case UNDEFINED_PERMUTATION:
@@ -587,8 +600,8 @@ public class PermutationNode extends Node implements Cloneable {
                 if (sign != 0) {
                     sign = 4 - sign;
                     for (int i = 1; i < getChildCount(); i++) {
-                        PermutationItemNode inverseItem = (PermutationItemNode) getChildAt(i);
-                        inverseItem.setOrientation((sign + inverseItem.getOrientation()) % 4);
+                        var inverted = (PermutationItemNode) getChildAt(i);
+                        inverted.setOrientation((sign + inverted.getOrientation()) % 4);
                     }
                 }
                 break;
@@ -596,16 +609,16 @@ public class PermutationNode extends Node implements Cloneable {
                 if (sign != 0) {
                     sign = 3 - sign;
                     for (int i = 1; i < getChildCount(); i++) {
-                        PermutationItemNode inverseItem = (PermutationItemNode) getChildAt(i);
-                        inverseItem.setOrientation((sign + inverseItem.getOrientation()) % 3);
+                        var inverted = (PermutationItemNode) getChildAt(i);
+                        inverted.setOrientation((sign + inverted.getOrientation()) % 3);
                     }
                 }
                 break;
             case EDGE_PERMUTATION:
                 if (sign != 0) {
                     for (int i = 1; i < getChildCount(); i++) {
-                        PermutationItemNode inverseItem = (PermutationItemNode) getChildAt(i);
-                        inverseItem.setOrientation(sign ^ inverseItem.getOrientation());
+                        var inverted = (PermutationItemNode) getChildAt(i);
+                        inverted.setOrientation(sign ^ inverted.getOrientation());
                     }
                 }
                 break;
@@ -626,8 +639,8 @@ public class PermutationNode extends Node implements Cloneable {
     @Override
     public Iterator<Node> resolvedIterator(boolean inverse) {
         if (inverse) {
-            PermutationNode inversedNode = clone();
-            inversedNode.inverse();
+            PermutationCycleNode inversedNode = clone();
+            inversedNode.invert();
             return List.<Node>of(inversedNode).iterator();
         } else {
             return List.<Node>of(this).iterator();
@@ -765,8 +778,8 @@ public class PermutationNode extends Node implements Cloneable {
 
     @Nonnull
     @Override
-    public PermutationNode clone() {
-        PermutationNode theClone = (PermutationNode) super.clone();
+    public PermutationCycleNode clone() {
+        PermutationCycleNode theClone = (PermutationCycleNode) super.clone();
         theClone.removeAllChildren();
         for (Node item : this.getChildren()) {
             theClone.add(item.clone());
@@ -775,36 +788,36 @@ public class PermutationNode extends Node implements Cloneable {
     }
 
     private final static Symbol[][] SIDE_SYMBOLS = {
-            {Symbol.PERMUTATION_FACE_R},
-            {Symbol.PERMUTATION_FACE_U},//
-            {Symbol.PERMUTATION_FACE_F},
-            {Symbol.PERMUTATION_FACE_L},
-            {Symbol.PERMUTATION_FACE_D},
-            {Symbol.PERMUTATION_FACE_B},//
+            {Symbol.FACE_R},
+            {Symbol.FACE_U},//
+            {Symbol.FACE_F},
+            {Symbol.FACE_L},
+            {Symbol.FACE_D},
+            {Symbol.FACE_B},//
     };
     @Nonnull Symbol[][] EDGE_SYMBOLS = {
-            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_R}, //"ur"
-            {Symbol.PERMUTATION_FACE_R, Symbol.PERMUTATION_FACE_F}, //"rf"
-            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_R}, //"dr"
-            {Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_U}, //"bu"
-            {Symbol.PERMUTATION_FACE_R, Symbol.PERMUTATION_FACE_B}, //"rb"
-            {Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_D}, //"bd"
-            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_L}, //"ul"
-            {Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_B}, //"lb"
-            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_L}, //"dl"
-            {Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_U}, //"fu"
-            {Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_F}, //"lf"
-            {Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_D} //"fd"
+            {Symbol.FACE_U, Symbol.FACE_R}, //"ur"
+            {Symbol.FACE_R, Symbol.FACE_F}, //"rf"
+            {Symbol.FACE_D, Symbol.FACE_R}, //"dr"
+            {Symbol.FACE_B, Symbol.FACE_U}, //"bu"
+            {Symbol.FACE_R, Symbol.FACE_B}, //"rb"
+            {Symbol.FACE_B, Symbol.FACE_D}, //"bd"
+            {Symbol.FACE_U, Symbol.FACE_L}, //"ul"
+            {Symbol.FACE_L, Symbol.FACE_B}, //"lb"
+            {Symbol.FACE_D, Symbol.FACE_L}, //"dl"
+            {Symbol.FACE_F, Symbol.FACE_U}, //"fu"
+            {Symbol.FACE_L, Symbol.FACE_F}, //"lf"
+            {Symbol.FACE_F, Symbol.FACE_D} //"fd"
     };
     private final static Symbol[][] CORNER_SYMBOLS = {
-            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_R, Symbol.PERMUTATION_FACE_F},// urf
-            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_R},// dfr
-            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_R},// ubr
-            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_R, Symbol.PERMUTATION_FACE_B},// drb
-            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_B},// ulb
-            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_B, Symbol.PERMUTATION_FACE_L},// dbl
-            {Symbol.PERMUTATION_FACE_U, Symbol.PERMUTATION_FACE_F, Symbol.PERMUTATION_FACE_L},// ufl
-            {Symbol.PERMUTATION_FACE_D, Symbol.PERMUTATION_FACE_L, Symbol.PERMUTATION_FACE_F}// dlf
+            {Symbol.FACE_U, Symbol.FACE_R, Symbol.FACE_F},// urf
+            {Symbol.FACE_D, Symbol.FACE_F, Symbol.FACE_R},// dfr
+            {Symbol.FACE_U, Symbol.FACE_B, Symbol.FACE_R},// ubr
+            {Symbol.FACE_D, Symbol.FACE_R, Symbol.FACE_B},// drb
+            {Symbol.FACE_U, Symbol.FACE_L, Symbol.FACE_B},// ulb
+            {Symbol.FACE_D, Symbol.FACE_B, Symbol.FACE_L},// dbl
+            {Symbol.FACE_U, Symbol.FACE_F, Symbol.FACE_L},// ufl
+            {Symbol.FACE_D, Symbol.FACE_L, Symbol.FACE_F}// dlf
     };
 
     @Override
@@ -956,6 +969,8 @@ public class PermutationNode extends Node implements Cloneable {
     public void insert(MutableTreeNode newChild, int childIndex) {
         if (newChild instanceof PermutationItemNode) {
             super.insert(newChild, childIndex);
-        } else throw new IllegalArgumentException("Illegal child: "+newChild);
+        } else {
+            throw new IllegalArgumentException("Illegal child: " + newChild);
+        }
     }
 }

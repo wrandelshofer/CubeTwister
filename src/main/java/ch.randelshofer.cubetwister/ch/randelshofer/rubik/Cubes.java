@@ -49,7 +49,7 @@ public class Cubes {
                 throw new IllegalArgumentException("Unsupported layer count " + layerCount);
         }
         try {
-            return (Cube) Class.forName(n).newInstance();
+            return (Cube) Class.forName(n).getConstructor().newInstance();
         } catch (Exception ex) {
             InternalError e = new InternalError("Couldn't create cube " + n);
             e.initCause(ex);
@@ -62,12 +62,12 @@ public class Cubes {
 
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toVisualPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
-                    notation.getToken(Symbol.PERMUTATION_FACE_R),
-                    notation.getToken(Symbol.PERMUTATION_FACE_U),
-                    notation.getToken(Symbol.PERMUTATION_FACE_F),
-                    notation.getToken(Symbol.PERMUTATION_FACE_L),
-                    notation.getToken(Symbol.PERMUTATION_FACE_D),
-                    notation.getToken(Symbol.PERMUTATION_FACE_B),
+                    notation.getToken(Symbol.FACE_R),
+                    notation.getToken(Symbol.FACE_U),
+                    notation.getToken(Symbol.FACE_F),
+                    notation.getToken(Symbol.FACE_L),
+                    notation.getToken(Symbol.FACE_D),
+                    notation.getToken(Symbol.FACE_B),
                     notation.getToken(Symbol.PERMUTATION_PLUS),
                     notation.getToken(Symbol.PERMUTATION_PLUSPLUS),
                     notation.getToken(Symbol.PERMUTATION_MINUS),
@@ -568,12 +568,12 @@ public class Cubes {
     public static String toPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
-                    notation.getToken(Symbol.PERMUTATION_FACE_R),
-                    notation.getToken(Symbol.PERMUTATION_FACE_U),
-                    notation.getToken(Symbol.PERMUTATION_FACE_F),
-                    notation.getToken(Symbol.PERMUTATION_FACE_L),
-                    notation.getToken(Symbol.PERMUTATION_FACE_D),
-                    notation.getToken(Symbol.PERMUTATION_FACE_B),
+                    notation.getToken(Symbol.FACE_R),
+                    notation.getToken(Symbol.FACE_U),
+                    notation.getToken(Symbol.FACE_F),
+                    notation.getToken(Symbol.FACE_L),
+                    notation.getToken(Symbol.FACE_D),
+                    notation.getToken(Symbol.FACE_B),
                     notation.getToken(Symbol.PERMUTATION_PLUS),
                     notation.getToken(Symbol.PERMUTATION_PLUSPLUS),
                     notation.getToken(Symbol.PERMUTATION_MINUS),
@@ -589,12 +589,12 @@ public class Cubes {
     public static String toCornerPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toCornerPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
-                    notation.getToken(Symbol.PERMUTATION_FACE_R),
-                    notation.getToken(Symbol.PERMUTATION_FACE_U),
-                    notation.getToken(Symbol.PERMUTATION_FACE_F),
-                    notation.getToken(Symbol.PERMUTATION_FACE_L),
-                    notation.getToken(Symbol.PERMUTATION_FACE_D),
-                    notation.getToken(Symbol.PERMUTATION_FACE_B),
+                    notation.getToken(Symbol.FACE_R),
+                    notation.getToken(Symbol.FACE_U),
+                    notation.getToken(Symbol.FACE_F),
+                    notation.getToken(Symbol.FACE_L),
+                    notation.getToken(Symbol.FACE_D),
+                    notation.getToken(Symbol.FACE_B),
                     notation.getToken(Symbol.PERMUTATION_PLUS),
                     notation.getToken(Symbol.PERMUTATION_PLUSPLUS),
                     notation.getToken(Symbol.PERMUTATION_MINUS),
@@ -617,12 +617,12 @@ public class Cubes {
     public static String toEdgePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toEdgePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
-                    notation.getToken(Symbol.PERMUTATION_FACE_R),
-                    notation.getToken(Symbol.PERMUTATION_FACE_U),
-                    notation.getToken(Symbol.PERMUTATION_FACE_F),
-                    notation.getToken(Symbol.PERMUTATION_FACE_L),
-                    notation.getToken(Symbol.PERMUTATION_FACE_D),
-                    notation.getToken(Symbol.PERMUTATION_FACE_B),
+                    notation.getToken(Symbol.FACE_R),
+                    notation.getToken(Symbol.FACE_U),
+                    notation.getToken(Symbol.FACE_F),
+                    notation.getToken(Symbol.FACE_L),
+                    notation.getToken(Symbol.FACE_D),
+                    notation.getToken(Symbol.FACE_B),
                     notation.getToken(Symbol.PERMUTATION_PLUS),
                     notation.getToken(Symbol.PERMUTATION_PLUSPLUS),
                     notation.getToken(Symbol.PERMUTATION_MINUS),
@@ -645,12 +645,12 @@ public class Cubes {
     public static String toSidePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toSidePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
-                    notation.getToken(Symbol.PERMUTATION_FACE_R),
-                    notation.getToken(Symbol.PERMUTATION_FACE_U),
-                    notation.getToken(Symbol.PERMUTATION_FACE_F),
-                    notation.getToken(Symbol.PERMUTATION_FACE_L),
-                    notation.getToken(Symbol.PERMUTATION_FACE_D),
-                    notation.getToken(Symbol.PERMUTATION_FACE_B),
+                    notation.getToken(Symbol.FACE_R),
+                    notation.getToken(Symbol.FACE_U),
+                    notation.getToken(Symbol.FACE_F),
+                    notation.getToken(Symbol.FACE_L),
+                    notation.getToken(Symbol.FACE_D),
+                    notation.getToken(Symbol.FACE_B),
                     notation.getToken(Symbol.PERMUTATION_PLUS),
                     notation.getToken(Symbol.PERMUTATION_PLUSPLUS),
                     notation.getToken(Symbol.PERMUTATION_MINUS),
@@ -666,12 +666,12 @@ public class Cubes {
     public static String toVisualSidePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toVisualSidePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
-                    notation.getToken(Symbol.PERMUTATION_FACE_R),
-                    notation.getToken(Symbol.PERMUTATION_FACE_U),
-                    notation.getToken(Symbol.PERMUTATION_FACE_F),
-                    notation.getToken(Symbol.PERMUTATION_FACE_L),
-                    notation.getToken(Symbol.PERMUTATION_FACE_D),
-                    notation.getToken(Symbol.PERMUTATION_FACE_B),
+                    notation.getToken(Symbol.FACE_R),
+                    notation.getToken(Symbol.FACE_U),
+                    notation.getToken(Symbol.FACE_F),
+                    notation.getToken(Symbol.FACE_L),
+                    notation.getToken(Symbol.FACE_D),
+                    notation.getToken(Symbol.FACE_B),
                     notation.getToken(Symbol.PERMUTATION_PLUS),
                     notation.getToken(Symbol.PERMUTATION_PLUSPLUS),
                     notation.getToken(Symbol.PERMUTATION_MINUS),

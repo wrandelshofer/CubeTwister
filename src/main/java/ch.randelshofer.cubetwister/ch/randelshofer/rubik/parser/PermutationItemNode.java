@@ -17,11 +17,6 @@ public class PermutationItemNode extends Node {
      */
     private int location;
 
-    public PermutationItemNode() {
-        super();
-    }
-
-
     @Nonnull
     public PermutationItemNode clone() {
         return (PermutationItemNode) super.clone();

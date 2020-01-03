@@ -157,13 +157,13 @@ public abstract class Node extends TreeNodeImpl<Node> {
      * Inverses the subtree starting at this node.
      */
     @SuppressWarnings("unchecked")
-    public void inverse() {
+    public void invert() {
         if (children != null) {
             List<Node> l = new ArrayList<>(getChildren());
             removeAllChildren();
             for (int i = l.size() - 1; i >= 0; i--) {
                 Node elem = l.get(i);
-                elem.inverse();
+                elem.invert();
                 this.add(elem);
             }
         }
@@ -183,7 +183,7 @@ public abstract class Node extends TreeNodeImpl<Node> {
     /**
      * Enumerates a resolved version of the subtree starting at this node. All
      * elements of the enumeration contain only atomic operations on a cube
-     * such as from a {@link MoveNode} or a {@link PermutationNode}.
+     * such as from a {@link MoveNode} or a {@link PermutationCycleNode}.
      *
      * @param inverse Set to true if you wish to get an inverted enumeration.
      */

@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/NotationConstructsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/NotationConstructsView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/CubeMarkupNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/CubeMarkupNotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/DefaultNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/DefaultNotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/Symbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/Symbol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/BinaryNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/BinaryNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationItemNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationItemNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationCycleNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" afterDir="false" />
@@ -48,33 +62,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/.idea/workspace.xml">
-      <ranges>
-        <range start1="4" end1="5" start2="4" end2="4" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="6" end1="16" start2="5" end2="5" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="17" end1="18" start2="6" end2="7" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="20" end1="20" start2="9" end2="10" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="60" end1="60" start2="50" end2="73" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="117" end1="118" start2="130" end2="131" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="120" end1="129" start2="133" end2="133" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="149" end1="150" start2="153" end2="154" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="159" end1="159" start2="163" end2="171" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="165" end1="166" start2="177" end2="178" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="175" end1="175" start2="187" end2="188" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="178" end1="179" start2="191" end2="192" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="184" end1="185" start2="197" end2="198" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="197" end1="198" start2="210" end2="211" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="203" end1="205" start2="216" end2="227" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="206" end1="206" start2="228" end2="231" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="222" end1="226" start2="247" end2="251" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="229" end1="230" start2="254" end2="254" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="231" end1="234" start2="255" end2="259" changelist="cbd661c2-3fff-4952-bcb6-7375f764f5bd" />
-        <range start1="462" end1="463" start2="487" end2="495" changelist="251f6c07-a8ef-4d06-bdeb-838fcb9178e5" />
-        <range start1="512" end1="513" start2="544" end2="546" changelist="251f6c07-a8ef-4d06-bdeb-838fcb9178e5" />
-      </ranges>
-    </file>
   </component>
   <component name="ProjectId" id="1PBbPUtlFcxGnAK7AIVfM1LQBpZ" />
   <component name="PropertiesComponent">
@@ -576,28 +563,28 @@
     <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog" timestamp="1577886127481">
       <screen x="480" y="1175" width="1440" height="816" />
     </state>
-    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577886127481" />
-    <state width="1106" height="326" key="GridCell.Tab.0.bottom" timestamp="1577896084740">
+    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577955437696" />
+    <state width="1206" height="415" key="GridCell.Tab.0.bottom" timestamp="1578072752918">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.0.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
-    <state width="1106" height="326" key="GridCell.Tab.0.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084740" />
-    <state width="1106" height="326" key="GridCell.Tab.0.center" timestamp="1577896084740">
+    <state width="1206" height="415" key="GridCell.Tab.0.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752918" />
+    <state width="1206" height="415" key="GridCell.Tab.0.center" timestamp="1578072752917">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.0.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788610" />
-    <state width="1106" height="326" key="GridCell.Tab.0.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084740" />
-    <state width="1106" height="326" key="GridCell.Tab.0.left" timestamp="1577896084739">
+    <state width="1206" height="415" key="GridCell.Tab.0.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752917" />
+    <state width="1206" height="415" key="GridCell.Tab.0.left" timestamp="1578072752916">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.0.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788609" />
-    <state width="1106" height="326" key="GridCell.Tab.0.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084739" />
-    <state width="1106" height="326" key="GridCell.Tab.0.right" timestamp="1577896084740">
+    <state width="1206" height="415" key="GridCell.Tab.0.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752916" />
+    <state width="1206" height="415" key="GridCell.Tab.0.right" timestamp="1578072752917">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.0.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788610" />
-    <state width="1106" height="326" key="GridCell.Tab.0.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896084740" />
-    <state width="1106" height="326" key="GridCell.Tab.1.bottom" timestamp="1577896064019">
+    <state width="1206" height="415" key="GridCell.Tab.0.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752917" />
+    <state width="1460" height="326" key="GridCell.Tab.1.bottom" timestamp="1578046779553">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788612" />

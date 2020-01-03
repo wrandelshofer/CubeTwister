@@ -56,7 +56,7 @@ public class InversionNode extends UnaryNode {
             InversionNode inverted = (InversionNode) cloneSubtree();
             for (Iterator<Node> i = inverted.reversedChildIterator(); i.hasNext();) {
                 SequenceNode node = (SequenceNode) i.next();
-                node.inverse();
+                node.invert();
                 node.writeTokens(w, p, macroMap);
             }
 
@@ -68,7 +68,7 @@ public class InversionNode extends UnaryNode {
                 InversionNode inverted = (InversionNode) cloneSubtree();
                 for (Iterator<Node> i = inverted.reversedChildIterator();i.hasNext();) {
                     SequenceNode node = (SequenceNode) i.next();
-                    node.inverse();
+                    node.invert();
                     node.writeTokens(w, p, macroMap);
                 }
             } else if (invertorPos == Syntax.PREFIX) {

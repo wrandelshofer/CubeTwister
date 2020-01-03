@@ -200,7 +200,7 @@ class NodeTest {
         //       permutation we should get the expected result
         String permutationString = Cubes.toPermutationString(cube, notation);
         Node parsedPermutation = parser.parse(permutationString);
-        parsedPermutation.inverse();
+        parsedPermutation.invert();
         cube.reset();
         parsedPermutation.applyTo(cube, false);
         String actual = Cubes.toPermutationString(cube, notation);
@@ -224,7 +224,7 @@ class NodeTest {
         RubiksCube cube = new RubiksCube();
 
         // WHEN: we do an inverse, and then apply
-        instance.inverse();
+        instance.invert();
         ;
         instance.applyTo(cube, false);
 
@@ -232,7 +232,7 @@ class NodeTest {
         //       permutation we should get the expected result
         String permutationString = Cubes.toPermutationString(cube, notation);
         Node parsedPermutation = parser.parse(permutationString);
-        parsedPermutation.inverse();
+        parsedPermutation.invert();
         cube.reset();
         parsedPermutation.applyTo(cube, false);
         String actual = Cubes.toPermutationString(cube, notation);
@@ -258,7 +258,7 @@ class NodeTest {
 
         // WHEN: We apply a resolved iterable
         for (Node node : instance.resolvedIterable(false)) {
-            if ((node instanceof PermutationNode)
+            if ((node instanceof PermutationCycleNode)
                     || (node instanceof MoveNode)) {
 
                 node.applyTo(cube, false);
@@ -291,7 +291,7 @@ class NodeTest {
 
         // WHEN: We apply an inverse resolved iterable
         for (Node node : instance.resolvedIterable(true)) {
-            if ((node instanceof PermutationNode)
+            if ((node instanceof PermutationCycleNode)
                     || (node instanceof MoveNode)) {
 
                 node.applyTo(cube, false);
@@ -304,7 +304,7 @@ class NodeTest {
         //       permutation we should get the expected result
         String permutationString = Cubes.toPermutationString(cube, notation);
         Node parsedPermutation = parser.parse(permutationString);
-        parsedPermutation.inverse();
+        parsedPermutation.invert();
         cube.reset();
         parsedPermutation.applyTo(cube, false);
         String actual = Cubes.toPermutationString(cube, notation);

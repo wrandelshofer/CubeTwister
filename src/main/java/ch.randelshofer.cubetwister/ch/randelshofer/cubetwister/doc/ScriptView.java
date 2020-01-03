@@ -1181,7 +1181,7 @@ public class ScriptView
                                 return null;
                             } else {
                                 SequenceNode solution = solver.getSolution();
-                                solution.inverse();
+                                solution.invert();
                                 solution.transformOrientation(rcube.getLayerCount(), rcube.getCubeOrientation(), false);
                                 return solution.toString(model.getNotationModel());
                             }

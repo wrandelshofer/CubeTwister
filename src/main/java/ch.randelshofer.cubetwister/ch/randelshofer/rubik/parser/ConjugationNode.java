@@ -30,13 +30,13 @@ public class ConjugationNode extends BinaryNode {
      * Inverses the subtree starting at this node.
      */
     @Override
-    public void inverse() {
+    public void invert() {
         if (getChildCount() != 2) {
             return;
         }
         //The conjugator does not have to be inverted.
         var b = getChildAt(1);
-        b.inverse();
+        b.invert();
     }
 
     @Nonnull

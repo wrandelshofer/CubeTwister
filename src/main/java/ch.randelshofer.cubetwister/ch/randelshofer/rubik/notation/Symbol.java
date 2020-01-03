@@ -26,12 +26,12 @@ public enum Symbol {
 
     // Note: Ordering of the enum constants is significant.
     // Class PermutationNode implies that PR < PU < PF < PL < PD < PB.
-    PERMUTATION_FACE_R("permR"),
-    PERMUTATION_FACE_U("permU"),
-    PERMUTATION_FACE_F("permF"),
-    PERMUTATION_FACE_L("permL"),
-    PERMUTATION_FACE_D("permD"),
-    PERMUTATION_FACE_B("permB"),
+    FACE_R("permR"),
+    FACE_U("permU"),
+    FACE_F("permF"),
+    FACE_L("permL"),
+    FACE_D("permD"),
+    FACE_B("permB"),
 
     PERMUTATION_PLUS("permPlus"),
     PERMUTATION_MINUS("permMinus"),
@@ -95,12 +95,12 @@ public enum Symbol {
             INVERSION_OPERATOR,
     }),
     PERMUTATION("permutation", new Symbol[]{
-            PERMUTATION_FACE_R,
-            PERMUTATION_FACE_U,
-            PERMUTATION_FACE_F,
-            PERMUTATION_FACE_L,
-            PERMUTATION_FACE_D,
-            PERMUTATION_FACE_B,
+            FACE_R,
+            FACE_U,
+            FACE_F,
+            FACE_L,
+            FACE_D,
+            FACE_B,
             PERMUTATION_PLUS,
             PERMUTATION_MINUS,
             PERMUTATION_PLUSPLUS,
@@ -310,12 +310,12 @@ public enum Symbol {
 
     static public boolean isFaceSymbol(@Nonnull Symbol s) {
         switch (s) {
-            case PERMUTATION_FACE_R:
-            case PERMUTATION_FACE_U:
-            case PERMUTATION_FACE_F:
-            case PERMUTATION_FACE_L:
-            case PERMUTATION_FACE_D:
-            case PERMUTATION_FACE_B:
+            case FACE_R:
+            case FACE_U:
+            case FACE_F:
+            case FACE_L:
+            case FACE_D:
+            case FACE_B:
                 return true;
             default:
                 return false;

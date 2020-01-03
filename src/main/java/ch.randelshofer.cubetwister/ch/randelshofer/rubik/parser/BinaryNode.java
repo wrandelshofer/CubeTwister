@@ -44,7 +44,7 @@ public abstract class BinaryNode extends Node {
             p.writeToken(w, Symbol.NOP);
             w.write(' ');
             Node inv = operand1.cloneSubtree();
-            inv.inverse();
+            inv.invert();
             inv.writeTokens(w, p, macroMap);
             w.write(' ');
             p.writeToken(w, Symbol.NOP);
@@ -55,7 +55,7 @@ public abstract class BinaryNode extends Node {
                 //inv.add((Node) enumer.nextElement());
                 inv.add(enumer.next().cloneSubtree());
             }
-            inv.inverse();
+            inv.invert();
             inv.writeTokens(w, p, macroMap);
             if (p.isSupported(Symbol.GROUPING)) {
                 p.writeToken(w, Symbol.GROUPING_END);

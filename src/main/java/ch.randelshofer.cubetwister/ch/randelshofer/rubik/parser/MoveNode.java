@@ -109,7 +109,7 @@ public class MoveNode extends Node {
     public Iterator<Node> resolvedIterator(boolean isInverse) {
         if (isInverse) {
             MoveNode inversedNode = ((MoveNode) clone());
-            inversedNode.inverse();
+            inversedNode.invert();
             return List.<Node>of(inversedNode).iterator();
         } else {
             return List.<Node>of(this).iterator();
@@ -152,7 +152,7 @@ public class MoveNode extends Node {
      * Inverses the node.
      */
     @Override
-    public void inverse() {
+    public void invert() {
         angle = -angle;
     }
 

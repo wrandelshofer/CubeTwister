@@ -31,7 +31,7 @@ public class CommutationNode extends BinaryNode {
      * Inverses the subtree starting at this node.
      */
     @Override
-    public void inverse() {
+    public void invert() {
         if (getChildCount() != 2) {
             return;
         }

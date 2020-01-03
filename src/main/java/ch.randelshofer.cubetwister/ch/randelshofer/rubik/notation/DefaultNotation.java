@@ -17,17 +17,17 @@ public class DefaultNotation extends AbstractNotation {
     }
 
     public DefaultNotation(int layerCount) {
-        name="default";
+        name = "default";
         setLayerCount(layerCount);
 
         addToken(Symbol.NOP, "·");
         addToken(Symbol.NOP, ".");
-        addToken(Symbol.PERMUTATION_FACE_R, "r");
-        addToken(Symbol.PERMUTATION_FACE_U, "u");
-        addToken(Symbol.PERMUTATION_FACE_F, "f");
-        addToken(Symbol.PERMUTATION_FACE_L, "l");
-        addToken(Symbol.PERMUTATION_FACE_D, "d");
-        addToken(Symbol.PERMUTATION_FACE_B, "b");
+        addToken(Symbol.FACE_R, "r");
+        addToken(Symbol.FACE_U, "u");
+        addToken(Symbol.FACE_F, "f");
+        addToken(Symbol.FACE_L, "l");
+        addToken(Symbol.FACE_D, "d");
+        addToken(Symbol.FACE_B, "b");
         addToken(Symbol.PERMUTATION_PLUS, "+");
         addToken(Symbol.PERMUTATION_MINUS, "-");
         addToken(Symbol.PERMUTATION_PLUSPLUS, "++");

@@ -304,7 +304,7 @@ public class CubeMarkupNotation implements Notation {
         }
 
         // Disable permutation support, if tokens are missing
-        if (getToken(Symbol.PERMUTATION_FACE_R) == null) {
+        if (getToken(Symbol.FACE_R) == null) {
             symbolToInfoMap.put(Symbol.PERMUTATION, new SymbolInfo(Symbol.PERMUTATION, false, Syntax.PRECIRCUMFIX));
         }
         //System.out.println(this.toVerboseString());

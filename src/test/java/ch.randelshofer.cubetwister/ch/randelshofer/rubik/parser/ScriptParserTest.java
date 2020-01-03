@@ -492,17 +492,17 @@ class ScriptParserTest {
     public List<DynamicTest> testParsePermutation() {
         return Arrays.asList(
                 dynamicTest("defaultNotation (+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l)",
-                        () -> doParse(defaultNotatioon, "(+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l)", "0..61 sequence{ 0..18 permutation{ Corner sign:2 0:0 2:2 3:0 1:2 } 19..33 permutation{ Edge sign:1 0:0 4:1 2:0 1:1 } 34..38 permutation{ Side sign:3 0:0 } 39..44 permutation{ Side sign:0 0:0 5:0 } 45..52 permutation{ Side sign:2 1:0 4:0 } 53..61 permutation{ Side sign:2 2:0 3:3 } }")),
+                        () -> doParse(defaultNotatioon, "(+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l)", "0..61 sequence{ 0..18 permutationcycle{ Corner sign:2 0:0 2:2 3:0 1:2 } 19..33 permutationcycle{ Edge sign:1 0:0 4:1 2:0 1:1 } 34..38 permutationcycle{ Side sign:3 0:0 } 39..44 permutationcycle{ Side sign:0 0:0 5:0 } 45..52 permutationcycle{ Side sign:2 1:0 4:0 } 53..61 permutationcycle{ Side sign:2 2:0 3:3 } }")),
 
                 dynamicTest("precircumfixNotation R as permutation",
                         () -> doParse(precircumfix, "(ubr,bdr,dfr,fur) (ur,br,dr,fr) (+r)",
-                                "0..36 sequence{ 0..17 permutation{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..31 permutation{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutation{ Side sign:3 0:0 } }")),
+                                "0..36 sequence{ 0..17 permutationcycle{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..31 permutationcycle{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutationcycle{ Side sign:3 0:0 } }")),
                 dynamicTest("prefixNotation R as permutation", () -> doParse(prefix, "(ubr,bdr,dfr,fur) (ur,br,dr,fr) +(r)",
-                        "0..36 sequence{ 0..17 permutation{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..31 permutation{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutation{ Side sign:3 0:0 } }")),
+                        "0..36 sequence{ 0..17 permutationcycle{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..31 permutationcycle{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutationcycle{ Side sign:3 0:0 } }")),
                 dynamicTest("suffixNotation R as permutation", () -> doParse(suffix, "(ubr,bdr,dfr,fur) (ur,br,dr,fr) (r)+",
-                        "0..36 sequence{ 0..19 permutation{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..33 permutation{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutation{ Side sign:3 0:0 } }")),
+                        "0..36 sequence{ 0..19 permutationcycle{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..33 permutationcycle{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutationcycle{ Side sign:3 0:0 } }")),
                 dynamicTest("postcircumfixNotation R as permutation", () -> doParse(postcircumfix, "(ubr,bdr,dfr,fur) (ur,br,dr,fr) (r+)",
-                        "0..36 sequence{ 0..17 permutation{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..31 permutation{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutation{ Side sign:3 0:0 } }")),
+                        "0..36 sequence{ 0..17 permutationcycle{ Corner sign:0 2:0 3:1 1:0 0:1 } 18..31 permutationcycle{ Edge sign:0 0:0 4:1 2:0 1:1 } 32..36 permutationcycle{ Side sign:3 0:0 } }")),
 
 
                 dynamicTest("defaultNotation R /*comment*/ U F", () -> doParse(defaultNotatioon, "R /*comment*/ U F", "0..17 sequence{ 0..1 move{ 0:4:1 } 14..15 move{ 1:4:1 } 16..17 move{ 2:4:1 } }"))
@@ -636,17 +636,17 @@ class ScriptParserTest {
             b.append(' ')
                     .append(m.getRepeatCount())
                     .append(',');
-        } else if (node instanceof PermutationNode) {
-            PermutationNode m = (PermutationNode) node;
+        } else if (node instanceof PermutationCycleNode) {
+            PermutationCycleNode m = (PermutationCycleNode) node;
             b.append(' ');
             switch (m.getType()) {
-                case PermutationNode.SIDE_PERMUTATION:
+                case PermutationCycleNode.SIDE_PERMUTATION:
                     b.append("Side");
                     break;
-                case PermutationNode.EDGE_PERMUTATION:
+                case PermutationCycleNode.EDGE_PERMUTATION:
                     b.append("Edge");
                     break;
-                case PermutationNode.CORNER_PERMUTATION:
+                case PermutationCycleNode.CORNER_PERMUTATION:
                     b.append("Corner");
                     break;
             }

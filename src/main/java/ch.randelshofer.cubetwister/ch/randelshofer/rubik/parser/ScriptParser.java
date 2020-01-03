@@ -392,7 +392,7 @@ public class ScriptParser {
     }
 
     private void parsePermutation(@Nonnull Tokenizer tt, @Nonnull Node parent) throws ParseException {
-        var permutation = new PermutationNode(tt.getStartPosition(), tt.getStartPosition());
+        var permutation = new PermutationCycleNode(tt.getStartPosition(), tt.getStartPosition());
 
         Symbol sign = null;
         var syntax = notation.getSyntax(Symbol.PERMUTATION);
@@ -434,7 +434,7 @@ public class ScriptParser {
         }
         if (syntax != Syntax.POSTCIRCUMFIX) {
             // postcircumfix is read in parsePermutationItem.
-            permutation.setSign(sign);
+            permutation.setSignSymbol(sign);
         }
         permutation.setEndPosition(tt.getEndPosition());
         parent.add(permutation);
@@ -466,7 +466,7 @@ public class ScriptParser {
         return faceSymbols;
     }
 
-    private void parsePermutationItem(@Nonnull Tokenizer t, @Nonnull PermutationNode parent, Syntax syntax) throws ParseException {
+    private void parsePermutationItem(@Nonnull Tokenizer t, @Nonnull PermutationCycleNode parent, Syntax syntax) throws ParseException {
         Symbol sign = null;
 
         if (syntax == Syntax.PRECIRCUMFIX || syntax == Syntax.PREFIX) {
