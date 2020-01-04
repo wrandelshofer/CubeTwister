@@ -25,6 +25,21 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="ScriptTypeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="generator"/>
+      <xs:enumeration value="solver"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="AxisEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="x"/>
+      <xs:enumeration value="y"/>
+      <xs:enumeration value="z"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:complexType name="ColorType">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -89,9 +104,9 @@
     <xs:simpleContent>
       <xs:extension base="xs:string">
         <xs:attribute type="xs:string" name="symbol" use="optional"/>
-        <xs:attribute type="xs:string" name="axis" use="optional"/>
+        <xs:attribute type="AxisEnum" name="axis" use="optional"/>
         <xs:attribute type="xs:string" name="layerList" use="optional"/>
-        <xs:attribute type="xs:string" name="angle" use="optional"/>
+        <xs:attribute type="xs:integer" name="angle" use="optional"/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
@@ -145,7 +160,7 @@
       <xs:element type="xs:string" name="Date"/>
     </xs:sequence>
     <xs:attribute type="xs:string" name="id"/>
-    <xs:attribute type="xs:string" name="scriptType"/>
+    <xs:attribute type="ScriptTypeEnum" name="scriptType"/>
     <xs:attribute type="xs:string" name="cubeRef"/>
     <xs:attribute type="xs:string" name="notationRef"/>
   </xs:complexType>
