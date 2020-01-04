@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CubeMarkup" type="CubeMarkupType"/>
+
+  <xs:simpleType name="VersionEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="9"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="KindEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PocketCube"/>
+      <xs:enumeration value="ProfessorCube"/>
+      <xs:enumeration value="RevengeCube"/>
+      <xs:enumeration value="RubiksBarrel"/>
+      <xs:enumeration value="RubiksCuboctahedron"/>
+      <xs:enumeration value="RubiksDiamond"/>
+      <xs:enumeration value="RubiksCube"/>
+      <xs:enumeration value="V-Cube 6"/>
+      <xs:enumeration value="V-Cube 7"/>
+      <xs:enumeration value="Cube 6"/>
+      <xs:enumeration value="Cube 7"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ColorType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="id" use="required"/>
+        <xs:attribute type="xs:string" name="argb" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="PartType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="index" use="required"/>
+        <xs:attribute type="xs:boolean" name="visible" use="required"/>
+        <xs:attribute type="xs:string" name="fillColorRef" use="required"/>
+        <xs:attribute type="xs:string" name="outlineColorRef" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="StickerType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="index" use="required"/>
+        <xs:attribute type="xs:string" name="visible" use="required"/>
+        <xs:attribute type="xs:string" name="fillColorRef" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="StickersImageType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="visible" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="CubeType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Name"/>
+      <xs:element type="xs:string" name="Description"/>
+      <xs:element type="xs:string" name="Author"/>
+      <xs:element type="xs:string" name="Date"/>
+      <xs:element type="ColorType" name="Color" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="PartType" name="Part" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="StickerType" name="Sticker" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="StickersImageType" name="StickersImage" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:float" name="explode" use="optional"/>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="xs:string" name="scale" use="optional"/>
+    <xs:attribute type="xs:string" name="default" use="optional"/>
+    <xs:attribute type="xs:string" name="twistDuration" use="optional"/>
+    <xs:attribute type="xs:string" name="alpha" use="optional"/>
+    <xs:attribute type="xs:string" name="beta" use="optional"/>
+    <xs:attribute type="KindEnum" name="kind" use="required"/>
+    <xs:attribute type="xs:string" name="backgroundColor" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="TokenType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="symbol" use="optional"/>
+        <xs:attribute type="xs:string" name="axis" use="optional"/>
+        <xs:attribute type="xs:string" name="layerList" use="optional"/>
+        <xs:attribute type="xs:string" name="angle" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="StatementType" mixed="true">
+    <xs:sequence>
+      <xs:element type="TokenType" name="Token" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="symbol" use="required"/>
+    <xs:attribute type="xs:string" name="syntax" use="optional"/>
+    <xs:attribute type="xs:string" name="enabled" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="MacroType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Source"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="identifier" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="NotationType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Name"/>
+      <xs:element type="xs:string" name="Description"/>
+      <xs:element name="Author">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Date">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element type="StatementType" name="Statement" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element type="MacroType" name="Macro" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="required"/>
+    <xs:attribute type="xs:string" name="layerCount" use="required"/>
+    <xs:attribute type="xs:string" name="default" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="ScriptType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Name"/>
+      <xs:element type="xs:string" name="Description"/>
+      <xs:element type="xs:string" name="Source"/>
+      <xs:element type="xs:string" name="Author"/>
+      <xs:element type="xs:string" name="Date"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id"/>
+    <xs:attribute type="xs:string" name="scriptType"/>
+    <xs:attribute type="xs:string" name="cubeRef"/>
+    <xs:attribute type="xs:string" name="notationRef"/>
+  </xs:complexType>
+
+  <xs:complexType name="TextType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="Title"/>
+      <xs:element type="xs:string" name="Body"/>
+      <xs:element type="xs:string" name="Author"/>
+      <xs:element type="xs:string" name="Date"/>
+    </xs:sequence>
+    <xs:attribute type="xs:string" name="id" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="CubeMarkupType">
+    <xs:choice maxOccurs="unbounded" minOccurs="0">
+      <xs:element type="CubeType" name="Cube"/>
+      <xs:element type="NotationType" name="Notation"/>
+      <xs:element type="ScriptType" name="Script"/>
+      <xs:element type="TextType" name="Text"/>
+    </xs:choice>
+    <xs:attribute type="VersionEnum" name="version"/>
+  </xs:complexType>
+</xs:schema>
