@@ -21,6 +21,8 @@ import ch.randelshofer.rubik.CubeListener;
 import ch.randelshofer.rubik.Cubes;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.rubik.notation.CubeMarkupNotation;
+import ch.randelshofer.rubik.notation.DefaultNotation;
+import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.Node;
@@ -113,7 +115,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     private final static Color activeSelectionBackground = new Color(255, 255, 64);
     @Nullable
     protected Cube3DCanvas frontCanvas, rearCanvas;
-    protected CubeMarkupNotation notation;
+    protected Notation notation;
     protected boolean isRearViewVisible;
     @Nullable
     private String script;
@@ -634,496 +636,60 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     protected void readParameters()
             throws AppletParameterException {
 
-        if (Applets.getParameter(this, "debug", false)) {
-            debug = true;
-            Applets.setDebug(true);
-            System.out.println();
-            System.out.println(getAppletInfo());
-            System.out.println();
-        }
+        readDebugParameter();
 
-        if (getParameter("locale") != null) {
-            Locale l = new Locale(getParameter("locale"));
-            setLocale(l);
-            player.getControlPanelComponent().setLocale(l);
-        }
+        readLocaleParameter();
 
-        //attributes = (DefaultCubeAttributes) cube3D.getAttributes();
-        HashMap<String, Color> colorMap = new HashMap<String, Color>();
-        HashMap<String, Color> deprecatedColorTable = new HashMap<String, Color>();
-        int[] deprecatedFaceMap = {2, 0, 3, 5, 4, 1}; // maps FRDBLU to RUFLDB
-        String[] faceNames = {"f", "r", "d", "b", "l", "u"};
-
-        String value;
-        String initScript;
-
-        String[] keys;
-        int[] ints;
-        Color color;
 
         // Read resource data
-        XMLElement resources = null;
-        XMLElement defaultResources = null;
-        String parameter = null;
-        value = "";
-        Reader in = null;
-        try {
-            in = new InputStreamReader(getPlayerResources());
-            defaultResources = new XMLElement(new HashMap<String, char[]>(), true, false);
-            defaultResources.parseFromReader(in);
-        } catch (NullPointerException e) {
-            printWarning("default resource data missing.");
-        } catch (IOException e) {
-            throw new AppletParameterException(parameter, value, e);
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException e2) {
-            }
-        }
-
-        if (Applets.getParameter(this, "resourceFile", "").length() != 0
-                && Applets.getParameter(this, "resourceData", "").length() != 0) {
-            throw new AppletParameterException(
-                    "\"resourceFile\" and \"resourceData\" are mutually exclusive.",
-                    "resourceFile",
-                    Applets.getParameter(this, "resourceFile", ""));
-        }
-
-        in = null;
-        try {
-            String resourceArchive = "";
-            String resourceFile = Applets.getParameter(this, "resourceFile", "");
-            String resourceData = Applets.getParameter(this, "resourceData", "");
-            if (resourceFile.endsWith(".zip")) {
-                resourceArchive = resourceFile;
-                resourceFile = "";
-            }
-            if (resourceArchive.length() != 0) {
-                parameter = "resourceFile";
-                ZipInputStream zin = new ZipInputStream(new BufferedInputStream(new URL(getDocumentBase(), resourceArchive).openStream()));
-                if (resourceFile.length() == 0) {
-                    while (true) {
-                        ZipEntry entry = zin.getNextEntry();
-                        if (!entry.isDirectory()) {
-                            break;
-                        }
-                    }
-                } else {
-                    while (true) {
-                        ZipEntry entry = zin.getNextEntry();
-                        if (!entry.isDirectory() && entry.getName().equals(resourceFile)) {
-                            break;
-                        }
-                    }
-                }
-                in = new InputStreamReader(zin);
-                resources = new XMLElement(new HashMap<String, char[]>(), true, false);
-                resources.parseFromReader(in);
-            } else if (resourceFile.length() != 0) {
-                parameter = "resourceFile";
-                in = new InputStreamReader(new URL(getDocumentBase(), resourceFile).openStream());
-                resources = new XMLElement(new HashMap<String, char[]>(), true, false);
-                resources.parseFromReader(in);
-            } else if (resourceData.length() != 0) {
-                parameter = "resourceData";
-                //System.out.println("resourceData=" + resourceData);
-                in = new StringReader(value);
-                resources = new XMLElement(new HashMap<String, char[]>(), true, false);
-                resources.parseFromReader(in);
-            } else {
-                resources = defaultResources;
-            }
-        } catch (IOException e) {
-            throw new AppletParameterException(parameter, value, e);
-
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (IOException e2) {
-            }
-        }
-
-        // Configure cube from resources
-        attributes = (DefaultCubeAttributes) cube3D.getAttributes();
-        readCubeAttributes(resources, cube3D.getKind(), attributes);
-
-        // Read applet background color
-        color = Applets.getParameter(this, "backgroundColor", attributes.getFrontBgColor());
-        if (color == null) {
-            color = Color.WHITE;
-        }
-        Component canvas3D = player.getVisualComponent();
-        canvas3D.setBackground(color);
-        player.getControlPanelComponent().setBackground(color);
-        controlsPanel.setBackground(color);
-        attributes.setFrontBgColor(color);
-        attributes.setRearBgColor(color);
-        infoPanel.setBackground(color);
-        infoField.setBackground(color);
-        setBackground(color);
+        XMLElement resources = readResourcesParameter();
+        readBackgroundColorParameter();
 
         // set initial orientation and scale factor
-        if (Applets.getParameter(this, "alpha") != null) {
-            attributes.setAlpha(
-                    Applets.getParameter(this, "alpha", -25) / 180f * (float) Math.PI);
-        }
-        if (Applets.getParameter(this, "beta") != null) {
-            attributes.setBeta(
-                    Applets.getParameter(this, "beta", 45) / 180f * (float) Math.PI);
-        }
-        if (Applets.getParameter(this, "scaleFactor") != null) {
-            attributes.setScaleFactor((float) Applets.getParameter(this, "scaleFactor", attributes.getScaleFactor()));
-        }
+        readAlphaBetaAndScaleFactorParameter();
 
-        if (Applets.getParameter(this, "twistDuration") != null) {
-            int intValue = Applets.getParameter(this, "twistDuration", 500);
-            attributes.setTwistDuration(intValue);
-        }
-        defaultTwistDuration = attributes.getTwistDuration();
+        readTwistDurationParameter();
+        readColorParameters(attributes);
+        String initScript;
 
-        // Init color lookup table
-        if (Applets.getParameter(this, "colorTable", "").length() == 0
-                && attributes.getFaceCount() == 6) {
-            // colorTable is deprecated, but still supported
-            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
-                int face = deprecatedFaceMap[i];
-                deprecatedColorTable.put(
-                        Integer.toString(i),
-                        attributes.getStickerFillColor(attributes.getStickerOffset(face)));
-            }
-        }
-        if (Applets.getParameter(this, "colorList", "").length() == 0
-                && attributes.getFaceCount() == 6) {
-            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
-                int face = i;
-                colorMap.put(
-                        Integer.toString(i),
-                        attributes.getStickerFillColor(attributes.getStickerOffset(face)));
-                colorMap.put(
-                        faceNames[i],
-                        attributes.getStickerFillColor(attributes.getStickerOffset(face)));
-            }
-        }
+        readStickersImageParameter();
+        readStickerBevelParameter();
+        readPartParameters();
+        readScriptParameters(resources);
+        readBackgroundImageParameter();
+    }
 
-        // Read color lookup table
-        boolean hasColorTableOrColorList = false;
-        if (attributes.getFaceCount() == 6) {
-            value = Applets.getParameter(this, "colorTable", "");
-            if (value.length() != 0) {
-                printWarning("The \"colorTable\" parameter is deprecated, use \"colorList\" instead.");
-                hasColorTableOrColorList = true;
-                HashMap<String, String> deprecatedColorTableParam = Applets.getIndexedKeyValueParameters(this, "colorTable", null);
+    private void readBackgroundImageParameter() throws AppletParameterException {
+        String value;
 
-                // Convert the values of the color lookup tables from String to Color
-                if (deprecatedColorTableParam!=null) {
-                Iterator<String> enumer = deprecatedColorTableParam.keySet().iterator();
-                while (enumer.hasNext()) {
-                    String key = enumer.next();
-                    String item = deprecatedColorTableParam.get(key);
-                    Color c = new Color(Applets.decode(item).intValue());
-
-                    int i;
-                    try {
-                        i = Integer.parseInt(key);
-                    } catch (NumberFormatException e) {
-                        i = -1;
-                    }
-                    if (i >= 0) {
-                        try {
-                            deprecatedColorTable.put(key, c);
-                            if (i >= 0 && i < 6) {
-                                colorMap.put(Integer.toString(deprecatedFaceMap[i]), c);
-                            }
-                        } catch (NumberFormatException e) {
-                            throw new AppletParameterException("colorTable", value,
-                                    value.indexOf(item),
-                                    value.indexOf(item) + item.length());
-                        }
-                    } else if (i != -1) {
-                        colorMap.put(Integer.toString(i), c);
-                    } else {
-                        colorMap.put(key, c);
-                    }
-                }
-                }
-            }
-        }
-        value = Applets.getParameter(this, "colorList", "");
-        if (value.length() != 0) {
-            hasColorTableOrColorList = true;
-            HashMap<String, String> colorMapParam = Applets.getIndexedKeyValueParameters(this, "colorList", null);
-
-            // Convert the values of the color lookup tables from String to Color
-            if (colorMapParam != null) {
-                Iterator<String> enumer = colorMapParam.keySet().iterator();
-                while (enumer.hasNext()) {
-                    String key = enumer.next();
-                    String item = colorMapParam.get(key);
-                    try {
-                        colorMap.put(key, new Color(Applets.decode(item).intValue()));
-                    } catch (NumberFormatException e) {
-                        throw new AppletParameterException("colorList", value,
-                                value.indexOf(item),
-                                value.indexOf(item) + item.length());
-                    }
-                }
-            }
-        }
-        // init face colors
-        if (hasColorTableOrColorList
-                && Applets.getParameter(this, "faces", "").length() == 0
-                && Applets.getParameter(this, "faceList", "").length() == 0) {
-            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
-                String key = Integer.toString(i);
-                color = colorMap.get(key);
-                if (color != null) {
-                    int face = i;
-                    int offset = attributes.getStickerOffset(face);
-                    for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
-                        attributes.setStickerFillColor(offset + j, color);
-                    }
-                }
-            }
-        }
-        // Set the colors for all stickers on each side of the cube.
-        value = Applets.getParameter(this, "faces", "");
-        keys = Applets.getParameters(this, "faces", (String[]) null);
-        if (keys != null && keys.length != 0) {
-            printWarning("The \"faces\" parameter is deprecated, use \"faceList\" instead.");
-            if (keys.length != attributes.getFaceCount()) {
-                throw new AppletParameterException(
-                        "The Applet parameter \"faces\" has " + keys.length + " items instead of " + attributes.getFaceCount() + " items.",
-                        "faces", value);
-            }
-            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
-                if (!deprecatedColorTable.containsKey(keys[i])) {
-                    throw new AppletParameterException("faces", value,
-                            value.indexOf(keys[i]),
-                            value.indexOf(keys[i]) + keys[i].length());
-                }
-                color = deprecatedColorTable.get(keys[i]);
-                int face = deprecatedFaceMap[i];
-                int offset = attributes.getStickerOffset(face);
-                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
-                    attributes.setStickerFillColor(offset + j, color);
-                }
-            }
-        }
-        value = Applets.getParameter(this, "faceList", "");
-        keys = Applets.getParameters(this, "faceList", (String[]) null);
-        if (keys != null && keys.length != 0) {
-            if (keys.length != attributes.getFaceCount()) {
-                throw new AppletParameterException(
-                        "The Applet parameter 'faceList' has " + keys.length + " items instead of 6 items.",
-                        "faceList", value);
-            }
-            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
-                if (!colorMap.containsKey(keys[i])) {
-                    throw new AppletParameterException("faceList", value,
-                            value.indexOf(keys[i]),
-                            value.indexOf(keys[i]) + keys[i].length());
-                }
-                color = colorMap.get(keys[i]);
-                int face = i;
-                int offset = attributes.getStickerOffset(face);
-                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
-                    attributes.setStickerFillColor(offset + j, color);
-                }
-            }
-        }
-
-        // Set the colors for each sticker on each side of the cube.
-        // This parameter is deprecated but still supported.
-        value = Applets.getParameter(this, "stickers", "");
-        keys = Applets.getParameters(this, "stickers", (String[]) null);
-        if (keys != null && keys.length != 0) {
-            printWarning("The \"stickers\" parameter is deprecated, use \"stickerList\" instead.");
-            if (keys.length != 54) {
-                throw new AppletParameterException(
-                        "The Applet parameter \"stickers\" has " + keys.length + " items instead of 54 items.",
-                        "stickers", value);
-            }
-            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
-                int face = deprecatedFaceMap[i];
-                int offset = attributes.getStickerOffset(face);
-                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
-                    if (!deprecatedColorTable.containsKey(keys[i])) {
-                        throw new AppletParameterException(
-                                "stickers", value,
-                                value.indexOf(keys[i]), value.indexOf(keys[i]) + keys[i].length());
-                    }
-                    attributes.setStickerFillColor(offset + j, deprecatedColorTable.get(keys[offset + j]));
-                }
-            }
-        }
-        value = Applets.getParameter(this, "stickerList", "");
-        keys = Applets.getParameters(this, "stickerList", (String[]) null);
-        if (keys != null && keys.length != 0) {
-            if (keys.length != 54) {
-                throw new AppletParameterException(
-                        "The Applet parameter \"stickerList\" has " + keys.length + " items instead of 54 items.",
-                        "stickerList", value);
-            }
-            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
-                int face = i;
-                int offset = attributes.getStickerOffset(face);
-                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
-                    if (!deprecatedColorTable.containsKey(keys[i])) {
-                        throw new AppletParameterException(
-                                "stickerList", value,
-                                value.indexOf(keys[i]),
-                                value.indexOf(keys[i]) + keys[i].length());
-                    }
-                    attributes.setStickerFillColor(offset + j, deprecatedColorTable.get(keys[offset + j]));
-                }
-            }
-        }
-
-        // Set the colors for each sticker on each side of the cube.
-        // XXX - This does only work correctly with 6-faced cubes
-        String[] deprecatedParameterNames = {
-            "stickersFront", "stickersRight", "stickersLeft",
-            "stickersBack", "stickersDown", "stickersUp"
-        };
-        String[] parameterNames = {
-            "stickersRightList", "stickersUpList", "stickersFrontList",
-            "stickersLeftList", "stickersDownList", "stickersBackList"
-        };
-        for (int i = 0, n = Math.min(deprecatedParameterNames.length, attributes.getFaceCount()); i < n; i++) {
-            value = Applets.getParameter(this, deprecatedParameterNames[i], "");
-            keys = Applets.getParameters(this, deprecatedParameterNames[i], (String[]) null);
-            if (keys != null && keys.length != 0) {
-                printWarning("Parameter \"" + "\" is deprecated, use \"" + parameterNames[i] + "\" instead.");
-                if (keys.length != attributes.getStickerCount(i)) {
-                    throw new AppletParameterException(
-                            "The Applet parameter \"" + deprecatedParameterNames[i]
-                            + "\" has " + keys.length + " items instead of of "
-                            + attributes.getStickerCount(i) + " items.",
-                            deprecatedParameterNames[i], value);
-                }
-                int face = deprecatedFaceMap[i];
-                int offset = attributes.getStickerOffset(face);
-                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
-                    if (!deprecatedColorTable.containsKey(keys[j])) {
-                        System.out.println("AbstractPlayerApplet deprecatedColorTable:" + deprecatedColorTable);
-                        throw new AppletParameterException(
-                                deprecatedParameterNames[i], value,
-                                value.indexOf(keys[j]),
-                                value.indexOf(keys[j]) + keys[j].length() - 1);
-                    }
-                    attributes.setStickerFillColor(
-                            attributes.getStickerOffset(face) + j,
-                            deprecatedColorTable.get(keys[j]));
-                }
-            }
-        }
-        for (int i = 0, n = Math.min(parameterNames.length, attributes.getFaceCount()); i < n; i++) {
-            value = Applets.getParameter(this, parameterNames[i], "");
-            keys = Applets.getParameters(this, parameterNames[i], (String[]) null);
-            if (keys != null && keys.length != 0) {
-                if (keys.length != attributes.getStickerCount(i)) {
-                    throw new AppletParameterException(
-                            "The Applet parameter \"" + parameterNames[i]
-                            + "\" has " + keys.length + " items instead of "
-                            + attributes.getStickerCount(i) + " items.",
-                            parameterNames[i], value);
-                }
-                int face = i;
-                int offset = attributes.getStickerOffset(face);
-                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
-                    if (!colorMap.containsKey(keys[j])) {
-                        throw new AppletParameterException(
-                                parameterNames[i], value,
-                                value.indexOf(keys[j]),
-                                value.indexOf(keys[j]) + keys[j].length());
-                    }
-                    attributes.setStickerFillColor(
-                            attributes.getStickerOffset(face) + j,
-                            colorMap.get(keys[j]));
-                }
-            }
-        }
-
-        // Get Stickers image
-        value = Applets.getParameter(this, "stickersImage");
+        // Get background image
+        value = Applets.getParameter(this, "backgroundImage");
         if (value != null && value.length() != 0) {
             try {
-                attributes.setStickersImage(getImage(new URL(getDocumentBase(), value)));
-                attributes.setStickersImageVisible(true);
+                Image img = getImage(new URL(getDocumentBase(), value));
+                attributes.setFrontBgImage(img);
+                attributes.setRearBgImage(img);
             } catch (MalformedURLException e) {
-                throw new AppletParameterException("stickersImage", value);
+                throw new AppletParameterException("Malformed URL", "backgroundImage", value);
             } catch (Throwable t) {
                 t.printStackTrace();
             }
-        } else {
-            // look for stickers.png and stickers.jpg in the .jar bundle
-            InputStream sImgIn = AbstractPlayerApplet.class.getResourceAsStream("/StickersImage.png");
-            if (sImgIn == null) {
-                sImgIn = AbstractPlayerApplet.class.getResourceAsStream("/StickersImage.jpg");
-            }
-            if (sImgIn == null) {
-                sImgIn = AbstractPlayerApplet.class.getResourceAsStream("/StickersImage.gif");
-            }
-            if (sImgIn != null) {
-                try {
-                    attributes.setStickersImage(ImageIO.read(sImgIn));
-                    attributes.setStickersImageVisible(true);
-                } catch (Throwable t) {
-                    t.printStackTrace();
-                }
-            }
         }
-        // Set stickers image bevelling
-        value = Applets.getParameter(this, "stickerBevel");
-        if (value != null) {
-            try {
-                cube3D.setStickerBeveling(Float.valueOf(value).floatValue() / 512f);
-            } catch (NumberFormatException ex) {
-                System.err.println("Illegal 'stickerBevel' parameter:" + value);
-            }
-        }
+    }
 
-        // Show/Hide corner parts
-        value = Applets.getParameter(this, "visibleCornerParts");
-        if (Applets.getParameter(this,
-                "visibleCornerParts") != null) {
-            String[] cornerNames = {"fru", "dfr", "bru", "bdr", "blu", "bdl", "flu", "dfl"};
-            String[] values = Applets.getParameters(this, "visibleCornerParts", new String[0]);
-            for (int i = 0; i < 8; i++) {
-                attributes.setPartVisible(i, false);
-            }
-            for (int i = 0; i < values.length; i++) {
-                char[] name = values[i].toCharArray();
-                Arrays.sort(name);
-                int corner = ArrayUtil.indexOf(cornerNames, new String(name));
-                if (corner == -1) {
-                    throw new AppletParameterException("visibleCornerParts", value,
-                            value.indexOf(values[i]),
-                            value.indexOf(values[i]) + values[i].length());
-                } else {
-                    attributes.setPartVisible(corner, true);
-                }
-            }
-        }
-
-        // Determine the script language
+    private void readScriptParameters(XMLElement resources) throws AppletParameterException {
+        String initScript;// Determine the script language
+        String value;
         value = Applets.getParameter(this, "notation");
         notation = new CubeMarkupNotation();
         if (value == null || value.length() == 0) {
             try {
-                notation.readXML(resources);
+                ((CubeMarkupNotation) notation).readXML(resources);
             } catch (Exception e) {
-                if (defaultResources != null) {
-                    notation.readXML(defaultResources);
-                }
+                notation = new DefaultNotation();
             }
         } else {
-            notation.readXML(resources, value);
+            ((CubeMarkupNotation) notation).readXML(resources, value);
 //            if (notation.getName().equals(value))
         }
 
@@ -1251,17 +817,478 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
             } catch (NoSuchMethodError e) {
             }
         }
-        // Get background image
-        value = Applets.getParameter(this, "backgroundImage");
+    }
+
+    private void readPartParameters() throws AppletParameterException {
+        // Show/Hide corner parts
+        {
+            String value;
+            value = Applets.getParameter(this, "visibleCornerParts");
+            if (Applets.getParameter(this,
+                    "visibleCornerParts") != null) {
+                String[] cornerNames = {"fru", "dfr", "bru", "bdr", "blu", "bdl", "flu", "dfl"};
+                String[] values = Applets.getParameters(this, "visibleCornerParts", new String[0]);
+                for (int i = 0; i < 8; i++) {
+                    attributes.setPartVisible(i, false);
+                }
+                for (int i = 0; i < values.length; i++) {
+                    char[] name = values[i].toCharArray();
+                    Arrays.sort(name);
+                    int corner = ArrayUtil.indexOf(cornerNames, new String(name));
+                    if (corner == -1) {
+                        throw new AppletParameterException("visibleCornerParts", value,
+                                value.indexOf(values[i]),
+                                value.indexOf(values[i]) + values[i].length());
+                    } else {
+                        attributes.setPartVisible(corner, true);
+                    }
+                }
+            }
+        }
+    }
+
+    private void readStickerBevelParameter() {
+        // Set stickers image bevelling
+        {
+            String value;
+            value = Applets.getParameter(this, "stickerBevel");
+            if (value != null) {
+                try {
+                    cube3D.setStickerBeveling(Float.valueOf(value).floatValue() / 512f);
+                } catch (NumberFormatException ex) {
+                    System.err.println("Illegal 'stickerBevel' parameter:" + value);
+                }
+            }
+        }
+    }
+
+    private void readColorParameters(DefaultCubeAttributes a) throws AppletParameterException {
+        // init color map
+        HashMap<String, Color> colorMap = new HashMap<String, Color>();
+        String[] faceNames = {"f", "r", "d", "b", "l", "u"};
+        if (Applets.getParameter(this, "colorList", "").length() == 0
+                && a.getFaceCount() == 6) {
+            for (int i = 0, n = a.getFaceCount(); i < n; i++) {
+                int face = i;
+                colorMap.put(
+                        Integer.toString(i),
+                        a.getStickerFillColor(a.getStickerOffset(face)));
+                colorMap.put(
+                        faceNames[i],
+                        a.getStickerFillColor(a.getStickerOffset(face)));
+            }
+        }
+
+        // Read deprecated color table
+        boolean hasColorTableOrColorList = false;
+        HashMap<String, Color> deprecatedColorTable = new HashMap<String, Color>();
+        int[] deprecatedFaceMap = {2, 0, 3, 5, 4, 1}; // maps FRDBLU to RUFLDB
+        if (Applets.getParameter(this, "colorTable", "").length() == 0
+                && a.getFaceCount() == 6) {
+            // colorTable is deprecated, but still supported
+            for (int i = 0, n = a.getFaceCount(); i < n; i++) {
+                int face = deprecatedFaceMap[i];
+                deprecatedColorTable.put(
+                        Integer.toString(i),
+                        a.getStickerFillColor(a.getStickerOffset(face)));
+            }
+        }
+
+
+        {
+            String value = Applets.getParameter(this, "colorList", "");
+            if (value.length() != 0) {
+                hasColorTableOrColorList = true;
+                HashMap<String, String> colorMapParam = Applets.getIndexedKeyValueParameters(this, "colorList", null);
+
+                // Convert the values of the color lookup tables from String to Color
+                if (colorMapParam != null) {
+                    Iterator<String> enumer = colorMapParam.keySet().iterator();
+                    while (enumer.hasNext()) {
+                        String key = enumer.next();
+                        String item = colorMapParam.get(key);
+                        try {
+                            colorMap.put(key, new Color(Applets.decode(item).intValue()));
+                        } catch (NumberFormatException e) {
+                            throw new AppletParameterException("colorList", value,
+                                    value.indexOf(item),
+                                    value.indexOf(item) + item.length());
+                        }
+                    }
+                }
+            }
+        }
+
+        // init face colors
+        if (hasColorTableOrColorList
+                && Applets.getParameter(this, "faces", "").length() == 0
+                && Applets.getParameter(this, "faceList", "").length() == 0) {
+            for (int i = 0, n = a.getFaceCount(); i < n; i++) {
+                String key = Integer.toString(i);
+                Color color = colorMap.get(key);
+                if (color != null) {
+                    int face = i;
+                    int offset = a.getStickerOffset(face);
+                    for (int j = 0, m = a.getStickerCount(face); j < m; j++) {
+                        a.setStickerFillColor(offset + j, color);
+                    }
+                }
+            }
+        }
+        // Set the colors for all stickers on each face of the cube.
+        {
+            String value = Applets.getParameter(this, "faces", "");
+            String[] keys = Applets.getParameters(this, "faces", (String[]) null);
+            if (keys != null && keys.length != 0) {
+                printWarning("The \"faces\" parameter is deprecated, use \"faceList\" instead.");
+                if (keys.length != a.getFaceCount()) {
+                    throw new AppletParameterException(
+                            "The Applet parameter \"faces\" has " + keys.length + " items instead of " + a.getFaceCount() + " items.",
+                            "faces", value);
+                }
+                for (int i = 0, n = a.getFaceCount(); i < n; i++) {
+                    if (!deprecatedColorTable.containsKey(keys[i])) {
+                        throw new AppletParameterException("faces", value,
+                                value.indexOf(keys[i]),
+                                value.indexOf(keys[i]) + keys[i].length());
+                    }
+                    Color color = deprecatedColorTable.get(keys[i]);
+                    int face = deprecatedFaceMap[i];
+                    int offset = a.getStickerOffset(face);
+                    for (int j = 0, m = a.getStickerCount(face); j < m; j++) {
+                        a.setStickerFillColor(offset + j, color);
+                    }
+                }
+            }
+        }
+        {
+            String value = Applets.getParameter(this, "faceList", "");
+            String[] keys = Applets.getParameters(this, "faceList", (String[]) null);
+            if (keys != null && keys.length != 0) {
+                if (keys.length != a.getFaceCount()) {
+                    throw new AppletParameterException(
+                            "The Applet parameter 'faceList' has " + keys.length + " items instead of 6 items.",
+                            "faceList", value);
+                }
+                for (int i = 0, n = a.getFaceCount(); i < n; i++) {
+                    if (!colorMap.containsKey(keys[i])) {
+                        throw new AppletParameterException("faceList", value,
+                                value.indexOf(keys[i]),
+                                value.indexOf(keys[i]) + keys[i].length());
+                    }
+                    Color color = colorMap.get(keys[i]);
+                    int face = i;
+                    int offset = a.getStickerOffset(face);
+                    for (int j = 0, m = a.getStickerCount(face); j < m; j++) {
+                        a.setStickerFillColor(offset + j, color);
+                    }
+                }
+            }
+        }
+        readStickersParameter(deprecatedColorTable, deprecatedFaceMap);
+        readStickerListsByFaceParameters(colorMap, deprecatedColorTable, deprecatedFaceMap);
+    }
+
+    private void readTwistDurationParameter() {
+        if (Applets.getParameter(this, "twistDuration") != null) {
+            int intValue = Applets.getParameter(this, "twistDuration", 500);
+            attributes.setTwistDuration(intValue);
+        }
+        defaultTwistDuration = attributes.getTwistDuration();
+    }
+
+    private void readAlphaBetaAndScaleFactorParameter() {
+        if (Applets.getParameter(this, "alpha") != null) {
+            attributes.setAlpha(
+                    Applets.getParameter(this, "alpha", -25) / 180f * (float) Math.PI);
+        }
+        if (Applets.getParameter(this, "beta") != null) {
+            attributes.setBeta(
+                    Applets.getParameter(this, "beta", 45) / 180f * (float) Math.PI);
+        }
+        if (Applets.getParameter(this, "scaleFactor") != null) {
+            attributes.setScaleFactor((float) Applets.getParameter(this, "scaleFactor", attributes.getScaleFactor()));
+        }
+    }
+
+    private void readBackgroundColorParameter() {
+        Color color;// Read applet background color
+        color = Applets.getParameter(this, "backgroundColor", attributes.getFrontBgColor());
+        if (color == null) {
+            color = Color.WHITE;
+        }
+        Component canvas3D = player.getVisualComponent();
+        canvas3D.setBackground(color);
+        player.getControlPanelComponent().setBackground(color);
+        controlsPanel.setBackground(color);
+        attributes.setFrontBgColor(color);
+        attributes.setRearBgColor(color);
+        infoPanel.setBackground(color);
+        infoField.setBackground(color);
+        setBackground(color);
+    }
+
+    @Nullable
+    private XMLElement readResourcesParameter() throws AppletParameterException {
+        String value;
+        XMLElement resources = null;
+        {
+            XMLElement defaultResources = null;
+            String parameter = null;
+            value = "";
+            Reader in = null;
+            try {
+                in = new InputStreamReader(getPlayerResources());
+                defaultResources = new XMLElement(new HashMap<String, char[]>(), true, false);
+                defaultResources.parseFromReader(in);
+            } catch (NullPointerException e) {
+                printWarning("default resource data missing.");
+            } catch (IOException e) {
+                throw new AppletParameterException(parameter, value, e);
+            } finally {
+                try {
+                    if (in != null) {
+                        in.close();
+                    }
+                } catch (IOException e2) {
+                }
+            }
+
+            if (Applets.getParameter(this, "resourceFile", "").length() != 0
+                    && Applets.getParameter(this, "resourceData", "").length() != 0) {
+                throw new AppletParameterException(
+                        "\"resourceFile\" and \"resourceData\" are mutually exclusive.",
+                        "resourceFile",
+                        Applets.getParameter(this, "resourceFile", ""));
+            }
+
+            in = null;
+            try {
+                String resourceArchive = "";
+                String resourceFile = Applets.getParameter(this, "resourceFile", "");
+                String resourceData = Applets.getParameter(this, "resourceData", "");
+                if (resourceFile.endsWith(".zip")) {
+                    resourceArchive = resourceFile;
+                    resourceFile = "";
+                }
+                if (resourceArchive.length() != 0) {
+                    parameter = "resourceFile";
+                    ZipInputStream zin = new ZipInputStream(new BufferedInputStream(new URL(getDocumentBase(), resourceArchive).openStream()));
+                    if (resourceFile.length() == 0) {
+                        while (true) {
+                            ZipEntry entry = zin.getNextEntry();
+                            if (!entry.isDirectory()) {
+                                break;
+                            }
+                        }
+                    } else {
+                        while (true) {
+                            ZipEntry entry = zin.getNextEntry();
+                            if (!entry.isDirectory() && entry.getName().equals(resourceFile)) {
+                                break;
+                            }
+                        }
+                    }
+                    in = new InputStreamReader(zin);
+                    resources = new XMLElement(new HashMap<String, char[]>(), true, false);
+                    resources.parseFromReader(in);
+                } else if (resourceFile.length() != 0) {
+                    parameter = "resourceFile";
+                    in = new InputStreamReader(new URL(getDocumentBase(), resourceFile).openStream());
+                    resources = new XMLElement(new HashMap<String, char[]>(), true, false);
+                    resources.parseFromReader(in);
+                } else if (resourceData.length() != 0) {
+                    parameter = "resourceData";
+                    //System.out.println("resourceData=" + resourceData);
+                    in = new StringReader(value);
+                    resources = new XMLElement(new HashMap<String, char[]>(), true, false);
+                    resources.parseFromReader(in);
+                } else {
+                    resources = defaultResources;
+                }
+            } catch (IOException e) {
+                throw new AppletParameterException(parameter, value, e);
+
+            } finally {
+                try {
+                    if (in != null) {
+                        in.close();
+                    }
+                } catch (IOException e2) {
+                }
+            }
+
+            // Configure cube from resources
+            attributes = (DefaultCubeAttributes) cube3D.getAttributes();
+            readCubeAttributes(resources, cube3D.getKind(), attributes);
+        }
+        return resources;
+    }
+
+    private void readLocaleParameter() {
+        if (getParameter("locale") != null) {
+            Locale l = new Locale(getParameter("locale"));
+            setLocale(l);
+            player.getControlPanelComponent().setLocale(l);
+        }
+    }
+
+    private void readDebugParameter() {
+        if (Applets.getParameter(this, "debug", false)) {
+            debug = true;
+            Applets.setDebug(true);
+            System.out.println();
+            System.out.println(getAppletInfo());
+            System.out.println();
+        }
+    }
+
+    private void readStickersImageParameter() throws AppletParameterException {
+        String value;// Get Stickers image
+        value = Applets.getParameter(this, "stickersImage");
         if (value != null && value.length() != 0) {
             try {
-                Image img = getImage(new URL(getDocumentBase(), value));
-                attributes.setFrontBgImage(img);
-                attributes.setRearBgImage(img);
+                attributes.setStickersImage(getImage(new URL(getDocumentBase(), value)));
+                attributes.setStickersImageVisible(true);
             } catch (MalformedURLException e) {
-                throw new AppletParameterException("Malformed URL", "backgroundImage", value);
+                throw new AppletParameterException("stickersImage", value);
             } catch (Throwable t) {
                 t.printStackTrace();
+            }
+        } else {
+            // look for stickers.png and stickers.jpg in the .jar bundle
+            InputStream sImgIn = AbstractPlayerApplet.class.getResourceAsStream("/StickersImage.png");
+            if (sImgIn == null) {
+                sImgIn = AbstractPlayerApplet.class.getResourceAsStream("/StickersImage.jpg");
+            }
+            if (sImgIn == null) {
+                sImgIn = AbstractPlayerApplet.class.getResourceAsStream("/StickersImage.gif");
+            }
+            if (sImgIn != null) {
+                try {
+                    attributes.setStickersImage(ImageIO.read(sImgIn));
+                    attributes.setStickersImageVisible(true);
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void readStickersParameter(HashMap<String, Color> deprecatedColorTable, int[] deprecatedFaceMap) throws AppletParameterException {
+        String value;
+        String[] keys;// Set the colors for each sticker on each side of the cube.
+        // This parameter is deprecated but still supported.
+        value = Applets.getParameter(this, "stickers", "");
+        keys = Applets.getParameters(this, "stickers", (String[]) null);
+        if (keys != null && keys.length != 0) {
+            printWarning("The \"stickers\" parameter is deprecated, use \"stickerList\" instead.");
+            if (keys.length != 54) {
+                throw new AppletParameterException(
+                        "The Applet parameter \"stickers\" has " + keys.length + " items instead of 54 items.",
+                        "stickers", value);
+            }
+            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
+                int face = deprecatedFaceMap[i];
+                int offset = attributes.getStickerOffset(face);
+                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
+                    if (!deprecatedColorTable.containsKey(keys[i])) {
+                        throw new AppletParameterException(
+                                "stickers", value,
+                                value.indexOf(keys[i]), value.indexOf(keys[i]) + keys[i].length());
+                    }
+                    attributes.setStickerFillColor(offset + j, deprecatedColorTable.get(keys[offset + j]));
+                }
+            }
+        }
+        value = Applets.getParameter(this, "stickerList", "");
+        keys = Applets.getParameters(this, "stickerList", (String[]) null);
+        if (keys != null && keys.length != 0) {
+            if (keys.length != 54) {
+                throw new AppletParameterException(
+                        "The Applet parameter \"stickerList\" has " + keys.length + " items instead of 54 items.",
+                        "stickerList", value);
+            }
+            for (int i = 0, n = attributes.getFaceCount(); i < n; i++) {
+                int face = i;
+                int offset = attributes.getStickerOffset(face);
+                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
+                    if (!deprecatedColorTable.containsKey(keys[i])) {
+                        throw new AppletParameterException(
+                                "stickerList", value,
+                                value.indexOf(keys[i]),
+                                value.indexOf(keys[i]) + keys[i].length());
+                    }
+                    attributes.setStickerFillColor(offset + j, deprecatedColorTable.get(keys[offset + j]));
+                }
+            }
+        }
+    }
+
+    private void readStickerListsByFaceParameters(HashMap<String, Color> colorMap, HashMap<String, Color> deprecatedColorTable, int[] deprecatedFaceMap) throws AppletParameterException {
+        String value;
+        String[] keys;// Set the colors for each sticker on each side of the cube.
+        // XXX - This does only work correctly with 6-faced cubes
+        String[] deprecatedParameterNames = {
+                "stickersFront", "stickersRight", "stickersLeft",
+                "stickersBack", "stickersDown", "stickersUp"
+        };
+        String[] parameterNames = {
+                "stickersRightList", "stickersUpList", "stickersFrontList",
+                "stickersLeftList", "stickersDownList", "stickersBackList"
+        };
+        for (int i = 0, n = Math.min(deprecatedParameterNames.length, attributes.getFaceCount()); i < n; i++) {
+            value = Applets.getParameter(this, deprecatedParameterNames[i], "");
+            keys = Applets.getParameters(this, deprecatedParameterNames[i], (String[]) null);
+            if (keys != null && keys.length != 0) {
+                printWarning("Parameter \"" + "\" is deprecated, use \"" + parameterNames[i] + "\" instead.");
+                if (keys.length != attributes.getStickerCount(i)) {
+                    throw new AppletParameterException(
+                            "The Applet parameter \"" + deprecatedParameterNames[i]
+                            + "\" has " + keys.length + " items instead of of "
+                            + attributes.getStickerCount(i) + " items.",
+                            deprecatedParameterNames[i], value);
+                }
+                int face = deprecatedFaceMap[i];
+                int offset = attributes.getStickerOffset(face);
+                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
+                    if (!deprecatedColorTable.containsKey(keys[j])) {
+                        System.out.println("AbstractPlayerApplet deprecatedColorTable:" + deprecatedColorTable);
+                        throw new AppletParameterException(
+                                deprecatedParameterNames[i], value,
+                                value.indexOf(keys[j]),
+                                value.indexOf(keys[j]) + keys[j].length() - 1);
+                    }
+                    attributes.setStickerFillColor(
+                            attributes.getStickerOffset(face) + j,
+                            deprecatedColorTable.get(keys[j]));
+                }
+            }
+        }
+        for (int i = 0, n = Math.min(parameterNames.length, attributes.getFaceCount()); i < n; i++) {
+            value = Applets.getParameter(this, parameterNames[i], "");
+            keys = Applets.getParameters(this, parameterNames[i], (String[]) null);
+            if (keys != null && keys.length != 0) {
+                if (keys.length != attributes.getStickerCount(i)) {
+                    throw new AppletParameterException(
+                            "The Applet parameter \"" + parameterNames[i]
+                            + "\" has " + keys.length + " items instead of "
+                            + attributes.getStickerCount(i) + " items.",
+                            parameterNames[i], value);
+                }
+                int face = i;
+                int offset = attributes.getStickerOffset(face);
+                for (int j = 0, m = attributes.getStickerCount(face); j < m; j++) {
+                    if (!colorMap.containsKey(keys[j])) {
+                        throw new AppletParameterException(
+                                parameterNames[i], value,
+                                value.indexOf(keys[j]),
+                                value.indexOf(keys[j]) + keys[j].length());
+                    }
+                    attributes.setStickerFillColor(
+                            attributes.getStickerOffset(face) + j,
+                            colorMap.get(keys[j]));
+                }
             }
         }
     }
