@@ -6,7 +6,7 @@ module ch.randelshofer.cubetwister {
     requires org.jhotdraw7.draw;
     requires org.monte.media;
     requires org.kociemba.twophase;
-    requires org.junit.jupiter.api;
 
-    opens ch.randelshofer.rubik to org.junit.jupiter.api;
+    exports ch.randelshofer.rubik;
+    exports ch.randelshofer.rubik.parser;
 }

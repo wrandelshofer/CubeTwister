@@ -353,8 +353,6 @@ public abstract class AbstractCube3D implements Cube3D, CubeListener, PropertyCh
         return attributes;
     }
 
-    protected abstract int getStickerCount();
-
     @Override
     public abstract int getPartIndexForStickerIndex(int stickerIndex);
 

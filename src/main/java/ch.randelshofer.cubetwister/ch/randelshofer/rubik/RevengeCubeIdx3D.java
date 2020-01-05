@@ -746,7 +746,7 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
     }
 
     @Override
-    protected int getStickerCount() {
+    public int getStickerCount() {
         return 6 * 4 * 4;
     }
 

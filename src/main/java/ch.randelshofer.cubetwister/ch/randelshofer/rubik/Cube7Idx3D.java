@@ -857,7 +857,7 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
     }
 
     @Override
-    protected int getStickerCount() {
+    public int getStickerCount() {
         return 6 * 7 * 7;
     }
 

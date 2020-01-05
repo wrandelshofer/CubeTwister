@@ -134,9 +134,6 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
 
     protected abstract int getStickerIndexForPart(int part, int orientation);
 
-    @Override
-    protected abstract int getStickerCount();
-
     protected abstract void initEdges();
 
     protected abstract void initCorners();

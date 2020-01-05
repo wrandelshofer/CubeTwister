@@ -347,7 +347,7 @@ public class PocketCubeIdx3D extends AbstractPocketCubeIdx3D {
     }
 
     @Override
-    protected int getStickerCount() {
+    public int getStickerCount() {
         return 6 * 2 * 2;
     }
 

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="SCOPE_TYPE" value="3" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/NotationConstructsView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/NotationConstructsView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/CubeMarkupNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/CubeMarkupNotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/DefaultNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/DefaultNotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/Symbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/Symbol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/BinaryNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/BinaryNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/CommutationNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ConjugationNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InversionNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationItemNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationItemNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationCycleNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/RotationNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" afterDir="false" />
-    </list>
-    <list id="251f6c07-a8ef-4d06-bdeb-838fcb9178e5" name="IDEA" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/.nbattrs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-cubetwister.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build-cubetwister.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRubiksCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRubiksCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube6Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube6Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube7Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube7Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/PocketCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/PocketCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/ProfessorCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/ProfessorCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RevengeCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RevengeCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube6Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube6Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube7Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube7Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/module-info.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list id="1080d60b-cab9-41eb-ac41-9e07020a6381" name="Debugging" comment="" />
+    <list id="251f6c07-a8ef-4d06-bdeb-838fcb9178e5" name="IDEA" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,7 +48,10 @@
     </SUITE>
   </component>
   <component name="CoverageViewManager">
-    <option name="myElementSize" value="41" />
+    <option name="myElementSize" value="397" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="CubeTwister" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,8 +64,16 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1PBbPUtlFcxGnAK7AIVfM1LQBpZ" />
+  <component name="ProjectViewState">
+    <option name="flattenModules" value="true" />
+    <option name="flattenPackages" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
@@ -73,10 +83,13 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.24822696" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -86,26 +99,26 @@
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ch.randelshofer.rubik.parser" />
+      <recent name="ch.randelshofer.rubik.notation" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc" />
+      <recent name="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images" />
+      <recent name="$PROJECT_DIR$/src/org.kociemba.twophase" />
+      <recent name="$PROJECT_DIR$/lib/compile/modulepath/jhotdraw" />
+      <recent name="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/ch/randelshofer/gui" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ch.randelshofer.rubik.parser" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/modules" />
       <recent name="$PROJECT_DIR$/ch.randelshofer.cubetwister/test" />
       <recent name="$PROJECT_DIR$/org.kociemba.twophase/src" />
       <recent name="$PROJECT_DIR$/ch.randelshofer.cubetwister/src" />
       <recent name="$PROJECT_DIR$/ideamodules" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="ch.randelshofer.rubik.parser" />
-      <recent name="ch.randelshofer.rubik.notation" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ch.randelshofer.rubik.parser" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/modules/ch.randelshofer.cubetwister/src/ch/randelshofer/gui/images" />
-      <recent name="$PROJECT_DIR$/src/org.kociemba.twophase" />
-      <recent name="$PROJECT_DIR$/lib/compile/modulepath/jhotdraw" />
-      <recent name="$PROJECT_DIR$/src/ch.randelshofer.cubetwister/ch/randelshofer/gui" />
-      <recent name="$PROJECT_DIR$/lib/test/classpath" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.All in ch.randelshofer.cubetwister">
@@ -115,33 +128,75 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScriptParserTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in ch.randelshofer.cubetwister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CubeMarkupTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="PATTERN" value="ch.randelshofer.cubetwister.doc.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.ScriptParserTest" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.cubetwister.doc" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.cubetwister.doc.CubeMarkupTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ScriptParserTest.testParse" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CubeMarkupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="PATTERN" value="ch.randelshofer.rubik.notation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.ScriptParserTest" />
-      <option name="METHOD_NAME" value="testParse" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.notation" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.notation.CubeMarkupTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CubeMarkupTest.testAgainstXmlSchema (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.cubetwister.doc.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.cubetwister.doc" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.cubetwister.doc.CubeMarkupTest" />
+      <option name="METHOD_NAME" value="testAgainstXmlSchema" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CubeMarkupTest.testAgainstXmlSchema" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.notation.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.notation" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.notation.CubeMarkupTest" />
+      <option name="METHOD_NAME" value="testAgainstXmlSchema" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
@@ -151,64 +206,6 @@
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="postcircumfixNotation R as permutation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.ScriptParserTest" />
-      <option name="METHOD_NAME" value="testParse" />
-      <option name="TEST_OBJECT" value="uniqueId" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.ScriptParserTest]/[test-factory:testParse()]/[dynamic-test:#212]" />
-      </uniqueIds>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="prefixNotation R as permutation (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.ScriptParserTest" />
-      <option name="TEST_OBJECT" value="uniqueId" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.ScriptParserTest]/[test-factory:testParse()]/[dynamic-test:#210]" />
-      </uniqueIds>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="prefixNotation R as permutation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.ScriptParserTest" />
-      <option name="TEST_OBJECT" value="uniqueId" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <uniqueIds>
-        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.ScriptParserTest]/[test-factory:testParse()]/[dynamic-test:#210]" />
-      </uniqueIds>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -224,21 +221,33 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.ScriptParserTest" />
-      <item itemvalue="JUnit.ScriptParserTest.testParse" />
-      <item itemvalue="JUnit.postcircumfixNotation R as permutation" />
-      <item itemvalue="JUnit.prefixNotation R as permutation" />
-      <item itemvalue="JUnit.prefixNotation R as permutation (1)" />
+      <item itemvalue="JUnit.All in ch.randelshofer.cubetwister" />
+      <item itemvalue="JUnit.CubeMarkupTest" />
+      <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema" />
+      <item itemvalue="JUnit.CubeMarkupTest (1)" />
+      <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.All in ch.randelshofer.cubetwister" />
-        <item itemvalue="JUnit.defaultNotation (+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l) (1)" />
-        <item itemvalue="JUnit.defaultNotation (+urf,bru,drb,frd) (+ur,br,dr,fr) (+r) (r,b) (++u,d) (++f,+l)" />
-        <item itemvalue="JUnit.ScriptParserTest.testParsePermutation" />
-        <item itemvalue="JUnit.CubesTest" />
+        <item itemvalue="JUnit.CubeMarkupTest (1)" />
+        <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema (1)" />
+        <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema" />
+        <item itemvalue="JUnit.CubeMarkupTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="StructureViewFactory">
     <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
@@ -250,87 +259,11 @@
     <task active="true" id="Default" summary="Default task">
       <changelist id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="" />
       <changelist id="251f6c07-a8ef-4d06-bdeb-838fcb9178e5" name="IDEA" comment="" />
+      <changelist id="1080d60b-cab9-41eb-ac41-9e07020a6381" name="Debugging" comment="" />
       <created>1545507365691</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1545507365691</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Reorganizes code.">
-      <created>1545572443639</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1545572443639</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Reorganizes code.">
-      <created>1545596885456</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1545596885456</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Reorganizes code.">
-      <created>1545596903096</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1545596903096</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Reorganizes code.">
-      <created>1545596912597</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1545596912597</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Reorganizes code.">
-      <created>1545597268030</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1545597268030</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Reorganizes code.">
-      <created>1545597289292</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1545597289292</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Reorganizes code.">
-      <created>1545653874763</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1545653874763</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Reorganizes code.">
-      <created>1545654277833</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1545654277833</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Reorganizes code.">
-      <created>1545654296296</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1545654296296</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Reorganizes code.">
-      <created>1545654413334</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1545654413334</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Fixes &quot;resource not found&quot; issues.">
-      <created>1545655401042</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1545655401042</updated>
     </task>
     <task id="LOCAL-00012" summary="Removes debug output.">
       <created>1545662813857</created>
@@ -472,7 +405,210 @@
       <option name="project" value="LOCAL" />
       <updated>1565628719676</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Improves parser.">
+      <created>1565882255120</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1565882255120</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fixes interpreter issues.">
+      <created>1565884026858</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1565884026858</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Cleans code up.">
+      <created>1566049050097</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1566049050097</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Cleans code up.">
+      <created>1566051021260</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1566051021260</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Adds documentation.">
+      <created>1566057438843</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1566057438843</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Improves tokenizer.">
+      <created>1566738124434</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1566738124434</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Organizes members.">
+      <created>1566738655228</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1566738655228</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Makes tokenizer code more similar to JavaScript.">
+      <created>1566740521103</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1566740521103</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Fixes NPE.">
+      <created>1566743768118</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1566743768118</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Fixes macro parsing.">
+      <created>1566746093677</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1566746093677</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Minor fixes.">
+      <created>1576312793481</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1576312793481</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Streamlines code with JavaScript implementation.">
+      <created>1577880757846</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1577880757846</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Infers nullity annotations.">
+      <created>1577882420184</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1577882420184</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Updates to Java SE 14.">
+      <created>1577883121145</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1577883121145</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Tweaks the test case for reflection.">
+      <created>1577884631530</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1577884631530</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Streamlines code with JavaScript version.">
+      <created>1577888007629</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1577888007629</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Streamlines code with JavaScript version.">
+      <created>1577896093690</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1577896093690</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Code cleanup.">
+      <created>1577954913619</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1577954913619</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Code cleanup.">
+      <created>1577955028416</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1577955028416</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Code cleanup.">
+      <created>1577955036143</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1577955036143</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Improves test coverage.">
+      <created>1577955058607</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1577955058607</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Fixes typo.">
+      <created>1577955445710</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1577955445710</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Fixes typo.">
+      <created>1577956322324</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1577956322325</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Refactors Node classes. Increases coverage of NodeTest.">
+      <created>1578051627369</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1578051627369</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Minor improvements.">
+      <created>1578064708229</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1578064708229</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Streamlines code with JavaScript version.">
+      <created>1578072768136</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1578072768136</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Streamlines code with JavaScript version.">
+      <created>1578131746640</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1578131746641</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Adds CubeMarkup schema and a CubeMarkup test.">
+      <created>1578144841776</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1578144841776</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Improves CubeMarkup schema.">
+      <created>1578157089479</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1578157089480</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -501,25 +637,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Reorganizes code." />
-    <MESSAGE value="Fixes &quot;resource not found&quot; issues." />
-    <MESSAGE value="Removes debug output." />
-    <MESSAGE value="Adds unit test." />
-    <MESSAGE value="Removes unwanted directories." />
-    <MESSAGE value="Adds .gitignore." />
-    <MESSAGE value="Fixes class references from other modules." />
-    <MESSAGE value="Moves move metrics out from AST nodes into class MoveMetrics.&#10;Coalesces moves now before computing the metrics." />
-    <MESSAGE value="MoveMetrics can now be used with streams." />
-    <MESSAGE value="Adds move count to MoveMetrics.&#10;Fixes moves in DefaultNotation." />
-    <MESSAGE value="Adds file header." />
-    <MESSAGE value="Fixes javadoc comments." />
-    <MESSAGE value="Fixes MoveMetrics." />
-    <MESSAGE value="Renames test methods." />
-    <MESSAGE value="Adds NodeTest." />
-    <MESSAGE value="Fixes comments." />
-    <MESSAGE value="Implements Node.resolvedIterator() methods and removes unnecessary code." />
-    <MESSAGE value="Fixes html output." />
-    <MESSAGE value="Reworks toString() methods." />
     <MESSAGE value="Fixes test." />
     <MESSAGE value="Before cleanup." />
     <MESSAGE value="During cleanup." />
@@ -537,73 +654,85 @@
     <MESSAGE value="Infers nullity annotations." />
     <MESSAGE value="Updates to Java SE 14." />
     <MESSAGE value="Tweaks the test case for reflection." />
+    <MESSAGE value="Code cleanup." />
+    <MESSAGE value="Improves test coverage." />
+    <MESSAGE value="Fixes typo." />
+    <MESSAGE value="Refactors Node classes. Increases coverage of NodeTest." />
+    <MESSAGE value="Minor improvements." />
     <MESSAGE value="Streamlines code with JavaScript version." />
-    <option name="LAST_COMMIT_MESSAGE" value="Streamlines code with JavaScript version." />
+    <MESSAGE value="Adds CubeMarkup schema and a CubeMarkup test." />
+    <MESSAGE value="Improves CubeMarkup schema." />
+    <option name="LAST_COMMIT_MESSAGE" value="Improves CubeMarkup schema." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="322" y="213" key="#Project_Structure" timestamp="1577882954280">
+    <state x="322" y="213" key="#Project_Structure" timestamp="1578124073556">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="322" y="200" key="#Project_Structure/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577882872296" />
-    <state x="322" y="213" key="#Project_Structure/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577882954280" />
+    <state x="322" y="213" key="#Project_Structure/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578124073556" />
+    <state x="122" y="129" width="1551" height="923" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1578047875079">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="122" y="129" width="1551" height="923" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578047875079" />
     <state x="459" y="338" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1577880584154">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="459" y="338" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880584154" />
-    <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1577880773161">
+    <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1577953800646">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880773161" />
-    <state x="20" y="150" key="CommitChangelistDialog2" timestamp="1577888007394">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577953800646" />
+    <state x="20" y="141" key="CommitChangelistDialog2" timestamp="1578157089159">
+      <screen x="0" y="23" width="2048" height="1050" />
     </state>
-    <state x="20" y="150" key="CommitChangelistDialog2/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577888007394" />
-    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog" timestamp="1577886127481">
+    <state x="20" y="141" key="CommitChangelistDialog2/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578157089159" />
+    <state x="20" y="150" key="CommitChangelistDialog2/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578144841247" />
+    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog" timestamp="1577955437696">
       <screen x="480" y="1175" width="1440" height="816" />
     </state>
     <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577955437696" />
-    <state width="1206" height="415" key="GridCell.Tab.0.bottom" timestamp="1578072752918">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state width="1370" height="267" key="GridCell.Tab.0.bottom" timestamp="1578219370271">
+      <screen x="0" y="23" width="2048" height="1050" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
-    <state width="1206" height="415" key="GridCell.Tab.0.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752918" />
-    <state width="1206" height="415" key="GridCell.Tab.0.center" timestamp="1578072752917">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state width="1370" height="267" key="GridCell.Tab.0.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370271" />
+    <state width="1370" height="292" key="GridCell.Tab.0.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801608" />
+    <state width="1370" height="267" key="GridCell.Tab.0.center" timestamp="1578219370270">
+      <screen x="0" y="23" width="2048" height="1050" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788610" />
-    <state width="1206" height="415" key="GridCell.Tab.0.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752917" />
-    <state width="1206" height="415" key="GridCell.Tab.0.left" timestamp="1578072752916">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state width="1370" height="267" key="GridCell.Tab.0.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370270" />
+    <state width="1370" height="292" key="GridCell.Tab.0.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801607" />
+    <state width="1370" height="267" key="GridCell.Tab.0.left" timestamp="1578219370269">
+      <screen x="0" y="23" width="2048" height="1050" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788609" />
-    <state width="1206" height="415" key="GridCell.Tab.0.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752916" />
-    <state width="1206" height="415" key="GridCell.Tab.0.right" timestamp="1578072752917">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state width="1370" height="267" key="GridCell.Tab.0.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370269" />
+    <state width="1370" height="292" key="GridCell.Tab.0.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801606" />
+    <state width="1370" height="267" key="GridCell.Tab.0.right" timestamp="1578219370271">
+      <screen x="0" y="23" width="2048" height="1050" />
     </state>
-    <state width="1398" height="274" key="GridCell.Tab.0.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788610" />
-    <state width="1206" height="415" key="GridCell.Tab.0.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578072752917" />
-    <state width="1460" height="326" key="GridCell.Tab.1.bottom" timestamp="1578046779553">
+    <state width="1370" height="267" key="GridCell.Tab.0.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370271" />
+    <state width="1370" height="292" key="GridCell.Tab.0.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801608" />
+    <state width="1460" height="326" key="GridCell.Tab.1.bottom" timestamp="1578082898222">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788612" />
-    <state width="1106" height="326" key="GridCell.Tab.1.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064019" />
-    <state width="1106" height="326" key="GridCell.Tab.1.center" timestamp="1577896064019">
+    <state width="1460" height="326" key="GridCell.Tab.1.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898222" />
+    <state width="1460" height="326" key="GridCell.Tab.1.center" timestamp="1578082898221">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
-    <state width="1106" height="326" key="GridCell.Tab.1.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064019" />
-    <state width="1106" height="326" key="GridCell.Tab.1.left" timestamp="1577896064018">
+    <state width="1460" height="326" key="GridCell.Tab.1.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898221" />
+    <state width="1460" height="326" key="GridCell.Tab.1.left" timestamp="1578082898220">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
-    <state width="1106" height="326" key="GridCell.Tab.1.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064018" />
-    <state width="1106" height="326" key="GridCell.Tab.1.right" timestamp="1577896064019">
+    <state width="1460" height="326" key="GridCell.Tab.1.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898220" />
+    <state width="1460" height="326" key="GridCell.Tab.1.right" timestamp="1578082898221">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
-    <state width="1106" height="326" key="GridCell.Tab.1.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577896064019" />
+    <state width="1460" height="326" key="GridCell.Tab.1.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898221" />
     <state x="544" y="199" key="SettingsEditor" timestamp="1577880591067">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
@@ -612,23 +741,40 @@
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="572" y="471" key="VCS.ChangelistChooser/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880736340" />
-    <state x="322" y="288" key="Vcs.Push.Dialog.v2" timestamp="1577888013325">
+    <state x="322" y="269" key="Vcs.Push.Dialog.v2" timestamp="1578157094515">
+      <screen x="0" y="23" width="2048" height="1050" />
+    </state>
+    <state x="322" y="269" key="Vcs.Push.Dialog.v2/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578157094515" />
+    <state x="322" y="288" key="Vcs.Push.Dialog.v2/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578144846812" />
+    <state x="586" y="376" key="chooseDestDirectoryDialog" timestamp="1578135715618">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state x="322" y="288" key="Vcs.Push.Dialog.v2/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577888013325" />
-    <state x="380" y="310" width="683" height="476" key="find.popup" timestamp="1577882289906">
+    <state x="586" y="376" key="chooseDestDirectoryDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578135715618" />
+    <state width="2048" height="1129" key="com.intellij.byteCodeViewer.ShowByteCodeAction" timestamp="1577954061377">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state x="380" y="310" width="683" height="476" key="find.popup/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577882289906" />
+    <state width="2048" height="1129" key="com.intellij.byteCodeViewer.ShowByteCodeAction/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577954061377" />
+    <state x="420" y="653" key="extract.method.dialog" timestamp="1578127665780">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="420" y="653" key="extract.method.dialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578127665780" />
+    <state x="380" y="310" width="683" height="486" key="find.popup" timestamp="1578134402446">
+      <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="380" y="310" width="683" height="486" key="find.popup/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578134402446" />
     <state width="979" height="510" key="javadoc.popup.new" timestamp="1577885915445">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="979" height="510" key="javadoc.popup.new/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577885915445" />
-    <state x="454" y="266" width="670" height="676" key="search.everywhere.popup" timestamp="1577889513296">
+    <state x="603" y="204" key="refactoring.ChangeSignatureDialog" timestamp="1578045539325">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
-    <state x="454" y="249" width="670" height="629" key="search.everywhere.popup/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577799481225" />
-    <state x="454" y="266" width="670" height="676" key="search.everywhere.popup/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577889513296" />
+    <state x="603" y="204" key="refactoring.ChangeSignatureDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578045539325" />
+    <state x="454" y="249" width="670" height="629" key="search.everywhere.popup" timestamp="1578218143721">
+      <screen x="0" y="23" width="2048" height="1050" />
+    </state>
+    <state x="454" y="249" width="670" height="629" key="search.everywhere.popup/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578218143721" />
+    <state x="454" y="266" width="670" height="676" key="search.everywhere.popup/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578152576112" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -639,11 +785,32 @@
           <option name="timeStamp" value="87" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java</url>
-          <line>364</line>
-          <option name="timeStamp" value="88" />
+          <url>file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java</url>
+          <line>202</line>
+          <option name="timeStamp" value="106" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CubeTwister$ScriptParserTest.ic" NAME="ScriptParserTest Coverage Results" MODIFIED="1577955471817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ch.randelshofer.rubik.parser.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CubeTwister$NodeTest__1_.ic" NAME="NodeTest (1) Coverage Results" MODIFIED="1578050650184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ch.randelshofer.rubik.parser.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CubeTwister$All_in_ch_randelshofer_cubetwister.ic" NAME="All in ch.randelshofer.cubetwister Coverage Results" MODIFIED="1578051451386" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/CubeTwister$NodeTest_testApply.ic" NAME="NodeTest.testApply Coverage Results" MODIFIED="1578066475113" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ch.randelshofer.rubik.parser.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CubeTwister$NodeTest.ic" NAME="NodeTest Coverage Results" MODIFIED="1578051347425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ch.randelshofer.rubik.parser.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CubeTwister$ScriptParserTest_testParseDefaultNotation.ic" NAME="ScriptParserTest.testParseDefaultNotation Coverage Results" MODIFIED="1577955073286" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ch.randelshofer.rubik.parser.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/CubeTwister$TokenizerTest.ic" NAME="TokenizerTest Coverage Results" MODIFIED="1577954848260" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ch.randelshofer.rubik.tokenizer.*</FILTER>
+    </SUITE>
   </component>
 </project>

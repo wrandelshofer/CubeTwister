@@ -797,7 +797,7 @@ public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
     }
 
     @Override
-    protected int getStickerCount() {
+    public int getStickerCount() {
         return 6 * 5 * 5;
     }
 

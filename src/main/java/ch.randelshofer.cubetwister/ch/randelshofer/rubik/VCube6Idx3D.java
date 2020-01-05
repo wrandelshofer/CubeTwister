@@ -933,7 +933,7 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
     }
 
     @Override
-    protected int getStickerCount() {
+    public int getStickerCount() {
         return 6 * 6 * 6;
     }
 

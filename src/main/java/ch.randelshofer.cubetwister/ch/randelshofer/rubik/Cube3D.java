@@ -9,23 +9,26 @@ import org.monte.media.player.Animator;
 
 import javax.swing.event.ChangeListener;
 /**
- * The interface for objects which represent the three dimensional geometry of 
+ * The interface for objects which represent the three dimensional geometry of
  * a Rubik's Cube-like puzzle.
- * 
+ *
  * @author Werner Randelshofer.
  */
 public interface Cube3D {
 
     public int getPartCount();
 
+    int getStickerCount();
+
     public abstract Object getScene();
-    
+
     /**
      * Returns the lock object used for synchronizing model and view changes.
      */
     public Object getLock();
 
     public void setAnimator(Animator animator);
+
     public Animator getAnimator();
     /**
      * Sets the lock object used for synchronizing model and view changes.

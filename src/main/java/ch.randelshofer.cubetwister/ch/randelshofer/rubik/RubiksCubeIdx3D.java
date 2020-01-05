@@ -724,7 +724,7 @@ public class RubiksCubeIdx3D extends AbstractRubiksCubeIdx3D {
     }
 
     @Override
-    protected int getStickerCount() {
+    public int getStickerCount() {
         return 54;
     }
 
