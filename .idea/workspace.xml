@@ -5,21 +5,136 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cbd661c2-3fff-4952-bcb6-7375f764f5bd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/CubeFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PatternDatabaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build-cubetwister.xml" beforeDir="false" afterPath="$PROJECT_DIR$/build-cubetwister.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRubiksCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRubiksCubeIdx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube6Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube6Idx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube7Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube7Idx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/PocketCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/PocketCubeIdx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/ProfessorCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/ProfessorCubeIdx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RevengeCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RevengeCubeIdx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCubeIdx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube6Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube6Idx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube7Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube7Idx3D.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/HTMLExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/HTMLExporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/CubeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/CubeModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/CubeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/CubeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/NotationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/NotationModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptStateView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptStateView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptVideoExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptVideoExporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/ScriptView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/SolverModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/UndoableCubeEdit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/cubetwister/doc/UndoableCubeEdit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCube3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube6Geom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCube6Geom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube6Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCube6Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube7Geom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCube7Geom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCube7Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCube7Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractPocketCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractPocketCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractPocketCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractPocketCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractProfessorCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractProfessorCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractProfessorCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractProfessorCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRevengeCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractRevengeCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRevengeCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractRevengeCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRubiksCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractRubiksCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/AbstractRubiksCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/AbstractRubiksCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/Cube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/Cube3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DCanvas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DCanvas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DCanvasGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DCanvasGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DCanvasIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DCanvasIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/Cube3DEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DImageProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DImageProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube3DListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/Cube3DListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/Cube6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube6Geom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/Cube6Geom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube6Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/Cube6Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube7.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/Cube7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube7Geom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/Cube7Geom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cube7Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/Cube7Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubeEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/CubeEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/CubeListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/Cubes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/Cubes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/JCubeCanvasIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/JCubeCanvasIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/PocketCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/PocketCube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/PocketCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/PocketCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/PocketCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/PocketCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/ProfessorCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/ProfessorCube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/ProfessorCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/ProfessorCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/ProfessorCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/ProfessorCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RevengeCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/RevengeCube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RevengeCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RevengeCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RevengeCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RevengeCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksBarrelGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksBarrelGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksBarrelIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksBarrelIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube/RubiksCube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCubeGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksCubeGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCubeIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksCubeIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCuboctahedronGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksCuboctahedronGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksCuboctahedronIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksCuboctahedronIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksDiamondGeom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksDiamondGeom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksDiamondIdx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/RubiksDiamondIdx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksStickerCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/RubiksStickerCube.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube6Geom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/VCube6Geom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube6Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/VCube6Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube7Geom3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/VCube7Geom3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/VCube7Idx3D.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/cube3d/VCube7Idx3D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/impexp/AbstractExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/impexp/AbstractExporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/impexp/cubeexplorer/CubeExplorerExporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/impexp/cubeexplorer/CubeExplorerExporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/AbstractNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/AbstractNotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/CubeMarkupNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/CubeMarkupNotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/DefaultNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/DefaultNotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/Notation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/notation/Notation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveMetrics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/MoveNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationCycleNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationCycleNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationItemNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/PermutationItemNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptKeyboardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptKeyboardHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/SequenceNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/SequenceNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractCubeGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractCubeGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractCubeIdx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractCubeIdx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/AbstractPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube6Geom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube6Geom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube6Idx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube6Idx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube7Geom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube7Geom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube7Idx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/Cube7Idx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/PocketCubeGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/PocketCubeGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/PocketCubeIdx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/PocketCubeIdx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/ProfessorCubeGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/ProfessorCubeGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/ProfessorCubeIdx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/ProfessorCubeIdx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RevengeCubeGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RevengeCubeGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RevengeCubeIdx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RevengeCubeIdx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksBarrelGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksBarrelGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksBarrelIdx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksBarrelIdx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCubeGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCubeGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCubeIdx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCubeIdx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCuboctahedronGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCuboctahedronGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCuboctahedronIdx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksCuboctahedronIdx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksDiamondGeom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksDiamondGeom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksDiamondPlayerIdx3DApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/RubiksDiamondPlayerIdx3DApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube6Geom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube6Geom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube6Idx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube6Idx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube7Geom3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube7Geom3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube7Idx3DPlayerApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/player/VCube7Idx3DPlayerApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/AbstractVirtualCubeApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualCube6Applet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualCube6Applet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualCube7Applet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualCube7Applet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualPocketCubeApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualPocketCubeApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualProfessorCubeApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualProfessorCubeApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRevengeCubeApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRevengeCubeApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksBarrelApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksBarrelApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksCubeApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksCubeApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksCuboctahedronApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksCuboctahedronApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksDiamondApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualRubiksDiamondApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualVCube6Applet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualVCube6Applet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualVCube7Applet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/virtual/VirtualVCube7Applet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/test/SimpleRubikApplet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/test/SimpleRubikApplet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/twophase/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/ch/randelshofer/twophase/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/demos/RubiksCubePanelDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/demos/RubiksCubePanelDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/demos/RubiksCubeSolverDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch.randelshofer.cubetwister/demos/RubiksCubeSolverDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/CubesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InterpreterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/InterpreterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/ScriptParserTest.java" afterDir="false" />
     </list>
     <list id="1080d60b-cab9-41eb-ac41-9e07020a6381" name="Debugging" comment="" />
     <list id="251f6c07-a8ef-4d06-bdeb-838fcb9178e5" name="IDEA" comment="">
@@ -121,84 +236,122 @@
       <recent name="$PROJECT_DIR$/ideamodules" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in ch.randelshofer.cubetwister">
+  <component name="RunManager" selected="JUnit.PatternDatabaseTest">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="All in ch.randelshofer.cubetwister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
+      <option name="METHOD_NAME" value="testTsv" />
+      <option name="TEST_OBJECT" value="uniqueId" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.PatternDatabaseTest]/[test-factory:testTsv()]/[dynamic-test:#1]" />
+      </uniqueIds>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CubeMarkupTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="2xPocket (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.randelshofer.cubetwister.doc.*" />
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.cubetwister.doc" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.cubetwister.doc.CubeMarkupTest" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
+      <option name="METHOD_NAME" value="testTsv" />
+      <option name="TEST_OBJECT" value="uniqueId" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.PatternDatabaseTest]/[test-factory:testTsv()]/[dynamic-test:#1]" />
+      </uniqueIds>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="2xPocket" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
+      <option name="METHOD_NAME" value="testTsv" />
+      <option name="TEST_OBJECT" value="uniqueId" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.PatternDatabaseTest]/[test-factory:testTsv()]/[dynamic-test:#1]" />
+      </uniqueIds>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatternDatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CubeMarkupTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PatternDatabaseTest.testTsv" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.notation.*" />
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.notation" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.notation.CubeMarkupTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CubeMarkupTest.testAgainstXmlSchema (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.cubetwister.doc.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.cubetwister.doc" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.cubetwister.doc.CubeMarkupTest" />
-      <option name="METHOD_NAME" value="testAgainstXmlSchema" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
+      <option name="METHOD_NAME" value="testTsv" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CubeMarkupTest.testAgainstXmlSchema" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.TsvTest]/[test-factory:testTsv()]/[dynamic-test:#1]" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.notation.*" />
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.notation" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.notation.CubeMarkupTest" />
-      <option name="METHOD_NAME" value="testAgainstXmlSchema" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.TsvTest" />
+      <option name="METHOD_NAME" value="testTsv" />
+      <option name="TEST_OBJECT" value="uniqueId" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <uniqueIds>
+        <uniqueId value="[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.TsvTest]/[test-factory:testTsv()]/[dynamic-test:#1]" />
+      </uniqueIds>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -221,19 +374,20 @@
     </configuration>
     <list>
       <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.All in ch.randelshofer.cubetwister" />
-      <item itemvalue="JUnit.CubeMarkupTest" />
-      <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema" />
-      <item itemvalue="JUnit.CubeMarkupTest (1)" />
-      <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema (1)" />
+      <item itemvalue="JUnit.[engine:junit-jupiter]/[class:ch.randelshofer.rubik.parser.TsvTest]/[test-factory:testTsv()]/[dynamic-test:#1]" />
+      <item itemvalue="JUnit.PatternDatabaseTest.testTsv" />
+      <item itemvalue="JUnit.1" />
+      <item itemvalue="JUnit.2xPocket" />
+      <item itemvalue="JUnit.2xPocket (1)" />
+      <item itemvalue="JUnit.PatternDatabaseTest" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in ch.randelshofer.cubetwister" />
-        <item itemvalue="JUnit.CubeMarkupTest (1)" />
-        <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema (1)" />
-        <item itemvalue="JUnit.CubeMarkupTest.testAgainstXmlSchema" />
-        <item itemvalue="JUnit.CubeMarkupTest" />
+        <item itemvalue="JUnit.PatternDatabaseTest" />
+        <item itemvalue="JUnit.2xPocket (1)" />
+        <item itemvalue="JUnit.2xPocket" />
+        <item itemvalue="JUnit.PatternDatabaseTest.testTsv" />
+        <item itemvalue="JUnit.1" />
       </list>
     </recent_temporary>
   </component>
@@ -264,13 +418,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1545507365691</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Removes debug output.">
-      <created>1545662813857</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1545662813857</updated>
     </task>
     <task id="LOCAL-00013" summary="Adds unit test.">
       <created>1545663289258</created>
@@ -608,7 +755,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578157089480</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Streamlines code with JavaScript version.">
+      <created>1578219396025</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1578219396026</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -659,14 +813,18 @@
     <MESSAGE value="Fixes typo." />
     <MESSAGE value="Refactors Node classes. Increases coverage of NodeTest." />
     <MESSAGE value="Minor improvements." />
-    <MESSAGE value="Streamlines code with JavaScript version." />
     <MESSAGE value="Adds CubeMarkup schema and a CubeMarkup test." />
     <MESSAGE value="Improves CubeMarkup schema." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improves CubeMarkup schema." />
+    <MESSAGE value="Streamlines code with JavaScript version." />
+    <option name="LAST_COMMIT_MESSAGE" value="Streamlines code with JavaScript version." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="558" y="311" key="#Auto_Import" timestamp="1578692517349">
+      <screen x="0" y="23" width="2304" height="1273" />
+    </state>
+    <state x="558" y="311" key="#Auto_Import/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578692517349" />
     <state x="322" y="213" key="#Project_Structure" timestamp="1578124073556">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
@@ -680,59 +838,72 @@
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="459" y="338" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577880584154" />
+    <state x="641" y="356" key="#xdebugger.evaluate" timestamp="1578685758037">
+      <screen x="0" y="23" width="2304" height="1273" />
+    </state>
+    <state x="641" y="356" key="#xdebugger.evaluate/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578685758037" />
     <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1577953800646">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state x="467" y="403" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577953800646" />
-    <state x="20" y="141" key="CommitChangelistDialog2" timestamp="1578157089159">
+    <state x="20" y="141" key="CommitChangelistDialog2" timestamp="1578219395625">
       <screen x="0" y="23" width="2048" height="1050" />
     </state>
-    <state x="20" y="141" key="CommitChangelistDialog2/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578157089159" />
+    <state x="20" y="141" key="CommitChangelistDialog2/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219395625" />
     <state x="20" y="150" key="CommitChangelistDialog2/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578144841247" />
-    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog" timestamp="1577955437696">
-      <screen x="480" y="1175" width="1440" height="816" />
-    </state>
-    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577955437696" />
-    <state width="1370" height="267" key="GridCell.Tab.0.bottom" timestamp="1578219370271">
-      <screen x="0" y="23" width="2048" height="1050" />
-    </state>
-    <state width="1370" height="267" key="GridCell.Tab.0.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370271" />
-    <state width="1370" height="292" key="GridCell.Tab.0.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801608" />
-    <state width="1370" height="267" key="GridCell.Tab.0.center" timestamp="1578219370270">
-      <screen x="0" y="23" width="2048" height="1050" />
-    </state>
-    <state width="1370" height="267" key="GridCell.Tab.0.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370270" />
-    <state width="1370" height="292" key="GridCell.Tab.0.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801607" />
-    <state width="1370" height="267" key="GridCell.Tab.0.left" timestamp="1578219370269">
-      <screen x="0" y="23" width="2048" height="1050" />
-    </state>
-    <state width="1370" height="267" key="GridCell.Tab.0.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370269" />
-    <state width="1370" height="292" key="GridCell.Tab.0.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801606" />
-    <state width="1370" height="267" key="GridCell.Tab.0.right" timestamp="1578219370271">
-      <screen x="0" y="23" width="2048" height="1050" />
-    </state>
-    <state width="1370" height="267" key="GridCell.Tab.0.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578219370271" />
-    <state width="1370" height="292" key="GridCell.Tab.0.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801608" />
-    <state width="1460" height="326" key="GridCell.Tab.1.bottom" timestamp="1578082898222">
+    <state x="431" y="184" width="1764" height="1129" key="DiffContextDialog" timestamp="1578738363537">
       <screen x="0" y="23" width="2048" height="1129" />
+    </state>
+    <state x="431" y="184" width="1764" height="1129" key="DiffContextDialog/0.23.2048.1129/480.1175.1280.724@0.23.2048.1129" timestamp="1578738363537" />
+    <state x="508" y="1175" width="1240" height="816" key="DiffContextDialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577955437696" />
+    <state width="1370" height="512" key="GridCell.Tab.0.bottom" timestamp="1578695377901">
+      <screen x="0" y="23" width="2304" height="1273" />
+    </state>
+    <state width="1370" height="267" key="GridCell.Tab.0.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578250458797" />
+    <state width="1370" height="292" key="GridCell.Tab.0.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801608" />
+    <state width="1370" height="512" key="GridCell.Tab.0.bottom/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377901" />
+    <state width="1370" height="512" key="GridCell.Tab.0.center" timestamp="1578695377901">
+      <screen x="0" y="23" width="2304" height="1273" />
+    </state>
+    <state width="1370" height="267" key="GridCell.Tab.0.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578250458796" />
+    <state width="1370" height="292" key="GridCell.Tab.0.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801607" />
+    <state width="1370" height="512" key="GridCell.Tab.0.center/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377901" />
+    <state width="1370" height="512" key="GridCell.Tab.0.left" timestamp="1578695377900">
+      <screen x="0" y="23" width="2304" height="1273" />
+    </state>
+    <state width="1370" height="267" key="GridCell.Tab.0.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578250458795" />
+    <state width="1370" height="292" key="GridCell.Tab.0.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801606" />
+    <state width="1370" height="512" key="GridCell.Tab.0.left/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377900" />
+    <state width="1370" height="512" key="GridCell.Tab.0.right" timestamp="1578695377901">
+      <screen x="0" y="23" width="2304" height="1273" />
+    </state>
+    <state width="1370" height="267" key="GridCell.Tab.0.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578250458797" />
+    <state width="1370" height="292" key="GridCell.Tab.0.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578157801608" />
+    <state width="1370" height="512" key="GridCell.Tab.0.right/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377901" />
+    <state width="1370" height="512" key="GridCell.Tab.1.bottom" timestamp="1578695377902">
+      <screen x="0" y="23" width="2304" height="1273" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.bottom/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788612" />
     <state width="1460" height="326" key="GridCell.Tab.1.bottom/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898222" />
-    <state width="1460" height="326" key="GridCell.Tab.1.center" timestamp="1578082898221">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state width="1370" height="512" key="GridCell.Tab.1.bottom/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377902" />
+    <state width="1370" height="512" key="GridCell.Tab.1.center" timestamp="1578695377902">
+      <screen x="0" y="23" width="2304" height="1273" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.center/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
     <state width="1460" height="326" key="GridCell.Tab.1.center/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898221" />
-    <state width="1460" height="326" key="GridCell.Tab.1.left" timestamp="1578082898220">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state width="1370" height="512" key="GridCell.Tab.1.center/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377902" />
+    <state width="1370" height="512" key="GridCell.Tab.1.left" timestamp="1578695377901">
+      <screen x="0" y="23" width="2304" height="1273" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.left/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
     <state width="1460" height="326" key="GridCell.Tab.1.left/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898220" />
-    <state width="1460" height="326" key="GridCell.Tab.1.right" timestamp="1578082898221">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state width="1370" height="512" key="GridCell.Tab.1.left/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377901" />
+    <state width="1370" height="512" key="GridCell.Tab.1.right" timestamp="1578695377902">
+      <screen x="0" y="23" width="2304" height="1273" />
     </state>
     <state width="1398" height="274" key="GridCell.Tab.1.right/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1577801788611" />
     <state width="1460" height="326" key="GridCell.Tab.1.right/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578082898221" />
+    <state width="1370" height="512" key="GridCell.Tab.1.right/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578695377902" />
     <state x="544" y="199" key="SettingsEditor" timestamp="1577880591067">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
@@ -754,10 +925,15 @@
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
     <state width="2048" height="1129" key="com.intellij.byteCodeViewer.ShowByteCodeAction/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1577954061377" />
-    <state x="420" y="653" key="extract.method.dialog" timestamp="1578127665780">
-      <screen x="0" y="23" width="2048" height="1129" />
+    <state x="432" y="388" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1578685403380">
+      <screen x="0" y="23" width="2304" height="1273" />
+    </state>
+    <state x="432" y="388" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578685403380" />
+    <state x="473" y="733" key="extract.method.dialog" timestamp="1578682003838">
+      <screen x="0" y="23" width="2304" height="1273" />
     </state>
     <state x="420" y="653" key="extract.method.dialog/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578127665780" />
+    <state x="473" y="733" key="extract.method.dialog/0.23.2304.1273/480.1319.1440.816@0.23.2304.1273" timestamp="1578682003838" />
     <state x="380" y="310" width="683" height="486" key="find.popup" timestamp="1578134402446">
       <screen x="0" y="23" width="2048" height="1129" />
     </state>
@@ -775,22 +951,6 @@
     </state>
     <state x="454" y="249" width="670" height="629" key="search.everywhere.popup/0.23.2048.1050/480.1175.1440.877@0.23.2048.1050" timestamp="1578218143721" />
     <state x="454" y="266" width="670" height="676" key="search.everywhere.popup/0.23.2048.1129/480.1175.1440.816@0.23.2048.1129" timestamp="1578152576112" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$PROJECT_DIR$/lib/compile/modulepath/jhotdraw/org.jhotdraw7.application-src.jar!/org/jhotdraw/app/DefaultMenuBuilder.java</url>
-          <line>193</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ch.randelshofer.cubetwister/ch/randelshofer/rubik/parser/NodeTest.java</url>
-          <line>202</line>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CubeTwister$ScriptParserTest.ic" NAME="ScriptParserTest Coverage Results" MODIFIED="1577955471817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

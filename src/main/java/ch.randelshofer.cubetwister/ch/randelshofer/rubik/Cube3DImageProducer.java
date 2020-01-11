@@ -5,6 +5,7 @@
 
 package ch.randelshofer.rubik;
 
+import ch.randelshofer.rubik.cube3d.Cube3D;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_Scene;
 import org.jhotdraw.annotation.Nullable;

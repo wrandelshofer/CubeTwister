@@ -6,8 +6,8 @@ package ch.randelshofer.rubik.player;
 
 import ch.randelshofer.geom3d.JCanvas3D;
 import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
-import ch.randelshofer.rubik.PocketCube;
-import ch.randelshofer.rubik.PocketCubeGeom3D;
+import ch.randelshofer.rubik.cube.PocketCube;
+import ch.randelshofer.rubik.cube3d.PocketCubeGeom3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.swing.player.JPlayerControlAqua;

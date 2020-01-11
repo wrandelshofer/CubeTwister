@@ -1,7 +1,7 @@
 package ch.randelshofer.twophase;
 
-import ch.randelshofer.rubik.Cubes;
-import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.parser.Node;

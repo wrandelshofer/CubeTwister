@@ -1,14 +1,14 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.Cube6;
-import ch.randelshofer.rubik.Cube7;
-import ch.randelshofer.rubik.Cubes;
-import ch.randelshofer.rubik.PocketCube;
-import ch.randelshofer.rubik.ProfessorCube;
-import ch.randelshofer.rubik.RevengeCube;
-import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cube6;
+import ch.randelshofer.rubik.cube.Cube7;
+import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.cube.PocketCube;
+import ch.randelshofer.rubik.cube.ProfessorCube;
+import ch.randelshofer.rubik.cube.RevengeCube;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;

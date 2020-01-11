@@ -8,7 +8,7 @@ import ch.randelshofer.cubetwister.doc.DocumentModel;
 import ch.randelshofer.cubetwister.doc.ScriptModel;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.io.LFWriter;
-import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.impexp.Exporter;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;

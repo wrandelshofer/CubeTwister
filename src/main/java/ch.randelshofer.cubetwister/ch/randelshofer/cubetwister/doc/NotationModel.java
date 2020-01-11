@@ -3,7 +3,7 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;

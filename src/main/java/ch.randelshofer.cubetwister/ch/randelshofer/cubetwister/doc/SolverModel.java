@@ -4,14 +4,14 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.beans.AbstractBean;
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.Cube3D;
 import ch.randelshofer.rubik.Cube3DAdapter;
-import ch.randelshofer.rubik.Cube3DEvent;
-import ch.randelshofer.rubik.Cube3DListener;
 import ch.randelshofer.rubik.CubeAttributes;
-import ch.randelshofer.rubik.Cubes;
-import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.cube.RubiksCube;
+import ch.randelshofer.rubik.cube3d.Cube3D;
+import ch.randelshofer.rubik.cube3d.Cube3DEvent;
+import ch.randelshofer.rubik.cube3d.Cube3DListener;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import ch.randelshofer.undo.UndoableIntEdit;

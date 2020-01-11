@@ -4,25 +4,37 @@
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import org.monte.media.av.MovieWriter;
-import org.monte.media.player.SynchronousAnimator;
+import ch.randelshofer.gui.ProgressObserver;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube3d.Cube3D;
+import ch.randelshofer.rubik.parser.Node;
+import ch.randelshofer.rubik.parser.ScriptPlayer;
+import idx3d.idx3d_RenderPipeline;
+import idx3d.idx3d_Scene;
+import org.monte.media.av.Buffer;
 import org.monte.media.av.Format;
-import static org.monte.media.av.codec.video.VideoFormatKeys.*;
+import org.monte.media.av.MovieWriter;
 import org.monte.media.avi.AVIWriter;
 import org.monte.media.imgseq.ImageSequenceWriter;
+import org.monte.media.math.Rational;
+import org.monte.media.player.SynchronousAnimator;
 import org.monte.media.quicktime.QuickTimeWriter;
-import ch.randelshofer.rubik.*;
-import ch.randelshofer.rubik.parser.*;
-import idx3d.*;
-import java.awt.*;
-import java.awt.image.*;
-import java.io.File;
-import java.io.IOException;
+
 import javax.swing.BoundedRangeModel;
 import javax.swing.JPanel;
-import org.monte.media.av.Buffer;
-import org.monte.media.math.Rational;
+import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import static org.monte.media.av.codec.video.VideoFormatKeys.DataClassKey;
+import static org.monte.media.av.codec.video.VideoFormatKeys.DepthKey;
+import static org.monte.media.av.codec.video.VideoFormatKeys.ENCODING_BUFFERED_IMAGE;
+import static org.monte.media.av.codec.video.VideoFormatKeys.EncodingKey;
+import static org.monte.media.av.codec.video.VideoFormatKeys.FrameRateKey;
+import static org.monte.media.av.codec.video.VideoFormatKeys.HeightKey;
+import static org.monte.media.av.codec.video.VideoFormatKeys.WidthKey;
 
 /**
  * ScriptVideoExporter.
@@ -188,7 +200,7 @@ public class ScriptVideoExporter {
             if (model.isGenerator()) {
                 player.setResetCube(null);
             } else {
-                ch.randelshofer.rubik.Cube resetCube = (ch.randelshofer.rubik.Cube) model.getCube().clone();
+                Cube resetCube = (Cube) model.getCube().clone();
                 resetCube.reset();
                 script.applyTo(resetCube, true);
                 player.setResetCube(resetCube);

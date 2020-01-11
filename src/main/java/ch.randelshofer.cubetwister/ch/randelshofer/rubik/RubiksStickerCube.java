@@ -7,6 +7,8 @@
 
 package ch.randelshofer.rubik;
 
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import org.jhotdraw.annotation.Nonnull;
 
 /**

@@ -3,8 +3,8 @@
  */
 package ch.randelshofer.rubik.notation;
 
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.xml.XMLPreorderIterator;
 import nanoxml.XMLElement;
 import nanoxml.XMLParseException;

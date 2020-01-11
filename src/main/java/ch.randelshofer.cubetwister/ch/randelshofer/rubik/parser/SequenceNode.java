@@ -3,6 +3,7 @@
  */
 package ch.randelshofer.rubik.parser;
 
+import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.notation.Move;
 
 /**
@@ -31,10 +32,11 @@ public class SequenceNode extends Node {
         super(startpos, endpos);
         setAllowsChildren(true);
     }
+
     /**
      * Maps cube orientations to symbols.
      *
-     * @see ch.randelshofer.rubik.RubiksCube#getCubeOrientation()
+     * @see RubiksCube#getCubeOrientation()
      */
     private final static Move[][] orientationToMoveMap = {
             // R U F L D B

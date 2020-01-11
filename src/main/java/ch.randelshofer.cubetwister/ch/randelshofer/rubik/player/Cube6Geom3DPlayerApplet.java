@@ -6,8 +6,8 @@ package ch.randelshofer.rubik.player;
 
 import ch.randelshofer.geom3d.JCanvas3D;
 import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
-import ch.randelshofer.rubik.Cube6;
-import ch.randelshofer.rubik.Cube6Geom3D;
+import ch.randelshofer.rubik.cube.Cube6;
+import ch.randelshofer.rubik.cube3d.Cube6Geom3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import org.jhotdraw.annotation.Nonnull;
 

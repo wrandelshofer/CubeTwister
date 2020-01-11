@@ -4,11 +4,11 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.beans.AbstractBean;
-import ch.randelshofer.rubik.Cube;
 import ch.randelshofer.rubik.Cube3DCanvas;
-import ch.randelshofer.rubik.CubeEvent;
-import ch.randelshofer.rubik.CubeListener;
-import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeEvent;
+import ch.randelshofer.rubik.cube.CubeListener;
+import ch.randelshofer.rubik.cube.Cubes;
 import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 

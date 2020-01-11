@@ -3,7 +3,7 @@
  */
 package ch.randelshofer.rubik.notation;
 
-import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.parser.MacroNode;
 import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;

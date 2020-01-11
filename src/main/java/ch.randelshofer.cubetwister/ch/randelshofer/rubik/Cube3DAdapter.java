@@ -4,6 +4,10 @@
 
 package ch.randelshofer.rubik;
 
+import ch.randelshofer.rubik.cube3d.Cube3D;
+import ch.randelshofer.rubik.cube3d.Cube3DEvent;
+import ch.randelshofer.rubik.cube3d.Cube3DListener;
+
 /**
  * Abstract adapter class for receiving {@link Cube3D} events.
  *

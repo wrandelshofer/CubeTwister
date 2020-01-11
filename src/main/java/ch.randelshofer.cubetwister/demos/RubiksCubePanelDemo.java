@@ -4,11 +4,11 @@
 package demos;
 
 import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
-import ch.randelshofer.rubik.Cube3DEvent;
-import ch.randelshofer.rubik.Cube3DListener;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
-import ch.randelshofer.rubik.RubiksCube;
-import ch.randelshofer.rubik.RubiksCubeIdx3D;
+import ch.randelshofer.rubik.cube.RubiksCube;
+import ch.randelshofer.rubik.cube3d.Cube3DEvent;
+import ch.randelshofer.rubik.cube3d.Cube3DListener;
+import ch.randelshofer.rubik.cube3d.RubiksCubeIdx3D;
 import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JFrame;

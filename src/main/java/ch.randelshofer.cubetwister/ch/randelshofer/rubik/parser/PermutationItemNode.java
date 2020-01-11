@@ -1,5 +1,6 @@
 package ch.randelshofer.rubik.parser;
 
+import ch.randelshofer.rubik.cube.Cube;
 import org.jhotdraw.annotation.Nonnull;
 
 public class PermutationItemNode extends Node {
@@ -13,7 +14,7 @@ public class PermutationItemNode extends Node {
     /**
      * The location of the part.
      *
-     * @see ch.randelshofer.rubik.Cube
+     * @see Cube
      */
     private int location;
 

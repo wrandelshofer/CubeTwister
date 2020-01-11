@@ -247,16 +247,29 @@ public class MoveMetrics implements Consumer<Node> {
 
     /**
      * Gets the face turn count of the specified node.
+     * <p>
+     * If a move has changed at least one layer but not all layers:
+     * <ul>
+     *     <li>counts 1: if the inner-most layer has been turned but not the outer-most layer</li>
+     *     <li>counts 1: if the inner-most layer has been turned but not the outer-most layer</li>
+     *     <li>counts 2: if the inner-most layer and the outer-most layer have not been turned</li>
+     *     <li>counts 2: if the inner-most layer and the outer-most layer have been turned</li>
+     * </ul>
      */
     private int countFaceTurns(@Nonnull MoveNode move) {
         int layerCount = move.getLayerCount();
         int layerMask = move.getLayerMask();
-        int count = getBlockTurnCount(move);
-        if (count != 0 && ((layerMask & (1 | (1 << (layerCount - 1)))) == 0
-                || (layerMask & (1 | (1 << (layerCount - 1)))) == (1 | (1 << (layerCount - 1))))) {
-            count++;
+        int angle = abs(move.getAngle()) % 4;
+
+        int allLayers = (1 << layerCount) - 1;
+        if (angle == 0 || layerMask == 0 || layerMask == allLayers) {
+            return 0;
         }
-        return count;
+
+        boolean innerTurned = (layerMask & 1) != 0;
+        boolean outerTurned = (layerMask & (1 << (layerCount - 1))) != 0;
+
+        return innerTurned == outerTurned ? 2 : 1;
     }
 
     /**

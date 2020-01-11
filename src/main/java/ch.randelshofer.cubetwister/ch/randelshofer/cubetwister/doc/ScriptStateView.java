@@ -4,10 +4,10 @@
 package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.gui.Fonts;
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.CubeEvent;
-import ch.randelshofer.rubik.CubeListener;
-import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeEvent;
+import ch.randelshofer.rubik.cube.CubeListener;
+import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import org.jhotdraw.annotation.Nonnull;
 
@@ -133,7 +133,7 @@ public class ScriptStateView extends JPanel implements EntityView {
                         MutableAttributeSet plain = new SimpleAttributeSet();
                         MutableAttributeSet red = new SimpleAttributeSet();
                         StyleConstants.setForeground(red, Color.red);
-                        ch.randelshofer.rubik.Cube cube = model.getCube();
+                        Cube cube = model.getCube();
                         if (DEBUG) {
                             System.out.println("ScriptStateView.updateState  cube=Cube#" + System.identityHashCode(cube));
                         }

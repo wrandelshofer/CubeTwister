@@ -4,8 +4,8 @@
 
 package ch.randelshofer.rubik.virtual;
 
-import ch.randelshofer.rubik.AbstractCubeIdx3D;
-import ch.randelshofer.rubik.Cube7Idx3D;
+import ch.randelshofer.rubik.cube.AbstractCubeIdx3D;
+import ch.randelshofer.rubik.cube3d.Cube7Idx3D;
 import org.jhotdraw.annotation.Nonnull;
 
 /**

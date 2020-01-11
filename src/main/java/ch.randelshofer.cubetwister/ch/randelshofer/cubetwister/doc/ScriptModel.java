@@ -6,13 +6,13 @@ package ch.randelshofer.cubetwister.doc;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.text.StyledDocumentProxy;
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.Cube3D;
 import ch.randelshofer.rubik.Cube3DAdapter;
-import ch.randelshofer.rubik.Cube3DEvent;
-import ch.randelshofer.rubik.Cube3DListener;
 import ch.randelshofer.rubik.CubeKind;
-import ch.randelshofer.rubik.Cubes;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.cube3d.Cube3D;
+import ch.randelshofer.rubik.cube3d.Cube3DEvent;
+import ch.randelshofer.rubik.cube3d.Cube3DListener;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.parser.MacroNode;
 import ch.randelshofer.rubik.parser.MoveMetrics;
@@ -257,7 +257,7 @@ public class ScriptModel
                 if (isGenerator()) {
                     getPlayer().setResetCube(null);
                 } else {
-                    ch.randelshofer.rubik.Cube resetCube = (ch.randelshofer.rubik.Cube) getCube().clone();
+                    Cube resetCube = (Cube) getCube().clone();
                     resetCube.reset();
                     parsedScript.applyTo(resetCube, true);
                     getPlayer().setResetCube(resetCube);
@@ -609,7 +609,7 @@ public class ScriptModel
     private ScriptParser parser;
     private ScriptPlayer player;
     @Nullable
-    private ch.randelshofer.rubik.Cube cube;
+    private Cube cube;
     @Nullable
     private Cube3D cube3D;
 
@@ -664,7 +664,7 @@ public class ScriptModel
     }
 
     @Nullable
-    public ch.randelshofer.rubik.Cube getCube() {
+    public Cube getCube() {
         if (cube == null) {
             cube = getCube3D().getCube();
         }

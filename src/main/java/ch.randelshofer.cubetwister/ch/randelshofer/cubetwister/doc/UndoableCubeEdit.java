@@ -4,8 +4,9 @@
 
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.rubik.*;
-import javax.swing.undo.*;
+import ch.randelshofer.rubik.cube.Cube;
+
+import javax.swing.undo.AbstractUndoableEdit;
 
 /**
  * UndoableCubeEdit.

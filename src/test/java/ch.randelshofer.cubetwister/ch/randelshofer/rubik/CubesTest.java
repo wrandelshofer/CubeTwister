@@ -3,6 +3,9 @@
  */
 package ch.randelshofer.rubik;
 
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;

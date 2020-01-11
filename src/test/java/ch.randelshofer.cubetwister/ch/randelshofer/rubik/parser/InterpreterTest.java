@@ -1,9 +1,9 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.Cube;
-import ch.randelshofer.rubik.Cubes;
-import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.notation.Notation;

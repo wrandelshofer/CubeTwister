@@ -4,7 +4,7 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.gui.tree.TreeNodeImpl;
-import ch.randelshofer.rubik.Cube;
+import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.util.ReverseListIterator;
@@ -79,6 +79,15 @@ public abstract class Node extends TreeNodeImpl<Node> {
      */
     public void setEndPosition(int p) {
         endpos = p;
+    }
+
+    /**
+     * Applies the symbol represented by this node to the cube.
+     *
+     * @param cube A cube to be transformed by this symbol.
+     */
+    public void applyTo(Cube cube) {
+        applyTo(cube, false);
     }
 
     /**

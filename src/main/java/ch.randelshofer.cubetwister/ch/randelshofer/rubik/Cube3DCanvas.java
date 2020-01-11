@@ -6,6 +6,8 @@ package ch.randelshofer.rubik;
 
 //import ch.randelshofer.geom3d.*;
 
+import ch.randelshofer.rubik.cube3d.Cube3D;
+
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;

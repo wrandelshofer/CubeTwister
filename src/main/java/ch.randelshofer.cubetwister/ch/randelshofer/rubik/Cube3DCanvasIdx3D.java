@@ -5,6 +5,7 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.beans.AbstractBean;
+import ch.randelshofer.rubik.cube3d.Cube3D;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_RenderPipeline;
 import idx3d.idx3d_Scene;

@@ -17,10 +17,11 @@ import ch.randelshofer.gui.plaf.CustomButtonUI;
 import ch.randelshofer.gui.text.WavyHighlighter;
 import ch.randelshofer.io.ParseException;
 import ch.randelshofer.rubik.Cube3DAdapter;
-import ch.randelshofer.rubik.Cube3DEvent;
-import ch.randelshofer.rubik.Cube3DListener;
-import ch.randelshofer.rubik.Cubes;
-import ch.randelshofer.rubik.RubiksCube;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.cube.RubiksCube;
+import ch.randelshofer.rubik.cube3d.Cube3DEvent;
+import ch.randelshofer.rubik.cube3d.Cube3DListener;
 import ch.randelshofer.rubik.parser.MoveNode;
 import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.SequenceNode;
@@ -1117,7 +1118,7 @@ public class ScriptView
             return;
         }
 
-        final ch.randelshofer.rubik.Cube rcube;
+        final Cube rcube;
         if (model.getSolverModel().isPainting()) {
             rcube = model.getSolverModel().getMappedCube((RubiksCube) model.getPlayer().getCube());
             model.getSolverModel().reset();
@@ -1252,12 +1253,12 @@ public class ScriptView
             return;
         }
 
-        final ch.randelshofer.rubik.Cube rcube;
+        final Cube rcube;
         if (model.getSolverModel().isPainting()) {
             rcube = model.getSolverModel().getMappedCube(model.getPlayer().getCube());
             //model.getPlayer().getCube().setLastFrame(rcube);
         } else {
-            rcube = (ch.randelshofer.rubik.Cube) model.getPlayer().getCube().clone();
+            rcube = (Cube) model.getPlayer().getCube().clone();
         }
 
         final ScriptModel m = model;

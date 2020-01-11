@@ -9,6 +9,7 @@ import ch.randelshofer.geom3d.JCanvas3D;
 import ch.randelshofer.geom3d.Point3D;
 import ch.randelshofer.geom3d.Scene3D;
 import ch.randelshofer.geom3d.Transform3D;
+import ch.randelshofer.rubik.cube3d.Cube3D;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;

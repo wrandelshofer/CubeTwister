@@ -3,6 +3,7 @@
  */
 package ch.randelshofer.rubik;
 
+import ch.randelshofer.rubik.cube3d.Cube3D;
 import idx3d.idx3d_RenderPipeline;
 import idx3d.idx3d_Scene;
 

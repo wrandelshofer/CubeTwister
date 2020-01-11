@@ -64,48 +64,56 @@ public class DefaultNotation extends AbstractNotation {
         addToken(Symbol.SINGLELINE_COMMENT_BEGIN, "//");
 
         // Layer masks
+        int all = (1 << layerCount) - 1;
         int inner = 1;
         int middle = 1<<(layerCount/2);
-        int outer = 1<<(layerCount-1);
-        int all = inner | middle | outer;
+        int outer = 1 << (layerCount - 1);
+        int wide = all ^ (inner | outer);
 
         for (int i=1;i<=2;i++) {
-            String suffix=i==1?"":"2";
+            String suffix = i == 1 ? "" : "2";
 
-            addMove(new Move(3, 0, outer, 1*i), "R"+suffix);
-            addMove(new Move(3, 1, outer, 1*i), "U"+suffix);
-            addMove(new Move(3, 2, outer, 1*i), "F"+suffix);
-            addMove(new Move(3, 0, inner, -1*i), "L"+suffix);
-            addMove(new Move(3, 1, inner, -1*i), "D"+suffix);
-            addMove(new Move(3, 2, inner, -1*i), "B"+suffix);
+            addMove(new Move(layerCount, 0, outer, 1 * i), "R" + suffix);
+            addMove(new Move(layerCount, 1, outer, 1 * i), "U" + suffix);
+            addMove(new Move(layerCount, 2, outer, 1 * i), "F" + suffix);
+            addMove(new Move(layerCount, 0, inner, -1 * i), "L" + suffix);
+            addMove(new Move(layerCount, 1, inner, -1 * i), "D" + suffix);
+            addMove(new Move(layerCount, 2, inner, -1 * i), "B" + suffix);
 
-            addMove(new Move(3, 0, middle, 1*i), "MR"+suffix);
-            addMove(new Move(3, 1, middle, 1*i), "MU"+suffix);
-            addMove(new Move(3, 2, middle, 1*i), "MF"+suffix);
-            addMove(new Move(3, 0, middle, -1*i), "ML"+suffix);
-            addMove(new Move(3, 1, middle, -1*i), "MD"+suffix);
-            addMove(new Move(3, 2, middle, -1*i), "MB"+suffix);
+            addMove(new Move(layerCount, 0, middle, 1 * i), "MR" + suffix);
+            addMove(new Move(layerCount, 1, middle, 1 * i), "MU" + suffix);
+            addMove(new Move(layerCount, 2, middle, 1 * i), "MF" + suffix);
+            addMove(new Move(layerCount, 0, middle, -1 * i), "ML" + suffix);
+            addMove(new Move(layerCount, 1, middle, -1 * i), "MD" + suffix);
+            addMove(new Move(layerCount, 2, middle, -1 * i), "MB" + suffix);
 
-            addMove(new Move(3, 0, outer | middle, 1*i), "TR"+suffix);
-            addMove(new Move(3, 1, outer | middle, 1*i), "TU"+suffix);
-            addMove(new Move(3, 2, outer | middle, 1*i), "TF"+suffix);
-            addMove(new Move(3, 0, inner | middle, -1*i), "TL"+suffix);
-            addMove(new Move(3, 1, inner | middle, -1*i), "TD"+suffix);
-            addMove(new Move(3, 2, inner | middle, -1*i), "TB"+suffix);
+            addMove(new Move(layerCount, 0, wide, 1 * i), "WR" + suffix);
+            addMove(new Move(layerCount, 1, wide, 1 * i), "WU" + suffix);
+            addMove(new Move(layerCount, 2, wide, 1 * i), "WF" + suffix);
+            addMove(new Move(layerCount, 0, wide, -1 * i), "WL" + suffix);
+            addMove(new Move(layerCount, 1, wide, -1 * i), "WD" + suffix);
+            addMove(new Move(layerCount, 2, wide, -1 * i), "WB" + suffix);
 
-            addMove(new Move(3, 0, outer | inner, 1*i), "SR"+suffix);
-            addMove(new Move(3, 1, outer | inner, 1*i), "SU"+suffix);
-            addMove(new Move(3, 2, outer | inner, 1*i), "SF"+suffix);
-            addMove(new Move(3, 0, inner | outer, -1*i), "SL"+suffix);
-            addMove(new Move(3, 1, inner | outer, -1*i), "SD"+suffix);
-            addMove(new Move(3, 2, inner | outer, -1*i), "SB"+suffix);
+            addMove(new Move(layerCount, 0, outer | middle, 1 * i), "TR" + suffix);
+            addMove(new Move(layerCount, 1, outer | middle, 1 * i), "TU" + suffix);
+            addMove(new Move(layerCount, 2, outer | middle, 1 * i), "TF" + suffix);
+            addMove(new Move(layerCount, 0, inner | middle, -1 * i), "TL" + suffix);
+            addMove(new Move(layerCount, 1, inner | middle, -1 * i), "TD" + suffix);
+            addMove(new Move(layerCount, 2, inner | middle, -1 * i), "TB" + suffix);
 
-            addMove(new Move(3, 0, all, 1*i), "CR"+suffix);
-            addMove(new Move(3, 1, all, 1*i), "CU"+suffix);
-            addMove(new Move(3, 2, all, 1*i), "CF"+suffix);
-            addMove(new Move(3, 0, all, -1*i), "CL"+suffix);
-            addMove(new Move(3, 1, all, -1*i), "CD"+suffix);
-            addMove(new Move(3, 2, all, -1*i), "CB"+suffix);
+            addMove(new Move(layerCount, 0, outer | inner, 1 * i), "SR" + suffix);
+            addMove(new Move(layerCount, 1, outer | inner, 1 * i), "SU" + suffix);
+            addMove(new Move(layerCount, 2, outer | inner, 1 * i), "SF" + suffix);
+            addMove(new Move(layerCount, 0, inner | outer, -1 * i), "SL" + suffix);
+            addMove(new Move(layerCount, 1, inner | outer, -1 * i), "SD" + suffix);
+            addMove(new Move(layerCount, 2, inner | outer, -1 * i), "SB" + suffix);
+
+            addMove(new Move(layerCount, 0, all, 1 * i), "CR" + suffix);
+            addMove(new Move(layerCount, 1, all, 1 * i), "CU" + suffix);
+            addMove(new Move(layerCount, 2, all, 1 * i), "CF" + suffix);
+            addMove(new Move(layerCount, 0, all, -1 * i), "CL" + suffix);
+            addMove(new Move(layerCount, 1, all, -1 * i), "CD" + suffix);
+            addMove(new Move(layerCount, 2, all, -1 * i), "CB" + suffix);
         }
 
         putSyntax(Symbol.COMMUTATION, Syntax.PRECIRCUMFIX);
