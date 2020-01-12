@@ -14,7 +14,9 @@ import org.jhotdraw.io.StreamPosTokenizer;
 import java.io.IOException;
 import java.io.StreamTokenizer;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * This class provides static utility methods for Cube objects.
@@ -23,7 +25,9 @@ import java.util.Arrays;
  */
 public class Cubes {
 
-    /** Creates a cube with the specified layer count. */
+    /**
+     * Creates a cube with the specified layer count.
+     */
     @Nonnull
     public static Cube create(int layerCount) {
         String n;
@@ -59,7 +63,7 @@ public class Cubes {
     }
 
     @Nonnull
-    public static String toVisualPermutationString(@Nonnull RubiksCube cube, @Nonnull Notation notation) {
+    public static String toVisualPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
 
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toVisualPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
@@ -280,14 +284,14 @@ public class Cubes {
 
     /**
      * Returns a number that describes the order
-     * of the permutation of the supplied cube, 
+     * of the permutation of the supplied cube,
      * assuming that all stickers only have a solid
      * color, and that all stickers on the same face
-     * have the same color. 
+     * have the same color.
      * <p>
      * On a cube with such stickers, we can
      * not visually determine the orientation of its
-     * side parts, and we can not visually determine 
+     * side parts, and we can not visually determine
      * a permutation of side parts of which all side
      * parts are on the same face of the cube.
      * <p>
@@ -328,6 +332,7 @@ public class Cubes {
                 prevOrient = 0;
 
                 for (j = 0; cornerLoc[j] != i; j++) {
+                    // search first permuted part
                 }
 
                 while (!visitedLocs[j]) {
@@ -365,6 +370,7 @@ public class Cubes {
                 prevOrient = 0;
 
                 for (j = 0; edgeLoc[j] != i; j++) {
+                    // search first permuted part
                 }
 
                 while (!visitedLocs[j]) {
@@ -388,8 +394,10 @@ public class Cubes {
 
         // Determine cycle lengths of the current side permutation
         // and compute smallest common multiple.
-        // Ignore changes of orientation.
+        // - Ignore changes of orientation.
+        // - Ignore side permutations which are entirely on same face.
         visitedLocs = new boolean[sideLoc.length];
+        List<Integer> facesInPermutation = new ArrayList<>();
         for (i = 0, n = sideLoc.length; i < n; i++) {
             if (!visitedLocs[i]) {
                 if (sideLoc[i] == i && sideOrient[i] == 0) {
@@ -399,26 +407,48 @@ public class Cubes {
                 length = 1;
 
                 visitedLocs[i] = true;
-                int firstFace = sideLoc[i] % 6;
-                boolean allPartsAreOnSameFace = true;
+                facesInPermutation.clear();
+                facesInPermutation.add(sideLoc[i] % 6);
 
                 for (j = 0; sideLoc[j] != i; j++) {
+                    // search first permuted part
                 }
 
                 while (!visitedLocs[j]) {
                     visitedLocs[j] = true;
 
                     length++;
-                    if (firstFace != sideLoc[j] % 6) {
-                        allPartsAreOnSameFace = false;
-                    }
+                    facesInPermutation.add(sideLoc[j] % 6);
 
                     for (k = 0; sideLoc[k] != j; k++) {
+                        // search next permuted part
                     }
                     j = k;
                 }
-                if (!allPartsAreOnSameFace) {
-                    order = IntMath.scm(order, length);
+                if (length > 0) {
+                    // If all parts at a distance of 3 are on the same face, the length can be divided by 3.
+                    // If all parts at a distance of 2 are on the same face, the length can be divided by 2
+                    // If all parts are in the same face, the length can be reduced to 1
+                    int reducedLength = length;
+                    SubcycleSearch:
+                    for (int subcycleLength = 1; subcycleLength < length; subcycleLength++) {
+                        if (subcycleLength > 0 && length % subcycleLength == 0) {
+                            boolean canReduceLength = true;
+                            for (j = subcycleLength; j < length; j += subcycleLength) {
+                                for (k = 0; k < subcycleLength; k++) {
+                                    if (facesInPermutation.get(j + k - subcycleLength) != facesInPermutation.get(j + k)) {
+                                        canReduceLength = false;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (canReduceLength) {
+                                reducedLength = subcycleLength;
+                                break SubcycleSearch;
+                            }
+                        }
+                    }
+                    order = IntMath.scm(order, reducedLength);
                 }
             }
         }
@@ -752,7 +782,7 @@ public class Cubes {
     /**
      * Returns a String describing the permutation cycles of the corner
      * parts in a cube.
-     * 
+     *
      * @param cube
      * @param syntax
      * @param tR
@@ -796,14 +826,14 @@ public class Cubes {
 
         // describe the state changes of the corner parts
         String[][] corners = {
-            {tU, tR, tF},// urf
-            {tD, tF, tR},// dfr
-            {tU, tB, tR},// ubr
-            {tD, tR, tB},// drb
-            {tU, tL, tB},// ulb
-            {tD, tB, tL},// dbl
-            {tU, tF, tL},// ufl
-            {tD, tL, tF}// dlf
+                {tU, tR, tF},// urf
+                {tD, tF, tR},// dfr
+                {tU, tB, tR},// ubr
+                {tD, tR, tB},// drb
+                {tU, tL, tB},// ulb
+                {tD, tB, tL},// dbl
+                {tU, tF, tL},// ufl
+                {tD, tL, tF}// dlf
         };
 
         visitedLocs = new boolean[cube.getCornerCount()];
@@ -899,7 +929,7 @@ public class Cubes {
     /**
      * Returns a String describing the permutation cycles of the edge parts
      * in a cube.
-     * 
+     *
      * @param cube
      * @param syntax
      * @param tR
@@ -943,18 +973,18 @@ public class Cubes {
         // describe the state changes of the edge parts
         if (edgeLoc.length > 0) {
             String[][] edges = {
-                {tU, tR}, //"ur"
-                {tR, tF}, //"rf"
-                {tD, tR}, //"dr"
-                {tB, tU}, //"bu"
-                {tR, tB}, //"rb"
-                {tB, tD}, //"bd"
-                {tU, tL}, //"ul"
-                {tL, tB}, //"lb"
-                {tD, tL}, //"dl"
-                {tF, tU}, //"fu"
-                {tL, tF}, //"lf"
-                {tF, tD} //"fd"
+                    {tU, tR}, //"ur"
+                    {tR, tF}, //"rf"
+                    {tD, tR}, //"dr"
+                    {tB, tU}, //"bu"
+                    {tR, tB}, //"rb"
+                    {tB, tD}, //"bd"
+                    {tU, tL}, //"ul"
+                    {tL, tB}, //"lb"
+                    {tD, tL}, //"dl"
+                    {tF, tU}, //"fu"
+                    {tL, tF}, //"lf"
+                    {tF, tD} //"fd"
             };
             visitedLocs = new boolean[cube.getEdgeCount()];
             isFirst = true;
@@ -1050,7 +1080,7 @@ public class Cubes {
     /**
      * Returns a String describing the permutation cycles of the side parts
      * in the cube.
-     * 
+     *
      * @param cube
      * @param syntax
      * @param tR
@@ -1089,10 +1119,10 @@ public class Cubes {
 
         if (sideLoc.length > 0) { // describe the state changes of the side parts
             String[] sides = new String[]{
-                tR, tU, tF, tL, tD, tB // r u f l d b
+                    tR, tU, tF, tL, tD, tB // r u f l d b
             };
             String[] sideOrients = new String[]{
-                "", tMinus, tPlusPlus, tPlus
+                    "", tMinus, tPlusPlus, tPlus
             };
             visitedLocs = new boolean[cube.getSideCount()];
             isFirst = true;
@@ -1207,9 +1237,9 @@ public class Cubes {
     /**
      * Returns a String describing the permutation cycles of the side parts
      * in the cube.
-     * 
+     * <p>
      * XXX - This method is not properly implemented. It should ignore part
-     *       orientations.
+     * orientations.
      *
      * @param cube
      * @param syntax
@@ -1249,10 +1279,10 @@ public class Cubes {
 
         if (sideLoc.length > 0) { // describe the state changes of the side parts
             String[] sides = new String[]{
-                tR, tU, tF, tL, tD, tB // r u f l d b
+                    tR, tU, tF, tL, tD, tB // r u f l d b
             };
             String[] sideOrients = new String[]{
-                "", tMinus, tPlusPlus, tPlus
+                    "", tMinus, tPlusPlus, tPlus
             };
             visitedLocs = new boolean[cube.getSideCount()];
             isFirst = true;
@@ -1326,7 +1356,7 @@ public class Cubes {
                                         if (syntax == Syntax.PREFIX
                                                 || syntax == Syntax.PRECIRCUMFIX
                                                 || syntax == Syntax.POSTCIRCUMFIX) {
-                                           // buf.append(sideOrients[prevOrient]);
+                                            // buf.append(sideOrients[prevOrient]);
                                         }
                                         buf.append(sides[j % 6]);
                                         if (syntax == Syntax.SUFFIX) {
@@ -1381,7 +1411,8 @@ public class Cubes {
         cube.setToStickers(perFaceStickers);
     }
 
-    /** Sets the cube to the specified stickers String. 
+    /**
+     * Sets the cube to the specified stickers String.
      *
      * <pre>
      * stickersString = faceString{6}
@@ -1389,9 +1420,9 @@ public class Cubes {
      * face     = 'U'|'R'|'F'|'L'|'D'|'B'
      * </pre>
      *
-     * @param cube The cube to be set to the stickers string.
-     * @param stickersString A string with 6*12 characters. 
-     * @param faces A string with 6 characters identifying each face of the cube , e.g. "RUFLDB".
+     * @param cube           The cube to be set to the stickers string.
+     * @param stickersString A string with 6*12 characters.
+     * @param faces          A string with 6 characters identifying each face of the cube , e.g. "RUFLDB".
      * @throws java.io.IOException If stickersString has bad syntax
      */
     public static void setToStickersString(@Nonnull Cube cube, @Nonnull String stickersString, @Nonnull String faces) throws IOException {

@@ -230,7 +230,10 @@ public class ScriptParser {
     }
 
     @Nonnull
-    public Node parse(String input) throws ParseException {
+    public Node parse(@Nonnull String input) throws ParseException {
+        if (input == null) {
+            throw new NullPointerException();
+        }
         var tt = this.createTokenizer(this.notation);
         tt.setInput(input);
         return parseScript(tt);
@@ -410,14 +413,12 @@ public class ScriptParser {
         PermutationCycle:
         while (true) {
             switch (tt.nextToken()) {
-                case Tokenizer.TT_EOF:
-                    throw createException(tt, "Permutation: Unexpected EOF.");
                 case Tokenizer.TT_KEYWORD:
                     var sym = this.notation.getSymbolInCompositeSymbol(tt.getStringValue(), Symbol.PERMUTATION);
                     if (sym == Symbol.PERMUTATION_END) {
                         break PermutationCycle;
                     } else if (sym == null) {
-                        throw createException(tt, "Permutation: Illegal symbol.");
+                        throw createException(tt, "Permutation: PermutationItem expected.");
                     } else if (sym == Symbol.PERMUTATION_DELIMITER) {
                         // consume
                     } else {
@@ -425,6 +426,8 @@ public class ScriptParser {
                         parsePermutationItem(tt, permutation, syntax);
                     }
                     break;
+                default:
+                    throw createException(tt, "Permutation: PermutationItem expected.");
 
             }
         }

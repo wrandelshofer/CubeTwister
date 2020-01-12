@@ -11,7 +11,9 @@ package ch.randelshofer.rubik.notation;
 public class DefaultNotation extends AbstractNotation {
     private String name;
 
-    /** Creates a new instance. */
+    /**
+     * Creates a new instance.
+     */
     public DefaultNotation() {
         this(3);
     }
@@ -65,55 +67,107 @@ public class DefaultNotation extends AbstractNotation {
 
         // Layer masks
         int all = (1 << layerCount) - 1;
-        int inner = 1;
-        int middle = 1<<(layerCount/2);
         int outer = 1 << (layerCount - 1);
-        int wide = all ^ (inner | outer);
+        int inner = 1;
 
-        for (int i=1;i<=2;i++) {
-            String suffix = i == 1 ? "" : "2";
+        for (int angle = 1; angle <= 2; angle++) {
+            String suffix = angle == 1 ? "" : "2";
 
-            addMove(new Move(layerCount, 0, outer, 1 * i), "R" + suffix);
-            addMove(new Move(layerCount, 1, outer, 1 * i), "U" + suffix);
-            addMove(new Move(layerCount, 2, outer, 1 * i), "F" + suffix);
-            addMove(new Move(layerCount, 0, inner, -1 * i), "L" + suffix);
-            addMove(new Move(layerCount, 1, inner, -1 * i), "D" + suffix);
-            addMove(new Move(layerCount, 2, inner, -1 * i), "B" + suffix);
+            // Face twists
+            addMoves(layerCount, outer, inner, angle, "", suffix);
 
-            addMove(new Move(layerCount, 0, middle, 1 * i), "MR" + suffix);
-            addMove(new Move(layerCount, 1, middle, 1 * i), "MU" + suffix);
-            addMove(new Move(layerCount, 2, middle, 1 * i), "MF" + suffix);
-            addMove(new Move(layerCount, 0, middle, -1 * i), "ML" + suffix);
-            addMove(new Move(layerCount, 1, middle, -1 * i), "MD" + suffix);
-            addMove(new Move(layerCount, 2, middle, -1 * i), "MB" + suffix);
+            // Mid-layer twists
+            for (int layer = 0; layer < layerCount - 2; layer++) {
+                int innerMiddle = (layerCount % 2 == 0)
+                        ? ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2 - (layer + 1) % 2)
+                        : ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2);
+                int outerMiddle = (layerCount % 2 == 0)
+                        ? ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2)
+                        : ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2);
+                if (innerMiddle == all) {
+                    continue;
+                }
+                if (layer == 0) {
+                    addMoves(layerCount, outerMiddle, innerMiddle, angle, "M", suffix);
+                }
+                addMoves(layerCount, outerMiddle, innerMiddle, angle, "M" + (layer + 1), suffix);
+            }
 
-            addMove(new Move(layerCount, 0, wide, 1 * i), "WR" + suffix);
-            addMove(new Move(layerCount, 1, wide, 1 * i), "WU" + suffix);
-            addMove(new Move(layerCount, 2, wide, 1 * i), "WF" + suffix);
-            addMove(new Move(layerCount, 0, wide, -1 * i), "WL" + suffix);
-            addMove(new Move(layerCount, 1, wide, -1 * i), "WD" + suffix);
-            addMove(new Move(layerCount, 2, wide, -1 * i), "WB" + suffix);
+            // Wide twists
+            int wide = all ^ (inner | outer);
+            if (wide != 0) {
+                addMoves(layerCount, wide, wide, angle, "W", suffix);
+            }
 
-            addMove(new Move(layerCount, 0, outer | middle, 1 * i), "TR" + suffix);
-            addMove(new Move(layerCount, 1, outer | middle, 1 * i), "TU" + suffix);
-            addMove(new Move(layerCount, 2, outer | middle, 1 * i), "TF" + suffix);
-            addMove(new Move(layerCount, 0, inner | middle, -1 * i), "TL" + suffix);
-            addMove(new Move(layerCount, 1, inner | middle, -1 * i), "TD" + suffix);
-            addMove(new Move(layerCount, 2, inner | middle, -1 * i), "TB" + suffix);
+            // Tier twists
+            for (int layer = 0; layer < layerCount; layer++) {
+                int innerTier = (1 << (layer + 1)) - 1;
+                int outerTier = all ^ ((1 << (layerCount - layer - 1)) - 1);
+                if (layer == 1) {
+                    addMoves(layerCount, outerTier, innerTier, angle, "T", suffix);
+                }
+                addMoves(layerCount, outerTier, innerTier, angle, "T" + (layer + 1), suffix);
+            }
 
-            addMove(new Move(layerCount, 0, outer | inner, 1 * i), "SR" + suffix);
-            addMove(new Move(layerCount, 1, outer | inner, 1 * i), "SU" + suffix);
-            addMove(new Move(layerCount, 2, outer | inner, 1 * i), "SF" + suffix);
-            addMove(new Move(layerCount, 0, inner | outer, -1 * i), "SL" + suffix);
-            addMove(new Move(layerCount, 1, inner | outer, -1 * i), "SD" + suffix);
-            addMove(new Move(layerCount, 2, inner | outer, -1 * i), "SB" + suffix);
+            // N-th layer twists
+            for (int layer = 0; layer < layerCount; layer++) {
+                int innerLayer = 1 << layer;
+                int outerLayer = 1 << (layerCount - layer - 1);
+                if (layer == 1) {
+                    addMoves(layerCount, outerLayer, innerLayer, angle, "N", suffix);
+                }
+                addMoves(layerCount, outerLayer, innerLayer, angle, "N" + (layer + 1), suffix);
+            }
+            // N-th layer range range twists
+            for (int from = 1; from < layerCount - 2; from++) {
+                int innerFrom = (1 << (from)) - 1;
+                int outerFrom = all ^ ((1 << (layerCount - from)) - 1);
+                for (int to = from; to < layerCount - 1; to++) {
+                    int innerTo = (1 << (to + 1)) - 1;
+                    int outerTo = all ^ ((1 << (layerCount - to - 1)) - 1);
+                    int innerRange = (innerTo ^ innerFrom);
+                    int outerRange = (outerTo ^ outerFrom);
+                    addMoves(layerCount, outerRange, innerRange, angle, "N" + (from + 1) + "-" + (to + 1), suffix);
+                }
+            }
 
-            addMove(new Move(layerCount, 0, all, 1 * i), "CR" + suffix);
-            addMove(new Move(layerCount, 1, all, 1 * i), "CU" + suffix);
-            addMove(new Move(layerCount, 2, all, 1 * i), "CF" + suffix);
-            addMove(new Move(layerCount, 0, all, -1 * i), "CL" + suffix);
-            addMove(new Move(layerCount, 1, all, -1 * i), "CD" + suffix);
-            addMove(new Move(layerCount, 2, all, -1 * i), "CB" + suffix);
+            // Verge twists (tier twists without face)
+            for (int layer = 1; layer < layerCount; layer++) {
+                int innerTier = inner ^ ((1 << (layer + 1)) - 1);
+                int outerTier = outer ^ (all ^ ((1 << (layerCount - layer - 1)) - 1));
+                if (layer == 2) {
+                    addMoves(layerCount, outerTier, innerTier, angle, "V", suffix);
+                }
+                addMoves(layerCount, outerTier, innerTier, angle, "V" + (layer + 1), suffix);
+            }
+            // Slice twists
+            for (int layer = 0; layer < layerCount / 2; layer++) {
+                int innerTier = (1 << (layer + 1)) - 1;
+                int outerTier = all ^ ((1 << (layerCount - layer - 1)) - 1);
+                int slice = innerTier | outerTier;
+                if (slice == all) {
+                    continue;
+                }
+                if (layer == 0) {
+                    addMoves(layerCount, slice, slice, angle, "S", suffix);
+                }
+                addMoves(layerCount, slice, slice, angle, "S" + (layer + 1), suffix);
+            }
+            // Slice range twists
+            for (int from = 1; from < layerCount - 2; from++) {
+                int innerFrom = (1 << (from)) - 1;
+                int outerFrom = all ^ ((1 << (layerCount - from)) - 1);
+                for (int to = from; to < layerCount - 1; to++) {
+                    int innerTo = (1 << (to + 1)) - 1;
+                    int outerTo = all ^ ((1 << (layerCount - to - 1)) - 1);
+                    int innerSlice = all ^ (innerTo ^ innerFrom);
+                    int outerSlice = all ^ (outerTo ^ outerFrom);
+                    addMoves(layerCount, outerSlice, innerSlice, angle, "S" + (from + 1) + "-" + (to + 1), suffix);
+                }
+            }
+
+            // Cube rotations
+            addMoves(layerCount, all, all, angle, "C", suffix);
         }
 
         putSyntax(Symbol.COMMUTATION, Syntax.PRECIRCUMFIX);
@@ -124,19 +178,30 @@ public class DefaultNotation extends AbstractNotation {
         putSyntax(Symbol.REPETITION, Syntax.SUFFIX);
         putSyntax(Symbol.REFLECTION, Syntax.SUFFIX);
         putSyntax(Symbol.INVERSION, Syntax.SUFFIX);
-        putSyntax(Symbol.MOVE,Syntax.PRIMARY);
-        putSyntax(Symbol.NOP,Syntax.PRIMARY);
+        putSyntax(Symbol.MOVE, Syntax.PRIMARY);
+        putSyntax(Symbol.NOP, Syntax.PRIMARY);
 
     }
 
-    /** Putlic for testing. */
+    private void addMoves(int layerCount, int outer, int inner, int angle, String prefix, String suffix) {
+        addMove(new Move(layerCount, 0, outer, 1 * angle), prefix + "R" + suffix);
+        addMove(new Move(layerCount, 1, outer, 1 * angle), prefix + "U" + suffix);
+        addMove(new Move(layerCount, 2, outer, 1 * angle), prefix + "F" + suffix);
+        addMove(new Move(layerCount, 0, inner, -1 * angle), prefix + "L" + suffix);
+        addMove(new Move(layerCount, 1, inner, -1 * angle), prefix + "D" + suffix);
+        addMove(new Move(layerCount, 2, inner, -1 * angle), prefix + "B" + suffix);
+    }
+
+    /**
+     * Putlic for testing.
+     */
     @Override
     public void putSyntax(Symbol symbol, Syntax syntax) {
         super.putSyntax(symbol, syntax);
     }
 
     public void addToken(Symbol symbol, String token) {
-        super.addToken(symbol,token);
+        super.addToken(symbol, token);
     }
 
     public String getName() {

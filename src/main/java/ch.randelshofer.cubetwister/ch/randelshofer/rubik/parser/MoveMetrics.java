@@ -50,6 +50,18 @@ public class MoveMetrics implements Consumer<Node> {
      * Includes the current node.
      */
     private int moveCount = 0;
+    /**
+     * True if we coalesce subsequent moves over the same axis and angle
+     * while counting.
+     */
+    private boolean coalesce = true;
+
+    public MoveMetrics() {
+    }
+
+    public MoveMetrics(boolean coalesce) {
+        this.coalesce = coalesce;
+    }
 
     /**
      * Gets the layer turn count of the subtree starting
@@ -110,17 +122,17 @@ public class MoveMetrics implements Consumer<Node> {
                 // cannot coalesce
                 current = moveNode;
                 moveCount++;
-            } else if (current.getAxis() == axis && layerMask == allLayers) {
+            } else if (coalesce && current.getAxis() == axis && layerMask == allLayers) {
                 // skip cube rotation over same axis
                 moveCount++;
-            } else if (current.getAxis() == axis && current.getLayerMask() == layerMask) {
+            } else if (coalesce && current.getAxis() == axis && current.getLayerMask() == layerMask) {
                 // coalesce subsequent move on same axis and same layer
                 current = new MoveNode(layerCount, axis, layerMask, angle + current.getAngle(),
                         current.getStartPosition(), moveNode.getEndPosition());
                 moveCount++;
-            } else if (current.getAxis() == axis && current.getAngle() == angle && (current.getLayerMask() & layerMask) == 0) {
+            } else if (coalesce && current.getAxis() == axis && current.getAngle() == angle && (current.getLayerMask() & layerMask) == 0) {
                 // coalesce subsequent move on same axis and angle and different layers
-                current = new MoveNode(layerCount, axis,current.getLayerMask()|layerMask, angle,
+                current = new MoveNode(layerCount, axis, current.getLayerMask() | layerMask, angle,
                         current.getStartPosition(), moveNode.getEndPosition());
                 moveCount++;
             } else {
@@ -163,61 +175,6 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
-     * Gets the current layer turn count.
-     */
-    public int getLayerTurnCount() {
-        return current == null ? ltm : ltm + countLayerTurns(current);
-    }
-
-    /**
-     * Gets the current block turn count.
-     */
-    public int getBlockTurnCount() {
-        return current == null ? btm : btm + countBlockTurns(current);
-    }
-
-    /**
-     * Gets the current face turn count.
-     */
-    public int getFaceTurnCount() {
-        return current == null ? ftm : ftm + countFaceTurns(current);
-    }
-
-    /**
-     * Gets the current quarter turn count.
-     */
-    public int getQuarterTurnCount() {
-        return current == null ? qtm : qtm + countQuarterTurns(current);
-    }
-
-    /**
-     * Gets the number of no-op moves.
-     */
-    public int getMoveCount() {
-        return moveCount;
-    }
-
-    /**
-     * Gets the layer turn count of the specified move node.
-     */
-    private int countLayerTurns(@Nonnull MoveNode move) {
-        int layerCount = move.getLayerCount();
-        int layerMask = move.getLayerMask();
-        int turns = abs(move.getAngle()) % 4;
-        if (turns == 0) {
-            return 0;
-        } else {
-            int count = 0;
-            for (int i = 0; i < layerCount; i++) {
-                if (((layerMask >>> i) & 1) == 1) {
-                    count++;
-                }
-            }
-            return Math.min(count, layerCount - count);
-        }
-    }
-
-    /**
      * Gets the block turn count of the specified move node.
      */
     private int countBlockTurns(@Nonnull MoveNode move) {
@@ -250,10 +207,9 @@ public class MoveMetrics implements Consumer<Node> {
      * <p>
      * If a move has changed at least one layer but not all layers:
      * <ul>
-     *     <li>counts 1: if the inner-most layer has been turned but not the outer-most layer</li>
-     *     <li>counts 1: if the inner-most layer has been turned but not the outer-most layer</li>
-     *     <li>counts 2: if the inner-most layer and the outer-most layer have not been turned</li>
-     *     <li>counts 2: if the inner-most layer and the outer-most layer have been turned</li>
+     *     <li>counts 1: if the inner-most layer has been turned
+     *     together with the outer-most layer</li>
+     *     <li>counts 2: otherwise</li>
      * </ul>
      */
     private int countFaceTurns(@Nonnull MoveNode move) {
@@ -273,6 +229,26 @@ public class MoveMetrics implements Consumer<Node> {
     }
 
     /**
+     * Gets the layer turn count of the specified move node.
+     */
+    private int countLayerTurns(@Nonnull MoveNode move) {
+        int layerCount = move.getLayerCount();
+        int layerMask = move.getLayerMask();
+        int turns = abs(move.getAngle()) % 4;
+        if (turns == 0) {
+            return 0;
+        } else {
+            int count = 0;
+            for (int i = 0; i < layerCount; i++) {
+                if (((layerMask >>> i) & 1) == 1) {
+                    count++;
+                }
+            }
+            return Math.min(count, layerCount - count);
+        }
+    }
+
+    /**
      * Gets the face turn count of the specified node.
      */
     private int countQuarterTurns(@Nonnull MoveNode move) {
@@ -281,6 +257,49 @@ public class MoveMetrics implements Consumer<Node> {
             qturns = 1;
         }
         return countFaceTurns(move) * qturns;
+    }
+
+    /**
+     * Gets the current block turn count.
+     */
+    public int getBlockTurnCount() {
+        return current == null ? btm : btm + countBlockTurns(current);
+    }
+
+    /**
+     * Gets the current face turn count.
+     */
+    public int getFaceTurnCount() {
+        return current == null ? ftm : ftm + countFaceTurns(current);
+    }
+
+    /**
+     * Gets the current layer turn count.
+     */
+    public int getLayerTurnCount() {
+        return current == null ? ltm : ltm + countLayerTurns(current);
+    }
+
+    /**
+     * Gets the number of no-op moves.
+     */
+    public int getMoveCount() {
+        return moveCount;
+    }
+
+    /**
+     * Gets the current quarter turn count.
+     */
+    public int getQuarterTurnCount() {
+        return current == null ? qtm : qtm + countQuarterTurns(current);
+    }
+
+    public boolean isCoalesce() {
+        return this.coalesce;
+    }
+
+    public void setCoalesce(boolean coalesce) {
+        this.coalesce = coalesce;
     }
 
     /**

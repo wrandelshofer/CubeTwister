@@ -92,6 +92,8 @@ import java.io.StringWriter;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
+import static java.lang.Math.min;
+
 /**
  * The ScriptView is an editor for ScriptModel's. Users can record,
  * edit and play back scripts. The view features also a state panel,
@@ -1435,7 +1437,7 @@ public class ScriptView
             scriptTextArea.setToolTipText(e.getMessage() + "@" + e.getStartPosition() + ".." + e.getEndPosition());
             updateHighlight();
             scriptTextArea.setCaretPosition(e.getStartPosition());
-            scriptTextArea.moveCaretPosition(e.getEndPosition() + 1);
+            scriptTextArea.moveCaretPosition(min(e.getEndPosition() + 1, scriptTextArea.getDocument().getLength() - 1));
             if (evt != null) {
                 JOptionPane.showMessageDialog(
                         ScriptView.this,

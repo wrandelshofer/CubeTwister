@@ -107,7 +107,7 @@ public class NotationView extends JPanel
             placardButton.putClientProperty("Quaqua.Component.visualMargin", new Insets(0, -2, -1, -1));
             placardButton.setPreferredSize(new Dimension(20, 23));
             placardButton.setMinimumSize(new Dimension(20, 23));
-            contentPanel.setBorder(new EmptyBorder(0,-3,-20,-3));
+            //contentPanel.setBorder(new EmptyBorder(0,-3,-20,-3));
         } else if ("Windows".equals(UIManager.getLookAndFeel().getID())) {
             placardButton.setBorder(new PlacardButtonBorder(SwingConstants.RIGHT));
             placardButton.setMinimumSize(new Dimension(10, 23));

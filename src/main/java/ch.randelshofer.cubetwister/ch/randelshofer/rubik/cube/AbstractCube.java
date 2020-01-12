@@ -740,7 +740,13 @@ public abstract class AbstractCube implements Cube, Cloneable {
         } else {
             Cube that = (Cube) o;
 
-            return that.getLayerCount() == this.layerCount && Arrays.equals(that.getCornerLocations(), this.cornerLoc) && Arrays.equals(that.getCornerOrientations(), this.cornerOrient) && Arrays.equals(that.getEdgeLocations(), this.edgeLoc) && Arrays.equals(that.getEdgeOrientations(), this.edgeOrient) && Arrays.equals(that.getSideLocations(), this.sideLoc) && Arrays.equals(that.getSideOrientations(), this.sideOrient);
+            return that.getLayerCount() == this.layerCount
+                    && Arrays.equals(that.getCornerLocations(), this.cornerLoc)
+                    && Arrays.equals(that.getCornerOrientations(), this.cornerOrient)
+                    && Arrays.equals(that.getEdgeLocations(), this.edgeLoc)
+                    && Arrays.equals(that.getEdgeOrientations(), this.edgeOrient)
+                    && Arrays.equals(that.getSideLocations(), this.sideLoc)
+                    && Arrays.equals(that.getSideOrientations(), this.sideOrient);
         }
     }
 

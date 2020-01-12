@@ -75,7 +75,7 @@ public class IntMath {
     public static int scm(int a, int b) {
         // Quelle:
         //   Herrmann, D. (1992). Algorithmen Arbeitsbuch. 
-        //   Bonn, M�nchen Paris: Addison Wesley.
+        //   Bonn, München Paris: Addison Wesley.
         //   gill, Seite 141
 
         if (a == 0 || b == 0) return 0;

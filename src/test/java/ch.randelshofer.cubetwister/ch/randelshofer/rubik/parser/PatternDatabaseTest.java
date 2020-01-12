@@ -9,128 +9,336 @@ import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
-import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Contains test that use TSV files exported from the pattern database.
+ * <p>
+ * (The pattern database is not part of this project.)
+ */
 public class PatternDatabaseTest {
+
+
     @Nonnull
     @TestFactory
-    public List<DynamicTest> testTsv() {
-        return Arrays.asList(
-                DynamicTest.dynamicTest("2xPocket", () -> doTsvTest(2, "/Users/Shared/Homepage/rubik/database/2xPocket/PatternExportTab.txt")),
-                DynamicTest.dynamicTest("3xRubik", () -> doTsvTest(3, "/Users/Shared/Homepage/rubik/database/3xRubik/PatternExportTab.txt")),
-                DynamicTest.dynamicTest("4xRevenge", () -> doTsvTest(3, "/Users/Shared/Homepage/rubik/database/4xRevenge/PatternExportTab.txt")),
-                DynamicTest.dynamicTest("5xProfessor", () -> doTsvTest(3, "/Users/Shared/Homepage/rubik/database/5xProfessor/PatternExportTab.txt")),
-                DynamicTest.dynamicTest("6xVCube6", () -> doTsvTest(3, "/Users/Shared/Homepage/rubik/database/6xVCube6/PatternExportTab.txt")),
-                DynamicTest.dynamicTest("7xVCube7", () -> doTsvTest(3, "/Users/Shared/Homepage/rubik/database/7xVCube7/PatternExportTab.txt"))
-        );
+    public Stream<DynamicTest> test2xPocket() throws Exception {
+        return createTests(2, "/Users/Shared/Homepage/rubik/database/2xPocket/PatternExportTab.txt", Arrays.asList(
+                "id",
+                "number",
+                "category_de",
+                "category_en",
+                "sub_category_de",
+                "sub_category_en",
+                "name_de",
+                "name_en",
+                "script",
+                "ltm-not-used",
+                //"btm",
+                "ftm",
+                "qtm",
+                "order",
+                "permutation",
+                "description_de",
+                "description_en",
+                "author"
 
+        ));
     }
 
-    private void doTsvTest(int layerCount, String tsvFileName) throws IOException {
+    @Nonnull
+    @TestFactory
+    public Stream<DynamicTest> test3xRubik() throws Exception {
+        return createTests(3, "/Users/Shared/Homepage/rubik/database/3xRubik/PatternExportTab.txt", Arrays.asList(
+                "id",
+                "number",
+                "category_de",
+                "category_en",
+                "sub_category_de",
+                "sub_category_en",
+                "name_de",
+                "name_en",
+                "script",
+                "ltm",
+                //"btm",
+                "ftm",
+                "qtm",
+                "order",
+                "permutation",
+                "author",
+                "description_de",
+                "description_en"
+
+        ));
+    }
+
+    @Nonnull
+    @TestFactory
+    public Stream<DynamicTest> test4xRevenge() throws Exception {
+        return createTests(4, "/Users/Shared/Homepage/rubik/database/4xRevenge/PatternExportTab.txt", Arrays.asList(
+                "id",
+                "number",
+                "category_de",
+                "category_en",
+                "sub_category_de",
+                "sub_category_en",
+                "name_de",
+                "name_en",
+                "script",
+                //"ltm",
+                "btm",
+                "ftm",
+                "qtm",
+                "order",
+                "permutation",
+                "description_de",
+                "description_en",
+                "author"
+
+        ));
+    }
+
+    @Nonnull
+    @TestFactory
+    public Stream<DynamicTest> test5xProfessors() throws Exception {
+        return createTests(5, "/Users/Shared/Homepage/rubik/database/5xProfessor/PatternExportTab.txt", Arrays.asList(
+                "id",
+                "number",
+                "category_de",
+                "category_en",
+                "sub_category_de",
+                "sub_category_en",
+                "name_de",
+                "name_en",
+                "script",
+                //"ltm",
+                "btm",
+                "ftm",
+                "qtm",
+                "order",
+                "permutation",
+                "description_de",
+                "description_en",
+                "author"
+
+        ));
+    }
+
+    @Nonnull
+    @TestFactory
+    public Stream<DynamicTest> test6xVCube6() throws Exception {
+        return createTests(6, "/Users/Shared/Homepage/rubik/database/6xVCube6/PatternExportTab.txt", Arrays.asList(
+                "id",
+                "number",
+                "category_de",
+                "category_en",
+                "sub_category_de",
+                "sub_category_en",
+                "name_de",
+                "name_en",
+                "script",
+                //"ltm",
+                "btm",
+                "ftm",
+                "qtm",
+                "order",
+                "permutation",
+                "description_de",
+                "description_en",
+                "author"
+
+        ));
+    }
+
+    @Nonnull
+    @TestFactory
+    public Stream<DynamicTest> test7xVCube7s() throws Exception {
+        return createTests(7, "/Users/Shared/Homepage/rubik/database/7xVCube7/PatternExportTab.txt", Arrays.asList(
+                "id",
+                "number",
+                "category_de",
+                "category_en",
+                "sub_category_de",
+                "sub_category_en",
+                "name_de",
+                "name_en",
+                "script",
+                //"ltm",
+                "btm",
+                "ftm",
+                "qtm",
+                "order",
+                "permutation",
+                "description_de",
+                "description_en",
+                "author"
+
+        ));
+    }
+
+    private static DataRecord createDataRecord(String line, List<String> headers) {
+        String[] data = line.replace('\u000b', '\n').split("\t");
+        return new DataRecord(data, headers);
+    }
+
+    private Stream<DynamicTest> createTests(int layerCount, String filename, List<String> headers) throws Exception {
+        return Files.lines(Paths.get(filename), Charset.forName("x-MacRoman"))
+                .map(line -> createDataRecord(line, headers))
+                .map(p -> DynamicTest.dynamicTest(p.get("id") + "[" + p.get("number") + "]", () -> doPatternTest(layerCount, p)))
+                ;
+    }
+
+    /**
+     * Javascript Array with String key and numeric indices.
+     */
+    private static class DataRecord implements Cloneable, Iterable<String> {
+        String[] data;
+        List<String> keys;
+
+        public DataRecord(String[] data, List<String> keys) {
+            this.keys = keys;
+            if (data.length < keys.size()) {
+                this.data = new String[keys.size()];
+                System.arraycopy(data, 0, this.data, 0, data.length);
+            } else {
+                this.data = data;
+            }
+            if (this.data.length != keys.size()) {
+                throw new IllegalArgumentException();
+            }
+        }
+
+        @Override
+        public Iterator<String> iterator() {
+            return Arrays.asList(data).iterator();
+        }
+
+        public int length() {
+            return data.length;
+        }
+
+        public String get(int index) {
+            return data[index];
+        }
+
+        public boolean hasKey(String key) {
+            return keys.contains(key);
+        }
+
+        public String get(String key) {
+            int index = keys.indexOf(key);
+            return index == -1 ? null : data[index];
+        }
+
+        public void set(int index, String value) {
+            data[index] = value;
+        }
+
+        public void set(String key, String value) {
+            data[keys.indexOf(key)] = value;
+        }
+
+        @Override
+        public DataRecord clone() {
+            try {
+                DataRecord that = (DataRecord) super.clone();
+                that.data = this.data.clone();
+                return that;
+            } catch (CloneNotSupportedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        public String toString() {
+            return Arrays.toString(data);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (!(o instanceof DataRecord)) {
+                return false;
+            }
+            DataRecord that = (DataRecord) o;
+            return Arrays.equals(data, that.data);
+        }
+
+        @Override
+        public int hashCode() {
+            return Arrays.hashCode(data);
+        }
+    }
+
+
+    private void doPatternTest(int layerCount, DataRecord data) throws Exception {
         DefaultNotation notation = new DefaultNotation(layerCount);
         ScriptParser parser = new ScriptParser(notation);
         Cube cube = CubeFactory.create(layerCount);
         Cube expectedCube = CubeFactory.create(layerCount);
-        boolean success = true;
-        Stream<String> lines = Files.lines(Paths.get(tsvFileName), Charset.forName("x-MacRoman"));
-        for (String[] cols : (Iterable<String[]>) () -> lines.map(line -> line.split("\t")).iterator()) {
-            String id = cols[0];
-            String number = cols[1];
-            String category_de = cols[2];
-            String category_en = cols[3];
-            String sub_category_de = cols[4];
-            String sub_category_en = cols[5];
-            String name_de = cols[6];
-            String name_en = cols[7];
-            String script = cols[8];
-            String ltm = cols[9];
-            String ftm = cols[10];
-            String qtm = cols[11];
-            String order = cols[12];
-            String permutation = cols.length > 13 ? cols[13] : "";
-            String description_de = cols.length > 14 ? cols[14] : "";
-            String description_en = cols.length > 15 ? cols[15] : "";
-            String labeledLine = "id=" + id + " nb=" + number + " script=" + script + " ltm=" + ltm + " ftm=" + ftm + " qtm=" + qtm + " perm=" + permutation;
-            Node ast;
-            try {
-                ast = parser.parse(script);
-            } catch (ParseException e) {
-                System.err.println(labeledLine);
-                throw e;
-            }
-            cube.reset();
-            ast.applyTo(cube, false);
-            String actualPerm = Cubes.toPermutationString(cube, notation);
 
-            int expectedFtm = parseTurnMetricValue(ftm);
-            int expectedQtm = parseTurnMetricValue(qtm);
-            int expectedLtm = parseTurnMetricValue(ltm);
-            int actualLtm = MoveMetrics.getLayerTurnCount(ast);
-            int actualFtm = MoveMetrics.getFaceTurnCount(ast);
-            int actualQtm = MoveMetrics.getQuarterTurnCount(ast);
+        Node ast;
+        try {
+            ast = parser.parse(data.get("script"));
+        } catch (ParseException e) {
+            System.err.println(data);
+            throw e;
+        }
+        cube.reset();
+        ast.applyTo(cube, false);
+
+        DataRecord computed = data.clone();
+
+        MoveMetrics mm = ast.resolvedStream(false).collect(() -> new MoveMetrics(false), MoveMetrics::accept, MoveMetrics::combine);
+        System.out.println("expected: " + data);
+
+        computed.set("order", "" + Cubes.getVisibleOrder(cube));
+
+        // Note: we can only check against values which are present in teh database
+
+        if (data.get("ltm") != null && !data.get("ltm").isEmpty()) {
+            computed.set("ltm", data.get("ltm") == null ? null : mm.getLayerTurnCount() + (data.get("ltm").contains("*") ? "*" : ""));
+        }
+        if (data.get("qtm") != null && !data.get("qtm").isEmpty()) {
+            computed.set("qtm", data.get("qtm") == null ? null : mm.getQuarterTurnCount() + (data.get("qtm").contains("*") ? "*" : ""));
+        }
+        if (data.get("ftm") != null && !data.get("ftm").isEmpty()) {
+            computed.set("ftm", data.get("ftm") == null ? null : mm.getFaceTurnCount() + (data.get("ftm").contains("*") ? "*" : ""));
+        }
+        if (data.hasKey("btm") && !data.get("btm").isEmpty()) {
+            computed.set("btm", data.get("btm") == null ? null : mm.getBlockTurnCount() + (data.get("btm").contains("*") ? "*" : ""));
+        }
 
 
-            //+" perm="+actualPerm);
-            List<AssertionError> errors = new ArrayList<>();
-            if (expectedLtm != -1) {
-                try {
-                    assertEquals(expectedLtm, actualLtm, "ltm");
-                } catch (AssertionError e) {
-                    errors.add(e);
-                }
-            }
-            try {
-                assertEquals(expectedFtm, actualFtm, "ftm");
-            } catch (AssertionError e) {
-                errors.add(e);
-            }
-            try {
-                assertEquals(expectedQtm, actualQtm, "qtm");
-            } catch (AssertionError e) {
-                errors.add(e);
-            }
+        if (data.get("permutation") != null && !data.get("permutation").isEmpty()) {
+            // use the same permutation if it yields the same result
+            computed.set("permutation", Cubes.toPermutationString(cube, notation).replace('\n', ' '));
             try {
                 expectedCube.reset();
-                parser.parse(permutation).applyTo(expectedCube);
-                if (!cube.equals(expectedCube)) {
-                    throw new AssertionError("permutation ==> expected: <" + permutation + "> but was: <" + actualPerm + ">");
+                if (data.get("permutation") != null) {
+                    parser.parse(data.get("permutation")).applyTo(expectedCube);
+                    if (cube.equals(expectedCube)) {
+                        computed.set("permutation", data.get("permutation"));
+                    }
                 }
             } catch (ParseException e) {
-                errors.add(new AssertionError("permutation ==> expected: <" + permutation + "> but was: <" + actualPerm + ">"));
-            } catch (AssertionError e) {
-                errors.add(e);
-            }
-            if (!errors.isEmpty()) {
-                success = false;
-                System.out.println(labeledLine);
-                for (AssertionError e : errors) {
-                    System.out.print("   " + e.getMessage());
-                }
-                System.out.println();
-//                System.out.println("   ast:"+ast.toString());
-//                System.out.println("   resolved:"+                ast.toResolvedList(false).stream().map(Object::toString).collect(Collectors.joining(", "))                );
-                //   System.out.println("\n   ftm=" + actualLtm + " ftm=" + actualFtm + " qtm=" + actualQtm+ " perm=" + permutation);
+                // this will show up as a difference in the permutation string
             }
         }
-        if (!success) {
-            throw new AssertionError("found unexpected values");
+        if (!data.equals(computed)) {
+            System.out.println("computed: " + computed);
         }
+        assertEquals(data, computed);
     }
 
-    private int parseTurnMetricValue(String ftm) {
-        if (ftm.isEmpty()) {
-            return -1;
-        }
-        return Integer.parseInt(ftm.endsWith("*") ? ftm.substring(0, ftm.length() - 1) : ftm);
-    }
 
 }

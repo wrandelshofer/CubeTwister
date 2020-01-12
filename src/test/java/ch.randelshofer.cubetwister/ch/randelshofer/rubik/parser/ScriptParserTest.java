@@ -674,6 +674,7 @@ class ScriptParserTest {
     public List<DynamicTest> testParseFailures() {
         return Arrays.asList(
                 dynamicTest("defaultNotation knurps", () -> doFailure(defaultNotatioon, "knurps", "Statement: Keyword or Number expected. Found \"knurps\".")),
+                dynamicTest("defaultNotation B R (X3U MR- MU- · MR ML · MD ML- U-) R- B-", () -> doFailure(defaultNotatioon, "B R (X3U MR- MU- · MR ML · MD ML- U-) R- B-", "Permutation: PermutationItem expected. Found \"X\".")),
                 dynamicTest("preinfixNotation <CU CF> conj (R)", () -> doFailure(preinfix, "<CU CF> conj (R)", "Preinfix: Operand expected. Found \"<\"."))
         );
     }

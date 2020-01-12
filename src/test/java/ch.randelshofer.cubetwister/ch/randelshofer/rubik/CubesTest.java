@@ -4,6 +4,7 @@
 package ch.randelshofer.rubik;
 
 import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeFactory;
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.notation.DefaultNotation;
@@ -27,19 +28,59 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 /**
  * CubesTest.
+ *
  * @author Werner Randelshofer
  */
 public class CubesTest {
-    
+
     public CubesTest() {
+    }
+
+    @Nonnull
+    @TestFactory
+    public List<DynamicTest> testOrder() {
+        return Arrays.asList(
+                dynamicTest("A250.02, 1", () -> doTestOrder(4, "MD WR2 MD- L2 B2 MU- WR2 MU SR2 F2 R2", 2, 4)),
+                dynamicTest("A220.29, 3", () -> doTestOrder(5, "(r5,++f7,++l7,+r6,-f8,+l6) (u5,b5,d5,+u6,+b6,-d8) (f5,l5,-r8,+f6,-l8,++r7) (d6,+u7,+b7,+d7,++u8,++b8)", 3, 6)),
+                dynamicTest("A410.12, 1", () -> doTestOrder(4, "MR2 F2 MR- F2 ML D2 ML- D2 MR D2 MR- D2 MR\n" +
+                        "WD2 MR D2 MR- WD2 MR D2\n" +
+                        "SD R U- WF U R- D- WR U", 6, 12)),
+                dynamicTest("A601.01, 1", () -> doTestOrder(4, "MR2 WD2 MR2 F2 WD2 F2 MD2", 4, 4)),
+                dynamicTest("A601.05, 1", () -> doTestOrder(4, "WD WR- MF WD- WR2 WD- MF- WR-\n" +
+                        "MR2 MU2 MR2 (WF2 MU-)2", 12, 12)),
+                dynamicTest("A870.02, 1", () -> doTestOrder(4, "L- WF R D SR2 T3D- SR B- WR F- U- WF U\n" +
+                        "TF2 MR2 TF2 MR2 F2 MR2\n" +
+                        "B- U- R- (MR MU- MR MU MR2) R U B", 24, 24)),
+                dynamicTest("AA601.05, 1", () -> doTestOrder(4, "(r1,-r4,++f3,++u3) (u1,++r3,+f2,-f4,+u2,-u4,+r2,f1) (l1,-b4,b1,-d4,d1,+l2) (d2,+l3,b2,+d3,++l4,+b3)",
+                        24, 24))
+        );
+    }
+
+    /**
+     * Test the getOrder methods of Cubes.
+     */
+    private void doTestOrder(int layerCount, String input, int expectedVisibleOrder, int expectedFullOrder) throws IOException {
+        System.out.println("doTestOrder input: " + input);
+        Cube cube = CubeFactory.create(layerCount);
+        Notation notation = new DefaultNotation(layerCount);
+        ScriptParser parser = new ScriptParser(notation);
+        Node ast = parser.parse(input);
+        ast.applyTo(cube, false);
+        int actualVisibleOrder = Cubes.getVisibleOrder(cube);
+        int actualFullOrder = Cubes.getOrder(cube);
+        String actual = Cubes.toVisualPermutationString(cube, notation);
+        System.out.println("  expected: " + expectedVisibleOrder + "v " + expectedFullOrder + "r");
+        System.out.println("  actual: " + actualVisibleOrder + "v " + actualFullOrder + "r");
+        assertEquals(expectedVisibleOrder, actualVisibleOrder, "visibleOrder");
+        assertEquals(expectedFullOrder, actualFullOrder, "fullOrder");
     }
 
     @Nonnull
     @TestFactory
     public List<DynamicTest> testToVisualPermutationString_RubiksCube_Notation() {
         return Arrays.asList(
-                dynamicTest("-",()->doToVisualPermutationString_RubiksCube_Notation("","()")),
-                dynamicTest("R", ()->doToVisualPermutationString_RubiksCube_Notation("R","(ubr,bdr,dfr,fur)\n" +
+                dynamicTest("-", () -> doToVisualPermutationString_RubiksCube_Notation(3, "", "()")),
+                dynamicTest("R", () -> doToVisualPermutationString_RubiksCube_Notation(3, "R", "(ubr,bdr,dfr,fur)\n" +
                         "(ur,br,dr,fr)"))
         );
     }
@@ -47,16 +88,16 @@ public class CubesTest {
     /**
      * Test of toVisualPermutationString method, of class Cubes.
      */
-    private void doToVisualPermutationString_RubiksCube_Notation(String input, String expected) throws IOException {
-        System.out.println("toVisualPermutationString input: "+input);
-        RubiksCube cube = new RubiksCube();
-        Notation notation = new DefaultNotation();
-        ScriptParser parser =new ScriptParser(notation);
+    private void doToVisualPermutationString_RubiksCube_Notation(int layerCount, String input, String expected) throws IOException {
+        System.out.println("toVisualPermutationString input: " + input);
+        Cube cube = CubeFactory.create(layerCount);
+        Notation notation = new DefaultNotation(layerCount);
+        ScriptParser parser = new ScriptParser(notation);
         Node ast = parser.parse(input);
-        ast.applyTo(cube,false);
+        ast.applyTo(cube, false);
         String actual = Cubes.toVisualPermutationString(cube, notation);
-        System.out.println("  expected: "+expected);
-        System.out.println("  actual: "+actual);
+        System.out.println("  expected: " + expected);
+        System.out.println("  actual: " + actual);
         assertEquals(expected, actual);
     }
 

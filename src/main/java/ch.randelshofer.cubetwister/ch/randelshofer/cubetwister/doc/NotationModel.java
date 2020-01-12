@@ -31,7 +31,7 @@ import java.util.StringTokenizer;
 /**
  * NotationModel.
  *
- * @author  Werner Randelshofer.
+ * @author Werner Randelshofer.
  */
 public class NotationModel extends InfoModel implements Notation {
     private final static long serialVersionUID = 1L;
@@ -86,40 +86,41 @@ public class NotationModel extends InfoModel implements Notation {
      */
     private int layerCount = 3;
     private final static int[][] usefulLayers = {
-        // 2x2 cube
-        {1, 3},
-        // 3x3 cube
-        {1, 3, 7, 2, 5},
-        // 4x4 cube
-        {1, 3, 7, 15, 2, 6, 9},
-        // 5x5 cube
-        {1, 3, 7, 15, 31, 2, 4, 6, 14, 29, 27, 25, 17},
-        // 6x6 cube
-        {1, 3, 7, 15, 31, 63,// Tier Moves
-            2, 4, // Nth-Layer Moves width 1,
-            6, 12, // Nth-Layer Moves width 2,
-            14, // Nth-Layer Moves width 3,
-            30, // Nth-Layer Moves width 4
-            61, 59, // Slice-Moves width 1
-            57, 51,// Slice Moves width 2
-            49, // Slice Moves width 3
-            33 // Slice Moves width 4
-        },
-        // 7x7 cube
-        {1, 3, 7, 15, 31, 63, 127, // Tier Movies
-            2, 4, 8, // Nth-Layer Moves width 1
-            6, 12, // Nth-Layer Moves width 2,
-            14, 28, // Nth-Layer Moves width 3,
-            30, // Nth-Layer Moves width 4
-            62, // Nth-Layer Moves width 5
-            125, 123, 119, // Slice Moves width 1
-            121, 115, // Slice Moves width 2
-            113, 99, // Slice Moves width 3
-            97, // Slice Moves width 4
-            65 // Slice Moves width 5
-        },};
+            // 2x2 cube
+            {1, 3},
+            // 3x3 cube
+            {1, 3, 7, 2, 5},
+            // 4x4 cube
+            {1, 3, 7, 15, 2, 6, 9},
+            // 5x5 cube
+            {1, 3, 7, 15, 31, 2, 4, 6, 14, 29, 27, 25, 17},
+            // 6x6 cube
+            {1, 3, 7, 15, 31, 63,// Tier Moves
+                    2, 4, // Nth-Layer Moves width 1,
+                    6, 12, // Nth-Layer Moves width 2,
+                    14, // Nth-Layer Moves width 3,
+                    30, // Nth-Layer Moves width 4
+                    61, 59, // Slice-Moves width 1
+                    57, 51,// Slice Moves width 2
+                    49, // Slice Moves width 3
+                    33 // Slice Moves width 4
+            },
+            // 7x7 cube
+            {1, 3, 7, 15, 31, 63, 127, // Tier Movies
+                    2, 4, 8, // Nth-Layer Moves width 1
+                    6, 12, // Nth-Layer Moves width 2,
+                    14, 28, // Nth-Layer Moves width 3,
+                    30, // Nth-Layer Moves width 4
+                    62, // Nth-Layer Moves width 5
+                    125, 123, 119, // Slice Moves width 1
+                    121, 115, // Slice Moves width 2
+                    113, 99, // Slice Moves width 3
+                    97, // Slice Moves width 4
+                    65 // Slice Moves width 5
+            },};
 
-    /** Returns an array of 'useful' layerMask values for cubes with the specified
+    /**
+     * Returns an array of 'useful' layerMask values for cubes with the specified
      * layer count.
      * This layerMask does not include mirrored layers.
      */
@@ -144,16 +145,19 @@ public class NotationModel extends InfoModel implements Notation {
         return reverse;
     }
 
-    /** Creates new CubeNotation */
+    /**
+     * Creates new CubeNotation
+     */
     public NotationModel() {
         setAllowsChildren(true);
-        //     tokens = new String[ScriptParser.TOKEN_COUNT];
+
+        setSyntax(Symbol.GROUPING, Syntax.CIRCUMFIX);
+
         add(new EntityModel("Macros", true)); // Macros
     }
 
     /**
-    
-    /**
+     * /**
      * Returns the number of layers supported by this notation.
      */
     @Override
@@ -169,7 +173,7 @@ public class NotationModel extends InfoModel implements Notation {
         layerCount = newValue;
         firePropertyChange("layerCount", oldValue, newValue);
 
-        validateTwists();
+        invalidateTwists();
     }
 
     @Nonnull
@@ -195,7 +199,7 @@ public class NotationModel extends InfoModel implements Notation {
     public boolean isTwistSupported() {
         // Always return true;
         return true;
-    //return supportedTwistTokensSet.size() > 0;
+        //return supportedTwistTokensSet.size() > 0;
     }
 
     public boolean isTwistSupported(Move key) {
@@ -215,7 +219,7 @@ public class NotationModel extends InfoModel implements Notation {
         if (oldValue != newValue) {
             basicSetMoveSupported(key, newValue);
             firePropertyChange("twistSupported", oldValue, newValue);
-        // XXX - Implement undo redo support
+            // XXX - Implement undo redo support
         }
     }
 
@@ -232,7 +236,7 @@ public class NotationModel extends InfoModel implements Notation {
         if (oldValue != newValue) {
             basicSetSupported(key, newValue);
             firePropertyChange(PROP_SYMBOL_SUPPORTED, oldValue, newValue);
-        // XXX - Implement undo redo support
+            // XXX - Implement undo redo support
         }
     }
 
@@ -268,7 +272,6 @@ public class NotationModel extends InfoModel implements Notation {
                 (oldValue != null && newValue != null && !oldValue.equals(newValue))) {
             firePropertyChange(PROP_TWIST_TOKEN, oldValue, newValue);
 
-            // FIXME - Undo/Redo must be handled by the view and not by the model!!
             fireUndoableEditHappened(
                     new UndoableObjectEdit(this, "Twist Token", oldValue, newValue) {
                         private final static long serialVersionUID = 1L;
@@ -301,7 +304,7 @@ public class NotationModel extends InfoModel implements Notation {
             // FIXME - Undo/Redo must be handled by the view and not by the model!!
             fireUndoableEditHappened(
                     new UndoableObjectEdit(this, "Statement Token", oldValue, newValue) {
-    private final static long serialVersionUID = 1L;
+                        private final static long serialVersionUID = 1L;
 
                         public void revert(Object a, Object b) {
                             symbolToTokenMap.put(key, (String) b);
@@ -339,12 +342,12 @@ public class NotationModel extends InfoModel implements Notation {
      * Returns a macro which performs the same transformation as the cube
      * parameter. Returns null if no macro is available.
      *
-     * @param cube A transformed cube.
+     * @param cube        A transformed cube.
      * @param localMacros A Map with local macros.
      */
     @Nullable
     @Override
-    public String getEquivalentMacro(Cube cube, Map<String,MacroNode> localMacros) {
+    public String getEquivalentMacro(Cube cube, Map<String, MacroNode> localMacros) {
         // XXX - Implement me
         return null;
     }
@@ -389,7 +392,7 @@ public class NotationModel extends InfoModel implements Notation {
     @Nonnull
     @Override
     public Syntax getSyntax(Symbol s) {
-        return symbolToSyntaxMap.getOrDefault(s, Syntax.PRIMARY);
+        return symbolToSyntaxMap.getOrDefault(s.getCompositeSymbol(), Syntax.PRIMARY);
     }
 
     public void basicSetSyntax(Symbol s, Syntax newValue) {
@@ -409,7 +412,7 @@ public class NotationModel extends InfoModel implements Notation {
     /**
      * Returns a token for the specified symbol.
      * If the symbol has more than one token, the first token is returned.
-     *
+     * <p>
      * Returns null, if symbol is not supported.
      */
     @Nullable
@@ -420,7 +423,7 @@ public class NotationModel extends InfoModel implements Notation {
 
     /**
      * Returns all token for the specified symbol.
-     *
+     * <p>
      * Returns the token regardless whether the symbol is supported or not.
      * Returns null if the token is not defined.
      */
@@ -437,7 +440,7 @@ public class NotationModel extends InfoModel implements Notation {
     @Nonnull
     @Override
     public Collection<String> getTokens() {
-       return getTokenToSymbolMap().keySet();
+        return getTokenToSymbolMap().keySet();
     }
 
     @Nonnull
@@ -507,7 +510,7 @@ public class NotationModel extends InfoModel implements Notation {
             tokenToSymbolMap = new HashMap<String, HashSet<Symbol>>();
             for (Map.Entry<Symbol, String> entry : symbolToTokenMap.entrySet()) {
                 if (entry.getValue() != null) {
-                    for (StringTokenizer tt = new StringTokenizer(entry.getValue()); tt.hasMoreTokens();) {
+                    for (StringTokenizer tt = new StringTokenizer(entry.getValue()); tt.hasMoreTokens(); ) {
                         String token = tt.nextToken();
                         HashSet<Symbol> symbols = tokenToSymbolMap.get(token);
                         if (symbols == null) {
@@ -523,7 +526,7 @@ public class NotationModel extends InfoModel implements Notation {
             for (Map.Entry<Move, String> entry : twistToTokenMap.entrySet()) {
                 if (entry.getValue() != null &&
                         (entry.getKey().getLayerMask() & validMask) == entry.getKey().getLayerMask()) {
-                    for (StringTokenizer tt = new StringTokenizer(entry.getValue()); tt.hasMoreTokens();) {
+                    for (StringTokenizer tt = new StringTokenizer(entry.getValue()); tt.hasMoreTokens(); ) {
                         String token = tt.nextToken();
                         HashSet<Symbol> symbols = tokenToSymbolMap.get(token);
                         if (symbols == null) {
@@ -538,7 +541,7 @@ public class NotationModel extends InfoModel implements Notation {
         }
     }
 
-    private void validateTwists() {
+    private void invalidateTwists() {
         invalidateTokenMaps();
 
         twistToTokenMap.clear();

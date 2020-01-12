@@ -1255,11 +1255,11 @@ public class DocumentModel extends DefaultTreeModel
                                     }
                                     int reversedLayerMask = NotationModel.reverseLayerMask(layerMask, item.getLayerCount());
 
-                                    // Addd move token, if layerMask is 'useful'
+                                    // Add move token, if layerMask is 'useful'
                                     for (int usefulLayerMask : NotationModel.getUsefulLayers(item.getLayerCount())) {
                                         if (layerMask == usefulLayerMask
                                                 || reversedLayerMask == usefulLayerMask) {
-                                            Move ts = new Move(3, axis, layerMask, angle);
+                                            Move ts = new Move(item.getLayerCount(), axis, layerMask, angle);
                                             item.setMoveToken(ts, Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
                                             item.setMoveSupported(ts, isEnabled);
                                             break;
