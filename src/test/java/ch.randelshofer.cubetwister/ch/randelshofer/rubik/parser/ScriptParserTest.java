@@ -326,7 +326,7 @@ class ScriptParserTest {
                 dynamicTest("[CU CF,R B]", () -> doParse(defaultNotatioon, "[CU CF,R B]", "0..11 sequence{ 0..11 commutation{ 1..6 sequence{ 1..3 move{ 1:7:1 } 4..6 move{ 2:7:1 } } 7..10 sequence{ 7..8 move{ 0:4:1 } 9..10 move{ 2:1:-1 } } } }")),
                 dynamicTest("[R,U]", () -> doParse(defaultNotatioon, "[R,U]", "0..5 sequence{ 0..5 commutation{ 1..2 sequence{ 1..2 move{ 0:4:1 } } 3..4 sequence{ 3..4 move{ 1:4:1 } } } }")),
                 dynamicTest("R U R'", () -> doParse(defaultNotatioon, "R U R'", "0..6 sequence{ 0..1 move{ 0:4:1 } 2..3 move{ 1:4:1 } 4..6 inversion{ 4..5 move{ 0:4:1 } } }")),
-                dynamicTest("R U R' U'", () -> doParse(defaultNotatioon, "R U R' U'", "0..9 sequence{ 0..1 move{ 0:4:1 } 2..3 move{ 1:4:1 } 4..6 inversion{ 4..5 move{ 0:4:1 } } 7..9 inversion{ 7..8 move{ 1:4:1 } } }")),
+                dynamicTest("R U /* a comment */ R' U'", () -> doParse(defaultNotatioon, "R U /* a comment */ R' U'", "0..25 sequence{ 0..1 move{ 0:4:1 } 2..3 move{ 1:4:1 } 20..22 inversion{ 20..21 move{ 0:4:1 } } 23..25 inversion{ 23..24 move{ 1:4:1 } } }")),
                 dynamicTest("R*", () -> doParse(defaultNotatioon, "R*", "0..2 sequence{ 0..2 reflection{ 0..1 move{ 0:4:1 } } }")),
                 dynamicTest("(R' U F)*", () -> doParse(defaultNotatioon, "(R' U F)*", "0..9 sequence{ 0..9 reflection{ 0..8 grouping{ 1..3 inversion{ 1..2 move{ 0:4:1 } } 4..5 move{ 1:4:1 } 6..7 move{ 2:4:1 } } } }")),
                 dynamicTest("R . U · F", () -> doParse(defaultNotatioon, "R . U · F", "0..9 sequence{ 0..1 move{ 0:4:1 } 2..3 nop{ } 4..5 move{ 1:4:1 } 6..7 nop{ } 8..9 move{ 2:4:1 } }"))
