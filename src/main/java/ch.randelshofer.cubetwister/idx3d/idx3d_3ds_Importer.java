@@ -45,7 +45,7 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class idx3d_3ds_Importer
-// Imports a scene from a 3ds (3d Studio Max) Ressource
+// Imports a scene from a 3ds (3d Studio Max) Resource
 {
     // F I E L D S
 

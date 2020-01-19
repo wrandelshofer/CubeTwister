@@ -88,7 +88,7 @@ public class CubeTwisterApplicationModel extends DefaultApplicationModel {
         c.setFileSelectionMode(JFileChooser.FILES_ONLY);
         c.setDialogTitle(labels.getString("import.title"));
         c.setAcceptAllFileFilterUsed(false);
-        ExtensionFileFilter ff = new ExtensionFileFilter("CSV","csv");
+        ExtensionFileFilter ff = new ExtensionFileFilter("CSV", new String[]{"csv", "txt"});
         c.addChoosableFileFilter(ff);
         ff = new ExtensionFileFilter("CubeExplorer","txt");
         c.addChoosableFileFilter(ff);
