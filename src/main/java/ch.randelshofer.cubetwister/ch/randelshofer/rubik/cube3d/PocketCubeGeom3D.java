@@ -7,7 +7,6 @@ import ch.randelshofer.geom3d.Shape3D;
 import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
-import ch.randelshofer.rubik.cube.AbstractPocketCubeGeom3D;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.awt.Color;

@@ -1,8 +1,11 @@
-/* @(#)AbstractRevengeCubeIdx3D.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/* @(#)AbstractVCube6Idx3D.java
+ * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cube6;
+import ch.randelshofer.rubik.cube.CubeEvent;
 import idx3d.idx3d_Camera;
 import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
@@ -19,29 +22,29 @@ import org.monte.media.interpolator.SplineInterpolator;
 import javax.swing.SwingUtilities;
 
 /**
- * Abstract base class for the geometrical representation of a {@link RevengeCube}
+ * Abstract base class for the geometrical representation of a {@link Cube6}
  * using the Idx3D engine.
  *
  * @author  Werner Randelshofer
  */
-public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
+public abstract class AbstractCube6Idx3D extends AbstractCubeIdx3D {
     /**
-     * A cube part has a side length of 14 mm.
+     * A cube part has a side length of 11 mm.
      */
-    protected final static float PART_LENGTH = 14f;
+    protected final static float PART_LENGTH = 11f;
     /**
-     * The beveled edge of a cube part has a length of 0.75 mm.
+     * The beveled edge of a cube part has a length of 1 mm.
      */
     protected final static float BEVEL_LENGTH = 1f;
 
     /** Creates a new instance. */
-    public AbstractRevengeCubeIdx3D() {
-        super(4, 8, 2 * 12, 2 * 2 * 6, 1);
+    public AbstractCube6Idx3D() {
+        super(6, 8, 4 * 12, 4 * 4 * 6, 1);
         init();
     }
 
     public void init() {
-        explosionShift = 1.5f * PART_LENGTH;
+        explosionShift = 2.5f * PART_LENGTH;
         initEdges();
         initCorners();
         initSides();
@@ -49,7 +52,7 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
         initTransforms();
         initScene();
         initActions(scene);
-        setCube(new RevengeCube());
+        setCube(new Cube6());
         setAttributes(createAttributes());
     }
 
@@ -62,7 +65,7 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
     protected void initCenter() {
         idx3d_Object sphere;
 
-        sphere = idx3d_ObjectFactory.SPHERE(PART_LENGTH, 18);
+        sphere = idx3d_ObjectFactory.SPHERE(PART_LENGTH * 2f, 18);
 
         idx3d_Object object3D = sphere;
         object3D.material = new idx3d_InternalMaterial();
@@ -82,32 +85,33 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
         // Move all corner parts to up front left (ufl) and then rotate them in place
         for (int i = 0; i < cornerCount; i++) {
             int index = cornerOffset + i;
+            identityNormalMatrix[index] = new idx3d_Matrix();
             identityVertexMatrix[index] = new idx3d_Matrix();
         }
 
         // 0:urf
-        identityVertexMatrix[cornerOffset + 0].rotate(0, -HALF_PI, 0);
+        identityNormalMatrix[cornerOffset + 0].rotate(0, -HALF_PI, 0);
         // 1:dfr
-        identityVertexMatrix[cornerOffset + 1].rotate(0, 0, PI);
+        identityNormalMatrix[cornerOffset + 1].rotate(0, 0, PI);
         // 2:ubr
-        identityVertexMatrix[cornerOffset + 2].rotate(0, PI, 0);
+        identityNormalMatrix[cornerOffset + 2].rotate(0, PI, 0);
         // 3:drb
-        identityVertexMatrix[cornerOffset + 3].rotate(0, 0, PI);
-        identityVertexMatrix[cornerOffset + 3].rotate(0, -HALF_PI, 0);
+        identityNormalMatrix[cornerOffset + 3].rotate(0, 0, PI);
+        identityNormalMatrix[cornerOffset + 3].rotate(0, -HALF_PI, 0);
         // 4:ulb
-        identityVertexMatrix[cornerOffset + 4].rotate(0, HALF_PI, 0);
+        identityNormalMatrix[cornerOffset + 4].rotate(0, HALF_PI, 0);
         // 5:dbl
-        identityVertexMatrix[cornerOffset + 5].rotate(PI, 0, 0);
+        identityNormalMatrix[cornerOffset + 5].rotate(PI, 0, 0);
         // 6:ufl
         //--no transformation---
         // 7:dlf
-        identityVertexMatrix[cornerOffset + 7].rotate(0, HALF_PI, 0);
-        identityVertexMatrix[cornerOffset + 7].rotate(PI, 0, 0);
+        identityNormalMatrix[cornerOffset + 7].rotate(0, HALF_PI, 0);
+        identityNormalMatrix[cornerOffset + 7].rotate(PI, 0, 0);
         //
-        // We can clone the normalmatrix here form the vertex matrix, because
-        // the vertex matrix consists of rotations only.
+        // translate and rotate the vertices.
         for (int i = 0; i < cornerCount; i++) {
-            identityNormalMatrix[i] = identityVertexMatrix[i].getClone();
+          //  identityVertexMatrix[i].shift(PART_LENGTH*-2f, PART_LENGTH*2f, PART_LENGTH*-2f);
+            identityVertexMatrix[i].transform(identityNormalMatrix[i]);
         }
 
         /*
@@ -123,7 +127,7 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
             identityNormalMatrix[index] = nt;
             // The vertex matrix is the same as the normal matrix, but with
             // an additional shift, which is made before the rotation.
-            switch (i) {
+            switch (i % 24) {
                 case 12:
                 case 13:
                 case 2:
@@ -136,12 +140,13 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
                 case 21:
                 case 10:
                 case 11:
-                    vt.shift(PART_LENGTH / 2f, 0f, 0f);
+                    vt.shift(PART_LENGTH * 0.5f + PART_LENGTH * (i / 24), /*PART_LENGTH*2*/0f, /*PART_LENGTH*-2*/0f);
                     break;
                 default:
-                    vt.shift(-PART_LENGTH / 2f, 0f, 0f);
+                    vt.shift(PART_LENGTH * -0.5f - PART_LENGTH * (i / 24), /*PART_LENGTH*2*/0f, /*PART_LENGTH*-2*/0f);
                     break;
             }
+          
             // Now we do the rotation with the normal matrix only
             switch (i % 12) {
                 case 0: // ur
@@ -187,9 +192,11 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
                     nt.rotate(0, 0, PI);
                     break;
             }
+            
             // Finally, we concatenate the rotation to the vertex matrix
             vt.transform(nt);
         }
+
         /* 
          * Side parts
          * ----------
@@ -203,19 +210,64 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
             identityNormalMatrix[index] = nt;
             // The vertex matrix is the same as the normal matrix, but with
             // an additional shift, which is made before the rotation.
+            //vt.shift(0,0,PART_LENGTH*-2f);
             switch (i / 6) {
+                // corners of inner square
                 case 0:
-                    vt.shift(-PART_LENGTH / 2f, -PART_LENGTH / 2f, 0);
+                    vt.shift(PART_LENGTH * -0.5f, PART_LENGTH * -0.5f, 0);
                     break;
                 case 1:
-                    vt.shift(-PART_LENGTH / 2f, PART_LENGTH / 2f, 0);
+                    vt.shift(PART_LENGTH * -0.5f, PART_LENGTH * 0.5f, 0);
                     break;
                 case 2:
-                    vt.shift(PART_LENGTH / 2f, PART_LENGTH / 2f, 0);
+                    vt.shift(PART_LENGTH * 0.5f, PART_LENGTH * 0.5f, 0);
                     break;
                 case 3:
-                    vt.shift(PART_LENGTH / 2f, -PART_LENGTH / 2f, 0);
+                    vt.shift(PART_LENGTH * 0.5f, PART_LENGTH * -0.5f, 0);
                     break;
+
+                // corners of outer square
+                case 4:
+                    vt.shift(PART_LENGTH * -1.5f, PART_LENGTH * -1.5f, 0);
+                    break;
+                case 5:
+                    vt.shift(PART_LENGTH * -1.5f, PART_LENGTH * 1.5f, 0);
+                    break;
+                case 6:
+                    vt.shift(PART_LENGTH * 1.5f, PART_LENGTH * 1.5f, 0);
+                    break;
+                case 7:
+                    vt.shift(PART_LENGTH * 1.5f, PART_LENGTH * -1.5f, 0);
+                    break;
+                    
+                // first edges of outer square
+                case 8:
+                    vt.shift(PART_LENGTH * -0.5f, PART_LENGTH * -1.5f, 0);
+                    break;
+                case 9:
+                    vt.shift(PART_LENGTH * -1.5f, PART_LENGTH * 0.5f, 0);
+                    break;
+                case 10:
+                    vt.shift(PART_LENGTH * 0.5f, PART_LENGTH * 1.5f, 0);
+                    break;
+                case 11:
+                    vt.shift(PART_LENGTH * 1.5f, PART_LENGTH * -0.5f, 0);
+                    break;
+                    
+                // second edges of outer square
+                case 12:
+                    vt.shift(PART_LENGTH * 0.5f, PART_LENGTH * -1.5f, 0);
+                    break;
+                case 13:
+                    vt.shift(PART_LENGTH * -1.5f, PART_LENGTH * -0.5f, 0);
+                    break;
+                case 14:
+                    vt.shift(PART_LENGTH * -0.5f, PART_LENGTH * 1.5f, 0);
+                    break;
+                case 15:
+                    vt.shift(PART_LENGTH * 1.5f, PART_LENGTH * 0.5f, 0);
+                    break;
+                    
             }
 
             switch (i % 6) {
@@ -272,12 +324,10 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
         // FIXME move scene creation to super class
         scene = new idx3d_Scene() {
 
-            @Override
             public boolean isAdjusting() {
-                return super.isAdjusting() || isAnimating() || isInStartedPlayer() || AbstractRevengeCubeIdx3D.this.isAdjusting();
+                return super.isAdjusting() || isAnimating()  || isInStartedPlayer() || AbstractCube6Idx3D.this.isAdjusting();
             }
 
-            @Override
             public void prepareForRendering() {
                 validateAlphaBeta();
                 validateScaleFactor();
@@ -292,7 +342,7 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
                     fireStateChanged();
             }
         };
-        scene.setBackgroundColor(0xffffff);
+        scene.setBackgroundColor(0xffffffff);
 
         scaleTransform = new idx3d_Group();
         scaleTransform.scale(0.018f);
@@ -378,10 +428,12 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
         fireStateChanged();
     }
 
-    @Override
     public void cubeTwisted(@Nonnull CubeEvent evt) {
         int loc;
-
+        /*
+        final float PI = (float) Math.PI;
+        final float HALF_PI = (float) (Math.PI / 2d);
+*/
         int layerMask = evt.getLayerMask();
         final int axis = evt.getAxis();
         final int angle = evt.getAngle();
@@ -409,7 +461,6 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
             public boolean isSequential(@Nonnull Interpolator that) {
                 return (that.getClass() == this.getClass());
             }
-
         };
         interpolator.setTimespan(Math.abs(angle) * attributes.getTwistDuration());
         dispatch(interpolator);

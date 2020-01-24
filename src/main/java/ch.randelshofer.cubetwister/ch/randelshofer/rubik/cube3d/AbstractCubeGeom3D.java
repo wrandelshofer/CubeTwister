@@ -2,13 +2,14 @@
  * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
  */
 
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
 import ch.randelshofer.geom3d.Scene3D;
 import ch.randelshofer.geom3d.Shape3D;
 import ch.randelshofer.geom3d.Transform3D;
 import ch.randelshofer.geom3d.TransformNode3D;
 import ch.randelshofer.rubik.CubeAttributes;
+import ch.randelshofer.rubik.cube.Cube;
 
 import java.awt.Color;
 /**

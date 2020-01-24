@@ -1,7 +1,7 @@
 /* @(#)ProfessorCubeGeom3D.java
  * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
 import ch.randelshofer.geom3d.Shape3D;
 import ch.randelshofer.rubik.CubeAttributes;

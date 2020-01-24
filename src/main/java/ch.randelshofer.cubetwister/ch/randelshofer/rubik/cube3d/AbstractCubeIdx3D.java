@@ -1,9 +1,10 @@
 /* @(#)AbstractCubeIdx3D.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
 import ch.randelshofer.rubik.CubeAttributes;
+import ch.randelshofer.rubik.cube.Cube;
 import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
 import idx3d.idx3d_Lightmap;

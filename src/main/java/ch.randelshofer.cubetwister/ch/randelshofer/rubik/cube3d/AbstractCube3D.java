@@ -1,14 +1,14 @@
 /* @(#)AbstractCube3D.java
  * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
 import ch.randelshofer.gui.event.SwipeEvent;
 import ch.randelshofer.gui.event.SwipeListener;
 import ch.randelshofer.rubik.CubeAttributes;
-import ch.randelshofer.rubik.cube3d.Cube3D;
-import ch.randelshofer.rubik.cube3d.Cube3DEvent;
-import ch.randelshofer.rubik.cube3d.Cube3DListener;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeEvent;
+import ch.randelshofer.rubik.cube.CubeListener;
 import ch.randelshofer.util.Dispatcher;
 import ch.randelshofer.util.PooledSequentialDispatcher;
 import org.jhotdraw.annotation.Nonnull;

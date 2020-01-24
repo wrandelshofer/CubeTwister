@@ -1,8 +1,11 @@
 /* @(#)AbstractProfessorCubeIdx3D.java
  * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeEvent;
+import ch.randelshofer.rubik.cube.ProfessorCube;
 import idx3d.idx3d_Camera;
 import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;

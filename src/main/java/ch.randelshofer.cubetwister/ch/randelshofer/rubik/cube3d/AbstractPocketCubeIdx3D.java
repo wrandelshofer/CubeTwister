@@ -1,8 +1,11 @@
-/* @(#)AbstractCubeIdx3D.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/* @(#)AbstractPocketCubeIdx3D.java
+ * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeEvent;
+import ch.randelshofer.rubik.cube.PocketCube;
 import idx3d.idx3d_Camera;
 import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
@@ -19,7 +22,7 @@ import org.monte.media.interpolator.SplineInterpolator;
 import javax.swing.SwingUtilities;
 
 /**
- * Abstract base class for the geometrical representation of a {@link RubiksCube}
+ * Abstract base class for the geometrical representation of a {@link PocketCube}
  * using the Idx3D engine.
  *
  * Each part is represented by a idx3d_Object. The idx3d_Object is a child of
@@ -28,35 +31,27 @@ import javax.swing.SwingUtilities;
  *
  * @author  Werner Randelshofer
  */
-public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
-
+public abstract class AbstractPocketCubeIdx3D extends AbstractCubeIdx3D {
     /**
      * A cube part has a side length of 18 mm.
      */
     protected final static float PART_LENGTH = 18f;
 
     /** Creates a new instance. */
-    public AbstractRubiksCubeIdx3D() {
-        super(3, 8, 12, 6, 1);
+    public AbstractPocketCubeIdx3D() {
+        super(2, 8, 0, 0, 1);
         init();
     }
 
     protected void init() {
-        explosionShift = 18f;
-        initEdges();
+        explosionShift = 9f;
         initCorners();
-        initSides();
         initCenter();
         initTransforms();
         initScene();
         initActions(scene);
-        setCube(new RubiksCube());
+        setCube(new PocketCube());
         setAttributes(createAttributes());
-    }
-
-    @Override
-    protected float getUnitScaleFactor() {
-        return 0.019f * 54f / (PART_LENGTH * layerCount);
     }
 
     private void initScene() {
@@ -65,7 +60,7 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
 
             @Override
             public boolean isAdjusting() {
-                return super.isAdjusting() || isAnimating() || isInStartedPlayer() || AbstractRubiksCubeIdx3D.this.isAdjusting();
+                return super.isAdjusting() || isAnimating() || isInStartedPlayer() || AbstractPocketCubeIdx3D.this.isAdjusting();
             }
 
             @Override
@@ -77,15 +72,14 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
                 validateAttributes();     // must be done after validateStickersImage!
                 super.prepareForRendering();
             }
-
             @Override
-            public /*final*/ void rotate(float dx, float dy, float dz) {
-                super.rotate(dx, dy, dz);
-                fireStateChanged();
+		public /*final*/ void rotate(float dx, float dy, float dz) {
+                    super.rotate(dx, dy, dz);
+                    fireStateChanged();
             }
         };
+        //scene.useIdBuffer(true);
         scene.setBackgroundColor(0xffffff);
-
 
         scaleTransform = new idx3d_Group();
         scaleTransform.scale(0.018f);
@@ -93,10 +87,10 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
         for (int i = 0; i < locationTransforms.length; i++) {
             scaleTransform.addChild(locationTransforms[i]);
         }
-
         alphaBetaTransform = new idx3d_Group();
         alphaBetaTransform.addChild(scaleTransform);
         scene.addChild(alphaBetaTransform);
+
         scene.addCamera("Front", idx3d_Camera.FRONT());
         scene.camera("Front").setPos(0, 0, -4.9f);
         scene.camera("Front").setFov(40f);
@@ -123,29 +117,18 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
         } else {
             scene.setLightmap(sharedLightmap);
         }
-
     }
-
-    @Override
-    public abstract int getPartIndexForStickerIndex(int stickerIndex);
-
-    @Override
-    protected abstract int getPartFaceIndexForStickerIndex(int stickerIndex);
-
-    protected abstract int getStickerIndexForPart(int part, int orientation);
-
-    protected abstract void initEdges();
 
     protected abstract void initCorners();
 
-    protected abstract void initSides();
-
     protected void initCenter() {
+        /*
+        // FIXME - Should be segmented into 8 parts
         idx3d_Object cylinder1, cylinder2, cylinder3;
 
-        cylinder1 = idx3d_ObjectFactory.CYLINDER(18, 4.5f, 12);
-        cylinder2 = idx3d_ObjectFactory.CYLINDER(18, 4.5f, 12);
-        cylinder3 = idx3d_ObjectFactory.CYLINDER(18, 4.5f, 12);
+        cylinder1 = idx3d_ObjectFactory.CYLINDER(4.5f, 13.5f, 24);
+        cylinder2 = idx3d_ObjectFactory.CYLINDER(4.5f, 13.5f, 24);
+        cylinder3 = idx3d_ObjectFactory.CYLINDER(4.5f, 13.5f, 24);
 
         cylinder2.rotate((float) (Math.PI / 2), 0f, 0f);
         cylinder3.rotate(0f, 0f, (float) (Math.PI / 2));
@@ -158,6 +141,10 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
         idx3d_Object object3D = cylinder1;
         object3D.material = new idx3d_InternalMaterial();
         parts[centerOffset] = object3D;
+         */
+        idx3d_Object object3D = idx3d_ObjectFactory.SPHERE(9, 18);
+        object3D.material = new idx3d_InternalMaterial();
+        parts[centerOffset] = object3D;
     }
 
     protected void initTransforms() {
@@ -166,11 +153,11 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
         /*
          * Corners
          *             +---+---+---+
-         *          ulb|4.0|   |2.0|ubr
+         *             |4.0|   |2.0|
          *             +---+   +---+
          *             |     1     |
          *             +---+   +---+
-         *          ufl|6.0|   |0.0|urf
+         *             |6.0|   |0.0|
          * +---+---+---+---+---+---+---+---+---+---+---+---+
          * |4.1|   |6.2|6.1|   |0.2|0.1|   |2.2|2.1|   |4.2|
          * +---+   +---+---+   +---+---+   +---+---+   +---+
@@ -178,154 +165,42 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
          * +---+   +---+---+   +---+---+   +---+---+   +---+
          * |5.2|   |7.1|7.2|   |1.1|1.2|   |3.1|3.2|   |5.1|
          * +---+---+---+---+---+---+---+---+---+---+---+---+
-         *          dlf|7.0|   |1.0|dfr
+         *             |7.0|   |1.0|
          *             +---+   +---+
          *             |     4     |
          *             +---+   +---+
-         *          dbl|5.0|   |3.0|drb
+         *             |5.0|   |3.0|
          *             +---+---+---+
          */
-        // Move all corner parts to up front left (ufl) and then rotate them in place
+        // Move all corner parts to up front left (ufl).
         for (int i = 0; i < cornerCount; i++) {
             int index = cornerOffset + i;
             explosionTransforms[index] = new idx3d_Group();
             explosionTransforms[index].rotate(HALF_PI, 0, 0);
-            explosionTransforms[index].shift(-18f, 18f, -18f);
+            explosionTransforms[index].shift(-9f, 9f, -9f);
             explosionTransforms[index].addChild(parts[index]);
             identityVertexMatrix[index] = new idx3d_Matrix();
         }
 
-        // 0:urf
+        // urf
         identityVertexMatrix[cornerOffset + 0].rotate(0, -HALF_PI, 0);
-        // 1:dfr
+        // dfr
         identityVertexMatrix[cornerOffset + 1].rotate(0, 0, PI);
-        // 2:ubr
+        // ubr
         identityVertexMatrix[cornerOffset + 2].rotate(0, PI, 0);
-        // 3:drb
+        // drb
         identityVertexMatrix[cornerOffset + 3].rotate(0, 0, PI);
         identityVertexMatrix[cornerOffset + 3].rotate(0, -HALF_PI, 0);
-        // 4:ulb
+        // ulb
         identityVertexMatrix[cornerOffset + 4].rotate(0, HALF_PI, 0);
-        // 5:dbl
+        // dbl
         identityVertexMatrix[cornerOffset + 5].rotate(PI, 0, 0);
-        // 6:ufl
+        // ufl
         //--no transformation---
-        // 7:dlf
+        // dlf
         identityVertexMatrix[cornerOffset + 7].rotate(0, HALF_PI, 0);
         identityVertexMatrix[cornerOffset + 7].rotate(PI, 0, 0);
         //
-
-
-        /**
-         * Edges
-         *             +---+---+---+
-         *             |   |3.1|   |
-         *             +--- --- ---+
-         *             |6.0| u |0.0|
-         *             +--- --- ---+
-         *             |   |9.1|   |
-         * +---+---+---+---+---+---+---+---+---+---+---+---+
-         * |   |6.1|   |   |9.0|   |   |0.1|   |   |3.0|   |
-         * +--- --- ---+--- --- ---+--- --- ---+--- --- ---+
-         * |7.0| l 10.0|10.1 f |1.1|1.0| r |4.0|4.1| b |7.1|
-         * +--- --- ---+--- --- ---+--- --- ---+--- --- ---+
-         * |   |8.1|   |   |11.0   |   |2.1|   |   |5.0|   |
-         * +---+---+---+---+---+---+---+---+---+---+---+---+
-         *             |   |11.1   |
-         *             +--- --- ---+
-         *             |8.0| d |2.0|
-         *             +--- --- ---+
-         *             |   |5.1|   |
-         *             +---+---+---+
-         */
-        // Move all edge parts to front up (fu) and then rotate them in place
-        for (int i = 0; i < 12; i++) {
-            int index = edgeOffset + i;
-            explosionTransforms[index] = new idx3d_Group();
-            explosionTransforms[index].rotate(0, PI, 0);
-            explosionTransforms[index].shift(0f, 18f, -18f);
-            explosionTransforms[index].addChild(parts[index]);
-            identityVertexMatrix[index] = new idx3d_Matrix();
-        }
-        // ur
-        identityVertexMatrix[edgeOffset + 0].rotate(0, HALF_PI, 0f);
-        identityVertexMatrix[edgeOffset + 0].rotate(0, 0, HALF_PI);
-        // rf
-        identityVertexMatrix[edgeOffset + 1].rotate(0, -HALF_PI, 0);
-        identityVertexMatrix[edgeOffset + 1].rotate(HALF_PI, 0, 0);
-        // dr
-        identityVertexMatrix[edgeOffset + 2].rotate(0, -HALF_PI, HALF_PI);
-        // bu
-        identityVertexMatrix[edgeOffset + 3].rotate(0, PI, 0);
-        // rb
-        identityVertexMatrix[edgeOffset + 4].rotate(0, 0, HALF_PI);
-        identityVertexMatrix[edgeOffset + 4].rotate(0, -HALF_PI, 0);
-        // bd
-        identityVertexMatrix[edgeOffset + 5].rotate(PI, 0, 0);
-        // ul
-        identityVertexMatrix[edgeOffset + 6].rotate(-HALF_PI, -HALF_PI, 0);
-        // lb
-        identityVertexMatrix[edgeOffset + 7].rotate(0, 0, -HALF_PI);
-        identityVertexMatrix[edgeOffset + 7].rotate(0, HALF_PI, 0);
-        // dl
-        identityVertexMatrix[edgeOffset + 8].rotate(HALF_PI, HALF_PI, 0);
-        // fu
-        //--no transformation--
-        // lf
-        identityVertexMatrix[edgeOffset + 10].rotate(0, 0, HALF_PI);
-        identityVertexMatrix[edgeOffset + 10].rotate(0, HALF_PI, 0);
-        // fd
-        identityVertexMatrix[edgeOffset + 11].rotate(0, 0, PI);
-
-        /* Sides
-         *             +------------+
-         *             |     .1     |
-         *             |    ---     |
-         *             | .0| 1 |.2  |
-         *             |    ---     |
-         *             |     .3     |
-         * +-----------+------------+-----------+-----------+
-         * |     .0    |     .2     |     .3    |    .1     |
-         * |    ---    |    ---     |    ---    |    ---    |
-         * | .3| 3 |.1 | .1| 2 |.3  | .2| 0 |.0 | .0| 5 |.2 |
-         * |    ---    |    ---     |    ---    |    ---    |
-         * |     .2    |    .0      |     .1    |     .3    |
-         * +-----------+------------+-----------+-----------+
-         *             |     .0     |
-         *             |    ---     |
-         *             | .3| 4 |.1  |
-         *             |    ---     |
-         *             |     .2     |
-         *             +------------+
-         */
-        // Move all side parts to front
-        for (int i = 0; i < 6; i++) {
-            int index = sideOffset + i;
-            explosionTransforms[index] = new idx3d_Group();
-            explosionTransforms[index].rotate(0, PI, 0);
-            explosionTransforms[index].shift(0f, 0f, -18f);
-            explosionTransforms[index].addChild(parts[index]);
-            identityVertexMatrix[index] = new idx3d_Matrix();
-        }
-
-        // r
-        identityVertexMatrix[sideOffset + 0].rotate(0f, 0f, -HALF_PI);
-        identityVertexMatrix[sideOffset + 0].rotate(0f, -HALF_PI, 0f);
-        // u
-        identityVertexMatrix[sideOffset + 1].rotate(0f, 0f, HALF_PI);
-        identityVertexMatrix[sideOffset + 1].rotate(-HALF_PI, 0f, 0f);
-        // f
-        //--no transformation--
-        // l
-        identityVertexMatrix[sideOffset + 3].rotate(0f, 0f, PI);
-        identityVertexMatrix[sideOffset + 3].rotate(0f, HALF_PI, 0f);
-        // d
-        identityVertexMatrix[sideOffset + 4].rotate(0f, 0f, PI);
-        identityVertexMatrix[sideOffset + 4].rotate(HALF_PI, 0f, 0f);
-        // b
-        identityVertexMatrix[sideOffset + 5].rotate(0f, 0f, HALF_PI);
-        identityVertexMatrix[sideOffset + 5].rotate(0f, PI, 0f);
-
 
         // Center part
         identityVertexMatrix[centerOffset] = new idx3d_Matrix();
@@ -342,45 +217,40 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
             locationTransforms[i].addChild(explosionTransforms[i]);
         }
     }
-    /**
-     * These matrices are reused on each invocation of validateTwist.
-     */
-    @Nonnull
-    private idx3d_Matrix updateTwistRotation = new idx3d_Matrix();
-    @Nonnull
-    private idx3d_Matrix updateTwistOrientation = new idx3d_Matrix();
+
+    protected abstract void initActions(idx3d_Scene scene);
+
+    @Override
+    protected float getUnitScaleFactor() {
+        return 0.019f * 54f / (PART_LENGTH * layerCount);
+    }
 
     @Override
     public void cubeTwisted(@Nonnull CubeEvent evt) {
+        int loc;
+
         int layerMask = evt.getLayerMask();
         final int axis = evt.getAxis();
         final int angle = evt.getAngle();
         Cube model = getCube();
 
         final int[] partIndices = new int[27];
-        final int[] locations = new int[27];
+        //final int[] locations = new int[27];
         final int[] orientations = new int[27];
-        int count = 0;
-
-        int[] affectedParts = evt.getAffectedLocations();
-        if ((layerMask & 2) != 0) {
-            count = affectedParts.length + 1;
-            System.arraycopy(affectedParts, 0, locations, 0, count - 1);
-            locations[count - 1] = centerOffset;
-        } else {
-            count = affectedParts.length;
-            System.arraycopy(affectedParts, 0, locations, 0, count);
-        }
+        final int[] locations = evt.getAffectedLocations();
+        int count = locations.length;
+        
         for (int i = 0; i < count; i++) {
             partIndices[i] = model.getPartAt(locations[i]);
             orientations[i] = model.getPartOrientation(partIndices[i]);
         }
 
+        // Create interpolator
         final int finalCount = count;
         Interpolator interpolator = new SplineInterpolator(0.25f, 0f, 0.75f, 1f) {
 
-            @Override
             protected void update(float value) {
+                //validateTwist(finalIndices, locationTransforms, normaltransforms, axis, angle, value);
                 validateTwist(partIndices, locations, orientations, finalCount, axis, angle, value);
                 fireStateChanged();
             }
@@ -389,34 +259,28 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
             public boolean isSequential(@Nonnull Interpolator that) {
                 return (that.getClass() == this.getClass());
             }
+
         };
         interpolator.setTimespan(Math.abs(angle) * attributes.getTwistDuration());
-        if (! isAnimated) {
-            interpolator.finish(System.currentTimeMillis());
-        } else {
-            dispatch(interpolator);
+        dispatch(interpolator);
 
-            // Wait until interpolator has finished
-            if (!getAnimator().isSynchronous() && !SwingUtilities.isEventDispatchThread()) {
-                try {
-                    synchronized (interpolator) {
-                        while (!interpolator.isFinished()) {
-                            interpolator.wait();
-                        }
+        // Wait until interpolator has finished
+        if (!getAnimator().isSynchronous() && !SwingUtilities.isEventDispatchThread()) {
+            try {
+                synchronized (interpolator) {
+                    while (!interpolator.isFinished()) {
+                        interpolator.wait();
                     }
-                } catch (InterruptedException e) {
-                    // empty (we exit the while loop)
                 }
+            } catch (InterruptedException e) {
+            // empty (we exit the while loop)
             }
         }
     }
 
-    @Override
     public void validateTwist(int[] partIndices, int[] locations, int[] orientations, int length, int axis, int angle, float alpha) {
         synchronized (getCube()) {
-            // idx3d_Matrix rotation = new idx3d_Matrix();
-            idx3d_Matrix rotation = updateTwistRotation;
-            rotation.reset();
+            idx3d_Matrix rotation = new idx3d_Matrix();
             float rad = (HALF_PI * angle * (1f - alpha));
             switch (axis) {
                 case 0:
@@ -430,11 +294,10 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
                     break;
             }
 
-            //idx3d_Matrix orientationMatrix = new idx3d_Matrix();
-            idx3d_Matrix orientationMatrix = updateTwistOrientation;
+            idx3d_Matrix orientationMatrix = new idx3d_Matrix();
             for (int i = 0; i < length; i++) {
                 orientationMatrix.reset();
-                if (partIndices[i] < edgeOffset) {
+                if (partIndices[i] < centerOffset) {
                     switch (orientations[i]) {
                         case 0:
                             break;
@@ -446,16 +309,6 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
                             orientationMatrix.rotate(HALF_PI, 0, 0);
                             break;
                     }
-                } else if (partIndices[i] < sideOffset) {
-                    orientationMatrix.reset();
-                    if (orientations[i] == 1) {
-                        orientationMatrix.rotate(0, 0, PI);
-                        orientationMatrix.rotate(HALF_PI, 0, 0);
-                    }
-                } else if (partIndices[i] < centerOffset) {
-                    if (orientations[i] > 0) {
-                        orientationMatrix.rotate(0, 0, HALF_PI * orientations[i]);
-                    }
                 }
                 parts[partIndices[i]].setTransform(orientationMatrix);
                 idx3d_Group transform = locationTransforms[partIndices[i]];
@@ -465,4 +318,13 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
         }
         fireStateChanged();
     }
+    /*
+    protected void updateExplosionFactor(float factor) {
+    float shift = explosionShift * factor;
+    int index = centerOffset;
+    explosionTransforms[index].resetTransform();
+    explosionTransforms[index].rotate(HALF_PI, 0, 0);
+    explosionTransforms[index].shift(-shift, shift, -shift);
+    super.updateExplosionFactor(factor);
+    }*/
 }

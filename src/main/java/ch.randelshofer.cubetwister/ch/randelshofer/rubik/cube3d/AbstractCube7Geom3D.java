@@ -3,11 +3,14 @@
  *
  * Parts of the code are copyright (c) Markus Pirzer, Germany
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
 import ch.randelshofer.geom3d.Scene3D;
 import ch.randelshofer.geom3d.Transform3D;
 import ch.randelshofer.geom3d.TransformNode3D;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.Cube7;
+import ch.randelshofer.rubik.cube.CubeEvent;
 import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;

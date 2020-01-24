@@ -6,7 +6,6 @@ package ch.randelshofer.rubik.cube3d;
 import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
-import ch.randelshofer.rubik.cube.AbstractRevengeCubeIdx3D;
 import idx3d.idx3d_InternalMaterial;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;

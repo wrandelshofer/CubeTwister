@@ -1,8 +1,11 @@
-/* @(#)AbstractVCube7Idx3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/* @(#)AbstractRevengeCubeIdx3D.java
+ * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeEvent;
+import ch.randelshofer.rubik.cube.RevengeCube;
 import idx3d.idx3d_Camera;
 import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
@@ -19,30 +22,29 @@ import org.monte.media.interpolator.SplineInterpolator;
 import javax.swing.SwingUtilities;
 
 /**
- * Abstract base class for the geometrical representation of a {@link Cube7}
+ * Abstract base class for the geometrical representation of a {@link RevengeCube}
  * using the Idx3D engine.
  *
  * @author  Werner Randelshofer
  */
-public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
-
-    /** 
-     * A cube part has a side length of 10 2/7 mm.
-     */
-    protected final static float PART_LENGTH = 10.2857143f;
+public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
     /**
-     * The beveled edge of the cube has a length of 1 mm.
+     * A cube part has a side length of 14 mm.
+     */
+    protected final static float PART_LENGTH = 14f;
+    /**
+     * The beveled edge of a cube part has a length of 0.75 mm.
      */
     protected final static float BEVEL_LENGTH = 1f;
 
     /** Creates a new instance. */
-    public AbstractCube7Idx3D() {
-        super(7, 8, 5 * 12, 5 * 5 * 6, 1);
+    public AbstractRevengeCubeIdx3D() {
+        super(4, 8, 2 * 12, 2 * 2 * 6, 1);
         init();
     }
 
     public void init() {
-        explosionShift = 3f * PART_LENGTH;
+        explosionShift = 1.5f * PART_LENGTH;
         initEdges();
         initCorners();
         initSides();
@@ -50,7 +52,7 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
         initTransforms();
         initScene();
         initActions(scene);
-        setCube(new Cube7());
+        setCube(new RevengeCube());
         setAttributes(createAttributes());
     }
 
@@ -63,7 +65,7 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
     protected void initCenter() {
         idx3d_Object sphere;
 
-        sphere = idx3d_ObjectFactory.SPHERE(PART_LENGTH*2.5f, 18);
+        sphere = idx3d_ObjectFactory.SPHERE(PART_LENGTH, 18);
 
         idx3d_Object object3D = sphere;
         object3D.material = new idx3d_InternalMaterial();
@@ -77,7 +79,8 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
 
     protected void initTransforms() {
         /*
-         * Corners
+         * Corner parts
+         * ------------
          */
         // Move all corner parts to up front left (ufl) and then rotate them in place
         for (int i = 0; i < cornerCount; i++) {
@@ -110,10 +113,11 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
             identityNormalMatrix[i] = identityVertexMatrix[i].getClone();
         }
 
-        /**
-         * Edges
+        /*
+         * Edge parts
+         * ----------
          */
-        // Move all edge parts to front up (fu) and then rotate them in place
+        // Move all edge parts to front side and then rotate them in place
         for (int i = 0; i < edgeCount; i++) {
             int index = edgeOffset + i;
             idx3d_Matrix vt = new idx3d_Matrix();
@@ -122,26 +126,24 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
             identityNormalMatrix[index] = nt;
             // The vertex matrix is the same as the normal matrix, but with
             // an additional shift, which is made before the rotation.
-            if (i >= 12) {
-                switch ((i - 12) % 24) {
-                    case 12:
-                    case 13:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 17:
-                    case 6:
-                    case 19:
-                    case 20:
-                    case 21:
-                    case 10:
-                    case 11:
-                        vt.shift(PART_LENGTH*((i+12)/24), 0f, 0f);
-                        break;
-                    default:
-                        vt.shift(-PART_LENGTH*((i+12)/24), 0f, 0f);
-                        break;
-                }
+            switch (i) {
+                case 12:
+                case 13:
+                case 2:
+                case 3:
+                case 4:
+                case 17:
+                case 6:
+                case 19:
+                case 20:
+                case 21:
+                case 10:
+                case 11:
+                    vt.shift(PART_LENGTH / 2f, 0f, 0f);
+                    break;
+                default:
+                    vt.shift(-PART_LENGTH / 2f, 0f, 0f);
+                    break;
             }
             // Now we do the rotation with the normal matrix only
             switch (i % 12) {
@@ -174,7 +176,8 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
                     nt.rotate(0, HALF_PI, 0);
                     break;
                 case 8: // dl
-                    nt.rotate(HALF_PI, HALF_PI, 0);
+                    nt.rotate(0, HALF_PI, 0);
+                    nt.rotate(0, 0, -HALF_PI);
                     break;
                 case 9: // fu
                     //--no transformation--
@@ -190,7 +193,9 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
             // Finally, we concatenate the rotation to the vertex matrix
             vt.transform(nt);
         }
-        /* Sides
+        /* 
+         * Side parts
+         * ----------
          */
         // Move all side parts to the front side and rotate them into place
         for (int i = 0; i < sideCount; i++) {
@@ -202,128 +207,41 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
             // The vertex matrix is the same as the normal matrix, but with
             // an additional shift, which is made before the rotation.
             switch (i / 6) {
-                // central part
-                case 0 :
-                //    vt.shift(0, 0, 0);
+                case 0:
+                    vt.shift(-PART_LENGTH / 2f, -PART_LENGTH / 2f, 0);
                     break;
-                // inner ring
                 case 1:
-                    vt.shift(-PART_LENGTH, -PART_LENGTH, 0);
+                    vt.shift(-PART_LENGTH / 2f, PART_LENGTH / 2f, 0);
                     break;
                 case 2:
-                    vt.shift(-PART_LENGTH, PART_LENGTH, 0);
+                    vt.shift(PART_LENGTH / 2f, PART_LENGTH / 2f, 0);
                     break;
                 case 3:
-                    vt.shift(PART_LENGTH, PART_LENGTH, 0);
+                    vt.shift(PART_LENGTH / 2f, -PART_LENGTH / 2f, 0);
                     break;
-                case 4:
-                    vt.shift(PART_LENGTH, -PART_LENGTH, 0);
-                    break;
-                case 5:
-                    vt.shift(0, -PART_LENGTH, 0);
-                    break;
-                case 6:
-                    vt.shift(-PART_LENGTH, 0, 0);
-                    break;
-                case 7:
-                    vt.shift(0, PART_LENGTH, 0);
-                    break;
-                case 8:
-                    vt.shift(PART_LENGTH, 0, 0);
-                    break;
-                // outer ring corners
-                    /*
- * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
- * |            .0             |            .2             |            .3             |            .1             |
- * +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +
- * |   |75 |129|81 |105|57 |   |   |62 |140|92 |116|68 |   |   |66 |144|96 |120|72 |   |   |59 |137|89 |113|65 |   |
- * +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +
- * |   |123|27 |33 | 9 |135|   |   |110|14 |44 |20 |146|   |   |114|18 |48 |24 |126|   |   |107|11 |41 |17 |143|   |
- * +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +
- * | .3|99 |51 | 3 |39 |87 |.1 | .1|86 |38 | 2 |50 |98 |.3 | .2|90 |42 | 0 |30 |78 |.0 | .0|83 |35 | 5 |47 |95 |.2 |
- * +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +
- * |   |147|21 |45 |15 |111|   |   |134| 8 |32 |26 |122|   |   |138|12 |36 | 6 |102|   |   |131|29 |53 |23 |119|   |
- * +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +
- * |   |69 |117|93 |141|63 |   |   |56 |104|80 |128|74 |   |   |60 |108|84 |132|54 |   |   |77 |125|101|149|71 |   |
- * +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +   +---+---+---+---+---+   +
- * |            .2             |            .0             |            .1             |            .3             |
- * +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
-                     */
-                case 9:
-                    vt.shift(-2f*PART_LENGTH, -2f*PART_LENGTH, 0);
-                    break;
-                case 10:
-                    vt.shift(-2f*PART_LENGTH, 2f*PART_LENGTH, 0);
-                    break;
-                case 11:
-                    vt.shift(2f*PART_LENGTH, 2f*PART_LENGTH, 0);
-                    break;
-                case 12:
-                    vt.shift(2f*PART_LENGTH, -2f*PART_LENGTH, 0);
-                    break;
-                // outer ring central edges
-                case 13:
-                    vt.shift(0, -2f*PART_LENGTH, 0);
-                    break;
-                case 14:
-                    vt.shift(-2f*PART_LENGTH, 0, 0);
-                    break;
-                case 15:
-                    vt.shift(0, 2f*PART_LENGTH, 0);
-                    break;
-                case 16:
-                    vt.shift(2f*PART_LENGTH, 0, 0);
-                    break;
-                // outer ring clockwise shifted edges
-                case 17:
-                    vt.shift(-PART_LENGTH, -2f*PART_LENGTH, 0);
-                    break;
-                case 18:
-                    vt.shift(-2f*PART_LENGTH, PART_LENGTH, 0);
-                    break;
-                case 19:
-                    vt.shift(PART_LENGTH, 2f*PART_LENGTH, 0);
-                    break;
-                case 20:
-                    vt.shift(2f*PART_LENGTH, -PART_LENGTH, 0);
-                    break;
-                // outer ring counter-clockwise shifted edges
-                case 21:
-                    vt.shift(PART_LENGTH, -2f*PART_LENGTH, 0);
-                    break;
-                case 22:
-                    vt.shift(-2f*PART_LENGTH, -PART_LENGTH, 0);
-                    break;
-                case 23:
-                    vt.shift(-PART_LENGTH, 2f*PART_LENGTH, 0);
-                    break;
-                case 24:
-                    vt.shift(2f*PART_LENGTH, PART_LENGTH, 0);
-                    break;
-                    
             }
 
             switch (i % 6) {
-                case 0 : // r
+                case 0: // r
                     nt.rotate(0f, 0f, -HALF_PI);
                     nt.rotate(0f, -HALF_PI, 0f);
                     break;
-                case 1 : // u
+                case 1: // u
                     nt.rotate(0f, 0f, HALF_PI);
                     nt.rotate(-HALF_PI, 0f, 0f);
                     break;
-                 case 2 : // f
-                //--no transformation--
+                case 2: // f
+                    //--no transformation--
                     break;
-                case 3 : // l
+                case 3: // l
                     nt.rotate(0f, 0f, PI);
                     nt.rotate(0f, HALF_PI, 0f);
                     break;
-                case 4 : // d
+                case 4: // d
                     nt.rotate(0f, 0f, PI);
                     nt.rotate(HALF_PI, 0f, 0f);
                     break;
-                case 5 : // b
+                case 5: // b
                     nt.rotate(0f, 0f, HALF_PI);
                     nt.rotate(0f, PI, 0f);
                     break;
@@ -359,7 +277,7 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
 
             @Override
             public boolean isAdjusting() {
-                return super.isAdjusting() || isAnimating() || isInStartedPlayer() || AbstractCube7Idx3D.this.isAdjusting();
+                return super.isAdjusting() || isAnimating() || isInStartedPlayer() || AbstractRevengeCubeIdx3D.this.isAdjusting();
             }
 
             @Override
@@ -398,14 +316,7 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
         scene.camera("Rear").setFov(40f);
         scene.camera("Rear").roll((float) Math.PI);
 
-        //scene.environment.ambient = 0x0;
-        //scene.environment.ambient = 0xcccccc;
         scene.environment.ambient = 0x777777;
-        //scene.addLight("Light1",new idx3d_Light(new idx3d_Vector(0.2f,-0.5f,1f),0x888888,144,120));
-        //scene.addLight("Light1",new idx3d_Light(new idx3d_Vector(1f,-1f,1f),0x888888,144,120));
-        // scene.addLight("Light2",new idx3d_Light(new idx3d_Vector(1f,1f,1f),0x222222,100,40));
-        //scene.addLight("Light2",new idx3d_Light(new idx3d_Vector(-1f,1f,1f),0x222222,100,40));
-        // scene.addLight("Light3",new idx3d_Light(new idx3d_Vector(-1f,2f,1f),0x444444,200,120));
         scene.addLight("KeyLight", new idx3d_Light(new idx3d_Vector(1f, -1f, 1f), 0xffffff, 0xffffff, 100, 100));
         scene.addLight("FillLightRight", new idx3d_Light(new idx3d_Vector(-1f, 0f, 1f), 0x888888, 50, 50));
         scene.addLight("FillLightDown", new idx3d_Light(new idx3d_Vector(0f, 1f, 1f), 0x666666, 50, 50));
@@ -515,7 +426,7 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
                     }
                 }
             } catch (InterruptedException e) {
-            // empty (we exit the while loop)
+                // empty (we exit the while loop)
             }
         }
     }

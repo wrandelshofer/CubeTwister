@@ -1,13 +1,16 @@
 /* @(#)AbstractRubiksCubeFlat3D.java
  * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.cube;
+package ch.randelshofer.rubik.cube3d;
 
 import ch.randelshofer.geom3d.Scene3D;
 import ch.randelshofer.geom3d.Shape3D;
 import ch.randelshofer.geom3d.Transform3D;
 import ch.randelshofer.geom3d.TransformNode3D;
 import ch.randelshofer.rubik.CubeAttributes;
+import ch.randelshofer.rubik.cube.Cube;
+import ch.randelshofer.rubik.cube.CubeEvent;
+import ch.randelshofer.rubik.cube.RubiksCube;
 import org.jhotdraw.annotation.Nonnull;
 import org.monte.media.av.Interpolator;
 import org.monte.media.interpolator.SplineInterpolator;
