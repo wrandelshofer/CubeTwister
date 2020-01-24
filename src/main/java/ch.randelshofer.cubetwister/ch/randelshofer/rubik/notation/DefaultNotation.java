@@ -75,7 +75,7 @@ public class DefaultNotation extends AbstractNotation {
 
             // Face twists
             addMoves(layerCount, outer, inner, angle, "", suffix);
-            addMoves(layerCount, outer, inner, -angle, "", suffix + "'");
+
             // Cube rotations
             addMoves(layerCount, all, all, angle, "C", suffix);
 
@@ -113,7 +113,7 @@ public class DefaultNotation extends AbstractNotation {
             }
 
             // N-th layer twists
-            for (int layer = 0; layer < layerCount; layer++) {
+            for (int layer = 0; layer < layerCount - 1; layer++) {
                 int innerLayer = 1 << layer;
                 int outerLayer = 1 << (layerCount - layer - 1);
                 if (layer == 1) {
