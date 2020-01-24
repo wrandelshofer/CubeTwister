@@ -104,10 +104,7 @@ public class Cube3DEvent extends java.util.EventObject {
      * @param stickerIndex The sticker index or -1 if there is no
      *    sticker on the face of the part where the mouse event
      *    occured.
-     * @param mouseEvent The mouse event.
-     */
-    /**
-     * Creates a new instance.
+     * @param modifiersEx The modifiers from the mouse event.
      */
     public Cube3DEvent(@Nonnull Cube3D source,
                        int partIndex, int orientation, int sideIndex, int stickerIndex,

@@ -19,104 +19,112 @@ import javax.swing.event.ChangeListener;
  */
 public interface Cube3D {
 
-    public int getPartCount();
+    int getPartCount();
 
     int getStickerCount();
 
-    public abstract Object getScene();
+    Object getScene();
 
     /**
      * Returns the lock object used for synchronizing model and view changes.
      */
-    public Object getLock();
+    Object getLock();
 
-    public void setAnimator(Animator animator);
+    void setAnimator(Animator animator);
 
-    public Animator getAnimator();
+    Animator getAnimator();
+
     /**
      * Sets the lock object used for synchronizing model and view changes.
      */
-    public void setLock(Object o);
+    void setLock(Object o);
+
     /**
      * Sets the dispatcher used to process animations of the 3D geometry.
      */
-    public void setDispatcher(Dispatcher dispatcher);
+    void setDispatcher(Dispatcher dispatcher);
+
     /**
      * Gets the dispatcher used to process animations of the 3D geometry.
      */
-    public Dispatcher getDispatcher();
-    
-    
+    Dispatcher getDispatcher();
+
+
     /**
      * Sets whether changes in the permutation model shall cause an animated
      * (multi-frame) change in the 3D geometry or whether they shall be
      * reflected immediately.
      */
-    public void setAnimated(boolean b);
-    
+    void setAnimated(boolean b);
+
     /**
      * Returns true when the 3D geometry animates permutation changes.
      */
-    public boolean isAnimated();
-    
+    boolean isAnimated();
+
     /**
-     * Stops all running animations. 
+     * Stops all running animations.
      */
-    public void stopAnimation();
+    void stopAnimation();
     
     /**
      * Sets the underlying permutation model.
      */
-    public void setCube(Cube cube);
+    void setCube(Cube cube);
+
     /**
      * Gets the underlying permutation model.
      */
-    public Cube getCube();
+    Cube getCube();
+
     /**
      * Gets the kind of the cube.
      */
-    public CubeKind getKind();
+    CubeKind getKind();
 
     /**
      * Sets cube attributees.
      */
-    public void setAttributes(CubeAttributes attributes);
-    
+    void setAttributes(CubeAttributes attributes);
+
     /**
      * Gets cube attributees.
      */
-    public CubeAttributes getAttributes();
-    
+    CubeAttributes getAttributes();
+
     /**
      * Adds a change listener. The change listener is notified about geometry
      * changes. This is useful for a 3D canvas interested to know when to repaint.
      */
-    public void addChangeListener(ChangeListener listener);
-    
+    void addChangeListener(ChangeListener listener);
+
     /**
      * Removes a change listener.
      */
-    public void removeChangeListener(ChangeListener listener);
-    
-    public void addCube3DListener(Cube3DListener listener);
-    
-    public void removeCube3DListener(Cube3DListener listener);
+    void removeChangeListener(ChangeListener listener);
+
+    void addCube3DListener(Cube3DListener listener);
+
+    void removeCube3DListener(Cube3DListener listener);
 
     /** Returns true if the cube is currently performing an animation. */
-    public boolean isAnimating();
-    
+    boolean isAnimating();
+
     /** Returns true if the cube is in a started script player. */
-    public boolean isInStartedPlayer();
-    /** This is set to true by the script player if it is started. */
-    public void setInStartedPlayer(boolean newValue);
+    boolean isInStartedPlayer();
 
-    public boolean isShowGhostParts();
-    
-    public void setShowGhostParts(boolean b);
-    
-    public void dispose();
+    /**
+     * This is set to true by the script player if it is started.
+     */
+    void setInStartedPlayer(boolean newValue);
 
-    public int getPartIndexForStickerIndex(int i);
+    boolean isShowGhostParts();
 
-    public void setStickerBeveling(float newValue);
+    void setShowGhostParts(boolean b);
+
+    void dispose();
+
+    int getPartIndexForStickerIndex(int i);
+
+    void setStickerBeveling(float newValue);
 }

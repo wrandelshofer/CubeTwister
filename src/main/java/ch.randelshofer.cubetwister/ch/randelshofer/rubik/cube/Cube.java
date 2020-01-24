@@ -346,7 +346,7 @@ public interface Cube extends Cloneable {
     int getPartAngle(int part, int orientation);
 
     /**
-     * Returns the  axis on which the orientation of the part can be swiped
+     * Returns the axis on which the orientation of the part can be swiped
      * into the specified direction.
      *
      * @param part           The part index.
