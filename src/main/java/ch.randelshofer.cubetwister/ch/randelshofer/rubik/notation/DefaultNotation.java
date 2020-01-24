@@ -75,6 +75,9 @@ public class DefaultNotation extends AbstractNotation {
 
             // Face twists
             addMoves(layerCount, outer, inner, angle, "", suffix);
+            addMoves(layerCount, outer, inner, -angle, "", suffix + "'");
+            // Cube rotations
+            addMoves(layerCount, all, all, angle, "C", suffix);
 
             // Mid-layer twists
             for (int layer = 0; layer < layerCount - 2; layer++) {
@@ -166,8 +169,6 @@ public class DefaultNotation extends AbstractNotation {
                 }
             }
 
-            // Cube rotations
-            addMoves(layerCount, all, all, angle, "C", suffix);
         }
 
         putSyntax(Symbol.COMMUTATION, Syntax.PRECIRCUMFIX);
