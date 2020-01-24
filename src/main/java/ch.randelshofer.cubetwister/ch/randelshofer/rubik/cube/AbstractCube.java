@@ -3,7 +3,8 @@
  */
 package ch.randelshofer.rubik.cube;
 
-/** We use our own implementation of EventListenerListAWT, because this class must
+/**
+ * We use our own implementation of EventListenerListAWT, because this class must
  * be able to run on a Java 1.1 VM.
  */
 
@@ -12,6 +13,8 @@ import org.jhotdraw.annotation.Nullable;
 
 import javax.swing.event.EventListenerList;
 import java.util.Arrays;
+
+import static ch.randelshofer.util.Preconditions.checkRange;
 
 /**
  * Abstract base class for classes which implement the {@link Cube} interface.
@@ -1233,6 +1236,9 @@ public abstract class AbstractCube implements Cube, Cloneable {
             }
 
             // Perform the transform
+            checkRange(axis, 0, 2, "axis");
+            checkRange(layerMask, 0, 1 << layerCount, "layerMask");
+            checkRange(angle, -2, 2, "angle");
             transform0(axis, layerMask, angle);
         }
 

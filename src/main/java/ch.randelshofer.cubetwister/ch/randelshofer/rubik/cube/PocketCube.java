@@ -3,8 +3,6 @@
  */
 package ch.randelshofer.rubik.cube;
 
-import org.jhotdraw.annotation.Nonnull;
-
 /**
  * Represents the state of a 2-times sliced cube (Pocket Cube) by the location 
  * and orientation of its parts.
@@ -48,9 +46,9 @@ public class PocketCube extends AbstractCube {
      */
     public int getPartLayerMask(int part, int orientation) {
         int face = getPartFace(part, orientation);
-        if (part < cornerLoc.length) {
+        if (part < cornerLoc.length) { // corner parts
             return 2 >>> (face / 3);
-        } else {
+        } else { // center part
             return 0;
         }
     }
@@ -75,129 +73,72 @@ public class PocketCube extends AbstractCube {
      */
     @Override
     protected void transform0(int axis, int layerMask, int angle) {
-        if (axis < 0 || axis > 2) {
-            throw new IllegalArgumentException("axis: " + axis);
-        }
-
-        if (layerMask < 0 || layerMask >= 1 << layerCount) {
-            throw new IllegalArgumentException("layerMask: " + layerMask);
-        }
-
-        if (angle < -2 || angle > 2) {
-            throw new IllegalArgumentException("angle: " + angle);
-        }
         if (angle == 0) {
             return; // NOP
         }
 
-        // Convert angle -2 to 2 to simplify the switch statements
-        int an = (angle == -2) ? 2 : angle;
+        synchronized (this) {
 
-        if ((layerMask & 1) != 0) {
-            // twist at left, bottom, back
-            switch (axis) {
-                case 0: // x
-                    switch (an) {
-                        case -1:
-                            twistL();
-                            break;
-                        case 1:
-                            twistL();
-                            twistL();
-                            twistL();
-                            break;
-                        case 2:
-                            twistL();
-                            twistL();
-                            break;
+            // Convert angle -2 to 2 to simplify the switch statements
+            int an = (angle == -2) ? 2 : angle;
+
+            if ((layerMask & 1) != 0) {
+                int repeat = switch (an) {
+                    case -1 -> 1;
+                    case 1 -> 3;
+                    default -> 2;
+                };
+                for (int i = 0; i < repeat; i++) {
+                    switch (axis) {
+                    case 0 -> twistL();
+                    case 1 -> twistD();
+                    case 2 -> twistB();
                     }
-                    break;
-                case 1: // y
-                    switch (an) {
-                        case -1:
-                            twistD();
-                            break;
-                        case 1:
-                            twistD();
-                            twistD();
-                            twistD();
-                            break;
-                        case 2:
-                            twistD();
-                            twistD();
-                            break;
+                }
+            }
+            if ((layerMask & 2) != 0) {
+                int repeat = switch (an) {
+                    case -1 -> 3;
+                    case 1 -> 1;
+                    default -> 2;
+                };
+                for (int i = 0; i < repeat; i++) {
+                    switch (axis) {
+                    case 0 -> twistR();
+                    case 1 -> twistU();
+                    case 2 -> twistF();
                     }
-                    break;
-                case 2: // z
-                    switch (an) {
-                        case -1:
-                            twistB();
-                            break;
-                        case 1:
-                            twistB();
-                            twistB();
-                            twistB();
-                            break;
-                        case 2:
-                            twistB();
-                            twistB();
-                            break;
-                    }
+                }
             }
         }
-        if ((layerMask & 2) != 0) {
+    }
 
-            // twist at right, top, front
-            switch (axis) {
-                case 0: // x
-                    switch (an) {
-                        case 1:
-                            twistR();
-                            break;
-                        case -1:
-                            twistR();
-                            twistR();
-                            twistR();
-                            break;
-                        case 2:
-                            twistR();
-                            twistR();
-                            break;
-                    }
-                    break;
-                case 1: // y
-                    switch (an) {
-                        case 1:
-                            twistU();
-                            break;
-                        case -1:
-                            twistU();
-                            twistU();
-                            twistU();
-                            break;
-                        case 2:
-                            twistU();
-                            twistU();
-                            break;
-                    }
-                    break;
-                case 2: // z
-                    switch (an) {
-                        case 1:
-                            twistF();
-                            break;
-                        case -1:
-                            twistF();
-                            twistF();
-                            twistF();
-                            break;
-                        case 2:
-                            twistF();
-                            twistF();
-                            break;
-                    }
-            }
+    public int getPartSwipeAxis(int part, int orientation, int swipeDirection) {
+        int loc = getCornerLocation(part);
+        int ori = (3 - getPartOrientation(part) + orientation) % 3;
+        return CORNER_SWIPE_TABLE[loc][ori][swipeDirection][0];
+    }
+
+    public int getPartSwipeLayerMask(int part, int orientation, int swipeDirection) {
+        int loc = getCornerLocation(part);
+        int ori = (3 - getPartOrientation(part) + orientation) % 3;
+        int mask = CORNER_SWIPE_TABLE[loc][ori][swipeDirection][1];
+        return mask == 4 ? 2 : mask;
+    }
+
+    public int getPartSwipeAngle(int part, int orientation, int swipeDirection) {
+        int loc = getCornerLocation(part);
+        int ori = getPartOrientation(part);
+        int sori = (3 - ori + orientation) % 3;
+        int dir = swipeDirection;
+        int angle = CORNER_SWIPE_TABLE[loc][sori][dir][2];
+        if (ori == 2 && (sori == 0 || sori == 2)) {
+            angle = -angle;
+        } else if (ori == 1 && (sori == 1 || sori == 2)) {
+            angle = -angle;
         }
+
+        return angle;
     }
 
     /**
@@ -368,66 +309,5 @@ public class PocketCube extends AbstractCube {
         fourCycle(cornerLoc, 2, 3, 5, 4, cornerOrient, 1, 2, 1, 2, 3);
     }
 
-    /**
-     * Returns an array of stickers which reflect the current state of the cube.
-     * <p>
-     * The following diagram shows the indices of the array. The number before
-     * the comma is the first dimension (faces), the number after the comma
-     * is the second dimension (stickers).
-     * <p>
-     * The values of the array elements is the face index: 0..5.
-     * <pre>
-     *         +---+---+
-     *      ulb|1,0|1,1|ubr
-     *         +--- ---+ 
-     *      ufl|1,2|1,3|urf
-     * +---+---+---+---+---+---+---+---+
-     * |3,0|3,1|2,0|2,1|0,0|0,1|5,0|5,1|
-     * +--- ---+--- ---+--- ---+--- ---+
-     * |3,2|3,3|2,2|2,3|0,2|0,3|5,2|5,3|
-     * +---+---+---+---+---+---+---+---+
-     *      dlf|4,0|4,1|dfr
-     *         +--- ---+
-     *      dbl|4,2|4,3|drb
-     *         +---+---+
-     * </pre>
-     * @return A two dimensional array. First dimension: faces.
-     * Second dimension: sticker index on the faces.
-     */
-    @Nonnull
-    public int[][] toStickers() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    public void setToStickers(int[][] stickers) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int getPartSwipeAxis(int part, int orientation, int swipeDirection) {
-        int loc = getCornerLocation(part);
-        int ori = (3 - getPartOrientation(part) + orientation) % 3;
-        return CORNER_SWIPE_TABLE[loc][ori][swipeDirection][0];
-    }
-
-    public int getPartSwipeLayerMask(int part, int orientation, int swipeDirection) {
-        int loc = getCornerLocation(part);
-        int ori = (3 - getPartOrientation(part) + orientation) % 3;
-        int mask = CORNER_SWIPE_TABLE[loc][ori][swipeDirection][1];
-        return mask == 4 ? 2 : mask;
-    }
-
-    public int getPartSwipeAngle(int part, int orientation, int swipeDirection) {
-        int loc = getCornerLocation(part);
-        int ori = getPartOrientation(part);
-        int sori = (3 - ori + orientation) % 3;
-        int dir = swipeDirection;
-        int angle = CORNER_SWIPE_TABLE[loc][sori][dir][2];
-        if (ori == 2 && (sori == 0 || sori == 2)) {
-            angle = -angle;
-        } else if (ori == 1 && (sori == 1 || sori == 2)) {
-            angle = -angle;
-        }
-
-        return angle;
-    }
 }

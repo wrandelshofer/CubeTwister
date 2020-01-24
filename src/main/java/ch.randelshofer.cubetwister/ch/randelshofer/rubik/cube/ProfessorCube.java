@@ -450,21 +450,6 @@ public class ProfessorCube extends AbstractCube {
      */
     @Override
     protected void transform0(int axis, int layerMask, int angle) {
-            if (axis < 0 || axis > 2) {
-                throw new IllegalArgumentException("axis: " + axis);
-            }
-
-            if (layerMask < 0 || layerMask >= 1 << layerCount) {
-                throw new IllegalArgumentException("layerMask: " + layerMask);
-            }
-
-            if (angle < -2 || angle > 2) {
-                throw new IllegalArgumentException("angle: " + angle);
-            }
-            if (angle == 0) {
-                return; // NOP
-            }
-
             // Convert angle -2 to 2 to simplify the switch statements
             int an = (angle == -2) ? 2 : angle;
 

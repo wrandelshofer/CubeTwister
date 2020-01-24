@@ -464,7 +464,7 @@ public class Cubes {
     @Nonnull
     public static String toNormalizedStickersString(@Nonnull Cube cube) {
         char[] faces = new char[]{'R', 'U', 'F', 'L', 'D', 'B'};
-        int[][] stickers = cube.toStickers();
+        int[][] stickers = ((RubiksCube) cube).toStickers();
 
         // This map is used to normalize the
         // possibly rotated cube.
@@ -551,7 +551,7 @@ public class Cubes {
      * @return Array of stickers: int[6][9]. Same structure as in method setStickers().
      */
     public static int[][] getMappedStickers(@Nonnull Cube cube, int[][] mappings) {
-        int[][] stickers = cube.toStickers();
+        int[][] stickers = ((RubiksCube) cube).toStickers();
         int[][] mappedStickers = stickers.clone();
 
         for (int face = 0; face < stickers.length; face++) {
@@ -929,22 +929,6 @@ public class Cubes {
     /**
      * Returns a String describing the permutation cycles of the edge parts
      * in a cube.
-     *
-     * @param cube
-     * @param syntax
-     * @param tR
-     * @param tU
-     * @param tF
-     * @param tL
-     * @param tD
-     * @param tB
-     * @param tPlus
-     * @param tPlusPlus
-     * @param tMinus
-     * @param tBegin
-     * @param tEnd
-     * @param tDelimiter
-     * @return
      */
     @Nonnull
     private static String toEdgePermutationString(@Nonnull Cube cube, Syntax syntax,
@@ -1080,22 +1064,6 @@ public class Cubes {
     /**
      * Returns a String describing the permutation cycles of the side parts
      * in the cube.
-     *
-     * @param cube
-     * @param syntax
-     * @param tR
-     * @param tU
-     * @param tF
-     * @param tL
-     * @param tD
-     * @param tB
-     * @param tPlus
-     * @param tPlusPlus
-     * @param tMinus
-     * @param tBegin
-     * @param tEnd
-     * @param tDelimiter
-     * @return
      */
     @Nonnull
     private static String toSidePermutationString(@Nonnull Cube cube, Syntax syntax,
@@ -1126,7 +1094,6 @@ public class Cubes {
             };
             visitedLocs = new boolean[cube.getSideCount()];
             isFirst = true;
-            int previousCycleStartSide;
 
             // First Pass: Only print permutation cycles which lie on a single
             // face of the cube. 
@@ -1135,7 +1102,6 @@ public class Cubes {
             for (int twoPass = 0; twoPass < 2; twoPass++) {
                 Arrays.fill(visitedLocs, false);
                 for (int byFaces = 0, nf = 6; byFaces < nf; byFaces++) {
-                    previousCycleStartSide = -1;
                     for (int byParts = 0, np = cube.getSideCount() / 6; byParts < np; byParts++) {
                         i = byParts + byFaces * np;
                         if (!visitedLocs[i]) {
@@ -1161,7 +1127,6 @@ public class Cubes {
                                 }
                                 j = k;
                             }
-                            previousCycleStartSide = cycle[cycleStart] % 6;
 
                             if (isOnSingleFace == (twoPass == 0)) {
 
@@ -1240,22 +1205,6 @@ public class Cubes {
      * <p>
      * XXX - This method is not properly implemented. It should ignore part
      * orientations.
-     *
-     * @param cube
-     * @param syntax
-     * @param tR
-     * @param tU
-     * @param tF
-     * @param tL
-     * @param tD
-     * @param tB
-     * @param tPlus
-     * @param tPlusPlus
-     * @param tMinus
-     * @param tBegin
-     * @param tEnd
-     * @param tDelimiter
-     * @return
      */
     @Nonnull
     private static String toVisualSidePermutationString(@Nonnull Cube cube, Syntax syntax,
@@ -1273,7 +1222,7 @@ public class Cubes {
         StringBuilder buf = new StringBuilder();
         boolean[] visitedLocs;
 
-        int i, j, k, l, p, n;
+        int i, j, k;
         int prevOrient;
         boolean isFirst;
 
@@ -1335,15 +1284,12 @@ public class Cubes {
                                     }
                                     if (syntax == Syntax.PREFIX) {
                                         // the sign of the cycle will be inserted before the opening bracket
-                                        p = buf.length();
                                         buf.append(tBegin);
                                     } else if (syntax == Syntax.PRECIRCUMFIX) {
                                         // the sign of the cycle will be inserted after the opening bracket
                                         buf.append(tBegin);
-                                        p = buf.length();
                                     } else {
                                         buf.append(tBegin);
-                                        p = -1;
                                     }
 
                                     prevOrient = 0;
@@ -1374,12 +1320,10 @@ public class Cubes {
                                     prevOrient = (prevOrient + sideOrient[j]) % 4;
                                     if (syntax == Syntax.POSTCIRCUMFIX) {
                                         // the sign of the cycle will be inserted before the closing bracket
-                                        p = buf.length();
                                         buf.append(tEnd);
                                     } else if (syntax == Syntax.SUFFIX) {
                                         // the sign of the cycle will be inserted after the closing bracket
                                         buf.append(tEnd);
-                                        p = buf.length();
                                     } else {
                                         buf.append(tEnd);
                                     }
@@ -1408,7 +1352,7 @@ public class Cubes {
                 perFaceStickers[face][sticker] = stickers[index++];
             }
         }
-        cube.setToStickers(perFaceStickers);
+        ((RubiksCube) cube).setToStickers(perFaceStickers);
     }
 
     /**
@@ -1455,6 +1399,6 @@ public class Cubes {
             System.out.println();
             t.pushBack();
         }
-        cube.setToStickers(perFaceStickers);
+        ((RubiksCube) cube).setToStickers(perFaceStickers);
     }
 }

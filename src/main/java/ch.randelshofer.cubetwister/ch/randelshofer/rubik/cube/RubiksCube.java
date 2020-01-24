@@ -6,7 +6,7 @@ package ch.randelshofer.rubik.cube;
 import org.jhotdraw.annotation.Nonnull;
 
 /**
- * Represents the state of a 3-times sliced cube (Rubik's Cube) by the location 
+ * Represents the state of a 3-times sliced cube (Rubik's Cube) by the location
  * and orientation of its parts.
  * <p>
  * A Rubik's Cube has 8 corner parts, 12 edge parts, 6 side parts and one
@@ -14,7 +14,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Corner parts</b>
  * <p>
- * The following diagram shows the initial orientations and locations of 
+ * The following diagram shows the initial orientations and locations of
  * the corner parts:
  * <pre>
  *             +---+---+---+
@@ -40,7 +40,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Edge parts</b>
  * <p>
- * The following diagram shows the initial orientations and locations of 
+ * The following diagram shows the initial orientations and locations of
  * the edge parts:
  * <pre>
  *             +---+---+---+
@@ -66,7 +66,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Side parts</b>
  * <p>
- * The following diagram shows the initial orientation and location of 
+ * The following diagram shows the initial orientation and location of
  * the face parts:
  * <pre>
  *             +------------+
@@ -120,7 +120,7 @@ import org.jhotdraw.annotation.Nonnull;
  *             +---+---+---+
  * </pre>
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class RubiksCube extends AbstractCube {
 
@@ -143,12 +143,12 @@ public class RubiksCube extends AbstractCube {
      * @see #toStickers
      */
     protected final static int[][] SIDE_TRANSLATION = {
-        {0, 4},
-        {1, 4},
-        {2, 4},
-        {3, 4},
-        {4, 4},
-        {5, 4}
+            {0, 4},
+            {1, 4},
+            {2, 4},
+            {3, 4},
+            {4, 4},
+            {5, 4}
     };
     /**
      * This is used for mapping edge part locations and orientations
@@ -161,18 +161,18 @@ public class RubiksCube extends AbstractCube {
      * @see #toStickers
      */
     protected final static int[][] EDGE_TRANSLATION = {
-        {1, 5, 0, 1}, // edge 0 ur
-        {0, 3, 2, 5}, //      1 rf
-        {4, 5, 0, 7}, //      2 dr
-        {5, 1, 1, 1}, //      3 bu
-        {0, 5, 5, 3}, //      4 rb
-        {5, 7, 4, 7}, //      5 bd
-        {1, 3, 3, 1}, //      6 ul
-        {3, 3, 5, 5}, //      7 lb
-        {4, 3, 3, 7}, //      8 dl
-        {2, 1, 1, 7}, //      9 fu
-        {3, 5, 2, 3}, //     10 lf
-        {2, 7, 4, 1} //     11 fd
+            {1, 5, 0, 1}, // edge 0 ur
+            {0, 3, 2, 5}, //      1 rf
+            {4, 5, 0, 7}, //      2 dr
+            {5, 1, 1, 1}, //      3 bu
+            {0, 5, 5, 3}, //      4 rb
+            {5, 7, 4, 7}, //      5 bd
+            {1, 3, 3, 1}, //      6 ul
+            {3, 3, 5, 5}, //      7 lb
+            {4, 3, 3, 7}, //      8 dl
+            {2, 1, 1, 7}, //      9 fu
+            {3, 5, 2, 3}, //     10 lf
+            {2, 7, 4, 1} //     11 fd
     };
     /**
      * This is used for mapping corner part locations and orientations
@@ -180,20 +180,20 @@ public class RubiksCube extends AbstractCube {
      * <p>
      * Description:<br>
      * corner orientation 0, face index, corner orientation 1, face index, corner orientation 2, face index
-     *
+     * <p>
      * XXX - Move this into RubiksCube class.
      *
      * @see #toStickers
      */
     protected final static int[][] CORNER_TRANSLATION = {
-        {1, 8, 0, 0, 2, 2}, // 0 urf 
-        {4, 2, 2, 8, 0, 6}, // 1 dfr
-        {1, 2, 5, 0, 0, 2}, // 2 ubr
-        {4, 8, 0, 8, 5, 6}, // 3 drb
-        {1, 0, 3, 0, 5, 2}, // 4 ulb
-        {4, 6, 5, 8, 3, 6}, // 5 dbl
-        {1, 6, 2, 0, 3, 2}, // 6 ufl
-        {4, 0, 3, 8, 2, 6} // 7 dlf
+            {1, 8, 0, 0, 2, 2}, // 0 urf
+            {4, 2, 2, 8, 0, 6}, // 1 dfr
+            {1, 2, 5, 0, 0, 2}, // 2 ubr
+            {4, 8, 0, 8, 5, 6}, // 3 drb
+            {1, 0, 3, 0, 5, 2}, // 4 ulb
+            {4, 6, 5, 8, 3, 6}, // 5 dbl
+            {1, 6, 2, 0, 3, 2}, // 6 ufl
+            {4, 0, 3, 8, 2, 6} // 7 dlf
     };
     /**
      * First dimension: side part index.
@@ -223,162 +223,162 @@ public class RubiksCube extends AbstractCube {
      * </pre>
      */
     private final static int[][][][] EDGE_SWIPE_TABLE = {
-        { // edge 0 ur
-            {//u
-                {2, 2, 1}, // axis, layerMask, angle
-                {0, 4, -1},
-                {2, 2, -1},
-                {0, 4, 1}
-            },
-            {//r
-                {2, 2, -1}, // axis, layerMask, angle
-                {1, 4, -1},
-                {2, 2, 1},
-                {1, 4, 1}
-            },},
-        { //      1 rf
-            {//r
-                {1, 2, 1}, // axis, layerMask, angle
-                {2, 4, -1},
-                {1, 2, -1},
-                {2, 4, 1}
-            },
-            {//f
-                {1, 2, -1}, // axis, layerMask, angle
-                {0, 4, -1},
-                {1, 2, 1},
-                {0, 4, 1}
-            },},
-        { //      2 dr
-            {//d
-                {2, 2, -1}, // axis, layerMask, angle
-                {0, 4, -1},
-                {2, 2, 1},
-                {0, 4, 1}
-            },
-            {//r
-                {2, 2, 1}, // axis, layerMask, angle
-                {1, 1, 1},
-                {2, 2, -1},
-                {1, 1, -1}
-            },},
-        { //      3 bu
-            {//b
-                {0, 2, -1}, // axis, layerMask, angle
-                {1, 4, -1},
-                {0, 2, 1},
-                {1, 4, 1}
-            },
-            {//u
-                {0, 2, 1}, // axis, layerMask, angle
-                {2, 1, 1},
-                {0, 2, -1},
-                {2, 1, -1}
-            },},
-        { //      4 rb
-            {//r
-                {1, 2, -1}, // axis, layerMask, angle
-                {2, 1, 1},
-                {1, 2, 1},
-                {2, 1, -1}
-            },
-            {//b
-                {1, 2, 1}, // axis, layerMask, angle
-                {0, 4, -1},
-                {1, 2, -1},
-                {0, 4, 1}
-            },},
-        { //      5 bd
-            {//b
-                {0, 2, 1}, // axis, layerMask, angle
-                {1, 1, 1},
-                {0, 2, -1},
-                {1, 1, -1}
-            },
-            {//d
-                {0, 2, -1}, // axis, layerMask, angle
-                {2, 1, 1},
-                {0, 2, 1},
-                {2, 1, -1}
-            },},
-        { //      6 ul
-            {//u
-                {2, 2, -1}, // axis, layerMask, angle
-                {0, 1, 1},
-                {2, 2, 1},
-                {0, 1, -1}
-            },
-            {//l
-                {2, 2, 1}, // axis, layerMask, angle
-                {1, 4, -1},
-                {2, 2, -1},
-                {1, 4, 1}
-            },},
-        { //      7 lb
-            {//l
-                {1, 2, 1}, // axis, layerMask, angle
-                {2, 1, 1},
-                {1, 2, -1},
-                {2, 1, -1}
-            },
-            {//b
-                {1, 2, -1}, // axis, layerMask, angle
-                {0, 1, 1},
-                {1, 2, 1},
-                {0, 1, -1}
-            },},
-        { //      8 dl
-            {//d
-                {2, 2, 1}, // axis, layerMask, angle
-                {0, 1, 1},
-                {2, 2, -1},
-                {0, 1, -1}
-            },
-            {//l
-                {2, 2, -1}, // axis, layerMask, angle
-                {1, 1, 1},
-                {2, 2, 1},
-                {1, 1, -1}
-            },},
-        { //      9 fu
-            {//f
-                {0, 2, 1}, // axis, layerMask, angle
-                {1, 4, -1},
-                {0, 2, -1},
-                {1, 4, 1}
-            },
-            {//u
-                {0, 2, -1}, // axis, layerMask, angle
-                {2, 4, -1},
-                {0, 2, 1},
-                {2, 4, 1}
-            },},
-        { //     10 lf
-            {//l
-                {1, 2, -1}, // axis, layerMask, angle
-                {2, 4, -1},
-                {1, 2, 1},
-                {2, 4, 1}
-            },
-            {//f
-                {1, 2, 1}, // axis, layerMask, angle
-                {0, 1, 1},
-                {1, 2, -1},
-                {0, 1, -1}
-            },},
-        { //     11 fd
-            {//f
-                {0, 2, -1}, // axis, layerMask, angle
-                {1, 1, 1},
-                {0, 2, 1},
-                {1, 1, -1}
-            },
-            {//d
-                {0, 2, 1}, // axis, layerMask, angle
-                {2, 4, -1},
-                {0, 2, -1},
-                {2, 4, 1}
-            },}
+            { // edge 0 ur
+                    {//u
+                            {2, 2, 1}, // axis, layerMask, angle
+                            {0, 4, -1},
+                            {2, 2, -1},
+                            {0, 4, 1}
+                    },
+                    {//r
+                            {2, 2, -1}, // axis, layerMask, angle
+                            {1, 4, -1},
+                            {2, 2, 1},
+                            {1, 4, 1}
+                    },},
+            { //      1 rf
+                    {//r
+                            {1, 2, 1}, // axis, layerMask, angle
+                            {2, 4, -1},
+                            {1, 2, -1},
+                            {2, 4, 1}
+                    },
+                    {//f
+                            {1, 2, -1}, // axis, layerMask, angle
+                            {0, 4, -1},
+                            {1, 2, 1},
+                            {0, 4, 1}
+                    },},
+            { //      2 dr
+                    {//d
+                            {2, 2, -1}, // axis, layerMask, angle
+                            {0, 4, -1},
+                            {2, 2, 1},
+                            {0, 4, 1}
+                    },
+                    {//r
+                            {2, 2, 1}, // axis, layerMask, angle
+                            {1, 1, 1},
+                            {2, 2, -1},
+                            {1, 1, -1}
+                    },},
+            { //      3 bu
+                    {//b
+                            {0, 2, -1}, // axis, layerMask, angle
+                            {1, 4, -1},
+                            {0, 2, 1},
+                            {1, 4, 1}
+                    },
+                    {//u
+                            {0, 2, 1}, // axis, layerMask, angle
+                            {2, 1, 1},
+                            {0, 2, -1},
+                            {2, 1, -1}
+                    },},
+            { //      4 rb
+                    {//r
+                            {1, 2, -1}, // axis, layerMask, angle
+                            {2, 1, 1},
+                            {1, 2, 1},
+                            {2, 1, -1}
+                    },
+                    {//b
+                            {1, 2, 1}, // axis, layerMask, angle
+                            {0, 4, -1},
+                            {1, 2, -1},
+                            {0, 4, 1}
+                    },},
+            { //      5 bd
+                    {//b
+                            {0, 2, 1}, // axis, layerMask, angle
+                            {1, 1, 1},
+                            {0, 2, -1},
+                            {1, 1, -1}
+                    },
+                    {//d
+                            {0, 2, -1}, // axis, layerMask, angle
+                            {2, 1, 1},
+                            {0, 2, 1},
+                            {2, 1, -1}
+                    },},
+            { //      6 ul
+                    {//u
+                            {2, 2, -1}, // axis, layerMask, angle
+                            {0, 1, 1},
+                            {2, 2, 1},
+                            {0, 1, -1}
+                    },
+                    {//l
+                            {2, 2, 1}, // axis, layerMask, angle
+                            {1, 4, -1},
+                            {2, 2, -1},
+                            {1, 4, 1}
+                    },},
+            { //      7 lb
+                    {//l
+                            {1, 2, 1}, // axis, layerMask, angle
+                            {2, 1, 1},
+                            {1, 2, -1},
+                            {2, 1, -1}
+                    },
+                    {//b
+                            {1, 2, -1}, // axis, layerMask, angle
+                            {0, 1, 1},
+                            {1, 2, 1},
+                            {0, 1, -1}
+                    },},
+            { //      8 dl
+                    {//d
+                            {2, 2, 1}, // axis, layerMask, angle
+                            {0, 1, 1},
+                            {2, 2, -1},
+                            {0, 1, -1}
+                    },
+                    {//l
+                            {2, 2, -1}, // axis, layerMask, angle
+                            {1, 1, 1},
+                            {2, 2, 1},
+                            {1, 1, -1}
+                    },},
+            { //      9 fu
+                    {//f
+                            {0, 2, 1}, // axis, layerMask, angle
+                            {1, 4, -1},
+                            {0, 2, -1},
+                            {1, 4, 1}
+                    },
+                    {//u
+                            {0, 2, -1}, // axis, layerMask, angle
+                            {2, 4, -1},
+                            {0, 2, 1},
+                            {2, 4, 1}
+                    },},
+            { //     10 lf
+                    {//l
+                            {1, 2, -1}, // axis, layerMask, angle
+                            {2, 4, -1},
+                            {1, 2, 1},
+                            {2, 4, 1}
+                    },
+                    {//f
+                            {1, 2, 1}, // axis, layerMask, angle
+                            {0, 1, 1},
+                            {1, 2, -1},
+                            {0, 1, -1}
+                    },},
+            { //     11 fd
+                    {//f
+                            {0, 2, -1}, // axis, layerMask, angle
+                            {1, 1, 1},
+                            {0, 2, 1},
+                            {1, 1, -1}
+                    },
+                    {//d
+                            {0, 2, 1}, // axis, layerMask, angle
+                            {2, 4, -1},
+                            {0, 2, -1},
+                            {2, 4, 1}
+                    },}
     };
     /* Swipe table.
      * First dimension: side part index.
@@ -408,45 +408,47 @@ public class RubiksCube extends AbstractCube {
      * </pre>
      */
     private final static int[][][] SIDE_SWIPE_TABLE = {
-        {// 0 r
-            {1, 2, -1}, // axis, layerMask, angle
-            {2, 2, 1},
-            {1, 2, 1},
-            {2, 2, -1}
-        },
-        {// 1 u
-            {2, 2, -1},
-            {0, 2, 1},
-            {2, 2, 1},
-            {0, 2, -1}
-        },
-        {// 2 f
-            {0, 2, -1},
-            {1, 2, 1},
-            {0, 2, 1},
-            {1, 2, -1}
-        },
-        {// 3 l
-            {2, 2, 1},
-            {1, 2, -1},
-            {2, 2, -1},
-            {1, 2, 1}
-        },
-        {// 4 d
-            {0, 2, 1},
-            {2, 2, -1},
-            {0, 2, -1},
-            {2, 2, 1}
-        },
-        { // 5 b
-            {1, 2, 1},
-            {0, 2, -1},
-            {1, 2, -1},
-            {0, 2, 1}
-        }
+            {// 0 r
+                    {1, 2, -1}, // axis, layerMask, angle
+                    {2, 2, 1},
+                    {1, 2, 1},
+                    {2, 2, -1}
+            },
+            {// 1 u
+                    {2, 2, -1},
+                    {0, 2, 1},
+                    {2, 2, 1},
+                    {0, 2, -1}
+            },
+            {// 2 f
+                    {0, 2, -1},
+                    {1, 2, 1},
+                    {0, 2, 1},
+                    {1, 2, -1}
+            },
+            {// 3 l
+                    {2, 2, 1},
+                    {1, 2, -1},
+                    {2, 2, -1},
+                    {1, 2, 1}
+            },
+            {// 4 d
+                    {0, 2, 1},
+                    {2, 2, -1},
+                    {0, 2, -1},
+                    {2, 2, 1}
+            },
+            { // 5 b
+                    {1, 2, 1},
+                    {0, 2, -1},
+                    {1, 2, -1},
+                    {0, 2, 1}
+            }
     };
 
-    /** Creates a new instance. */
+    /**
+     * Creates a new instance.
+     */
     public RubiksCube() {
         super(3);
     }
@@ -548,201 +550,72 @@ public class RubiksCube extends AbstractCube {
     /**
      * Transforms the cube and fires a cubeTwisted event.
      *
-     * @param  axis  0=x, 1=y, 2=z axis.
-     * @param  layerMask A bitmask specifying the layers to be transformed.
-     *           The size of the layer mask depends on the value returned by
-     *           <code>getLayerCount(axis)</code>. The layer mask has the
-     *           following meaning:
-     *           7=rotate the whole cube;<br>
-     *           1=twist slice near the axis (left, down, back)<br>
-     *           2=twist slice in the middle of the axis<br>
-     *           4=twist slice far away from the axis (right, top, up)
-     * @param  angle  positive values=clockwise rotation<br>
-     *                negative values=counterclockwise rotation<br>
-     *               1=90 degrees<br>
-     *               2=180 degrees
+     * @param axis      0=x, 1=y, 2=z axis.
+     * @param layerMask A bitmask specifying the layers to be transformed.
+     *                  The size of the layer mask depends on the value returned by
+     *                  <code>getLayerCount(axis)</code>. The layer mask has the
+     *                  following meaning:
+     *                  7=rotate the whole cube;<br>
+     *                  1=twist slice near the axis (left, down, back)<br>
+     *                  2=twist slice in the middle of the axis<br>
+     *                  4=twist slice far away from the axis (right, top, up)
+     * @param angle     positive values=clockwise rotation<br>
+     *                  negative values=counterclockwise rotation<br>
+     *                  1=90 degrees<br>
+     *                  2=180 degrees
      */
     @Override
     protected void transform0(int axis, int layerMask, int angle) {
-        if (DEBUG) {
-            System.out.println("RubiksCube#" + System.identityHashCode(this) + ".transform(ax=" + axis + ",msk=" + layerMask + ",ang:" + angle + ")");
+        if (angle == 0) {
+            return; // NOP
         }
+
         synchronized (this) {
-            if (axis < 0 || axis > 2) {
-                throw new IllegalArgumentException("axis: " + axis);
-            }
 
-            if (layerMask < 0 || layerMask >= 1 << layerCount) {
-                throw new IllegalArgumentException("layerMask: " + layerMask);
-            }
-
-            if (angle < -2 || angle > 2) {
-                throw new IllegalArgumentException("angle: " + angle);
-            }
-
-            if (angle == 0) {
-                return; // NOP
-            }
-
-// Convert angle -2 to 2 to simplify the switch statements
+            // Convert angle -2 to 2 to simplify the switch statements
             int an = (angle == -2) ? 2 : angle;
 
             if ((layerMask & 1) != 0) {
-                // twist at left, bottom, back
-                switch (axis) {
-                    case 0: // x
-                        switch (an) {
-                            case -1:
-                                twistL();
-                                break;
-                            case 1:
-                                twistL();
-                                twistL();
-                                twistL();
-                                break;
-                            case 2:
-                                twistL();
-                                twistL();
-                                break;
-                        }
-                        break;
-                    case 1: // y
-                        switch (an) {
-                            case -1:
-                                twistD();
-                                break;
-                            case 1:
-                                twistD();
-                                twistD();
-                                twistD();
-                                break;
-                            case 2:
-                                twistD();
-                                twistD();
-                                break;
-                        }
-                        break;
-                    case 2: // z
-                        switch (an) {
-                            case -1:
-                                twistB();
-                                break;
-                            case 1:
-                                twistB();
-                                twistB();
-                                twistB();
-                                break;
-                            case 2:
-                                twistB();
-                                twistB();
-                                break;
-                        }
+                int repeat = switch (an) {
+                    case -1 -> 1;
+                    case 1 -> 3;
+                    default -> 2;
+                };
+                for (int i = 0; i < repeat; i++) {
+                    switch (axis) {
+                    case 0 -> twistL();
+                    case 1 -> twistD();
+                    case 2 -> twistB();
+                    }
                 }
             }
             if ((layerMask & 2) != 0) {
-                // twist at left middle, bottom middle, back middle
-                switch (axis) {
-                    case 0: // x
-                        switch (an) {
-                            case 1:
-                                twistMR();
-                                break;
-                            case -1:
-                                twistMR();
-                                twistMR();
-                                twistMR();
-                                break;
-                            case 2:
-                                twistMR();
-                                twistMR();
-                                break;
-                        }
-                        break;
-                    case 1: // y
-                        switch (an) {
-                            case 1:
-                                twistMU();
-                                break;
-                            case -1:
-                                twistMU();
-                                twistMU();
-                                twistMU();
-                                break;
-                            case 2:
-                                twistMU();
-                                twistMU();
-                                break;
-                        }
-                        break;
-                    case 2: // z
-                        switch (an) {
-                            case 1:
-                                twistMF();
-                                break;
-                            case -1:
-                                twistMF();
-                                twistMF();
-                                twistMF();
-                                break;
-                            case 2:
-                                twistMF();
-                                twistMF();
-                                break;
-                        }
+                int repeat = switch (an) {
+                    case -1 -> 3;
+                    case 1 -> 1;
+                    default -> 2;
+                };
+                for (int i = 0; i < repeat; i++) {
+                    switch (axis) {
+                    case 0 -> twistMR();
+                    case 1 -> twistMU();
+                    case 2 -> twistMF();
+                    }
                 }
             }
 
             if ((layerMask & 4) != 0) {
-
-                // twist at right, top, front
-                switch (axis) {
-                    case 0: // x
-                        switch (an) {
-                            case 1:
-                                twistR();
-                                break;
-                            case -1:
-                                twistR();
-                                twistR();
-                                twistR();
-                                break;
-                            case 2:
-                                twistR();
-                                twistR();
-                                break;
-                        }
-                        break;
-                    case 1: // y
-                        switch (an) {
-                            case 1:
-                                twistU();
-                                break;
-                            case -1:
-                                twistU();
-                                twistU();
-                                twistU();
-                                break;
-                            case 2:
-                                twistU();
-                                twistU();
-                                break;
-                        }
-                        break;
-                    case 2: // z
-                        switch (an) {
-                            case 1:
-                                twistF();
-                                break;
-                            case -1:
-                                twistF();
-                                twistF();
-                                twistF();
-                                break;
-                            case 2:
-                                twistF();
-                                twistF();
-                                break;
-                        }
+                int repeat = switch (an) {
+                    case -1 -> 3;
+                    case 1 -> 1;
+                    default -> 2;
+                };
+                for (int i = 0; i < repeat; i++) {
+                    switch (axis) {
+                    case 0 -> twistR();
+                    case 1 -> twistU();
+                    case 2 -> twistF();
+                    }
                 }
             }
         }
@@ -1044,11 +917,11 @@ public class RubiksCube extends AbstractCube {
      *             |4,6|4,7|4,8|
      *             +---+---+---+
      * </pre>
+     *
      * @return A two dimensional array. First dimension: faces.
      * Second dimension: sticker index on the faces.
      */
     @Nonnull
-    @Override
     public int[][] toStickers() {
         int[][] stickers = new int[6][9];
 
@@ -1058,7 +931,7 @@ public class RubiksCube extends AbstractCube {
             stickers[SIDE_TRANSLATION[i][0]][SIDE_TRANSLATION[i][1]] = SIDE_TRANSLATION[loc][0];
         }
 
-// Map edge parts onto stickers
+        // Map edge parts onto stickers
         for (int i = 0; i < 12; i++) {
             int loc = edgeLoc[i];
             int orient = edgeOrient[i];
@@ -1068,7 +941,7 @@ public class RubiksCube extends AbstractCube {
                     = (orient == 0) ? EDGE_TRANSLATION[loc][2] : EDGE_TRANSLATION[loc][0];
         }
 
-// Map corner parts onto stickers
+        // Map corner parts onto stickers
         for (int i = 0; i < 8; i++) {
             int loc = cornerLoc[i];
             int orient = cornerOrient[i];
@@ -1091,17 +964,6 @@ public class RubiksCube extends AbstractCube {
                     ? CORNER_TRANSLATION[loc][0]
                     : CORNER_TRANSLATION[loc][2]);
         }
-        /*
-         for (int i = 0; i < stickers.length; i++) {
-         System.out.print("  " + i + ":");
-         for (int j = 0; j < stickers[i].length; j++) {
-         if (j != 0) {
-         System.out.print(',');
-         }
-         System.out.print(stickers[i][j]);
-         }
-         System.out.println();
-         }*/
 
         return stickers;
     }
@@ -1110,13 +972,11 @@ public class RubiksCube extends AbstractCube {
      * Sets the cube to a state where the faces of the parts map to the provided
      * stickers array.
      *
-     * @see #toStickers
-     *
      * @param stickers An array of dimensions [6][9] containing sticker values
      *                 in the range [0,5] for the six faces right, up, front,
      *                 left, down, back.
+     * @see #toStickers
      */
-    @Override
     public void setToStickers(int[][] stickers) {
         int i = 0, j = 0, cube;
 

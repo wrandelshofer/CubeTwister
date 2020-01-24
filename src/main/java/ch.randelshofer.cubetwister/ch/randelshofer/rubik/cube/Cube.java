@@ -421,23 +421,5 @@ public interface Cube extends Cloneable {
      */
     int[] getUnsolvedParts();
 
-    /**
-     * Converts the cube into a stickers array reflecting the current 
-     * permutation of the cube.
-     *
-     * @return Array of stickers: int[6][getLayerCount()*getLayerCount()].
-     * Same structure as in method setStickers().
-     *
-     * @see  #setToStickers
-     */
-    int[][] toStickers();
-    
-    /**
-     * Sets the cube to a state where the faces of the parts map to the
-     * provided stickers array.
-     *
-     * @param  stickers Sticker array to be reused. The method creates a new
-     *   array if this parameter is null.
-     */
-    void setToStickers(int[][] stickers);
+
 }

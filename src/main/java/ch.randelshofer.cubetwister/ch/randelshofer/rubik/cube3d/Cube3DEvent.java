@@ -48,10 +48,13 @@ public class Cube3DEvent extends java.util.EventObject {
     private int modifiersEx;
     @Nullable
     private MouseEvent mouseEvent;
-    /** A value between 0 and 3 if the part was scraped. Value -1 if the part
+    /**
+     * A value between 0 and 3 if the part was scraped. Value -1 if the part
      * was clicked.
      */
     private int swipeDirection;
+
+    private final Cube3D cube3d;
 
     /**
      * Creates new Cube3DEvent
@@ -82,6 +85,7 @@ public class Cube3DEvent extends java.util.EventObject {
                        int scraping,
                        @Nonnull MouseEvent mouseEvent) {
         super(source);
+        this.cube3d = source;
         this.partIndex = partIndex;
         this.orientation = orientation;
         this.sideIndex = sideIndex;
@@ -118,6 +122,7 @@ public class Cube3DEvent extends java.util.EventObject {
                        int scraping,
                        int modifiersEx) {
         super(source);
+        this.cube3d = source;
         this.partIndex = partIndex;
         this.orientation = orientation;
         this.sideIndex = sideIndex;

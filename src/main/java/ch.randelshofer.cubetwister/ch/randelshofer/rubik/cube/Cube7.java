@@ -491,17 +491,6 @@ public class Cube7 extends AbstractCube {
 
     @Override
     public void transform0(int axis, int layerMask, int angle) {
-            if (axis < 0 || axis > 2) {
-                throw new IllegalArgumentException("axis: " + axis);
-            }
-
-            if (layerMask < 0 || layerMask >= 1 << layerCount) {
-                throw new IllegalArgumentException("layerMask: " + layerMask);
-            }
-
-            if (angle < -2 || angle > 2) {
-                throw new IllegalArgumentException("angle: " + angle);
-            }
             if (angle == 0) {
                 return; // NOP
             }

@@ -4,8 +4,6 @@
  */
 package ch.randelshofer.rubik.cube;
 
-import org.jhotdraw.annotation.Nonnull;
-
 /**
  * Represents the state of a 6-times sliced cube (such as a V-Cube 6) by the 
  * location and orientation of its parts.
@@ -462,17 +460,6 @@ public class Cube6 extends AbstractCube {
 
     @Override
     public void transform0(int axis, int layerMask, int angle) {
-        if (axis < 0 || axis > 2) {
-            throw new IllegalArgumentException("axis: " + axis);
-        }
-
-        if (layerMask < 0 || layerMask >= 1 << layerCount) {
-            throw new IllegalArgumentException("layerMask: " + layerMask);
-        }
-
-        if (angle < -2 || angle > 2) {
-            throw new IllegalArgumentException("angle: " + angle);
-        }
         if (angle == 0) {
             return; // NOP
         }
@@ -1741,16 +1728,7 @@ public class Cube6 extends AbstractCube {
         }
     }
 
-    @Nonnull
-    @Override
-    public int[][] toStickers() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
-    @Override
-    public void setToStickers(int[][] stickers) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     @Override
     public int getPartSwipeAxis(int part, int orientation, int swipeDirection) {
