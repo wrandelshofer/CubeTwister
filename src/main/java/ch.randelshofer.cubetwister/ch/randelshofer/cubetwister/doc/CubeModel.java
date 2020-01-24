@@ -159,7 +159,7 @@ public class CubeModel
             basicSetIntScale(value);
             
             firePropertyChange(INT_SCALE_PROPERTY, oldValue, value);
-            firePropertyChange(CubeAttributes.SCALE_FACTOR_PROPERTY, new Float(oldValue / 100f), new Float(value / 100f));
+            firePropertyChange(CubeAttributes.SCALE_FACTOR_PROPERTY, oldValue / 100f, value / 100f);
             
             UndoableEdit edit = new UndoableIntEdit(this, "Scale", oldValue, value, getValueIsAdjusting()) {
     private final static long serialVersionUID = 1L;
@@ -167,7 +167,7 @@ public class CubeModel
                 public void revert(int a, int b) {
                     scale = b;
                     firePropertyChange(INT_SCALE_PROPERTY, a, b);
-                    firePropertyChange(CubeAttributes.SCALE_FACTOR_PROPERTY, new Float(a / 100f), new Float(b / 100f));
+                    firePropertyChange(CubeAttributes.SCALE_FACTOR_PROPERTY, a / 100f, b / 100f);
                 }
             };
             fireUndoableEditHappened(edit);
@@ -186,9 +186,9 @@ public class CubeModel
         if (value != explode) {
             int oldValue = explode;
             basicSetIntExplode(value);
-            
+
             firePropertyChange(INT_EXPLODE_PROPERTY, oldValue, value);
-            firePropertyChange(CubeAttributes.EXPLOSION_FACTOR_PROPERTY, new Float(oldValue / 100f), new Float(value / 100f));
+            firePropertyChange(CubeAttributes.EXPLOSION_FACTOR_PROPERTY, oldValue / 100f, value / 100f);
             
             UndoableEdit edit = new UndoableIntEdit(this, "Explode", oldValue, value, getValueIsAdjusting()) {
     private final static long serialVersionUID = 1L;
@@ -196,7 +196,7 @@ public class CubeModel
                 public void revert(int a, int b) {
                     explode = b;
                     firePropertyChange(INT_EXPLODE_PROPERTY, a, b);
-                    firePropertyChange(CubeAttributes.EXPLOSION_FACTOR_PROPERTY, new Float(a / 100f), new Float(b / 100f));
+                    firePropertyChange(CubeAttributes.EXPLOSION_FACTOR_PROPERTY, a / 100f, b / 100f);
                 }
             };
             fireUndoableEditHappened(edit);
@@ -213,9 +213,9 @@ public class CubeModel
         if (value != alpha) {
             int oldValue = alpha;
             basicSetIntAlpha(value);
-            
+
             firePropertyChange(INT_ALPHA_PROPERTY, oldValue, value);
-            firePropertyChange(CubeAttributes.ALPHA_PROPERTY, new Double(oldValue / 180d * Math.PI), new Double(value / 180d * Math.PI));
+            firePropertyChange(CubeAttributes.ALPHA_PROPERTY, oldValue / 180d * Math.PI, value / 180d * Math.PI);
             
             UndoableEdit edit = new UndoableIntEdit(this, "Alpha", oldValue, value, getValueIsAdjusting()) {
     private final static long serialVersionUID = 1L;
@@ -223,7 +223,7 @@ public class CubeModel
                 public void revert(int a, int b) {
                     alpha = b;
                     firePropertyChange(INT_ALPHA_PROPERTY, a, b);
-                    firePropertyChange(CubeAttributes.ALPHA_PROPERTY, new Double(a / 180d * Math.PI), new Double(b / 180d * Math.PI));
+                    firePropertyChange(CubeAttributes.ALPHA_PROPERTY, a / 180d * Math.PI, b / 180d * Math.PI);
                 }
             };
             fireUndoableEditHappened(edit);
@@ -240,9 +240,9 @@ public class CubeModel
         if (value != beta) {
             int oldValue = beta;
             basicSetIntBeta(value);
-            
+
             firePropertyChange(INT_BETA_PROPERTY, oldValue, value);
-            firePropertyChange(CubeAttributes.BETA_PROPERTY, new Double(oldValue / 180d * Math.PI), new Double(value / 180d * Math.PI));
+            firePropertyChange(CubeAttributes.BETA_PROPERTY, oldValue / 180d * Math.PI, value / 180d * Math.PI);
             
             UndoableEdit edit = new UndoableIntEdit(this, "Beta", oldValue, value, getValueIsAdjusting()) {
     private final static long serialVersionUID = 1L;
@@ -250,7 +250,7 @@ public class CubeModel
                 public void revert(int a, int b) {
                     beta = b;
                     firePropertyChange(INT_BETA_PROPERTY, a, b);
-                    firePropertyChange(CubeAttributes.BETA_PROPERTY, new Double(a / 180d * Math.PI), new Double(b / 180d * Math.PI));
+                    firePropertyChange(CubeAttributes.BETA_PROPERTY, a / 180d * Math.PI, b / 180d * Math.PI);
                 }
             };
             fireUndoableEditHappened(edit);
