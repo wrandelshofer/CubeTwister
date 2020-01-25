@@ -3,8 +3,6 @@
  */
 package ch.randelshofer.rubik.cube;
 
-import org.jhotdraw.annotation.Nonnull;
-
 /**
  * Represents the state of a 3-times sliced cube (Rubik's Cube) by the location
  * and orientation of its parts.
@@ -92,42 +90,11 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * For more information about the location and orientation of the parts see
  * {@link AbstractCube}.
- * <p>
- * <b>Stickers</b>
- * <p>
- * The following diagram shows the arrangement of stickers on a Rubik's Cube:
- * The number before the comma is the first dimension (faces), the number
- * after the comma is the second dimension (stickers).
- * <pre>
- *             +---+---+---+
- *             |1,0|1,1|1,2|
- *             +--- --- ---+
- *             |1,3|1,4|1,5|
- *             +--- --- ---+
- *             |1,6|1,7|1,8|
- * +---+---+---+---+---+---+---+---+---+---+---+---+
- * |3,0|3,1|3,2|2,0|2,1|2,2|0,0|0,1|0,2|5,0|5,1|5,2|
- * +--- --- ---+--- --- ---+--- --- ---+--- --- ---+
- * |3,3|3,4|3,5|2,3|2,4|2,5|0,3|0,4|0,5|5,3|5,4|5,5|
- * +--- --- ---+--- --- ---+--- --- ---+--- --- ---+
- * |3,6|3,7|3,8|2,6|2,7|2,8|0,0|0,1|0,2|5,0|5,1|5,2|
- * +---+---+---+---+---+---+---+---+---+---+---+---+
- *             |4,0|4,1|4,2|
- *             +--- --- ---+
- *             |4,3|4,4|4,5|
- *             +--- --- ---+
- *             |4,6|4,7|4,8|
- *             +---+---+---+
- * </pre>
  *
  * @author Werner Randelshofer
  */
 public class RubiksCube extends AbstractCube {
 
-    /**
-     * Set this variable to true to get debug output when the cube is transformed.
-     */
-    private final static boolean DEBUG = false;
     /**
      * Holds the number of face parts, which is 6.
      */
@@ -136,65 +103,7 @@ public class RubiksCube extends AbstractCube {
      * Holds the number of edge parts, which is 12.
      */
     public final static int NUMBER_OF_EDGE_PARTS = 12;
-    /**
-     * This is used for mapping side part locations
-     * to/from sticker positions on the cube.
-     *
-     * @see #toStickers
-     */
-    protected final static int[][] SIDE_TRANSLATION = {
-            {0, 4},
-            {1, 4},
-            {2, 4},
-            {3, 4},
-            {4, 4},
-            {5, 4}
-    };
-    /**
-     * This is used for mapping edge part locations and orientations
-     * to/from sticker positions on the cube.
-     * <p>
-     * Description:<br>
-     * edge orientation 0: face index, sticker index.
-     * edge orientation 1: face index, sticker index.
-     *
-     * @see #toStickers
-     */
-    protected final static int[][] EDGE_TRANSLATION = {
-            {1, 5, 0, 1}, // edge 0 ur
-            {0, 3, 2, 5}, //      1 rf
-            {4, 5, 0, 7}, //      2 dr
-            {5, 1, 1, 1}, //      3 bu
-            {0, 5, 5, 3}, //      4 rb
-            {5, 7, 4, 7}, //      5 bd
-            {1, 3, 3, 1}, //      6 ul
-            {3, 3, 5, 5}, //      7 lb
-            {4, 3, 3, 7}, //      8 dl
-            {2, 1, 1, 7}, //      9 fu
-            {3, 5, 2, 3}, //     10 lf
-            {2, 7, 4, 1} //     11 fd
-    };
-    /**
-     * This is used for mapping corner part locations and orientations
-     * to/from sticker positions on the cube.
-     * <p>
-     * Description:<br>
-     * corner orientation 0, face index, corner orientation 1, face index, corner orientation 2, face index
-     * <p>
-     * XXX - Move this into RubiksCube class.
-     *
-     * @see #toStickers
-     */
-    protected final static int[][] CORNER_TRANSLATION = {
-            {1, 8, 0, 0, 2, 2}, // 0 urf
-            {4, 2, 2, 8, 0, 6}, // 1 dfr
-            {1, 2, 5, 0, 0, 2}, // 2 ubr
-            {4, 8, 0, 8, 5, 6}, // 3 drb
-            {1, 0, 3, 0, 5, 2}, // 4 ulb
-            {4, 6, 5, 8, 3, 6}, // 5 dbl
-            {1, 6, 2, 0, 3, 2}, // 6 ufl
-            {4, 0, 3, 8, 2, 6} // 7 dlf
-    };
+
     /**
      * First dimension: side part index.
      * Second dimension: orientation.
@@ -576,45 +485,159 @@ public class RubiksCube extends AbstractCube {
             int an = (angle == -2) ? 2 : angle;
 
             if ((layerMask & 1) != 0) {
-                int repeat = switch (an) {
-                    case -1 -> 1;
-                    case 1 -> 3;
-                    default -> 2;
-                };
-                for (int i = 0; i < repeat; i++) {
-                    switch (axis) {
-                    case 0 -> twistL();
-                    case 1 -> twistD();
-                    case 2 -> twistB();
+                // twist at left, down, back
+                switch (axis) {
+                case 0: // x
+                    switch (an) {
+                    case -1:
+                        twistL();
+                        break;
+                    case 1:
+                        twistL();
+                        twistL();
+                        twistL();
+                        break;
+                    case 2:
+                        twistL();
+                        twistL();
+                        break;
+                    }
+                    break;
+                case 1: // y
+                    switch (an) {
+                    case -1:
+                        twistD();
+                        break;
+                    case 1:
+                        twistD();
+                        twistD();
+                        twistD();
+                        break;
+                    case 2:
+                        twistD();
+                        twistD();
+                        break;
+                    }
+                    break;
+                case 2: // z
+                    switch (an) {
+                    case -1:
+                        twistB();
+                        break;
+                    case 1:
+                        twistB();
+                        twistB();
+                        twistB();
+                        break;
+                    case 2:
+                        twistB();
+                        twistB();
+                        break;
                     }
                 }
             }
             if ((layerMask & 2) != 0) {
-                int repeat = switch (an) {
-                    case -1 -> 3;
-                    case 1 -> 1;
-                    default -> 2;
-                };
-                for (int i = 0; i < repeat; i++) {
-                    switch (axis) {
-                    case 0 -> twistMR();
-                    case 1 -> twistMU();
-                    case 2 -> twistMF();
+                // twist at left middle, down middle, back middle
+                switch (axis) {
+                case 0: // x
+                    switch (an) {
+                    case 1:
+                        twistMR();
+                        break;
+                    case -1:
+                        twistMR();
+                        twistMR();
+                        twistMR();
+                        break;
+                    case 2:
+                        twistMR();
+                        twistMR();
+                        break;
+                    }
+                    break;
+                case 1: // y
+                    switch (an) {
+                    case 1:
+                        twistMU();
+                        break;
+                    case -1:
+                        twistMU();
+                        twistMU();
+                        twistMU();
+                        break;
+                    case 2:
+                        twistMU();
+                        twistMU();
+                        break;
+                    }
+                    break;
+                case 2: // z
+                    switch (an) {
+                    case 1:
+                        twistMF();
+                        break;
+                    case -1:
+                        twistMF();
+                        twistMF();
+                        twistMF();
+                        break;
+                    case 2:
+                        twistMF();
+                        twistMF();
+                        break;
                     }
                 }
             }
 
             if ((layerMask & 4) != 0) {
-                int repeat = switch (an) {
-                    case -1 -> 3;
-                    case 1 -> 1;
-                    default -> 2;
-                };
-                for (int i = 0; i < repeat; i++) {
-                    switch (axis) {
-                    case 0 -> twistR();
-                    case 1 -> twistU();
-                    case 2 -> twistF();
+                // twist at right, top, front
+                switch (axis) {
+                case 0: // x
+                    switch (an) {
+                    case 1:
+                        twistR();
+                        break;
+                    case -1:
+                        twistR();
+                        twistR();
+                        twistR();
+                        break;
+                    case 2:
+                        twistR();
+                        twistR();
+                        break;
+                    }
+                    break;
+                case 1: // y
+                    switch (an) {
+                    case 1:
+                        twistU();
+                        break;
+                    case -1:
+                        twistU();
+                        twistU();
+                        twistU();
+                        break;
+                    case 2:
+                        twistU();
+                        twistU();
+                        break;
+                    }
+                    break;
+                case 2: // z
+                    switch (an) {
+                    case 1:
+                        twistF();
+                        break;
+                    case -1:
+                        twistF();
+                        twistF();
+                        twistF();
+                        break;
+                    case 2:
+                        twistF();
+                        twistF();
+                        break;
                     }
                 }
             }
@@ -888,209 +911,4 @@ public class RubiksCube extends AbstractCube {
         fourCycle(sideLoc, 0, 1, 3, 4, sideOrient, 1, 2, 3, 2, 4);
     }
 
-    /**
-     * Returns an array of stickers which reflect the current state of the cube.
-     * <p>
-     * The following diagram shows the indices of the array. The number before
-     * the comma is the first dimension (faces), the number after the comma
-     * is the second dimension (stickers).
-     * <p>
-     * The values of the array elements is the face index: 0..5.
-     * <pre>
-     *             +---+---+---+
-     *             |1,0|1,1|1,2|
-     *             +--- --- ---+
-     *             |1,3|1,4|1,5|
-     *             +--- --- ---+
-     *             |1,6|1,7|1,8|
-     * +---+---+---+---+---+---+---+---+---+---+---+---+
-     * |3,0|3,1|3,2|2,0|2,1|2,2|0,0|0,1|0,2|5,0|5,1|5,2|
-     * +--- --- ---+--- --- ---+--- --- ---+--- --- ---+
-     * |3,3|3,4|3,5|2,3|2,4|2,5|0,3|0,4|0,5|5,3|5,4|5,5|
-     * +--- --- ---+--- --- ---+--- --- ---+--- --- ---+
-     * |3,6|3,7|3,8|2,6|2,7|2,8|0,0|0,1|0,2|5,0|5,1|5,2|
-     * +---+---+---+---+---+---+---+---+---+---+---+---+
-     *             |4,0|4,1|4,2|
-     *             +--- --- ---+
-     *             |4,3|4,4|4,5|
-     *             +--- --- ---+
-     *             |4,6|4,7|4,8|
-     *             +---+---+---+
-     * </pre>
-     *
-     * @return A two dimensional array. First dimension: faces.
-     * Second dimension: sticker index on the faces.
-     */
-    @Nonnull
-    public int[][] toStickers() {
-        int[][] stickers = new int[6][9];
-
-        // Map side parts onto stickers.
-        for (int i = 0; i < 6; i++) {
-            int loc = sideLoc[i];
-            stickers[SIDE_TRANSLATION[i][0]][SIDE_TRANSLATION[i][1]] = SIDE_TRANSLATION[loc][0];
-        }
-
-        // Map edge parts onto stickers
-        for (int i = 0; i < 12; i++) {
-            int loc = edgeLoc[i];
-            int orient = edgeOrient[i];
-            stickers[EDGE_TRANSLATION[i][0]][EDGE_TRANSLATION[i][1]]
-                    = (orient == 0) ? EDGE_TRANSLATION[loc][0] : EDGE_TRANSLATION[loc][2];
-            stickers[EDGE_TRANSLATION[i][2]][EDGE_TRANSLATION[i][3]]
-                    = (orient == 0) ? EDGE_TRANSLATION[loc][2] : EDGE_TRANSLATION[loc][0];
-        }
-
-        // Map corner parts onto stickers
-        for (int i = 0; i < 8; i++) {
-            int loc = cornerLoc[i];
-            int orient = cornerOrient[i];
-            stickers[CORNER_TRANSLATION[i][0]][CORNER_TRANSLATION[i][1]]
-                    = (orient == 0)
-                    ? CORNER_TRANSLATION[loc][0]
-                    : ((orient == 1)
-                    ? CORNER_TRANSLATION[loc][2]
-                    : CORNER_TRANSLATION[loc][4]);
-            stickers[CORNER_TRANSLATION[i][2]][CORNER_TRANSLATION[i][3]]
-                    = (orient == 0)
-                    ? CORNER_TRANSLATION[loc][2]
-                    : ((orient == 1)
-                    ? CORNER_TRANSLATION[loc][4]
-                    : CORNER_TRANSLATION[loc][0]);
-            stickers[CORNER_TRANSLATION[i][4]][CORNER_TRANSLATION[i][5]]
-                    = (orient == 0)
-                    ? CORNER_TRANSLATION[loc][4]
-                    : ((orient == 1)
-                    ? CORNER_TRANSLATION[loc][0]
-                    : CORNER_TRANSLATION[loc][2]);
-        }
-
-        return stickers;
-    }
-
-    /**
-     * Sets the cube to a state where the faces of the parts map to the provided
-     * stickers array.
-     *
-     * @param stickers An array of dimensions [6][9] containing sticker values
-     *                 in the range [0,5] for the six faces right, up, front,
-     *                 left, down, back.
-     * @see #toStickers
-     */
-    public void setToStickers(int[][] stickers) {
-        int i = 0, j = 0, cube;
-
-        int[] tempSideLoc = new int[6];
-        int[] tempSideOrient = new int[6];
-        int[] tempEdgeLoc = new int[12];
-        int[] tempEdgeOrient = new int[12];
-        int[] tempCornerLoc = new int[8];
-        int[] tempCornerOrient = new int[8];
-
-        // Translate face cubes to match stickers.
-        try {
-            for (i = 0; i < 6; i++) {
-                for (j = 0; j < 6; j++) {
-                    if (SIDE_TRANSLATION[j][0] == stickers[i][SIDE_TRANSLATION[j][1]]) {
-                        tempSideLoc[i] = SIDE_TRANSLATION[j][0];
-                        break;
-                    }
-                }
-                //sideOrient[i] = 0; // already done by reset
-            }
-        } catch (IndexOutOfBoundsException e) {
-            throw new IllegalArgumentException("Invalid side cube " + i);
-        }
-
-        for (i = 0; i < 5; i++) {
-            for (j = i + 1; j < 6; j++) {
-                if (tempSideLoc[i] == tempSideLoc[j]) {
-                    throw new IllegalArgumentException("Duplicate side cubes " + i + "+" + j);
-                }
-            }
-        }
-        // Translate edge cubes to match stickers.
-        for (i = 0; i < 12; i++) {
-            int f0 = stickers[EDGE_TRANSLATION[i][0]][EDGE_TRANSLATION[i][1]];
-            int f1 = stickers[EDGE_TRANSLATION[i][2]][EDGE_TRANSLATION[i][3]];
-            for (cube = 0; cube
-                    < 12; cube++) {
-                if (EDGE_TRANSLATION[cube][0] == f0
-                        && EDGE_TRANSLATION[cube][2] == f1) {
-                    tempEdgeOrient[i] = 0; //??
-                    break;
-
-                } else if (EDGE_TRANSLATION[cube][0] == f1
-                        && EDGE_TRANSLATION[cube][2] == f0) {
-                    tempEdgeOrient[i] = 1;
-                    break;
-                }
-            }
-            if (cube == 12) {
-                throw new IllegalArgumentException("Invalid edge cube " + i);
-            }
-
-            tempEdgeLoc[i] = cube;
-        }
-
-        for (i = 0; i < 11; i++) {
-            for (j = i + 1; j < 12; j++) {
-                if (tempEdgeLoc[i] == tempEdgeLoc[j]) {
-                    throw new IllegalArgumentException(
-                            "Duplicate edge cubes tempEdgeLoc[" + i + "]=" + tempEdgeLoc[i] + " tempEdgeLoc[" + j + "]=" + tempEdgeLoc[j]);
-                }
-            }
-        }
-
-        // Translate corner cubes to match stickers.
-        for (i = 0; i < 8; i++) {
-            int f0 = stickers[CORNER_TRANSLATION[i][0]][CORNER_TRANSLATION[i][1]];
-            int f1 = stickers[CORNER_TRANSLATION[i][2]][CORNER_TRANSLATION[i][3]];
-            int f2 = stickers[CORNER_TRANSLATION[i][4]][CORNER_TRANSLATION[i][5]];
-            for (cube = 0; cube < 8; cube++) {
-                if (CORNER_TRANSLATION[cube][0] == f0
-                        && CORNER_TRANSLATION[cube][2] == f1
-                        && CORNER_TRANSLATION[cube][4] == f2) {
-                    tempCornerOrient[i] = 0;
-                    break;
-
-                } else if (CORNER_TRANSLATION[cube][0] == f2
-                        && CORNER_TRANSLATION[cube][2] == f0
-                        && CORNER_TRANSLATION[cube][4] == f1) {
-                    tempCornerOrient[i] = 1;
-                    break;
-
-                } else if (CORNER_TRANSLATION[cube][0] == f1
-                        && CORNER_TRANSLATION[cube][2] == f2
-                        && CORNER_TRANSLATION[cube][4] == f0) {
-                    tempCornerOrient[i] = 2;
-                    break;
-                }
-            }
-            if (cube == 8) {
-                throw new IllegalArgumentException("Invalid corner cube " + i);
-            }
-            tempCornerLoc[i] = cube;
-        }
-
-        for (i = 0; i < 7; i++) {
-            for (j = i + 1; j < 8; j++) {
-                if (tempCornerLoc[i] == tempCornerLoc[j]) {
-                    throw new IllegalArgumentException(
-                            "Duplicate corner cubes tempCornerLoc[" + i + "]=" + tempCornerLoc[i] + " tempCornerLoc[" + j + "]=" + tempCornerLoc[j]);
-                }
-            }
-        }
-
-        sideLoc = tempSideLoc;
-        sideOrient = tempSideOrient;
-        edgeLoc = tempEdgeLoc;
-        edgeOrient = tempEdgeOrient;
-        cornerLoc = tempCornerLoc;
-        cornerOrient = tempCornerOrient;
-
-        if (!isQuiet()) {
-            fireCubeChanged(new CubeEvent(this, 0, 0, 0));
-        }
-    }
 }

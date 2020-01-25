@@ -9,6 +9,7 @@ import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube.RubiksCube;
+import ch.randelshofer.rubik.cube.StickerCubes;
 import ch.randelshofer.rubik.cube3d.Cube3D;
 import ch.randelshofer.rubik.cube3d.Cube3DEvent;
 import ch.randelshofer.rubik.cube3d.Cube3DListener;
@@ -398,7 +399,7 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
         }
         try {
             mappedCube = new RubiksCube();
-            Cubes.setToStickers(mappedCube, stickerFaces);
+            StickerCubes.setToStickers(mappedCube, stickerFaces);
             // Method getMappedCube and getMappedPermutationString
             // depend on, that mappedCube is set to the current
             // mapping by this method.
@@ -424,7 +425,7 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
                 if (mappedCube == null) {
                     mappedCube = (Cube) cube.clone();
                 }
-                Cubes.setToStickers(mappedCube, stickerFaces);
+                StickerCubes.setToStickers(mappedCube, stickerFaces);
                 mappedCube.transform(cube);
                 return "mapped:\n" + Cubes.toPermutationString(mappedCube, notation);
             } else {

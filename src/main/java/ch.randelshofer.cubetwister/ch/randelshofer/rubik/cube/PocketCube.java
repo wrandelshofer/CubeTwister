@@ -4,19 +4,19 @@
 package ch.randelshofer.rubik.cube;
 
 /**
- * Represents the state of a 2-times sliced cube (Pocket Cube) by the location 
+ * Represents the state of a 2-times sliced cube (Pocket Cube) by the location
  * and orientation of its parts.
  * <p>
  * A Pocket Cube has 8 corner parts. The parts divide each face of the cube into
  * 2 x 2 layers.
  * <p>
- * The following diagram shows the initial orientations and locations of 
+ * The following diagram shows the initial orientations and locations of
  * the corner parts:
  * <pre>
  *         +---+---+
  *         |4.0|2.0|
- *         +--- ---+ 
- *  ulb ufl|6.0|0.0|urf ubr  
+ *         +--- ---+
+ *  ulb ufl|6.0|0.0|urf ubr
  * +---+---+---+---+---+---+---+---+
  * |4.1|6.2|6.1|0.2|0.1|2.2|2.1|4.2|
  * +--- ---+--- ---+--- ---+--- ---+
@@ -30,12 +30,13 @@ package ch.randelshofer.rubik.cube;
  * For more information about the location and orientation of the parts see
  * {@link AbstractCube}.
  *
- * 
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class PocketCube extends AbstractCube {
 
-    /** Creates a new instance. */
+    /**
+     * Creates a new instance.
+     */
     public PocketCube() {
         super(2);
     }
@@ -56,19 +57,18 @@ public class PocketCube extends AbstractCube {
     /**
      * Transforms the cube and fires a cubeTwisted event.
      *
-     * @param  axis  0=x, 1=y, 2=z axis.
-     * @param  layerMask A bitmask specifying the layers to be transformed.
-     *           The size of the layer mask depends on the value returned by
-     *           <code>getLayerCount(axis)</code>. For a 3x3x3 cube, the layer mask has the
-     *           following meaning:
-     *           3=rotate the whole cube;<br>
-     *           1=twist slice near the axis (left, down, back)<br>
-     *           2=twist slice far away from the axis (right, up, front)
-     * @param  angle  positive values=clockwise rotation<br>
-     *                negative values=counterclockwise rotation<br>
-     *               1=90 degrees<br>
-     *               2=180 degrees
-     *
+     * @param axis      0=x, 1=y, 2=z axis.
+     * @param layerMask A bitmask specifying the layers to be transformed.
+     *                  The size of the layer mask depends on the value returned by
+     *                  <code>getLayerCount(axis)</code>. For a 3x3x3 cube, the layer mask has the
+     *                  following meaning:
+     *                  3=rotate the whole cube;<br>
+     *                  1=twist slice near the axis (left, down, back)<br>
+     *                  2=twist slice far away from the axis (right, up, front)
+     * @param angle     positive values=clockwise rotation<br>
+     *                  negative values=counterclockwise rotation<br>
+     *                  1=90 degrees<br>
+     *                  2=180 degrees
      * @see #getLayerCount()
      */
     @Override
@@ -77,37 +77,111 @@ public class PocketCube extends AbstractCube {
             return; // NOP
         }
 
-        synchronized (this) {
+        // Convert angle -2 to 2 to simplify the switch statements
+        int an = (angle == -2) ? 2 : angle;
 
-            // Convert angle -2 to 2 to simplify the switch statements
-            int an = (angle == -2) ? 2 : angle;
-
-            if ((layerMask & 1) != 0) {
-                int repeat = switch (an) {
-                    case -1 -> 1;
-                    case 1 -> 3;
-                    default -> 2;
-                };
-                for (int i = 0; i < repeat; i++) {
-                    switch (axis) {
-                    case 0 -> twistL();
-                    case 1 -> twistD();
-                    case 2 -> twistB();
-                    }
+        if ((layerMask & 1) != 0) {
+            // twist at left, bottom, back
+            switch (axis) {
+            case 0: // x
+                switch (an) {
+                case -1:
+                    twistL();
+                    break;
+                case 1:
+                    twistL();
+                    twistL();
+                    twistL();
+                    break;
+                case 2:
+                    twistL();
+                    twistL();
+                    break;
+                }
+                break;
+            case 1: // y
+                switch (an) {
+                case -1:
+                    twistD();
+                    break;
+                case 1:
+                    twistD();
+                    twistD();
+                    twistD();
+                    break;
+                case 2:
+                    twistD();
+                    twistD();
+                    break;
+                }
+                break;
+            case 2: // z
+                switch (an) {
+                case -1:
+                    twistB();
+                    break;
+                case 1:
+                    twistB();
+                    twistB();
+                    twistB();
+                    break;
+                case 2:
+                    twistB();
+                    twistB();
+                    break;
                 }
             }
-            if ((layerMask & 2) != 0) {
-                int repeat = switch (an) {
-                    case -1 -> 3;
-                    case 1 -> 1;
-                    default -> 2;
-                };
-                for (int i = 0; i < repeat; i++) {
-                    switch (axis) {
-                    case 0 -> twistR();
-                    case 1 -> twistU();
-                    case 2 -> twistF();
-                    }
+        }
+        if ((layerMask & 2) != 0) {
+
+            // twist at right, top, front
+            switch (axis) {
+            case 0: // x
+                switch (an) {
+                case 1:
+                    twistR();
+                    break;
+                case -1:
+                    twistR();
+                    twistR();
+                    twistR();
+                    break;
+                case 2:
+                    twistR();
+                    twistR();
+                    break;
+                }
+                break;
+            case 1: // y
+                switch (an) {
+                case 1:
+                    twistU();
+                    break;
+                case -1:
+                    twistU();
+                    twistU();
+                    twistU();
+                    break;
+                case 2:
+                    twistU();
+                    twistU();
+                    break;
+                }
+                break;
+            case 2: // z
+                switch (an) {
+                case 1:
+                    twistF();
+                    break;
+                case -1:
+                    twistF();
+                    twistF();
+                    twistF();
+                    break;
+                case 2:
+                    twistF();
+                    twistF();
+                    break;
                 }
             }
         }

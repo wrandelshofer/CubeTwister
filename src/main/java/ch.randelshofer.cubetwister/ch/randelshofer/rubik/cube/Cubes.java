@@ -9,11 +9,7 @@ import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
 import org.jhotdraw.annotation.Nonnull;
-import org.jhotdraw.io.StreamPosTokenizer;
 
-import java.io.IOException;
-import java.io.StreamTokenizer;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -464,7 +460,7 @@ public class Cubes {
     @Nonnull
     public static String toNormalizedStickersString(@Nonnull Cube cube) {
         char[] faces = new char[]{'R', 'U', 'F', 'L', 'D', 'B'};
-        int[][] stickers = ((RubiksCube) cube).toStickers();
+        int[][] stickers = StickerCubes.rubiksCubeToStickers(((RubiksCube) cube));
 
         // This map is used to normalize the
         // possibly rotated cube.
@@ -551,7 +547,7 @@ public class Cubes {
      * @return Array of stickers: int[6][9]. Same structure as in method setStickers().
      */
     public static int[][] getMappedStickers(@Nonnull Cube cube, int[][] mappings) {
-        int[][] stickers = ((RubiksCube) cube).toStickers();
+        int[][] stickers = StickerCubes.rubiksCubeToStickers(((RubiksCube) cube));
         int[][] mappedStickers = stickers.clone();
 
         for (int face = 0; face < stickers.length; face++) {
@@ -1341,64 +1337,5 @@ public class Cubes {
         return buf.toString();
     }
 
-    /**
-     * Sets the cube to the specified stickers.
-     */
-    public static void setToStickers(@Nonnull Cube cube, int[] stickers) {
-        int[][] perFaceStickers = new int[6][cube.getLayerCount() * cube.getLayerCount()];
-        int index = 0;
-        for (int face = 0; face < perFaceStickers.length; face++) {
-            for (int sticker = 0; sticker < perFaceStickers[face].length; sticker++) {
-                perFaceStickers[face][sticker] = stickers[index++];
-            }
-        }
-        ((RubiksCube) cube).setToStickers(perFaceStickers);
-    }
 
-    /**
-     * Sets the cube to the specified stickers String.
-     *
-     * <pre>
-     * stickersString = faceString{6}
-     * faceString     = face, ':', face{9}, '\n'
-     * face     = 'U'|'R'|'F'|'L'|'D'|'B'
-     * </pre>
-     *
-     * @param cube           The cube to be set to the stickers string.
-     * @param stickersString A string with 6*12 characters.
-     * @param faces          A string with 6 characters identifying each face of the cube , e.g. "RUFLDB".
-     * @throws java.io.IOException If stickersString has bad syntax
-     */
-    public static void setToStickersString(@Nonnull Cube cube, @Nonnull String stickersString, @Nonnull String faces) throws IOException {
-        int[][] perFaceStickers = new int[6][9];
-        StreamPosTokenizer t = new StreamPosTokenizer(new StringReader(stickersString));
-        t.resetSyntax();
-        t.eolIsSignificant(true);
-        while (t.nextToken() != StreamTokenizer.TT_EOF) {
-            if (t.ttype < 0) {
-                throw new IOException("illegal token " + t.ttype + " at line=" + t.lineno() + ", pos=" + t.getStartPosition());
-            }
-            int face = faces.indexOf(t.ttype);
-            if (face == -1) {
-                throw new IOException("illegal face:" + (char) t.ttype + " at line=" + t.lineno() + ", pos=" + t.getStartPosition());
-            }
-            System.out.print(face + ":");
-            if (t.nextToken() != ':') {
-                throw new IOException("colon expected:" + (char) t.ttype + " at line=" + t.lineno() + ", pos=" + t.getStartPosition());
-            }
-            for (int i = 0; i < 9; i++) {
-                int sticker = faces.indexOf(t.nextToken());
-                if (sticker == -1) {
-                    throw new IOException("illegal sticker:" + (char) t.ttype + " at line=" + t.lineno() + ", pos=" + t.getStartPosition());
-                }
-                perFaceStickers[face][i] = sticker;
-                System.out.print(sticker);
-            }
-            while (t.nextToken() == '\n') {
-            }
-            System.out.println();
-            t.pushBack();
-        }
-        ((RubiksCube) cube).setToStickers(perFaceStickers);
-    }
 }

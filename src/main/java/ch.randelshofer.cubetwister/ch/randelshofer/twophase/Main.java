@@ -2,6 +2,7 @@ package ch.randelshofer.twophase;
 
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube.RubiksCube;
+import ch.randelshofer.rubik.cube.StickerCubes;
 import ch.randelshofer.rubik.notation.DefaultNotation;
 import ch.randelshofer.rubik.notation.Notation;
 import ch.randelshofer.rubik.parser.Node;
@@ -37,7 +38,7 @@ public class Main {
             String stickers = faceletsToStickers(facelets);
             RubiksCube cube = new RubiksCube();
             System.out.println(stickers);
-            Cubes.setToStickersString(cube, stickers, "RUFLDB");
+            StickerCubes.setToStickersString(cube, stickers, "RUFLDB");
             Notation notation = new DefaultNotation();
             ScriptParser parser = new ScriptParser(notation);
 
