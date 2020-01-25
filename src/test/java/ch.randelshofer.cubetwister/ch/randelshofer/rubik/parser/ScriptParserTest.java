@@ -28,6 +28,7 @@ class ScriptParserTest {
     private static boolean html = true;
 
     @Nonnull DefaultNotation defaultNotatioon = new DefaultNotation();
+    @Nonnull DefaultNotation defaultNotatioon4 = new DefaultNotation(4);
     @Nonnull DefaultNotation precircumfix = new DefaultNotation();
     @Nonnull DefaultNotation preinfix = new DefaultNotation();
     @Nonnull DefaultNotation postinfix = new DefaultNotation();
@@ -522,10 +523,20 @@ class ScriptParserTest {
 
     @Nonnull
     @TestFactory
+    public List<DynamicTest> testParseMixedCubes() {
+        return Arrays.asList(
+                dynamicTest("4:MB2", () -> doParse(defaultNotatioon4, "MB", "0..2 sequence{ 0..2 move{ 2:2:-1 } }")),
+                dynamicTest("4:(MB2 MR2)2 U- (MB2 MR2)2 U", () -> doParse(defaultNotatioon4, "(MB2 MR2)2 U- (MB2 MR2)2 U", "0..26 sequence{ 0..10 repetition{ 2, 0..9 grouping{ 1..4 move{ 2:2:-2 } 5..8 move{ 0:4:2 } } } 11..13 inversion{ 11..12 move{ 1:8:1 } } 14..24 repetition{ 2, 14..23 grouping{ 15..18 move{ 2:2:-2 } 19..22 move{ 0:4:2 } } } 25..26 move{ 1:8:1 } }")),
+                dynamicTest("4:U2 WR MD2 WR- U- WR MD2 WR- U-", () -> doParse(defaultNotatioon4, "U2 WR MD2 WR- U- WR MD2 WR- U-", "0..30 sequence{ 0..2 move{ 1:8:2 } 3..5 move{ 0:6:1 } 6..9 move{ 1:2:-2 } 10..13 inversion{ 10..12 move{ 0:6:1 } } 14..16 inversion{ 14..15 move{ 1:8:1 } } 17..19 move{ 0:6:1 } 20..23 move{ 1:2:-2 } 24..27 inversion{ 24..26 move{ 0:6:1 } } 28..30 inversion{ 28..29 move{ 1:8:1 } } }"))
+        );
+    }
+
+    @Nonnull
+    @TestFactory
     public List<DynamicTest> testParseAppliedPermutation() {
         final DefaultNotation notation7x7 = new DefaultNotation(7);
         final Cube7 cube7 = new Cube7();
-        cube7.transform(0, 32+64, 1);
+        cube7.transform(0, 32 + 64, 1);
 
         final DefaultNotation notation6x6 = new DefaultNotation(6);
         final Cube6 cube6 = new Cube6();
@@ -588,7 +599,7 @@ class ScriptParserTest {
         if (html) {
             System.out.println("  <article>");
             System.out.println("    <section class=\"unittest\">");
-            System.out.println("      <p class=\"input\">" + htmlEscape(script) + "</p>");
+            System.out.println("      <p class=\"input\">" + notation.getLayerCount() + ":" + htmlEscape(script) + "</p>");
             System.out.println("      <p class=\"expected\">" +
                     htmlEscape(actual) + "</p>");
             System.out.println("      <p class=\"actual\">" + "</p>");

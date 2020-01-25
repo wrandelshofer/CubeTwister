@@ -80,13 +80,14 @@ public class DefaultNotation extends AbstractNotation {
             addMoves(layerCount, all, all, angle, "C", suffix);
 
             // Mid-layer twists
+            int midLayer = layerCount / 2;
             for (int layer = 0; layer < layerCount - 2; layer++) {
                 int innerMiddle = (layerCount % 2 == 0)
-                        ? ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2 - (layer + 1) % 2)
-                        : ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2);
+                        ? ((1 << (layer + 1)) - 1) << (midLayer - (layer + 1) / 2 - (layer + 1) % 2)
+                        : ((1 << (layer + 1)) - 1) << (midLayer - (layer + 1) / 2);
                 int outerMiddle = (layerCount % 2 == 0)
-                        ? ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2)
-                        : ((1 << (layer + 1)) - 1) << (layerCount / 2 - (layer + 1) / 2);
+                        ? innerMiddle << 1
+                        : innerMiddle;
                 if (innerMiddle == all) {
                     continue;
                 }
@@ -144,7 +145,7 @@ public class DefaultNotation extends AbstractNotation {
                 addMoves(layerCount, outerTier, innerTier, angle, "V" + (layer + 1), suffix);
             }
             // Slice twists
-            for (int layer = 0; layer < layerCount / 2; layer++) {
+            for (int layer = 0; layer < midLayer; layer++) {
                 int innerTier = (1 << (layer + 1)) - 1;
                 int outerTier = all ^ ((1 << (layerCount - layer - 1)) - 1);
                 int slice = innerTier | outerTier;

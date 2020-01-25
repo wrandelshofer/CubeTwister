@@ -261,7 +261,7 @@ public class NotationModel extends InfoModel implements Notation {
         }
     }
 
-    public String getAllTwistTokens(Move key) {
+    public String getAllMoveTokens(Move key) {
         return twistToTokenMap.get(key);
     }
 

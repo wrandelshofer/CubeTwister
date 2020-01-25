@@ -12,6 +12,7 @@ import org.junit.jupiter.api.TestFactory;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -242,8 +243,24 @@ public class PatternDatabaseTest {
         }
 
         public void set(String key, String value) {
-            data[keys.indexOf(key)] = value;
+            ;
+            int index = ensureCapacity(key);
+            data[index] = value;
         }
+
+        private int ensureCapacity(String key) {
+            int index = keys.indexOf(key);
+            if (index == -1) {
+                String[] tmp = data;
+                data = new String[data.length + 1];
+                System.arraycopy(tmp, 0, data, 0, tmp.length);
+                keys = new ArrayList<>(keys);
+                keys.add(key);
+                return keys.size() - 1;
+            }
+            return index;
+        }
+
 
         @Override
         public DataRecord clone() {
@@ -305,21 +322,12 @@ public class PatternDatabaseTest {
 
         // Note: we can only check against values which are present in teh database
 
-        if (data.get("ltm") != null && !data.get("ltm").isEmpty()) {
             computed.set("ltm", data.get("ltm") == null ? null : mm.getLayerTurnCount() + (data.get("ltm").contains("*") ? "*" : ""));
-        }
-        if (data.get("qtm") != null && !data.get("qtm").isEmpty()) {
             computed.set("qtm", data.get("qtm") == null ? null : mm.getQuarterTurnCount() + (data.get("qtm").contains("*") ? "*" : ""));
-        }
-        if (data.get("ftm") != null && !data.get("ftm").isEmpty()) {
             computed.set("ftm", data.get("ftm") == null ? null : mm.getFaceTurnCount() + (data.get("ftm").contains("*") ? "*" : ""));
-        }
-        if (data.hasKey("btm") && !data.get("btm").isEmpty()) {
             computed.set("btm", data.get("btm") == null ? null : mm.getBlockTurnCount() + (data.get("btm").contains("*") ? "*" : ""));
-        }
 
 
-        if (data.get("permutation") != null && !data.get("permutation").isEmpty()) {
             // use the same permutation if it yields the same result
             computed.set("permutation", Cubes.toPermutationString(cube, notation).replace('\n', ' '));
             try {
@@ -333,11 +341,19 @@ public class PatternDatabaseTest {
             } catch (ParseException e) {
                 // this will show up as a difference in the permutation string
             }
+
+        //if (!data.equals(computed)) {
+        System.out.println("computed: " + computed);
+        // }
+        DataRecord actual = data.clone();
+        for (String key : data.keys) {
+            if (data.get(key) != null && data.get(key).length() > 0) {
+                actual.set(key, computed.get(key));
+            }
         }
-        if (!data.equals(computed)) {
-            System.out.println("computed: " + computed);
-        }
-        assertEquals(data, computed);
+
+
+        assertEquals(data, actual);
     }
 
 

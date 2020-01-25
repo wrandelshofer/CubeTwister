@@ -55,14 +55,14 @@ import java.util.List;
 
 /**
  * Holds a CubeTwister document.
- *
+ * <p>
  * A document is a tree of EntityModels.
- *
+ * <p>
  * DocumentModels must be self-contained, that is, the
  * the EntityModels in this DocumentModel must not have
  * a reference to an EntityModel in another DocumentModel.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class DocumentModel extends DefaultTreeModel
         implements MutableTreeModel, Undoable {
@@ -74,9 +74,9 @@ public class DocumentModel extends DefaultTreeModel
     public final static int SCRIPT_INDEX = 2;
     public final static int TEXT_INDEX = 3;
     private final static String[] NODE_TYPES = {
-        "Cube", "Notation", "Script", "Note"
+            "Cube", "Notation", "Script", "Note"
     };
-    private final static HashMap<String, Syntax> syntaxValueSet = new HashMap<String,Syntax>();
+    private final static HashMap<String, Syntax> syntaxValueSet = new HashMap<String, Syntax>();
 
     static {
         syntaxValueSet.put("PREFIX", Syntax.PREFIX);
@@ -84,14 +84,16 @@ public class DocumentModel extends DefaultTreeModel
         syntaxValueSet.put("HEADER", Syntax.PRECIRCUMFIX);
         syntaxValueSet.put("TAIL", Syntax.POSTCIRCUMFIX);
     }
-    private final static HashMap<String,Integer> axisValueSet = new HashMap<String,Integer>();
+
+    private final static HashMap<String, Integer> axisValueSet = new HashMap<String, Integer>();
 
     static {
         axisValueSet.put("x", 0);
         axisValueSet.put("y", 1);
         axisValueSet.put("z", 2);
     }
-    private final static HashMap<String,Boolean> scriptTypeValueSet = new HashMap<String,Boolean>();
+
+    private final static HashMap<String, Boolean> scriptTypeValueSet = new HashMap<String, Boolean>();
 
     static {
         scriptTypeValueSet.put("generator", true);
@@ -100,16 +102,19 @@ public class DocumentModel extends DefaultTreeModel
 
     @Nullable
     private CubeModel defaultCube;
-    /** Key = LayerCount, Value = NotationModel. */
+    /**
+     * Key = LayerCount, Value = NotationModel.
+     */
     @Nullable
-    private HashMap<Integer,NotationModel> defaultNotation = new HashMap<Integer,NotationModel>();
+    private HashMap<Integer, NotationModel> defaultNotation = new HashMap<Integer, NotationModel>();
     public static final String PROP_DEFAULT_CUBE = "DefaultCube";
     public static final String PROP_DEFAULT_NOTATION = "DefaultNotation";
     @Nullable
     protected PropertyChangeSupport propertySupport = new PropertyChangeSupport(this);
-  
+
     /**
      * The dispatcher is used for lengthy background operations.
+     *
      * @see #dispatch(Runnable)
      */
     @Nullable
@@ -151,7 +156,7 @@ public class DocumentModel extends DefaultTreeModel
     @Nonnull
     @Override
     public EntityModel getRoot() {
-        return (EntityModel)super.getRoot();
+        return (EntityModel) super.getRoot();
     }
 
     /**
@@ -228,7 +233,7 @@ public class DocumentModel extends DefaultTreeModel
         nodeChanged(newValue);
 
         UndoableEdit edit = new UndoableObjectEdit(this, "Default", oldValue, newValue) {
-    private final static long serialVersionUID = 1L;
+            private final static long serialVersionUID = 1L;
 
             @Override
             public void revert(Object a, Object b) {
@@ -258,18 +263,18 @@ public class DocumentModel extends DefaultTreeModel
 
         // make sure that the notation is only represented once as the default
         defaultNotation.values().remove(value);
-        defaultNotation.put(new Integer(value.getLayerCount()), value);
+        defaultNotation.put(value.getLayerCount(), value);
         propertySupport.firePropertyChange(PROP_DEFAULT_NOTATION, oldValue, value);
 
         nodeChanged(oldValue);
         nodeChanged(value);
 
         UndoableEdit edit = new UndoableObjectEdit(this, "Default", oldValue, value) {
-    private final static long serialVersionUID = 1L;
+            private final static long serialVersionUID = 1L;
 
             @Override
             public void revert(Object a, @Nonnull Object b) {
-                defaultNotation.put(new Integer(((NotationModel) b).getLayerCount()), (NotationModel) b);
+                defaultNotation.put(((NotationModel) b).getLayerCount(), (NotationModel) b);
                 propertySupport.firePropertyChange(PROP_DEFAULT_NOTATION, a, b);
             }
         };
@@ -352,7 +357,7 @@ public class DocumentModel extends DefaultTreeModel
         // cubes and notations. Then we write texts, which
         // may reference cubes, notations and scripts.
         int id = 0;
-        HashMap<Object,Integer> objects = new HashMap<Object,Integer>();
+        HashMap<Object, Integer> objects = new HashMap<Object, Integer>();
 
         // Create the DOM XMLElement. Our Markup language
         // is CubeMarkup.
@@ -366,351 +371,29 @@ public class DocumentModel extends DefaultTreeModel
         // ------------------------------------
         // Write Cubes
         for (EntityModel child : getChild(getRoot(), CUBE_INDEX).getChildren()) {
-            CubeModel item = (CubeModel) child;
-            if (!isWriteMember(item)) {
-                continue;
-            }
-
-
-            // Assign an id to the object and put it into our HashMap.
-            objects.put(item, new Integer(++id));
-
-            // Create the document element.
-            elem = doc.createElement("Cube");
-            elem.setAttribute("id", "o" + (id));
-
-            elem.setAttribute("kind", item.getKind().getAlternativeName(0));
-
-            if (item == getDefaultCube()) {
-                elem.setAttribute("default", "true");
-            }
-            elem.setAttribute("scale", Integer.toString(item.getIntScale()));
-            elem.setAttribute("explode", Integer.toString(item.getIntExplode()));
-            elem.setAttribute("alpha", Integer.toString(item.getIntAlpha()));
-            elem.setAttribute("beta", Integer.toString(item.getIntBeta()));
-            elem.setAttribute("twistDuration", Integer.toString(item.getTwistDuration()));
-            elem.setColorAttribute("backgroundColor", item.getFrontBgColor(), Color.WHITE);
-            elem.setColorAttribute("rearBackgroundColor", item.getRearBgColor(), Color.WHITE);
-            if (item.getName() != null) {
-                elem2 = doc.createElement("Name");
-                elem2.setContent(item.getName());
-                elem.addChild(elem2);
-            }
-            if (item.getDescription() != null) {
-                elem2 = doc.createElement("Description");
-                elem2.setContent(item.getDescription());
-                elem.addChild(elem2);
-            }
-            if (item.getAuthor() != null) {
-                elem2 = doc.createElement("Author");
-                elem2.setContent(item.getAuthor());
-                elem.addChild(elem2);
-            }
-            if (item.getDate() != null) {
-                elem2 = doc.createElement("Date");
-                elem2.setContent(item.getDate());
-                elem.addChild(elem2);
-            }
-            float[] colorComponents = new float[4];
-            for (EntityModel child2 : item.getColors().getChildren()) {
-                CubeColorModel color = (CubeColorModel) child2;
-
-                // Assign an id to the object and put it into our HashMap.
-                objects.put(color, new Integer(++id));
-
-                // Create the document element
-                elem2 = doc.createElement("Color");
-                elem2.setAttribute("id", "o" + (id));
-                if (color.getColor() != null) {
-                    elem2.setAttribute("argb", Integer.toHexString(color.getColor().getRGB()));
-                    elem2.setContent(color.getName());
-                    elem.addChild(elem2);
-                }
-            }
-            int j = 0;
-            for (EntityModel child2 : item.getParts().getChildren()) {
-                CubePartModel part = (CubePartModel) child2;
-
-                elem2 = doc.createElement("Part");
-                elem2.setAttribute("index", Integer.toString(j++));
-                elem2.setAttribute("visible", Boolean.toString(part.isVisible()));
-                elem2.setAttribute("fillColorRef", "o" + objects.get(part.getFillColorModel()));
-                elem2.setAttribute("outlineColorRef", "o" + objects.get(part.getOutlineColorModel()));
-                elem.addChild(elem2);
-            }
-            j = 0;
-            for (EntityModel child2: item.getStickers().getChildren()) {
-                CubeStickerModel sticker = (CubeStickerModel) child2;
-
-                elem2 = doc.createElement("Sticker");
-                elem2.setAttribute("index", Integer.toString(j++));
-                elem2.setAttribute("visible", Boolean.toString(sticker.isVisible()));
-                elem2.setAttribute("fillColorRef", "o" + objects.get(sticker.getFillColorModel()));
-                elem.addChild(elem2);
-            }
-
-            if (item.getStickersImageModel().hasImage()) {
-                elem2 = doc.createElement("StickersImage");
-                elem2.setAttribute("visible", Boolean.toString(item.isStickersImageVisible()));
-                elem2.setContent(item.getStickersImageModel().getBase64Image());
-                elem.addChild(elem2);
-            }
-            if (item.getFrontBgImageModel().hasImage()) {
-                elem2 = doc.createElement("FrontBgImage");
-                elem2.setAttribute("visible", Boolean.toString(item.isFrontBgImageVisible()));
-                elem2.setContent(item.getFrontBgImageModel().getBase64Image());
-                elem.addChild(elem2);
-            }
-            if (item.getRearBgImageModel().hasImage()) {
-                elem2 = doc.createElement("RearBgImage");
-                elem2.setAttribute("visible", Boolean.toString(item.isRearBgImageVisible()));
-                elem2.setContent(item.getRearBgImageModel().getBase64Image());
-                elem.addChild(elem2);
-            }
-            docRoot.addChild(elem);
+            id = writeCube(id, objects, doc, docRoot, (CubeModel) child);
         }
 
         // ------------------------------------
         // Write Notations
         String[] axisTable = {"x", "y", "z"};
-        for (EntityModel child: getChild(getRoot(), NOTATION_INDEX).getChildren()) {
-            NotationModel item = (NotationModel) child;
-            if (!isWriteMember(item)) {
-                continue;
-            }
-
-            // Assign an id to the object and put it into our HashMap.
-            objects.put(item, new Integer(++id));
-
-            // Create the document element.
-            elem = doc.createElement("Notation");
-            elem.setAttribute("id", "o" + (id));
-            elem.setAttribute("layerCount", item.getLayerCount());
-
-
-            if (item.isDefaultNotation()) {
-                elem.setAttribute("default", "true");
-            }
-
-            if (item.getName() != null) {
-                elem2 = doc.createElement("Name");
-                elem2.setContent(item.getName());
-                elem.addChild(elem2);
-            }
-            if (item.getDescription() != null) {
-                elem2 = doc.createElement("Description");
-                elem2.setContent(item.getDescription());
-                elem.addChild(elem2);
-            }
-            if (item.getAuthor() != null) {
-                elem2 = doc.createElement("Author");
-                elem2.setContent(item.getAuthor());
-                elem.addChild(elem2);
-            }
-            if (item.getDate() != null) {
-                elem2 = doc.createElement("Date");
-                elem2.setContent(item.getDate());
-                elem.addChild(elem2);
-            }
-
-            LinkedList<Symbol> statements = new LinkedList<Symbol>();
-            statements.add(Symbol.COMMENT);
-            statements.addAll(Symbol.STATEMENT.getSubSymbols());
-
-            for (Symbol s : statements) {
-                elem2 = doc.createElement("Statement");
-                elem2.setAttribute("symbol", s.toString());
-                if (s == Symbol.MOVE) {
-                    elem3 = doc.createElement("Statement");
-                    elem3.setAttribute("symbol", s.toString());
-                    elem3.setAttribute("enabled", false);
-
-                    // We sort move symbols to generate XML files with a
-                    // consistent output which can be easily diffed.
-                    ArrayList<Move> moveSymbols = new ArrayList<Move>(item.getAllMoveSymbols());
-                    Collections.sort(moveSymbols);
-                    for (Move ts : moveSymbols) {
-                        String allTokens = (ts == null) ? null : item.getAllTwistTokens(ts);
-                        if (allTokens != null && allTokens.length() > 0) {
-                            elem4 = doc.createElement("Token");
-                            elem4.setAttribute("axis", axisTable[ts.getAxis()]);
-                            elem4.setAttribute("angle", ts.getAngle() * 90);
-                            elem4.setAttribute("layerList", ts.getLayerList());
-                            elem4.setContent(Normalizer.normalize(allTokens, Normalizer.Form.NFC));
-                            if (item.isTwistSupported(ts)) {
-                                elem2.addChild(elem4);
-                            } else {
-                                elem3.addChild(elem4);
-                            }
-                        }
-                    }
-                    // disabled twists
-                    if (elem3.getChildren().size() > 0) {
-                        elem.addChild(elem3);
-                    }
-                } else if (s.isTerminalSymbol()) {
-                    if (!item.isSupported(s)) {
-                        elem2.setAttribute("enabled", false);
-                    }
-                    if (item.getAllTokens(s) != null) {
-                        if (item.getAllTokens(s) != null && item.getAllTokens(s).length() > 0) {
-                            elem3 = doc.createElement("Token");
-                            elem3.setAttribute("symbol", s.toString());
-                            elem3.setContent(Normalizer.normalize(item.getAllTokens(s), Normalizer.Form.NFC));
-                            elem2.addChild(elem3);
-                        }
-                    }
-                } else {
-                    if (!item.isSupported(s)) {
-                        elem2.setAttribute("enabled", false);
-                    }
-                    if (item.getSyntax(s) != null) {
-                        elem2.setAttribute("syntax", item.getSyntax(s).toString());
-                    }
-                    for (Symbol t : s.getSubSymbols()) {
-                        if (item.getAllTokens(t) != null && item.getAllTokens(t).length() > 0) {
-                            elem3 = doc.createElement("Token");
-                            elem3.setAttribute("symbol", t.toString());
-                            elem3.setContent(Normalizer.normalize(item.getAllTokens(t), Normalizer.Form.NFC));
-                            elem2.addChild(elem3);
-                        }
-                    }
-                }
-                elem.addChild(elem2);
-            }
-
-
-
-
-            // Write macros
-            for (EntityModel child2:item.getMacroModels().getChildren()) {
-                MacroModel macro = (MacroModel) child2;
-                elem2 = doc.createElement("Macro");
-                elem2.setAttribute("identifier", Normalizer.normalize(macro.getIdentifier(), Normalizer.Form.NFC));
-
-                if (macro.getScript() != null && macro.getScript().length() > 0) {
-                    elem3 = doc.createElement("Source");
-                    elem3.setContent(Normalizer.normalize(macro.getScript(), Normalizer.Form.NFC));
-                    elem2.addChild(elem3);
-                }
-                if (macro.getDescription() != null && macro.getDescription().length() > 0) {
-                    elem3 = doc.createElement("Description");
-                    elem3.setContent(macro.getDescription());
-                    elem2.addChild(elem3);
-                }
-                elem.addChild(elem2);
-            }
-            docRoot.addChild(elem);
+        for (EntityModel child : getChild(getRoot(), NOTATION_INDEX).getChildren()) {
+            id = writeNotation(id, objects, doc, docRoot, axisTable, (NotationModel) child);
         }
 
-// ------------------------------------
-// Write Scripts
-        for (EntityModel child: getChild(getRoot(), SCRIPT_INDEX).getChildren()) {
-            ScriptModel item = (ScriptModel) child;
-            if (!isWriteMember(item)) {
-                continue;
-            }
-
-            // Assign an id to the object and put it into our HashMap.
-            objects.put(item, new Integer(++id));
-
-            // Create the document element.
-            elem = doc.createElement("Script");
-            elem.setAttribute("id", "o" + (id));
-            if (item.getNotationModel() != null) {
-                elem.setAttribute("notationRef", "o" + objects.get(item.getNotationModel()));
-            }
-            if (item.getCubeModel() != null) {
-                elem.setAttribute("cubeRef", "o" + objects.get(item.getCubeModel()));
-            }
-            elem.setAttribute("scriptType", item.isGenerator() ? "generator" : "solver");
-
-            if (item.getName() != null) {
-                elem2 = doc.createElement("Name");
-                elem2.setContent(item.getName());
-                elem.addChild(elem2);
-            }
-            if (item.getDescription() != null) {
-                elem2 = doc.createElement("Description");
-                elem2.setContent(item.getDescription());
-                elem.addChild(elem2);
-            }
-            if (item.getScript() != null) {
-                elem2 = doc.createElement("Source");
-                if (item.getScript() != null) {
-                    elem2.setContent(Normalizer.normalize(item.getScript(), Normalizer.Form.NFC));
-                }
-                elem.addChild(elem2);
-            }
-            if (item.getAuthor() != null) {
-                elem2 = doc.createElement("Author");
-                elem2.setContent(item.getAuthor());
-                elem.addChild(elem2);
-            }
-            if (item.getDate() != null) {
-                elem2 = doc.createElement("Date");
-                elem2.setContent(item.getDate());
-                elem.addChild(elem2);
-            }
-            for (EntityModel child2 : item.getMacroModels().getChildren()) {
-                MacroModel macro = (MacroModel) child2;
-                elem2 = doc.createElement("Macro");
-                elem2.setAttribute("identifier", Normalizer.normalize(macro.getIdentifier(), Normalizer.Form.NFC));
-
-                if (macro.getScript() != null && macro.getScript().length() > 0) {
-                    elem3 = doc.createElement("Source");
-                    elem3.setContent(Normalizer.normalize(macro.getScript(), Normalizer.Form.NFC));
-                    elem2.addChild(elem3);
-                }
-                if (macro.getDescription() != null && macro.getDescription().length() > 0) {
-                    elem3 = doc.createElement("Description");
-                    elem3.setContent(macro.getDescription());
-                    elem2.addChild(elem3);
-                }
-                elem.addChild(elem2);
-            }
-            docRoot.addChild(elem);
+        // ------------------------------------
+        // Write Scripts
+        for (EntityModel child : getChild(getRoot(), SCRIPT_INDEX).getChildren()) {
+            id = writeScript(id, objects, doc, docRoot, (ScriptModel) child);
         }
 
-// ------------------------------------
-// Write Texts
-        for (EntityModel child: getChild(getRoot(), TEXT_INDEX).getChildren()) {
-            TextModel item = (TextModel) child;
-            if (!isWriteMember(item)) {
-                continue;
-            }
-
-            // Assign an id to the object and put it into our HashMap.
-            objects.put(item, new Integer(++id));
-
-            // Create the document element.
-            elem = doc.createElement("Text");
-            elem.setAttribute("id", "o" + (id));
-
-            if (item.getName() != null) {
-                elem2 = doc.createElement("Title");
-                elem2.setContent(item.getName());
-                elem.addChild(elem2);
-            }
-            if (item.getDescription() != null) {
-                elem2 = doc.createElement("Body");
-                elem2.setContent(item.getDescription());
-                elem.addChild(elem2);
-            }
-            if (item.getAuthor() != null) {
-                elem2 = doc.createElement("Author");
-                elem2.setContent(item.getAuthor());
-                elem.addChild(elem2);
-            }
-            if (item.getDate() != null) {
-                elem2 = doc.createElement("Date");
-                elem2.setContent(item.getDate());
-                elem.addChild(elem2);
-            }
-            docRoot.addChild(elem);
+        // ------------------------------------
+        // Write Texts
+        for (EntityModel child : getChild(getRoot(), TEXT_INDEX).getChildren()) {
+            id = writeText(id, objects, doc, docRoot, (TextModel) child);
         }
 
-// Write the document to the stream
+        // Write the document to the stream
         doc.print(out);
         out.flush();
         /*
@@ -718,6 +401,360 @@ public class DocumentModel extends DefaultTreeModel
         throw new IOException(e.toString());
         }*/
         javax.swing.text.GlyphView r;
+    }
+
+    private int writeText(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, TextModel child) {
+        XMLElement elem;
+        XMLElement elem2;
+        TextModel item = child;
+        if (!isWriteMember(item)) {
+            return id;
+        }
+
+        // Assign an id to the object and put it into our HashMap.
+        objects.put(item, ++id);
+
+        // Create the document element.
+        elem = doc.createElement("Text");
+        elem.setAttribute("id", "o" + (id));
+
+        if (item.getName() != null) {
+            elem2 = doc.createElement("Title");
+            elem2.setContent(item.getName());
+            elem.addChild(elem2);
+        }
+        if (item.getDescription() != null) {
+            elem2 = doc.createElement("Body");
+            elem2.setContent(item.getDescription());
+            elem.addChild(elem2);
+        }
+        if (item.getAuthor() != null) {
+            elem2 = doc.createElement("Author");
+            elem2.setContent(item.getAuthor());
+            elem.addChild(elem2);
+        }
+        if (item.getDate() != null) {
+            elem2 = doc.createElement("Date");
+            elem2.setContent(item.getDate());
+            elem.addChild(elem2);
+        }
+        docRoot.addChild(elem);
+        return id;
+    }
+
+    private int writeScript(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, ScriptModel child) {
+        XMLElement elem;
+        XMLElement elem2;
+        XMLElement elem3;
+        ScriptModel item = child;
+        if (!isWriteMember(item)) {
+            return id;
+        }
+
+        // Assign an id to the object and put it into our HashMap.
+        objects.put(item, ++id);
+
+        // Create the document element.
+        elem = doc.createElement("Script");
+        elem.setAttribute("id", "o" + (id));
+        if (item.getNotationModel() != null) {
+            elem.setAttribute("notationRef", "o" + objects.get(item.getNotationModel()));
+        }
+        if (item.getCubeModel() != null) {
+            elem.setAttribute("cubeRef", "o" + objects.get(item.getCubeModel()));
+        }
+        elem.setAttribute("scriptType", item.isGenerator() ? "generator" : "solver");
+
+        if (item.getName() != null) {
+            elem2 = doc.createElement("Name");
+            elem2.setContent(item.getName());
+            elem.addChild(elem2);
+        }
+        if (item.getDescription() != null) {
+            elem2 = doc.createElement("Description");
+            elem2.setContent(item.getDescription());
+            elem.addChild(elem2);
+        }
+        if (item.getScript() != null) {
+            elem2 = doc.createElement("Source");
+            if (item.getScript() != null) {
+                elem2.setContent(Normalizer.normalize(item.getScript(), Normalizer.Form.NFC));
+            }
+            elem.addChild(elem2);
+        }
+        if (item.getAuthor() != null) {
+            elem2 = doc.createElement("Author");
+            elem2.setContent(item.getAuthor());
+            elem.addChild(elem2);
+        }
+        if (item.getDate() != null) {
+            elem2 = doc.createElement("Date");
+            elem2.setContent(item.getDate());
+            elem.addChild(elem2);
+        }
+        for (EntityModel child2 : item.getMacroModels().getChildren()) {
+            MacroModel macro = (MacroModel) child2;
+            elem2 = doc.createElement("Macro");
+            elem2.setAttribute("identifier", Normalizer.normalize(macro.getIdentifier(), Normalizer.Form.NFC));
+
+            if (macro.getScript() != null && macro.getScript().length() > 0) {
+                elem3 = doc.createElement("Source");
+                elem3.setContent(Normalizer.normalize(macro.getScript(), Normalizer.Form.NFC));
+                elem2.addChild(elem3);
+            }
+            if (macro.getDescription() != null && macro.getDescription().length() > 0) {
+                elem3 = doc.createElement("Description");
+                elem3.setContent(macro.getDescription());
+                elem2.addChild(elem3);
+            }
+            elem.addChild(elem2);
+        }
+        docRoot.addChild(elem);
+        return id;
+    }
+
+    private int writeNotation(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, String[] axisTable, NotationModel child) {
+        XMLElement elem;
+        XMLElement elem2;
+        XMLElement elem3;
+        XMLElement elem4;
+        NotationModel item = child;
+        if (!isWriteMember(item)) {
+            return id;
+        }
+
+        // Assign an id to the object and put it into our HashMap.
+        objects.put(item, ++id);
+
+        // Create the document element.
+        elem = doc.createElement("Notation");
+        elem.setAttribute("id", "o" + (id));
+        elem.setAttribute("layerCount", item.getLayerCount());
+
+
+        if (item.isDefaultNotation()) {
+            elem.setAttribute("default", "true");
+        }
+
+        if (item.getName() != null) {
+            elem2 = doc.createElement("Name");
+            elem2.setContent(item.getName());
+            elem.addChild(elem2);
+        }
+        if (item.getDescription() != null) {
+            elem2 = doc.createElement("Description");
+            elem2.setContent(item.getDescription());
+            elem.addChild(elem2);
+        }
+        if (item.getAuthor() != null) {
+            elem2 = doc.createElement("Author");
+            elem2.setContent(item.getAuthor());
+            elem.addChild(elem2);
+        }
+        if (item.getDate() != null) {
+            elem2 = doc.createElement("Date");
+            elem2.setContent(item.getDate());
+            elem.addChild(elem2);
+        }
+
+        LinkedList<Symbol> statements = new LinkedList<Symbol>();
+        statements.add(Symbol.COMMENT);
+        statements.addAll(Symbol.STATEMENT.getSubSymbols());
+
+        for (Symbol s : statements) {
+            elem2 = doc.createElement("Statement");
+            elem2.setAttribute("symbol", s.toString());
+            if (s.isTerminalSymbol()) {
+                if (!item.isSupported(s)) {
+                    elem2.setAttribute("enabled", false);
+                }
+                if (item.getAllTokens(s) != null) {
+                    if (item.getAllTokens(s) != null && item.getAllTokens(s).length() > 0) {
+                        elem3 = doc.createElement("Token");
+                        elem3.setAttribute("symbol", s.toString());
+                        elem3.setContent(Normalizer.normalize(item.getAllTokens(s), Normalizer.Form.NFC));
+                        elem2.addChild(elem3);
+                    }
+                }
+            } else {
+                if (!item.isSupported(s)) {
+                    elem2.setAttribute("enabled", false);
+                }
+                if (item.getSyntax(s) != null) {
+                    elem2.setAttribute("syntax", item.getSyntax(s).toString());
+                }
+                for (Symbol t : s.getSubSymbols()) {
+                    if (item.getAllTokens(t) != null && item.getAllTokens(t).length() > 0) {
+                        elem3 = doc.createElement("Token");
+                        elem3.setAttribute("symbol", t.toString());
+                        elem3.setContent(Normalizer.normalize(item.getAllTokens(t), Normalizer.Form.NFC));
+                        elem2.addChild(elem3);
+                    }
+                }
+            }
+            elem.addChild(elem2);
+        }
+
+        // Write moves
+        {
+            elem2 = doc.createElement("Statement");
+            elem2.setAttribute("symbol", Symbol.MOVE.toString());
+            elem2.setAttribute("enabled", false);
+
+            // We sort move symbols to generate XML files with a
+            // consistent output which can be easily diffed.
+            ArrayList<Move> moveSymbols = new ArrayList<>(item.getAllMoveSymbols());
+            Collections.sort(moveSymbols);
+            for (Move ts : moveSymbols) {
+                String allTokens = (ts == null) ? null : item.getAllMoveTokens(ts);
+                if (allTokens != null && allTokens.length() > 0) {
+                    elem4 = doc.createElement("Token");
+                    elem4.setAttribute("axis", axisTable[ts.getAxis()]);
+                    elem4.setAttribute("angle", ts.getAngle() * 90);
+                    elem4.setAttribute("layerList", ts.getLayerList());
+                    elem4.setContent(Normalizer.normalize(allTokens, Normalizer.Form.NFC));
+                    if (item.isTwistSupported(ts)) {
+                        elem2.addChild(elem4);
+                    } else {
+                        elem2.addChild(elem4);
+                    }
+                }
+            }
+            // disabled twists
+            if (elem2.getChildren().size() > 0) {
+                elem.addChild(elem2);
+            }
+        }
+
+
+        // Write macros
+        for (EntityModel child2 : item.getMacroModels().getChildren()) {
+            MacroModel macro = (MacroModel) child2;
+            elem2 = doc.createElement("Macro");
+            elem2.setAttribute("identifier", Normalizer.normalize(macro.getIdentifier(), Normalizer.Form.NFC));
+
+            if (macro.getScript() != null && macro.getScript().length() > 0) {
+                elem3 = doc.createElement("Source");
+                elem3.setContent(Normalizer.normalize(macro.getScript(), Normalizer.Form.NFC));
+                elem2.addChild(elem3);
+            }
+            if (macro.getDescription() != null && macro.getDescription().length() > 0) {
+                elem3 = doc.createElement("Description");
+                elem3.setContent(macro.getDescription());
+                elem2.addChild(elem3);
+            }
+            elem.addChild(elem2);
+        }
+        docRoot.addChild(elem);
+        return id;
+    }
+
+    private int writeCube(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, CubeModel child) {
+        XMLElement elem;
+        XMLElement elem2;
+        CubeModel item = child;
+        if (!isWriteMember(item)) {
+            return id;
+        }
+
+
+        // Assign an id to the object and put it into our HashMap.
+        objects.put(item, ++id);
+
+        // Create the document element.
+        elem = doc.createElement("Cube");
+        elem.setAttribute("id", "o" + (id));
+
+        elem.setAttribute("kind", item.getKind().getAlternativeName(0));
+
+        if (item == getDefaultCube()) {
+            elem.setAttribute("default", "true");
+        }
+        elem.setAttribute("scale", Integer.toString(item.getIntScale()));
+        elem.setAttribute("explode", Integer.toString(item.getIntExplode()));
+        elem.setAttribute("alpha", Integer.toString(item.getIntAlpha()));
+        elem.setAttribute("beta", Integer.toString(item.getIntBeta()));
+        elem.setAttribute("twistDuration", Integer.toString(item.getTwistDuration()));
+        elem.setColorAttribute("backgroundColor", item.getFrontBgColor(), Color.WHITE);
+        elem.setColorAttribute("rearBackgroundColor", item.getRearBgColor(), Color.WHITE);
+        if (item.getName() != null) {
+            elem2 = doc.createElement("Name");
+            elem2.setContent(item.getName());
+            elem.addChild(elem2);
+        }
+        if (item.getDescription() != null) {
+            elem2 = doc.createElement("Description");
+            elem2.setContent(item.getDescription());
+            elem.addChild(elem2);
+        }
+        if (item.getAuthor() != null) {
+            elem2 = doc.createElement("Author");
+            elem2.setContent(item.getAuthor());
+            elem.addChild(elem2);
+        }
+        if (item.getDate() != null) {
+            elem2 = doc.createElement("Date");
+            elem2.setContent(item.getDate());
+            elem.addChild(elem2);
+        }
+        float[] colorComponents = new float[4];
+        for (EntityModel child2 : item.getColors().getChildren()) {
+            CubeColorModel color = (CubeColorModel) child2;
+
+            // Assign an id to the object and put it into our HashMap.
+            objects.put(color, ++id);
+
+            // Create the document element
+            elem2 = doc.createElement("Color");
+            elem2.setAttribute("id", "o" + (id));
+            if (color.getColor() != null) {
+                elem2.setAttribute("argb", Integer.toHexString(color.getColor().getRGB()));
+                elem2.setContent(color.getName());
+                elem.addChild(elem2);
+            }
+        }
+        int j = 0;
+        for (EntityModel child2 : item.getParts().getChildren()) {
+            CubePartModel part = (CubePartModel) child2;
+
+            elem2 = doc.createElement("Part");
+            elem2.setAttribute("index", Integer.toString(j++));
+            elem2.setAttribute("visible", Boolean.toString(part.isVisible()));
+            elem2.setAttribute("fillColorRef", "o" + objects.get(part.getFillColorModel()));
+            elem2.setAttribute("outlineColorRef", "o" + objects.get(part.getOutlineColorModel()));
+            elem.addChild(elem2);
+        }
+        j = 0;
+        for (EntityModel child2 : item.getStickers().getChildren()) {
+            CubeStickerModel sticker = (CubeStickerModel) child2;
+
+            elem2 = doc.createElement("Sticker");
+            elem2.setAttribute("index", Integer.toString(j++));
+            elem2.setAttribute("visible", Boolean.toString(sticker.isVisible()));
+            elem2.setAttribute("fillColorRef", "o" + objects.get(sticker.getFillColorModel()));
+            elem.addChild(elem2);
+        }
+
+        if (item.getStickersImageModel().hasImage()) {
+            elem2 = doc.createElement("StickersImage");
+            elem2.setAttribute("visible", Boolean.toString(item.isStickersImageVisible()));
+            elem2.setContent(item.getStickersImageModel().getBase64Image());
+            elem.addChild(elem2);
+        }
+        if (item.getFrontBgImageModel().hasImage()) {
+            elem2 = doc.createElement("FrontBgImage");
+            elem2.setAttribute("visible", Boolean.toString(item.isFrontBgImageVisible()));
+            elem2.setContent(item.getFrontBgImageModel().getBase64Image());
+            elem.addChild(elem2);
+        }
+        if (item.getRearBgImageModel().hasImage()) {
+            elem2 = doc.createElement("RearBgImage");
+            elem2.setAttribute("visible", Boolean.toString(item.isRearBgImageVisible()));
+            elem2.setContent(item.getRearBgImageModel().getBase64Image());
+            elem.addChild(elem2);
+        }
+        docRoot.addChild(elem);
+        return id;
     }
     /*
     private String extractText(org.w3c.dom.Node n) {
@@ -872,7 +909,7 @@ public class DocumentModel extends DefaultTreeModel
 
                 boolean isFirstColor = true;
 
-        for (XMLElement elem2 : elem.iterableChildren()) {
+                for (XMLElement elem2 : elem.iterableChildren()) {
 
                     String name = elem2.getName();
                     if ("Name".equals(name)) {
@@ -921,84 +958,84 @@ public class DocumentModel extends DefaultTreeModel
                                 partIndex = (partIndex + 2) % 8;
                             } else {
                                 switch (item.getKind().getLayerCount()) {
-                                    case 3:
-                                        if (partIndex < 8 + 12) {
-                                            partIndex = (partIndex - 8 + 3) % 12 + 8;
-                                        } else if (partIndex < 8 + 12 + 6) {
-                                            switch (partIndex - 8 - 12) {
-                                                case 0:
-                                                    partIndex = 2 + 8 + 12;
-                                                    break;
-                                                case 1:
-                                                    partIndex = 0 + 8 + 12;
-                                                    break;
-                                                case 2:
-                                                    partIndex = 4 + 8 + 12;
-                                                    break;
-                                                case 3:
-                                                    partIndex = 5 + 8 + 12;
-                                                    break;
-                                                case 4:
-                                                    partIndex = 3 + 8 + 12;
-                                                    break;
-                                                case 5:
-                                                    partIndex = 1 + 8 + 12;
-                                                    break;
-                                            }
+                                case 3:
+                                    if (partIndex < 8 + 12) {
+                                        partIndex = (partIndex - 8 + 3) % 12 + 8;
+                                    } else if (partIndex < 8 + 12 + 6) {
+                                        switch (partIndex - 8 - 12) {
+                                        case 0:
+                                            partIndex = 2 + 8 + 12;
+                                            break;
+                                        case 1:
+                                            partIndex = 0 + 8 + 12;
+                                            break;
+                                        case 2:
+                                            partIndex = 4 + 8 + 12;
+                                            break;
+                                        case 3:
+                                            partIndex = 5 + 8 + 12;
+                                            break;
+                                        case 4:
+                                            partIndex = 3 + 8 + 12;
+                                            break;
+                                        case 5:
+                                            partIndex = 1 + 8 + 12;
+                                            break;
                                         }
-                                        break;
-                                    case 4:
-                                        if (partIndex < 8 + 24) {
-                                            partIndex = (partIndex - 8 + 3) % 24 + 8;
-                                        } else if (partIndex < 8 + 24 + 24) {
-                                            switch ((partIndex - 8 - 24) % 6) {
-                                                case 0:
-                                                    partIndex = (partIndex - 8 - 24) + 2 + 8 + 24;
-                                                    break;
-                                                case 1:
-                                                    partIndex = (partIndex - 8 - 24 - 1) + 0 + 8 + 24;
-                                                    break;
-                                                case 2:
-                                                    partIndex = (partIndex - 8 - 24 - 2) + 4 + 8 + 24;
-                                                    break;
-                                                case 3:
-                                                    partIndex = (partIndex - 8 - 24 - 3) + 5 + 8 + 24;
-                                                    break;
-                                                case 4:
-                                                    partIndex = (partIndex - 8 - 24 - 4) + 3 + 8 + 24;
-                                                    break;
-                                                case 5:
-                                                    partIndex = (partIndex - 8 - 24 - 5) + 1 + 8 + 24;
-                                                    break;
-                                            }
+                                    }
+                                    break;
+                                case 4:
+                                    if (partIndex < 8 + 24) {
+                                        partIndex = (partIndex - 8 + 3) % 24 + 8;
+                                    } else if (partIndex < 8 + 24 + 24) {
+                                        switch ((partIndex - 8 - 24) % 6) {
+                                        case 0:
+                                            partIndex = (partIndex - 8 - 24) + 2 + 8 + 24;
+                                            break;
+                                        case 1:
+                                            partIndex = (partIndex - 8 - 24 - 1) + 0 + 8 + 24;
+                                            break;
+                                        case 2:
+                                            partIndex = (partIndex - 8 - 24 - 2) + 4 + 8 + 24;
+                                            break;
+                                        case 3:
+                                            partIndex = (partIndex - 8 - 24 - 3) + 5 + 8 + 24;
+                                            break;
+                                        case 4:
+                                            partIndex = (partIndex - 8 - 24 - 4) + 3 + 8 + 24;
+                                            break;
+                                        case 5:
+                                            partIndex = (partIndex - 8 - 24 - 5) + 1 + 8 + 24;
+                                            break;
                                         }
-                                        break;
-                                    case 5:
-                                        if (partIndex < 8 + 36) {
-                                            partIndex = (partIndex - 8 + 3) % 36 + 8;
-                                        } else if (partIndex < 8 + 36 + 54) {
-                                            switch ((partIndex - 8 - 36) % 6) {
-                                                case 0:
-                                                    partIndex = (partIndex - 8 - 36) + 2 + 8 + 36;
-                                                    break;
-                                                case 1:
-                                                    partIndex = (partIndex - 8 - 36 - 1) + 0 + 8 + 36;
-                                                    break;
-                                                case 2:
-                                                    partIndex = (partIndex - 8 - 36 - 2) + 4 + 8 + 36;
-                                                    break;
-                                                case 3:
-                                                    partIndex = (partIndex - 8 - 36 - 3) + 5 + 8 + 36;
-                                                    break;
-                                                case 4:
-                                                    partIndex = (partIndex - 8 - 36 - 4) + 3 + 8 + 36;
-                                                    break;
-                                                case 5:
-                                                    partIndex = (partIndex - 8 - 36 - 5) + 1 + 8 + 36;
-                                                    break;
-                                            }
+                                    }
+                                    break;
+                                case 5:
+                                    if (partIndex < 8 + 36) {
+                                        partIndex = (partIndex - 8 + 3) % 36 + 8;
+                                    } else if (partIndex < 8 + 36 + 54) {
+                                        switch ((partIndex - 8 - 36) % 6) {
+                                        case 0:
+                                            partIndex = (partIndex - 8 - 36) + 2 + 8 + 36;
+                                            break;
+                                        case 1:
+                                            partIndex = (partIndex - 8 - 36 - 1) + 0 + 8 + 36;
+                                            break;
+                                        case 2:
+                                            partIndex = (partIndex - 8 - 36 - 2) + 4 + 8 + 36;
+                                            break;
+                                        case 3:
+                                            partIndex = (partIndex - 8 - 36 - 3) + 5 + 8 + 36;
+                                            break;
+                                        case 4:
+                                            partIndex = (partIndex - 8 - 36 - 4) + 3 + 8 + 36;
+                                            break;
+                                        case 5:
+                                            partIndex = (partIndex - 8 - 36 - 5) + 1 + 8 + 36;
+                                            break;
                                         }
-                                        break;
+                                    }
+                                    break;
                                 }
                             }
                         }
@@ -1024,24 +1061,24 @@ public class DocumentModel extends DefaultTreeModel
                                 //   2,    0,    4,   5,   3,  1
                                 // right,up,front,left,down,back
                                 switch (face) {
-                                    case 0:
-                                        face = 2;
-                                        break; // front
-                                    case 1:
-                                        face = 0;
-                                        break; // right
-                                    case 2:
-                                        face = 4;
-                                        break; // down
-                                    case 3:
-                                        face = 5;
-                                        break; // back
-                                    case 4:
-                                        face = 3;
-                                        break; // left
-                                    case 5:
-                                        face = 1;
-                                        break; // up
+                                case 0:
+                                    face = 2;
+                                    break; // front
+                                case 1:
+                                    face = 0;
+                                    break; // right
+                                case 2:
+                                    face = 4;
+                                    break; // down
+                                case 3:
+                                    face = 5;
+                                    break; // back
+                                case 4:
+                                    face = 3;
+                                    break; // left
+                                case 5:
+                                    face = 1;
+                                    break; // up
                                 }
                                 stickerIndex = face * stickersPerFace + (stickerIndex % stickersPerFace);
                             }
@@ -1181,7 +1218,7 @@ public class DocumentModel extends DefaultTreeModel
                 item.basicSetSyntax(Symbol.REPETITION, elem.getAttribute("repetitorPosition", syntaxValueSet, "PREFIX", false));
 
                 // Read child elements
-         for (XMLElement elem2 : elem.iterableChildren()) {
+                for (XMLElement elem2 : elem.iterableChildren()) {
 
                     String name = elem2.getName();
                     if ("Name".equals(name)) {
@@ -1315,7 +1352,7 @@ public class DocumentModel extends DefaultTreeModel
                     item.setNotationModel((NotationModel) refObj);
                 }
 
-        for (XMLElement elem2 : elem.iterableChildren()) {
+                for (XMLElement elem2 : elem.iterableChildren()) {
 
                     String name = elem2.getName();
                     if ("Name".equals(name)) {
@@ -1332,7 +1369,7 @@ public class DocumentModel extends DefaultTreeModel
                         MacroModel macro = new MacroModel();
                         macro.setIdentifier(Normalizer.normalize(elem2.getStringAttribute("identifier"), Normalizer.Form.NFC));
 
-        for (XMLElement elem3 : elem2.iterableChildren()) {
+                        for (XMLElement elem3 : elem2.iterableChildren()) {
                             String name3 = elem3.getName();
                             if ("Source".equals(name3)) {
                                 macro.basicSetScript(Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
@@ -1366,7 +1403,7 @@ public class DocumentModel extends DefaultTreeModel
                     }
                 }
 
-        for (XMLElement elem2 : elem.iterableChildren()) {
+                for (XMLElement elem2 : elem.iterableChildren()) {
 
                     String name = elem2.getName();
                     if ("Title".equals(name)) {
@@ -1404,12 +1441,12 @@ public class DocumentModel extends DefaultTreeModel
 
         fireUndoableEdit(
                 new AbstractUndoableEdit() {
-    private final static long serialVersionUID = 1L;
+                    private final static long serialVersionUID = 1L;
 
                     @Override
                     public void redo() {
                         super.redo();
-                        insertNodeIntoQuiet((TreeNodeImpl)newChild, (TreeNodeImpl)parent, index);
+                        insertNodeIntoQuiet((TreeNodeImpl) newChild, (TreeNodeImpl) parent, index);
                     }
 
                     @Nonnull
@@ -1419,16 +1456,16 @@ public class DocumentModel extends DefaultTreeModel
                     }
                 });
 
-        insertNodeIntoQuiet((TreeNodeImpl)newChild, (TreeNodeImpl)parent, index);
+        insertNodeIntoQuiet((TreeNodeImpl) newChild, (TreeNodeImpl) parent, index);
 
         fireUndoableEdit(
                 new AbstractUndoableEdit() {
-    private final static long serialVersionUID = 1L;
+                    private final static long serialVersionUID = 1L;
 
                     @Override
                     public void undo() {
                         super.undo();
-                        removeNodeFromParentQuiet((TreeNodeImpl)newChild);
+                        removeNodeFromParentQuiet((TreeNodeImpl) newChild);
                     }
 
                     @Nonnull
@@ -1441,7 +1478,7 @@ public class DocumentModel extends DefaultTreeModel
     }
 
     protected void insertNodeIntoQuiet(MutableTreeNode newChild, TreeNode parent, int index) {
-        super.insertNodeInto(newChild, (MutableTreeNode)parent, index);
+        super.insertNodeInto(newChild, (MutableTreeNode) parent, index);
     }
 
     protected void removeNodeFromParentQuiet(@Nonnull MutableTreeNode node) {
@@ -1482,7 +1519,8 @@ public class DocumentModel extends DefaultTreeModel
 
     /**
      * Message this to remove node from its parent.
-     * @exception IllegalStateException if the node is not removable.
+     *
+     * @throws IllegalStateException if the node is not removable.
      */
     @Override
     public void removeNodeFromParent(@Nonnull final MutableTreeNode node) {
@@ -1514,8 +1552,9 @@ public class DocumentModel extends DefaultTreeModel
 
             fireUndoableEdit(
                     new AbstractUndoableEdit() {
-    private final static long serialVersionUID = 1L;
-                @Override
+                        private final static long serialVersionUID = 1L;
+
+                        @Override
                         public void undo() {
                             super.undo();
                             insertNodeIntoQuiet(node, parent, index);
@@ -1539,11 +1578,11 @@ public class DocumentModel extends DefaultTreeModel
      * event. This is the preferred way to add children as it will create the
      * appropriate event.
      *
-     * @param   newNodeType  the type of the new child to be created, obtained
+     * @param newNodeType the type of the new child to be created, obtained
      *                    from getCreatableChildren
-     * @param   parent     a node from the tree, obtained from this data source.
-     * @param   index      index of the child.
-     * @exception IllegalStateException if the parent node does not allow children.
+     * @param parent      a node from the tree, obtained from this data source.
+     * @param index       index of the child.
+     * @throws IllegalStateException if the parent node does not allow children.
      */
     @Nonnull
     public TreePath createNodeAt(Object newNodeType, @Nonnull MutableTreeNode parent, int index) throws IllegalStateException {
@@ -1561,24 +1600,24 @@ public class DocumentModel extends DefaultTreeModel
         }
         realIndex = (parent == realParent) ? index : //
                 (realParent == parent.getParent()) ? realParent.getIndex(parent) + 1 ://
-                realParent.getChildCount();
+                        realParent.getChildCount();
         switch (type) {
-            case CUBE_INDEX:
-                newChild = new CubeModel();
-                ((CubeModel) newChild).setName("unnamed Cube");
-                break;
-            case NOTATION_INDEX:
-                newChild = new NotationModel();
-                ((NotationModel) newChild).setName("unnamed Notation");
-                break;
-            case SCRIPT_INDEX:
-                newChild = new ScriptModel();
-                ((ScriptModel) newChild).setName("unnamed Script");
-                break;
-            case TEXT_INDEX:
-                newChild = new TextModel();
-                ((TextModel) newChild).setName("unnamed Note");
-                break;
+        case CUBE_INDEX:
+            newChild = new CubeModel();
+            ((CubeModel) newChild).setName("unnamed Cube");
+            break;
+        case NOTATION_INDEX:
+            newChild = new NotationModel();
+            ((NotationModel) newChild).setName("unnamed Notation");
+            break;
+        case SCRIPT_INDEX:
+            newChild = new ScriptModel();
+            ((ScriptModel) newChild).setName("unnamed Script");
+            break;
+        case TEXT_INDEX:
+            newChild = new TextModel();
+            ((TextModel) newChild).setName("unnamed Note");
+            break;
         }
 
         insertNodeInto(newChild, realParent, realIndex);
@@ -1593,7 +1632,7 @@ public class DocumentModel extends DefaultTreeModel
     /**
      * Returns wether the specified node may be renamed.
      *
-     * @param   node   a node from the tree, obtained from this data source.
+     * @param node a node from the tree, obtained from this data source.
      */
     public boolean isNodeEditable(@Nonnull MutableTreeNode node) {
         // Direct children of the root node are
@@ -1606,10 +1645,10 @@ public class DocumentModel extends DefaultTreeModel
     /**
      * Returns the types of children that may be created at this node.
      *
-     * @param   parent   a node from the tree, obtained from this data source.
-     * @return  an array of objects that specify a child type that may be
-     *         added to the node. Returns an empty array for nodes
-     *         that cannot have additional children.
+     * @param parent a node from the tree, obtained from this data source.
+     * @return an array of objects that specify a child type that may be
+     * added to the node. Returns an empty array for nodes
+     * that cannot have additional children.
      */
     @Nonnull
     @Override
@@ -1645,7 +1684,7 @@ public class DocumentModel extends DefaultTreeModel
     /**
      * Returns wether the specified node may be inserted.
      *
-     * @param   parent   a node from the tree, obtained from this data source.
+     * @param parent a node from the tree, obtained from this data source.
      */
     public boolean isNodeAddable(MutableTreeNode parent, int index) {
         return true;
@@ -1698,8 +1737,9 @@ public class DocumentModel extends DefaultTreeModel
 
     /**
      * Copies the indicated nodes to the clipboard.
-     * @param   nodes The nodes to be copied.
-     * @exception   IllegalStateException if the nodes can not be removed.
+     *
+     * @param nodes The nodes to be copied.
+     * @throws IllegalStateException if the nodes can not be removed.
      */
     @Nonnull
     public Transferable exportTransferable(MutableTreeNode[] nodes) {
@@ -1733,7 +1773,7 @@ public class DocumentModel extends DefaultTreeModel
                     in.close();
                 }
             }
-importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChild(getChild(parent,index)));
+            importedPaths.add(new TreePath(((TreeNodeImpl) parent).getPath()).pathByAddingChild(getChild(parent, index)));
             return importedPaths;
         } else if (transfer.isDataFlavorSupported(DataFlavor.stringFlavor)) {
             Reader in = null;
@@ -1746,7 +1786,7 @@ importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChi
                 }
             }
 
-            importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChild(getChild(parent,index)));
+            importedPaths.add(new TreePath(((TreeNodeImpl) parent).getPath()).pathByAddingChild(getChild(parent, index)));
             return importedPaths;
         } else {
             Toolkit.getDefaultToolkit().beep();
@@ -1763,7 +1803,7 @@ importedPaths.add(new TreePath(((TreeNodeImpl)parent).getPath()).pathByAddingChi
      * model.
      */
     public boolean isCloseable() {
-        for (EntityModel node: getScripts().getChildren()) {
+        for (EntityModel node : getScripts().getChildren()) {
             ScriptModel item = (ScriptModel) node;
             if (item.getProgressView() != null) {
                 return false;
