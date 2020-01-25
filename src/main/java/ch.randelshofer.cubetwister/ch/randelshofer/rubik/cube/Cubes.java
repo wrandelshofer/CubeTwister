@@ -28,26 +28,26 @@ public class Cubes {
     public static Cube create(int layerCount) {
         String n;
         switch (layerCount) {
-            case 2:
-                n = "ch.randelshofer.rubik.PocketCube";
-                break;
-            case 3:
-                n = "ch.randelshofer.rubik.RubiksCube";
-                break;
-            case 4:
-                n = "ch.randelshofer.rubik.RevengeCube";
-                break;
-            case 5:
-                n = "ch.randelshofer.rubik.ProfessorCube";
-                break;
-            case 6:
-                n = "ch.randelshofer.rubik.Cube6";
-                break;
-            case 7:
-                n = "ch.randelshofer.rubik.Cube7";
-                break;
-            default:
-                throw new IllegalArgumentException("Unsupported layer count " + layerCount);
+        case 2:
+            n = "ch.randelshofer.rubik.PocketCube";
+            break;
+        case 3:
+            n = "ch.randelshofer.rubik.RubiksCube";
+            break;
+        case 4:
+            n = "ch.randelshofer.rubik.RevengeCube";
+            break;
+        case 5:
+            n = "ch.randelshofer.rubik.ProfessorCube";
+            break;
+        case 6:
+            n = "ch.randelshofer.rubik.Cube6";
+            break;
+        case 7:
+            n = "ch.randelshofer.rubik.Cube7";
+            break;
+        default:
+            throw new IllegalArgumentException("Unsupported layer count " + layerCount);
         }
         try {
             return (Cube) Class.forName(n).getConstructor().newInstance();
@@ -256,20 +256,20 @@ public class Cubes {
 
                 prevOrient = (prevOrient + sideOrient[i]) % 4;
                 switch (prevOrient) {
-                    case 0: // no sign
-                        break;
-                    case 1: // '-' sign
-                        //order = IntMath.scm(order, 4);
-                        length *= 4;
-                        break;
-                    case 2: // '++' sign
-                        //order = IntMath.scm(order, 2);
-                        length *= 2;
-                        break;
-                    case 3: // '+' sign
-                        //order = IntMath.scm(order, 4);
-                        length *= 4;
-                        break;
+                case 0: // no sign
+                    break;
+                case 1: // '-' sign
+                    //order = IntMath.scm(order, 4);
+                    length *= 4;
+                    break;
+                case 2: // '++' sign
+                    //order = IntMath.scm(order, 2);
+                    length *= 2;
+                    break;
+                case 3: // '+' sign
+                    //order = IntMath.scm(order, 4);
+                    length *= 4;
+                    break;
                 }
                 order = IntMath.scm(order, length);
             }
@@ -344,7 +344,6 @@ public class Cubes {
 
                 prevOrient = (prevOrient + cornerOrient[i]) % 3;
                 if (prevOrient != 0) {
-                    //order = IntMath.scm(order, 3);
                     length *= 3;
                 }
                 order = IntMath.scm(order, length);
@@ -381,7 +380,6 @@ public class Cubes {
                 }
 
                 if ((prevOrient ^ edgeOrient[i]) == 1) {
-                    //order = IntMath.scm(order, 2);
                     length *= 2;
                 }
                 order = IntMath.scm(order, length);
@@ -883,21 +881,21 @@ public class Cubes {
                         prevOrient = (prevOrient + cornerOrient[j]) % 3;
                     }
                     switch (prevOrient) {
-                        case 0:
-                            buf.append(corners[j][0]);
-                            buf.append(corners[j][1]);
-                            buf.append(corners[j][2]);
-                            break;
-                        case 2:
-                            buf.append(corners[j][1]);
-                            buf.append(corners[j][2]);
-                            buf.append(corners[j][0]);
-                            break;
-                        case 1:
-                            buf.append(corners[j][2]);
-                            buf.append(corners[j][0]);
-                            buf.append(corners[j][1]);
-                            break;
+                    case 0:
+                        buf.append(corners[j][0]);
+                        buf.append(corners[j][1]);
+                        buf.append(corners[j][2]);
+                        break;
+                    case 2:
+                        buf.append(corners[j][1]);
+                        buf.append(corners[j][2]);
+                        buf.append(corners[j][0]);
+                        break;
+                    case 1:
+                        buf.append(corners[j][2]);
+                        buf.append(corners[j][0]);
+                        buf.append(corners[j][1]);
+                        break;
                     }
                 }
                 j = cycle[cycleStart];

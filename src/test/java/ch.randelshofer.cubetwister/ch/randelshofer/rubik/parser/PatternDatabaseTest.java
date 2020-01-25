@@ -192,7 +192,7 @@ public class PatternDatabaseTest {
     private Stream<DynamicTest> createTests(int layerCount, String filename, List<String> headers) throws Exception {
         return Files.lines(Paths.get(filename), Charset.forName("x-MacRoman"))
                 .map(line -> createDataRecord(line, headers))
-                .map(p -> DynamicTest.dynamicTest(p.get("id") + "[" + p.get("number") + "]", () -> doPatternTest(layerCount, p)))
+                .map(p -> DynamicTest.dynamicTest(p.get("id") + " " + p.get("number"), () -> doPatternTest(layerCount, p)))
                 ;
     }
 

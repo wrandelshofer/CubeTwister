@@ -40,6 +40,7 @@ public class CubesTest {
     @TestFactory
     public List<DynamicTest> testOrder() {
         return Arrays.asList(
+                dynamicTest("A210.15, 1", () -> doTestOrder(4, "MU2 F2 WR- WF- WR F2 MU2 WR- WF WR", 2, 4)),
                 dynamicTest("A250.02, 1", () -> doTestOrder(4, "MD WR2 MD- L2 B2 MU- WR2 MU SR2 F2 R2", 2, 4)),
                 dynamicTest("A220.29, 3", () -> doTestOrder(5, "(r5,++f7,++l7,+r6,-f8,+l6) (u5,b5,d5,+u6,+b6,-d8) (f5,l5,-r8,+f6,-l8,++r7) (d6,+u7,+b7,+d7,++u8,++b8)", 3, 6)),
                 dynamicTest("A410.12, 1", () -> doTestOrder(4, "MR2 F2 MR- F2 ML D2 ML- D2 MR D2 MR- D2 MR\n" +
