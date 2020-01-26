@@ -27,7 +27,7 @@ public abstract class AbstractRevengeCubeGeom3D extends AbstractCubeGeom3D {
      */
     protected final static float SIDE_LENGTH = 14f;
     /**
-     * The beveled edge of a cube part has a length of 0.75 mm.
+     * The beveled edge of a cube part has a length of 1 mm.
      */
     protected final static float BEVEL_LENGTH = 1f;
 
