@@ -931,12 +931,8 @@ public class Cubes {
                                                   String tPlus, String tPlusPlus, String tMinus,
                                                   String tBegin, String tEnd, String tDelimiter) {
 
-        int[] cornerLoc = cube.getCornerLocations();
         int[] edgeLoc = cube.getEdgeLocations();
-        int[] sideLoc = cube.getSideLocations();
-        int[] cornerOrient = cube.getCornerOrientations();
         int[] edgeOrient = cube.getEdgeOrientations();
-        int[] sideOrient = cube.getSideOrientations();
         int[] cycle = new int[Math.max(Math.max(cube.getCornerCount(), cube.getEdgeCount()), cube.getSideCount())];
         int layerCount = cube.getLayerCount();
         boolean hasEvenLayerCount = layerCount % 2 == 0;

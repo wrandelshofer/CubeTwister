@@ -326,7 +326,7 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
                         {12, 13, 11, 10}, //Right
                         {17, 19, 21, 23}, //Bottom
                         {4, 6, 7, 5}, //Back
-                        // Cut Off Faces: 
+                        // Cut Off Faces:
                         // These faces can never be seen unless we would take the cube apart.
                         {23, 21, 5, 7}, //Bottom Back lddb rddb rdbb ldbb
                         {23, 7, 15}, //Bottom Back Left lddb ldbb lldb
@@ -371,7 +371,7 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
      *  2                 +---+   u   +---+
      *                    |18 |       |12 |
      *  3                 +---+---+---+---+
-     *                    |   |9.1|21 |   |      
+     *                    |   |9.1|21 |   |
      *  4 +---+---+---+---+---+---*---+---+---+---+---+---+...............+
      *    |   |6.1|18 |   |   |9.0|21 |   |   |12 |0.1|   |               '
      *  5 +---+---+---+---+---+---+---+---+---+---+---+---+               '
@@ -627,10 +627,10 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
      * 11                |   +       +   |   +       +   |
      *                   |               |               |
      * 12                +---+-----------+---------------+
-     * 
+     *
      * Whereas each area marked by the + symbols contains side parts with the
      * following placements:
-     * 
+     *
      * +---+---+
      * | 1   2 |
      * +       +
@@ -725,12 +725,12 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
         return stickerToPartMap[stickerIndex];
     }
     private final static int[] stickerToFaceMap = {
-        1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, // right
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, // up
-        1, 0, 0, 2, 1, 0, 0, 1, 1, 0, 0, 1, 2, 0, 0, 1, // front
-        1, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 1, 1, // left
-        0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, // down
-        1, 0, 0, 2, 1, 0, 0, 1, 1, 0, 0, 1, 2, 0, 0, 1, // back
+            1, 1, 1, 2, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0,/**/ 2, 1, 1, 1, // right
+            0, 1, 1, 0, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0, /**/0, 1, 1, 0, // up
+            1, 0, 0, 2, /**/ 1, 0, 0, 1,/**/ 1, 0, 0, 1,/**/ 2, 0, 0, 1, // front
+            1, 1, 1, 2, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0,/**/ 2, 1, 1, 1, // left
+            0, 1, 1, 0, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0,/**/ 0, 1, 1, 0, // down
+            1, 0, 0, 2, /**/ 1, 0, 0, 1,/**/ 1, 0, 0, 1,/**/ 2, 0, 0, 1, // back
     };
 
     @Override

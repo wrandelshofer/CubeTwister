@@ -11,17 +11,17 @@
 // | contact me with an e-mail [proxima@active.ch].
 // |
 // | Thanx & greetinx go to:
-// | * Wilfred L. Guerin, 	for testing, bug report, and tons 
+// | * Wilfred L. Guerin, 	for testing, bug report, and tons
 // |			of brilliant suggestions
 // | * Sandy McArthur,	for reverse loops
 // | * Dr. Douglas Lyons,	for mentioning idx3d1 in his book
 // | * Hugo Elias,		for maintaining his great page
-// | * the comp.graphics.algorithms people, 
+// | * the comp.graphics.algorithms people,
 // | 			for scientific concerns
 // | * Tobias Hill,		for inspiration and awakening my
 // |			interest in java gfx coding
 // | * Kai Krause,		for inspiration and hope
-// | * Incarom & Parisienne,	for keeping me awake during the 
+// | * Incarom & Parisienne,	for keeping me awake during the
 // |			long coding nights
 // | * Doris Langhard,	for being the sweetest girl on earth
 // | * Etnica, Infinity Project, X-Dream and "Space Night"@BR3
@@ -124,7 +124,9 @@ public class idx3d_Matrix // defines a 3d matrix
         return m;
     }
 
-    /** matrix for scaling. */
+    /**
+     * matrix for scaling.
+     */
     @Nonnull
     public static idx3d_Matrix scaleMatrix(float dx, float dy, float dz) {
         idx3d_Matrix m = new idx3d_Matrix();
@@ -134,13 +136,17 @@ public class idx3d_Matrix // defines a 3d matrix
         return m;
     }
 
-    /** matrix for scaling. */
+    /**
+     * matrix for scaling.
+     */
     @Nonnull
     public static idx3d_Matrix scaleMatrix(float d) {
         return idx3d_Matrix.scaleMatrix(d, d, d);
     }
 
-    /** matrix for rotation. */
+    /**
+     * matrix for rotation.
+     */
     @Nonnull
     public static idx3d_Matrix rotateMatrix_SLOW(float dx, float dy, float dz) {
         idx3d_Matrix out = new idx3d_Matrix();
@@ -180,7 +186,9 @@ public class idx3d_Matrix // defines a 3d matrix
         return out;
     }
 
-    /** matrix for rotation. */
+    /**
+     * matrix for rotation.
+     */
     @Nonnull
     public static idx3d_Matrix rotateMatrix(float dx, float dy, float dz) {
         idx3d_Matrix out = new idx3d_Matrix();
@@ -265,6 +273,18 @@ public class idx3d_Matrix // defines a 3d matrix
 
     public void scale(float d) {
         transform(scaleMatrix(d));
+    }
+
+    public void rotateX(float dx) {
+        rotate(dx, 0, 0);
+    }
+
+    public void rotateY(float dy) {
+        rotate(0, dy, 0);
+    }
+
+    public void rotateZ(float dz) {
+        rotate(0, 0, dz);
     }
 
     public void rotate(float dx, float dy, float dz) {
@@ -423,7 +443,7 @@ public class idx3d_Matrix // defines a 3d matrix
      * As seen at http://lists.apple.com/archives/mac-opengl/2001/Jan/msg00059.html
      */
     public static idx3d_Matrix fromToRotation(@Nonnull idx3d_Vector from, @Nonnull idx3d_Vector to) {
-//#define M(row,col) mtx9[col*4+row]
+        //#define M(row,col) mtx9[col*4+row]
         final float EPSILON = 0.00001f;
         idx3d_Vector v;
         float e, h;
@@ -501,7 +521,7 @@ public class idx3d_Matrix // defines a 3d matrix
             M(2, 0)=h*v[0]*v[2]-v[1]; M(2, 1)=h*v[1]*v[2]+v[0]; M(2,
             2)=e+h*v[2]*v[2];
             #else*/
-// ...otherwise use this hand optimized version (9 mults less)
+            // ...otherwise use this hand optimized version (9 mults less)
             float hvx, hvz, hvxy, hvxz, hvyz;
             h = (float) ((1.0 - e) / idx3d_Vector.dotProduct(v, v));
             hvx = h * v.x;
@@ -519,21 +539,22 @@ public class idx3d_Matrix // defines a 3d matrix
             m.m20 = hvxz - v.y;
             m.m21 = hvyz + v.x;
             m.m22 = e + hvz * v.z;
-//#endif
+            //#endif
         }
-//#undef M
+        //#undef M
         return m;
     }
-// END PATCH
-@Nonnull
-public String toString() {
-    StringBuilder out = new StringBuilder("<Matrix: \r\n");
-    out.append(m00 + "," + m01 + "," + m02 + "," + m03 + ",\r\n");
-    out.append(m10 + "," + m11 + "," + m12 + "," + m13 + ",\r\n");
-    out.append(m20 + "," + m21 + "," + m22 + "," + m23 + ",\r\n");
-    out.append(m30 + "," + m31 + "," + m32 + "," + m33 + ">\r\n");
-    return out.toString();
-}
+
+    // END PATCH
+    @Nonnull
+    public String toString() {
+        StringBuilder out = new StringBuilder("<Matrix: \r\n");
+        out.append(m00 + "," + m01 + "," + m02 + "," + m03 + ",\r\n");
+        out.append(m10 + "," + m11 + "," + m12 + "," + m13 + ",\r\n");
+        out.append(m20 + "," + m21 + "," + m22 + "," + m23 + ",\r\n");
+        out.append(m30 + "," + m31 + "," + m32 + "," + m33 + ">\r\n");
+        return out.toString();
+    }
 
     @Nonnull
     public idx3d_Matrix getClone() {

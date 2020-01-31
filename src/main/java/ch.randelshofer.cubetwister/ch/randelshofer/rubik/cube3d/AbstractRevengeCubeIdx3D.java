@@ -147,53 +147,53 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
             }
             // Now we do the rotation with the normal matrix only
             switch (i % 12) {
-                case 0: // ur
-                    nt.rotate(0, HALF_PI, 0f);
-                    nt.rotate(0, 0, HALF_PI);
-                    break;
-                case 1: // rf
-                    nt.rotate(0, -HALF_PI, 0);
-                    nt.rotate(HALF_PI, 0, 0);
-                    break;
-                case 2: // dr
-                    nt.rotate(0, -HALF_PI, HALF_PI);
-                    break;
-                case 3: // bu
-                    nt.rotate(0, PI, 0);
-                    break;
-                case 4: // rb
-                    nt.rotate(0, 0, HALF_PI);
-                    nt.rotate(0, -HALF_PI, 0);
-                    break;
-                case 5: // bd
-                    nt.rotate(PI, 0, 0);
-                    break;
-                case 6: // ul
-                    nt.rotate(-HALF_PI, -HALF_PI, 0);
-                    break;
-                case 7: // lb
-                    nt.rotate(0, 0, -HALF_PI);
-                    nt.rotate(0, HALF_PI, 0);
-                    break;
-                case 8: // dl
-                    nt.rotate(0, HALF_PI, 0);
-                    nt.rotate(0, 0, -HALF_PI);
-                    break;
-                case 9: // fu
-                    //--no transformation--
-                    break;
-                case 10: // lf
-                    nt.rotate(0, 0, HALF_PI);
-                    nt.rotate(0, HALF_PI, 0);
-                    break;
-                case 11: // fd
-                    nt.rotate(0, 0, PI);
-                    break;
+            case 0: // ur
+                nt.rotateY(HALF_PI);
+                nt.rotateZ(HALF_PI);
+                break;
+            case 1: // rf
+                nt.rotateY(-HALF_PI);
+                nt.rotateX(HALF_PI);
+                break;
+            case 2: // dr
+                nt.rotate(0, -HALF_PI, HALF_PI);
+                break;
+            case 3: // bu
+                nt.rotateY(PI);
+                break;
+            case 4: // rb
+                nt.rotateZ(HALF_PI);
+                nt.rotateY(-HALF_PI);
+                break;
+            case 5: // bd
+                nt.rotateX(PI);
+                break;
+            case 6: // ul
+                nt.rotate(-HALF_PI, -HALF_PI, 0);
+                break;
+            case 7: // lb
+                nt.rotateZ(-HALF_PI);
+                nt.rotateY(HALF_PI);
+                break;
+            case 8: // dl
+                nt.rotateY(HALF_PI);
+                nt.rotateZ(-HALF_PI);
+                break;
+            case 9: // fu
+                //--no transformation--
+                break;
+            case 10: // lf
+                nt.rotateZ(HALF_PI);
+                nt.rotateY(HALF_PI);
+                break;
+            case 11: // fd
+                nt.rotateZ(PI);
+                break;
             }
             // Finally, we concatenate the rotation to the vertex matrix
             vt.transform(nt);
         }
-        /* 
+        /*
          * Side parts
          * ----------
          */
@@ -383,9 +383,6 @@ public abstract class AbstractRevengeCubeIdx3D extends AbstractCubeIdx3D {
 
     @Override
     public void cubeTwisted(@Nonnull CubeEvent evt) {
-        int loc;
-
-        int layerMask = evt.getLayerMask();
         final int axis = evt.getAxis();
         final int angle = evt.getAngle();
         Cube model = getCube();

@@ -1249,7 +1249,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
     }
 
     /**
-     * Transforms the cube and fires a cubeTwisted event.
+     * Transforms the cube without firing events.
      *
      * @param  axis  0=x, 1=y, 2=z axis.
      * @param  layerMask A bitmask specifying the layers to be transformed.
