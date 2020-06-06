@@ -15,7 +15,7 @@ import org.monte.media.interpolator.SplineInterpolator;
 
 import javax.swing.SwingUtilities;
 
-/** 
+/**
  * Abstract base class for the geometrical representation of a {@link Cube6}
  * using the Geom3D engine.
  *
@@ -201,24 +201,24 @@ public abstract class AbstractCube6Geom3D extends AbstractCubeGeom3D {
 
         {0, 0, 1}, // front
         {1, 0, 0}, // right
-        {0, -1, 0}, // down
-        {0, 0, -1}, // back
-        {-1, 0, 0}, // left
-        {0, 1, 0}, // top
+            {0, -1, 0}, // down
+            {0, 0, -1}, // back
+            {-1, 0, 0}, // left
+            {0, 1, 0}, // top
 
-        {0, 0, 1}, // front
-        {1, 0, 0}, // right
-        {0, -1, 0}, // down
-        {0, 0, -1}, // back
-        {-1, 0, 0}, // left
-        {0, 1, 0}, // top 
+            {0, 0, 1}, // front
+            {1, 0, 0}, // right
+            {0, -1, 0}, // down
+            {0, 0, -1}, // back
+            {-1, 0, 0}, // left
+            {0, 1, 0}, // top
 
-        {0, 0, 1}, // front
-        {1, 0, 0}, // right
-        {0, -1, 0}, // down
-        {0, 0, -1}, // back
-        {-1, 0, 0}, // left
-        {0, 1, 0}, // top
+            {0, 0, 1}, // front
+            {1, 0, 0}, // right
+            {0, -1, 0}, // down
+            {0, 0, -1}, // back
+            {-1, 0, 0}, // left
+            {0, 1, 0}, // top
     };
 
     public AbstractCube6Geom3D() {

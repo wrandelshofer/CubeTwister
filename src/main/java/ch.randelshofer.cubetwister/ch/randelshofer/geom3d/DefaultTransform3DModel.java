@@ -13,15 +13,18 @@ import org.jhotdraw.annotation.Nonnull;
  *
  * @author Werner Randelshofer
  */
-public class DefaultTransform3DModel 
-extends AbstractStateModel 
-implements Transform3DModel {
+public class DefaultTransform3DModel
+        extends AbstractStateModel
+        implements Transform3DModel {
     private Transform3D transform;
-    
-    /** Creates a new instance. */
+
+    /**
+     * Creates a new instance.
+     */
     public DefaultTransform3DModel() {
         transform = new Transform3D();
     }
+
     /**
      * Constructs a new transform from 12 double precision values
      * representing the 12 specifiable entries of the 4x4 transformation matrix.
@@ -41,7 +44,7 @@ implements Transform3DModel {
     public DefaultTransform3DModel(@Nonnull double[][] matrix) {
         transform = new Transform3D(matrix);
     }
-    
+
     /**
      * Resets this transform to the Identity transform.
      */
@@ -152,7 +155,7 @@ implements Transform3DModel {
      * this transform object.
      */
     public void concatenate(@Nonnull Transform3D t) {
-        transform.concatenate(t);
+        transform.concatenated(t);
         fireStateChanged();
     }
 
@@ -186,7 +189,7 @@ implements Transform3DModel {
         t.setTransform(transform);
         return t;
     }
-    
+
     /**
      * Concatenates this transform with a rotation transformation.
      * This is equivalent to calling concatenate0(R), where R is an

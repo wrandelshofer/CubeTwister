@@ -74,12 +74,12 @@ public class JCanvas3D extends JComponent implements ChangeListener {
      */
     private int maxFPS = 30;    // BEGIN PATCH Antialias
     /**
-     * Minimal Frame Per Seconds Rate. If the renderer drops 
+     * Minimal Frame Per Seconds Rate. If the renderer drops
      * below this rate, antialiasing is turned off.
      */
     private int minFPS = 20;
     /**
-     * Measured time needed to render an antialiased screen. 
+     * Measured time needed to render an antialiased screen.
      * We initialize this to 1000 milliseconds devided by the desired
      * animation frame rate - 1.
      * The - 1 is needed, to take first time initialization into
@@ -711,10 +711,10 @@ public class JCanvas3D extends JComponent implements ChangeListener {
             // Compute a rotation matrix which transforms from the plane
             // of the orthogonal triangle to a plane with the z-coordinate facing
             // to us.
-            Point3D normal = Point3D.vectorProduct(
+            Point3D normal = Point3D.cross(
                     Point3D.sub(ot[0], ot[1]),
                     Point3D.sub(ot[2], ot[1]));
-            normal.normalize();
+            normal = normal.normalized();
             Transform3D m = Transform3D.fromToRotation(normal, new Point3D(0, 0, 1));
             m = m.getInverse();
             for (int i = 0; i < ot.length; i++) {

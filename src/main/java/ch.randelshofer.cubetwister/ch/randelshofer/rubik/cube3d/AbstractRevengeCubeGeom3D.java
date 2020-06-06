@@ -15,7 +15,7 @@ import org.monte.media.interpolator.SplineInterpolator;
 
 import javax.swing.SwingUtilities;
 
-/** 
+/**
  * Abstract base class for the geometrical representation of a {@link RevengeCube}
  * using the Geom3D engine.
  *
@@ -120,9 +120,9 @@ public abstract class AbstractRevengeCubeGeom3D extends AbstractCubeGeom3D {
         {-1, 0, 0}, // left
         {0, 1, 0}, // top
 
-      
+
         };
-    
+
     public AbstractRevengeCubeGeom3D() {
         super(4, 8, 12 * 2, 6 * 4, 1);
         init();
@@ -368,18 +368,18 @@ public abstract class AbstractRevengeCubeGeom3D extends AbstractCubeGeom3D {
         // Move all edge parts to the front side and then rotate them in place
         for (int i = 0; i < edgeCount; i++) {
             switch (i) {
-                case 12 : 
-                case 13 : 
-                case 2 :
-                case 3 :
-                case 4 :
-                case 17 :
-                case 6 :
-                case 19 :
-                case 20 :
-                case 21 :
-                case 10 :
-                case 11 :
+            case 12:
+            case 13:
+            case 2:
+            case 3:
+            case 4:
+            case 17:
+            case 6:
+            case 19:
+            case 20:
+            case 21:
+            case 10:
+            case 11:
                     identityTransforms[edgeOffset + i].translate(SIDE_LENGTH * 0.5f, SIDE_LENGTH * 1.5f, SIDE_LENGTH * 1.5f);
                     break;
                 default:
@@ -589,6 +589,6 @@ public abstract class AbstractRevengeCubeGeom3D extends AbstractCubeGeom3D {
             // empty (we exit the while loop)
             }
         }
-        
+
     }
 }

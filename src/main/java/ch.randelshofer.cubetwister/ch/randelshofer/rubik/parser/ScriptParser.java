@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -43,23 +44,33 @@ import java.util.stream.Collectors;
  *                  ;
  *
  * Primary          = Keyword ;
- * Prefix           = Operator , Statement ;
- * Suffix           = Statement , Operator ;
- * Circumfix        = Begin, Sequence , End ;
- * Preinfix         = Statement, Operator, Statement ;
- * Postinfix        = Statement, Operator, Statement ;
- * Precircumfix     = Begin, Sequence , Delimiter, Sequence , End ;
- * Postcircumfix    = Begin, Sequence , Delimiter, Sequence  , End ;
+ * Prefix           = UnaryPrefix | BinaryPrefix ;
+ * Suffix           = UnarySuffix | BinarySuffix ;
+ * Precircumfix     = BinaryPrecircumfix ;
+ * Postcircumfix    = BinaryPostcircumfix ;
+ * Preinfix         = BinaryPreinfix ;
+ * Postinfix        = BinaryPostinfix ;
  *
- * Unary            = Prefix
- *                  | Suffix
- *                  | Circumfix
+ * UnaryPrefix      = Operator , Statement ;
+ * UnarySuffix      = Statement , Operator ;
+ * UnaryCircumfix   = Begin, Sequence , End ;
+ * Unary            = UnaryPrefix
+ *                  | UnarySuffix
+ *                  | UnaryCircumfix
  *                  ;
  *
- * Binary           = Preinfix
- *                  | Postinfix
- *                  | Precircumfix
- *                  | Postcircumfix
+ * BinaryPrefix        = Begin, Sequence, End, Statement;
+ * BinarySuffix        = Statement, Begin, Sequence, End;
+ * BinaryPrecircumfix  = Begin, Sequence , Delimiter, Sequence , End ;
+ * BinaryPostcircumfix = Begin, Sequence , Delimiter, Sequence  , End ;
+ * BinaryPreinfix      = Statement, Operator, Statement
+ * BinaryPostinfix     = Statement, Operator, Statement
+ * Binary           = BinaryPrefix
+ *                  | BinarySuffix
+ *                  | BinaryPreinfix
+ *                  | BinaryPostinfix
+ *                  | BinaryPrecircumfix
+ *                  | BinaryPostcircumfix
  *                  ;
  *
  * Move             = Primary ;
@@ -91,10 +102,10 @@ import java.util.stream.Collectors;
  *               | PostfixPermutation
  *               ;
  *
- * PrecircumfixPermutation   = Begin, [ PermSign ], { PrefixPermItem} , End ;
- * PrefixPermutation         = [ PermSign ], Begin, { PrefixPermItem} , End ;
- * PostcircumfixPermutation  = Begin, { SuffixPermItem} , [ PermSign ], End ;
- * PostfixPermutation        = Begin, { SuffixPermItem} , End , [ PermSign ] ;
+ * PrecircumfixPermutation   = Begin, [ [ PermSign ], PrefixPermItem { PermDelim , PrefixPermItem } ] , End ;
+ * PrefixPermutation         = [ PermSign ], Begin, [ PrefixPermItem { PermDelim , PrefixPermItem } ] , End ;
+ * PostcircumfixPermutation  = Begin, [ SuffixPermItem { PermDelim , SuffixPermItem } ] , [ PermSign ], End ;
+ * PostfixPermutation        = Begin, [ SuffixPermItem { PermDelim , SuffixPermItem } ] , End , [ PermSign ] ;
  * PermSign       = Plus | PlusPlus | Minus ;
  * PrefixPermItem = [PermSign] , Face{1,3} , [ Number ] ;
  * SuffixPermItem = Face{1,3} , [ Number ] , [PermSign] ;
@@ -231,9 +242,7 @@ public class ScriptParser {
 
     @Nonnull
     public Node parse(@Nonnull String input) throws ParseException {
-        if (input == null) {
-            throw new NullPointerException();
-        }
+        Objects.requireNonNull(input, "input");
         var tt = this.createTokenizer(this.notation);
         tt.setInput(input);
         return parseScript(tt);
@@ -637,6 +646,14 @@ public class ScriptParser {
         parent.add(node);
     }
 
+    /**
+     * Adds a Prefix expression to parent,
+     * if we encountered a BEGIN symbol we parse a BinaryPrefix,
+     * if we encountered an OPERATOR symbol we parse a UnaryPrefix.
+     * <p>
+     * Parses a BinaryPrefix or a UnaryPrefix depending on whether we have encountered
+     * a BEGIN symbol or an OPERATOR symbol.
+     */
     private void parsePrefix(@Nonnull Tokenizer tt, @Nonnull Node parent, @Nonnull Symbol symbol) throws ParseException {
         var startPosition = tt.getStartPosition();
         Node node;
@@ -812,7 +829,9 @@ public class ScriptParser {
     }
 
     /**
-     * Replaces the last child of parent with a suffix expression.
+     * Replaces the last child of parent with a Suffix expression,
+     * if we encountered a BEGIN symbol we parse a BinarySuffix,
+     * if we encountered an OPERATOR symbol we parse a UnarySuffix.
      *
      * @param tt     the tokenizer
      * @param parent the parent

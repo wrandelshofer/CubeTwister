@@ -36,27 +36,27 @@ public abstract class AbstractCube7Geom3D extends AbstractCubeGeom3D {
     public final static double[][] EXPLODE_TRANSLATIONS = {
         // Corners
         {-1, 1, 1}, // left up front
-        {-1, -1, 1}, // left down front
-        {1, 1, 1}, // right up front
-        {1, -1, 1}, // right down front
+            {-1, -1, 1}, // left down front
+            {1, 1, 1}, // right up front
+            {1, -1, 1}, // right down front
 
-        {1, 1, -1}, // right up back
-        {1, -1, -1}, // right down back
-        {-1, 1, -1}, // left up back
-        {-1, -1, -1}, // left down back
+            {1, 1, -1}, // right up back
+            {1, -1, -1}, // right down back
+            {-1, 1, -1}, // left up back
+            {-1, -1, -1}, // left down back
 
-        // Edges 1
-        {0, 1, 1}, // up front 
-        {-1, 0, 1}, // left front
-        {0, -1, 1}, // down front
-        {1, 1, 0}, // right up
-        {1, 0, 1}, // right front
-        {1, -1, 0}, // right down
-        {0, 1, -1}, // up back
-        {1, 0, -1}, // right back
-        {0, -1, -1}, // down back
-        {-1, 1, 0}, // left up
-        {-1, 0, -1}, // left back
+            // Edges 1
+            {0, 1, 1}, // up front
+            {-1, 0, 1}, // left front
+            {0, -1, 1}, // down front
+            {1, 1, 0}, // right up
+            {1, 0, 1}, // right front
+            {1, -1, 0}, // right down
+            {0, 1, -1}, // up back
+            {1, 0, -1}, // right back
+            {0, -1, -1}, // down back
+            {-1, 1, 0}, // left up
+            {-1, 0, -1}, // left back
         {-1, -1, 0}, // left down
 
         // Edges 2
@@ -790,8 +790,8 @@ public abstract class AbstractCube7Geom3D extends AbstractCubeGeom3D {
 
 
         // Reduce number of faces to be drawn to optimize speed
-        boolean reduce = (layerMask & 1) == (layerMask & 2) && 
-                (layerMask & (1<<(layerCount-1))) == (layerMask & (1<<layerCount));
+        boolean reduce = (layerMask & 1) == (layerMask & 2) &&
+                (layerMask & (1 << (layerCount - 1))) == (layerMask & (1 << layerCount));
         for (int i = 0; i < cornerCount; i++) {
             shapes[cornerOffset + i].setReduced(reduce);
         }

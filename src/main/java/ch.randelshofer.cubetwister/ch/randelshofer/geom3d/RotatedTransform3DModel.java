@@ -22,14 +22,14 @@ import javax.swing.event.ChangeListener;
 public class RotatedTransform3DModel extends AbstractStateModel implements Transform3DModel, ChangeListener {
     private Transform3D rotator;
     private Transform3DModel model;
-    
+
     /** Creates a new instance of ConcatenatedTransform3DModel */
     public RotatedTransform3DModel(double dx, double dy, double dz) {
         rotator = new Transform3D(dx, dy, dz);
         model = new DefaultTransform3DModel();
         model.addChangeListener(this);
     }
-    
+
     public RotatedTransform3DModel(double dx, double dy, double dz, Transform3DModel m) {
         rotator = new Transform3D(dx, dy, dz);
         model = m;
@@ -41,7 +41,7 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
         model = m;
         model.addChangeListener(this);
     }
-    
+
     /**
      * Concatenates a transform Tx to this transform Cx.
      * Cx is updated to perform the combined transformation.
@@ -60,13 +60,13 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void concatenate(Transform3D t) {
         model.concatenate(t);
     }
-    
+
     /**
      * Returns the current state of the model.
      */
     public Transform3D getTransform() {
         Transform3D t = model.getTransform();
-        t.concatenate(rotator);
+        t.concatenated(rotator);
         return t;
     }
 
@@ -78,11 +78,11 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     @Nonnull
     public Transform3D getTransform(@Nonnull Transform3D t) {
         model.getTransform(t);
-        t.concatenate(rotator);
+        t.concatenated(rotator);
         return t;
     }
-    
-    
+
+
     /**
      * Concatenates this transform with a rotation transformation.
      * This is equivalent to calling concatenate0(R), where R is an
@@ -106,10 +106,10 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void rotate(double rx, double ry, double rz) {
         Transform3D t = getTransform();
         t.rotate(rx, ry, rz);
-        t.concatenate(rotator);
+        t.concatenated(rotator);
         model.setTransform(t);
     }
-    
+
     /**
      * Concatenates this transform with a rotation transformation.
      * This is equivalent to calling concatenate0(R), where R is an
@@ -126,10 +126,10 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void rotateX(double rx) {
         Transform3D t = getTransform();
         t.rotateX(rx);
-        t.concatenate(rotator);
+        t.concatenated(rotator);
         model.setTransform(t);
     }
-    
+
     /**
      * Concatenates this transform with a rotation transformation.
      * This is equivalent to calling concatenate0(R), where R is an
@@ -146,10 +146,10 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void rotateY(double ry) {
         Transform3D t = getTransform();
         t.rotateY(ry);
-        t.concatenate(rotator);
+        t.concatenated(rotator);
         model.setTransform(t);
     }
-    
+
     /**
      * Concatenates this transform with a rotation transformation.
      * This is equivalent to calling concatenate0(R), where R is an
@@ -166,10 +166,10 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void rotateZ(double rz) {
         Transform3D t = getTransform();
         t.rotateZ(rz);
-        t.concatenate(rotator);
+        t.concatenated(rotator);
         model.setTransform(t);
     }
-    
+
     /**
      * Concatenates this transform with a scaling transformation.
      * This is equivalent to calling concatenate0(S), where S is an
@@ -184,14 +184,14 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void scale(double sx, double sy, double sz) {
         model.scale(sx, sy, sz);
     }
-    
+
     /**
      * Resets this transform to the Identity transform.
      */
     public void setToIdentity() {
         model.setToIdentity();
     }
-    
+
     /**
      * Sets this transform to a copy of the transform in the specified
      * <code>Transform3D</code> object.
@@ -201,7 +201,7 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void setTransform(Transform3D t) {
         model.setTransform(t);
     }
-    
+
     /**
      * Concatenates this transform with a translation transformation.
      * This is equivalent to calling concatenate0(T), where T is an
@@ -216,9 +216,9 @@ public class RotatedTransform3DModel extends AbstractStateModel implements Trans
     public void translate(double tx, double ty, double tz) {
         model.translate(tx, ty, tz);
     }
-    
+
     public void stateChanged(ChangeEvent changeEvent) {
         fireStateChanged();
     }
-    
+
 }

@@ -207,6 +207,14 @@ class ScriptParserTest {
 
     @Nonnull
     @TestFactory
+    public List<DynamicTest> testParseDefaultNotationSingle() {
+        return Arrays.asList(
+                dynamicTest("4 Dots", () -> doParse(defaultNotatioon, "MR2 MD MR2 MD' · CD2", "0..20 sequence{ 0..3 move{ 0:2:2 } 4..6 move{ 1:2:-1 } 7..10 move{ 0:2:2 } 11..14 inversion{ 11..13 move{ 1:2:-1 } } 15..16 nop{ } 17..20 move{ 1:7:-2 } }"))
+        );
+    }
+
+    @Nonnull
+    @TestFactory
     public List<DynamicTest> testParseDefaultNotation() {
         return Arrays.asList(
                 dynamicTest("<empty>", () -> doParse(defaultNotatioon, "", "0..0 sequence{ }")),

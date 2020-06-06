@@ -18,7 +18,7 @@ import java.util.Arrays;
 /**
  * RevengeCubeIdx3D.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
 
@@ -41,6 +41,7 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
         bev = 3f / 512f;
         super.init();
     }
+
     private static float[] CORNER_VERTS;
     private static int[][] CORNER_FACES;
 
@@ -64,61 +65,61 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
             6, 7, -6, 6, -7, -6, -6, 7, -6, -6, -7, -6
             };*/
             CORNER_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f,
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        //8:lluf      lldf       rruf      rrdf
-                        -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
-                    };
+                    //0:luff      ldff       ruff       rdff
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f,
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    //8:lluf      lldf       rruf      rrdf
+                    -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
+            };
         }
         if (CORNER_FACES == null) {
             CORNER_FACES = new int[][]{
-                        // Faces with stickers
-                        {0, 2, 3, 1}, //Up face      The sequence of these faces
-                        {22, 20, 18, 16}, //Front face   is relevant, for method
-                        {15, 14, 8, 9}, //Left face    updateStickersFillColor().
+                    // Faces with stickers
+                    {0, 2, 3, 1}, //Up face      The sequence of these faces
+                    {22, 20, 18, 16}, //Front face   is relevant, for method
+                    {15, 14, 8, 9}, //Left face    updateStickersFillColor().
 
-                        // Edges with swipe actions.
-                        {1, 3, 19, 17}, //Up Back
-                        {2, 10, 11, 3}, //Up Right
-                        {20, 12, 10, 18}, //Front Right
-                        {6, 4, 20, 22}, //Front Down
-                        {23, 15, 9, 17}, //Left Back
-                        {7, 6, 14, 15}, //Left Down
+                    // Edges with swipe actions.
+                    {1, 3, 19, 17}, //Up Back
+                    {2, 10, 11, 3}, //Up Right
+                    {20, 12, 10, 18}, //Front Right
+                    {6, 4, 20, 22}, //Front Down
+                    {23, 15, 9, 17}, //Left Back
+                    {7, 6, 14, 15}, //Left Down
 
-                        // Edges without actions.
-                        {0, 1, 9, 8}, //Up Left
-                        {4, 5, 13, 12}, //Back Right
-                        {23, 21, 5, 7}, //Bottom Back lddb rddb rdbb ldbb
-                        {16, 18, 2, 0}, //Up Front
-                        {21, 19, 11, 13}, //Right Back
-                        {22, 16, 8, 14}, //Front Left
+                    // Edges without actions.
+                    {0, 1, 9, 8}, //Up Left
+                    {4, 5, 13, 12}, //Back Right
+                    {23, 21, 5, 7}, //Bottom Back lddb rddb rdbb ldbb
+                    {16, 18, 2, 0}, //Up Front
+                    {21, 19, 11, 13}, //Right Back
+                    {22, 16, 8, 14}, //Front Left
 
-                        {17, 9, 1}, //Bottom Left Front lddf lldf ldff
-                        {19, 3, 11}, //Bottom Front Right  rddf rdff rrdf
-                        {23, 7, 15}, //Bottom Back Left lddb ldbb lldb
+                    {17, 9, 1}, //Bottom Left Front lddf lldf ldff
+                    {19, 3, 11}, //Bottom Front Right  rddf rdff rrdf
+                    {23, 7, 15}, //Bottom Back Left lddb ldbb lldb
 
-                        {16, 0, 8}, //Top Front Left luuf luff lluf
-                        {18, 10, 2}, //Top Right Front ruuf rruf ruff
-                        {22, 14, 6}, //Top Left Back luub llub lubb
-                        {20, 4, 12}, //Top Back Right ruub rubb rrub
+                    {16, 0, 8}, //Top Front Left luuf luff lluf
+                    {18, 10, 2}, //Top Right Front ruuf rruf ruff
+                    {22, 14, 6}, //Top Left Back luub llub lubb
+                    {20, 4, 12}, //Top Back Right ruub rubb rrub
 
-                        // Cut Off Faces: The following faces need only be drawn,
-                        //                when a face layer of the cube is being twisted.
-                        {12, 13, 11, 10}, //Right
-                        {17, 19, 21, 23}, //Bottom
-                        {4, 6, 7, 5}, //Back
-                        // Cut Off Faces:
-                        // These faces can never be seen unless we would take the cube apart.
-                        {21, 13, 5}, //Bottom Right Back rddb rrdb rdbb
-                    };
+                    // Cut Off Faces: The following faces need only be drawn,
+                    //                when a face layer of the cube is being twisted.
+                    {12, 13, 11, 10}, //Right
+                    {17, 19, 21, 23}, //Bottom
+                    {4, 6, 7, 5}, //Back
+                    // Cut Off Faces:
+                    // These faces can never be seen unless we would take the cube apart.
+                    {21, 13, 5}, //Bottom Right Back rddb rrdb rdbb
+            };
         }
         for (part = 0; part < cornerCount; part++) {
             idx3d_Object object3D = new idx3d_Object();
@@ -186,73 +187,74 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
         for (int part = 0; part < 8; part++) {
             idx3d_Object object3D = parts[cornerOffset + part];
             switch (part) {
-                case 0: // up right front
-                    object3D.triangle(0).setUV(ss * 8 - bev, ss * 4 - bev, ss * 8 - bev, ss * 3 + bev, ss * 7 + bev, ss * 3 + bev);
-                    object3D.triangle(1).setUV(ss * 8 - bev, ss * 4 - bev, ss * 7 + bev, ss * 3 + bev, ss * 7 + bev, ss * 4 - bev);
-                    object3D.triangle(2).setUV(ss * 8 + bev, ss * 5 - bev, ss * 9 - bev, ss * 5 - bev, ss * 9 - bev, ss * 4 + bev);
-                    object3D.triangle(3).setUV(ss * 8 + bev, ss * 5 - bev, ss * 9 - bev, ss * 4 + bev, ss * 8 + bev, ss * 4 + bev);
-                    object3D.triangle(4).setUV(ss * 7 + bev, ss * 5 - bev, ss * 8 - bev, ss * 5 - bev, ss * 8 - bev, ss * 4 + bev);
-                    object3D.triangle(5).setUV(ss * 7 + bev, ss * 5 - bev, ss * 8 - bev, ss * 4 + bev, ss * 7 + bev, ss * 4 + bev);
-                    break;
-                case 1: // down front right
-                    object3D.triangle(0).setUV(ss * 8 - bev, ss * 8 + bev, ss * 7 + bev, ss * 8 + bev, ss * 7 + bev, ss * 9 - bev);
-                    object3D.triangle(1).setUV(ss * 8 - bev, ss * 8 + bev, ss * 7 + bev, ss * 9 - bev, ss * 8 - bev, ss * 9 - bev);
-                    object3D.triangle(2).setUV(ss * 8 - bev, ss * 7 + bev, ss * 7 + bev, ss * 7 + bev, ss * 7 + bev, ss * 8 - bev);
-                    object3D.triangle(3).setUV(ss * 8 - bev, ss * 7 + bev, ss * 7 + bev, ss * 8 - bev, ss * 8 - bev, ss * 8 - bev);
-                    object3D.triangle(4).setUV(ss * 9 - bev, ss * 7 + bev, ss * 8 + bev, ss * 7 + bev, ss * 8 + bev, ss * 8 - bev);
-                    object3D.triangle(5).setUV(ss * 9 - bev, ss * 7 + bev, ss * 8 + bev, ss * 8 - bev, ss * 9 - bev, ss * 8 - bev);
-                    break;
-                case 2: // up back right
-                    object3D.triangle(0).setUV(ss * 8 - bev, ss * 0 + bev, ss * 7 + bev, ss * 0 + bev, ss * 7 + bev, ss * 1 - bev);
-                    object3D.triangle(1).setUV(ss * 8 - bev, ss * 0 + bev, ss * 7 + bev, ss * 1 - bev, ss * 8 - bev, ss * 1 - bev);
-                    object3D.triangle(2).setUV(ss * 8 + bev, ss * 9 - bev, ss * 9 - bev, ss * 9 - bev, ss * 9 - bev, ss * 8 + bev);
-                    object3D.triangle(3).setUV(ss * 8 + bev, ss * 9 - bev, ss * 9 - bev, ss * 8 + bev, ss * 8 + bev, ss * 8 + bev);
-                    object3D.triangle(4).setUV(ss * 11 + bev, ss * 5 - bev, ss * 12 - bev, ss * 5 - bev, ss * 12 - bev, ss * 4 + bev);
-                    object3D.triangle(5).setUV(ss * 11 + bev, ss * 5 - bev, ss * 12 - bev, ss * 4 + bev, ss * 11 + bev, ss * 4 + bev);
-                    break;
-                case 3: // down right back
-                    object3D.triangle(0).setUV(ss * 8 - bev, ss * 12 - bev, ss * 8 - bev, ss * 11 + bev, ss * 7 + bev, ss * 11 + bev);
-                    object3D.triangle(1).setUV(ss * 8 - bev, ss * 12 - bev, ss * 7 + bev, ss * 11 + bev, ss * 7 + bev, ss * 12 - bev);
-                    object3D.triangle(2).setUV(ss * 12 - bev, ss * 7 + bev, ss * 11 + bev, ss * 7 + bev, ss * 11 + bev, ss * 8 - bev);
-                    object3D.triangle(3).setUV(ss * 12 - bev, ss * 7 + bev, ss * 11 + bev, ss * 8 - bev, ss * 12 - bev, ss * 8 - bev);
-                    object3D.triangle(4).setUV(ss * 9 - bev, ss * 11 + bev, ss * 8 + bev, ss * 11 + bev, ss * 8 + bev, ss * 12 - bev);
-                    object3D.triangle(5).setUV(ss * 9 - bev, ss * 11 + bev, ss * 8 + bev, ss * 12 - bev, ss * 9 - bev, ss * 12 - bev);
-                    break;
-                case 4: // up left back
-                    object3D.triangle(0).setUV(ss * 4 + bev, ss * 0 + bev, ss * 4 + bev, ss * 1 - bev, ss * 5 - bev, ss * 1 - bev);
-                    object3D.triangle(1).setUV(ss * 4 + bev, ss * 0 + bev, ss * 5 - bev, ss * 1 - bev, ss * 5 - bev, ss * 0 + bev);
-                    object3D.triangle(2).setUV(ss * 0 + bev, ss * 5 - bev, ss * 1 - bev, ss * 5 - bev, ss * 1 - bev, ss * 4 + bev);
-                    object3D.triangle(3).setUV(ss * 0 + bev, ss * 5 - bev, ss * 1 - bev, ss * 4 + bev, ss * 0 + bev, ss * 4 + bev);
-                    object3D.triangle(4).setUV(ss * 11 + bev, ss * 9 - bev, ss * 12 - bev, ss * 9 - bev, ss * 12 - bev, ss * 8 + bev);
-                    object3D.triangle(5).setUV(ss * 11 + bev, ss * 9 - bev, ss * 12 - bev, ss * 8 + bev, ss * 11 + bev, ss * 8 + bev);
-                    break;
-                case 5: // down back left
-                    object3D.triangle(0).setUV(ss * 4 + bev, ss * 12 - bev, ss * 5 - bev, ss * 12 - bev, ss * 5 - bev, ss * 11 + bev);
-                    object3D.triangle(1).setUV(ss * 4 + bev, ss * 12 - bev, ss * 5 - bev, ss * 11 + bev, ss * 4 + bev, ss * 11 + bev);
-                    object3D.triangle(2).setUV(ss * 12 - bev, ss * 11 + bev, ss * 11 + bev, ss * 11 + bev, ss * 11 + bev, ss * 12 - bev);
-                    object3D.triangle(3).setUV(ss * 12 - bev, ss * 11 + bev, ss * 11 + bev, ss * 12 - bev, ss * 12 - bev, ss * 12 - bev);
-                    object3D.triangle(4).setUV(ss * 1 - bev, ss * 7 + bev, ss * 0 + bev, ss * 7 + bev, ss * 0 + bev, ss * 8 - bev);
-                    object3D.triangle(5).setUV(ss * 1 - bev, ss * 7 + bev, ss * 0 + bev, ss * 8 - bev, ss * 1 - bev, ss * 8 - bev);
-                    break;
-                case 6: // up front left
-                    object3D.triangle(0).setUV(ss * 4 + bev, ss * 4 - bev, ss * 5 - bev, ss * 4 - bev, ss * 5 - bev, ss * 3 + bev);
-                    object3D.triangle(1).setUV(ss * 4 + bev, ss * 4 - bev, ss * 5 - bev, ss * 3 + bev, ss * 4 + bev, ss * 3 + bev);
-                    object3D.triangle(2).setUV(ss * 4 + bev, ss * 5 - bev, ss * 5 - bev, ss * 5 - bev, ss * 5 - bev, ss * 4 + bev);
-                    object3D.triangle(3).setUV(ss * 4 + bev, ss * 5 - bev, ss * 5 - bev, ss * 4 + bev, ss * 4 + bev, ss * 4 + bev);
-                    object3D.triangle(4).setUV(ss * 3 + bev, ss * 5 - bev, ss * 4 - bev, ss * 5 - bev, ss * 4 - bev, ss * 4 + bev);
-                    object3D.triangle(5).setUV(ss * 3 + bev, ss * 5 - bev, ss * 4 - bev, ss * 4 + bev, ss * 3 + bev, ss * 4 + bev);
-                    break;
-                case 7: // down left front
-                    object3D.triangle(0).setUV(ss * 4 + bev, ss * 8 + bev, ss * 4 + bev, ss * 9 - bev, ss * 5 - bev, ss * 9 - bev);
-                    object3D.triangle(1).setUV(ss * 4 + bev, ss * 8 + bev, ss * 5 - bev, ss * 9 - bev, ss * 5 - bev, ss * 8 + bev);
-                    object3D.triangle(2).setUV(ss * 4 - bev, ss * 7 + bev, ss * 3 + bev, ss * 7 + bev, ss * 3 + bev, ss * 8 - bev);
-                    object3D.triangle(3).setUV(ss * 4 - bev, ss * 7 + bev, ss * 3 + bev, ss * 8 - bev, ss * 4 - bev, ss * 8 - bev);
-                    object3D.triangle(4).setUV(ss * 5 - bev, ss * 7 + bev, ss * 4 + bev, ss * 7 + bev, ss * 4 + bev, ss * 8 - bev);
-                    object3D.triangle(5).setUV(ss * 5 - bev, ss * 7 + bev, ss * 4 + bev, ss * 8 - bev, ss * 5 - bev, ss * 8 - bev);
-                    break;
+            case 0: // up right front
+                object3D.triangle(0).setUV(ss * 8 - bev, ss * 4 - bev, ss * 8 - bev, ss * 3 + bev, ss * 7 + bev, ss * 3 + bev);
+                object3D.triangle(1).setUV(ss * 8 - bev, ss * 4 - bev, ss * 7 + bev, ss * 3 + bev, ss * 7 + bev, ss * 4 - bev);
+                object3D.triangle(2).setUV(ss * 8 + bev, ss * 5 - bev, ss * 9 - bev, ss * 5 - bev, ss * 9 - bev, ss * 4 + bev);
+                object3D.triangle(3).setUV(ss * 8 + bev, ss * 5 - bev, ss * 9 - bev, ss * 4 + bev, ss * 8 + bev, ss * 4 + bev);
+                object3D.triangle(4).setUV(ss * 7 + bev, ss * 5 - bev, ss * 8 - bev, ss * 5 - bev, ss * 8 - bev, ss * 4 + bev);
+                object3D.triangle(5).setUV(ss * 7 + bev, ss * 5 - bev, ss * 8 - bev, ss * 4 + bev, ss * 7 + bev, ss * 4 + bev);
+                break;
+            case 1: // down front right
+                object3D.triangle(0).setUV(ss * 8 - bev, ss * 8 + bev, ss * 7 + bev, ss * 8 + bev, ss * 7 + bev, ss * 9 - bev);
+                object3D.triangle(1).setUV(ss * 8 - bev, ss * 8 + bev, ss * 7 + bev, ss * 9 - bev, ss * 8 - bev, ss * 9 - bev);
+                object3D.triangle(2).setUV(ss * 8 - bev, ss * 7 + bev, ss * 7 + bev, ss * 7 + bev, ss * 7 + bev, ss * 8 - bev);
+                object3D.triangle(3).setUV(ss * 8 - bev, ss * 7 + bev, ss * 7 + bev, ss * 8 - bev, ss * 8 - bev, ss * 8 - bev);
+                object3D.triangle(4).setUV(ss * 9 - bev, ss * 7 + bev, ss * 8 + bev, ss * 7 + bev, ss * 8 + bev, ss * 8 - bev);
+                object3D.triangle(5).setUV(ss * 9 - bev, ss * 7 + bev, ss * 8 + bev, ss * 8 - bev, ss * 9 - bev, ss * 8 - bev);
+                break;
+            case 2: // up back right
+                object3D.triangle(0).setUV(ss * 8 - bev, ss * 0 + bev, ss * 7 + bev, ss * 0 + bev, ss * 7 + bev, ss * 1 - bev);
+                object3D.triangle(1).setUV(ss * 8 - bev, ss * 0 + bev, ss * 7 + bev, ss * 1 - bev, ss * 8 - bev, ss * 1 - bev);
+                object3D.triangle(2).setUV(ss * 8 + bev, ss * 9 - bev, ss * 9 - bev, ss * 9 - bev, ss * 9 - bev, ss * 8 + bev);
+                object3D.triangle(3).setUV(ss * 8 + bev, ss * 9 - bev, ss * 9 - bev, ss * 8 + bev, ss * 8 + bev, ss * 8 + bev);
+                object3D.triangle(4).setUV(ss * 11 + bev, ss * 5 - bev, ss * 12 - bev, ss * 5 - bev, ss * 12 - bev, ss * 4 + bev);
+                object3D.triangle(5).setUV(ss * 11 + bev, ss * 5 - bev, ss * 12 - bev, ss * 4 + bev, ss * 11 + bev, ss * 4 + bev);
+                break;
+            case 3: // down right back
+                object3D.triangle(0).setUV(ss * 8 - bev, ss * 12 - bev, ss * 8 - bev, ss * 11 + bev, ss * 7 + bev, ss * 11 + bev);
+                object3D.triangle(1).setUV(ss * 8 - bev, ss * 12 - bev, ss * 7 + bev, ss * 11 + bev, ss * 7 + bev, ss * 12 - bev);
+                object3D.triangle(2).setUV(ss * 12 - bev, ss * 7 + bev, ss * 11 + bev, ss * 7 + bev, ss * 11 + bev, ss * 8 - bev);
+                object3D.triangle(3).setUV(ss * 12 - bev, ss * 7 + bev, ss * 11 + bev, ss * 8 - bev, ss * 12 - bev, ss * 8 - bev);
+                object3D.triangle(4).setUV(ss * 9 - bev, ss * 11 + bev, ss * 8 + bev, ss * 11 + bev, ss * 8 + bev, ss * 12 - bev);
+                object3D.triangle(5).setUV(ss * 9 - bev, ss * 11 + bev, ss * 8 + bev, ss * 12 - bev, ss * 9 - bev, ss * 12 - bev);
+                break;
+            case 4: // up left back
+                object3D.triangle(0).setUV(ss * 4 + bev, ss * 0 + bev, ss * 4 + bev, ss * 1 - bev, ss * 5 - bev, ss * 1 - bev);
+                object3D.triangle(1).setUV(ss * 4 + bev, ss * 0 + bev, ss * 5 - bev, ss * 1 - bev, ss * 5 - bev, ss * 0 + bev);
+                object3D.triangle(2).setUV(ss * 0 + bev, ss * 5 - bev, ss * 1 - bev, ss * 5 - bev, ss * 1 - bev, ss * 4 + bev);
+                object3D.triangle(3).setUV(ss * 0 + bev, ss * 5 - bev, ss * 1 - bev, ss * 4 + bev, ss * 0 + bev, ss * 4 + bev);
+                object3D.triangle(4).setUV(ss * 11 + bev, ss * 9 - bev, ss * 12 - bev, ss * 9 - bev, ss * 12 - bev, ss * 8 + bev);
+                object3D.triangle(5).setUV(ss * 11 + bev, ss * 9 - bev, ss * 12 - bev, ss * 8 + bev, ss * 11 + bev, ss * 8 + bev);
+                break;
+            case 5: // down back left
+                object3D.triangle(0).setUV(ss * 4 + bev, ss * 12 - bev, ss * 5 - bev, ss * 12 - bev, ss * 5 - bev, ss * 11 + bev);
+                object3D.triangle(1).setUV(ss * 4 + bev, ss * 12 - bev, ss * 5 - bev, ss * 11 + bev, ss * 4 + bev, ss * 11 + bev);
+                object3D.triangle(2).setUV(ss * 12 - bev, ss * 11 + bev, ss * 11 + bev, ss * 11 + bev, ss * 11 + bev, ss * 12 - bev);
+                object3D.triangle(3).setUV(ss * 12 - bev, ss * 11 + bev, ss * 11 + bev, ss * 12 - bev, ss * 12 - bev, ss * 12 - bev);
+                object3D.triangle(4).setUV(ss * 1 - bev, ss * 7 + bev, ss * 0 + bev, ss * 7 + bev, ss * 0 + bev, ss * 8 - bev);
+                object3D.triangle(5).setUV(ss * 1 - bev, ss * 7 + bev, ss * 0 + bev, ss * 8 - bev, ss * 1 - bev, ss * 8 - bev);
+                break;
+            case 6: // up front left
+                object3D.triangle(0).setUV(ss * 4 + bev, ss * 4 - bev, ss * 5 - bev, ss * 4 - bev, ss * 5 - bev, ss * 3 + bev);
+                object3D.triangle(1).setUV(ss * 4 + bev, ss * 4 - bev, ss * 5 - bev, ss * 3 + bev, ss * 4 + bev, ss * 3 + bev);
+                object3D.triangle(2).setUV(ss * 4 + bev, ss * 5 - bev, ss * 5 - bev, ss * 5 - bev, ss * 5 - bev, ss * 4 + bev);
+                object3D.triangle(3).setUV(ss * 4 + bev, ss * 5 - bev, ss * 5 - bev, ss * 4 + bev, ss * 4 + bev, ss * 4 + bev);
+                object3D.triangle(4).setUV(ss * 3 + bev, ss * 5 - bev, ss * 4 - bev, ss * 5 - bev, ss * 4 - bev, ss * 4 + bev);
+                object3D.triangle(5).setUV(ss * 3 + bev, ss * 5 - bev, ss * 4 - bev, ss * 4 + bev, ss * 3 + bev, ss * 4 + bev);
+                break;
+            case 7: // down left front
+                object3D.triangle(0).setUV(ss * 4 + bev, ss * 8 + bev, ss * 4 + bev, ss * 9 - bev, ss * 5 - bev, ss * 9 - bev);
+                object3D.triangle(1).setUV(ss * 4 + bev, ss * 8 + bev, ss * 5 - bev, ss * 9 - bev, ss * 5 - bev, ss * 8 + bev);
+                object3D.triangle(2).setUV(ss * 4 - bev, ss * 7 + bev, ss * 3 + bev, ss * 7 + bev, ss * 3 + bev, ss * 8 - bev);
+                object3D.triangle(3).setUV(ss * 4 - bev, ss * 7 + bev, ss * 3 + bev, ss * 8 - bev, ss * 4 - bev, ss * 8 - bev);
+                object3D.triangle(4).setUV(ss * 5 - bev, ss * 7 + bev, ss * 4 + bev, ss * 7 + bev, ss * 4 + bev, ss * 8 - bev);
+                object3D.triangle(5).setUV(ss * 5 - bev, ss * 7 + bev, ss * 4 + bev, ss * 8 - bev, ss * 5 - bev, ss * 8 - bev);
+                break;
             }
         }
     }
+
     private static float[] EDGE_VERTS;
     private static int[][] EDGE_FACES;
 
@@ -275,63 +277,63 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
             6, 7, -6, 6, -7, -6, -6, 7, -6, -6, -7, -6
             };*/
             EDGE_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        //8:lluf      lldf       rruf      rrdf
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
-                    };
+                    //0:luff      ldff       ruff       rdff
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    //8:lluf      lldf       rruf      rrdf
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
+            };
         }
         if (EDGE_FACES == null) {
             EDGE_FACES = new int[][]{
-                        {0, 2, 3, 1}, //Front
-                        {22, 20, 18, 16}, //Up
+                    {0, 2, 3, 1}, //Front
+                    {22, 20, 18, 16}, //Up
 
-                        // Inner edges of the main cubicle. We assign swipe actions to these.
-                        {8, 0, 1, 9}, //Front Right
-                        {2, 10, 11, 3}, //Front Left
-                        {1, 3, 19, 17}, //Down Front
+                    // Inner edges of the main cubicle. We assign swipe actions to these.
+                    {8, 0, 1, 9}, //Front Right
+                    {2, 10, 11, 3}, //Front Left
+                    {1, 3, 19, 17}, //Down Front
 
-                        {6, 4, 20, 22}, //Top Back
-                        {20, 12, 10, 18}, //Top Left
-                        {14, 22, 16, 8}, //Top Right
+                    {6, 4, 20, 22}, //Top Back
+                    {20, 12, 10, 18}, //Top Left
+                    {14, 22, 16, 8}, //Top Right
 
-                        // Outer edges of the main cubicle. We assign no actions to these.
-                        {16, 18, 2, 0}, //Top Front
+                    // Outer edges of the main cubicle. We assign no actions to these.
+                    {16, 18, 2, 0}, //Top Front
 
-                        //
-                        {17, 9, 1}, //Bottom Left Front lddf lldf ldff
-                        {19, 3, 11}, //Bottom Front Right  rddf rdff rrdf
+                    //
+                    {17, 9, 1}, //Bottom Left Front lddf lldf ldff
+                    {19, 3, 11}, //Bottom Front Right  rddf rdff rrdf
 
-                        {16, 0, 8}, //Top Front Left luuf luff lluf
-                        {18, 10, 2}, //Top Right Front ruuf rruf ruff
-                        {22, 14, 6}, //Top Left Back luub llub lubb
-                        {20, 4, 12}, //Top Back Right ruub rubb rrub
+                    {16, 0, 8}, //Top Front Left luuf luff lluf
+                    {18, 10, 2}, //Top Right Front ruuf rruf ruff
+                    {22, 14, 6}, //Top Left Back luub llub lubb
+                    {20, 4, 12}, //Top Back Right ruub rubb rrub
 
-                        {4, 5, 13, 12}, //Back Right
-                        {7, 6, 14, 15}, //Back Left
-                        {21, 19, 11, 13}, //Bottom Right rddb rddf rrdf rrdb
-                        {17, 23, 15, 9}, //Bottom Left lddf lddb lldb lldf
+                    {4, 5, 13, 12}, //Back Right
+                    {7, 6, 14, 15}, //Back Left
+                    {21, 19, 11, 13}, //Bottom Right rddb rddf rrdf rrdb
+                    {17, 23, 15, 9}, //Bottom Left lddf lddb lldb lldf
 
-                        // Cut Off Faces: The following faces need only be drawn,
-                        //                when a layer of the cube is being twisted.
-                        {14, 8, 9, 15}, //Left
-                        {12, 13, 11, 10}, //Right
-                        {17, 19, 21, 23}, //Bottom
-                        {4, 6, 7, 5}, //Back
-                        // Cut Off Faces:
-                        // These faces can never be seen unless we would take the cube apart.
-                        {23, 21, 5, 7}, //Bottom Back lddb rddb rdbb ldbb
-                        {23, 7, 15}, //Bottom Back Left lddb ldbb lldb
-                        {21, 13, 5}, //Bottom Right Back rddb rrdb rdbb
-                    };
+                    // Cut Off Faces: The following faces need only be drawn,
+                    //                when a layer of the cube is being twisted.
+                    {14, 8, 9, 15}, //Left
+                    {12, 13, 11, 10}, //Right
+                    {17, 19, 21, 23}, //Bottom
+                    {4, 6, 7, 5}, //Back
+                    // Cut Off Faces:
+                    // These faces can never be seen unless we would take the cube apart.
+                    {23, 21, 5, 7}, //Bottom Back lddb rddb rdbb ldbb
+                    {23, 7, 15}, //Bottom Back Left lddb ldbb lldb
+                    {21, 13, 5}, //Bottom Right Back rddb rrdb rdbb
+            };
         }
         for (int part = 0; part < edgeCount; part++) {
             idx3d_Object object3D = new idx3d_Object();
@@ -397,100 +399,101 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
             //int m = part / 12;
             int m;
             switch (part) {
-                case 12:
-                case 13:
-                case 2:
-                case 3:
-                case 4:
-                case 17:
-                case 6:
-                case 19:
-                case 20:
-                case 21:
-                case 10:
-                case 11:
-                    m = 1;
-                    break;
-                default:
-                    m = 0;
-                    break;
+            case 12:
+            case 13:
+            case 2:
+            case 3:
+            case 4:
+            case 17:
+            case 6:
+            case 19:
+            case 20:
+            case 21:
+            case 10:
+            case 11:
+                m = 1;
+                break;
+            default:
+                m = 0;
+                break;
             }
             switch (part % 12) {
-                case 0: // up right
-                    object3D.triangle(0).setUV(ss * 8 - bev, ss * (2 + m) - bev, ss * 8 - bev, ss * (1 + m) + bev, ss * 7 + bev, ss * (1 + m) + bev);
-                    object3D.triangle(1).setUV(ss * 8 - bev, ss * (2 + m) - bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 7 + bev, ss * (2 + m) - bev);
-                    object3D.triangle(2).setUV(ss * (10 - m) + bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 4 + bev);
-                    object3D.triangle(3).setUV(ss * (10 - m) + bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 4 + bev, ss * (10 - m) + bev, ss * 4 + bev);
-                    break;
-                case 1: // right front
-                    object3D.triangle(0).setUV(ss * 8 + bev, ss * (6 - m) + bev, ss * 8 + bev, ss * (7 - m) - bev, ss * 9 - bev, ss * (7 - m) - bev);
-                    object3D.triangle(1).setUV(ss * 8 + bev, ss * (6 - m) + bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 9 - bev, ss * (6 - m) + bev);
-                    object3D.triangle(2).setUV(ss * 7 + bev, ss * (6 - m) + bev, ss * 7 + bev, ss * (7 - m) - bev, ss * 8 - bev, ss * (7 - m) - bev);
-                    object3D.triangle(3).setUV(ss * 7 + bev, ss * (6 - m) + bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 8 - bev, ss * (6 - m) + bev);
-                    break;
-                case 2: // down right
-                    object3D.triangle(0).setUV(ss * 8 - bev, ss * (10 + m) - bev, ss * 8 - bev, ss * (9 + m) + bev, ss * 7 + bev, ss * (9 + m) + bev);
-                    object3D.triangle(1).setUV(ss * 8 - bev, ss * (10 + m) - bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 7 + bev, ss * (10 + m) - bev);
-                    object3D.triangle(2).setUV(ss * (10 + m) - bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 8 - bev);
-                    object3D.triangle(3).setUV(ss * (10 + m) - bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 8 - bev, ss * (10 + m) - bev, ss * 8 - bev);
-                    break;
-                case 3: // back up
-                    object3D.triangle(0).setUV(ss * (10 + m) - bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 9 - bev);
-                    object3D.triangle(1).setUV(ss * (10 + m) - bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 9 - bev, ss * (10 + m) - bev, ss * 9 - bev);
-                    object3D.triangle(2).setUV(ss * (6 - m) + bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 0 + bev);
-                    object3D.triangle(3).setUV(ss * (6 - m) + bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 0 + bev, ss * (6 - m) + bev, ss * 0 + bev);
-                    break;
-                case 4: // right back
-                    object3D.triangle(0).setUV(ss * 12 - bev, ss * (6 + m) - bev, ss * 12 - bev, ss * (5 + m) + bev, ss * 11 + bev, ss * (5 + m) + bev);
-                    object3D.triangle(1).setUV(ss * 12 - bev, ss * (6 + m) - bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 11 + bev, ss * (6 + m) - bev);
-                    object3D.triangle(2).setUV(ss * 9 - bev, ss * (10 + m) - bev, ss * 9 - bev, ss * (9 + m) + bev, ss * 8 + bev, ss * (9 + m) + bev);
-                    object3D.triangle(3).setUV(ss * 9 - bev, ss * (10 + m) - bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 8 + bev, ss * (10 + m) - bev);
-                    break;
-                case 5: // back down
-                    object3D.triangle(0).setUV(ss * (10 - m) + bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 11 + bev);
-                    object3D.triangle(1).setUV(ss * (10 - m) + bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 11 + bev, ss * (10 - m) + bev, ss * 11 + bev);
-                    object3D.triangle(2).setUV(ss * (6 + m) - bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 12 - bev);
-                    object3D.triangle(3).setUV(ss * (6 + m) - bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 12 - bev, ss * (6 + m) - bev, ss * 12 - bev);
-                    break;
-                case 6: // up left
-                    object3D.triangle(0).setUV(ss * 4 + bev, ss * (2 - m) + bev, ss * 4 + bev, ss * (3 - m) - bev, ss * 5 - bev, ss * (3 - m) - bev);
-                    object3D.triangle(1).setUV(ss * 4 + bev, ss * (2 - m) + bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 5 - bev, ss * (2 - m) + bev);
-                    object3D.triangle(2).setUV(ss * (2 - m) + bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 4 + bev);
-                    object3D.triangle(3).setUV(ss * (2 - m) + bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 4 + bev, ss * (2 - m) + bev, ss * 4 + bev);
-                    break;
-                case 7: // left back
-                    object3D.triangle(0).setUV(ss * 0 + bev, ss * (6 - m) + bev, ss * 0 + bev, ss * (7 - m) - bev, ss * 1 - bev, ss * (7 - m) - bev);
-                    object3D.triangle(1).setUV(ss * 0 + bev, ss * (6 - m) + bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 1 - bev, ss * (6 - m) + bev);
-                    object3D.triangle(2).setUV(ss * 11 + bev, ss * (10 - m) + bev, ss * 11 + bev, ss * (11 - m) - bev, ss * 12 - bev, ss * (11 - m) - bev);
-                    object3D.triangle(3).setUV(ss * 11 + bev, ss * (10 - m) + bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 12 - bev, ss * (10 - m) + bev);
-                    break;
-                case 8: // down left
-                    object3D.triangle(0).setUV(ss * 4 + bev, ss * (10 - m) + bev, ss * 4 + bev, ss * (11 - m) - bev, ss * 5 - bev, ss * (11 - m) - bev);
-                    object3D.triangle(1).setUV(ss * 4 + bev, ss * (10 - m) + bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 5 - bev, ss * (10 - m) + bev);
-                    object3D.triangle(2).setUV(ss * (2 + m) - bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 8 - bev);
-                    object3D.triangle(3).setUV(ss * (2 + m) - bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 8 - bev, ss * (2 + m) - bev, ss * 8 - bev);
-                    break;
-                case 9: // front up
-                    object3D.triangle(0).setUV(ss * (6 + m) - bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 5 - bev);
-                    object3D.triangle(1).setUV(ss * (6 + m) - bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 5 - bev, ss * (6 + m) - bev, ss * 5 - bev);
-                    object3D.triangle(2).setUV(ss * (6 + m) - bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 4 - bev);
-                    object3D.triangle(3).setUV(ss * (6 + m) - bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 4 - bev, ss * (6 + m) - bev, ss * 4 - bev);
-                    break;
-                case 10: // left front
-                    object3D.triangle(0).setUV(ss * 4 - bev, ss * (6 + m) - bev, ss * 4 - bev, ss * (5 + m) + bev, ss * 3 + bev, ss * (5 + m) + bev);
-                    object3D.triangle(1).setUV(ss * 4 - bev, ss * (6 + m) - bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 3 + bev, ss * (6 + m) - bev);
-                    object3D.triangle(2).setUV(ss * 5 - bev, ss * (6 + m) - bev, ss * 5 - bev, ss * (5 + m) + bev, ss * 4 + bev, ss * (5 + m) + bev);
-                    object3D.triangle(3).setUV(ss * 5 - bev, ss * (6 + m) - bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 4 + bev, ss * (6 + m) - bev);
-                    break;
-                case 11: // front down
-                    object3D.triangle(0).setUV(ss * (6 - m) + bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 7 + bev);
-                    object3D.triangle(1).setUV(ss * (6 - m) + bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 7 + bev, ss * (6 - m) + bev, ss * 7 + bev);
-                    object3D.triangle(2).setUV(ss * (6 - m) + bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 8 + bev);
-                    object3D.triangle(3).setUV(ss * (6 - m) + bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 8 + bev, ss * (6 - m) + bev, ss * 8 + bev);
-                    break;
+            case 0: // up right
+                object3D.triangle(0).setUV(ss * 8 - bev, ss * (2 + m) - bev, ss * 8 - bev, ss * (1 + m) + bev, ss * 7 + bev, ss * (1 + m) + bev);
+                object3D.triangle(1).setUV(ss * 8 - bev, ss * (2 + m) - bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 7 + bev, ss * (2 + m) - bev);
+                object3D.triangle(2).setUV(ss * (10 - m) + bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 4 + bev);
+                object3D.triangle(3).setUV(ss * (10 - m) + bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 4 + bev, ss * (10 - m) + bev, ss * 4 + bev);
+                break;
+            case 1: // right front
+                object3D.triangle(0).setUV(ss * 8 + bev, ss * (6 - m) + bev, ss * 8 + bev, ss * (7 - m) - bev, ss * 9 - bev, ss * (7 - m) - bev);
+                object3D.triangle(1).setUV(ss * 8 + bev, ss * (6 - m) + bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 9 - bev, ss * (6 - m) + bev);
+                object3D.triangle(2).setUV(ss * 7 + bev, ss * (6 - m) + bev, ss * 7 + bev, ss * (7 - m) - bev, ss * 8 - bev, ss * (7 - m) - bev);
+                object3D.triangle(3).setUV(ss * 7 + bev, ss * (6 - m) + bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 8 - bev, ss * (6 - m) + bev);
+                break;
+            case 2: // down right
+                object3D.triangle(0).setUV(ss * 8 - bev, ss * (10 + m) - bev, ss * 8 - bev, ss * (9 + m) + bev, ss * 7 + bev, ss * (9 + m) + bev);
+                object3D.triangle(1).setUV(ss * 8 - bev, ss * (10 + m) - bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 7 + bev, ss * (10 + m) - bev);
+                object3D.triangle(2).setUV(ss * (10 + m) - bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 8 - bev);
+                object3D.triangle(3).setUV(ss * (10 + m) - bev, ss * 7 + bev, ss * (9 + m) + bev, ss * 8 - bev, ss * (10 + m) - bev, ss * 8 - bev);
+                break;
+            case 3: // back up
+                object3D.triangle(0).setUV(ss * (10 + m) - bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 9 - bev);
+                object3D.triangle(1).setUV(ss * (10 + m) - bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 9 - bev, ss * (10 + m) - bev, ss * 9 - bev);
+                object3D.triangle(2).setUV(ss * (6 - m) + bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 0 + bev);
+                object3D.triangle(3).setUV(ss * (6 - m) + bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 0 + bev, ss * (6 - m) + bev, ss * 0 + bev);
+                break;
+            case 4: // right back
+                object3D.triangle(0).setUV(ss * 12 - bev, ss * (6 + m) - bev, ss * 12 - bev, ss * (5 + m) + bev, ss * 11 + bev, ss * (5 + m) + bev);
+                object3D.triangle(1).setUV(ss * 12 - bev, ss * (6 + m) - bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 11 + bev, ss * (6 + m) - bev);
+                object3D.triangle(2).setUV(ss * 9 - bev, ss * (10 + m) - bev, ss * 9 - bev, ss * (9 + m) + bev, ss * 8 + bev, ss * (9 + m) + bev);
+                object3D.triangle(3).setUV(ss * 9 - bev, ss * (10 + m) - bev, ss * 8 + bev, ss * (9 + m) + bev, ss * 8 + bev, ss * (10 + m) - bev);
+                break;
+            case 5: // back down
+                object3D.triangle(0).setUV(ss * (10 - m) + bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 11 + bev);
+                object3D.triangle(1).setUV(ss * (10 - m) + bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 11 + bev, ss * (10 - m) + bev, ss * 11 + bev);
+                object3D.triangle(2).setUV(ss * (6 + m) - bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 12 - bev);
+                object3D.triangle(3).setUV(ss * (6 + m) - bev, ss * 11 + bev, ss * (5 + m) + bev, ss * 12 - bev, ss * (6 + m) - bev, ss * 12 - bev);
+                break;
+            case 6: // up left
+                object3D.triangle(0).setUV(ss * 4 + bev, ss * (2 - m) + bev, ss * 4 + bev, ss * (3 - m) - bev, ss * 5 - bev, ss * (3 - m) - bev);
+                object3D.triangle(1).setUV(ss * 4 + bev, ss * (2 - m) + bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 5 - bev, ss * (2 - m) + bev);
+                object3D.triangle(2).setUV(ss * (2 - m) + bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 4 + bev);
+                object3D.triangle(3).setUV(ss * (2 - m) + bev, ss * 5 - bev, ss * (3 - m) - bev, ss * 4 + bev, ss * (2 - m) + bev, ss * 4 + bev);
+                break;
+            case 7: // left back
+                object3D.triangle(0).setUV(ss * 0 + bev, ss * (6 - m) + bev, ss * 0 + bev, ss * (7 - m) - bev, ss * 1 - bev, ss * (7 - m) - bev);
+                object3D.triangle(1).setUV(ss * 0 + bev, ss * (6 - m) + bev, ss * 1 - bev, ss * (7 - m) - bev, ss * 1 - bev, ss * (6 - m) + bev);
+                object3D.triangle(2).setUV(ss * 11 + bev, ss * (10 - m) + bev, ss * 11 + bev, ss * (11 - m) - bev, ss * 12 - bev, ss * (11 - m) - bev);
+                object3D.triangle(3).setUV(ss * 11 + bev, ss * (10 - m) + bev, ss * 12 - bev, ss * (11 - m) - bev, ss * 12 - bev, ss * (10 - m) + bev);
+                break;
+            case 8: // down left
+                object3D.triangle(0).setUV(ss * 4 + bev, ss * (10 - m) + bev, ss * 4 + bev, ss * (11 - m) - bev, ss * 5 - bev, ss * (11 - m) - bev);
+                object3D.triangle(1).setUV(ss * 4 + bev, ss * (10 - m) + bev, ss * 5 - bev, ss * (11 - m) - bev, ss * 5 - bev, ss * (10 - m) + bev);
+                object3D.triangle(2).setUV(ss * (2 + m) - bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 8 - bev);
+                object3D.triangle(3).setUV(ss * (2 + m) - bev, ss * 7 + bev, ss * (1 + m) + bev, ss * 8 - bev, ss * (2 + m) - bev, ss * 8 - bev);
+                break;
+            case 9: // front up
+                object3D.triangle(0).setUV(ss * (6 + m) - bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 5 - bev);
+                object3D.triangle(1).setUV(ss * (6 + m) - bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 5 - bev, ss * (6 + m) - bev, ss * 5 - bev);
+                object3D.triangle(2).setUV(ss * (6 + m) - bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 4 - bev);
+                object3D.triangle(3).setUV(ss * (6 + m) - bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 4 - bev, ss * (6 + m) - bev, ss * 4 - bev);
+                break;
+            case 10: // left front
+                object3D.triangle(0).setUV(ss * 4 - bev, ss * (6 + m) - bev, ss * 4 - bev, ss * (5 + m) + bev, ss * 3 + bev, ss * (5 + m) + bev);
+                object3D.triangle(1).setUV(ss * 4 - bev, ss * (6 + m) - bev, ss * 3 + bev, ss * (5 + m) + bev, ss * 3 + bev, ss * (6 + m) - bev);
+                object3D.triangle(2).setUV(ss * 5 - bev, ss * (6 + m) - bev, ss * 5 - bev, ss * (5 + m) + bev, ss * 4 + bev, ss * (5 + m) + bev);
+                object3D.triangle(3).setUV(ss * 5 - bev, ss * (6 + m) - bev, ss * 4 + bev, ss * (5 + m) + bev, ss * 4 + bev, ss * (6 + m) - bev);
+                break;
+            case 11: // front down
+                object3D.triangle(0).setUV(ss * (6 - m) + bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 7 + bev);
+                object3D.triangle(1).setUV(ss * (6 - m) + bev, ss * 8 - bev, ss * (7 - m) - bev, ss * 7 + bev, ss * (6 - m) + bev, ss * 7 + bev);
+                object3D.triangle(2).setUV(ss * (6 - m) + bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 8 + bev);
+                object3D.triangle(3).setUV(ss * (6 - m) + bev, ss * 9 - bev, ss * (7 - m) - bev, ss * 8 + bev, ss * (6 - m) + bev, ss * 8 + bev);
+                break;
             }
         }
     }
+
     private static float[] SIDE_VERTS;
     private static int[][] SIDE_FACES;
 
@@ -513,63 +516,63 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
             6, 7, -6, 6, -7, -6, -6, 7, -6, -6, -7, -6
             };*/
             SIDE_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        //8:lluf      lldf       rruf      rrdf
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
-                    };
+                    //0:luff      ldff       ruff       rdff
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    //8:lluf      lldf       rruf      rrdf
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
+            };
         }
         if (SIDE_FACES == null) {
             SIDE_FACES = new int[][]{
-                        {0, 2, 3, 1}, //Front
+                    {0, 2, 3, 1}, //Front
 
-                        // Inner edges of the main cubicle. We assign swipe actions to these.
-                        {16, 18, 2, 0}, //Top Front
-                        {1, 3, 19, 17}, //Bottom Front
-                        {2, 10, 11, 3}, //Front Left
-                        {8, 0, 1, 9}, //Front Right
+                    // Inner edges of the main cubicle. We assign swipe actions to these.
+                    {16, 18, 2, 0}, //Top Front
+                    {1, 3, 19, 17}, //Bottom Front
+                    {2, 10, 11, 3}, //Front Left
+                    {8, 0, 1, 9}, //Front Right
 
-                        // Outer edges of the main cubicle. We assign no actions to these.
-                        {18, 20, 12, 10}, //Top Right
-                        {22, 16, 8, 14}, //Top Left
-                        {21, 19, 11, 13}, //Bottom Right rddb rddf rrdf rrdb
-                        {17, 23, 15, 9}, //Bottom Left lddf lddb lldb lldf
+                    // Outer edges of the main cubicle. We assign no actions to these.
+                    {18, 20, 12, 10}, //Top Right
+                    {22, 16, 8, 14}, //Top Left
+                    {21, 19, 11, 13}, //Bottom Right rddb rddf rrdf rrdb
+                    {17, 23, 15, 9}, //Bottom Left lddf lddb lldb lldf
 
-                        {4, 6, 7, 5}, //Back
-                        {17, 9, 1}, //Bottom Left Front lddf lldf ldff
-                        {19, 3, 11}, //Bottom Front Right  rddf rdff rrdf
+                    {4, 6, 7, 5}, //Back
+                    {17, 9, 1}, //Bottom Left Front lddf lldf ldff
+                    {19, 3, 11}, //Bottom Front Right  rddf rdff rrdf
 
-                        {16, 0, 8}, //Top Front Left luuf luff lluf
-                        {18, 10, 2}, //Top Right Front ruuf rruf ruff
+                    {16, 0, 8}, //Top Front Left luuf luff lluf
+                    {18, 10, 2}, //Top Right Front ruuf rruf ruff
 
-                        // Cut Off Faces: The following faces need only be drawn,
-                        //                when a layer of the cube is being twisted.
-                        {16, 22, 20, 18}, //Top
-                        {14, 8, 9, 15}, //Left
-                        {12, 13, 11, 10}, //Right
-                        {17, 19, 21, 23}, //Bottom
+                    // Cut Off Faces: The following faces need only be drawn,
+                    //                when a layer of the cube is being twisted.
+                    {16, 22, 20, 18}, //Top
+                    {14, 8, 9, 15}, //Left
+                    {12, 13, 11, 10}, //Right
+                    {17, 19, 21, 23}, //Bottom
 
-                        // Cut Off Faces:
-                        // These faces can never be seen unless we would take the cube apart.
-                        {22, 14, 6}, //Top Left Back luub llub lubb
-                        {20, 4, 12}, //Top Back Right ruub rubb rrub
-                        {20, 22, 6, 4}, //Top Back
+                    // Cut Off Faces:
+                    // These faces can never be seen unless we would take the cube apart.
+                    {22, 14, 6}, //Top Left Back luub llub lubb
+                    {20, 4, 12}, //Top Back Right ruub rubb rrub
+                    {20, 22, 6, 4}, //Top Back
 
-                        {23, 21, 5, 7}, //Bottom Back lddb rddb rdbb ldbb
+                    {23, 21, 5, 7}, //Bottom Back lddb rddb rdbb ldbb
 
-                        {4, 5, 13, 12}, //Back Right
-                        {7, 6, 14, 15}, //Back Left
-                        {23, 7, 15}, //Bottom Back Left lddb ldbb lldb
-                        {21, 13, 5}, //Bottom Right Back rddb rrdb rdbb
-                    };
+                    {4, 5, 13, 12}, //Back Right
+                    {7, 6, 14, 15}, //Back Left
+                    {23, 7, 15}, //Bottom Back Left lddb ldbb lldb
+                    {21, 13, 5}, //Bottom Right Back rddb rrdb rdbb
+            };
         }
 
         for (int part = 0; part < sideCount; part++) {
@@ -651,34 +654,35 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
             int mx = (part / 6) / 2; // 0,0,1,1
             int my = (part / 6 == 1 || part / 6 == 2) ? 1 : 0; // 0,1,1,0
             switch (part % 6) {
-                case 0: // right
-                    object3D.triangle(0).setUV(ss * (10 - my) + bev, ss * (6 - mx) + bev, ss * (10 - my) + bev, ss * (7 - mx) - bev, ss * (11 - my) - bev, ss * (7 - mx) - bev);
-                    object3D.triangle(1).setUV(ss * (10 - my) + bev, ss * (6 - mx) + bev, ss * (11 - my) - bev, ss * (7 - mx) - bev, ss * (11 - my) - bev, ss * (6 - mx) + bev);
-                    break;
-                case 1: // up
-                    object3D.triangle(0).setUV(ss * (6 + my) - bev, ss * (2 + mx) - bev, ss * (6 + my) - bev, ss * (1 + mx) + bev, ss * (5 + my) + bev, ss * (1 + mx) + bev);
-                    object3D.triangle(1).setUV(ss * (6 + my) - bev, ss * (2 + mx) - bev, ss * (5 + my) + bev, ss * (1 + mx) + bev, ss * (5 + my) + bev, ss * (2 + mx) - bev);
-                    break;
-                case 2: // front
-                    object3D.triangle(0).setUV(ss * (6 + mx) - bev, ss * (6 - my) + bev, ss * (5 + mx) + bev, ss * (6 - my) + bev, ss * (5 + mx) + bev, ss * (7 - my) - bev);
-                    object3D.triangle(1).setUV(ss * (6 + mx) - bev, ss * (6 - my) + bev, ss * (5 + mx) + bev, ss * (7 - my) - bev, ss * (6 + mx) - bev, ss * (7 - my) - bev);
-                    break;
-                case 3: // left
-                    object3D.triangle(0).setUV(ss * (2 - mx) + bev, ss * (6 + my) - bev, ss * (3 - mx) - bev, ss * (6 + my) - bev, ss * (3 - mx) - bev, ss * (5 + my) + bev);
-                    object3D.triangle(1).setUV(ss * (2 - mx) + bev, ss * (6 + my) - bev, ss * (3 - mx) - bev, ss * (5 + my) + bev, ss * (2 - mx) + bev, ss * (5 + my) + bev);
-                    break;
-                case 4: // down
-                    object3D.triangle(0).setUV(ss * (6 - mx) + bev, ss * (10 + my) - bev, ss * (7 - mx) - bev, ss * (10 + my) - bev, ss * (7 - mx) - bev, ss * (9 + my) + bev);
-                    object3D.triangle(1).setUV(ss * (6 - mx) + bev, ss * (10 + my) - bev, ss * (7 - mx) - bev, ss * (9 + my) + bev, ss * (6 - mx) + bev, ss * (9 + my) + bev);
-                    break;
-                case 5: // back
-                    object3D.triangle(0).setUV(ss * (10 + my) - bev, ss * (10 + mx) - bev, ss * (10 + my) - bev, ss * (9 + mx) + bev, ss * (9 + my) + bev, ss * (9 + mx) + bev);
-                    object3D.triangle(1).setUV(ss * (10 + my) - bev, ss * (10 + mx) - bev, ss * (9 + my) + bev, ss * (9 + mx) + bev, ss * (9 + my) + bev, ss * (10 + mx) - bev);
-                    break;
+            case 0: // right
+                object3D.triangle(0).setUV(ss * (10 - my) + bev, ss * (6 - mx) + bev, ss * (10 - my) + bev, ss * (7 - mx) - bev, ss * (11 - my) - bev, ss * (7 - mx) - bev);
+                object3D.triangle(1).setUV(ss * (10 - my) + bev, ss * (6 - mx) + bev, ss * (11 - my) - bev, ss * (7 - mx) - bev, ss * (11 - my) - bev, ss * (6 - mx) + bev);
+                break;
+            case 1: // up
+                object3D.triangle(0).setUV(ss * (6 + my) - bev, ss * (2 + mx) - bev, ss * (6 + my) - bev, ss * (1 + mx) + bev, ss * (5 + my) + bev, ss * (1 + mx) + bev);
+                object3D.triangle(1).setUV(ss * (6 + my) - bev, ss * (2 + mx) - bev, ss * (5 + my) + bev, ss * (1 + mx) + bev, ss * (5 + my) + bev, ss * (2 + mx) - bev);
+                break;
+            case 2: // front
+                object3D.triangle(0).setUV(ss * (6 + mx) - bev, ss * (6 - my) + bev, ss * (5 + mx) + bev, ss * (6 - my) + bev, ss * (5 + mx) + bev, ss * (7 - my) - bev);
+                object3D.triangle(1).setUV(ss * (6 + mx) - bev, ss * (6 - my) + bev, ss * (5 + mx) + bev, ss * (7 - my) - bev, ss * (6 + mx) - bev, ss * (7 - my) - bev);
+                break;
+            case 3: // left
+                object3D.triangle(0).setUV(ss * (2 - mx) + bev, ss * (6 + my) - bev, ss * (3 - mx) - bev, ss * (6 + my) - bev, ss * (3 - mx) - bev, ss * (5 + my) + bev);
+                object3D.triangle(1).setUV(ss * (2 - mx) + bev, ss * (6 + my) - bev, ss * (3 - mx) - bev, ss * (5 + my) + bev, ss * (2 - mx) + bev, ss * (5 + my) + bev);
+                break;
+            case 4: // down
+                object3D.triangle(0).setUV(ss * (6 - mx) + bev, ss * (10 + my) - bev, ss * (7 - mx) - bev, ss * (10 + my) - bev, ss * (7 - mx) - bev, ss * (9 + my) + bev);
+                object3D.triangle(1).setUV(ss * (6 - mx) + bev, ss * (10 + my) - bev, ss * (7 - mx) - bev, ss * (9 + my) + bev, ss * (6 - mx) + bev, ss * (9 + my) + bev);
+                break;
+            case 5: // back
+                object3D.triangle(0).setUV(ss * (10 + my) - bev, ss * (10 + mx) - bev, ss * (10 + my) - bev, ss * (9 + mx) + bev, ss * (9 + my) + bev, ss * (9 + mx) + bev);
+                object3D.triangle(1).setUV(ss * (10 + my) - bev, ss * (10 + mx) - bev, ss * (9 + my) + bev, ss * (9 + mx) + bev, ss * (9 + my) + bev, ss * (10 + mx) - bev);
+                break;
             }
 
         }
     }
+
     /**
      * Sticker to part map.<br>
      * (the number before the dot indicates the part,
@@ -712,21 +716,22 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
      * </pre>
      */
     private final static int[] stickerToPartMap = {
-        0, 20, 8, 2, 21, 44, 50, 24, 9, 38, 32, 12, 1, 22, 10, 3, // right
-        4, 11, 23, 2, 14, 33, 39, 8, 26, 51, 45, 20, 6, 17, 29, 0, // up
-        6, 17, 29, 0, 30, 40, 46, 21, 18, 34, 52, 9, 7, 19, 31, 1, // front
-        4, 14, 26, 6, 27, 53, 35, 30, 15, 47, 41, 18, 5, 16, 28, 7, // left
-        7, 19, 31, 1, 28, 54, 36, 22, 16, 48, 42, 10, 5, 13, 25, 3, // down
-        2, 23, 11, 4, 24, 37, 43, 27, 12, 55, 49, 15, 3, 25, 13, 5 // back
+            0, 20, 8, 2,/**/ 21, 44, 50, 24,/**/ 9, 38, 32, 12,/**/ 1, 22, 10, 3, // right
+            4, 11, 23, 2,/**/ 14, 33, 39, 8,/**/ 26, 51, 45, 20,/**/ 6, 17, 29, 0, // up
+            6, 17, 29, 0,/**/ 30, 40, 46, 21,/**/ 18, 34, 52, 9,/**/ 7, 19, 31, 1, // front
+            4, 14, 26, 6,/**/ 27, 53, 35, 30,/**/ 15, 47, 41, 18,/**/ 5, 16, 28, 7, // left
+            7, 19, 31, 1,/**/ 28, 54, 36, 22,/**/ 16, 48, 42, 10,/**/ 5, 13, 25, 3, // down
+            2, 23, 11, 4,/**/ 24, 37, 43, 27,/**/ 12, 55, 49, 15,/**/ 3, 25, 13, 5 // back
     };
 
     @Override
     public int getPartIndexForStickerIndex(int stickerIndex) {
         return stickerToPartMap[stickerIndex];
     }
+
     private final static int[] stickerToFaceMap = {
             1, 1, 1, 2, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0,/**/ 2, 1, 1, 1, // right
-            0, 1, 1, 0, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0, /**/0, 1, 1, 0, // up
+            0, 1, 1, 0, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0,/**/0, 1, 1, 0, // up
             1, 0, 0, 2, /**/ 1, 0, 0, 1,/**/ 1, 0, 0, 1,/**/ 2, 0, 0, 1, // front
             1, 1, 1, 2, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0,/**/ 2, 1, 1, 1, // left
             0, 1, 1, 0, /**/ 0, 0, 0, 0,/**/ 0, 0, 0, 0,/**/ 0, 1, 1, 0, // down
@@ -794,39 +799,39 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
                 scene.addMouseListener(parts[index].triangle(j * 2), action);
                 scene.addMouseListener(parts[index].triangle(j * 2 + 1), action);
                 switch (j) {
-                    case 0: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(6), a0);
-                        scene.addSwipeListener(parts[index].triangle(7), a1);
-                        scene.addSwipeListener(parts[index].triangle(8), a0);
-                        scene.addSwipeListener(parts[index].triangle(9), a1);
-                        break;
-                    }
-                    case 1: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(10), a0);
-                        scene.addSwipeListener(parts[index].triangle(11), a1);
-                        scene.addSwipeListener(parts[index].triangle(12), a0);
-                        scene.addSwipeListener(parts[index].triangle(13), a1);
-                        break;
-                    }
-                    case 2: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(14), a0);
-                        scene.addSwipeListener(parts[index].triangle(15), a1);
-                        scene.addSwipeListener(parts[index].triangle(16), a0);
-                        scene.addSwipeListener(parts[index].triangle(17), a1);
-                    }
+                case 0: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addSwipeListener(parts[index].triangle(j * 2), a0);
+                    scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(parts[index].triangle(6), a0);
+                    scene.addSwipeListener(parts[index].triangle(7), a1);
+                    scene.addSwipeListener(parts[index].triangle(8), a0);
+                    scene.addSwipeListener(parts[index].triangle(9), a1);
                     break;
+                }
+                case 1: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f));
+                    scene.addSwipeListener(parts[index].triangle(j * 2), a0);
+                    scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(parts[index].triangle(10), a0);
+                    scene.addSwipeListener(parts[index].triangle(11), a1);
+                    scene.addSwipeListener(parts[index].triangle(12), a0);
+                    scene.addSwipeListener(parts[index].triangle(13), a1);
+                    break;
+                }
+                case 2: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addSwipeListener(parts[index].triangle(j * 2), a0);
+                    scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(parts[index].triangle(14), a0);
+                    scene.addSwipeListener(parts[index].triangle(15), a1);
+                    scene.addSwipeListener(parts[index].triangle(16), a0);
+                    scene.addSwipeListener(parts[index].triangle(17), a1);
+                }
+                break;
                 }
             }
         }
@@ -841,32 +846,32 @@ public class RevengeCubeIdx3D extends AbstractRevengeCubeIdx3D {
                 scene.addMouseListener(parts[index].triangle(j * 2), action);
                 scene.addMouseListener(parts[index].triangle(j * 2 + 1), action);
                 switch (j) {
-                    case 0: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(4), a0);
-                        scene.addSwipeListener(parts[index].triangle(5), a1);
-                        scene.addSwipeListener(parts[index].triangle(6), a0);
-                        scene.addSwipeListener(parts[index].triangle(7), a1);
-                        scene.addSwipeListener(parts[index].triangle(8), a0);
-                        scene.addSwipeListener(parts[index].triangle(9), a1);
-                        break;
-                    }
-                    case 1: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(10), a0);
-                        scene.addSwipeListener(parts[index].triangle(11), a1);
-                        scene.addSwipeListener(parts[index].triangle(12), a0);
-                        scene.addSwipeListener(parts[index].triangle(13), a1);
-                        scene.addSwipeListener(parts[index].triangle(14), a0);
-                        scene.addSwipeListener(parts[index].triangle(15), a1);
-                        break;
-                    }
+                case 0: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addSwipeListener(parts[index].triangle(j * 2), a0);
+                    scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(parts[index].triangle(4), a0);
+                    scene.addSwipeListener(parts[index].triangle(5), a1);
+                    scene.addSwipeListener(parts[index].triangle(6), a0);
+                    scene.addSwipeListener(parts[index].triangle(7), a1);
+                    scene.addSwipeListener(parts[index].triangle(8), a0);
+                    scene.addSwipeListener(parts[index].triangle(9), a1);
+                    break;
+                }
+                case 1: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f));
+                    scene.addSwipeListener(parts[index].triangle(j * 2), a0);
+                    scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(parts[index].triangle(10), a0);
+                    scene.addSwipeListener(parts[index].triangle(11), a1);
+                    scene.addSwipeListener(parts[index].triangle(12), a0);
+                    scene.addSwipeListener(parts[index].triangle(13), a1);
+                    scene.addSwipeListener(parts[index].triangle(14), a0);
+                    scene.addSwipeListener(parts[index].triangle(15), a1);
+                    break;
+                }
                 }
             }
         }

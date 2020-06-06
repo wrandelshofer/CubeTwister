@@ -15,7 +15,7 @@ import java.awt.Color;
 /**
  * Abstract base class for the geometrical representation of a {@link Cube}
  * using the Geom3D engine.
- * 
+ *
  * @author Werner Randelshofer
  */
 public abstract class AbstractCubeGeom3D extends AbstractCube3D {
@@ -25,13 +25,13 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
 
     protected final static double HALF_PI = (Math.PI / 2d);
     protected final double PI = Math.PI;
-    
+
     protected Shape3D[] shapes;
     protected Transform3D[] identityTransforms;
     protected TransformNode3D[] transforms;
     protected Scene3D scene;
     protected boolean isInStartedPlayer;
-    
+
     /**
      * Creates a new instance.
      */
@@ -42,18 +42,18 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
         this.sideCount = sideCount;
         this.centerCount = centerCount;
         this.partCount = cornerCount + edgeCount + sideCount + centerCount;
-        
+
         this.cornerOffset = 0;
         this.edgeOffset = cornerCount;
         this.sideOffset = edgeOffset + edgeCount;
         this.centerOffset = sideOffset + sideCount;
     }
-    
+
     final protected void init() {
         shapes = new Shape3D[partCount];
         identityTransforms = new Transform3D[partCount];
         transforms = new TransformNode3D[partCount];
-        
+
         initCorners();
         initEdges();
         initSides();
@@ -71,13 +71,13 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
     protected abstract void initCenter();
     protected abstract void initTransforms();
     protected abstract void initActions();
-    
+
 
     @Override
     public Object getScene() {
         return scene;
     }
-    
+
     protected Shape3D getPart(int partIndex) {
         return shapes[partIndex];
     }
@@ -85,7 +85,7 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
     public int getPartCount() {
         return partCount;
     }
-    
+
     @Override
     public void updateCube() {
         computeTransformation();
@@ -93,11 +93,11 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
         for (int i=0; i < partCount; i++) {
             shapes[i].setReduced(true);
         }
-        
+
         fireStateChanged();
     }
     protected abstract void computeTransformation();
-    
+
     @Override
     protected void updateExplosionFactor(float factor) {
         // FIXME - Implement me
@@ -106,8 +106,8 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
     protected void updateScaleFactor(float factor) {
         // FIXME - Implement me
     }
-    
-    
+
+
     @Override
     final public void updateAttributes() {
         updatePartsVisibility();
@@ -116,11 +116,11 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
         updateStickersFillColor();
         fireStateChanged();
     }
-    
+
     /** Updates the fill color of the parts.
      */
     abstract protected void updatePartsFillColor();
-    
+
     /** Updates the outline color of the parts.
      */
     abstract protected void updatePartsOutlineColor();
@@ -141,7 +141,7 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
             } else {
                 color = attr.getPartFillColor(partIndex);
             }
-            
+
             part.setFillColor(faceIndex, color);
         }
     }
@@ -170,7 +170,7 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
     final protected void updateStickersImage() {
         // XXX implement this method
     }
-    
+
     /*final public void cubeTwisted(final CubeEvent evt) {
         if (isAnimated) {
             if (GUIUtilities.isEventDispatchThread()) {
@@ -192,7 +192,7 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
             updateCube();
         }
     }*/
-    
+
     //protected abstract void animateTwist(CubeEvent evt);
 
     public final static int TWIST_MODE = 0;
@@ -201,7 +201,7 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
     final public void setMode(int mode) {
         Shape3D shape;
         int i;
-        
+
         this.mode = mode;
         switch (mode) {
             case TWIST_MODE :
@@ -225,12 +225,12 @@ public abstract class AbstractCubeGeom3D extends AbstractCube3D {
         }
         fireStateChanged();
     }
-    
+
     @Override
     protected void updateAlphaBeta() {
         computeTransformation();
     }
-    
+
     protected void validateTwist(int[] partIndices, int[] locations, int[] orientations, int length, int axis, int angle, float alpha) {
         synchronized (getCube()) {
             computeTransformation();

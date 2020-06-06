@@ -5,6 +5,10 @@ package ch.randelshofer.geom3d;
 
 import org.jhotdraw.annotation.Nonnull;
 
+import java.util.Objects;
+
+import static java.lang.Math.abs;
+
 /**
  * A point representing a location in (x, y, z) coordinate space.
  *
@@ -12,6 +16,10 @@ import org.jhotdraw.annotation.Nonnull;
  */
 public class Point3D implements Cloneable {
 
+    public static final Point3D UNIT_X = new Point3D(1, 0, 0);
+    public static final Point3D UNIT_Y = new Point3D(0, 1, 0);
+    public static final Point3D UNIT_Z = new Point3D(0, 0, 1);
+    public static final Point3D ZERO = new Point3D(0, 0, 0);
     /**
      * The x coordinate of the point.
      */
@@ -38,6 +46,14 @@ public class Point3D implements Cloneable {
         this.x = x;
         this.y = y;
         this.z = z;
+    }
+
+    public Point3D divide(double a) {
+        return new Point3D(x / a, y / a, z / a);
+    }
+
+    public double squaredLength() {
+        return squaredNorm();
     }
 
     /**
@@ -69,6 +85,20 @@ public class Point3D implements Cloneable {
         return z;
     }
 
+    public double get(int i) {
+        switch (i) {
+        case 0:
+            return x;
+        case 1:
+            return y;
+        case 2:
+            return z;
+        default:
+            throw new IllegalArgumentException("i=" + i);
+        }
+    }
+
+
     /**
      * Computes the plane equation a*x + b*y + c*z + d = 0 from three given
      * points in space.
@@ -97,46 +127,86 @@ public class Point3D implements Cloneable {
     }
 
     /**
-     * returns a x b.
+     * Cross product of the vectors {@code a} and {@code b}.
      */
     @Nonnull
-    public static Point3D vectorProduct(@Nonnull Point3D a, @Nonnull Point3D b) {
-        return new Point3D(a.y * b.z - b.y * a.z, a.z * b.x - b.z * a.x, a.x * b.y - b.x * a.y);
+    public static Point3D cross(@Nonnull Point3D a, @Nonnull Point3D b) {
+        return new Point3D(
+                a.y * b.z - b.y * a.z,
+                a.z * b.x - b.z * a.x,
+                a.x * b.y - b.x * a.y);
     }
 
     /**
-     * dotProduct product of 2 vectors.
+     * Cross product this x b of 2 vectors.
      */
-    public static double dotProduct(@Nonnull Point3D a, @Nonnull Point3D b) {
+    @Nonnull
+    public Point3D cross(@Nonnull Point3D b) {
+        return cross(this, b);
+    }
+
+    /**
+     * Dot product of 2 vectors.
+     */
+    public static double dot(@Nonnull Point3D a, @Nonnull Point3D b) {
         return a.x * b.x + a.y * b.y + a.z * b.z;
     }
 
+    public double dot(Point3D b) {
+        return dot(this, b);
+    }
+
     /**
-     * subtracts 2 vectors.
+     * Subtracts 2 vectors.
      */
     @Nonnull
     public static Point3D sub(@Nonnull Point3D a, @Nonnull Point3D b) {
         return new Point3D(a.x - b.x, a.y - b.y, a.z - b.z);
     }
 
+    public Point3D subtract(Point3D b) {
+        return new Point3D(this.x - b.x, this.y - b.y, this.z - b.z);
+    }
+
+    public Point3D add(Point3D b) {
+        return new Point3D(this.x + b.x, this.y + b.y, this.z + b.z);
+    }
+
+    public Point3D multiply(double b) {
+        return new Point3D(this.x * b, this.y * b, this.z * b);
+    }
+
     /**
-     * Normalizes the vector.
+     * Returns a normalized representation of this vector.
      */
     @Nonnull
-    public Point3D normalize() {
-        double dist = length();
-        if (dist == 0) {
+    public Point3D normalized() {
+        double dist = norm();
+        if (dist == 0 || dist == 1) {
             return this;
         }
-        double invdist = 1 / dist;
-        x *= invdist;
-        y *= invdist;
-        z *= invdist;
-        return this;
+        return new Point3D(x / dist, y / dist, z / dist);
     }
-    /** Length of this vector. */
+
+    /**
+     * Length of this vector.
+     */
     public double length() {
-        return Math.sqrt(x * x + y * y + z * z);
+        return norm();
+    }
+
+    /**
+     * Norm of this vector.
+     */
+    public double norm() {
+        return Math.sqrt(squaredNorm());
+    }
+
+    /**
+     * Squared norm of this vector.
+     */
+    public double squaredNorm() {
+        return x * x + y * y + z * z;
     }
 
 
@@ -150,5 +220,30 @@ public class Point3D implements Cloneable {
             err.initCause(ex);
             throw err;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Point3D)) {
+            return false;
+        }
+        Point3D that = (Point3D) o;
+        return Double.compare(that.x, x) == 0 &&
+                Double.compare(that.y, y) == 0 &&
+                Double.compare(that.z, z) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
+    }
+
+    public static boolean areCollinear(Point3D v0, Point3D v1, Point3D v2, double eps) {
+        Point3D left = Point3D.sub(v1, v0);
+        Point3D right = Point3D.sub(v2, v0);
+        return v0.equals(v1) || v0.equals(v2) || abs(Point3D.cross(left, right).squaredLength()) <= eps;
     }
 }

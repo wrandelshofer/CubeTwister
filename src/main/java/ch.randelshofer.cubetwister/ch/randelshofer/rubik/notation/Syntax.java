@@ -24,18 +24,21 @@ public enum Syntax {
 
     /**
      * Unary prefix expression. The operator consists
-     * of a single token that is placed before the operand.
+     * of a single token that is placed before the operand,
+     * or of a prefix sequence.
      * <pre>
      * Prefix ::= Operator, Operand ;
+     * PrefixSequence ::= Begin, Sequence, End, Operand ;
      * </pre>
-     *
      */
     PREFIX("prefix"),
     /**
      * Unary suffix expression.  The operator consists
      * of a single token that is placed after the operand.
+     * or of a suffix sequence.
      * <pre>
-     * Suffix ::= Operand, Operator  ;
+     * Suffix ::= Operand, Operator;
+     * SuffixSequence ::= Operand, Begin, Sequence, End ;
      * </pre>
      */
     SUFFIX("suffix"),
@@ -88,13 +91,13 @@ public enum Syntax {
      * Name of the symbol.
      */
     private final String name;
-    
+
     private static HashMap<String,Syntax> syntaxValueSet;
-    
+
     private Syntax(String name) {
         this.name = name;
     }
-    
+
     @Override
     public String toString() {
         return name;

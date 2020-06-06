@@ -13,10 +13,14 @@ import java.io.IOException;
 public class ParseException
 extends IOException {
     private final static long serialVersionUID = 1L;
-    /** Start position of the invalid token. */
-    private int startpos;
-    /** End position of the invalid token. */
-    private int endpos;
+    /**
+     * Start position of the invalid token.
+     */
+    private final int startpos;
+    /**
+     * End position of the invalid token.
+     */
+    private final int endpos;
 
     /**
      * Constructs a ParseException with the specified detail message.

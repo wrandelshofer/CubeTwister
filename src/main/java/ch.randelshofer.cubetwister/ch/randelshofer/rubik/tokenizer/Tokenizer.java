@@ -49,7 +49,7 @@ public class Tokenizer {
     private Integer nval = null;
 
     @Nonnull
-    private KeywordNode keywordTree = new KeywordNode();
+    private CharSeqNode keywordTree = new CharSeqNode();
     /**
      * Map<Character,TType> maps char to ttype or to null
      */
@@ -73,8 +73,7 @@ public class Tokenizer {
      * </pre>
      */
     public void addComment(@Nonnull String start, @Nonnull String end) {
-        var node = addKeywordRecursively(start);
-        node.setCommentEnd(end);
+        CharSeqNode.addStartEndSequence(keywordTree, start, end);
     }
 
     /**
@@ -90,23 +89,9 @@ public class Tokenizer {
      * @param keyword the keyword token
      */
     public void addKeyword(@Nonnull String keyword) {
-        addKeywordRecursively(keyword);
+        CharSeqNode.addCharacterSequence(keywordTree, keyword);
     }
 
-    private KeywordNode addKeywordRecursively(@Nonnull String keyword) {
-        var node = this.keywordTree;
-        for (int i = 0; i < keyword.length(); i++) {
-            char ch = keyword.charAt(i);
-            var child = node.getChild(ch);
-            if (child == null) {
-                child = new KeywordNode();
-                node.putChild(ch, child);
-            }
-            node = child;
-        }
-        node.setKeyword(keyword);
-        return node;
-    }
 
     /**
      * Defines the tokens needed for parsing non-negative integers.
@@ -177,8 +162,8 @@ public class Tokenizer {
     private <K, V> V getOrDefault(@Nonnull Map<K, V> map, K key, V defaultValue) {
         V value = map.get(key);
         return value == null ? defaultValue : value;
-    } 
-    
+    }
+
     /**
      * Parses the next token.
      *
@@ -202,19 +187,19 @@ public class Tokenizer {
             }
 
             // try to tokenize a keyword or a comment
-            KeywordNode node = this.keywordTree;
-            KeywordNode foundNode = null;
+            CharSeqNode node = this.keywordTree;
+            CharSeqNode foundNode = null;
             int end = start;
-            while (ch != TT_EOF && node.getChild((char) ch) != null) {
+            while (ch != TT_EOF && node != null && node.getChild((char) ch) != null) {
                 node = node.getChild((char) ch);
-                if (node.getKeyword() != null) {
+                if (node != null && node.getCharseq() != null) {
                     foundNode = node;
                     end = this.pos;
                 }
                 ch = this.read();
             }
             if (foundNode != null) {
-                String commentEnd = foundNode.getCommentEnd();
+                String commentEnd = foundNode.getEndseq();
                 if (commentEnd != null) {
                     seekTo(commentEnd);
                     continue loop;
@@ -224,7 +209,7 @@ public class Tokenizer {
                 this.ttype = TT_KEYWORD;
                 this.tstart = start;
                 this.tend = end;
-                this.sval = foundNode.getKeyword();
+                this.sval = foundNode.getCharseq();
                 return this.ttype;
             }
             this.setPosition(start);

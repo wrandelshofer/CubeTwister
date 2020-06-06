@@ -33,69 +33,69 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
      * The beveled edge of a cube part has a length of 1 mm.
      */
     protected final static float BEVEL_LENGTH = 1f;
-    
+
     public final static double[][] EXPLODE_TRANSLATIONS = {
         // Corners
         {-1,  1,  1}, // left up front
         {-1, -1,  1}, // left down front
         { 1,  1,  1}, // right up front
         { 1, -1,  1}, // right down front
-        
+
         { 1,  1, -1}, // right up back
         { 1, -1, -1}, // right down back
         {-1,  1, -1}, // left up back
         {-1, -1, -1}, // left down back
-        
+
         // Edges
         { 0,  1,  1}, // up front
         {-1,  0,  1}, // left front
         { 0, -1,  1}, // down front
-        
+
         { 1,  1,  0}, // right up
         { 1,  0,  1}, // right front
         { 1, -1,  0}, // right down
-        
+
         { 0,  1, -1}, // up back
         { 1,  0, -1}, // right back
         { 0, -1, -1}, // down back
-        
-        {-1,  1,  0}, // left up
+
+            {-1,  1,  0}, // left up
         {-1,  0, -1}, // left back
         {-1, -1,  0},  // left down
-        
-        { 0,  1,  1}, // up front
+
+            { 0,  1,  1}, // up front
         {-1,  0,  1}, // left front
         { 0, -1,  1}, // down front
-        
-        { 1,  1,  0}, // right up
+
+            { 1,  1,  0}, // right up
         { 1,  0,  1}, // right front
         { 1, -1,  0}, // right down
-        
-        { 0,  1, -1}, // up back
+
+            { 0,  1, -1}, // up back
         { 1,  0, -1}, // right back
         { 0, -1, -1}, // down back
-        
-        {-1,  1,  0}, // left up
+
+            {-1,  1,  0}, // left up
         {-1,  0, -1}, // left back
         {-1, -1,  0},  // left down
-        
-        { 0,  1,  1}, // up front
+
+            { 0,  1,  1}, // up front
         {-1,  0,  1}, // left front
         { 0, -1,  1}, // down front
-        
-        { 1,  1,  0}, // right up
+
+            { 1,  1,  0}, // right up
         { 1,  0,  1}, // right front
         { 1, -1,  0}, // right down
-        
-        { 0,  1, -1}, // up back
+
+            { 0,  1, -1}, // up back
         { 1,  0, -1}, // right back
         { 0, -1, -1}, // down back
-        
-        {-1,  1,  0}, // left up
+
+            {-1,  1,  0}, // left up
         {-1,  0, -1}, // left back
         {-1, -1,  0}, // left down
-        
-        // Sides
+
+            // Sides
         { 0,  0,  1}, // front
         { 1,  0,  0}, // right
         { 0, -1,  0}, // down
@@ -151,20 +151,20 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
         {-1,  0,  0}, // left
         { 0,  1,  0}  // top
     };
-    
+
     public AbstractProfessorCubeGeom3D() {
         super(5, 8, 12*3, 6*9, 1);
         init();
     }
-    
+
     protected void initTransforms() {
         scene = new Scene3D();
-        
+
         // Create identity transforms
         for (int i = 0; i < partCount; i++) {
             identityTransforms[i] = new Transform3D();
         }
-        
+
         /*
          * Corners
          *              +---+----+---+
@@ -209,8 +209,8 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
         // dlf
         identityTransforms[cornerOffset+7].rotate(0, HALF_PI, 0);
         identityTransforms[cornerOffset+7].rotate(PI, 0, 0);
-        
-        
+
+
         /**
          * Edges
          *                     +---+---+---+---+---+
@@ -313,7 +313,7 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                     break;
             }
         }
-        
+
         // Move all side parts to the front side and rotate them into place
         // Move all side parts to the front side and then rotate them in place
         for (int i=0; i < sideCount; i++) {
@@ -365,32 +365,32 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                 case 4 : // d
                     t.rotateZ(Math.PI);
                     t.rotateX(Math.PI/-2);
-                    break; 
+                    break;
                 case 5 : // b
                     t.rotateZ(Math.PI/2);
                     t.rotateY(Math.PI);
                     break;
             }
         }
-        
+
         for (int i = 0; i < partCount; i++) {
             transforms[i] = new TransformNode3D();
             transforms[i].addChild(shapes[i]);
             scene.addChild(transforms[i]);
         }
     }
-    
+
     protected float getUnitScaleFactor() {
         return 0.8f;
     }
-    
+
     protected void computeTransformation() {
         Cube cube = getCube();
-        
+
         synchronized (getLock()) {
             Transform3D t, t2;
             int loc;
-            
+
             // Transform the scene
             t = scene.getTransform();
             t.setToIdentity();
@@ -398,19 +398,19 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
             t.scale(scale, scale, scale);
             t.rotateY(getAttributes().getBeta());
             t.rotateX(getAttributes().getAlpha());
-            
+
             // Reduce number of faces to be drawn to optimize speed
             /*
             for (int i=0; i < partCount; i++) {
                 shapes[i].setReduced(true);
             }*/
-            
+
             double explosion = PART_LENGTH * 1.5d * getAttributes().getExplosionFactor();
-            
+
             // Transform the part at the center of the cube
             t = transforms[centerOffset].getTransform();
             t.setToIdentity();
-            
+
             switch (cube.getCubeOrientation()) {
                 case -1: // Unknow or illegal orientation
                 case  0: // Front at front, Right at right
@@ -502,8 +502,8 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                 default:
                     break;
             }
-            
-            
+
+
             // Transform the six parts at each side of the cube
             for (int i=0; i < sideCount; i++) {
                 loc = cube.getSideLocation(i);
@@ -519,8 +519,8 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                         );
                 transforms[sideOffset+i].setTransform(t);
             }
-            
-            
+
+
             for (int i=0; i < edgeCount; i++) {
                 loc = cube.getEdgeLocation(i);
                 t = transforms[edgeOffset+i].getTransform();
@@ -537,7 +537,7 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                         );
                 t.concatenate(t2);
             }
-            
+
             for (int i=0; i < cornerCount; i++) {
                 loc = cube.getCornerLocation(i);
                 t = transforms[cornerOffset+i].getTransform();
@@ -559,7 +559,7 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                         EXPLODE_TRANSLATIONS[cornerOffset+loc][1] * explosion,
                         EXPLODE_TRANSLATIONS[cornerOffset+loc][2] * explosion
                         );
-                
+
                 t.concatenate(t2);
             }
         }
@@ -585,8 +585,8 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
         //int count=0;
         final int[] locations = evt.getAffectedLocations();
         int count = locations.length;
-        
-        
+
+
         // Reduce number of faces to be drawn to optimize speed
         boolean reduce = (layerMask & 1) == (layerMask & 2) && (layerMask & 8) == (layerMask & 16);
         for (int i=0; i < cornerCount; i++) {
@@ -609,13 +609,13 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
             shapes[sideOffset+i].setReduced(reduce);
         }
         Cube cube = getCube();
-        
+
         // Construct interpolator
         for (int i=0; i < count; i++) {
             partIndices[i] = model.getPartAt(locations[i]);
             orientations[i] = model.getPartOrientation(partIndices[i]);
         }
-        
+
         scene.setAdjusting(true);
         final int finalCount = count;
         Interpolator interpolator = new SplineInterpolator(0.25f, 0f, 0.75f, 1f) {
@@ -641,7 +641,7 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
         };
         interpolator.setTimespan(Math.abs(angle) * attributes.getTwistDuration());
         dispatch(interpolator);
-        
+
         // Wait until interpolator has finished
         if (!getAnimator().isSynchronous() && !SwingUtilities.isEventDispatchThread()) {
             try {
@@ -654,6 +654,6 @@ public abstract class AbstractProfessorCubeGeom3D extends AbstractCubeGeom3D {
                 // empty (we exit the while loop)
             }
         }
-        
+
     }
 }

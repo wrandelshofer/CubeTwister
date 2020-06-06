@@ -49,7 +49,7 @@ public class TransformNode3D implements Node3D {
     public void addVisibleFacesTo(List<Face3D> v, @Nonnull Transform3D t, Point3D observer) {
         if (isVisible) {
             Transform3D t2 = (Transform3D) transform.clone();
-            t2.concatenate(t);
+            t2.concatenated(t);
             for (Node3D child : children) {
                 child.addVisibleFacesTo(v, t2, observer);
             }

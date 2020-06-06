@@ -161,7 +161,7 @@ public class Shape3D
         Transform3D t2;
         if (isVisible) {
             t2 = (Transform3D) transform.clone();
-            t2.concatenate(t);
+            t2.concatenated(t);
             if (tc == null || tc.length != coords.length) {
                 tc = new float[coords.length];
             }
