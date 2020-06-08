@@ -1,5 +1,6 @@
-/* @(#)UIDefaultsInspector.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)UIDefaultsInspector.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.debug;
@@ -32,7 +33,7 @@ public class UIDefaultsInspector extends javax.swing.JPanel {
     /** Creates new form UIDefaultsInspector */
     public UIDefaultsInspector() {
         initComponents();
-        
+
         UIManager.LookAndFeelInfo[] lafInfos = UIManager.getInstalledLookAndFeels();
         LookAndFeel laf = UIManager.getLookAndFeel();
         UIManager.LookAndFeelInfo currentLafInfo = null;
@@ -69,7 +70,7 @@ public class UIDefaultsInspector extends javax.swing.JPanel {
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             }
         });
-        
+
         table.setModel(new UIDefaultsTableModel(UIManager.getLookAndFeelDefaults()));
         //table.setModel(new UIDefaultsTableModel(UIManager.getDefaults()));
         UIDefaultsCellRenderer r = new UIDefaultsCellRenderer();
@@ -77,7 +78,7 @@ public class UIDefaultsInspector extends javax.swing.JPanel {
         table.getColumnModel().getColumn(0).setCellRenderer(r);
         table.getColumnModel().getColumn(1).setCellRenderer(r);
     }
-    
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() { public void run() {
 
@@ -147,7 +148,7 @@ public class UIDefaultsInspector extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.NORTH);
 
     }//GEN-END:initComponents
-    
+
     private void lafItemChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_lafItemChanged
         UIManager.LookAndFeelInfo lafInfo = (UIManager.LookAndFeelInfo) lafComboBox.getSelectedItem();
         try {
@@ -162,11 +163,11 @@ public class UIDefaultsInspector extends javax.swing.JPanel {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        
-        
+
+
     }//GEN-LAST:event_lafItemChanged
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox lafComboBox;
@@ -174,5 +175,5 @@ public class UIDefaultsInspector extends javax.swing.JPanel {
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-    
+
 }

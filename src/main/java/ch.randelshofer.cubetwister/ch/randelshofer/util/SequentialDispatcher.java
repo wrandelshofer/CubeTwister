@@ -1,17 +1,18 @@
-/* @(#)SequentialDispatcher.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)SequentialDispatcher.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
 /**
  * Processes Runnable objects sequentially on a processor thread.
- * The order in which the runnable objects are processed is 
+ * The order in which the runnable objects are processed is
  * the same in which they were added to the dispatcher.
  * <p>
  * Design pattern used: Acceptor
  * Role in design pattern: EventCollector and EventProcessor
  *
- * @author  Werner Randelshofef
+ * @author Werner Randelshofef
  */
 public class SequentialDispatcher extends EventLoop implements Dispatcher {
     /**
@@ -39,7 +40,7 @@ public class SequentialDispatcher extends EventLoop implements Dispatcher {
         Runnable r = (Runnable) event;
         r.run();
     }
-    
+
     /**
      * Queues the Runnable object for later execution on the
      * processor thread.

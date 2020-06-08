@@ -1,8 +1,6 @@
-/* @(#)RubiksStickerCube.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
- *
- * This class has been derived from facecube.cpp and facecube.h
- * from the 'Kociemba Cube Solver 1.0' (KCube) (c) Greg Schmidt.
+/*
+ * @(#)RubiksStickerCube.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik;
@@ -19,7 +17,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * The stickers are expressed by the values 0 through 6 representing the
  * six faces of the cube: front, right, down, back, left, up.
- * The value -1 is used to express an unknown sticker value. The 
+ * The value -1 is used to express an unknown sticker value. The
  * RubiksStickerCube can fill in values for unknown stickers.
  * <p>
  * This class has been derived from facecube.cpp and facecube.h
@@ -36,7 +34,7 @@ public class RubiksStickerCube {
     public final static int B = 3;
     public final static int L = 4;
     public final static int U = 5;
-    
+
     // Validation return codes
     public final static int VALID = 0;
     public final static int INVALID_MARKER = 1;
@@ -184,7 +182,7 @@ public class RubiksStickerCube {
     };
 
 
-    /** Edge sticker locations. 
+    /** Edge sticker locations.
      * <pre>
      *                 +---+---+---+
      *                 | 45| 46| 47|
@@ -313,7 +311,7 @@ public class RubiksStickerCube {
         cube.setEdges(
             edgeCubiePermutations, edgeCubieOrientations
         );
-        
+
         int[] sidePartsLocations = new int[6];
         for (int i=0; i < sidePartsLocations.length; i++) {
             sidePartsLocations[i] = i;

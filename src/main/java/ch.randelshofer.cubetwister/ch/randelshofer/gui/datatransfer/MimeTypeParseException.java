@@ -1,5 +1,6 @@
-/* @(#)MimeTypeParseException.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MimeTypeParseException.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -13,17 +14,17 @@ package ch.randelshofer.gui.datatransfer;
  * @author  Werner Randelshofer
  */
 public class MimeTypeParseException extends Exception {
-    
+
     // use serialVersionUID from JDK 1.2.2 for interoperability
     private static final long serialVersionUID = -5604407764691570741L;
-    
+
     /**
      * Constructs a MimeTypeParseException with no specified detail message.
      */
     public MimeTypeParseException() {
         super();
     }
-    
+
     /**
      * Constructs a MimeTypeParseException with the specified detail message.
      *

@@ -1,5 +1,6 @@
-/* @(#)DefaultTransferable.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -95,7 +96,7 @@ public class DefaultTransferable implements Transferable {
     public DataFlavor[] getTransferDataFlavors() {
         return new DataFlavor[] {flavor};
     }
-    
+
     /**
      * Returns whether or not the specified data flavor is supported for
      * this object.

@@ -1,11 +1,13 @@
-/* @(#)UndoableTreeSelectionModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)UndoableTreeSelectionModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.tree;
 
 
 import ch.randelshofer.undo.Undoable;
+
 import javax.swing.tree.TreeSelectionModel;
 import javax.swing.undo.StateEditable;
 import javax.swing.undo.UndoableEdit;

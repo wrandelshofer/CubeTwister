@@ -1,5 +1,6 @@
-/* @(#)StringTransferable.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)StringTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -9,10 +10,11 @@ import org.jhotdraw.annotation.Nonnull;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+
 /**
  * StringTransferable.
  * <p>
- * Note: This transferable should always be used in conjunction with 
+ * Note: This transferable should always be used in conjunction with
  * PlainTextTransferable.
  * <p>
  * Usage:
@@ -27,7 +29,7 @@ import java.io.IOException;
  */
 public class StringTransferable extends AbstractTransferable {
     private String string;
-    
+
     public StringTransferable(String string) {
         this(getDefaultFlavors(), string);
     }

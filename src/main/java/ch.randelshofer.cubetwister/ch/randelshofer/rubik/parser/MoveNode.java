@@ -1,5 +1,6 @@
-/* @(#)MoveNode.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MoveNode.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.parser;
 
@@ -208,7 +209,7 @@ public class MoveNode extends Node {
         Move move = new Move(3, axis, layerMask, angle);
         String token = notation.getMoveToken(move);
 
-        // no token for +/-180° twist? 
+        // no token for +/-180° twist?
         if (token == null && Math.abs(angle) == 2) {
             // look for a twist into the other clockwise direction
             move = new Move(3, axis, layerMask, -angle);

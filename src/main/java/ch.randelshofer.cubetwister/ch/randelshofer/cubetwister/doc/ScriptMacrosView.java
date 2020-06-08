@@ -1,5 +1,6 @@
-/* @(#)ScriptMacrosView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptMacrosView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -18,8 +19,7 @@ import javax.swing.event.UndoableEditListener;
 
 /**
  * ScriptMacrosView.
- * 
- * 
+ *
  * @author Werner Randelshofer
  */
 public class ScriptMacrosView extends JPanel implements EntityView {

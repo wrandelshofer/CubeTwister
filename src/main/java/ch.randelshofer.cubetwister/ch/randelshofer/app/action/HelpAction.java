@@ -1,5 +1,6 @@
-/* @(#)HelpAction.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)HelpAction.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.app.action;
 
@@ -40,7 +41,7 @@ public class HelpAction extends AbstractAction {
 
     public void actionPerformed(@Nonnull ActionEvent e) {
         if (hs == null) {
-// Find the HelpSet file and create the HelpSet object: 
+            // Find the HelpSet file and create the HelpSet object:
             String helpHS = "help/helpset.hs";
             ClassLoader cl = HelpAction.class.getClassLoader();
             try {
@@ -52,14 +53,14 @@ public class HelpAction extends AbstractAction {
                 hs = new HelpSet(null, hsURL);
 
             } catch (Exception ee) {
-                // Say what the exception really is 
+                // Say what the exception really is
                 System.out.println("HelpSet " + ee.getMessage());
                 System.out.println("HelpSet " + helpHS + " not found");
                 return;
             }
         }
         if (hb == null) {
-// Create a HelpBroker object: 
+            // Create a HelpBroker object:
             hb = hs.createHelpBroker();
         }
         new CSH.DisplayHelpFromSource(hb).actionPerformed(e);

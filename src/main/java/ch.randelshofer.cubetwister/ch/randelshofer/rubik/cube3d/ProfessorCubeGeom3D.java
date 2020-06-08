@@ -1,5 +1,6 @@
-/* @(#)ProfessorCubeGeom3D.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ProfessorCubeGeom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -376,10 +377,11 @@ public class ProfessorCubeGeom3D extends AbstractProfessorCubeGeom3D {
         a.setStickerFillColor(stickersFillColor);
         return a;
     }
+
     /**
      * The numbers show the part indices. The stickers are numbered from top
      * left to bottom right on each face. The sequence of the faces is right,
-     * up, front, left, down, back. 
+     * up, front, left, down, back.
      * <pre>
      *                     +---+---+---+---+---+
      *                     | 4 |23 |11 |35 | 2 |

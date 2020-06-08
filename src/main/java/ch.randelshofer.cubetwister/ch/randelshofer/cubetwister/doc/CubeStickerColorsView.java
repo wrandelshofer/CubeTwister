@@ -1,5 +1,6 @@
-/* @(#)CubeStickerColorsView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeStickerColorsView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -25,7 +26,7 @@ public class CubeStickerColorsView extends AbstractEntityView {
     private CubeModel cubeModel;
     private CubeColorComboBoxModel editorColorComboBoxModel, rendererColorComboBoxModel;
     private DefaultCellEditor colorEditor;
-    
+
     /** Creates new form CubeStickerColorsView */
     public CubeStickerColorsView() {
         initComponents();
@@ -33,7 +34,7 @@ public class CubeStickerColorsView extends AbstractEntityView {
         tableModel = new CubeStickersTableModel();
         table.setModel(tableModel);
         table.setDefaultRenderer(CubeColorModel.class, new CubeColorModelCellRenderer());
-        
+
         table.getColumnModel().getColumn(0).setPreferredWidth(100);
         table.getColumnModel().getColumn(1).setPreferredWidth(50);
         table.getColumnModel().getColumn(2).setPreferredWidth(180);
@@ -63,13 +64,15 @@ public class CubeStickerColorsView extends AbstractEntityView {
     }
 
     public void setModel(CubeModel s) {
-        if (table.getCellEditor() != null) { 
-        table.getCellEditor().stopCellEditing();
+        if (table.getCellEditor() != null) {
+            table.getCellEditor().stopCellEditing();
         }
         cubeModel = s;
         tableModel.setModel(s);
         editorColorComboBoxModel.setModel(s);
-       if (rendererColorComboBoxModel != null) rendererColorComboBoxModel.setModel(s);      
+        if (rendererColorComboBoxModel != null) {
+            rendererColorComboBoxModel.setModel(s);
+        }
     }
 /*
     public static void main(String[] args) {
@@ -106,7 +109,7 @@ public class CubeStickerColorsView extends AbstractEntityView {
     public JComponent getViewComponent() {
         return this;
     }
-    
+
     public void setModel(EntityModel newValue) {
         setModel((CubeModel) newValue);
     }

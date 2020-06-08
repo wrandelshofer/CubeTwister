@@ -1,5 +1,6 @@
-/* @(#)Icons.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Icons.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;

@@ -1,5 +1,6 @@
-/* @(#)VirtualCube6Applet.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VirtualCube6Applet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.virtual;
@@ -25,8 +26,8 @@ public class VirtualCube6Applet extends AbstractVirtualCubeApplet {
     protected boolean canBeDisassembled() {
         return false;
     }
-    
-    
+
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -35,9 +36,9 @@ public class VirtualCube6Applet extends AbstractVirtualCubeApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

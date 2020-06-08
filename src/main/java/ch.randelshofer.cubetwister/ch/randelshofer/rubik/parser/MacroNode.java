@@ -1,5 +1,6 @@
-/* @(#)MacroNode.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MacroNode.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.parser;
 
@@ -12,8 +13,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Map;
+
 /**
- * A MacroNode holds a macro identifier and an unparsed script String. 
+ * A MacroNode holds a macro identifier and an unparsed script String.
  * The MacroNode can be expanded to hold the macro script as its child A.
  * The side effect of a macro node is A.
  *
@@ -67,7 +69,7 @@ public class MacroNode extends Node {
             }
             ancestor = (DefaultMutableTreeNode) ancestor.getParent();
         }
-        
+
         // Expand the macro
         removeAllChildren();
         add(parser.parse(script));

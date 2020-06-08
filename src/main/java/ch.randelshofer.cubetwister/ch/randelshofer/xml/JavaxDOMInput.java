@@ -1,5 +1,6 @@
-/* @(#)JavaxDOMInput.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)JavaxDOMInput.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.xml;
@@ -35,7 +36,7 @@ public class JavaxDOMInput implements DOMInput {
      */
     @Nonnull
     private HashMap<String,Object> idobjects = new HashMap<String,Object>();
-    
+
     /**
      * The document used for input.
      */
@@ -44,12 +45,12 @@ public class JavaxDOMInput implements DOMInput {
      * The current node used for input.
      */
     private Node current;
-    
+
     /**
      * The factory used to create objects from XML tag names.
      */
     private DOMFactory factory;
-    
+
     public JavaxDOMInput(DOMFactory factory, InputStream in) throws IOException {
         this.factory = factory;
         try {
@@ -78,7 +79,7 @@ public class JavaxDOMInput implements DOMInput {
             throw error;
         }
     }
-    
+
     /**
      * Returns the tag name of the current element.
      */
@@ -140,7 +141,7 @@ public class JavaxDOMInput implements DOMInput {
         String value = ((Element) current).getAttribute(name);
         return (value.length() == 0) ? defaultValue : Float.parseFloat(value);
     }
-    
+
     /**
      * Gets an attribute of the current element of the DOM Document.
      */
@@ -148,8 +149,8 @@ public class JavaxDOMInput implements DOMInput {
         String value = ((Element) current).getAttribute(name);
         return (value.length() == 0) ? defaultValue : Boolean.valueOf(value).booleanValue();
     }
-    
-    
+
+
     /**
      * Returns the number of child elements of the current element.
      */
@@ -180,7 +181,7 @@ public class JavaxDOMInput implements DOMInput {
         }
         return count;
     }
-    
+
     /**
      * Opens the element with the specified index and makes it the current node.
      */
@@ -198,7 +199,7 @@ public class JavaxDOMInput implements DOMInput {
             }
         }
     }
-    
+
     /**
      * Opens the last element with the specified name and makes it the current node.
      */
@@ -235,7 +236,7 @@ public class JavaxDOMInput implements DOMInput {
         }
         throw new IllegalArgumentException("no such child "+tagName+"["+index+"]");
     }
-    
+
     /**
      * Closes the current element of the DOM Document.
      * The parent of the current element becomes the current element.
@@ -249,7 +250,7 @@ public class JavaxDOMInput implements DOMInput {
         }*/
         current = current.getParentNode();
     }
-    
+
     /**
      * Reads an object from the current element.
      */
@@ -264,7 +265,7 @@ public class JavaxDOMInput implements DOMInput {
     public Object readObject(int index) {
         openElement(index);
         Object o;
-        
+
         String tagName = getTagName();
         if (tagName.equals("null")) {
             o =  null;
@@ -299,11 +300,11 @@ public class JavaxDOMInput implements DOMInput {
         } else {
             String ref = getAttribute("ref", null);
             String id = getAttribute("id", ref);
-            
+
             if (id == null) {
                 throw new IllegalArgumentException(getTagName()+" has neither an 'id' nor a 'ref' attribute");
             }
-            
+
             if (idobjects.containsKey(id)) {
                 o = idobjects.get(id);
             } else {
@@ -316,9 +317,9 @@ public class JavaxDOMInput implements DOMInput {
                 }
             }
         }
-        
+
         closeElement();
         return o;
     }
-    
+
 }

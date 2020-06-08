@@ -1,5 +1,6 @@
-/* @(#)Cube3DCanvas.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)JCubeCanvasIdx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik;
 
@@ -11,7 +12,7 @@ import javax.swing.JComponent;
 
 /**
  * Cube3DCanvas.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class JCubeCanvasIdx3D extends JComponent implements Cube3DCanvas {

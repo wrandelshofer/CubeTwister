@@ -1,5 +1,6 @@
-/* @(#)PasswordCellRenderer.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PasswordCellRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.table;
 
@@ -29,10 +30,10 @@ public class PasswordCellRenderer extends JPasswordField
     @Nonnull
     protected static Border noFocusBorder = new EmptyBorder(1, 1, 1, 1);
 
-    // We need a place to store the color the JLabel should be returned 
-    // to after its foreground and background colors have been set 
-    // to the selection background color. 
-    // These ivars will be made protected when their names are finalized. 
+    // We need a place to store the color the JLabel should be returned
+    // to after its foreground and background colors have been set
+    // to the selection background color.
+    // These ivars will be made protected when their names are finalized.
     private Color unselectedForeground;
     private Color unselectedBackground;
 
@@ -46,12 +47,12 @@ public class PasswordCellRenderer extends JPasswordField
     /**
      * Overrides <code>JComponent.setForeground</code> to assign
      * the unselected-foreground color to the specified color.
-     * 
+     *
      * @param c set the foreground color to this value
      */
     public void setForeground(Color c) {
-        super.setForeground(c); 
-        unselectedForeground = c; 
+        super.setForeground(c);
+        unselectedForeground = c;
     }
 
     /**
@@ -92,79 +93,83 @@ public class PasswordCellRenderer extends JPasswordField
 	}
 
         return this;
-    }    
+    }
     private static class Dummy extends JPasswordField {
     private final static long serialVersionUID = 1L;
-    /*
-     * The following methods are overridden as a performance measure to 
-     * to prune code-paths are often called in the case of renders
-     * but which we know are unnecessary.  Great care should be taken
-     * when writing your own renderer to weigh the benefits and 
-     * drawbacks of overriding methods like these.
-     */
+        /*
+         * The following methods are overridden as a performance measure to
+         * to prune code-paths are often called in the case of renders
+         * but which we know are unnecessary.  Great care should be taken
+         * when writing your own renderer to weigh the benefits and
+         * drawbacks of overriding methods like these.
+         */
 
-    /**
-     * Overridden for performance reasons.
-     * See the <a href="#override">Implementation Note</a> 
-     * for more information.
+        /**
+         * Overridden for performance reasons.
+         * See the <a href="#override">Implementation Note</a>
+         * for more information.
+         */
+        public boolean isOpaque() {
+            Color back = getBackground();
+            Component p = getParent();
+            if (p != null) {
+                p = p.getParent();
+            }
+            // p should now be the JTable.
+            boolean colorMatch = (back != null) && (p != null) &&
+                    back.equals(p.getBackground()) &&
+                    p.isOpaque();
+            return !colorMatch && super.isOpaque();
+        }
+
+        /**
+         * Overridden for performance reasons.
+         * See the <a href="#override">Implementation Note</a>
+         * for more information.
      */
-    public boolean isOpaque() { 
-	Color back = getBackground();
-	Component p = getParent(); 
-	if (p != null) { 
-	    p = p.getParent(); 
-	}
-	// p should now be the JTable. 
-	boolean colorMatch = (back != null) && (p != null) && 
-	    back.equals(p.getBackground()) && 
-			p.isOpaque();
-	return !colorMatch && super.isOpaque(); 
+    public void validate() {
     }
 
-    /**
-     * Overridden for performance reasons.
-     * See the <a href="#override">Implementation Note</a> 
-     * for more information.
+        /**
+         * Overridden for performance reasons.
+         * See the <a href="#override">Implementation Note</a>
+         * for more information.
      */
-    public void validate() {}
-
-    /**
-     * Overridden for performance reasons.
-     * See the <a href="#override">Implementation Note</a> 
-     * for more information.
-     */
-    public void revalidate() {}
-
-    /**
-     * Overridden for performance reasons.
-     * See the <a href="#override">Implementation Note</a> 
-     * for more information.
-     */
-    public void repaint(long tm, int x, int y, int width, int height) {}
-
-    /**
-     * Overridden for performance reasons.
-     * See the <a href="#override">Implementation Note</a> 
-     * for more information.
-     */
-    public void repaint(Rectangle r) { }
-
-    /**
-     * Overridden for performance reasons.
-     * See the <a href="#override">Implementation Note</a> 
-     * for more information.
-     */
-    protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {	
-	// Strings get interned...
-	if (propertyName=="text") {
-	    super.firePropertyChange(propertyName, oldValue, newValue);
-	}
+    public void revalidate() {
     }
 
-    /**
-     * Overridden for performance reasons.
-     * See the <a href="#override">Implementation Note</a> 
-     * for more information.
+        /**
+         * Overridden for performance reasons.
+         * See the <a href="#override">Implementation Note</a>
+         * for more information.
+     */
+    public void repaint(long tm, int x, int y, int width, int height) {
+    }
+
+        /**
+         * Overridden for performance reasons.
+         * See the <a href="#override">Implementation Note</a>
+         * for more information.
+     */
+    public void repaint(Rectangle r) {
+    }
+
+        /**
+         * Overridden for performance reasons.
+         * See the <a href="#override">Implementation Note</a>
+         * for more information.
+         */
+        protected void firePropertyChange(String propertyName, Object oldValue, Object newValue) {
+            // Strings get interned...
+            if (propertyName == "text") {
+                super.firePropertyChange(propertyName, oldValue, newValue);
+            }
+        }
+
+        /**
+         * Overridden for performance reasons.
+         * See the <a href="#override">Implementation Note</a>
+         * for more information.
      */
     public void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
     }
@@ -181,7 +186,7 @@ public class PasswordCellRenderer extends JPasswordField
         protected void setValue(@Nullable Object value) {
             setText((value == null) ? "" : value.toString());
     }
-	
+
 
     /**
      * A subclass of <code>DefaultTableCellRenderer</code> that
@@ -201,10 +206,9 @@ public class PasswordCellRenderer extends JPasswordField
      * has been added to the <code>java.beans</code> package.
      * Please see {@link java.beans.XMLEncoder}.
      */
-    public static class UIResource extends DefaultTableCellRenderer 
-        implements javax.swing.plaf.UIResource
-    {
-    private final static long serialVersionUID = 1L;
+    public static class UIResource extends DefaultTableCellRenderer
+            implements javax.swing.plaf.UIResource {
+        private final static long serialVersionUID = 1L;
     }
     }
 }

@@ -1,16 +1,18 @@
-/* @(#)DebugAction.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DebugAction.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.app.action;
 
-import ch.randelshofer.debug.*;
-import org.jhotdraw.app.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ResourceBundle;
-import javax.swing.*;
+import ch.randelshofer.debug.Debugger;
+import org.jhotdraw.app.Application;
 import org.jhotdraw.util.ResourceBundleUtil;
+
+import javax.swing.AbstractAction;
+import javax.swing.JFrame;
+import java.awt.event.ActionEvent;
+import java.util.ResourceBundle;
 /**
  * DebugAction.
  *

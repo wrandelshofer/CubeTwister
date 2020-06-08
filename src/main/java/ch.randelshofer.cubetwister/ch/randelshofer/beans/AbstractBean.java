@@ -1,5 +1,6 @@
-/* @(#)AbstractBean.java
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractBean.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.beans;
 
@@ -19,7 +20,7 @@ public abstract class AbstractBean extends Object implements java.io.Serializabl
     private static final long serialVersionUID = 1L;
     @Nonnull
     protected PropertyChangeSupport propertySupport = new PropertyChangeSupport(this);
-    
+
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertySupport.addPropertyChangeListener(listener);
     }
@@ -33,7 +34,7 @@ public abstract class AbstractBean extends Object implements java.io.Serializabl
     public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
         propertySupport.removePropertyChangeListener(propertyName, listener);
     }*/
-    
+
     protected void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
         propertySupport.firePropertyChange(propertyName, new Boolean(oldValue), new Boolean(newValue));
     }

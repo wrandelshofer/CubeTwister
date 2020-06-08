@@ -1,11 +1,12 @@
-/* @(#)AbstractTransferable.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
 
-import java.awt.datatransfer.*;
-import java.io.*;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
 
 /**
  * Base class for transferable objects.
@@ -14,7 +15,7 @@ import java.io.*;
  */
 public abstract class AbstractTransferable implements Transferable {
     private DataFlavor[] flavors;
-    
+
     /** Creates a new instance. */
     public AbstractTransferable(DataFlavor[] flavors) {
         this.flavors = flavors;

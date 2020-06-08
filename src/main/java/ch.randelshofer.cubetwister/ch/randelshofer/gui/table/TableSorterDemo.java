@@ -1,5 +1,6 @@
-/* @(#)TableSorterDemo.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TableSorterDemo.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.table;
 
@@ -29,7 +30,7 @@ public class TableSorterDemo extends JFrame {
         sorter.addMouseListenerToHeaderInTable(table); //ADDED THIS
         table.setPreferredScrollableViewportSize(new Dimension(500, 70));
 
-        //Create the scroll pane and add the table to it. 
+        //Create the scroll pane and add the table to it.
         JScrollPane scrollPane = new JScrollPane(table);
 
         //Add the scroll pane to this window.
@@ -43,18 +44,18 @@ public class TableSorterDemo extends JFrame {
     }
 
     class MyTableModel extends AbstractTableModel {
-    private final static long serialVersionUID = 1L;
-        final String[] columnNames = {"First Name", 
-                                      "Last Name",
-                                      "Sport",
-                                      "# of Years",
-                                      "Vegetarian"};
+        private final static long serialVersionUID = 1L;
+        final String[] columnNames = {"First Name",
+                "Last Name",
+                "Sport",
+                "# of Years",
+                "Vegetarian"};
         final Object[][] data = {
-            {"Mary", "Campione", 
-             "Snowboarding", new Integer(5), new Boolean(false)},
-            {"Alison", "Huml", 
-             "Rowing", new Integer(3), new Boolean(true)},
-            {"Kathy", "Walrath",
+                {"Mary", "Campione",
+                        "Snowboarding", new Integer(5), new Boolean(false)},
+                {"Alison", "Huml",
+                        "Rowing", new Integer(3), new Boolean(true)},
+                {"Kathy", "Walrath",
              "Chasing toddlers", new Integer(2), new Boolean(false)},
             {"Mark", "Andrews",
              "Speed reading", new Integer(20), new Boolean(true)},
@@ -65,7 +66,7 @@ public class TableSorterDemo extends JFrame {
         public int getColumnCount() {
             return columnNames.length;
         }
-        
+
         public int getRowCount() {
             return data.length;
         }
@@ -95,7 +96,7 @@ public class TableSorterDemo extends JFrame {
         public boolean isCellEditable(int row, int col) {
             //Note that the data/cell address is constant,
             //no matter where the cell appears onscreen.
-            if (col < 2) { 
+            if (col < 2) {
                 return false;
             } else {
                 return true;
@@ -118,7 +119,7 @@ public class TableSorterDemo extends JFrame {
                     && !(value instanceof Integer)) {
                 //With JFC/Swing 1.1 and JDK 1.2, we need to create
                 //an Integer from the value; otherwise, the column
-                //switches to contain Strings.  Starting with v 1.3, 
+                //switches to contain Strings.  Starting with v 1.3,
                 //the table automatically converts value to an Integer,
                 //so you only need the code in the 'else' part of this
                 //'if' block.

@@ -1,5 +1,6 @@
-/* @(#)Cube3DEvent.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cube3DEvent.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -14,7 +15,7 @@ import java.awt.event.MouseEvent;
 /**
  * Cube3DEvent is used to notify interested parties that an event has occured
  * in a Cube3D object.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class Cube3DEvent extends java.util.EventObject {
@@ -343,7 +344,7 @@ public class Cube3DEvent extends java.util.EventObject {
     }
 
     /**
-     * The extended modifiers. 
+     * The extended modifiers.
      */
     public int getModifiersEx() {
         return modifiersEx;

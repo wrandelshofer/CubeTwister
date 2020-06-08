@@ -1,3 +1,8 @@
+/*
+ * @(#)PatternDatabaseTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
@@ -322,25 +327,25 @@ public class PatternDatabaseTest {
 
         // Note: we can only check against values which are present in teh database
 
-            computed.set("ltm", data.get("ltm") == null ? null : mm.getLayerTurnCount() + (data.get("ltm").contains("*") ? "*" : ""));
-            computed.set("qtm", data.get("qtm") == null ? null : mm.getQuarterTurnCount() + (data.get("qtm").contains("*") ? "*" : ""));
-            computed.set("ftm", data.get("ftm") == null ? null : mm.getFaceTurnCount() + (data.get("ftm").contains("*") ? "*" : ""));
-            computed.set("btm", data.get("btm") == null ? null : mm.getBlockTurnCount() + (data.get("btm").contains("*") ? "*" : ""));
+        computed.set("ltm", data.get("ltm") == null ? null : mm.getLayerTurnCount() + (data.get("ltm").contains("*") ? "*" : ""));
+        computed.set("qtm", data.get("qtm") == null ? null : mm.getQuarterTurnCount() + (data.get("qtm").contains("*") ? "*" : ""));
+        computed.set("ftm", data.get("ftm") == null ? null : mm.getFaceTurnCount() + (data.get("ftm").contains("*") ? "*" : ""));
+        computed.set("btm", data.get("btm") == null ? null : mm.getBlockTurnCount() + (data.get("btm").contains("*") ? "*" : ""));
 
 
-            // use the same permutation if it yields the same result
-            computed.set("permutation", Cubes.toPermutationString(cube, notation).replace('\n', ' '));
-            try {
-                expectedCube.reset();
-                if (data.get("permutation") != null) {
-                    parser.parse(data.get("permutation")).applyTo(expectedCube);
-                    if (cube.equals(expectedCube)) {
-                        computed.set("permutation", data.get("permutation"));
-                    }
+        // use the same permutation if it yields the same result
+        computed.set("permutation", Cubes.toPermutationString(cube, notation).replace('\n', ' '));
+        try {
+            expectedCube.reset();
+            if (data.get("permutation") != null) {
+                parser.parse(data.get("permutation")).applyTo(expectedCube);
+                if (cube.equals(expectedCube)) {
+                    computed.set("permutation", data.get("permutation"));
                 }
-            } catch (ParseException e) {
-                // this will show up as a difference in the permutation string
             }
+        } catch (ParseException e) {
+            // this will show up as a difference in the permutation string
+        }
 
         //if (!data.equals(computed)) {
         System.out.println("computed: " + computed);

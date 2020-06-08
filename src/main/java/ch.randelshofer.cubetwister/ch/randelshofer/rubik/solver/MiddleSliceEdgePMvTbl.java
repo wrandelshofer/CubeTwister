@@ -1,10 +1,6 @@
-/* @(#)MiddleSliceEdgePermutationMoveTable.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
- *
- * This software has been derived from the 'Kociemba
- * Cube Solver 1.0' (KCube) (c) Greg Schmidt.
- * KCube is a C++ implementation of the cube solver
- * algorithm from Herbert Kociemba.
+/*
+ * @(#)MiddleSliceEdgePMvTbl.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.solver;
 

@@ -1,5 +1,6 @@
-/* @(#)NumericDocument.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NumericDocument.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.text;
@@ -28,7 +29,7 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
     public NumericDocument(@Nonnull javax.swing.BoundedRangeModel m) {
         setBoundedRangeModel(m);
     }
-    
+
     public int getIntegerValue() {
         try {
             return Math.min(model.getMaximum() - model.getExtent(),
@@ -41,7 +42,7 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
             throw new InternalError(e.toString());
         }
     }
-    
+
     public void setIntegerValue(int value) {
         try {
             String stringRepresentation = String.valueOf(value);
@@ -69,11 +70,11 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
                 Toolkit.getDefaultToolkit().beep();
             }
         }
-        
+
         super.insertString(offs, new String(result, 0, j), a);
         model.setValue(getIntegerValue());
     }
-    
+
     public void remove(int offs, int len) throws BadLocationException {
         super.remove(offs, len);
         model.setValue(getIntegerValue());
@@ -92,7 +93,7 @@ public class NumericDocument extends PlainDocument  implements ChangeListener {
         }
         model.addChangeListener(this);
     }
-    
+
     public javax.swing.BoundedRangeModel getBoundedRangeModel() {
         return model;
     }

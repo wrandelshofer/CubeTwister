@@ -1,5 +1,6 @@
-/* @(#)VectorIcon.java
- * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VectorIcon.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -116,7 +117,7 @@ public class VectorIcon implements javax.swing.Icon {
         } else {
             g.setColor(Color.gray);
         }
-        
+
         g.translate(x,y);
         if (shapes != null) {
             for (int i=0; i < shapes.length; i++) {

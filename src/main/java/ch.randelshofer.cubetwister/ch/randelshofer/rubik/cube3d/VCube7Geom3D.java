@@ -1,5 +1,6 @@
-/* @(#)VCube7Geom3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VCube7Geom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -313,7 +314,7 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
     @Override
     protected void initCorners() {
         if (CORNER_VERTS == null) {
-            // The corner parts are smaller than the side parts and curved 
+            // The corner parts are smaller than the side parts and curved
             CORNER_VERTS = new float[]{
                         //0:luff      ldff       ruff       rdff
                         -(C_LUF * 0.5f - BEVEL_LENGTH), (C_LUF * 0.5f - BEVEL_LENGTH), C_LUF * 0.5f,
@@ -1566,7 +1567,7 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
                 case 0: // middle
                     verts = SIDE1_VERTS;
                     break;
-                    
+
                 case 1: // inner ldf
                     verts = SIDE5_VERTS;
                     break;
@@ -1579,8 +1580,8 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
                 case 4: // inner rdf
                     verts = SIDE2_VERTS;
                     break;
-                    
-                case 5: // inner d
+
+            case 5: // inner d
                     verts = SIDE6_VERTS;
                     break;
                 case 6: // inner l
@@ -1592,8 +1593,8 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
                 case 8: // inner r
                     verts = SIDE7_VERTS;
                     break;
-                    
-                case 9: // outer ldf
+
+            case 9: // outer ldf
                     verts = SIDE13_VERTS;
                     break;
                 case 10: // outer luf
@@ -1605,8 +1606,8 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
                 case 12: // outer rdf
                     verts = SIDE10_VERTS;
                     break;
-                    
-                case 13: // outer d
+
+            case 13: // outer d
                     verts = SIDE14_VERTS;
                     break;
                 case 14: // outer l
@@ -1618,8 +1619,8 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
                 case 16: // outer r
                     verts = SIDE15_VERTS;
                     break;
-                    
-                case 21: // outer d
+
+            case 21: // outer d
                     verts = SIDE18_VERTS;
                     break;
                 case 22: // outer l
@@ -1631,8 +1632,8 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
                 case 24: // outer r
                     verts = SIDE19_VERTS;
                     break;
-                    
-                case 17: // outer d
+
+            case 17: // outer d
                     verts = SIDE22_VERTS;
                     break;
                 case 18: // outer l
@@ -1661,7 +1662,7 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
         float[] verts = {
         //0:luff      ldff       ruff       rdff
         -15, 15, 15,  -15,-15, 15,   15, 15, 15,   15,-15, 15,
-        
+
         //4:rubb,    rdbb,       lubb,       ldbb
         15,15,-15,   15,-15,-15,   -15,15,-15,  -15,-15,-15,
         };
@@ -1673,13 +1674,13 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
         {2, 4, 5, 3}, //Right
         {3, 5, 7, 1}, //Bottom
         };
-        
+
         Color[][] colors = new Color[faces.length][2];
         Color[] faceColor = {PART_FILL_COLOR, null};
         for (int j=0; j < faces.length; j++) {
         colors[j] = faceColor;
         }
-        
+
         shapes[centerOffset] = new Shape3D(verts, faces, colors);
          */
         float[] verts = {};
@@ -1796,22 +1797,23 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
         a.setStickerFillColor(stickersFillColor);
         return a;
     }
+
     /**
      * The numbers show the part indices. The stickers are numbered from top
      * left to bottom right on each face. The sequence of the faces is right,
-     * up, front, left, down, back. 
+     * up, front, left, down, back.
      * <pre>
      *                               +---+---+---+---+---+---+---+
      *                               |4.0|39 |15 |3.1|27 |51 |2.0|
      *                               +---+---+---+---+---+---+---+
      *                               |42 |55  133 85  109 61 |36 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |18 |103  7  37  13  139|12 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |6.0|79  31  1.2 43  91 |0.0|
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |30 |127 25  49  19  115|24 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |54 |73  121 97  145 67 |48 |
      *                               +---+---+---+---+---+---+---+
      *                               |6.0|45 |21 |9.1|33 |57 |0.0|
@@ -1819,13 +1821,13 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
      *   | 4 |42 |18 |6.1|30 |54 | 6 | 6 |45 |21 |9.0|33 |57 | 0 | 0 |48 |24 |0.1|12 |36 | 2 | 2 |51 |27 |3.0|15 |39 | 4 |
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |55 |75  129 81  105 57 |58 |58 |62  140 92  116 68 |49 |49 |66  144 96  120 72 |52 |52 |59  137 89  113 65 |55 |
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |31 |123  27  33   9 135|34 |34 |110 14  44  20  146|25 |25 |114 18  48  24  126|28 |28 |107 11  41  17  143|31 |
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |7.0|99  51  3.1 39  87 10.0|10.1 86  38 2.3 50  98 |1.1|1.0|90  42  0.0 30  78 |4.0|4.1|83  35  5.2 47  95 |7.1|
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |19 |147 21  45  15  111|22 |22 |134  8  32  26  122|13 |13 |138 12  36   6  102|16 |16 |131 29  53  23  119|19 |
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |43 |69  117 93  141 63 |46 |46 |56  104 80  128 74 |37 |37 |60  108 84  132 54 |40 |40 |77  125 101 149 71 |43 |
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   | 5 |44 |20 |8.1|32 |56 | 7 | 7 |47 |23 11.0|35 |59 | 1 | 1 |50 |26 |2.1|14 |38 | 3 | 3 |53 |29 |5.0| 17|41 | 5 |
@@ -1833,13 +1835,13 @@ public class VCube7Geom3D extends AbstractCube7Geom3D {
      *                               |7.0|47 |23 11.1|35 |59 |1.0|
      *                               +---+---+---+---+---+---+---+
      *                               |56 |76  130 82  106 58 |50 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |32 |124 28  34  10  136|26 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |8.0|100 52  4.1 40  88 |2.0|
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |20 |148 22  46  16  112|14 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |44 |70  118 94  142 64 |38 |
      *                               +---+---+---+---+---+---+---+
      *                               |5.0|41 |17 |5.1|29 |53 |3.0|

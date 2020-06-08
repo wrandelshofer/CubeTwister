@@ -1,5 +1,6 @@
-/* @(#)NotationMovesTableModel.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NotationMovesTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -24,7 +25,7 @@ import java.io.IOException;
 import java.text.Normalizer;
 /**
  * NotationMovesTableModel.
- * 
+ *
  * @author Werner Randelshofer.
  */
 public class NotationMovesTableModel extends AbstractTableModel
@@ -33,7 +34,7 @@ public class NotationMovesTableModel extends AbstractTableModel
     private static String[] columnNames;
     private static Class<?>[] columnClasses;
     private NotationModel model;
-    
+
     /**
      * [][0] = Boolean "Supported"
      * [][1] = Layers String representation
@@ -41,10 +42,10 @@ public class NotationMovesTableModel extends AbstractTableModel
      * [][3..8] = Move.
      */
     private Object[][] backboneRows;
-    
+
     private int rowCount;
-    
-    
+
+
     /** Creates a new instance. */
     public NotationMovesTableModel() {
         if (columnNames == null) {
@@ -58,7 +59,7 @@ public class NotationMovesTableModel extends AbstractTableModel
         }
         setModel(null);
     }
-    
+
     public void setModel(NotationModel newValue) {
         if (model != null) {
             model.removePropertyChangeListener(this);
@@ -72,7 +73,7 @@ public class NotationMovesTableModel extends AbstractTableModel
         }
             fireTableDataChanged();
     }
-    
+
     private void updateRows() {
         int layerCount = model.getLayerCount();
         backboneRows = new Object[NotationModel.getUsefulLayers(layerCount).length * 4][9];
@@ -84,7 +85,7 @@ public class NotationMovesTableModel extends AbstractTableModel
             layers = layers.substring(layers.length() - layerCount);
             int reverseLayerMask = Integer.valueOf(Strings.reverse(layers), 2).intValue();
             layers = Strings.translate(layers, "01", "\u25cb\u25cf"); // unicode white circle and unicode black circle
-            
+
             if (layerMask == reverseLayerMask) {
                 for (int j=0; j < 2; j++) {
                     backboneRows[rowCount][1] = layers;
@@ -155,7 +156,7 @@ public class NotationMovesTableModel extends AbstractTableModel
             } else if (value instanceof String) {
                 b = "true".equals(value);
             }
-            
+
             for (int i=3; i < 9; i++) {
                 model.setMoveSupported((Move) backboneRows[row][i], b);
             }
@@ -165,27 +166,27 @@ public class NotationMovesTableModel extends AbstractTableModel
                     );
         }
     }
-    
+
     @Override
     public int getRowCount() {
         return rowCount;
     }
-    
+
     @Override
     public int getColumnCount() {
         return columnNames.length;
     }
-    
+
     @Override
     public String getColumnName(int column) {
         return columnNames[column];
     }
-    
+
     @Override
     public Class<?> getColumnClass(int column) {
         return columnClasses[column];
     }
-    
+
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return columnIndex == 0 || columnIndex > 2;
@@ -225,17 +226,17 @@ public class NotationMovesTableModel extends AbstractTableModel
         }
         return false;
     }
-    
+
     @Override
     public void removeRow(int row) throws IllegalStateException {
         throw new IllegalStateException();
     }
-    
+
     @Override
     public boolean isRowRemovable(int row) {
         return false;
     }
-    
+
     @Override
     public boolean isRowAddable(int row) {
         return false;
@@ -268,12 +269,12 @@ public class NotationMovesTableModel extends AbstractTableModel
         t.add(TableModels.createPlainTransferable(this, rows));
         return t;
     }
-    
+
     @Override
     public void createRow(int row, Object type) throws IllegalStateException {
         throw new IllegalStateException();
     }
-    
+
     /** The data flavour for JVM local object transferables. */
     private final static DataFlavor tableFlavor = new DataFlavor(Object[][].class, "Table");
     private final static DataFlavor rowFlavor = new DataFlavor(Object[].class, "Row");
@@ -302,7 +303,7 @@ public class NotationMovesTableModel extends AbstractTableModel
             } else {
                 throw new UnsupportedFlavorException(null);
             }
-            
+
             int overRow = row-1; // Overwrite the selected row! Don't append after it.
             for (int i=0; i < transferData.length; i++) {
                 for (int j=0; j < transferData[i].length; j++) {
@@ -314,7 +315,7 @@ public class NotationMovesTableModel extends AbstractTableModel
                 }
             }
             fireTableRowsUpdated(overRow, overRow+rowCount);
-            
+
         } catch (UnsupportedFlavorException e) {
             e.printStackTrace();
             return 0;

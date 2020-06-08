@@ -1,9 +1,6 @@
 /*
- * @(#)StructParser.java  
- *
- * Copyright (c) 2000-2013 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * @(#)StructParser.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.binary;
 
@@ -45,7 +42,7 @@ import java.util.Map;
  * TypeSpecifier ::= ( StructSpecifier | (PrimitiveSpecifier [EnumSpecifier | SetSpecifier]) ) [ArrayList]
  * StructSpecifier ::= "struct (identifier | "{" MemberDeclaration {"," MemberDeclaration } "}" )
  * MemberDeclaration ::= TypeSpecifier identifier [ArrayList] ";"
- * PrimitiveSpecifier ::= "uint1" | "uint2" | "uint4" | "uint5" | "uint8" 
+ * PrimitiveSpecifier ::= "uint1" | "uint2" | "uint4" | "uint5" | "uint8"
  *                         | "uint12" | "uint16" | "uint31LE" | "uint32"
  *                         | "int9" | "int16" | "int32"
  *                         | "ubyte" | "byte" | "short"
@@ -396,7 +393,7 @@ public class StructParser extends Object {
     }
     System.out.println("StructParser.MagicDeclaration nval::"+scanner.nval);
     System.out.println("StructParser.MagicDeclaration next TOken:"+scanner.nextToken());
-    
+
     }*/
 
     /**

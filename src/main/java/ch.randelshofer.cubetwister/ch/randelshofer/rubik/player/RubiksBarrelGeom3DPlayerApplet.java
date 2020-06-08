@@ -1,5 +1,6 @@
-/* @(#)RubiksBarrelGeom3DPlayerApplet.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksBarrelGeom3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.player;
@@ -35,7 +36,7 @@ public class RubiksBarrelGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerAppl
         return 3;
     }
 
-    
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -45,8 +46,8 @@ public class RubiksBarrelGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerAppl
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
     */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

@@ -1,5 +1,6 @@
-/* @(#)CubeStickerModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeStickerModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -28,7 +29,7 @@ public class CubeStickerModel extends EntityModel {
      * The visible property.
      */
     private boolean isVisible = true;
-    /** 
+    /**
      * The fill color property.
      */
     @Nullable
@@ -50,7 +51,7 @@ public class CubeStickerModel extends EntityModel {
 
     };
 
-    
+
     /**
      * Creates new CubeStickerModel
      */
@@ -63,7 +64,7 @@ public class CubeStickerModel extends EntityModel {
     public String getName() {
         return name;
     }
-    
+
     /**
      * Sets the name property.
      */
@@ -89,8 +90,8 @@ public class CubeStickerModel extends EntityModel {
     public boolean isVisible() {
         return isVisible;
     }
-    
-   public void basicSetVisible(boolean value) {
+
+    public void basicSetVisible(boolean value) {
             isVisible = value;
     }
     public void setVisible(boolean value) {
@@ -116,8 +117,8 @@ public class CubeStickerModel extends EntityModel {
     public CubeColorModel getFillColorModel() {
         return fillColor;
     }
-    
-   public void basicSetFillColorModel(CubeColorModel newValue) {
+
+    public void basicSetFillColorModel(CubeColorModel newValue) {
        if (fillColor!=null) {
            fillColor.removePropertyChangeListener(fillColorHandler);
        }

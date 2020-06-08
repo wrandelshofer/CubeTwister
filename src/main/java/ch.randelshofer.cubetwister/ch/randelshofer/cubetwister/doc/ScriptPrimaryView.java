@@ -1,5 +1,6 @@
-/* @(#)ScriptPrimaryView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptPrimaryView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -45,35 +46,35 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
             }
         }
     };
-    
+
     /**
      * The resource bundle used for internationalisation.
      */
     private ResourceBundleUtil labels;
-    
+
     private ScriptModel model;
-    
+
     private JCubeCanvasIdx3D cubeCanvas;
     /*
     private Cube3D cube3D;
     private ch.randelshofer.rubik.Cube cube;
     */
-    
-    
+
+
     /** Creates a new instance. */
     public ScriptPrimaryView() {
         init();
     }
     private void init() {
         //JCubeCanvasIdx3D cubeCanvas = new JCubeCanvasIdx3D();
-        
+
         // Load the resource bundle
         labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
-        
+
         // Initialise the components as far as the IDE supports it.
         initComponents();
     }
-    
+
     private Cube3DCanvas getCubeCanvas() {
         if (cubeCanvas == null) {
             cubeCanvas = new JCubeCanvasIdx3D();
@@ -92,14 +93,14 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
     public void reset() {
         cubeCanvas.reset();
     }
-    
+
     /**
      * Adds an UndoableEditListener.
      */
     public void addUndoableEditListener(UndoableEditListener l) {
         listenerList.add(UndoableEditListener.class, l);
     }
-    
+
     /**
      * Notify all listeners that have registered interest for
      * notification on this event type.  The event instance
@@ -109,7 +110,7 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
     public void fireUndoableEditHappened(UndoableEdit edit) {
         if (listenerList != null) {
             UndoableEditEvent evt = null;
-            
+
             // Guaranteed to return a non-null array
             Object[] listeners = listenerList.getListenerList();
             // Process the listeners last to first, notifying
@@ -124,7 +125,7 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
             }
         }
     }
-    
+
     public void setModel(EntityModel newValue) {
         setModel((ScriptModel) newValue);
     }
@@ -136,12 +137,12 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
         if (model != null) {
             model.addPropertyChangeListener(propertyHandler);
         }
-        
+
         updateCube3D();
         getCubeCanvas().reset();
-        
+
     }
-    
+
     private void updateCube3D() {
         if (model != null) {
                 getCubeCanvas().setCube3D(model.getCube3D());
@@ -168,7 +169,7 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
                 cube3D.addCube3DListener(cube3DHandler);
                 cube3D.setAnimated(true);
                 //cube3D.setShowGhostParts(partsToggleButton.isSelected());
-                
+
                 getCubeCanvas().setCube3D(cube3D);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -180,7 +181,7 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
     public JComponent getViewComponent() {
         return this;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -195,10 +196,10 @@ public class ScriptPrimaryView extends JPanel implements EntityView {
         setLayout(new java.awt.BorderLayout());
 
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup toggleButtonGroup;
     // End of variables declaration//GEN-END:variables
-    
+
 }

@@ -1,6 +1,6 @@
-/**
- * @(#)MutableListTransferable.java  1.0  Mar 21, 2008
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableListTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.list;
@@ -24,20 +24,20 @@ public class MutableListTransferable implements Transferable {
     private JList list;
     private Transferable target;
     private int[] indices;
-    
+
     public MutableListTransferable(JList source, int[] indices, Transferable target) {
         this.list = source;
         this.indices = indices;
         this.target = target;
     }
-    
+
     public JList getSource() {
         return list;
     }
     public int[] getTransferedIndices() {
         return indices;
     }
-    
+
     public DataFlavor[] getTransferDataFlavors() {
         return target.getTransferDataFlavors();
     }

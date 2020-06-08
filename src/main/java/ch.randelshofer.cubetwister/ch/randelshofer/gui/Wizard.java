@@ -1,5 +1,6 @@
-/* @(#)Wizard.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Wizard.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -27,48 +28,48 @@ implements PropertyChangeListener, ListSelectionListener {
      * The resource bundle used for internationalisation.
      */
     private ResourceBundleUtil labels;
-    
+
     private WizardModel model;
-    
+
     private static class ListModelAdapter extends AbstractListModel {
     private final static long serialVersionUID = 1L;
         private WizardModel model;
-        
+
         public void setModel(WizardModel model) {
             this.model = model;
         }
-        
+
         public Object getElementAt(int index) {
             return model.getPanelTitle(index);
         }
-        
+
         public int getSize() {
             return model.getPanelCount();
         }
-        
+
     }
     private ListModelAdapter listModelAdapter;
-    
-    
+
+
     /** Creates new form Wizard */
     public Wizard(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        
+
         Font f;
-        
+
         labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.gui.Labels"));
-        
+
         initComponents();
-        
-        
+
+
         stepListPanel.setVisible(false);
-        
+
         f = Fonts.getEmphasizedDialogFont();
         stepsLabel.setFont(f);
         stepLabel.setFont(f);
         stepList.getSelectionModel().addListSelectionListener(this);
     }
-    
+
     @SuppressWarnings({"deprecation"})
     public void show() {
         stepList.setSelectedIndex(0);
@@ -105,8 +106,8 @@ implements PropertyChangeListener, ListSelectionListener {
             m.addPropertyChangeListener(this);
         }
     }
-    
-    
+
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -262,21 +263,21 @@ implements PropertyChangeListener, ListSelectionListener {
 
         pack();
     }//GEN-END:initComponents
-    
+
     private void cancel(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel
         if (model != null) {
             model.cancel();
         }
         setVisible(false);
     }//GEN-LAST:event_cancel
-    
+
     private void finish(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finish
         if (model != null) {
             model.finish();
         }
         setVisible(false);
     }//GEN-LAST:event_finish
-    
+
     private void next(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_next
         if (model != null) {
             int i = stepList.getSelectedIndex();
@@ -285,7 +286,7 @@ implements PropertyChangeListener, ListSelectionListener {
             }
         }
     }//GEN-LAST:event_next
-    
+
     private void back(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back
         if (model != null) {
             int i = stepList.getSelectedIndex();
@@ -294,13 +295,13 @@ implements PropertyChangeListener, ListSelectionListener {
             }
         }
     }//GEN-LAST:event_back
-    
+
     /** Closes the dialog */
     private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         setVisible(false);
         dispose();
     }//GEN-LAST:event_closeDialog
-    
+
     /**
      * @param args the command line arguments
      */
@@ -333,7 +334,7 @@ implements PropertyChangeListener, ListSelectionListener {
             nextButton.setEnabled(index < model.getPanelCount() - 1);
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton cancelButton;
@@ -349,5 +350,5 @@ implements PropertyChangeListener, ListSelectionListener {
     private javax.swing.JLabel stepsLabel;
     private javax.swing.JSeparator verticalSeparator;
     // End of variables declaration//GEN-END:variables
-    
+
 }

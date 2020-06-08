@@ -1,5 +1,6 @@
-/* @(#)ScriptKeyboardHandler.java
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptKeyboardHandler.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.parser;
 

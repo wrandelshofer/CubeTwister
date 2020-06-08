@@ -1,5 +1,6 @@
-/* @(#)NotationView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NotationView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 

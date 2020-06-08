@@ -1,5 +1,6 @@
-/* @(#)ScriptStateView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptStateView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 

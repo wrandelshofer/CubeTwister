@@ -1,5 +1,6 @@
-/* @(#)ProfessorCubeIdx3D.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ProfessorCubeIdx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -158,7 +159,7 @@ public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
      * <pre>
      *    0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
      *  0                     +---+---+---+---+---+
-     *                        |4.0|           |2.0|  
+     *                        |4.0|           |2.0|
      *  1                     +---+           +---+
      *                        |                   |
      *  2                     +                   +
@@ -166,7 +167,7 @@ public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
      *  3                     +                   +
      *                        |                   |
      *  4                     +---+           +---+
-     *                        |6.0|           |0.0|  
+     *                        |6.0|           |0.0|
      *  5 +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+...................+
      *    |4.1|           |6.2|6.1|           |0.2|0.1|           |2.2|                   '
      *  6 +---+           +---+---+           +---+---+           +---+                   '
@@ -183,8 +184,8 @@ public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
      *                        |                   |                   |     |
      * 12                     +                   +                   +     |
      *                        |         d         |         b         |  &lt;--+
-     * 13                     +                   +                   +     
-     *                        |                   |                   |     
+     * 13                     +                   +                   +
+     *                        |                   |                   |
      * 14                     +---+           +---+---+           +---+
      *                        |5.0|           |3.0|3.2|           |5.1|
      * 15                     +---+---+---+---+---+---+---+---+---+---+
@@ -384,9 +385,9 @@ public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
      *   |   |   |6.1|   |   |   |   |9.0|   |   |   |24 |0.1|12 |   |                   '
      * 4 +--- ---+---+--- ---+--- ---+---+--- ---+--- ---+---+--- ---+                   '
      *   |   |           |   |   |           |   |   |           |   |                   '
-     *   +---+           +---+---+           +---+---+           +---+                   '       
+     *   +---+           +---+---+           +---+---+           +---+                   '
      *   |7.0|     l     10.0|10.1     f     |1.1|1.0|     r     |4.0|         b         '
-     *   +---+           +---+---+           +---+---+           +---+                   '       
+     *   +---+           +---+---+           +---+---+           +---+                   '
      *   |   |           |   |   |           |   |   |           |   |                   '
      * 4 +--- ---+---+--- ---+--- ---+---+--- ---+--- ---+---+--- ---+                   '
      *   |   |   |8.1|   |   |   |   |11.0   |   |   |   |2.1|   |   |                   '
@@ -396,8 +397,8 @@ public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
      *                       |   |           |   |   |           |   |     |
      *                       +---+           +---+---+           +---+     |
      *                       |8.0|     d     |2.0|4.1|     b     |7.1|  &lt;--+
-     *                       +---+           +---+---+           +---+     
-     *                       |   |           |   |   |           |   |     
+     *                       +---+           +---+---+           +---+
+     *                       |   |           |   |   |           |   |
      * 8                     +--- ---+---+--- ---+--- ---+---+--- ---+
      *                       |   |   |5.1|   |   |   |   |5.0|   |   |
      * 9                     +---+---+---+---+---+---+---+---+---+---+
@@ -664,10 +665,11 @@ public class ProfessorCubeIdx3D extends AbstractProfessorCubeIdx3D {
 
         }
     }
+
     /**
      * The numbers show the part indices. The stickers are numbered from top
      * left to bottom right on each face. The sequence of the faces is right,
-     * up, front, left, down, back. 
+     * up, front, left, down, back.
      * <pre>
      *                     +---+---+---+---+---+
      *                     | 4 |23 |11 |35 | 2 |

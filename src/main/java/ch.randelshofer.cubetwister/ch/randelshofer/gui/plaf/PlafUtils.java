@@ -1,5 +1,6 @@
-/* @(#)PlafUtils.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PlafUtils.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.plaf;
@@ -16,12 +17,14 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Toolkit;
+
 /**
  * PlafUtils.
- * @author  Werner Randelshofer
+ *
+ * @author Werner Randelshofer
  */
-public class PlafUtils 
-implements PlafConstants {
+public class PlafUtils
+        implements PlafConstants {
     protected static ImageBevelBorder[][] bevelRenderer;
 
     /**
@@ -63,10 +66,10 @@ implements PlafConstants {
         }
 
         int state = ((enabled) ? 0 : 1) | ((pressed & enabled) ? 2 : 0) | ((selected) ? 4 : 0);
-        
+
         bevelRenderer[type][state].paintBorder(c, g, x, y, width, height);
     }
-    
+
     private static void initBevels() {
         if (bevelRenderer == null) {
             String id = UIManager.getLookAndFeel().getID();
@@ -108,6 +111,6 @@ implements PlafConstants {
         return true;
         /*end[JDK1.2]*/
     }
-    
+
 }
 

@@ -1,5 +1,6 @@
-/* @(#)CubeExplorerImporter.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeExplorerImporter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.impexp.cubeexplorer;
@@ -44,7 +45,7 @@ public class CubeExplorerImporter extends JPanel implements Importer {
         initComponents();
         kociembaParser = new KociembaENGParser();
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -111,22 +112,24 @@ public class CubeExplorerImporter extends JPanel implements Importer {
             scriptModel.setName("unnamed");
         } else {
             script = line.substring(0, pbr).trim();
-            scriptModel.setName(line.substring(pss+2).trim());
+            scriptModel.setName(line.substring(pss + 2).trim());
         }
         Node node = kociembaParser.parse(script);
-        if (true) throw new InternalError("not implemented");
- //       scriptModel.setScript(defaultParser.toString(node));
-        
-        return scriptModel;        
+        if (true) {
+            throw new InternalError("not implemented");
+        }
+        //       scriptModel.setScript(defaultParser.toString(node));
+
+        return scriptModel;
     }
-    
+
     public void setDocumentModel(DocumentModel model) {
         this.documentModel = model;
     }
-    
+
     public void setPreviewFile(File file) {
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
@@ -136,5 +139,5 @@ public class CubeExplorerImporter extends JPanel implements Importer {
     public JComponent getComponent() {
         return this;
     }
-    
+
 }

@@ -1,12 +1,13 @@
-/* @(#)EntityView.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)EntityView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
 
-import javax.swing.*;
+import ch.randelshofer.undo.Undoable;
 
-import ch.randelshofer.undo.*;
+import javax.swing.JComponent;
 
 /**
  * Presents an EntityModel in a JComponent.

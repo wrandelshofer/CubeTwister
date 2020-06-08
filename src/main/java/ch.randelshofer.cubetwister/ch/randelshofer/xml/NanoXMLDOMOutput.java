@@ -1,5 +1,6 @@
-/* @(#)NanoXMLDOMOutput.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NanoXMLDOMOutput.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.xml;
@@ -31,7 +32,7 @@ public class NanoXMLDOMOutput implements DOMOutput {
      * is String representing a marshalled reference to that object.
      */
     private HashMap<Object,String> objectids;
-    
+
     /**
      * The document used for output.
      */
@@ -48,7 +49,7 @@ public class NanoXMLDOMOutput implements DOMOutput {
      * The stack.
      */
     private Stack<XMLElement> stack;
-    
+
     /** Creates a new instance. */
     public NanoXMLDOMOutput(DOMFactory factory) {
         this.factory = factory;
@@ -58,7 +59,7 @@ public class NanoXMLDOMOutput implements DOMOutput {
         stack = new Stack<XMLElement>();
         stack.push(current);
     }
-    
+
     /**
      * Writes the contents of the DOMOutput into the specified output stream.
      */
@@ -152,7 +153,7 @@ public class NanoXMLDOMOutput implements DOMOutput {
     public void setAttribute(String name, double value) {
         current.setAttribute(name, Double.toString(value));
     }
-    
+
     public void writeObject(@Nullable Object o) {
         if (o == null) {
             addElement("null");

@@ -1,5 +1,6 @@
-/* @(#)AbstractCubeGeom3DPlayerApplet.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractCubeGeom3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.player;
@@ -45,14 +46,14 @@ public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApple
     protected void readParameters()
             throws AppletParameterException {
         super.readParameters();
-        
+
         int[] ints;
         String value;
         Color color;
-        
+
         Cube3D cube3D = player.getCube3D();
         DefaultCubeAttributes attributes = (DefaultCubeAttributes) cube3D.getAttributes();
-        
+
         // Get lighting properties
         Component canvas3D = player.getVisualComponent();
         if (canvas3D instanceof JCanvas3D) {
@@ -64,7 +65,7 @@ public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApple
                 throw new IllegalArgumentException("Invalid parameter 'lightSourcePosition' provides "+ints.length+" instead of 3 entries.");
             }
             c3D.setLightSource(new Point3D(ints[0], ints[1], ints[2]));
-            
+
             // Get background image
             value = getParameter("backgroundImage");
             if (value != null) {
@@ -83,7 +84,7 @@ public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApple
                 // background color
                 color = new Color(Applets.getParameter(this, "rearViewBackgroundColor", Applets.getParameter(this, "backgroundColor", 0xffffff)));
                 rearCanvas.getVisualComponent().setBackground(color);
-                
+
                 // Get background image
                 value = Applets.getParameter(this, "rearViewBackgroundImage", getParameter("backgroundImage"));
                 if (value != null) {
@@ -93,7 +94,7 @@ public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApple
                         throw new IllegalArgumentException("Invalid parameter 'backgroundImage' malformed URL: "+value);
                     }
                 }
-                
+
                 // Get lighting properties
                 if (rearCanvas instanceof JCanvas3D) {
                     JCanvas3D rc3D = (JCanvas3D) canvas3D;
@@ -108,7 +109,7 @@ public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApple
             }
             }
     }
-    
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -117,9 +118,9 @@ public abstract class AbstractCubeGeom3DPlayerApplet extends AbstractPlayerApple
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

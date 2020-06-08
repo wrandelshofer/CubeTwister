@@ -1,8 +1,6 @@
-/* @(#)ArrayUtil.java
- *
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
- *
- * Implementation derived from Sun's Java 1.4 VM.
+/*
+ * @(#)ArrayUtil.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.util;
@@ -14,8 +12,7 @@ import java.util.ArrayList;
 
 /**
  * This class contains various methods for manipulating arrays (such as
- * sorting and searching). 
- * 
+ * sorting and searching).
  */
 public class ArrayUtil {
 
@@ -65,5 +62,5 @@ public class ArrayUtil {
         }
         return list;
     }
-    
+
 }

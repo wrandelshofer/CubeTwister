@@ -1,5 +1,6 @@
-/* @(#)Cookies.java
- * Copyright (c) 2009 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cookies.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 

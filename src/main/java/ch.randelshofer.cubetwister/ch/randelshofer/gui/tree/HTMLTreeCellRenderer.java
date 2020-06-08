@@ -1,11 +1,11 @@
-/* @(#)HTMLTreeCellRenderer.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)HTMLTreeCellRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.tree;
 
-import javax.swing.*;
-import javax.swing.tree.*;
+import javax.swing.tree.DefaultTreeCellRenderer;
 /**
  * A TreeCellRenderer designed for tree cells with HTML text.
  * <p>

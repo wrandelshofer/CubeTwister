@@ -1,15 +1,16 @@
-/* @(#)UndoableIntEdit.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)UndoableIntEdit.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.undo;
 
-import javax.swing.undo.*;
+import javax.swing.undo.UndoableEdit;
 
 /**
  * This is an abstract class for undoable int properties.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableEdit {
     private static final long serialVersionUID = 1L;
@@ -18,13 +19,14 @@ public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableE
     protected int oldValue;
     protected int newValue;
     protected boolean isCoalesce;
-    
-    /** 
+
+    /**
      * Creates new IntPropertyEdit of which consecutive edits are not coalesced.
-     * @param source The Object to which the property belongs.
+     *
+     * @param source       The Object to which the property belongs.
      * @param propertyName The name of the property.
-     * @param oldValue The old value of the property.
-     * @param newValue The new value of the property.
+     * @param oldValue     The old value of the property.
+     * @param newValue     The new value of the property.
      */
     public UndoableIntEdit(Object source, String propertyName, int oldValue, int newValue) {
         this.source = source;
@@ -33,13 +35,15 @@ public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableE
         this.newValue = newValue;
         this.isCoalesce = false;
     }
-    /** 
-     * Creates new IntPropertyEdit 
-     * @param source The Object to which the property belongs.
+
+    /**
+     * Creates new IntPropertyEdit
+     *
+     * @param source       The Object to which the property belongs.
      * @param propertyName The name of the property.
-     * @param oldValue The old value of the property.
-     * @param newValue The new value of the property.
-     * @param coalesce Set to true, if consecutive edits shall be coalesced.
+     * @param oldValue     The old value of the property.
+     * @param newValue     The new value of the property.
+     * @param coalesce     Set to true, if consecutive edits shall be coalesced.
      */
     public UndoableIntEdit(Object source, String propertyName, int oldValue, int newValue, boolean coalesce) {
         this.source = source;
@@ -56,7 +60,7 @@ public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableE
         super.redo();
         revert(oldValue, newValue);
     }
-    
+
     /**
      * Undo the edit that was made.
      */
@@ -64,14 +68,14 @@ public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableE
         super.undo();
         revert(newValue, oldValue);
     }
-    
+
     /**
      * The name to be displayed in the undo/redo menu.
      */
     public String getPresentationName() {
         return propertyName;
     }
-    
+
     /**
      * This UndoableEdit should absorb anEdit if it can. Return true
      * if anEdit has been incoporated, false if it has not.
@@ -88,8 +92,8 @@ public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableE
     public boolean addEdit(UndoableEdit anEdit) {
         if (isCoalesce && anEdit instanceof UndoableIntEdit) {
             UndoableIntEdit that = (UndoableIntEdit) anEdit;
-            if (that.source == this.source 
-            && that.propertyName.equals(this.propertyName)) {
+            if (that.source == this.source
+                    && that.propertyName.equals(this.propertyName)) {
                 this.newValue = that.newValue;
                 that.die();
                 return true;
@@ -97,7 +101,7 @@ public abstract class UndoableIntEdit extends javax.swing.undo.AbstractUndoableE
         }
         return false;
     }
-    
+
     /**
      * Revert the property from the
      * oldValue to the newValue.

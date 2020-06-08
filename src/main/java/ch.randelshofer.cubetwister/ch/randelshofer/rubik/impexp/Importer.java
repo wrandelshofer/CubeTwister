@@ -1,5 +1,6 @@
-/* @(#)Importer.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Importer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.impexp;
 
@@ -25,10 +26,10 @@ public interface Importer {
      * Sets a file for previewing by the panels of the importer.
      */
     public void setPreviewFile(File file);
-    
+
     /**
      * Imports the contents of the specified file into the DocumentModel.
-     * 
+     *
      * @return Returns an ArrayList of ScriptModel's.
      */
     @Nonnull

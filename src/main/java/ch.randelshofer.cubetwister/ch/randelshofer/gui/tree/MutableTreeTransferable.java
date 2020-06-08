@@ -1,6 +1,6 @@
-/**
- * @(#)MutableTreeTransferable.java  1.1  2011-01-19
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableTreeTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.tree;
@@ -26,20 +26,20 @@ public class MutableTreeTransferable implements Transferable {
     private JComponent source;
     private Transferable target;
     private TreePath[] paths;
-    
+
     public MutableTreeTransferable(JComponent source, TreePath[] paths, Transferable target) {
         this.source = source;
         this.paths = paths;
         this.target = target;
     }
-    
+
     public JComponent getSource() {
         return source;
     }
     public TreePath[] getTransferedPaths() {
         return paths;
     }
-    
+
     @Override
     public DataFlavor[] getTransferDataFlavors() {
         return target.getTransferDataFlavors();

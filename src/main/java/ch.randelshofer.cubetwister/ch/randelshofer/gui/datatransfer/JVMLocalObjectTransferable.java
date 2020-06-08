@@ -1,5 +1,6 @@
-/* @(#)JVMLocalObjectTransferable.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)JVMLocalObjectTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -41,7 +42,7 @@ implements Transferable {
     public boolean isDataFlavorSupported(@Nonnull DataFlavor dataFlavor) {
         return dataFlavor.equals(flavors[0]);
     }
-    
+
     public DataFlavor[] getTransferDataFlavors() {
         return flavors;
     }

@@ -1,5 +1,6 @@
-/* @(#)PolygonIcon.java
- * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PolygonIcon.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -44,22 +45,23 @@ implements javax.swing.Icon, Cloneable {
         polygons = new Polygon[] { p };
         this.size = size;
     }
+
     /**
      * Sets the fill color of the polygons.
      *
-     * @param color The fill color. 
+     * @param color The fill color.
      *              If this is null, the polygons are filled
      *              with the foreground color.
      */
     public void setFillColor(Color color) {
         fillColor = color;
     }
-    
+
     /**
      * Sets the foreground color of the polygons.
      *
-     * @param color The foreground color. 
-     *              If this is null, the polygons are filled 
+     * @param color The foreground color.
+     *              If this is null, the polygons are filled
      *              with the foreground color of the Component
      *              hosting the icon.
      */
@@ -118,8 +120,8 @@ implements javax.swing.Icon, Cloneable {
      public int getIconHeight() {
         return size.height;
     }
-     
-     public Object clone() {
+
+    public Object clone() {
          try {
          return super.clone();
          } catch (CloneNotSupportedException e) {

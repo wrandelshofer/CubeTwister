@@ -1,5 +1,6 @@
-/* @(#)XMLPreorderIterator.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)XMLPreorderIterator.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.xml;
@@ -14,12 +15,12 @@ import java.util.Vector;
 
 /**
  * XMLPreorderIterator.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class XMLPreorderIterator implements Iterator {
 	private Deque<Iterator> stack;
-    
+
     /** Creates a new instance. */
     public XMLPreorderIterator(XMLElement rootNode) {
 	    Vector<XMLElement> v = new Vector<XMLElement>(1);

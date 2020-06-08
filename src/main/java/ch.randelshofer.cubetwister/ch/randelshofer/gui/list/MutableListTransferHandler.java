@@ -1,6 +1,6 @@
-/**
- * @(#)MutableListTransferHandler.java  1.0  Mar 21, 2008
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableListTransferHandler.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.list;
 

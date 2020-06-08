@@ -1,5 +1,6 @@
-/* @(#)NotationConstructsView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NotationConstructsView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -39,10 +40,10 @@ public class NotationConstructsView extends ScrollablePanel
         implements EntityView, PropertyChangeListener {
     private final static long serialVersionUID = 1L;
     private NotationModel model;
-    
+
     private JCheckBox[]
             checkBoxes;
-    
+
     private JComponent[]
             columnHeaders,
             permutationFields,
@@ -64,11 +65,11 @@ public class NotationConstructsView extends ScrollablePanel
     private ArrayList<TokenAdapter> tokenFields = new ArrayList<TokenAdapter>();
     @Nonnull
     private ArrayList<SyntaxAdapter> syntaxFields = new ArrayList<SyntaxAdapter>();
-    
+
     private class TokenAdapter
             extends DocumentAdapter {
         private Symbol symbol;
-        
+
         public TokenAdapter(Symbol symbol, @Nonnull JTextField textField) {
             super(textField);
             this.symbol = symbol;
@@ -80,7 +81,7 @@ public class NotationConstructsView extends ScrollablePanel
                 setText(NotationConstructsView.this.model.getAllTokens(symbol));
             }
         }
-        
+
         @Override
         public void documentChanged(@Nonnull DocumentEvent evt) {
             if (NotationConstructsView.this.model != null) {
@@ -92,7 +93,7 @@ public class NotationConstructsView extends ScrollablePanel
         private Symbol symbol;
         private Syntax syntax;
         private JRadioButton radio;
-        
+
         public SyntaxAdapter(Symbol symbol, Syntax syntax, @Nonnull JRadioButton radio) {
             this.symbol = symbol;
             this.syntax = syntax;
@@ -108,7 +109,7 @@ public class NotationConstructsView extends ScrollablePanel
                         );
             }
         }
-        
+
         public void actionPerformed(ActionEvent e) {
             if (radio.isSelected() &&
                     NotationConstructsView.this.model != null) {
@@ -116,14 +117,14 @@ public class NotationConstructsView extends ScrollablePanel
             }
         }
     }
-    
+
     /** Creates new form CubeScriptView */
     public NotationConstructsView() {
         init();
     }
     private void init() {
         labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
-        
+
         initComponents();
 
         scrollPane.getVerticalScrollBar().setUnitIncrement(24);
@@ -135,7 +136,7 @@ public class NotationConstructsView extends ScrollablePanel
         for (int i=0; i < c.length; i++) {
             c[i].setFont(f);
         }
-        
+
         pCheckBox.putClientProperty("symbol", Symbol.PERMUTATION);
         groupingCheckBox.putClientProperty("symbol", Symbol.GROUPING);
         inversionCheckBox.putClientProperty("symbol", Symbol.INVERSION);
@@ -146,11 +147,11 @@ public class NotationConstructsView extends ScrollablePanel
         rotationCheckBox.putClientProperty("symbol", Symbol.ROTATION);
         delimitersCheckBox.putClientProperty("symbol", Symbol.DELIMITER);
         commentsCheckBox.putClientProperty("symbol", Symbol.COMMENT);
-        
+
         columnHeaders = new JComponent[] {
             rightLabel, upLabel, frontLabel, leftLabel, downLabel, backLabel
         };
-        
+
         checkBoxes = new JCheckBox[] {
             pCheckBox,
             groupingCheckBox,
@@ -162,7 +163,7 @@ public class NotationConstructsView extends ScrollablePanel
             rotationCheckBox,
             delimitersCheckBox,
             commentsCheckBox,
-            
+
         };
         ItemListener symbolSupportHandler = (ItemListener) (GenericListener.create(
                 ItemListener.class,
@@ -175,7 +176,7 @@ public class NotationConstructsView extends ScrollablePanel
             cb.addItemListener(symbolSupportHandler);
             cb.setFont(f);
         }
-        
+
         permutationFields = new JComponent[] {
             permFacesLabel, permRField, permUField, permFField, permLField, permDField, permBField,
             signsLabel, plusLabel, permPlusField, plusPlusLabel, permPlusPlusField, minusLabel, permMinusField,
@@ -197,15 +198,15 @@ public class NotationConstructsView extends ScrollablePanel
             groupingBeginLabel, groupingEndLabel,
             groupingBeginField, groupingEndField,
         };
-        repetitionFields = new JComponent[] {
-            repetitionLabel, 
-            repetitionBeginLabel,
-            repetitionBeginField,
-            repetitionEndLabel,
-            repetitionEndField,
-            repetitionSyntaxLabel,
-            repetitionPrefixRadioButton,
-            repetitionSuffixRadioButton
+        repetitionFields = new JComponent[]{
+                repetitionLabel,
+                repetitionBeginLabel,
+                repetitionBeginField,
+                repetitionEndLabel,
+                repetitionEndField,
+                repetitionSyntaxLabel,
+                repetitionPrefixRadioButton,
+                repetitionSuffixRadioButton
         };
         inversionFields = new JComponent[] {
             invertorLabel,
@@ -289,12 +290,12 @@ public class NotationConstructsView extends ScrollablePanel
             commentSingleLineLabel,
             commentSingleLineBeginField
         };
-        
+
         new SyntaxAdapter(Symbol.PERMUTATION, Syntax.PREFIX, permPrefixRadioButton);
         new SyntaxAdapter(Symbol.PERMUTATION, Syntax.SUFFIX, permSuffixRadioButton);
         new SyntaxAdapter(Symbol.PERMUTATION, Syntax.PRECIRCUMFIX, permPrecircumfixRadioButton);
         new SyntaxAdapter(Symbol.PERMUTATION, Syntax.POSTCIRCUMFIX, permPostcircumfixRadioButton);
-        
+
         new SyntaxAdapter(Symbol.REPETITION, Syntax.PREFIX, repetitionPrefixRadioButton);
         new SyntaxAdapter(Symbol.REPETITION, Syntax.SUFFIX, repetitionSuffixRadioButton);
 
@@ -357,19 +358,19 @@ public class NotationConstructsView extends ScrollablePanel
         new TokenAdapter(Symbol.ROTATION_END, rotationEndField);
         new TokenAdapter(Symbol.ROTATION_OPERATOR, rotationDelimField);
         //new TokenAdapter(Symbol.MACRO, macroField);
-        
-        
+
+
         new TokenAdapter(Symbol.DELIMITER, statementDelimField);
         new TokenAdapter(Symbol.NOP, nopField);
-        
+
         new TokenAdapter(Symbol.MULTILINE_COMMENT_BEGIN, commentMultiLineBeginField);
         new TokenAdapter(Symbol.MULTILINE_COMMENT_END, commentMultiLineEndField);
         new TokenAdapter(Symbol.SINGLELINE_COMMENT_BEGIN, commentSingleLineBeginField);
-        
-        
+
+
         setModel(null);
     }
-    
+
     public void setModel(NotationModel s) {
         if (model != null) {
             model.removePropertyChangeListener(this);
@@ -383,7 +384,7 @@ public class NotationConstructsView extends ScrollablePanel
         updateSyntax();
         updateEnabled();
     }
-    
+
     public void symbolSupportChanged(@Nonnull ItemEvent evt) {
         if (model != null) {
             JCheckBox cb = (JCheckBox) evt.getSource();
@@ -405,14 +406,14 @@ public class NotationConstructsView extends ScrollablePanel
             }
         }
     }
-    
+
     private void updateLanguageFeatures() {
         NotationModel m = (model == null) ? new NotationModel() : model;
-        
+
         for (JCheckBox cb : checkBoxes) {
             cb.setSelected(m.isSupported((Symbol) cb.getClientProperty("symbol")));
         }
-        
+
         setVisible(columnHeaders, m.isSupported(Symbol.PERMUTATION));
         setVisible(permutationFields, m.isSupported(Symbol.PERMUTATION));
         setVisible(groupingFields, m.isSupported(Symbol.GROUPING));
@@ -438,16 +439,16 @@ public class NotationConstructsView extends ScrollablePanel
         super.setEnabled(b);
         updateEnabled();
     }
-    
+
     public void updateEnabled() {
         boolean b = model != null && isEnabled();
         java.awt.Component[] c = tokensPanel.getComponents();
         for (int i=0; i < c.length; i++) {
             c[i].setEnabled(b);
         }
-        
+
     }
-    
+
     @Override
     public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         if (evt.getSource() == model) {
@@ -462,15 +463,15 @@ public class NotationConstructsView extends ScrollablePanel
             }
         }
     }
-    
+
     @Override
     public void removeUndoableEditListener(UndoableEditListener l) {
     }
-    
+
     @Override
     public void addUndoableEditListener(UndoableEditListener l) {
     }
-    
+
     @Override
     public void setModel(EntityModel newValue) {
         setModel((NotationModel) newValue);
@@ -481,7 +482,7 @@ public class NotationConstructsView extends ScrollablePanel
     public JComponent getViewComponent() {
         return this;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -1721,7 +1722,7 @@ public class NotationConstructsView extends ScrollablePanel
     private void repetitionCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_repetitionCheckBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_repetitionCheckBoxActionPerformed
-                                                
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLabel;
     private javax.swing.JLabel bracketsLabel;
@@ -1857,5 +1858,5 @@ public class NotationConstructsView extends ScrollablePanel
     private javax.swing.JPanel tokensPanel;
     private javax.swing.JLabel upLabel;
     // End of variables declaration//GEN-END:variables
-    
+
 }

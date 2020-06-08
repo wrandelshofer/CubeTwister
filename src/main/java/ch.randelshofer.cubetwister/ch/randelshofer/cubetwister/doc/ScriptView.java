@@ -1,5 +1,6 @@
-/* @(#)ScriptView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -270,7 +271,7 @@ public class ScriptView
         // Initialise the components as far as the IDE supports it.
         initComponents();
 
-        // Decorate the reset button with an icon looking like '|<' and 
+        // Decorate the reset button with an icon looking like '|<' and
         // a west bevel.
         Border eastBorder = new BackdropBorder(
                 new ButtonStateBorder(
@@ -737,7 +738,7 @@ public class ScriptView
                 ParseException parseException;
                 if ((parseException = model.getParseException()) != null) {
                     /*attr = new SimpleAttributeSet();
-                    
+
                     StyleConstants.setBackground(attr, new Color(255, 140, 140));
                     StyleConstants.setForeground(attr, Color.black);
                     doc.setCharacterAttributes(

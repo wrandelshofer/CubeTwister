@@ -1,5 +1,6 @@
-/* @(#)DefaultViewer.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultViewer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -11,10 +12,10 @@ import java.awt.Component;
 /**
  * Calls object.toString() and displays this in a JLabel.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
-public class DefaultViewer 
-extends javax.swing.JPanel implements Viewer {
+public class DefaultViewer
+        extends javax.swing.JPanel implements Viewer {
     private final static long serialVersionUID = 1L;
 
     /** Creates new form DefaultViewer */
@@ -52,12 +53,12 @@ extends javax.swing.JPanel implements Viewer {
      */
     private void initComponents() {//GEN-BEGIN:initComponents
         label = new javax.swing.JLabel();
-        
+
         setLayout(new java.awt.BorderLayout());
-        
+
         label.setText("jLabel1");
         add(label, java.awt.BorderLayout.NORTH);
-        
+
     }//GEN-END:initComponents
 
 

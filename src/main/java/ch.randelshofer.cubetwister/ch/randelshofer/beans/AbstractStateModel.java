@@ -1,10 +1,13 @@
-/* @(#)AbstractStateModel.java
- * Copyright (c) 1998 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractStateModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.beans;
 
-import javax.swing.event.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.EventListenerList;
 /**
  * Abstract superclass of models that fire state change
  * events to registered ChangeListener's, when their
@@ -15,18 +18,18 @@ import javax.swing.event.*;
 public abstract class AbstractStateModel {
     protected EventListenerList listenerList;
     protected ChangeEvent changeEvent;
-    
+
     /** Creates a new instance of AbstractChangeModel */
     public AbstractStateModel() {
     }
-    
+
     public void addChangeListener(ChangeListener l) {
         if (listenerList == null) {
             listenerList = new EventListenerList();
         }
         listenerList.add(ChangeListener.class, l);
     }
-    
+
     public void removeChangeListener(ChangeListener l) {
         if (listenerList != null) {
             listenerList.remove(ChangeListener.class, l);

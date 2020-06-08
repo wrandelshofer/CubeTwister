@@ -1,11 +1,12 @@
-/* @(#)WizardModel.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)WizardModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
 
-import javax.swing.*;
-import java.beans.*;
+import javax.swing.JComponent;
+import java.beans.PropertyChangeListener;
 
 /**
  * The wizard model extends the list model.
@@ -46,7 +47,7 @@ public interface WizardModel {
      * The title of the wizard.
      */
     public String getTitle();
-    
+
     public void addPropertyChangeListener(PropertyChangeListener l);
     public void removePropertyChangeListener(PropertyChangeListener l);
 }

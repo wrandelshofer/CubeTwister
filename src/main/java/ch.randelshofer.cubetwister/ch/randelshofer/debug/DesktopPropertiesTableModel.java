@@ -1,5 +1,6 @@
-/* @(#)DesktopPropertiesTableModel.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DesktopPropertiesTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.debug;
@@ -36,21 +37,21 @@ public class DesktopPropertiesTableModel extends AbstractTableModel {
         "awt.multiClickInterval",
         "awt.cursorBlinkRate",
     };
-    
+
     /** Creates a new instance. */
     public DesktopPropertiesTableModel() {
         ArrayList<String> propNames = new ArrayList<String>();
         propNames.addAll(Arrays.asList(wellKnownNames));
-        
+
         Toolkit toolkit = Toolkit.getDefaultToolkit();
-        
+
         String[] names = (String[])toolkit.getDesktopProperty("win.propNames");
         if (names != null) {
             propNames.addAll(Arrays.asList(names));
         }
-        
+
         Collections.sort(propNames);
-        
+
         data = new Object[propNames.size()][2];
         rowCount = 0;
         for (Iterator<String> i=propNames.iterator(); i.hasNext(); ) {
@@ -62,15 +63,15 @@ public class DesktopPropertiesTableModel extends AbstractTableModel {
                 }
             }
     }
-    
+
     public int getColumnCount() {
         return columnNames.length;
     }
-    
+
     public int getRowCount() {
         return rowCount;
     }
-    
+
     public Object getValueAt(int rowIndex, int columnIndex) {
         return data[rowIndex][columnIndex];
     }
@@ -79,11 +80,11 @@ public class DesktopPropertiesTableModel extends AbstractTableModel {
     public Class<?> getColumnClass(int columnIndex) {
         return Object.class;
     }
-    
+
     public String getColumnName(int columnIndex) {
         return columnNames[columnIndex];
     }
-    
+
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
     }

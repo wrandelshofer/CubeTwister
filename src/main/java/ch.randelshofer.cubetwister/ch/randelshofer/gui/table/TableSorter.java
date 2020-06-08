@@ -1,22 +1,27 @@
 /*
+ * @(#)TableSorter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
+/*
  * Copyright 2002 Sun Microsystems, Inc. All rights reserved.
- * 
+ *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- * 
+ *
  * - Redistributions of source code must retain the above copyright
  *   notice, this list of conditions and the following disclaimer.
- * 
+ *
  * - Redistribution in binary form must reproduce the above copyright
  *   notice, this list of conditions and the following disclaimer in
  *   the documentation and/or other materials provided with the
  *   distribution.
- * 
+ *
  * Neither the name of Sun Microsystems, Inc. or the names of
  * contributors may be used to endorse or promote products derived
  * from this software without specific prior written permission.
- * 
+ *
  * This software is provided "AS IS," without a warranty of any
  * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
  * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
@@ -29,7 +34,7 @@
  * PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
  * LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
  * EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
- * 
+ *
  * You acknowledge that Software is not designed, licensed or intended
  * for use in the design, construction, operation or maintenance of
  * any nuclear facility.
@@ -83,7 +88,7 @@ public class TableSorter extends TableMap {
     int compares;
 
     public TableSorter() {
-        indexes = new int[0]; // For consistency.        
+        indexes = new int[0]; // For consistency.
     }
 
     public TableSorter(@Nonnull TableModel model) {
@@ -106,7 +111,7 @@ public class TableSorter extends TableMap {
         // If both values are null return 0
         if (o1 == null && o2 == null) {
             return 0;
-        } else if (o1 == null) { // Define null less than everything. 
+        } else if (o1 == null) { // Define null less than everything.
             return -1;
         } else if (o2 == null) {
             return 1;
@@ -114,9 +119,9 @@ public class TableSorter extends TableMap {
 
         /* We copy all returned values from the getValue call in case
          an optimised model is reusing one object to return many values.
-         The Number subclasses in the JDK are immutable and so will not be used in 
-         this way but other subclasses of Number might want to do this to save 
-         space and avoid unnecessary heap allocation. 
+         The Number subclasses in the JDK are immutable and so will not be used in
+         this way but other subclasses of Number might want to do this to save
+         space and avoid unnecessary heap allocation.
          */
         if (type.getSuperclass() == java.lang.Number.class) {
             Number n1 = (Number) data.getValueAt(row1, column);
@@ -283,7 +288,7 @@ public class TableSorter extends TableMap {
             return;
         }
 
-        // A normal merge. 
+        // A normal merge.
         for (int i = low; i < high; i++) {
             if (q >= high || (p < middle && compare(from[p], from[q]) <= 0)) {
                 to[i] = from[p++];
@@ -324,9 +329,9 @@ public class TableSorter extends TableMap {
         super.tableChanged(new TableModelEvent(this));
     }
 
-    // There is no-where else to put this. 
-    // Add a mouse listener to the Table to trigger a table sort 
-    // when a column heading is clicked in the JTable. 
+    // There is no-where else to put this.
+    // Add a mouse listener to the Table to trigger a table sort
+    // when a column heading is clicked in the JTable.
     public void addMouseListenerToHeaderInTable(JTable table) {
         final TableSorter sorter = this;
         final JTable tableView = table;

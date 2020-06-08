@@ -1,5 +1,6 @@
-/* @(#)VirtualVCube7Applet.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VirtualVCube7Applet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.virtual;
@@ -15,7 +16,7 @@ import org.jhotdraw.annotation.Nonnull;
  */
 public class VirtualVCube7Applet extends AbstractVirtualCubeApplet {
     private final static long serialVersionUID = 1L;
-    
+
     @Nonnull
     @Override
     protected AbstractCubeIdx3D createCube3D() {
@@ -25,8 +26,8 @@ public class VirtualVCube7Applet extends AbstractVirtualCubeApplet {
     protected boolean canBeDisassembled() {
         return false;
     }
-    
-    
+
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -36,9 +37,9 @@ public class VirtualVCube7Applet extends AbstractVirtualCubeApplet {
     private void initComponents() {
 
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

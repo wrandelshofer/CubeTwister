@@ -1,5 +1,6 @@
-/* @(#)ExportWizard.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ExportWizardModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.impexp;
@@ -40,13 +41,13 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
     @Nullable
     private File file;
     private CubeTwisterView view;
-    
+
     /**
      * key = FileFilter;
      * value = Exporter
      */
     private HashMap<javax.swing.filechooser.FileFilter,Exporter> filterToExporterMap;
-    
+
     /** Creates a new instance of ExportWizard */
     public ExportWizardModel() {
         fileChooser = new JFileChooser();
@@ -66,17 +67,17 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
         });
         fileChooser.removeChoosableFileFilter(fileChooser.getFileFilter());
         fileChooser.setControlButtonsAreShown(false);
-        
+
         Exporter exporter;
         javax.swing.filechooser.FileFilter filter;
         filterToExporterMap = new HashMap<javax.swing.filechooser.FileFilter,Exporter>();
-        
-        
+
+
         exporter = new CSVExporter(',');
         filter = new ExtensionFileFilter("csv", "Comma Separated Values");
         filterToExporterMap.put(filter, exporter);
         fileChooser.addChoosableFileFilter(filter);
-        
+
         exporter = new CSVExporter('\t');
         filter = new ExtensionFileFilter("tab", "Tabulator Separated Values");
         filterToExporterMap.put(filter, exporter);
@@ -106,14 +107,14 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
         this.file = newValue;
         firePropertyChange("canFinish", oldValue != null, newValue != null);
     }
-    
+
     public boolean canFinish() {
         return file != null;
     }
-    
+
     public void cancel() {
     }
-    
+
     public Exporter getSelectedExporter() {
         return filterToExporterMap.get(fileChooser.getFileFilter());
     }
@@ -122,7 +123,7 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
     public ExtensionFileFilter getSelectedFilter() {
         return (ExtensionFileFilter) fileChooser.getFileFilter();
     }
-    
+
     public void finish() {
         view.setEnabled(false);
         view.getModel().dispatch(new RunnableWorker() {
@@ -143,7 +144,7 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
                 if (result instanceof Throwable) {
                     String message = ((Throwable) result).getMessage();
                     if (message == null) message = result.toString();
-                    
+
                     JOptionPane.showMessageDialog(
                     view,
                     "<html>"+Fonts.emphasizedDialogFontTag("Couldn't Export!")
@@ -158,7 +159,7 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
             }
         });
     }
-    
+
     public JComponent getPanel(int index) {
         switch (index) {
             case 0 : return fileChooser;
@@ -166,11 +167,11 @@ public class ExportWizardModel extends AbstractBean implements WizardModel {
             default : throw new IndexOutOfBoundsException();
         }
     }
-    
+
     public int getPanelCount() {
         return 2;
     }
-    
+
     public String getPanelTitle(int index) {
         return titles[index];
     }

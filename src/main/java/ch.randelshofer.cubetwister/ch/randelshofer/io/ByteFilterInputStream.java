@@ -1,5 +1,6 @@
-/* @(#)ByteFilterInputStream.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ByteFilterInputStream.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 
@@ -10,11 +11,11 @@ import org.jhotdraw.annotation.Nonnull;
 import java.io.FilterInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 /**
- *
  * @author Werner Randelshofer
  */
-public class ByteFilterInputStream extends FilterInputStream {    
+public class ByteFilterInputStream extends FilterInputStream {
     /** Creates a new instance of ByteFilterInputStream */
     public ByteFilterInputStream(InputStream in) {
         super(in);

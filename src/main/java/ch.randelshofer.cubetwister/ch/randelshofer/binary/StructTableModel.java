@@ -1,9 +1,6 @@
 /*
  * @(#)StructTableModel.java
- *
- * Copyright (c) 2000-2013 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.binary;
 
@@ -24,7 +21,7 @@ public class StructTableModel extends AbstractTableModel {
     protected ArrayList<StructTableModel.Value> data;
     protected StructParser.TypedefDeclaration typedef;
     private final char[] HEX = { '0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f' };
-    
+
     /**
      * Vector provides the data of the model.
      * Even entries are represented by the first column of the table.
@@ -34,7 +31,7 @@ public class StructTableModel extends AbstractTableModel {
         this.typedef = typedef;
         this.data = data;
     }
-    
+
     @Override
     public int getRowCount() {
         return data.size();
@@ -95,7 +92,7 @@ public class StructTableModel extends AbstractTableModel {
         public Object value;
         public int intValue;
         public Value() {
-            
+
         }
         public Value(String qualfiedIdentifier, String index, Object declaration, Object value, int intValue) {
             this.qualifiedIdentifier = qualifiedIdentifier;
@@ -105,7 +102,7 @@ public class StructTableModel extends AbstractTableModel {
             this.intValue=intValue;
         }
     }
-    
+
     @Override
     public String toString() {
         return (typedef != null) ? typedef.toString() : super.toString();

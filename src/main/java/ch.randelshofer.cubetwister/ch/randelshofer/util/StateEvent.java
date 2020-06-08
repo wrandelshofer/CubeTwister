@@ -1,5 +1,6 @@
-/* @(#)StateEvent.java
- * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)StateEvent.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
@@ -23,8 +24,8 @@ extends EventObject {
         super(source);
         this.state = state;
     }
-  
-  public int getNewState() {
+
+    public int getNewState() {
     return state;
   }
 }

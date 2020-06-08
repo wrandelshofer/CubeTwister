@@ -1,6 +1,6 @@
-/**
- * @(#)Cube3DImageProducer.java  1.1  2009-11-28
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cube3DImageProducer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik;
@@ -25,7 +25,7 @@ public class Cube3DImageProducer implements Cube3DCanvas {
     private Cube3D cube3D;
     private idx3d_JCanvas idx3dCanvas;
     private Color background;
-    
+
     public Cube3DImageProducer() {
         idx3dCanvas = new idx3d_JCanvas();
     }

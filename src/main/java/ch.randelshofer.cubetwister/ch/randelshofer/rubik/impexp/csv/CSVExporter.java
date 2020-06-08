@@ -1,5 +1,6 @@
-/* @(#)CSVExporter.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CSVExporter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.impexp.csv;
@@ -29,8 +30,8 @@ public class CSVExporter extends AbstractExporter {
     private final static long serialVersionUID = 1L;
     private TranslateNotationComboBoxModel translateModel;
     private char delimiterChar;
-    
-    
+
+
     /** Creates new form. */
     public CSVExporter(char delimiterChar) {
         initComponents();
@@ -38,7 +39,7 @@ public class CSVExporter extends AbstractExporter {
         translateComboBox.setModel(translateModel);
         this.delimiterChar = delimiterChar;
     }
-    
+
     public void setDocumentModel(DocumentModel documentModel) {
         super.setDocumentModel(documentModel);
         translateModel.setDocumentModel(documentModel);
@@ -58,21 +59,21 @@ public class CSVExporter extends AbstractExporter {
         }
 
         p.setNote("Writing file...");
-        
+
         CSVWriter out = null;
-        
+
         try {
             out = new CSVWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file))), delimiterChar, '"', "\n");
             String line;
-            
+
             // The first line contains the column headers
             out.writeln(new String[] {
                 "Name", "Notation", "Script", "Macros", "Notes", "Author", "Date",
                 "LTM","FTM","QTM","Visual Order","Real Order", "Visual Permutation",
                 "Real Permutation"
             });
-            
-                
+
+
             Iterator iter = records.iterator();
             while (iter.hasNext()) {
                 ScriptRecord sr = (ScriptRecord) iter.next();
@@ -86,14 +87,14 @@ public class CSVExporter extends AbstractExporter {
                 for (int i=0; i < sr.macros.length; i++ ) {
                     String identifier = sr.macros[i][0];
                     String macroScript = sr.macros[i][1];
-                    
+
                     csvBuf.write(identifier);
                     csvBuf.write(macroScript);
                     csvBuf.writeln();
                 }
                 csvBuf.close();
                 out.write(buf.toString());
-                
+
                 out.write(sr.description);
                 out.write(sr.author);
                 out.write(sr.date);
@@ -109,10 +110,10 @@ public class CSVExporter extends AbstractExporter {
         } finally {
             if (out != null) out.close();
         }
-        
+
         p.setProgress(p.getProgress()+1);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -138,11 +139,11 @@ public class CSVExporter extends AbstractExporter {
         add(translateComboBox, gridBagConstraints);
 
     }//GEN-END:initComponents
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox translateComboBox;
     private javax.swing.JLabel translateLabel;
     // End of variables declaration//GEN-END:variables
-    
+
 }

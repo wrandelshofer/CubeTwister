@@ -1,5 +1,6 @@
-/* @(#)DefaultMutableTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultMutableTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.table;
 
@@ -35,21 +36,21 @@ implements MutableTableModel {
      */
     @Nullable
     protected ArrayList<ArrayList<Object>>    dataList;
-    
+
     /** The <code>ArrayList</code> of column identifiers. */
     @Nullable
     protected ArrayList<Object>    columnIdentifiers;
-    
+
     /** The <code>ArrayList</code> of column classes. When
      * this array list is null, then all columns are reported
      * as of type Object.class.
      */
     protected ArrayList<Class<?>> columnClasses;
-    
+
     /** The data flavour for JVM local object transferables. */
     private final static DataFlavor tableFlavor = new DataFlavor(Object[][].class, "Table");
     private final static DataFlavor rowFlavor = new DataFlavor(Object[].class, "Row");
-    
+
     /**
      * Array with importable data flavors.
      */
@@ -58,13 +59,13 @@ implements MutableTableModel {
         DataFlavor.stringFlavor,
         DataFlavor.getTextPlainUnicodeFlavor()
     };
-    
+
     /**
      * The enabled state of the model.
      * By default this value is true.
      */
     private boolean enabled = true;
-    
+
     /**
      * Constructs a DefaultMutableTableModel which has a table of
      * zero columns and zero rows.
@@ -72,7 +73,7 @@ implements MutableTableModel {
     public DefaultMutableTableModel() {
         this(0, 0);
     }
-    
+
     /**
      * Creates an array list of the specified size and fills
      * it with <code>null</code> values.
@@ -85,7 +86,7 @@ implements MutableTableModel {
         }
         return l;
     }
-    
+
     /**
      * Constructs a DefaultMutableTableModel with numRows and
      * numColumns of null object values.
@@ -113,7 +114,7 @@ implements MutableTableModel {
         setDataVector(dataList, columnNames);
         this.columnClasses = new ArrayList<Class<?>>(Arrays.asList(columnClasses));
     }
-    
+
     /**
      * Constructs a DefaultMutableTableModel wit as many columns as there
      * are elements in columnNames and numRows of null object values.
@@ -135,7 +136,7 @@ implements MutableTableModel {
     public DefaultMutableTableModel(ArrayList<ArrayList<Object>> dataList, List<Object> columnNames) {
         setDataVector(dataList, columnNames);
     }
-    
+
     /**
      *  Replaces the current <code>dataVector</code> instance variable
      *  with the new Vector of rows, <code>dataVector</code>.
@@ -177,7 +178,7 @@ implements MutableTableModel {
         }
         setDataVector(l, new ArrayList<Object>(Arrays.asList(columnIdentifiers)));
     }
-    
+
     //
     // Manipulating rows
     //
@@ -196,7 +197,7 @@ implements MutableTableModel {
             l.remove(size - 1);
         }
     }
-    
+
     /**
      * Adjusts the size of the row <code>ArrayList</code>'s if
      * to match <code>getRowCount()</code>.
@@ -214,7 +215,7 @@ implements MutableTableModel {
             setListSize((ArrayList) dataList.get(i), getColumnCount());
         }
     }
-    
+
     /**
      * Invoke this to insert a new row into the table.
      *
@@ -234,14 +235,14 @@ implements MutableTableModel {
     public Object getCreatableRowType(int row) {
         return "Row";
     }
-    
+
     /**
      * Gets the enabled state of the model.
      */
     public boolean isEnabled() {
         return enabled;
     }
-    
+
     /**
      * Returns wether a row may be inserted.
      *
@@ -283,7 +284,7 @@ implements MutableTableModel {
     public boolean isRowDuplicateable(int row) {
         return enabled;
     }
-    
+
     /**
      * Sets the enabled state of the model.
      * By default the model is not enabled.
@@ -316,7 +317,7 @@ implements MutableTableModel {
         t.add(TableModels.createPlainTransferable(this, rows));
         return t;
     }
-    
+
     /**
      * Indicates whether the model would accept an import of the
      * given set of dataList flavors prior to actually attempting
@@ -348,7 +349,7 @@ implements MutableTableModel {
         }
         return false;
     }
-    
+
     /**
      * Causes a transfer to the model from a clipboard or
      * a DND drop operation.
@@ -380,13 +381,13 @@ implements MutableTableModel {
             } else {
                 throw new UnsupportedFlavorException(tableFlavor);
             }
-            
+
             for (int i=0; i < transferData.length; i++) {
                 dataList.add(row + i, new ArrayList<Object>(Arrays.asList(transferData[i])));
             }
             justifyRows(row, row + transferData.length - 1);
             fireTableRowsInserted(row, row + transferData.length);
-            
+
         } catch (UnsupportedFlavorException e) {
             e.printStackTrace();
             return 0;
@@ -396,7 +397,7 @@ implements MutableTableModel {
         }
         return transferData.length;
     }
-    
+
     /**
      * Returns the number of columns in this data table.
      * @return the number of columns in the model
@@ -404,11 +405,11 @@ implements MutableTableModel {
     public int getColumnCount() {
         return columnIdentifiers.size();
     }
-    
+
     public int getRowCount() {
         return dataList.size();
     }
-    
+
     /**
      * Returns an attribute value for the cell at <code>row</code>
      * and <code>column</code>.
@@ -439,7 +440,7 @@ implements MutableTableModel {
         rowList.set(column, aValue);
         fireTableCellUpdated(row, column);
     }
-    
+
     /** Inserts an element at the specified index in the model.
      *
      * @param row index at which the specified element is to be inserted.
@@ -460,7 +461,7 @@ implements MutableTableModel {
         dataList.add(row, new ArrayList<Object>(Arrays.asList((Object[]) element)));
         fireTableRowsInserted(row, row);
     }
-    
+
     @Nonnull
     @Override
     public Class<?> getColumnClass(int column) {
@@ -471,38 +472,38 @@ implements MutableTableModel {
             return (c == null) ? Object.class : c;
         }
     }
-    
+
     /**
      * Returns the column name.
      *
      * @return a name for this column using the string value of the
      * appropriate member in <code>columnIdentifiers</code>.
-     * If <code>columnIdentifiers</code> does not have an entry 
+     * If <code>columnIdentifiers</code> does not have an entry
      * for this index, returns the default
      * name provided by the superclass
      */
     public String getColumnName(int column) {
-        Object id = null; 
-	// This test is to cover the case when 
-	// getColumnCount has been subclassed by mistake ... 
-	if (column < columnIdentifiers.size()) {  
-	    id = columnIdentifiers.get(column); 
-	}
-        return (id == null) ? super.getColumnName(column) 
-                            : id.toString();
+        Object id = null;
+        // This test is to cover the case when
+        // getColumnCount has been subclassed by mistake ...
+        if (column < columnIdentifiers.size()) {
+            id = columnIdentifiers.get(column);
+        }
+        return (id == null) ? super.getColumnName(column)
+                : id.toString();
     }
 
-/**
- * Returns true if the cell at <code>rowIndex</code> and
- * <code>columnIndex</code> is editable. Otherwise, 
- * <code>setValueAt</code> on the cell will not change
- * the value of that cell.
- * 
- * @param rowIndex - the row whose value to be queried
- * @param columnIndex - the column whose value to be queried 
- * @return true if the model is enabled
- */
-public boolean isCellEditable(int rowIndex, int columnIndex) {
+    /**
+     * Returns true if the cell at <code>rowIndex</code> and
+     * <code>columnIndex</code> is editable. Otherwise,
+     * <code>setValueAt</code> on the cell will not change
+     * the value of that cell.
+     *
+     * @param rowIndex    - the row whose value to be queried
+     * @param columnIndex - the column whose value to be queried
+     * @return true if the model is enabled
+     */
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
     return isEnabled();
 }
 }

@@ -1,5 +1,6 @@
-/* @(#)DefaultMutableTreeModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultMutableTreeModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.tree;
 

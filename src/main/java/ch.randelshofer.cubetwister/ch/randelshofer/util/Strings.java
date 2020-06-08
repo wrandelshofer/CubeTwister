@@ -1,5 +1,6 @@
-/* @(#)Strings.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Strings.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
@@ -13,7 +14,7 @@ import org.jhotdraw.annotation.Nullable;
  */
 public class Strings extends Object {
     /**
-     * Translates all occurences of characters in 
+     * Translates all occurences of characters in
      * String 'from' to the characters in String 'to'.
      * This is a convenience method for calling
      * <code>translate(s, from.toCharArray(), to.toCharArray())</code>
@@ -88,7 +89,7 @@ public class Strings extends Object {
 
         return buf.toString();
     }
-    
+
     /**
      * Reverses the characters in a String.
      *

@@ -1,5 +1,6 @@
-/* @(#)Debugger.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Debugger.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 /*
  * Debugger.java
@@ -22,7 +23,7 @@ import java.awt.event.WindowEvent;
 public class Debugger extends javax.swing.JFrame {
     private final static long serialVersionUID = 1L;
     private static Debugger instance;
-    
+
     public static Debugger getInstance() {
         if (instance == null) {
             instance = new Debugger();
@@ -34,13 +35,13 @@ public class Debugger extends javax.swing.JFrame {
     public Debugger() {
         initComponents();
     }
-    
+
     @SuppressWarnings({"deprecation"})
     public void show() {
         super.show();
         memoryMonitor.start();
     }
-    
+
     public void dispose() {
         memoryMonitor.stop();
         super.dispose();
@@ -55,7 +56,7 @@ public class Debugger extends javax.swing.JFrame {
     public Dimension getPreferredSize() {
         return new Dimension(300, 200);
     }
-    
+
 
     /** This method is called from within the constructor to
      * initialize the form.

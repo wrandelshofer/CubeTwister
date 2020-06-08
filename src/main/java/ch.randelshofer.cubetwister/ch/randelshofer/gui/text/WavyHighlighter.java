@@ -1,8 +1,6 @@
-/* @(#)WavyHiglighter.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
- *
- * The original code is copyright camickr as seen at
- * http://forums.sun.com/thread.jspa?forumID=57&threadID=708866
+/*
+ * @(#)WavyHighlighter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.text;
 

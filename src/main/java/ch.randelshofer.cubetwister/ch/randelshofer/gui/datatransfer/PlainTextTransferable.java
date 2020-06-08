@@ -1,5 +1,6 @@
-/* @(#)PlainTextTransferable.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PlainTextTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;

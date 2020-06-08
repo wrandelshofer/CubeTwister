@@ -1,5 +1,6 @@
-/* @(#)TreeNodeTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TreeNodeTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.table;
 
@@ -31,7 +32,7 @@ implements MutableTableModel, TreeModelListener {
     @Nullable
     protected MutableTreeModel treeModel;
     protected javax.swing.tree.DefaultMutableTreeNode treeNode;
-    
+
     /** Creates new TreeNodeTableModel. */
     public TreeNodeTableModel() {
         treeNode = new javax.swing.tree.DefaultMutableTreeNode("Root", true);
@@ -77,7 +78,7 @@ implements MutableTableModel, TreeModelListener {
         javax.swing.tree.DefaultMutableTreeNode child = (javax.swing.tree.DefaultMutableTreeNode) treeNode.getChildAt(row);
         return child.getUserObject();
     }
-    
+
     /**
      * Returns the number of rows in the model. A
      * <B>JTable</B> uses this method to determine how many rows it
@@ -91,7 +92,7 @@ implements MutableTableModel, TreeModelListener {
     public int getRowCount() {
         return (treeNode == null) ? 0 : treeNode.getChildCount();
     }
-    
+
     /**
      * Returns the number of columns in the model. A
      * <B>JTable</B> uses this method to determine how many columns it
@@ -118,7 +119,7 @@ implements MutableTableModel, TreeModelListener {
         }
         return treeModel.getNodeActions(nodes);
     }
-    
+
     /**
      * Invoke this to create a new row into the table.
      *
@@ -129,7 +130,7 @@ implements MutableTableModel, TreeModelListener {
     public void createRow(int row, Object type) {
         treeModel.createNodeAt(type, treeNode, row);
     }
-    
+
     /**
      * Returns true if the cell at <I>rowIndex</I> and <I>columnIndex</I>
      * is editable.  Otherwise, setValueAt() on the cell will not change
@@ -144,7 +145,7 @@ implements MutableTableModel, TreeModelListener {
     public boolean isCellEditable(int row, int column) {
         return treeModel.isNodeEditable((DefaultMutableTreeNode) treeNode.getChildAt(row));
     }
-    
+
     /**
      * Remove a row from the table.
      *
@@ -157,7 +158,7 @@ implements MutableTableModel, TreeModelListener {
         treeModel.removeNodeFromParent(removed);
         //return removed;
     }
-    
+
     /**
      * Returns wether the specified row may be removed.
      *
@@ -225,7 +226,7 @@ implements MutableTableModel, TreeModelListener {
             fireTableRowsDeleted(indices[0], indices[indices.length - 1]);
         }
     }
-    
+
     /**
      * <p>Invoked after a node (or a set of siblings) has changed in some
      * way. The node(s) have not changed locations in the tree or
@@ -251,7 +252,7 @@ implements MutableTableModel, TreeModelListener {
             fireTableRowsUpdated(indices[0], indices[indices.length - 1]);
         }
     }
-    
+
     /**
      * Returns the types of children that may be created at this row.
      *
@@ -267,7 +268,7 @@ implements MutableTableModel, TreeModelListener {
     public Object getCreatableRowType(int row) {
         return treeModel.getCreatableNodeType(treeNode);
     }
-    
+
     // Datatransfer operations
     // =======================
 
@@ -287,7 +288,7 @@ implements MutableTableModel, TreeModelListener {
         }
         return treeModel.exportTransferable(nodes);
     }
-    
+
     /**
      * Indicates whether the model would accept an import of the
      * given set of data flavors prior to actually attempting
@@ -307,11 +308,11 @@ implements MutableTableModel, TreeModelListener {
      */
     @Override
     public boolean isRowImportable(DataFlavor[] transferFlavors, int action, int row, boolean asChild) {
-        return (asChild) 
-        ? treeModel.isImportable(transferFlavors, action, (DefaultMutableTreeNode) treeNode.getChildAt(row), -1)
-        : treeModel.isImportable(transferFlavors, action, treeNode, row);
+        return (asChild)
+                ? treeModel.isImportable(transferFlavors, action, (DefaultMutableTreeNode) treeNode.getChildAt(row), -1)
+                : treeModel.isImportable(transferFlavors, action, treeNode, row);
     }
-    
+
     /**
      * Causes a transfer to the model from a clipboard or
      * a DND drop operation.
@@ -330,15 +331,15 @@ implements MutableTableModel, TreeModelListener {
     public int importRowTransferable(Transferable t, int action, int row, boolean asChild)
     throws UnsupportedFlavorException, IOException {
         List<TreePath> importedPaths=
-         (asChild) 
+                (asChild)
         ? treeModel.importTransferable(t, action, (DefaultMutableTreeNode) treeNode.getChildAt(row), -1)
         : treeModel.importTransferable(t, action, treeNode, row);
         return importedPaths.size();
     }
-    
+
     @Override
     public boolean isRowAddable(int row) {
         return treeModel.isNodeAddable(treeNode, row);
     }
-    
+
 }

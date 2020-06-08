@@ -1,5 +1,6 @@
-/* @(#)CubeStickersTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeStickersTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -42,16 +43,17 @@ public class CubeStickersTableModel
     private DocumentModel documentModel;
 
     private final String[] columnNames = {"cube.stickerColumn", "cube.visibleColumn",
-    "cube.fillColorColumn"};
-    
-    /** 
+            "cube.fillColorColumn"};
+
+    /**
      * Creates a new CubeColorsTableModel which wraps a
      * default CubeModel.
      */
     public CubeStickersTableModel() {
         this(null);
     }
-    /** 
+
+    /**
      * Creates a new CubeColorsTableModel which wraps the
      * provided CubeModel.
      */
@@ -79,7 +81,7 @@ public class CubeStickersTableModel
         }
 
         model = value;
-        
+
         if (value != null) {
             value.addPropertyChangeListener(this);
             fireTableRowsInserted(0, getRowCount());
@@ -115,7 +117,7 @@ public class CubeStickersTableModel
         }
         return null; // should never happen
     }
-    
+
     /**
      * Returns the name of the column at <i>columnIndex</i>.  This is used
      * to initialize the table's column header name.  Note: this name does
@@ -127,7 +129,7 @@ public class CubeStickersTableModel
     public String getColumnName(int columnIndex) {
         return columnNames[columnIndex];
     }
-    
+
     /**
      * Returns wether a row may be inserted.
      *
@@ -144,7 +146,7 @@ public class CubeStickersTableModel
     public boolean isRowDuplicateable(int row) {
         return false;
     }
-    
+
     /**
      * Returns the number of rows in the model. A
      * <B>JTable</B> uses this method to determine how many rows it
@@ -157,7 +159,7 @@ public class CubeStickersTableModel
     public int getRowCount() {
         return (model == null) ? 0 : model.getStickerCount();
     }
-    
+
     /**
      * Invoke this to duplicate a row of the table.
      *
@@ -167,7 +169,7 @@ public class CubeStickersTableModel
     public void createRow(int row, Object type) {
         throw new IllegalStateException("cannot create row");
     }
-    
+
     /**
      * Returns true if the cell at <I>rowIndex</I> and <I>columnIndex</I>
      * is editable.  Otherwise, setValueAt() on the cell will not change
@@ -181,14 +183,14 @@ public class CubeStickersTableModel
     public boolean isCellEditable(int row, int column) {
         return column > 0;
     }
-    
+
     /**
-     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to 
+     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to
      * <I>aValue</I> is the new value.
      *
-     * @param    value         the new value
-     * @param    row     the row whose value is to be changed
-     * @param    column     the column whose value is to be changed
+     * @param value  the new value
+     * @param row    the row whose value is to be changed
+     * @param column the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
@@ -204,15 +206,15 @@ public class CubeStickersTableModel
             case 2:
                 item.setFillColorModel((CubeColorModel) value);
                 break;
-            case 3 : 
+            case 3 :
  //               item.setOutlineColor((CubeColorModel) value);
                 break;
         }
     }
-    
+
     /**
-     * Returns the most specific superclass for all the cell values 
-     * in the column.  This is used by the JTable to set up a default 
+     * Returns the most specific superclass for all the cell values
+     * in the column.  This is used by the JTable to set up a default
      * renderer and editor for the column.
      *
      * @return the common ancestor class of the object values in the model.
@@ -221,7 +223,7 @@ public class CubeStickersTableModel
     @Override
     public Class<?> getColumnClass(int column) {
         switch (column) {
-            case 1 : 
+            case 1 :
                 return Boolean.class;
             case 2 :
             case 3 :
@@ -230,7 +232,7 @@ public class CubeStickersTableModel
                 return String.class;
         }
     }
-    
+
     /**
      * Message this to remove a row from the table.
      *
@@ -240,7 +242,7 @@ public class CubeStickersTableModel
     public void removeRow(int row) {
         throw new IllegalStateException("cannot remove row");
     }
-    
+
     /**
      * Returns wether the specified node may be removed.
      *
@@ -249,7 +251,7 @@ public class CubeStickersTableModel
     public boolean isRowRemovable(int row) {
         return false;
     }
-    
+
     /**
      * Returns the number of columns in the model. A
      * <B>JTable</B> uses this method to determine how many columns it
@@ -261,7 +263,7 @@ public class CubeStickersTableModel
     public int getColumnCount() {
         return columnNames.length;
     }
-    
+
     /**
      * Gets actions for the indicated rows.
      *
@@ -271,7 +273,7 @@ public class CubeStickersTableModel
     public Action[] getRowActions(int[] rows) {
         return null;
     }
-    
+
    public void propertyChange(@Nonnull PropertyChangeEvent evt) {
        Object source = evt.getSource();
        if (source == model && evt.getPropertyName() == CubeModel.KIND_PROPERTY) {
@@ -322,7 +324,7 @@ public class CubeStickersTableModel
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * <p>Invoked after nodes have been removed from the tree.  Note that
      * if a subtree is removed from the tree, this method may only be

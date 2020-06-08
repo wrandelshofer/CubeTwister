@@ -1,5 +1,6 @@
-/* @(#)BoundedRangeModel.java
- * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)BoundedRangeInputStream.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.io;
 /*
@@ -35,7 +36,7 @@ public class BoundedRangeInputStream
     private int nread = 0;
     private int size = 0;
     private boolean valueIsAdjusting;
-    
+
     /**
      * Only one ChangeEvent is needed per model instance since the
      * event's only (read-only) state is the source property.  The source
@@ -43,7 +44,7 @@ public class BoundedRangeInputStream
      */
     @Nullable
     protected transient ChangeEvent changeEvent = null;
-    
+
     /** The listeners waiting for model changes. */
     @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
@@ -69,7 +70,7 @@ public class BoundedRangeInputStream
         super(in);
         size = in.available();
     }
-    
+
     /**
      * Overrides <code>FilterInputStream.read</code>
      * to update the value after the read.
@@ -148,8 +149,8 @@ public class BoundedRangeInputStream
     public int getMinimum() {
         return 0;
     }
-    
-    
+
+
     /**
      * Ignored: The minimum of an input stream is always zero.
      *
@@ -167,8 +168,8 @@ public class BoundedRangeInputStream
      * @see #addChangeListener
      */
     public void setMinimum(int newMinimum) {}
-    
-    
+
+
     /**
      * Returns the model's maximum.  Note that the upper
      * limit on the model's value is (maximum - extent).
@@ -180,8 +181,8 @@ public class BoundedRangeInputStream
     public int getMaximum() {
         return size;
     }
-    
-    
+
+
     /**
      * Ignored: The maximum of an input stream can not be changed.
      * #
@@ -201,8 +202,8 @@ public class BoundedRangeInputStream
         size = newMaximum;
         fireStateChanged();
     }
-    
-    
+
+
     /**
      * Returns the current read position.
      *
@@ -216,8 +217,8 @@ public class BoundedRangeInputStream
     public int getValue() {
         return nread;
     }
-    
-    
+
+
     /**
      * Ignored: The value is always zero.
      *
@@ -243,8 +244,8 @@ public class BoundedRangeInputStream
      * @see #getValue
      */
     public void setValue(int newValue) {}
-    
-    
+
+
     /**
      * This attribute indicates that any upcoming changes to the value
      * of the model should be considered a single event. This attribute
@@ -260,8 +261,8 @@ public class BoundedRangeInputStream
     public void setValueIsAdjusting(boolean b) {
         valueIsAdjusting = b;
     }
-    
-    
+
+
     /**
      * Returns true if the current changes to the value property are part
      * of a series of changes.
@@ -272,8 +273,8 @@ public class BoundedRangeInputStream
     public boolean getValueIsAdjusting() {
         return valueIsAdjusting;
     }
-    
-    
+
+
     /**
      * Returns the model's extent, the length of the inner range that
      * begins at the model's value.
@@ -285,8 +286,8 @@ public class BoundedRangeInputStream
     public int getExtent() {
         return 0;
     }
-    
-    
+
+
     /**
      * Ignored: The extent is always zero.
      *
@@ -310,9 +311,8 @@ public class BoundedRangeInputStream
      * @see #setValue
      */
     public void setExtent(int newExtent) {}
-    
-    
-    
+
+
     /**
      * Ignored: All values depend on the input stream.
      *
@@ -335,9 +335,8 @@ public class BoundedRangeInputStream
      * @see #setValueIsAdjusting
      */
     public void setRangeProperties(int value, int extent, int min, int max, boolean adjusting) {}
-    
-    
-    
+
+
     /**
      * Adds a ChangeListener to the model's listener list.
      *
@@ -347,8 +346,8 @@ public class BoundedRangeInputStream
     public void addChangeListener(ChangeListener l) {
         listenerList.add(ChangeListener.class, l);
     }
-    
-    
+
+
     /**
      * Removes a ChangeListener.
      *
@@ -359,8 +358,8 @@ public class BoundedRangeInputStream
     public void removeChangeListener(ChangeListener l) {
         listenerList.remove(ChangeListener.class, l);
     }
-    
-    
+
+
     /**
      * Run each ChangeListeners stateChanged() method.
      *

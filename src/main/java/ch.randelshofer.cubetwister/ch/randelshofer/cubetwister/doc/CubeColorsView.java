@@ -1,5 +1,6 @@
-/* @(#)CubeColorsView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeColorsView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -28,13 +29,13 @@ public class CubeColorsView extends AbstractEntityView {
     /** Creates new form CubeColorsView */
     public CubeColorsView() {
         initComponents();
-        
-        
+
+
         tableModel = new CubeColorsTableModel();
         table.setModel(tableModel);
         table.setDefaultRenderer(Color.class, new ColorTableCellRenderer());
         table.setDefaultEditor(Color.class, new ColorTableCellEditor());
-        
+
         table.getColumnModel().getColumn(0).setPreferredWidth(150);
         table.getColumnModel().getColumn(1).setPreferredWidth(150);
         table.moveColumn(1, 0);
@@ -81,7 +82,7 @@ public class CubeColorsView extends AbstractEntityView {
     public JComponent getViewComponent() {
         return this;
     }
-    
+
     public void setModel(EntityModel newValue) {
         setModel((CubeModel) newValue);
     }

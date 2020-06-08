@@ -1,5 +1,6 @@
-/* @(#)CustomButtonUI.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CustomButtonUI.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.plaf;
 
@@ -30,7 +31,7 @@ import java.awt.event.FocusEvent;
  * b.setUI((ButtonUI) CustomButtonUI.createUI(b));
  * b.setBorder(new BackdropBorder(....));
  * </pre>
- * 
+ *
  * @author Werner Randelshofer
  */
 public class CustomButtonUI
@@ -92,18 +93,18 @@ public class CustomButtonUI
         return new ImageButtonListener(b);
     }
     /*
-    
+
     // ********************************
     //         Default Accessors
     // ********************************
     protected Color getSelectColor() {
     return selectColor;
     }
-    
+
     protected Color getDisabledTextColor() {
     return disabledTextColor;
     }
-    
+
     protected Color getFocusColor() {
     return focusColor;
     }*/

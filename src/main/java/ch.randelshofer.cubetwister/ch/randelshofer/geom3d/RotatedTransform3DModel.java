@@ -1,5 +1,6 @@
-/* @(#)RotatedTransform3DModel.java
- * Copyright (c) 1998 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RotatedTransform3DModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.geom3d;

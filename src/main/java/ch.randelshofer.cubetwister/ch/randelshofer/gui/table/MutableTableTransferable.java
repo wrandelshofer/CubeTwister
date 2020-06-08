@@ -1,6 +1,6 @@
-/**
- * @(#)MutableTableTransferable.java  1.0  Mar 21, 2008
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableTableTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.table;
@@ -24,20 +24,20 @@ public class MutableTableTransferable implements Transferable {
     private JTable table;
     private Transferable target;
     private int[] indices;
-    
+
     public MutableTableTransferable(JTable source, int[] indices, Transferable target) {
         this.table = source;
         this.indices = indices;
         this.target = target;
     }
-    
+
     public JTable getSource() {
         return table;
     }
     public int[] getTransferedIndices() {
         return indices;
     }
-    
+
     public DataFlavor[] getTransferDataFlavors() {
         return target.getTransferDataFlavors();
     }

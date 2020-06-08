@@ -1,5 +1,6 @@
-/* @(#)MoveSymbols.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MoveSymbols.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -8,15 +9,15 @@ import ch.randelshofer.rubik.notation.Move;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.util.HashMap;
+
 /**
  * MoveSymbols.
- * 
- * 
+ *
  * @author Werner Randelshofer.
  */
 public class MoveSymbols {
     private static HashMap<String, Move> tvs2, tvs3, tvs4, tvs5;
-    
+
     public static HashMap<String, Move> getMoveValueSet(int layerCount) {
         switch (layerCount) {
             case 2 :

@@ -1,9 +1,6 @@
-/* @(#)CubeExplorerExporter.java
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
- */
-/* @(#)CubeExplorerExporter.java
- * 
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeExplorerExporter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister;

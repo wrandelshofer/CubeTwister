@@ -1,16 +1,21 @@
-/* @(#)MutableTreeModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableTreeModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.tree;
 
-import java.io.*;
-import java.awt.datatransfer.*;
-import java.beans.PropertyChangeListener;
-import java.util.List;
-import javax.swing.*;
+import javax.swing.Action;
 import javax.swing.event.UndoableEditListener;
-import javax.swing.tree.*;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 import javax.swing.undo.UndoableEdit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.util.List;
 
 /**
  * Specifies the requirements for a mutable tree model.

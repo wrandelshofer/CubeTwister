@@ -1,5 +1,6 @@
-/* @(#)RubiksCubeIdx3D.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksCubeIdx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -169,11 +170,11 @@ public class RubiksCubeIdx3D extends AbstractRubiksCubeIdx3D {
      * <pre>
      *   0   1   2   3   4   5   6   7   8   9
      * 0             +---+---+---+
-     *               |4.0|   |2.0|  
+     *               |4.0|   |2.0|
      * 1             +---+   +---+
      *               |     u     |
      * 2             +---+   +---+
-     *               |6.0|   |0.0|  
+     *               |6.0|   |0.0|
      * 3 +---+---+---+---+---+---+---+---+---+...........+
      *   |4.1|   |6.2|6.1|   |0.2|0.1|   |2.2|           '
      * 4 +---+   +---+---+   +---+---+   +---+           '
@@ -609,7 +610,7 @@ public class RubiksCubeIdx3D extends AbstractRubiksCubeIdx3D {
         /* UV coordinates for stickers on side parts.
          * First dimension = parts,
          * Second dimension = sticker coordinates
-         * Third dimension = x and y coordinate values 
+         * Third dimension = x and y coordinate values
          */
         for (int part = 0; part < 6; part++) {
             idx3d_Object object3D = parts[sideOffset + part];

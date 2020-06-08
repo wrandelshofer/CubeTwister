@@ -1,10 +1,6 @@
-/* @(#)Cube.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
- *
- * This software has been derived from the 'Kociemba
- * Cube Solver 1.0' (KCube) (c) Greg Schmidt.
- * KCube is a C++ implementation of the cube solver
- * algorithm from Herbert Kociemba.
+/*
+ * @(#)Cube.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.solver;
 
@@ -186,7 +182,7 @@ public class Cube implements Cloneable {
         "R2", "L2", "U2", "D2", "F2", "B2"
     };
 
-    /** 
+    /**
      * Symbols.
      * XXX - This is deprecated.
      * @see ch.randelshofer.rubik.parser.ScriptParser
@@ -209,7 +205,7 @@ public class Cube implements Cloneable {
         L,  R,  D,  U,  B,  F
     };
 
-    /** 
+    /**
      * Move Parser Symbols for the ScriptParer.
      * @see ch.randelshofer.rubik.parser.ScriptParser
      */
@@ -340,7 +336,7 @@ public class Cube implements Cloneable {
         return INVALID_MOVE;
     }
 
-    /** 
+    /**
      * Get the ScriptParser twist from a move.
      * @see ch.randelshofer.rubik.parser.ScriptParser
      */

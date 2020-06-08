@@ -1,5 +1,6 @@
-/* @(#)Quaqua14PlacardButtonBorder.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PlacardButtonBorder.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.border;
 
@@ -179,7 +180,7 @@ public class PlacardButtonBorder implements Border {
 
         Paint oldPaint = g.getPaint();
 
-        // Note: We draw the gradient paints first, because Apple's Java 
+        // Note: We draw the gradient paints first, because Apple's Java
         // 1.4.2_05 draws them 1 Pixel too wide on the left
         // draw inner border lines
         g.setPaint(new GradientPaint(0, 2, colors[5], 0, height - 3, colors[6]));

@@ -1,5 +1,6 @@
-/* @(#)Splash.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)SplashWindow.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui;
 
@@ -44,22 +45,22 @@ public class SplashWindow extends Window {
      */
     @Nullable
     private static SplashWindow instance;
-    
+
     /**
      * The splash image is displayed on the splash window.
      */
     private Image image;
-    
+
     /**
      * The text to display on the splash window.
      */
     private String text;
-    
+
     /**
      * The location of the text.
      */
     private int x, y;
-    
+
     /**
      * This attribute indicates whether the method
      * paint(Graphics) has been called at least once since the
@@ -92,7 +93,7 @@ public class SplashWindow extends Window {
             mt.waitForID(0);
         } catch (InterruptedException ie) {
         }
-        
+
         // Center the window on the screen
         int imgWidth = image.getWidth(this);
         int imgHeight = image.getHeight(this);
@@ -102,7 +103,7 @@ public class SplashWindow extends Window {
         (screenDim.width - imgWidth) / 2,
         (screenDim.height - imgHeight) / 2
         );
-        
+
         // Users shall be able to close the splash window by
         // clicking on its display area. This mouse listener
         // listens for mouse clicks and disposes the splash window.
@@ -148,7 +149,7 @@ public class SplashWindow extends Window {
                 ty += fm.getHeight();
             }
         }
-        
+
         // Notify method splash that the window
         // has been painted.
         // Note: To improve performance we do not enter
@@ -179,15 +180,15 @@ public class SplashWindow extends Window {
 
             // Create the splash image
             instance = new SplashWindow(f, image);
-            
+
             instance.text = text;
             instance.x = x;
             instance.y = y;
-            
+
             // Show the window.
             instance.setVisible(true);
-            
-            
+
+
             // Note: To make sure the user gets a chance to see the
             // splash window we wait until its paint method has been
             // called at least once by the AWT event dispatcher thread.
@@ -225,7 +226,7 @@ public class SplashWindow extends Window {
             splash(Toolkit.getDefaultToolkit().createImage(imageURL), text, x, y);
         }
     }
-    
+
     /**
      * Closes the splash window.
      */

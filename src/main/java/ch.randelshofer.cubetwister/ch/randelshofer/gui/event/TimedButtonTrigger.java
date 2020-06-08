@@ -1,5 +1,6 @@
-/* @(#)TimedButtonTrigger.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TimedButtonTrigger.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.event;
@@ -16,14 +17,14 @@ import java.awt.event.MouseEvent;
 
 /**
  * Invokes the doClick method of an javax.swing.AbstractButton
- * repeatedely when the user keeps the mouse pressed during a 
+ * repeatedely when the user keeps the mouse pressed during a
  * long period of time.
- * 
+ *
  * @author Werner Randelshofer
  */
-public class TimedButtonTrigger 
-extends MouseAdapter
-implements ActionListener {
+public class TimedButtonTrigger
+        extends MouseAdapter
+        implements ActionListener {
     private Timer timer;
     private AbstractButton button;
     private boolean isPressed;
@@ -41,14 +42,14 @@ implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
         button.doClick();
     }
-    
+
     /**
      * Invoked when the mouse exits a component.
      */
     public void mouseExited(MouseEvent e) {
         timer.stop();
     }
-    
+
     /**
      * Invoked when a mouse button has been released on a component.
      */
@@ -56,7 +57,7 @@ implements ActionListener {
         isPressed = false;
         timer.stop();
     }
-    
+
     /**
      * Invoked when a mouse button has been pressed on a component.
      */
@@ -66,7 +67,7 @@ implements ActionListener {
             timer.start();
         }
     }
-    
+
     /**
      * Invoked when the mouse enters a component.
      */

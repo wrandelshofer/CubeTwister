@@ -1,5 +1,6 @@
-/* @(#)DOMOutput.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DOMOutput.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 
@@ -11,7 +12,7 @@ package ch.randelshofer.xml;
  * @author  Werner Randelshofer
  */
 public interface DOMOutput {
-    
+
     /**
      * Adds a new element to the DOM Document.
      * The new element is added as a child to the current element in the DOM

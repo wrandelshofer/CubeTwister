@@ -1,5 +1,6 @@
-/* @(#)CSVReader.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CSVReader.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.io;
@@ -15,18 +16,18 @@ import java.util.ArrayList;
  * EBNF rules for the CSV format:
  * <pre>
  * CSV = Record {RecordSeparator, Record}
- * 
+ *
  * Record = Field {FieldSeparator, Field}
  * RecordSeparator = linebreak
- * 
+ *
  * Field = UnquotedField | DQuotedField
  * FieldSeparator = {whitespace} comma {whitespace}
- * 
+ *
  * UnquotedField = (simplechar) {{simplechar|space}, (simplechar)}
- * 
+ *
  * DQuotedField = dquote (simplechar|stuffeddquote|linebreak|comma} dquote
- * 
- * 
+ *
+ *
  * simplechar = (* every character except specialchar *)
  * specialchar = linebreak | comma | dquote | whitespace
  * linebreak = lf | cr | cr, lf
@@ -38,7 +39,7 @@ import java.util.ArrayList;
  * whitespace = space | tab
  * space = ' '
  * tab = 0x07
- * 
+ *
  * </pre>
  * <p>
  * Simple Example with unquoted fields:
@@ -60,26 +61,26 @@ public class CSVReader {
     private Reader in;
     private CSVTokenizer tt;
     private ArrayList<String> record;
-    
+
     /** Creates a new instance. */
     public CSVReader(Reader in, char delimiterChar, char quoteChar) {
         this.in = in;
         tt = new CSVTokenizer(in, delimiterChar, quoteChar);
         record = new ArrayList<String>();
     }
-    
+
     /**
      * Returns null, if EOF has been reached.
      */
     @Nullable
     public String[] readln() throws IOException {
         record.clear();
-        
+
         if (tt.nextToken() == CSVTokenizer.TT_EOF) {
             return null;
         }
         tt.pushBack();
-        
+
         while (tt.nextToken() != CSVTokenizer.TT_EOF && tt.ttype != CSVTokenizer.TT_EOL) {
             if (tt.ttype == CSVTokenizer.TT_DELIMITER) {
                 record.add("");
@@ -98,10 +99,10 @@ public class CSVReader {
                 }
             }
         }
-        
+
         return record.toArray(new String[record.size()]);
     }
-    
+
     public void close() throws IOException {
         in.close();
     }

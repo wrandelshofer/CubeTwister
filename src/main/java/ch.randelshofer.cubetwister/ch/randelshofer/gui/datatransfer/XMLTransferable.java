@@ -1,6 +1,6 @@
-/* @(#)XMLTransferable.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
- * XMLTransferable.java
+/*
+ * @(#)XMLTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -36,9 +36,9 @@ public class XMLTransferable implements java.awt.datatransfer.Transferable, java
      * @param contents the contents which this owner had placed on the clipboard
      */
     public void lostOwnership(Clipboard clipboard, Transferable contents) {
-        
+
     }
-    
+
     /**
      * Returns an object which represents the data to be transferred.  The class
      * of the object returned is defined by the representation class of the flavor.
@@ -58,7 +58,7 @@ public class XMLTransferable implements java.awt.datatransfer.Transferable, java
             throw new UnsupportedFlavorException(flavor);
         }
     }
-    
+
     /**
      * Returns an array of DataFlavor objects indicating the flavors the data
      * can be provided in.  The array should be ordered according to preference
@@ -69,7 +69,7 @@ public class XMLTransferable implements java.awt.datatransfer.Transferable, java
     public DataFlavor[] getTransferDataFlavors() {
         return new DataFlavor[] {flavor};
     }
-    
+
     /**
      * Returns whether or not the specified data flavor is supported for
      * this object.

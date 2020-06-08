@@ -1,5 +1,6 @@
-/* @(#)RubiksBarrelIdx3DPlayerApplet.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksBarrelIdx3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.player;
@@ -37,7 +38,7 @@ public class RubiksBarrelIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet
         return 3;
     }
 
-    
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -49,8 +50,8 @@ public class RubiksBarrelIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet
         getContentPane().setLayout(new java.awt.FlowLayout());
     }// </editor-fold>//GEN-END:initComponents
     */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

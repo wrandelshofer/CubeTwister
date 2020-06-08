@@ -1,5 +1,6 @@
-/* @(#)CubeEvent.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeEvent.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.cube;
@@ -17,7 +18,7 @@ public class CubeEvent extends java.util.EventObject {
     private int axis;
     private int layerMask;
     private int angle;
-    
+
     /** Creates a new instance. */
     public CubeEvent(@Nonnull Cube src, int axis, int layerMask, int angle) {
         super(src);
@@ -30,7 +31,7 @@ public class CubeEvent extends java.util.EventObject {
     public Cube getCube() {
         return (Cube) getSource();
     }
-    
+
     public int getAxis() {
         return axis;
     }
@@ -42,11 +43,11 @@ public class CubeEvent extends java.util.EventObject {
     public int getAngle() {
         return angle;
     }
-    
+
     /**
      * Returns a list of part ID's, for each part location which is affected
      * if a cube is transformed using the axis, layerMaska and angle
-     * parameters of this event. 
+     * parameters of this event.
      */
     public int[] getAffectedLocations() {
         Cube c1 = (Cube) getCube().clone();

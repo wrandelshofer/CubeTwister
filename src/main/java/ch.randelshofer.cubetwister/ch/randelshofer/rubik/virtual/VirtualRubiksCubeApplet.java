@@ -1,5 +1,6 @@
-/* @(#)VirtualRubiksCubeApplet.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VirtualRubiksCubeApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.virtual;
@@ -21,9 +22,8 @@ public class VirtualRubiksCubeApplet extends AbstractVirtualCubeApplet {
     protected AbstractCubeIdx3D createCube3D() {
         return new RubiksCubeIdx3D();
     }
-    
-    
-    
+
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,9 +33,9 @@ public class VirtualRubiksCubeApplet extends AbstractVirtualCubeApplet {
     private void initComponents() {
 
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

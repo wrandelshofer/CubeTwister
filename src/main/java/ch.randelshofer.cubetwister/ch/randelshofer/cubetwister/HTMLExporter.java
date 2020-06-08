@@ -1,7 +1,9 @@
-package ch.randelshofer.cubetwister;
-/* @(#)HTMLExporter.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)HTMLExporter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
+
+package ch.randelshofer.cubetwister;
 
 import ch.randelshofer.cubetwister.doc.CubeModel;
 import ch.randelshofer.cubetwister.doc.DocumentModel;
@@ -90,7 +92,7 @@ public class HTMLExporter implements Exporter {
     private HashSet<CubeKind> playerCubeKinds;
 
     private static class DataMap extends HashMap<String, String> {
-    public final static long serialVersionUID=1L;
+        public final static long serialVersionUID=1L;
 
         @Override
         public String put(String key, String value) {
@@ -141,6 +143,7 @@ public class HTMLExporter implements Exporter {
         public ScriptModel script;
         public TextModel note;
     }
+
     /** Data stack.
      */
     private Stack<StackEntry> stack;
@@ -814,7 +817,7 @@ public class HTMLExporter implements Exporter {
         // Write block
         String placeholder = tokens[start].substring("${FOR ".length(), tokens[start].length() - 1).trim();
         if ("cube".equals(placeholder)) {
-        for (EntityModel node : model.getCubes().getChildren()) {
+            for (EntityModel node : model.getCubes().getChildren()) {
                 CubeModel m = (CubeModel) node;
                 stack.push(new StackEntry());
                 putCubeData(m, "");
@@ -822,7 +825,7 @@ public class HTMLExporter implements Exporter {
                 stack.pop();
             }
         } else if ("notation".equals(placeholder)) {
-        for (EntityModel node : model.getNotations().getChildren()) {
+            for (EntityModel node : model.getNotations().getChildren()) {
                 NotationModel m = (NotationModel) node;
                 stack.push(new StackEntry());
                 putNotationData(m, "");

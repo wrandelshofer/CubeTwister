@@ -1,10 +1,6 @@
-/* @(#)MoveTable.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
- *
- * This software has been derived from the 'Kociemba
- * Cube Solver 1.0' (KCube) (c) Greg Schmidt.
- * KCube is a C++ implementation of the cube solver
- * algorithm from Herbert Kociemba.
+/*
+ * @(#)MoveTable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.solver;
 
@@ -36,14 +32,14 @@ import java.text.MessageFormat;
 public abstract class MoveTable extends Object {
     private final static boolean DEBUG = false;
     private Cube cube;
-    
+
     /** Number of entries in the pruning table. */
     private int tableSize;
     private boolean isPhase2;
-    
+
     /** The table pointer. */
     private int[][] table;
-    
+
     /**
      * The constructor must be provided with a cube to be
      * manipulated during table generation, the size
@@ -58,7 +54,7 @@ public abstract class MoveTable extends Object {
         this.isPhase2 = phase2;
         table = new int[tableSize][Cube.NUMBER_OF_CLOCKWISE_QUARTER_TURN_MOVES];
     }
-    
+
     public MoveTable(Cube cube, int tableSize) {
         this(cube, tableSize, false);
     }
@@ -97,7 +93,7 @@ public abstract class MoveTable extends Object {
             }
         }
     }
-    
+
     /**
      * Overloaded subscript operator allows standard C++ indexing
      * (i.e. MoveTable[i][j]) for accessing table values.
@@ -105,14 +101,14 @@ public abstract class MoveTable extends Object {
     public int get(int ordinal, int move) {
         return table[ordinal][move];
     }
-    
+
     /**
      * Obtain the size of the table (number of logical entries).
      */
     public int size() {
         return tableSize;
     }
-    
+
     /**
      * Dump table contents.
      */
@@ -135,31 +131,31 @@ public abstract class MoveTable extends Object {
             System.out.println();
         }
     }
-    
-    
+
+
     // These functions must be overloaded in the derived
     //   class in order to provide the appropriate mapping
     //   between ordinal and cube state.
     protected abstract int ordinalFromCubeState();
     protected abstract void ordinalToCubeState(int ordinal);
-    
+
     /** Generate the table. */
     private void generate(ProgressObserver  pm) {
         int ordinal;
         int move, move2;
-        
+
         // Insure the cubies are in their proper slice
         cube.backToHome();
-        
+
         // Initialize each table entry
         for (ordinal = 0; ordinal < tableSize; ordinal++) {
             // Establish the proper cube state for the current ordinal
             ordinalToCubeState(ordinal);
-            
+
             // Initialize the possible moves for each entry
             for (move = Cube.R; move <= Cube.B; move++) {
                 // Apply this move
-                
+
                 // Phase 1 is the group spanned by <U,D,R,L,F,B>
                 // Phase 2 is the group spanned by <U,D,R2,L2,F2,B2>
                 move2 = move;
@@ -167,7 +163,7 @@ public abstract class MoveTable extends Object {
                     move2 = Cube.quarterTurnToHalfTurnMove(move);
                 }
                 cube.applyMove(move2);
-                
+
                 // Compute a new ordinal from the new cube state
                 if (DEBUG && ordinal == 17) {
                     cube.dump();
@@ -209,6 +205,6 @@ public abstract class MoveTable extends Object {
             }
         }
     }
-    
+
 }
 

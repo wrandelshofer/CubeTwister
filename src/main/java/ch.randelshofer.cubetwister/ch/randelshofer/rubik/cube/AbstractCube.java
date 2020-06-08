@@ -1,5 +1,6 @@
-/* @(#)AbstractCube.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractCube.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube;
 
@@ -19,7 +20,7 @@ import static ch.randelshofer.util.Preconditions.checkRange;
 /**
  * Abstract base class for classes which implement the {@link Cube} interface.
  * <p>
- * This class provides support for event listeners, and it defines the variables 
+ * This class provides support for event listeners, and it defines the variables
  * which hold the location and orientation of the cube parts.
  * <p>
  * <b>Faces and Axes</b>
@@ -46,10 +47,10 @@ import static ch.randelshofer.util.Preconditions.checkRange;
  *             |           |
  *             +---+---+---+
  * </pre>
- * The numbers represent the ID's of the faces: 0=right, 1=up, 2=front, 3=left, 
+ * The numbers represent the ID's of the faces: 0=right, 1=up, 2=front, 3=left,
  * 4=down, 5=back.
  * <p>
- * The face ID's are symmetric along the axis from the right-up-front corner 
+ * The face ID's are symmetric along the axis from the right-up-front corner
  * through the left-down-back corner of the cube.
  * <p>
  * <ul>
@@ -92,28 +93,28 @@ import static ch.randelshofer.util.Preconditions.checkRange;
  * visible on three faces of the cube, the ID of each part is shown 3 times.
  * <p>
  * The numbers after the dots indicate the orientations of the corner parts.
- * Each corner part can have three different orientations: 0=initial, 
+ * Each corner part can have three different orientations: 0=initial,
  * 1=tilted counterclockwise and 2=titled clockwise.
  * <p>
- * The orientations of the corner parts are symmetric along the axis from the 
+ * The orientations of the corner parts are symmetric along the axis from the
  * right-up-front corner through the left-down-back corner of the cube.
  * <pre>
  *       +-----------+              +-----------+
  *      /4.0/   /2.0/|             /1.0/   /3.0/|
  *     +---     ---+.2            +---     ---+.2
- *    /     u     /|/|           /     d     /|/| 
+ *    /     u     /|/|           /     d     /|/|
  *   +---     ---+   +          +---     ---+   +
  *  /6.0/   /0.0/|  /|         /7.0/   /5.0/|  /|
- * +---+---+---*.1  .1        +---+---+---*.1  .1 
+ * +---+---+---*.1  .1        +---+---+---*.1  .1
  * | .1|   | .2|/ r|/         | .1|   | .2|/ b|/
  * +---     ---+   +          +---     ---+   +
  * |     f     |/|/           |     l     |/|/
  * +---     ---+.2            +---     ---+.2
- * | .2|   | .1|/             |.2 |   | .1|/ 
+ * | .2|   | .1|/             |.2 |   | .1|/
  * +---+---+---+              +---+---+---+
  * </pre>
  * <p>
- * Here is an alternative representation of the initial locations and 
+ * Here is an alternative representation of the initial locations and
  * orientations of the corner parts as a list:
  * <ul>
  * <li>0: urf</li><li>1: dfr</li><li>2: ubr</li><li>3: drb</li>
@@ -182,7 +183,7 @@ import static ch.randelshofer.util.Preconditions.checkRange;
  *               +----+---+----+
  * </pre>
  * <p>
- * The orientations of the edge parts are symmetric along the axis from the 
+ * The orientations of the edge parts are symmetric along the axis from the
  * front-up edge through the back-down edge of the cube.
  * <pre>
  *       +-----------+      +-----------+
@@ -200,12 +201,12 @@ import static ch.randelshofer.util.Preconditions.checkRange;
  * +---+---+---+                  +---+---+---+
  * </pre>
  * <p>
- * Here is an alternative representation of the initial locations and 
+ * Here is an alternative representation of the initial locations and
  * orientations of the edge parts as a list:
  * <ul>
- * <li> 0: ur</li><li> 1: rf</li><li> 2: dr</li> 
- * <li> 3: bu</li><li> 4: rb</li><li> 5: bd</li> 
- * <li> 6: ul</li><li> 7: lb</li><li> 8: dl</li> 
+ * <li> 0: ur</li><li> 1: rf</li><li> 2: dr</li>
+ * <li> 3: bu</li><li> 4: rb</li><li> 5: bd</li>
+ * <li> 6: ul</li><li> 7: lb</li><li> 8: dl</li>
  * <li> 9: fu</li><li>10: lf</li><li>11: fd</li>
  * </ul>
  * <p>
@@ -235,34 +236,34 @@ import static ch.randelshofer.util.Preconditions.checkRange;
  *             +-----------+
  * </pre>
  * The numbers after the dots indicate the orientations of the side parts.
- * Each side part can have four different orientations: 0=initial, 
+ * Each side part can have four different orientations: 0=initial,
  * 1=tilted clockwise, 2=flipped, 3=tilted counterclockwise.
  * <p>
- * The orientations of the side parts are symmetric along the axis from the 
+ * The orientations of the side parts are symmetric along the axis from the
  * right-up-front corner through the left-down-back corner of the cube.
  * <pre>
  *       +-----------+              +-----------+
  *      /     .1    /|             /     .1    /|
  *     +    ---    +r+            +    ---    +b+
- *    / .0/ 1 /.2 /  |           / .0/ 4 /.2 /  | 
+ *    / .0/ 1 /.2 /  |           / .0/ 4 /.2 /  |
  *   +    ---    +.3 +          +    ---    +.3 +
  *  / u   .3    / /|.0         / d   .3    / /|.0
- * +---+---+---*  0  +        +---+---+---*  5  + 
+ * +---+---+---*  0  +        +---+---+---*  5  +
  * | f   .2    .2|/ /         | l   .2    .2|/ /
  * +    ---    + .1+          +    ---    + .1+
  * | .1| 2 |.3 |  /           | .1| 3 |.3 |  /
  * +    ---    + +            +    ---    + +
- * |     .0    |/             |     .0    |/ 
+ * |     .0    |/             |     .0    |/
  * +---+---+---+              +---+---+---+
  * </pre>
  * <p>
- * Here is an alternative representation of the initial locations and 
+ * Here is an alternative representation of the initial locations and
  * orientations of the side parts as a list:
  * <ul>
- * <li>0: r</li> <li>1: u</li> <li>2: f</li> 
- * <li>3: l</li> <li>4: d</li> <li>5: b</li> 
+ * <li>0: r</li> <li>1: u</li> <li>2: f</li>
+ * <li>3: l</li> <li>4: d</li> <li>5: b</li>
  * </ul>
- * 
+ *
  * @author Werner Randelshofer
  */
 public abstract class AbstractCube implements Cube, Cloneable {
@@ -295,8 +296,8 @@ public abstract class AbstractCube implements Cube, Cloneable {
     /**
      * This array holds the locations of the corner parts.
      * <p>
-     * The value of an array element represents the ID of a corner part. The 
-     * value must be element of {0..7}. 
+     * The value of an array element represents the ID of a corner part. The
+     * value must be element of {0..7}.
      * <p>
      * Each array element has a unique value.
      * <p>
@@ -322,7 +323,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
     /**
      * This array holds the locations of the edge parts.
      * <p>
-     * The value of an array element represents the ID of an edge part. The 
+     * The value of an array element represents the ID of an edge part. The
      * value must be element of {0..(n-1)}. Whereas n is the number of edge
      * parts.
      * <p>
@@ -349,7 +350,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
     /**
      * This array holds the locations of the side parts.
      * <p>
-     * The value of an array element represents the ID of a side part. The 
+     * The value of an array element represents the ID of a side part. The
      * value must be element of {0..(n-1)}. Whereas n is the number of side
      * parts.
      * <p>
@@ -443,7 +444,7 @@ public abstract class AbstractCube implements Cube, Cloneable {
      * <p>
      * The index for the first dimension represents the location,
      * the index for the second dimension the orientation.
-     * The value 1 represents clockwise angle, -1 represents 
+     * The value 1 represents clockwise angle, -1 represents
      * counterclockwise angle.
      */
     protected final static int[][] EDGE_TO_ANGLE_MAP = {

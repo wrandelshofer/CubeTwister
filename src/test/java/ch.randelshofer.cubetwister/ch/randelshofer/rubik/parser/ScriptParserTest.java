@@ -1,3 +1,8 @@
+/*
+ * @(#)ScriptParserTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
@@ -659,15 +664,15 @@ class ScriptParserTest {
             PermutationCycleNode m = (PermutationCycleNode) node;
             b.append(' ');
             switch (m.getType()) {
-                case PermutationCycleNode.SIDE_PERMUTATION:
-                    b.append("Side");
-                    break;
-                case PermutationCycleNode.EDGE_PERMUTATION:
-                    b.append("Edge");
-                    break;
-                case PermutationCycleNode.CORNER_PERMUTATION:
-                    b.append("Corner");
-                    break;
+            case PermutationCycleNode.SIDE_PERMUTATION:
+                b.append("Side");
+                break;
+            case PermutationCycleNode.EDGE_PERMUTATION:
+                b.append("Edge");
+                break;
+            case PermutationCycleNode.CORNER_PERMUTATION:
+                b.append("Corner");
+                break;
             }
             b.append(" sign:")
                     .append(m.getSign());

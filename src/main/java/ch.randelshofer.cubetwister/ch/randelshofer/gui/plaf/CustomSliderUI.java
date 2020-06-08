@@ -1,5 +1,6 @@
-/* @(#)CustomSliderUI.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CustomSliderUI.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.plaf;
@@ -29,7 +30,7 @@ import java.beans.PropertyChangeListener;
 
 /**
  * CustomSliderUI draws a BackdropBorder in the background of the slider, and
- * draws an Icon as the slider thumb. 
+ * draws an Icon as the slider thumb.
  * This allows for easy visual customization of sliders.
  * <p>
  * Usage:
@@ -41,7 +42,7 @@ import java.beans.PropertyChangeListener;
  * </pre>
  *
  * <p>XXX This class has been implemented for horizontal
- * sliders whithout labels only. 
+ * sliders whithout labels only.
  * <p>FIXME The thumb can be dragged too far to the left
  * and to the right.
  *
@@ -50,14 +51,14 @@ import java.beans.PropertyChangeListener;
 public class CustomSliderUI extends BasicSliderUI
 implements PlafConstants {
     public final static String THUMB_ICON_CLIENT_PROPERTY = "CustomSliderUI.ThumbIcon";
-    
+
     /** Horizontal Track. */
     private ImageBevelBorder trackHorizontalRenderer;
     /** Horizontal Track. */
     private ImageBevelBorder disabledTrackHorizontalRenderer;
     /** Vertical Track. */
     private ImageBevelBorder trackVerticalRenderer;
-    
+
     /** Thumb. */
     private ImageIcon thumbIcon;
     private ImageIcon disabledThumbIcon;
@@ -77,17 +78,17 @@ implements PlafConstants {
     protected static javax.swing.Icon horizThumbIcon;
     protected static javax.swing.Icon vertThumbIcon;
 
-    /** 
-     * The preffered amount of pixels for moving the slider thumb. 
+    /**
+     * The preffered amount of pixels for moving the slider thumb.
      */
     private static final int PREFERRED_TRACK_LENGTH = 100;
-    
-    /** 
-     * The minimal amount of pixels for moving the slider thumb. 
+
+    /**
+     * The minimal amount of pixels for moving the slider thumb.
      */
     private static final int MINIMUM_TRACK_LENGTH = 10;
-    
-    
+
+
     protected final String SLIDER_FILL = "JSlider.isFilled";
 
     private final static String propertyPrefix = "Slider" + ".";
@@ -97,7 +98,7 @@ implements PlafConstants {
     // ********************************
     public CustomSliderUI() {
         super(null);
-        
+
         if (trackHorizontalRenderer == null) {
             String id = UIManager.getLookAndFeel().getID();
             String path;
@@ -106,7 +107,7 @@ implements PlafConstants {
             } else {
                 path = "images/Mac/";
             }
-            
+
             trackHorizontalRenderer = new ImageBevelBorder(
                 Toolkit.getDefaultToolkit().createImage(CustomButtonUI.class.getResource(path+"TrackHorizontal.0.png")),
                 new Insets(3, 4, 3, 4)
@@ -228,8 +229,8 @@ implements PlafConstants {
             paintLabels(g);
         }
 	if ( slider.hasFocus() && clip.intersects( focusRect ) ) {
-	    paintFocus(g);      
-	}
+        paintFocus(g);
+    }
 	if ( clip.intersects( thumbRect ) ) {
 	    paintThumb(g);
 	}
@@ -267,7 +268,7 @@ implements PlafConstants {
 	}
 	else {
 	    if (leftToRight) {
-	        trackLeft = (trackRect.width - getThumbOverhang()) - 
+	        trackLeft = (trackRect.width - getThumbOverhang()) -
 		                                         getTrackWidth();
 		trackRight = (trackRect.width - getThumbOverhang()) - 1;
 	    }
@@ -285,7 +286,7 @@ implements PlafConstants {
 	}
     }
 
-    public void paintFocus(Graphics g)  {        
+    public void paintFocus(Graphics g) {
     }
 
     @Nonnull
@@ -293,11 +294,11 @@ implements PlafConstants {
         return new Dimension(thumbIcon.getIconWidth(), thumbIcon.getIconHeight());
     }
 
-    
+
     // ********************************
     //          Dimensions
     // ********************************
-    
+
     /**
      * Gets the preferred size for the component.
      */
@@ -312,7 +313,7 @@ implements PlafConstants {
     public Dimension getMinimumSize(JComponent c)  {
         return getRequiredSize(c, MINIMUM_TRACK_LENGTH);
     }
-    
+
     /**
      * Helper method for computing the size of the component.
      *
@@ -323,9 +324,9 @@ implements PlafConstants {
     @Nonnull
     protected Dimension getRequiredSize(JComponent c, int trackLength) {
         recalculateIfInsetsChanged();
-        
+
         Dimension d = new Dimension();
-        
+
         if ( slider.getOrientation() == JSlider.VERTICAL ) {
             d.height = trackLength + thumbIcon.getIconHeight()
                 + thumbInsets.top + thumbInsets.bottom
@@ -370,38 +371,38 @@ implements PlafConstants {
      * <p>Prerequisites: The insetCache variable must have been updated
      * before this method can be called. Otherwise the result is undefined.
      * /
-    protected void calculateFocusRect() {
-        focusRect.x = insetCache.left;
-	focusRect.y = insetCache.top;
-	focusRect.width = slider.getWidth() - (insetCache.left + insetCache.right);
-	focusRect.height = slider.getHeight() - (insetCache.top + insetCache.bottom);
-    }
-    /**
+     protected void calculateFocusRect() {
+     focusRect.x = insetCache.left;
+     focusRect.y = insetCache.top;
+     focusRect.width = slider.getWidth() - (insetCache.left + insetCache.right);
+     focusRect.height = slider.getHeight() - (insetCache.top + insetCache.bottom);
+     }
+     /**
      * The content rectangle is inside the focus rectangle of the component.
      *
-     * <p>Prerequisites: calculateFocusRect must have been called 
+     * <p>Prerequisites: calculateFocusRect must have been called
      * before this method can be called. Otherwise the result is undefined.
      * /
-    protected void calculateContentRect() {
-        contentRect.x = focusRect.x + focusInsets.left;
-        contentRect.y = focusRect.y + focusInsets.top;
-        contentRect.width = focusRect.width - (focusInsets.left + focusInsets.right);
-        contentRect.height = focusRect.height - (focusInsets.top + focusInsets.bottom);
-    }
-    /**
+     protected void calculateContentRect() {
+     contentRect.x = focusRect.x + focusInsets.left;
+     contentRect.y = focusRect.y + focusInsets.top;
+     contentRect.width = focusRect.width - (focusInsets.left + focusInsets.right);
+     contentRect.height = focusRect.height - (focusInsets.top + focusInsets.bottom);
+     }
+     /**
      * The distance that the track is from the side of the control.
      *
-     * <p>Prerequisites: calculateContentRect must have been called 
+     * <p>Prerequisites: calculateContentRect must have been called
      * before this method can be called. Otherwise the result is undefined.
      * /
-    protected void calculateTrackBuffer() {
-       if ( slider.getPaintLabels() && slider.getLabelTable()  != null ) {
-            Component highLabel = getHighestValueLabel();
-            Component lowLabel = getLowestValueLabel();
+     protected void calculateTrackBuffer() {
+     if ( slider.getPaintLabels() && slider.getLabelTable()  != null ) {
+     Component highLabel = getHighestValueLabel();
+     Component lowLabel = getLowestValueLabel();
 
-            if ( slider.getOrientation() == JSlider.HORIZONTAL ) {
-                trackBuffer = Math.max( highLabel.getBounds().width, lowLabel.getBounds().width ) / 2;
-                trackBuffer = Math.max( trackBuffer, thumbRect.width / 2 );
+     if ( slider.getOrientation() == JSlider.HORIZONTAL ) {
+     trackBuffer = Math.max( highLabel.getBounds().width, lowLabel.getBounds().width ) / 2;
+     trackBuffer = Math.max( trackBuffer, thumbRect.width / 2 );
             }
             else {
                 trackBuffer = Math.max( highLabel.getBounds().height, lowLabel.getBounds().height ) / 2;
@@ -449,63 +450,63 @@ implements PlafConstants {
 
     }
 
-/*    
-    protected void calculateThumbLocation() {
-        if (slider.getSnapToTicks() ) {
-	    int sliderValue = slider.getValue();
-	    int snappedValue = sliderValue; 
-	    int majorTickSpacing = slider.getMajorTickSpacing();
-	    int minorTickSpacing = slider.getMinorTickSpacing();
-	    int tickSpacing = 0;
-	    
-	    if ( minorTickSpacing > 0 ) {
-	        tickSpacing = minorTickSpacing;
-	    }
-	    else if ( majorTickSpacing > 0 ) {
-	        tickSpacing = majorTickSpacing;
-	    }
+    /*
+        protected void calculateThumbLocation() {
+            if (slider.getSnapToTicks() ) {
+            int sliderValue = slider.getValue();
+            int snappedValue = sliderValue;
+            int majorTickSpacing = slider.getMajorTickSpacing();
+            int minorTickSpacing = slider.getMinorTickSpacing();
+            int tickSpacing = 0;
 
-	    if ( tickSpacing != 0 ) {
-	        // If it's not on a tick, change the value
-	        if ( (sliderValue - slider.getMinimum()) % tickSpacing != 0 ) {
-		    float temp = (float)(sliderValue - slider.getMinimum()) / (float)tickSpacing;
-		    int whichTick = Math.round( temp );
-		    snappedValue = slider.getMinimum() + (whichTick * tickSpacing);
-		}
-		
-		if( snappedValue != sliderValue ) { 
-		    slider.setValue( snappedValue );
-		}
-	    }
-	}
-	
-        if ( slider.getOrientation() == JSlider.HORIZONTAL ) {
-            int valuePosition = xPositionForValue(slider.getValue());
+            if ( minorTickSpacing > 0 ) {
+                tickSpacing = minorTickSpacing;
+            }
+            else if ( majorTickSpacing > 0 ) {
+                tickSpacing = majorTickSpacing;
+            }
 
-	    thumbRect.x = valuePosition;
-	    thumbRect.y = trackRect.y - (thumbRect.height - trackRect.height) / 2;
+            if ( tickSpacing != 0 ) {
+                // If it's not on a tick, change the value
+                if ( (sliderValue - slider.getMinimum()) % tickSpacing != 0 ) {
+                float temp = (float)(sliderValue - slider.getMinimum()) / (float)tickSpacing;
+                int whichTick = Math.round( temp );
+                snappedValue = slider.getMinimum() + (whichTick * tickSpacing);
+            }
+
+            if( snappedValue != sliderValue ) {
+                slider.setValue( snappedValue );
+            }
+            }
         }
-        else {
-            int valuePosition = yPositionForValue(slider.getValue());
-	    
-	    thumbRect.x = trackRect.x;
-	    thumbRect.y = valuePosition - (thumbRect.height / 2);
+
+            if ( slider.getOrientation() == JSlider.HORIZONTAL ) {
+                int valuePosition = xPositionForValue(slider.getValue());
+
+            thumbRect.x = valuePosition;
+            thumbRect.y = trackRect.y - (thumbRect.height - trackRect.height) / 2;
+            }
+            else {
+                int valuePosition = yPositionForValue(slider.getValue());
+
+            thumbRect.x = trackRect.x;
+            thumbRect.y = valuePosition - (thumbRect.height / 2);
+            }
         }
-    }
 
-    /**
-     * Gets the height of the tick area for horizontal sliders and the width of the
-     * tick area for vertical sliders.  BasicSliderUI uses the returned value to
-     * determine the tick area rectangle.
-     * /
-    public int getTickLength() {
-        return slider.getOrientation() == JSlider.HORIZONTAL ? tickLength + TICK_BUFFER + 1 :
-        tickLength + TICK_BUFFER + 3;
-    }
+        /**
+         * Gets the height of the tick area for horizontal sliders and the width of the
+         * tick area for vertical sliders.  BasicSliderUI uses the returned value to
+         * determine the tick area rectangle.
+         * /
+        public int getTickLength() {
+            return slider.getOrientation() == JSlider.HORIZONTAL ? tickLength + TICK_BUFFER + 1 :
+            tickLength + TICK_BUFFER + 3;
+        }
 
-    /**
-     * Returns the shorter dimension of the track.
-     */
+        /**
+         * Returns the shorter dimension of the track.
+         */
     protected int getTrackWidth() {
         return trackWidth;
         /*
@@ -552,7 +553,7 @@ implements PlafConstants {
         return xPosition;
     }
 
-    
+
     /**
      * Returns a value give an x position.  If xPos is past the track at the left or the
      * right it will set the value to the min or max of the slider, depending if the
@@ -564,16 +565,16 @@ implements PlafConstants {
 	final int maxValue = slider.getMaximum();
 	final int trackLength = trackRect.width;
 //        int trackLength = trackRect.width + getThumbOverhang() * 2 - thumbRect.width;
-//	final int trackLeft = trackRect.x; 
+//	final int trackLeft = trackRect.x;
         int trackLeft = trackRect.x - getThumbOverhang();
 //	final int trackRight = trackRect.x + (trackRect.width - 1);
         int trackRight = trackRect.x + (trackRect.width - 1) + getThumbOverhang() - thumbRect.width;
-	
+
         //xPos -= getThumbOverhang();
 
         //System.out.print("ImageSliderui xPos:"+xPos+" trackLeft:"+trackLeft+" trackRight:"+trackRight+" max:"+maxValue+" value:");
-        
-        
+
+
 	if ( xPos <= trackLeft ) {
 	    value = drawInverted() ? maxValue : minValue;
 	} else if ( xPos >= trackRight ) {
@@ -583,21 +584,21 @@ implements PlafConstants {
 	    int valueRange = maxValue - minValue;
 	    double valuePerPixel = (double)valueRange / (double)trackLength;
 	    int valueFromTrackLeft = (int)Math.round( distanceFromTrackLeft * valuePerPixel );
-	    
+
 	    value = drawInverted() ? maxValue - valueFromTrackLeft :
 	      minValue + valueFromTrackLeft;
 	}
-	
+
 	return value;
     }
-    
+
     /**
      * Returns the longer dimension of the slide bar.  (The slide bar is only the
      * part that runs directly under the thumb)
      * /
-    protected int getTrackLength() {   
+    protected int getTrackLength() {
         if ( slider.getOrientation() == JSlider.HORIZONTAL ) {
-            return trackRect.width; 
+            return trackRect.width;
         }
         return trackRect.height;
     }*/

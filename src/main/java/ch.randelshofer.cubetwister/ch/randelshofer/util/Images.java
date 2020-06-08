@@ -1,5 +1,6 @@
-/* @(#)Images.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Images.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.util;
@@ -94,13 +95,13 @@ public class Images {
         if (image instanceof BufferedImage) {
             return (BufferedImage)image;
         }
-        
+
         // This code ensures that all the pixels in the image are loaded
         image = new ImageIcon(image).getImage();
-        
+
         // Create a buffered image with a format that's compatible with the screen
         BufferedImage bimage = null;
-        
+
         if (System.getProperty("java.version").startsWith("1.4.1_")) {
             // Workaround for Java 1.4.1 on Mac OS X.
             // For this JVM, we always create an ARGB image to prevent a class
@@ -119,8 +120,8 @@ public class Images {
                 // in order not to loose data.
                 hasAlpha = true;
             }
-            
-            
+
+
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             try {
                 // Determine the type of transparency of the new buffered image
@@ -128,7 +129,7 @@ public class Images {
                 if (hasAlpha) {
                     transparency = Transparency.TRANSLUCENT;
                 }
-                
+
                 // Create the buffered image
                 GraphicsDevice gs = ge.getDefaultScreenDevice();
                 GraphicsConfiguration gc = gs.getDefaultConfiguration();
@@ -138,7 +139,7 @@ public class Images {
                 //} catch (HeadlessException e) {
                 // The system does not have a screen
             }
-            
+
             if (bimage == null) {
                 // Create a buffered image using the default color model
                 int type = BufferedImage.TYPE_INT_RGB;
@@ -148,16 +149,16 @@ public class Images {
                 bimage = new BufferedImage(image.getWidth(null), image.getHeight(null), type);
             }
         }
-        
+
         // Copy image to buffered image
         Graphics g = bimage.createGraphics();
-        
+
         // Paint the image onto the buffered image
         g.drawImage(image, 0, 0, null);
         g.dispose();
-        
+
         return bimage;
-        
+
         // My own implementation:
         /*
         if (image instanceof BufferedImage) {
@@ -169,7 +170,7 @@ public class Images {
             MediaTracker t = new MediaTracker(f);
             t.addImage(image, 0);
             try { t.waitForAll(); } catch (InterruptedException e) {}
-         
+
             // Workaround for Java 1.4.1 on Mac OS X.
             if (System.getProperty("java.version").startsWith("1.4.1_")) {
                 bufImg = new BufferedImage(image.getWidth(f), image.getHeight(f), BufferedImage.TYPE_INT_ARGB);
@@ -187,7 +188,7 @@ public class Images {
             return bufImg;
         }*/
     }
-    
+
     /**
      * This method returns true if the specified image has transparent pixels
      *
@@ -200,7 +201,7 @@ public class Images {
             BufferedImage bimage = (BufferedImage)image;
             return bimage.getColorModel().hasAlpha();
         }
-        
+
         // Use a pixel grabber to retrieve the image's color model;
         // grabbing a single pixel is usually sufficient
         PixelGrabber pg = new PixelGrabber(image, 0, 0, 1, 1, false);
@@ -208,14 +209,14 @@ public class Images {
             pg.grabPixels();
         } catch (InterruptedException e) {
         }
-        
+
         // Get the image's color model
         // We must check for null here, because the pixel grabber
         // may not have been able to retrieve the color model.
         ColorModel cm = pg.getColorModel();
         return (cm != null) ? cm.hasAlpha() : false;
     }
-    
+
     /**
      * Splits an image into count subimages.
      */
@@ -225,7 +226,7 @@ public class Images {
         if (count == 1) {
             return new BufferedImage[] { src };
         }
-        
+
         BufferedImage[] parts = new BufferedImage[count];
         for (int i=0; i < count; i++) {
             if (isHorizontal) {

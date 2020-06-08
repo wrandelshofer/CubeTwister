@@ -1,7 +1,6 @@
-/* @(#)AbstractVCube7Geom3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
- *
- * Parts of the code are copyright (c) Markus Pirzer, Germany
+/*
+ * @(#)AbstractCube7Geom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 

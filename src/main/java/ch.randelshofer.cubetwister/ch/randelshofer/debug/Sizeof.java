@@ -1,5 +1,6 @@
-/* @(#)Sizeof.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Sizeof.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.debug;
 // ----------------------------------------------------------------------------
@@ -18,21 +19,21 @@ public class Sizeof {
         // "warm up" all classes/methods that we are going to use:
         runGC ();
         usedMemory ();
-        
+
         // array to keep strong references to allocated objects:
         final int count = 10000; // 10000 or so is enough for small ojects
         Object [] objects = new Object [count];
-        
-        
+
+
         long heap1 = 0;
 
         // allocate count+1 objects, discard the first one:
         for (int i = -1; i < count; ++ i)
         {
             Object object;
-            
+
             // INSTANTIATE YOUR DATA HERE AND ASSIGN IT TO 'object':
-            
+
             object = new Object (); // 8 bytes
             //object = new Integer (i); // 16 bytes
             //object = new Long (i); // same size as Integer?
@@ -40,7 +41,7 @@ public class Sizeof {
             //object = createString (9)+' '; // 72 bytes? the article explains why
             //object = new char [10]; // 32 bytes
             //object = new byte [32][1]; // 656 bytes?!
-          
+
             if (i >= 0)
                 objects [i] = object;
             else
@@ -53,14 +54,14 @@ public class Sizeof {
 
         runGC ();
         long heap2 = usedMemory (); // take an "after" heap snapshot:
-        
+
         final int size = Math.round (((float)(heap2 - heap1))/count);
         System.out.println ("'before' heap: " + heap1 +
                             ", 'after' heap: " + heap2);
         System.out.println ("heap delta: " + (heap2 - heap1) +
             ", {" + objects [0].getClass () + "} size = " + size + " bytes");
     }
-    
+
     // a helper method for creating Strings of desired length
     // and avoiding getting tricked by String interning:
     @Nonnull
@@ -68,7 +69,7 @@ public class Sizeof {
     {
         final char [] result = new char [length];
         for (int i = 0; i < length; ++ i) result [i] = (char) i;
-        
+
         return new String (result);
     }
 
@@ -91,7 +92,7 @@ public class Sizeof {
             s_runtime.runFinalization ();
             s_runtime.gc ();
             Thread.currentThread ().yield ();
-            
+
             usedMem2 = usedMem1;
             usedMem1 = usedMemory ();
         }
@@ -101,7 +102,7 @@ public class Sizeof {
     {
         return s_runtime.totalMemory () - s_runtime.freeMemory ();
     }
-    
+
     private static final Runtime s_runtime = Runtime.getRuntime ();
 
 } // end of class

@@ -1,5 +1,6 @@
-/* @(#)DOMOutput.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)JavaxDOMOutput.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.xml;
@@ -29,15 +30,15 @@ import java.util.HashMap;
  * @author  Werner Randelshofer
  */
 public class JavaxDOMOutput implements DOMOutput {
-    
-    
+
+
     /**
      * This map is used to marshall references to objects to
      * the XML DOM. A key in this map is a Java Object, a value in this map
      * is String representing a marshalled reference to that object.
      */
     private HashMap<Object,String> objectids;
-    
+
     /**
      * The document used for output.
      */
@@ -50,7 +51,7 @@ public class JavaxDOMOutput implements DOMOutput {
      * The factory used to create objects.
      */
     private DOMFactory factory;
-    
+
     /** Creates a new instance. */
     public JavaxDOMOutput(DOMFactory factory) throws IOException {
         this.factory = factory;
@@ -64,7 +65,7 @@ public class JavaxDOMOutput implements DOMOutput {
             throw error;
         }
     }
-    
+
     /**
      * Writes the contents of the DOMOutput into the specified output stream.
      */
@@ -91,7 +92,7 @@ public class JavaxDOMOutput implements DOMOutput {
             throw error;
         }
     }
-    
+
     /**
      * Puts a new element into the DOM Document.
      * The new element is added as a child to the current element in the DOM

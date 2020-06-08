@@ -1,5 +1,6 @@
-/* @(#)Images.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Images.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.image;
@@ -31,13 +32,13 @@ import java.net.URL;
  * @author  Werner Randelshofer, Karl von Randow
  */
 public class Images {
-    
+
     /** Prevent instance creation. */
     private Images() {
     }
     /*
     private static GraphiteFilter graphiteFilter;
-    
+
     private static GraphiteFilter getGraphiteFilter() {
         if (graphiteFilter == null) {
             graphiteFilter = new GraphiteFilter();
@@ -89,7 +90,7 @@ public class Images {
 
     /*
     private static Properties canGraphite;
-    
+
     private static boolean canGraphite(URL resource) {
         if (canGraphite == null) {
             synchronized (Images.class) {
@@ -111,7 +112,7 @@ public class Images {
         }
         return canGraphite.containsKey(file);
     }
-    
+
     /**
      * This method returns a buffered image with the contents of an image.
      *
@@ -122,7 +123,7 @@ public class Images {
         return Toolkit.getDefaultToolkit().
                 createImage(new FilteredImageSource(image.getSource(), getGraphiteFilter()));
     }*/
-    
+
     /**
      * Based on a code example from:
      * http://tams-www.informatik.uni-hamburg.de/applets/hades/webdemos/00-intro/02-imageprocessing/saturation.html
@@ -133,11 +134,11 @@ public class Images {
         private final static float saturationAdjust = 0.179f;
         private static float hueAdjust = 0.0052f;
         private static float brightnessAdjust = 0.09f;
-        
-        
-        private float[] hsb = new float[3];
-        
-        public int filterRGB(int x, int y, int rgb) {
+
+
+     private float[] hsb = new float[3];
+
+     public int filterRGB(int x, int y, int rgb) {
             int alpha = rgb & 0xff000000;
             int red = (rgb >> 16) & 0xff;
             int green = (rgb >> 8) & 0xff;
@@ -150,8 +151,8 @@ public class Images {
             float RW = (1f - saturationAdjust) * 0.333f; // or 0.299 for YIV values
             float RG = (1f - saturationAdjust) * 0.333f; // or 0.587 for YIV values
             float RB = (1f - saturationAdjust) * 0.333f; // or 0.114 for YIV values
-            
-            float a = RW + saturationAdjust;
+
+     float a = RW + saturationAdjust;
             float b = RW;
             float c = RW;
             float d = RG;
@@ -160,8 +161,8 @@ public class Images {
             float g = RB;
             float h = RB;
             float i = RB + saturationAdjust;
-            
-            int outputRed   = (int) (a*red + d*green + g*blue);
+
+     int outputRed   = (int) (a*red + d*green + g*blue);
             int outputGreen = (int) (b*red + e*green + h*blue);
             int outputBlue  = (int) (c*red + f*green + i*blue);
             return alpha | (outputRed << 16) | (outputGreen << 8) | (outputBlue);
@@ -269,7 +270,7 @@ public class Images {
             MediaTracker t = new MediaTracker(f);
             t.addImage(image, 0);
             try { t.waitForAll(); } catch (InterruptedException e) {}
-         
+
             // Workaround for Java 1.4.1 on Mac OS X.
             if (System.getProperty("java.version").startsWith("1.4.1_")) {
                 bufImg = new BufferedImage(image.getWidth(f), image.getHeight(f), BufferedImage.TYPE_INT_ARGB);
@@ -287,7 +288,7 @@ public class Images {
             return bufImg;
         }*/
     }
-    
+
     /**
      * This method returns true if the specified image has transparent pixels
      *
@@ -300,7 +301,7 @@ public class Images {
             BufferedImage bimage = (BufferedImage)image;
             return bimage.getColorModel().hasAlpha();
         }
-        
+
         // Use a pixel grabber to retrieve the image's color model;
         // grabbing a single pixel is usually sufficient
         PixelGrabber pg = new PixelGrabber(image, 0, 0, 1, 1, false);
@@ -308,12 +309,12 @@ public class Images {
             pg.grabPixels();
         } catch (InterruptedException e) {
         }
-        
+
         // Get the image's color model
         ColorModel cm = pg.getColorModel();
         return cm.hasAlpha();
     }
-    
+
     /**
      * Splits an image into count subimages.
      */
@@ -323,7 +324,7 @@ public class Images {
         if (count == 1) {
             return new BufferedImage[] { src };
         }
-        
+
         BufferedImage[] parts = new BufferedImage[count];
         for (int i=0; i < count; i++) {
             if (isHorizontal) {

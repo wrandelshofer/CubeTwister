@@ -1,5 +1,6 @@
-/* @(#)JCardPane.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)JCardPane.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -23,11 +24,11 @@ public class JCardPane extends javax.swing.JPanel {
     public JCardPane() {
         initComponents();
     }
-    
+
     public Container getContentPane() {
         return contentPane;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -90,7 +91,7 @@ public class JCardPane extends javax.swing.JPanel {
 
     private void componentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_componentAdded
         DefaultComboBoxModel m = (DefaultComboBoxModel) comboBox.getModel();
-        
+
     }//GEN-LAST:event_componentAdded
 
     private void componentRemoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_componentRemoved
@@ -100,11 +101,11 @@ public class JCardPane extends javax.swing.JPanel {
     private void itemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_itemStateChanged
        ((CardLayout) contentPane.getLayout()).show(contentPane, (String) comboBox.getSelectedItem());
     }//GEN-LAST:event_itemStateChanged
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboBox;
     private javax.swing.JPanel contentPane;
     // End of variables declaration//GEN-END:variables
-    
+
 }

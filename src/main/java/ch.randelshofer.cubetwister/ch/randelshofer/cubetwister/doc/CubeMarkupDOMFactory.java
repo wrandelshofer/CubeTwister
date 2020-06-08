@@ -1,5 +1,6 @@
-/* @(#)CubeMarkupDOMFactory.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeMarkupDOMFactory.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -11,18 +12,18 @@ import org.jhotdraw.annotation.Nonnull;
 import java.util.HashMap;
 /**
  * CubeMarkupDOMFactory.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class CubeMarkupDOMFactory implements DOMFactory {
-    
+
     /** Creates a new instance. */
     public CubeMarkupDOMFactory() {
     }
-    
+
 
     private final static int VERSION = 1;
-    
+
     private final static Object[][] classTagArray = {
         { CubeModel.class, "Cube" },
         { CubeColorModel.class, "Color" },
@@ -38,7 +39,7 @@ public class CubeMarkupDOMFactory implements DOMFactory {
             tagClassMap.put((String)classTagArray[i][1], (Class<?>)classTagArray[i][0]);
         }
     }
-    
+
     public Object create(String tagName) {
         try {
         return ((Class) tagClassMap.get(tagName)).newInstance();
@@ -58,5 +59,5 @@ public class CubeMarkupDOMFactory implements DOMFactory {
     public String getTagName(@Nonnull DOMStorable o) {
         return classTagMap.get(o.getClass());
     }
-    
+
 }

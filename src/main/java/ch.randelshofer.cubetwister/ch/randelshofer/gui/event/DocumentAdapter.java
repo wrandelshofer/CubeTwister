@@ -1,5 +1,6 @@
-/* @(#)DocumentAdapter.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DocumentAdapter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.event;
 
@@ -14,14 +15,14 @@ import javax.swing.text.JTextComponent;
 
 /**
  * An abstract adapter class for receiving window events.
- * The methods in this class are empty. 
- * This class exists as convenience for creating listener objects.  
+ * The methods in this class are empty.
+ * This class exists as convenience for creating listener objects.
  *
  * @author Werner Randelshofer
  */
-public class DocumentAdapter 
-implements DocumentListener {
-private JTextComponent textComponent;
+public class DocumentAdapter
+        implements DocumentListener {
+    private JTextComponent textComponent;
     /**
      * This counter is increased while the document adapter is updating
      * itself. If the counter is zero, the document adapter is not updating.
@@ -38,7 +39,7 @@ private JTextComponent textComponent;
     }
 
     /**
-     * Gives notification that a portion of the document has been 
+     * Gives notification that a portion of the document has been
      * removed.  The range is given in terms of what the view last
      * saw (that is, before updating sticky positions).
      *
@@ -50,9 +51,9 @@ private JTextComponent textComponent;
         }
         isUpdating--;
     }
-    
+
     /**
-     * Gives notification that there was an insert into the document.  The 
+     * Gives notification that there was an insert into the document.  The
      * range given by the DocumentEvent bounds the freshly inserted region.
      *
      * @param evt the document event
@@ -63,7 +64,7 @@ private JTextComponent textComponent;
         }
         isUpdating--;
     }
-    
+
     /**
      * Gives notification that an attribute or set of attributes changed.
      *

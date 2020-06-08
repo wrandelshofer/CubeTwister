@@ -1,5 +1,6 @@
-/* @(#)RubiksCuboctahedronFlat3D.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksCuboctahedronGeom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -185,7 +186,7 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
             Color color = getAttributes().getPartFillColor(partIndex);
             Shape3D shape = shapes[partIndex];
             int offset;
-            
+
             if (partIndex < edgeOffset) {
                 // corners
                 offset = 3;
@@ -199,7 +200,7 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
                 offset = 0;
             }
             //System.out.println("partIndex"+partIndex+" colr="+color+" faces="+shape.getFaceCount());
-            
+
             for (int i=shape.getFaceCount() - 1; i >= offset; i--) {
                 shape.setFillColor(i, color);
             }
@@ -214,37 +215,37 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
                 // ----------------------------
                 //0: Front Face: bottom-left, top-right, bottom-right
                 2,-8,9,  8,-2,9,   8,-8,9,
-                
-                //3: Right Face: top-center, top-back, center-back, bottom-center, bottom-front, center-front
+
+                    //3: Right Face: top-center, top-back, center-back, bottom-center, bottom-front, center-front
                 9,8,-1,  9,8,-8,  9,-5,-8,  9,-8,-5,  9,-8,8,  9,-1,8,
-                
-                //9: Bottom Face: front-center, front-right, center-right, back-center, back-left, center-left
+
+                    //9: Bottom Face: front-center, front-right, center-right, back-center, back-left, center-left
                 1,-9,8,  8,-9,8,  8,-9,-5,  5,-9,-8,  -8,-9,-8,  -8,-9,-1,
-                
-                //15: Back Face: up-right, up-center, center-left, down-left, down-center, center-right
+
+                    //15: Back Face: up-right, up-center, center-left, down-left, down-center, center-right
                 8,8,-9,  1,8,-9,  -8,-1,-9, -8,-8,-9,  5,-8,-9,  8,-5,-9,
-                
-                //21: Left Face: top-back, bottom-front, bottom-back
+
+                    //21: Left Face: top-back, bottom-front, bottom-back
                 -9,-2,-8,  -9,-8,-2, -9,-8,-8,
-                
-                //24: Top Face: back-left, back-right, front-right
+
+                    //24: Top Face: back-left, back-right, front-right
                 2,9,-8,  8,9,-8,   8,9,-2,
-                
-                //27: Oblique face: center-top-back, right-top-center, right-center-front,
+
+                    //27: Oblique face: center-top-back, right-top-center, right-center-front,
                 // center-bottom-front, left-bottom-center, left-center-back
                 0,8,-8, 8,8,0, 8,0,8, 0,-8,8, -8,-8,0, -8,0,-8,
-                
-                // Vertices of the additional cubicle at the bottom right
+
+                    // Vertices of the additional cubicle at the bottom right
                 //33
                 9,-4,-14, 14,-4,-14, 9,-4,-9,   14,-4,-9,
-                
-                //37
+
+                    //37
                 4,-9,-14, 4,-9,-9,   4,-14,-14, 4,-14,-9,
-                
-                //41
+
+                    //41
                 9,-14,-4, 14,-14,-4, 9,-9,-4, 14,-9,-4, 14,-14,-14
             };
-            
+
         }
         if (CORNER_FACES == null) {
             CORNER_FACES = new int[][] {
@@ -254,14 +255,14 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
                 {2, 0, 1},     //Front face    is relevant, for method
                 {22, 23, 21}, //Left face     updateStickersFillColor()
                 {27, 28, 29, 30, 31, 32}, //Hexagon
-                
-                // Faces with outlines
+
+                    // Faces with outlines
                 // (all faces which have outlines must be
                 // at the beginning, this is relevant
                 // for method updatePartsOutlineColor()
                 //--------------------------------------
-                
-                // Faces of the additional cubicle at the bottom right
+
+                    // Faces of the additional cubicle at the bottom right
                 {33+10, 33+11, 33+9, 33+8},
                 {33+11, 33+3, 33+1, 33+12, 33+9},
                 {33+1, 33+0, 33+4, 33+6, 33+12},
@@ -272,41 +273,41 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
                 {33+2, 33+10, 33+5},
                 {33+0, 33+1, 33+3, 33+2},
                 {33+12, 33+6, 33+7, 33+8, 33+9},
-                
-                // Faces of the main cubicle
+
+                    // Faces of the main cubicle
                 {3, 4, 5, 6, 7, 8},     //Right Face
                 {9, 10, 11, 12, 13, 14}, //Bottom Face
                 {15, 16, 17, 18, 19, 20},//Back Face
-                
-                // Faces without outlines
+
+                    // Faces without outlines
                 //--------------------------------------
                 // Triangles at the corners of the main cubicle
                 {7, 10, 2}, //Bottom Front Right
                 {13, 18, 23},//Bottom Back Left
                 {25, 15, 4}, //Top Back Right
-                
-                {27, 16, 24}, // Hexagon Back Top
+
+                    {27, 16, 24}, // Hexagon Back Top
                 {28, 26, 3}, // Hexagon Top Right
                 {29, 8, 1}, //Hexagon Rigth Front
                 {30, 0, 9}, //Hexagon Front Bottom
                 {31, 14, 22}, // Hexagon Bottom Left
                 {32, 21, 17}, // Hexagon Left Back
-                
-                
-                // Edges of the main cubicle
+
+
+                    // Edges of the main cubicle
                 {26, 25, 4, 3},   //Top Right
                 {25, 24, 16, 15}, //Top Back
-                
-                {10, 9, 0, 2},    //Bottom Front
+
+                    {10, 9, 0, 2},    //Bottom Front
                 {11, 10, 7, 6},   //Bottom Right
                 {13, 12, 19, 18}, //Bottom Back
                 {14, 13, 23, 22},  //Bottom Left
-                
-                {2, 1, 8, 7},     //Front Right
+
+                    {2, 1, 8, 7},     //Front Right
                 {15, 20, 5, 4},   //Back Right
                 {18, 17, 21, 23}, //Back Left
-                
-                {27, 24, 26, 28}, // Hexagon Top
+
+                    {27, 24, 26, 28}, // Hexagon Top
                 {28, 3, 8, 29}, // Hexagon Top Right
                 {29, 1, 0, 30}, // Hexagon Bottom Right
                 {30, 9, 14, 31}, // Hexagon Bottom
@@ -314,13 +315,13 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
                 {32, 17, 16, 27}, // Hexagon Top Left
             };
         }
-        
+
         for (int i = 0; i < cornerCount; i++) {
             shapes[cornerOffset+i] = new Shape3D(CORNER_VERTS, CORNER_FACES, new Color[CORNER_FACES.length][2]);
         }
-        
+
     }
-    
+
     private static float[] EDGE_VERTS;
     private static int[][] EDGE_FACES;
     protected void initEdges() {
@@ -330,34 +331,34 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
         //-----------------------------
         //0: Front Face: center-left, top-center, center-right, bottom-right, bottom-left
         -8,0,9,  0,8,9,  8,0,9,   8,-8,9,   -8,-8,9,
-        
-        //5: Right Face: center-front, top-center, top-back, center-back, bottom-center, bottom-front
+
+                    //5: Right Face: center-front, top-center, top-back, center-back, bottom-center, bottom-front
         9,0,8,  9,8,0,  9,8,-8,  9,-4,-8, 9,-8,-4, 9,-8,8,
-        
-        //11: Bottom Face: front-left, front-right, back-right, back-left
+
+                    //11: Bottom Face: front-left, front-right, back-right, back-left
         -8,-9,8,  8,-9,8, 8,-9,-3, -8,-9,-3,
-        
-        //15: Back Face: up-right, up-left, down-left, down-right
+
+                    //15: Back Face: up-right, up-left, down-left, down-right
         8,8,-9,  -8,8,-9,  -8,-3,-9, 8,-3,-9,
-        
-        //19: Left Face: top-back, top-center, center-front, bottom-front, bottom-center, center-back
+
+                    //19: Left Face: top-back, top-center, center-front, bottom-front, bottom-center, center-back
         -9,8,-8,  -9,8,0, -9,0,8,  -9,-8,8, -9,-8,-4, -9,-4,-8,
-        
-        //25: Top Face: back-left, back-right, center-right, front-center, center-left
+
+                    //25: Top Face: back-left, back-right, center-right, front-center, center-left
         -8,9,-8,  8,9,-8,   8,9,0,  0,9,8,  -8,9,0,
-        
-        //30: Top Right Triangle: top-front, right-back, right-front;
+
+                    //30: Top Right Triangle: top-front, right-back, right-front;
         1,8,8,  8,8,1,  8,1,8,
-        
-        //33: Top Left Triangle: back-left, right-front, left-front;
+
+                    //33: Top Left Triangle: back-left, right-front, left-front;
         -8,8,1,  -1,8,8,  -8,1,8,
-        
-        // Vertices of the additional cubicle at the back bottom.
+
+                    // Vertices of the additional cubicle at the back bottom.
         //-------------------------------------------------------
         //36
         4,-3,-9,  4,-1,-9,  4,-1,-14,  4,-14,-14,  4,-14,-1,  4,-9,-1, 4,-9,-3,
-        
-        //43
+
+                    //43
         -4,-3,-9,  -4,-1,-9, -4,-1,-14, -4,-14,-14, -4,-14,-1, -4,-9,-1, -4,-9,-3
     };
 }
@@ -369,8 +370,8 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
         {25, 26, 27, 28, 29}, //Top    for method updateStickersFillColor
         {30, 31, 32}, // Triangle top right
         {33, 34, 35}, // Triangle top left
-        
-        // Faces with outlines
+
+                    // Faces with outlines
         // (all faces which have outlines must be
         // at the beginning, this is relevant
         // for method updatePartsOutlineColor()
@@ -379,37 +380,37 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
         {36+0,36+1,36+2},
         {36+0,36+2,36+3,36+4,36+6},
         {36+4,36+5,36+6},
-        
-        {36+9,36+8,36+7},
+
+                    {36+9,36+8,36+7},
         {36+13,36+11,36+10,36+9,36+7},
         {36+13,36+12,36+11},
-        
-        {36+1,36+8,36+9,36+2},
+
+                    {36+1,36+8,36+9,36+2},
         {36+2,36+9,36+10,36+3},
         {36+3,36+10,36+11,36+4},
         {36+5,36+4,36+11,36+12},
-        
-        // Faces without outlines
+
+                    // Faces without outlines
         //--------------------------------------
         // Faces of the main cubicle
         {5, 6, 7, 8, 9, 10}, //Right
         {11, 12, 13, 14},     //Bottom
         {15, 16, 17, 18},         //Back
         {19, 20, 21, 22, 23, 24},   //Left
-        
-        
-        // Triangular faces at the corners of the main cubicle
+
+
+                    // Triangular faces at the corners of the main cubicle
         {29, 33, 20}, //Top Front Left
         {27, 6, 31}, //Top Right Front
         {25,19,16}, //Top Left Back
         {26,15,7}, //Top Back Right
         {11,22,4}, //Bottom Left Front
         {12,3,10}, //Bottom Front Right
-        
-        {5,2,32}, //Right, Front, Triangle right
+
+                    {5,2,32}, //Right, Front, Triangle right
         {35,0,21}, //Triangle left, Front, Left
-        
-        // Edges of the main cubicle
+
+                    // Edges of the main cubicle
         {27,26,7,6}, //Top Right
         {26,25,16,15},   //Top Back
         {25,29,20,19},  //Top Left
@@ -420,18 +421,18 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
         {0,4,22,21},     //Front Left
         {15,18,8,7},   //Back Right
         {17,16,19,24},   //Back Left
-        
-        {8,18,17,24,23,14,13,9}, // Back Down
-        
-        {1, 30, 32, 2}, // Front, Triangle right
+
+                    {8,18,17,24,23,14,13,9}, // Back Down
+
+                    {1, 30, 32, 2}, // Front, Triangle right
         {35, 34, 1, 0}, // Triangle left, Front
         {29, 28, 34, 33}, // Top, Triangle left
         {28, 27, 31, 30}, // Top, Triangle Right
-        
-        {32, 31, 6, 5}, // Triangle right, Right
+
+                    {32, 31, 6, 5}, // Triangle right, Right
         {33, 35, 21, 20}, // Triangle left, Left
-        
-        {34, 28, 1}, // Triangle left, Top Front Center
+
+                    {34, 28, 1}, // Triangle left, Top Front Center
         {1, 28, 30}, // Top Front Center, Triangle Right
     };
     }
@@ -439,7 +440,7 @@ public class RubiksCuboctahedronGeom3D extends AbstractRubiksCubeGeom3D {
             shapes[edgeOffset+i] = new Shape3D(EDGE_VERTS, EDGE_FACES, new Color[EDGE_FACES.length][4]);
         }
     }
-    
+
     protected void initActions() {
         int i, j;
         for (i=0; i < cornerCount; i++) {

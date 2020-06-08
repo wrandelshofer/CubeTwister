@@ -1,5 +1,6 @@
-/* @(#)MutableJTable.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableJTable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui;
 
@@ -50,25 +51,25 @@ public class MutableJTable
     private final static long serialVersionUID = 1L;
     //private boolean isStriped;
     //private Color alternateColor = new Color(237, 243, 254);
-    
-    
+
+
     private final static boolean VERBOSE = true;
     /**
      * Holds locale specific resources.
      */
     private ResourceBundleUtil labels;
-    
+
     /**
      * Listener for popup mouse events.
      */
     private MouseAdapter popupListener;
-    
+
     /**
      * Popup button at the top right corner
      * of the enclosing scroll pane.
      */
     private JButton popupButton;
-    
+
     /**
      * Creates a MutableJTable with a sample model.
      */
@@ -83,13 +84,13 @@ public class MutableJTable
         super(model);
         init();
     }
-    
+
     /**
      * This method is called from the constructor to initialize the Object.
      */
     private void init() {
         initComponents();
-        
+
         // The popup button will be placed on the top right corner
         // of the parent JScrollPane when the MutableJList is
         // added to a JScrollPane.
@@ -104,7 +105,7 @@ public class MutableJTable
             }
         }
         );
-        
+
         // The popup listener provides an alternative way for
         // opening the popup menu.
         popupListener = new MouseAdapter() {
@@ -121,14 +122,14 @@ public class MutableJTable
             }
         };
         addMouseListener(popupListener);
-        
+
         // All locale specific and LAF specific
         // labels are read from a resource bundle.
         initLabels(Locale.getDefault());
 
         setTransferHandler(new MutableTableTransferHandler());
     }
-    
+
     public JButton getPopupButton() {
         return popupButton;
     }
@@ -159,12 +160,12 @@ public class MutableJTable
                 unregisterKeyboardAction(keyStroke);
             }
         }
-        
+
         // get the locale and LAF specific resources
         labels = new ResourceBundleUtil(ResourceBundle.getBundle(
                 "ch.randelshofer.gui.Labels", locale
                 ));
-        
+
         // install key strokes
         if (labels != null) {
             if (null != (keyStroke = labels.getKeyStroke("edit.new.accelerator"))) {
@@ -178,7 +179,7 @@ public class MutableJTable
                         WHEN_FOCUSED
                         );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.duplicate.accelerator"))) {
                 registerKeyboardAction(
                         new ActionListener() {
@@ -190,28 +191,28 @@ public class MutableJTable
                         WHEN_FOCUSED
                         );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.cut.accelerator"))) {
                 registerKeyboardAction(new CutAction(this),
                         keyStroke,
                         WHEN_FOCUSED
                         );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.copy.accelerator"))) {
                 registerKeyboardAction(new CopyAction(this),
                         keyStroke,
                         WHEN_FOCUSED
                         );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.paste.accelerator"))) {
                 registerKeyboardAction(new PasteAction(this),
                         keyStroke,
                         WHEN_FOCUSED
                         );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.delete.accelerator"))) {
                 registerKeyboardAction(
                         new ActionListener() {
@@ -230,7 +231,7 @@ public class MutableJTable
      */
     protected void configureEnclosingScrollPane() {
         super.configureEnclosingScrollPane();
-        
+
         Container p = getParent();
         if (p instanceof JViewport) {
             Container gp = p.getParent();
@@ -243,7 +244,7 @@ public class MutableJTable
                 if (viewport != null && viewport.getView() == this) {
                     // Install a mouse listener for the popup menu
                     viewport.addMouseListener(popupListener);
-                    
+
                     // Install a popup button at the top right corner
                     // of the JScrollPane
                     scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, popupButton);
@@ -260,12 +261,12 @@ public class MutableJTable
     protected JPopupMenu createPopup() {
         final int[] selectedRows = getSelectedRows();
         int leadSelectionRow = (selectedRows.length == 0) ? -1 : getSelectionModel().getLeadSelectionIndex();
-        
-        
+
+
         final MutableTableModel model = (MutableTableModel) getModel();
         JPopupMenu popup = new JPopupMenu();
         JMenuItem item;
-        
+
         // add the "New Row" menu item.
         final int newRow = (leadSelectionRow == -1) ? getRowCount() : leadSelectionRow + 1;
         Object[] types = model.getCreatableRowTypes(newRow);
@@ -289,7 +290,7 @@ public class MutableJTable
             popup.add(item);
         }
         if (popup.getComponentCount() > 0) popup.addSeparator();
-        
+
         // add the "Cut" menu item.
         item = new JMenuItem(labels.getString("edit.cut.text"));
         item.setMnemonic(labels.getMnemonic("edit.cut.mnemonic"));
@@ -307,8 +308,8 @@ public class MutableJTable
         }
         item.setEnabled(b);
         popup.add(item);
-        
-        
+
+
         // add the "Copy" menu item.
         item = new JMenuItem(labels.getString("edit.copy.text"));
         item.setMnemonic(labels.getMnemonic("edit.copy.mnemonic"));
@@ -318,8 +319,8 @@ public class MutableJTable
         item.addActionListener(new CopyAction(this));
         item.setEnabled(selectedRows.length > 0);
         popup.add(item);
-        
-        
+
+
         // add the "Paste" menu item.
         item = new JMenuItem(labels.getString("edit.paste.text"));
         item.setMnemonic(labels.getMnemonic("edit.paste.mnemonic"));
@@ -327,7 +328,7 @@ public class MutableJTable
             item.setAccelerator(labels.getKeyStroke("edit.paste.accelerator"));
         item.setIcon(labels.getSmallIconProperty("edit.pasteIcon", getClass()));
         item.addActionListener(new PasteAction(this));
-        
+
         // Enable paste, if the lead selection row allows insertion
         b = model.isRowAddable(leadSelectionRow);
         // Disable paste, if at least one of the selected rows is not removeable
@@ -350,8 +351,8 @@ public class MutableJTable
         }
         item.setEnabled(b);
         popup.add(item);
-        
-        
+
+
         if (leadSelectionRow != -1) {
             // Add the duplicate row menu item
             item = new JMenuItem(labels.getString("edit.duplicate.text"));
@@ -382,8 +383,8 @@ public class MutableJTable
             }
             );
             popup.add(item);
-            
-            
+
+
             // add the "Delete" menu item.
             item = new JMenuItem(labels.getString("edit.delete.text"));
             item.setMnemonic(labels.getMnemonic("edit.delete.mnemonic"));
@@ -411,7 +412,7 @@ public class MutableJTable
             );
             popup.add(item);
         }
-        
+
         // add the "Select All" menu item
         item = new JMenuItem(labels.getString("edit.selectAll.text"));
         item.setMnemonic(labels.getMnemonic("edit.selectAll.mnemonic"));
@@ -429,8 +430,8 @@ public class MutableJTable
         );
         item.setEnabled(true);
         popup.add(item);
-        
-        
+
+
         if (leadSelectionRow != -1) {
             // Add actions provided by the MutableTableModel
             HashMap<String,JMenu> menus = new HashMap<String,JMenu>();
@@ -451,10 +452,10 @@ public class MutableJTable
                 }
             }
         }
-        
+
         return popup;
     }
-    
+
     /**
      * Unconfigures the enclosing scroll pane.
      */
@@ -471,7 +472,7 @@ public class MutableJTable
                 if (viewport != null && viewport.getView() == this) {
                     // Remove the previously installed mouse listener for the popup menu
                     viewport.removeMouseListener(popupListener);
-                    
+
                     // Remove the popup button from the top right corner
                     // of the JScrollPane
                     try {
@@ -501,7 +502,7 @@ public class MutableJTable
         super.setLocale(l);
         initLabels(l);
     }
-    
+
     public void updateUI() {
         super.updateUI();
         if ("MacOS".equals(UIManager.getLookAndFeel().getName())) {
@@ -516,7 +517,7 @@ public class MutableJTable
     private void initComponents() {//GEN-BEGIN:initComponents
 
     }//GEN-END:initComponents
-    
+
     /**
      * Inserts a new row after the lead selection row,
      * if the model allows it.
@@ -557,7 +558,7 @@ public class MutableJTable
             }
         }
     }
-    
+
     /** Duplicates the selected region.
      */
     @Override
@@ -565,7 +566,7 @@ public class MutableJTable
         int[] selectedRows = getSelectedRows();
         if (selectedRows.length > 0) {
             MutableTableModel m = (MutableTableModel) getModel();
-            
+
             int row = getSelectionModel().getLeadSelectionIndex() + 1;
             if (m.isRowAddable(row)) {
                 try {
@@ -584,7 +585,7 @@ public class MutableJTable
             }
         }
     }
-    
+
     /**
      * Sets the enabled state of the component.
      */
@@ -597,8 +598,8 @@ public class MutableJTable
     public boolean isSelectionEmpty() {
         return getSelectionModel().isSelectionEmpty();
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

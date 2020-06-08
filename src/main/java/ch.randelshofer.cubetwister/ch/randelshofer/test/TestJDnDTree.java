@@ -1,13 +1,15 @@
-/* @(#)TestDnDJList.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TestJDnDTree.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.test;
 
-import javax.swing.*;
-import ch.randelshofer.gui.*;
-import ch.randelshofer.gui.tree.*;
-import javax.swing.tree.*;
+import ch.randelshofer.gui.tree.DefaultMutableTreeModel;
+
+import javax.swing.UIManager;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.MutableTreeNode;
 
 /**
  * A JFrame with two DnDJLists.
@@ -32,7 +34,7 @@ public class TestJDnDTree extends javax.swing.JFrame {
         m.insertNodeInto(new DefaultMutableTreeNode("isabelle"), (MutableTreeNode) m.getRoot(), m.getChildCount(m.getRoot()));
         m.insertNodeInto(new DefaultMutableTreeNode("josef"), (MutableTreeNode) m.getRoot(), m.getChildCount(m.getRoot()));
         m.insertNodeInto(new DefaultMutableTreeNode("lena"), (MutableTreeNode) m.getRoot(), m.getChildCount(m.getRoot()));
-        
+
         tree1.setModel(m);
         //list1.set
 
@@ -40,12 +42,12 @@ public class TestJDnDTree extends javax.swing.JFrame {
         m.insertNodeInto(new DefaultMutableTreeNode("1"), (MutableTreeNode) m.getRoot(), m.getChildCount(m.getRoot()));
         m.insertNodeInto(new DefaultMutableTreeNode("2"), (MutableTreeNode) m.getRoot(), m.getChildCount(m.getRoot()));
         m.insertNodeInto(new DefaultMutableTreeNode("3"), (MutableTreeNode) m.getRoot(), m.getChildCount(m.getRoot()));
- 
+
         tree2.setModel(m);
-        
+
         setSize(600,400);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -108,25 +110,25 @@ public class TestJDnDTree extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     /** Exit the Application */
     private void exitForm(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitForm
         System.exit(0);
     }//GEN-LAST:event_exitForm
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Throwable e) {
         }
         new TestJDnDTree().setVisible(true);
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -134,5 +136,5 @@ public class TestJDnDTree extends javax.swing.JFrame {
     private ch.randelshofer.gui.JDnDTree tree1;
     private ch.randelshofer.gui.JDnDTree tree2;
     // End of variables declaration//GEN-END:variables
-    
+
 }

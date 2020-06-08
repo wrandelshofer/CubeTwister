@@ -1,5 +1,6 @@
-/* @(#)ScriptMacrosTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptMacrosTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -64,7 +65,7 @@ implements PropertyChangeListener {
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * Returns the value for the cell at <I>columnIndex</I> and <I>rowIndex</I>.
      *
@@ -84,7 +85,7 @@ implements PropertyChangeListener {
         }
         return null; // should never happen
     }
-    
+
     /**
      * Returns the name of the column at <i>columnIndex</i>.  This is used
      * to initialize the table's column header name.  Note: this name does
@@ -97,7 +98,7 @@ implements PropertyChangeListener {
     public String getColumnName(int columnIndex) {
         return columnNames[columnIndex];
     }
-    
+
     /**
      * Invoke this to insert a new row into the table.
      *
@@ -123,14 +124,14 @@ implements PropertyChangeListener {
         }
         ((DocumentModel) treeModel).insertNodeInto(item, treeNode, row + 1);
     }
-    
+
     /**
-     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to 
+     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to
      * <I>aValue</I> is the new value.
      *
-     * @param    aValue         the new value
-     * @param    row     the row whose value is to be changed
-     * @param    column     the column whose value is to be changed
+     * @param aValue the new value
+     * @param row    the row whose value is to be changed
+     * @param column the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
@@ -151,7 +152,7 @@ implements PropertyChangeListener {
                 break;
         }
     }
-    
+
     /**
      * Returns the number of columns in the model. A
      * <B>JTable</B> uses this method to determine how many columns it

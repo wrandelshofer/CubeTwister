@@ -1,6 +1,6 @@
-/* @(#)SwingWorker.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland.
- * You may only use this software in accordance with the license terms.
+/*
+ * @(#)SwingWorker.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui;
 

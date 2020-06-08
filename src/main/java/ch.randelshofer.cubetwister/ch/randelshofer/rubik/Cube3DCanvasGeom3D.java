@@ -1,5 +1,6 @@
-/* @(#)Cube3DCanvasFlat3D.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cube3DCanvasGeom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik;
@@ -17,9 +18,9 @@ import java.awt.Component;
 import java.awt.Image;
 
 /**
- * A Cube3DCanvas which can display a Cube3D which is built using the Geom3D 
+ * A Cube3DCanvas which can display a Cube3D which is built using the Geom3D
  * rendering engine.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class Cube3DCanvasGeom3D
@@ -54,71 +55,71 @@ public class Cube3DCanvasGeom3D
         canvas3D.setInteractionMode(JCanvas3D.Interaction.ROTATE_AND_SWIPE);
         setCube3D(cube3D);
     }
-    
+
     @Override
     public Component getVisualComponent() {
         return canvas3D;
     }
-    
+
     public void setInitialOrientation(float alpha, float beta, float gamma) {
         transform = new Transform3D();
         transform.rotateY(beta);
         transform.rotateX(alpha);
         canvas3D.setTransform(transform);
     }
-    
+
     @Override
     public void reset() {
         canvas3D.setTransform(transform);
     }
-    
+
     @Override
     public void setBackground(Color color) {
         canvas3D.setBackground(color);
     }
-    
+
     @Override
     public void setBackgroundImage(Image image) {
         canvas3D.setBackgroundImage(image);
     }
-    
+
     public void setAmbientLightIntensity(double intensity) {
         canvas3D.setAmbientLightIntensity(intensity);
     }
-    
+
     public void setLightSourceIntensity(double intensity) {
         canvas3D.setLightSourceIntensity(intensity);
     }
-    
+
     public void setLightSource(Point3D p) {
         canvas3D.setLightSource(p);
     }
-    
+
     @Override
     public Cube3D getCube3D() {
         return cube3D;
-        
+
     }
-    
+
     @Override
     public void setCube3D(Cube3D newValue) {
         Cube3D oldValue = cube3D;
-        
+
         if (cube3D != null) {
             cube3D.removeChangeListener(canvas3D);
         }
-        
+
         cube3D = newValue;
-        
+
         if (cube3D != null) {
             canvas3D.setScene((Scene3D) cube3D.getScene());
             canvas3D.setLock(cube3D.getLock());
             cube3D.addChangeListener(canvas3D);
         }
-        
+
         firePropertyChange("cube3D", oldValue, newValue);
     }
-    
+
     @Override
     public void setCamera(String cameraName) {
         if ("Rear".equals(cameraName)) {
@@ -142,7 +143,7 @@ public class Cube3DCanvasGeom3D
     public void setLock(Object lock) {
         canvas3D.setLock(lock);
     }
-    
+
     public JCanvas3D getCanvas3D() {
             return canvas3D;
             }

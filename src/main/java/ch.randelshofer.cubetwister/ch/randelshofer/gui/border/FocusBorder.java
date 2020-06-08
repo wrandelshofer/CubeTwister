@@ -1,11 +1,11 @@
-/* @(#)FocusBorder.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)FocusBorder.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.border;
 
-import java.awt.*;
-import javax.swing.border.Border;
+import java.awt.Color;
 /**
  *
  * @author Werner Randelshofer
@@ -18,7 +18,7 @@ public class FocusBorder extends javax.swing.border.MatteBorder {
         super(top, left, bottom, right, matteColor);
     }
 
-   
+
     /**
      * Sets the matte color of the border.
      * If you set this value to null you must set the tile icon to a

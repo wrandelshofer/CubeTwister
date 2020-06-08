@@ -1,5 +1,6 @@
-/* @(#)CubeMacrosTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NotationMacrosTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -69,7 +70,7 @@ public class NotationMacrosTableModel
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * Invoke this to insert a new row into the table.
      *
@@ -92,7 +93,7 @@ public class NotationMacrosTableModel
     @Override
     public Object getValueAt(int row, int column) {
         MacroModel item = (MacroModel) treeNode.getChildAt(row);
-        
+
         switch (column) {
             case 0 : return item.getIdentifier();
             case 1 : return item.getScript();
@@ -100,7 +101,7 @@ public class NotationMacrosTableModel
         }
         return null; // should never happen
     }
-    
+
     /**
      * Returns the name of the column at <i>columnIndex</i>.  This is used
      * to initialize the table's column header name.  Note: this name does
@@ -124,7 +125,7 @@ public class NotationMacrosTableModel
      * item.setIdentifier("Macro");
      * ((DocumentModel) treeModel).insertNodeInto(item, treeNode, row);
      * }*/
-    
+
     /**
      * Returns true if the cell at <I>rowIndex</I> and <I>columnIndex</I>
      * is editable.  Otherwise, setValueAt() on the cell will not change
@@ -139,7 +140,7 @@ public class NotationMacrosTableModel
     public boolean isCellEditable(int row, int column) {
         return true;
     }
-    
+
     /**
      * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to
      * <I>aValue</I> is the new value.
@@ -167,7 +168,7 @@ public class NotationMacrosTableModel
                 break;
         }
     }
-    
+
     /**
      * Returns the number of columns in the model. A
      * <B>JTable</B> uses this method to determine how many columns it
@@ -204,7 +205,7 @@ public class NotationMacrosTableModel
         item.setIdentifier("unnamed");
         ((DocumentModel) treeModel).insertNodeInto(item, treeNode, row);
     }
-    
+
     // Datatransfer operations
     // =======================
 
@@ -258,7 +259,7 @@ public class NotationMacrosTableModel
             } else {
                 throw new UnsupportedFlavorException(tableFlavor);
             }
-            
+
             DefaultMutableTreeNode macros = model.getMacroModels();
             for (int i=0; i < transferData.length; i++) {
                 MacroModel item = new MacroModel();
@@ -278,8 +279,8 @@ public class NotationMacrosTableModel
                     }
                     }
                 }
-                
-                
+
+
             }
             //justifyRows(row, row + transferData.length - 1);
             fireTableRowsInserted(row, row + transferData.length);

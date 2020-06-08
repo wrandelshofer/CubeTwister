@@ -1,5 +1,6 @@
-/* @(#)RevengeCubeGeom3D.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RevengeCubeGeom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -253,7 +254,7 @@ public class RevengeCubeGeom3D extends AbstractRevengeCubeGeom3D {
         float[] verts = {
         //0:luff      ldff       ruff       rdff
         -15, 15, 15,  -15,-15, 15,   15, 15, 15,   15,-15, 15,
-        
+
         //4:rubb,    rdbb,       lubb,       ldbb
         15,15,-15,   15,-15,-15,   -15,15,-15,  -15,-15,-15,
         };
@@ -265,13 +266,13 @@ public class RevengeCubeGeom3D extends AbstractRevengeCubeGeom3D {
         {2, 4, 5, 3}, //Right
         {3, 5, 7, 1}, //Bottom
         };
-        
+
         Color[][] colors = new Color[faces.length][2];
         Color[] faceColor = {PART_FILL_COLOR, null};
         for (int j=0; j < faces.length; j++) {
         colors[j] = faceColor;
         }
-        
+
         shapes[centerOffset] = new Shape3D(verts, faces, colors);
          */
         float[] verts = {};

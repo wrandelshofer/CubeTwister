@@ -1,5 +1,6 @@
-/* @(#)ListModels.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ListModels.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.list;
@@ -30,7 +31,7 @@ import java.util.StringTokenizer;
  * @author Werner Randelshofer
  */
 public class ListModels {
-    
+
     /**
      * Suppresses default constructor, ensuring non-instantiability.
      */
@@ -168,14 +169,14 @@ public class ListModels {
         }
         return list;
     }
-    
+
     /**
      * Returns the contents of the transferable as
      * a list of strings. Where each string is determined
      * by reading a line of text from the transferable
      *
      * @exception UnsupportedFlavorException
-     * If the transferable does not support 
+     * If the transferable does not support
      * <code>DataFlavor.getTextPlainUnicodeFlavor()</code>
      */
     @Nonnull

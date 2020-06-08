@@ -1,3 +1,8 @@
+/*
+ * @(#)ConvexClippingTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.geom3d;
 
 import org.jhotdraw.annotation.Nonnull;

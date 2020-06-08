@@ -1,14 +1,12 @@
-/* @(#)ImageWellModel.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ImageWellModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.beans.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import javax.swing.event.ChangeListener;
+import java.awt.Image;
 /**
  * Model for JImageWell component.
  *

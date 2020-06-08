@@ -1,5 +1,6 @@
-/* @(#)NotationMovesView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NotationMovesView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -17,7 +18,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * NotationMovesView.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class NotationMovesView extends JPanel implements EntityView {

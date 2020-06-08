@@ -1,34 +1,37 @@
-/* @(#)SystemColorsInspector.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)SystemColorsInspector.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.debug;
 
 //import ch.randelshofer.gui.table.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.table.*;
+
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  * Displays the current system colors.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class SystemColorsInspector extends javax.swing.JPanel {
-        private final static long serialVersionUID = 1L;
+    private final static long serialVersionUID = 1L;
 
     /** Creates new form SystemColorsInspector */
     public SystemColorsInspector() {
         initComponents();
-        
+
         table.setModel(new SystemColorsTableModel());
         UIDefaultsCellRenderer r = new UIDefaultsCellRenderer();
         r.setFont(new Font("Dialog", Font.PLAIN, 22));
         table.getColumnModel().getColumn(0).setCellRenderer(r);
         table.getColumnModel().getColumn(1).setCellRenderer(r);
     }
-    
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() { public void run() {
 
@@ -69,11 +72,11 @@ public class SystemColorsInspector extends javax.swing.JPanel {
         add(scrollPane, java.awt.BorderLayout.CENTER);
 
     }//GEN-END:initComponents
-        
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-    
+
 }

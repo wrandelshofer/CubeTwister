@@ -1,5 +1,6 @@
-/* @(#)ScrollPaneLayout2.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScrollPaneLayout2.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -47,6 +48,6 @@ public class ScrollPaneLayout2 extends ScrollPaneLayout implements javax.swing.p
                 vsbR.width, vsbR.height - vsbR.width);
             }
         }
-         
+
     }
 }

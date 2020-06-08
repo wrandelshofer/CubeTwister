@@ -1,9 +1,6 @@
 /*
- * @(#)FileBasedBinaryModel.java  1.0.1  2010-05-24
- * 
- * Copyright (c) 2010 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * @(#)FileBasedBinaryModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.binary;
 

@@ -1,5 +1,6 @@
-/* @(#)CompositeModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CompositeEdit.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.undo;
@@ -13,7 +14,7 @@ import javax.swing.undo.UndoableEdit;
  * This is basically the same like javax.swing.undo.CompoundEdit but
  * it has a slightly different behaviour:
  * The compound edit ends, when it is added to itself. This way it
- * can be fired two times to an UndoManager: The first time, when 
+ * can be fired two times to an UndoManager: The first time, when
  * a sequence of compuondable edits starts, end the last time, when
  * the sequence is over.
  * <p>
@@ -22,25 +23,27 @@ import javax.swing.undo.UndoableEdit;
  * // fire CompositeEdit at start of sequence
  * CompositeEdit ce = new CompositeEdit();
  * fireUndoableEditEvent(ce);
- * 
+ *
  * ...fire edits which shall compounded here...
  *
  * // fire CompositeEdit at end of sequence again, to end it.
  * fireUndoableEditEvent(ce);
  * </pre>
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class CompositeEdit extends CompoundEdit {
     private final static long serialVersionUID = 1L;
     private String presentationName;
     private boolean isSignificant;
     private boolean isVerbose;
+
     public void setVerbose(boolean b) {
         isVerbose = b;
     }
-    /** 
-     * Creates new CompositeEdit. 
+
+    /**
+     * Creates new CompositeEdit.
      * Which uses CompoundEdit.getPresentatioName.
      *
      * @see javax.swing.undo.CompoundEdit#getPresentationName()
@@ -48,8 +51,9 @@ public class CompositeEdit extends CompoundEdit {
     public CompositeEdit() {
         isSignificant = true;
     }
-    /** 
-     * Creates new CompositeEdit. 
+
+    /**
+     * Creates new CompositeEdit.
      * Which uses CompoundEdit.getPresentatioName.
      *
      * @see javax.swing.undo.CompoundEdit#getPresentationName()
@@ -57,29 +61,33 @@ public class CompositeEdit extends CompoundEdit {
     public CompositeEdit(boolean isSignificant) {
         this.isSignificant = isSignificant;
     }
-    /** 
-     * Creates new CompositeEdit. 
+
+    /**
+     * Creates new CompositeEdit.
      * Which uses the given presentation name.
      * If the presentation name is null, then CompoundEdit.getPresentatioName
      * is used.
+     *
      * @see javax.swing.undo.CompoundEdit#getPresentationName()
      */
     public CompositeEdit(String presentationName) {
         this.presentationName = presentationName;
         isSignificant = true;
     }
-    /** 
-     * Creates new CompositeEdit. 
+
+    /**
+     * Creates new CompositeEdit.
      * Which uses the given presentation name.
      * If the presentation name is null, then CompoundEdit.getPresentatioName
      * is used.
+     *
      * @see javax.swing.undo.CompoundEdit#getPresentationName()
      */
     public CompositeEdit(String presentationName, boolean isSignificant) {
         this.presentationName = presentationName;
         this.isSignificant = isSignificant;
     }
-    
+
     /**
      * Returns the presentation name.
      * If the presentation name is null, then CompoundEdit.getPresentatioName
@@ -130,7 +138,7 @@ public class CompositeEdit extends CompoundEdit {
             return super.addEdit(anEdit);
         }
     }
-    
+
     /**
      * Returns false if this edit is insignificant - for example one
      * that maintains the user's selection, but does not change

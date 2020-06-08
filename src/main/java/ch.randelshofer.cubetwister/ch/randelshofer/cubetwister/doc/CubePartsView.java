@@ -1,5 +1,6 @@
-/* @(#)CubePartsView.java	1.2  2004-06-21
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubePartsView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -26,14 +27,14 @@ public class CubePartsView extends AbstractEntityView {
     private CubeColorComboBoxModel editorColorComboBoxModel;
     private CubeColorComboBoxModel rendererColorComboBoxModel;
     private DefaultCellEditor colorEditor;
-    
+
     /** Creates new form CubePartsView */
     public CubePartsView() {
         initComponents();
-        
+
         tableModel = new CubePartsTableModel();
         table.setModel(tableModel);
-        
+
         table.getColumnModel().getColumn(0).setPreferredWidth(80);
         table.getColumnModel().getColumn(1).setPreferredWidth(50);
         table.getColumnModel().getColumn(2).setPreferredWidth(120);
@@ -42,42 +43,42 @@ public class CubePartsView extends AbstractEntityView {
 
         table.setFont(Fonts.getSmallDialogFont());
         table.putClientProperty("Quaqua.Table.style","striped");
-        
+
         //Set up the renderer and the editor for the color cells.
         //table.setDefaultRenderer(CubeColorModel.class, new CubeColorModelCellRenderer());
-        
+
         JComboBox comboBox = new JComboBox(editorColorComboBoxModel = new CubeColorComboBoxModel());
         comboBox.setRenderer(new CubeColorModelCellRenderer());
         comboBox.setFont(Fonts.getSmallDialogFont());
         table.setDefaultEditor(CubeColorModel.class, colorEditor = new DefaultCellEditor(comboBox));
-    
+
         if ("Aqua".equals(UIManager.getLookAndFeel().getID())) {
-        
-        comboBox = new JComboBox(rendererColorComboBoxModel = new CubeColorComboBoxModel());
+
+            comboBox = new JComboBox(rendererColorComboBoxModel = new CubeColorComboBoxModel());
         comboBox.setRenderer(new CubeColorModelCellRenderer());
         comboBox.setFont(Fonts.getSmallDialogFont());
         table.setDefaultRenderer(CubeColorModel.class, new DefaultCellRenderer(comboBox));
         } else {
         table.setDefaultRenderer(CubeColorModel.class, new CubeColorModelCellRenderer());
         }
-        
+
         //table.setDefaultRenderer(Boolean.class, new DefaultCellRenderer(new JCheckBox()));
         //table.setDefaultEditor(Boolean.class, new DefaultCellEditor(new JCheckBox()));
         if ("Windows".equals(UIManager.getLookAndFeel().getID())) {
             scrollPane.setBorder(new EmptyBorder(0,0,0,0));
         }
     }
-    
+
     public void setModel(CubeModel s) {
-        if (table.getCellEditor() != null) { 
-        table.getCellEditor().stopCellEditing();
+        if (table.getCellEditor() != null) {
+            table.getCellEditor().stopCellEditing();
         }
         cubeModel = s;
         tableModel.setModel(s);
         editorColorComboBoxModel.setModel(s);
         if (rendererColorComboBoxModel != null) rendererColorComboBoxModel.setModel(s);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -101,14 +102,14 @@ public class CubePartsView extends AbstractEntityView {
     public JComponent getViewComponent() {
         return this;
     }
-    
+
     public void setModel(EntityModel newValue) {
         setModel((CubeModel) newValue);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane scrollPane;
     private ch.randelshofer.gui.MutableJTable table;
     // End of variables declaration//GEN-END:variables
-    
+
 }

@@ -1,3 +1,8 @@
+/*
+ * @(#)ScriptParser.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
@@ -155,29 +160,29 @@ public class ScriptParser {
     private Node createCompositeNode(@Nonnull Tokenizer tt, @Nonnull Symbol operation, Node operand1, Node operand2) throws ParseException {
         Node node;
         switch (operation.getCompositeSymbol()) {
-            case GROUPING:
-                node = createUnaryNode(tt, new GroupingNode(), operand1, operand2);
-                break;
-            case INVERSION:
-                node = createUnaryNode(tt, new InversionNode(), operand1, operand2);
-                break;
-            case REFLECTION:
-                node = createUnaryNode(tt, new ReflectionNode(), operand1, operand2);
-                break;
-            case REPETITION:
-                node = createRepetitionNode(tt, operand1, operand2);
-                break;
-            case ROTATION:
-                node = createBinaryNode(tt, new RotationNode(), operand1, operand2);
-                break;
-            case COMMUTATION:
-                node = createBinaryNode(tt, new CommutationNode(), operand1, operand2);
-                break;
-            case CONJUGATION:
-                node = createBinaryNode(tt, new ConjugationNode(), operand1, operand2);
-                break;
-            default:
-                throw new AssertionError("Composite. Unexpected operation: " + operation);
+        case GROUPING:
+            node = createUnaryNode(tt, new GroupingNode(), operand1, operand2);
+            break;
+        case INVERSION:
+            node = createUnaryNode(tt, new InversionNode(), operand1, operand2);
+            break;
+        case REFLECTION:
+            node = createUnaryNode(tt, new ReflectionNode(), operand1, operand2);
+            break;
+        case REPETITION:
+            node = createRepetitionNode(tt, operand1, operand2);
+            break;
+        case ROTATION:
+            node = createBinaryNode(tt, new RotationNode(), operand1, operand2);
+            break;
+        case COMMUTATION:
+            node = createBinaryNode(tt, new CommutationNode(), operand1, operand2);
+            break;
+        case CONJUGATION:
+            node = createBinaryNode(tt, new ConjugationNode(), operand1, operand2);
+            break;
+        default:
+            throw new AssertionError("Composite. Unexpected operation: " + operation);
         }
         return node;
     }
@@ -278,30 +283,30 @@ public class ScriptParser {
         Loop:
         while (true) {
             switch (tt.nextToken()) {
-                case Tokenizer.TT_NUMBER:
-                    tt.pushBack();
-                    parseStatement(tt, operand);
-                    break;
-                case Tokenizer.TT_KEYWORD:
-                    var maybeSeparatorOrEnd = tt.getStringValue();
-                    for (var symbol1 : this.notation.getSymbols(maybeSeparatorOrEnd)) {
-                        if (symbol1.getCompositeSymbol().equals(compositeSymbol)) {
-                            if (Symbol.isDelimiter(symbol1)) {
-                                operand.setEndPosition(tt.getStartPosition());
-                                operand = new SequenceNode();
-                                operand.setStartPosition(tt.getEndPosition());
-                                operands.add(operand);
-                                continue Loop;
-                            } else if (Symbol.isEnd(symbol1)) {
-                                break Loop;
-                            }
+            case Tokenizer.TT_NUMBER:
+                tt.pushBack();
+                parseStatement(tt, operand);
+                break;
+            case Tokenizer.TT_KEYWORD:
+                var maybeSeparatorOrEnd = tt.getStringValue();
+                for (var symbol1 : this.notation.getSymbols(maybeSeparatorOrEnd)) {
+                    if (symbol1.getCompositeSymbol().equals(compositeSymbol)) {
+                        if (Symbol.isDelimiter(symbol1)) {
+                            operand.setEndPosition(tt.getStartPosition());
+                            operand = new SequenceNode();
+                            operand.setStartPosition(tt.getEndPosition());
+                            operands.add(operand);
+                            continue Loop;
+                        } else if (Symbol.isEnd(symbol1)) {
+                            break Loop;
                         }
                     }
-                    tt.pushBack();
-                    parseStatement(tt, operand);
-                    break;
-                default:
-                    throw createException(tt, "Circumfix: Number, Keyword or End expected.");
+                }
+                tt.pushBack();
+                parseStatement(tt, operand);
+                break;
+            default:
+                throw createException(tt, "Circumfix: Number, Keyword or End expected.");
             }
         }
         operand.setEndPosition(tt.getStartPosition());
@@ -333,29 +338,29 @@ public class ScriptParser {
 
         var syntax = notation.getSyntax(symbol);
         switch (syntax) {
-            case PRIMARY:
-                parsePrimary(tt, parent, token, symbol);
-                break;
-            case PREFIX:
-                parsePrefix(tt, parent, symbol);
-                break;
-            case CIRCUMFIX:
-                parseCircumfix(tt, parent, symbol);
-                break;
-            case PRECIRCUMFIX:
-                parsePrecircumfix(tt, parent, symbol);
-                break;
-            case POSTCIRCUMFIX:
-                parsePostcircumfix(tt, parent, symbol);
-                break;
-            case PREINFIX:
-                parsePreinfix(tt, parent, symbol);
-                break;
-            case POSTINFIX:
-                parsePostinfix(tt, parent, symbol);
-                break;
-            default:
-                throw createException(tt, "Unexpected Syntax: " + syntax);
+        case PRIMARY:
+            parsePrimary(tt, parent, token, symbol);
+            break;
+        case PREFIX:
+            parsePrefix(tt, parent, symbol);
+            break;
+        case CIRCUMFIX:
+            parseCircumfix(tt, parent, symbol);
+            break;
+        case PRECIRCUMFIX:
+            parsePrecircumfix(tt, parent, symbol);
+            break;
+        case POSTCIRCUMFIX:
+            parsePostcircumfix(tt, parent, symbol);
+            break;
+        case PREINFIX:
+            parsePreinfix(tt, parent, symbol);
+            break;
+        case POSTINFIX:
+            parsePostinfix(tt, parent, symbol);
+            break;
+        default:
+            throw createException(tt, "Unexpected Syntax: " + syntax);
         }
     }
 
@@ -422,21 +427,21 @@ public class ScriptParser {
         PermutationCycle:
         while (true) {
             switch (tt.nextToken()) {
-                case Tokenizer.TT_KEYWORD:
-                    var sym = this.notation.getSymbolInCompositeSymbol(tt.getStringValue(), Symbol.PERMUTATION);
-                    if (sym == Symbol.PERMUTATION_END) {
-                        break PermutationCycle;
-                    } else if (sym == null) {
-                        throw createException(tt, "Permutation: PermutationItem expected.");
-                    } else if (sym == Symbol.PERMUTATION_DELIMITER) {
-                        // consume
-                    } else {
-                        tt.pushBack();
-                        parsePermutationItem(tt, permutation, syntax);
-                    }
-                    break;
-                default:
+            case Tokenizer.TT_KEYWORD:
+                var sym = this.notation.getSymbolInCompositeSymbol(tt.getStringValue(), Symbol.PERMUTATION);
+                if (sym == Symbol.PERMUTATION_END) {
+                    break PermutationCycle;
+                } else if (sym == null) {
                     throw createException(tt, "Permutation: PermutationItem expected.");
+                } else if (sym == Symbol.PERMUTATION_DELIMITER) {
+                    // consume
+                } else {
+                    tt.pushBack();
+                    parsePermutationItem(tt, permutation, syntax);
+                }
+                break;
+            default:
+                throw createException(tt, "Permutation: PermutationItem expected.");
 
             }
         }
@@ -504,71 +509,71 @@ public class ScriptParser {
             t.pushBack();
         }
         switch (type) {
-            case 3:
-                if (partNumber != 0) {
-                    throw createException(t, "PermutationItem: Invalid corner part number: " + partNumber);
-                }
+        case 3:
+            if (partNumber != 0) {
+                throw createException(t, "PermutationItem: Invalid corner part number: " + partNumber);
+            }
+            break;
+        case 2: {
+            boolean valid;
+            switch (layerCount) {
+            case 4:
+                valid = 1 <= partNumber && partNumber <= 2;
                 break;
-            case 2: {
-                boolean valid;
-                switch (layerCount) {
-                    case 4:
-                        valid = 1 <= partNumber && partNumber <= 2;
-                        break;
-                    case 5:
-                        valid = 0 <= partNumber && partNumber <= 2;
-                        break;
-                    case 6:
-                        valid = 1 <= partNumber && partNumber <= 4;
-                        break;
-                    case 7:
-                        valid = 0 <= partNumber && partNumber <= 4;
-                        break;
-                    default:
-                        valid = partNumber == 0;
-                        break;
-                }
-                if (!valid) {
-                    throw createException(t, "PermutationItem: Invalid edge part number: " + partNumber);
-                }
-                switch (layerCount) {
-                    case 4:
-                    case 6:
-                        partNumber -= 1;
-                        break;
-                }
+            case 5:
+                valid = 0 <= partNumber && partNumber <= 2;
+                break;
+            case 6:
+                valid = 1 <= partNumber && partNumber <= 4;
+                break;
+            case 7:
+                valid = 0 <= partNumber && partNumber <= 4;
+                break;
+            default:
+                valid = partNumber == 0;
                 break;
             }
-            case 1: {
-                boolean valid;
-                switch (layerCount) {
-                    case 4:
-                        valid = 1 <= partNumber && partNumber <= 4;
-                        break;
-                    case 5:
-                        valid = 0 <= partNumber && partNumber <= 8;
-                        break;
-                    case 6:
-                        valid = 1 <= partNumber && partNumber <= 16;
-                        break;
-                    case 7:
-                        valid = 0 <= partNumber && partNumber <= 24;
-                        break;
-                    default:
-                        valid = partNumber == 0;
-                        break;
-                }
-                if (!valid) {
-                    throw createException(t, "PermutationItem: Invalid side part number: " + partNumber);
-                }
-                switch (layerCount) {
-                    case 4:
-                    case 6:
-                        partNumber -= 1;
-                        break;
-                }
+            if (!valid) {
+                throw createException(t, "PermutationItem: Invalid edge part number: " + partNumber);
+            }
+            switch (layerCount) {
+            case 4:
+            case 6:
+                partNumber -= 1;
                 break;
             }
+            break;
+        }
+        case 1: {
+            boolean valid;
+            switch (layerCount) {
+            case 4:
+                valid = 1 <= partNumber && partNumber <= 4;
+                break;
+            case 5:
+                valid = 0 <= partNumber && partNumber <= 8;
+                break;
+            case 6:
+                valid = 1 <= partNumber && partNumber <= 16;
+                break;
+            case 7:
+                valid = 0 <= partNumber && partNumber <= 24;
+                break;
+            default:
+                valid = partNumber == 0;
+                break;
+            }
+            if (!valid) {
+                throw createException(t, "PermutationItem: Invalid side part number: " + partNumber);
+            }
+            switch (layerCount) {
+            case 4:
+            case 6:
+                partNumber -= 1;
+                break;
+            }
+            break;
+        }
         }
         return partNumber;
     }
@@ -700,35 +705,35 @@ public class ScriptParser {
     private void parsePrimary(@Nonnull Tokenizer tt, @Nonnull Node parent, String token, @Nonnull Symbol symbol) throws ParseException {
         Node child;
         switch (symbol) {
-            case NOP:
-                child = new NOPNode(tt.getStartPosition(), tt.getEndPosition());
-                break;
-            case MOVE:
-                var move = notation.getMoveFromToken(token);
-                child = new MoveNode(move.getLayerCount(), move.getAxis(), move.getLayerMask(), move.getAngle(),
-                        tt.getStartPosition(), tt.getEndPosition());
-                break;
-            case MACRO:
-                // Expand macro
-                try {
-                    var macro = notation.getMacro(token);
-                    var macroScript = parse(macro);
-                    var macroNode = new MacroNode(null, token, tt.getStartPosition(), tt.getEndPosition());
-                    for (Node node : macroScript.preorderIterable()) {
-                        node.setStartPosition(tt.getStartPosition());
-                        node.setEndPosition(tt.getEndPosition());
-                    }
-
-                    macroNode.add(macroScript);
-                    child = macroNode;
-                } catch (ParseException e) {
-                    throw new ParseException("Error in macro \"" + token + "\":" + e.getMessage()
-                            + " at " + e.getStartPosition() + ".." + e.getEndPosition(),
-                            tt.getStartPosition(), tt.getEndPosition());
+        case NOP:
+            child = new NOPNode(tt.getStartPosition(), tt.getEndPosition());
+            break;
+        case MOVE:
+            var move = notation.getMoveFromToken(token);
+            child = new MoveNode(move.getLayerCount(), move.getAxis(), move.getLayerMask(), move.getAngle(),
+                    tt.getStartPosition(), tt.getEndPosition());
+            break;
+        case MACRO:
+            // Expand macro
+            try {
+                var macro = notation.getMacro(token);
+                var macroScript = parse(macro);
+                var macroNode = new MacroNode(null, token, tt.getStartPosition(), tt.getEndPosition());
+                for (Node node : macroScript.preorderIterable()) {
+                    node.setStartPosition(tt.getStartPosition());
+                    node.setEndPosition(tt.getEndPosition());
                 }
-                break;
-            default:
-                throw createException(tt, "Primary Expression: " + symbol + " cannot be used as a primary expression.");
+
+                macroNode.add(macroScript);
+                child = macroNode;
+            } catch (ParseException e) {
+                throw new ParseException("Error in macro \"" + token + "\":" + e.getMessage()
+                        + " at " + e.getStartPosition() + ".." + e.getEndPosition(),
+                        tt.getStartPosition(), tt.getEndPosition());
+            }
+            break;
+        default:
+            throw createException(tt, "Primary Expression: " + symbol + " cannot be used as a primary expression.");
         }
         parent.add(child);
     }
@@ -750,34 +755,34 @@ public class ScriptParser {
         var syntax = notation.getSyntax(Symbol.REPETITION);
         var operand = new SequenceNode();
         switch (syntax) {
-            case PREFIX:
-                parseStatement(tt, operand);
-                break;
-            case SUFFIX: {
-                if (parent.getChildCount() < 1) {
-                    throw createException(tt, "Repetition: Operand missing.");
-                }
-                var sibling = parent.getChildAt(parent.getChildCount() - 1);
-                start = sibling.getStartPosition();
-                operand.add(sibling);
-                break;
+        case PREFIX:
+            parseStatement(tt, operand);
+            break;
+        case SUFFIX: {
+            if (parent.getChildCount() < 1) {
+                throw createException(tt, "Repetition: Operand missing.");
             }
-            case PREINFIX:
-                if (tt.nextToken() != Tokenizer.TT_KEYWORD
-                        || !this.notation.getSymbols(tt.getStringValue()).contains(Symbol.REPETITION_OPERATOR)) {
-                    throw createException(tt, "Repetition: Operator expected.");
-                }
-                parseStatement(tt, operand);
-                break;
-            case POSTINFIX:
-                // Note: Postinfix syntax is handled by parsePostinfix.
-                // We only get here, if the operator is missing!
+            var sibling = parent.getChildAt(parent.getChildCount() - 1);
+            start = sibling.getStartPosition();
+            operand.add(sibling);
+            break;
+        }
+        case PREINFIX:
+            if (tt.nextToken() != Tokenizer.TT_KEYWORD
+                    || !this.notation.getSymbols(tt.getStringValue()).contains(Symbol.REPETITION_OPERATOR)) {
                 throw createException(tt, "Repetition: Operator expected.");
-            case CIRCUMFIX:
-            case PRECIRCUMFIX:
-            case POSTCIRCUMFIX: {
-                throw new ParseException("Repetition: Illegal syntax: " + syntax, tt.getStartPosition(), tt.getEndPosition());
             }
+            parseStatement(tt, operand);
+            break;
+        case POSTINFIX:
+            // Note: Postinfix syntax is handled by parsePostinfix.
+            // We only get here, if the operator is missing!
+            throw createException(tt, "Repetition: Operator expected.");
+        case CIRCUMFIX:
+        case PRECIRCUMFIX:
+        case POSTCIRCUMFIX: {
+            throw new ParseException("Repetition: Illegal syntax: " + syntax, tt.getStartPosition(), tt.getEndPosition());
+        }
         }
         var repetitionNode = new RepetitionNode();
         repetitionNode.addAll(new ArrayList<>(operand.getChildren()));
@@ -811,16 +816,16 @@ public class ScriptParser {
      */
     private void parseStatement(@Nonnull Tokenizer tt, @Nonnull Node parent) throws ParseException {
         switch (tt.nextToken()) {
-            case Tokenizer.TT_NUMBER:
-                tt.pushBack();
-                parseRepetition(tt, parent);
-                break;
-            case Tokenizer.TT_KEYWORD:
-                tt.pushBack();
-                parseNonSuffixOrBacktrack(tt, parent);
-                break;
-            default:
-                throw createException(tt, "Statement: Keyword or Number expected.");
+        case Tokenizer.TT_NUMBER:
+            tt.pushBack();
+            parseRepetition(tt, parent);
+            break;
+        case Tokenizer.TT_KEYWORD:
+            tt.pushBack();
+            parseNonSuffixOrBacktrack(tt, parent);
+            break;
+        default:
+            throw createException(tt, "Statement: Keyword or Number expected.");
         }
 
         // We parse suffix expressions here, so that they have precedence over

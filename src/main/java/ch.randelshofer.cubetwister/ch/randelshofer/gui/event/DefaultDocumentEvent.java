@@ -1,5 +1,6 @@
-/* @(#)DefaultDocumentEvent.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultDocumentEvent.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.event;
@@ -17,7 +18,7 @@ import java.util.EventObject;
  * @author  Werner Randelshofer
  */
 public class DefaultDocumentEvent
-extends EventObject 
+        extends EventObject
 implements DocumentEvent {
     private final static long serialVersionUID = 1L;
     private int offset;
@@ -72,7 +73,7 @@ implements DocumentEvent {
     public ElementChange getChange(Element elem) {
         return null;
     }
-    
+
     /**
      * Gets the document that sourced the change event.
      *
@@ -82,7 +83,7 @@ implements DocumentEvent {
     public Document getDocument() {
         return (Document) getSource();
     }
-    
+
     /**
      * Returns the length of the change.
      *
@@ -91,7 +92,7 @@ implements DocumentEvent {
     public int getLength() {
         return length;
     }
-    
+
     /**
      * Gets the type of event.
      *
@@ -100,7 +101,7 @@ implements DocumentEvent {
     public DocumentEvent.EventType getType() {
         return type;
     }
-    
+
     /**
      * Returns the offset within the document of the start
      * of the change.
@@ -110,5 +111,5 @@ implements DocumentEvent {
     public int getOffset() {
         return offset;
     }
-    
+
 }

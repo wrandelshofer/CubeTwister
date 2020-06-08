@@ -1,5 +1,6 @@
-/* @(#)UIDefaultsCellRenderer.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)UIDefaultsCellRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.debug;
@@ -33,11 +34,11 @@ public class UIDefaultsCellRenderer extends DefaultTableCellRenderer {
             ),
             new Dimension(20, 12)
     );
-    
+
     /** Creates a new instance. */
     public UIDefaultsCellRenderer() {
     }
-    
+
     public void paint(Graphics g) {
         // Work around ClassClastException's in some Icons of the Aqua LAF
         try {

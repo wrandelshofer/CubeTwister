@@ -1,5 +1,6 @@
-/* @(#)NanoXMLDOMInput.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NanoXMLDOMInput.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.xml;
@@ -31,7 +32,7 @@ public class NanoXMLDOMInput implements DOMInput {
      */
     @Nonnull
     private HashMap<String,Object> idobjects = new HashMap<String,Object>();
-    
+
     /**
      * The document used for input.
      */
@@ -40,18 +41,18 @@ public class NanoXMLDOMInput implements DOMInput {
      * The current node used for input.
      */
     private XMLElement current;
-    
+
     /**
      * The factory used to create objects from XML tag names.
      */
     private DOMFactory factory;
-    
+
     /**
      * The stack.
      */
     @Nonnull
     private Stack<XMLElement> stack = new Stack<XMLElement>();
-    
+
     public NanoXMLDOMInput(DOMFactory factory, @Nonnull InputStream in) throws IOException {
         this(factory, new InputStreamReader(in, "UTF8"));
     }
@@ -109,7 +110,7 @@ public class NanoXMLDOMInput implements DOMInput {
         String value = current.getAttribute(name);
         return (value == null || value.length() == 0) ? defaultValue : Double.parseDouble(value);
     }
-    
+
     public float getAttribute(String name, float defaultValue) {
         String value = current.getAttribute(name);
         return (value == null || value.length() == 0) ? defaultValue : Float.parseFloat(value);
@@ -121,8 +122,8 @@ public class NanoXMLDOMInput implements DOMInput {
         String value = current.getAttribute(name);
         return (value == null || value.length() == 0) ? defaultValue : Boolean.valueOf(value).booleanValue();
     }
-    
-    
+
+
     /**
      * Returns the number of child elements of the current element.
      */
@@ -144,7 +145,7 @@ public class NanoXMLDOMInput implements DOMInput {
         }
         return count;
     }
-    
+
     /**
      * Opens the element with the specified index and makes it the current node.
      */
@@ -153,7 +154,7 @@ public class NanoXMLDOMInput implements DOMInput {
         List<XMLElement> list = current.getChildren();
         current = list.get(index);
     }
-    
+
     /**
      * Opens the last element with the specified name and makes it the current node.
      */
@@ -188,7 +189,7 @@ public class NanoXMLDOMInput implements DOMInput {
         }
         throw new IllegalArgumentException("no such element:"+tagName+" at index:"+index);
     }
-    
+
     /**
      * Closes the current element of the DOM Document.
      * The parent of the current element becomes the current element.
@@ -199,7 +200,7 @@ public class NanoXMLDOMInput implements DOMInput {
     public void closeElement() {
         current = stack.pop();
     }
-    
+
     /**
      * Reads an object from the current element.
      */
@@ -215,7 +216,7 @@ public class NanoXMLDOMInput implements DOMInput {
     public Object readObject(int index) {
         openElement(index);
         Object o;
-        
+
         String tagName = getTagName();
         if (tagName.equals("null")) {
             o =  null;
@@ -250,11 +251,11 @@ public class NanoXMLDOMInput implements DOMInput {
         } else {
             String ref = getAttribute("ref", null);
             String id = getAttribute("id", ref);
-            
+
             if (id == null) {
                 throw new IllegalArgumentException(getTagName()+" has neither an 'id' nor a 'ref' attribute");
             }
-            
+
             if (idobjects.containsKey(id)) {
                 o = idobjects.get(id);
             } else {
@@ -267,9 +268,9 @@ public class NanoXMLDOMInput implements DOMInput {
                 }
             }
         }
-        
+
         closeElement();
         return o;
     }
-    
+
 }

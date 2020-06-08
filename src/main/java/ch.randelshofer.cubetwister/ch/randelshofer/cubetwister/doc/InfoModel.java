@@ -1,5 +1,6 @@
-/* @(#)InfoModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)InfoModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -19,10 +20,10 @@ import java.util.Date;
  * <p>
  * Assumes that the root node of the tree is a DefaultMutableTreeNode
  * and that its user object is a RootModel instance, which holds the
- * tree! This is used to ensure proper listener notifications for object 
+ * tree! This is used to ensure proper listener notifications for object
  * insertion and removal.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class InfoModel extends EntityModel {
     private final static long serialVersionUID = 1L;
@@ -40,7 +41,7 @@ public class InfoModel extends EntityModel {
     @Nullable
     protected DocumentProxy date = new DocumentProxy();
 
-    /** 
+    /**
      * Creates a new InfoModel.
      * Sets the author to the System user.name property and the
      * date to the current time.
@@ -173,7 +174,7 @@ public class InfoModel extends EntityModel {
     public Object getUserObject() {
         return getName();
     }
-    
+
     @Override public void setUserObject(Object obj) {
         setName((String) obj);
     }
@@ -182,9 +183,9 @@ public class InfoModel extends EntityModel {
     @Override public String toString() {
         return getName();
     }
-    
 
-     /**
+
+    /**
      * Returns a shallow copy of this model.
      * All references to other models are maintained.
      * The new model has no parent or children and no property change listeners.
@@ -204,10 +205,10 @@ public class InfoModel extends EntityModel {
 
        return that;
     }
-    
+
     public void dispose() {
         super.dispose();
-        
+
         if (description != null) {
             description.removeUndoableEditListener(this);
             description = null;

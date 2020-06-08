@@ -1,3 +1,8 @@
+/*
+ * @(#)IcosahedronGenerator.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.aliaswavefront3d;
 
 import ch.randelshofer.geom3d.FaceNode;

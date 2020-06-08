@@ -1,5 +1,6 @@
-/* @(#)CubePartsTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubePartsTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -41,18 +42,19 @@ public class CubePartsTableModel
     @Nullable
     private DocumentModel documentModel;
 
-    private final String[] columnNames = {"cube.partColumn", 
-    "cube.visibleColumn", 
-    "cube.fill1ColorColumn", "cube.fill2ColorColumn"};
-    
-    /** 
+    private final String[] columnNames = {"cube.partColumn",
+            "cube.visibleColumn",
+            "cube.fill1ColorColumn", "cube.fill2ColorColumn"};
+
+    /**
      * Creates a new CubeColorsTableModel which wraps a
      * default CubeModel.
      */
     public CubePartsTableModel() {
-       this(null);
+        this(null);
     }
-    /** 
+
+    /**
      * Creates a new CubeColorsTableModel which wraps the
      * provided CubeModel.
      */
@@ -80,7 +82,7 @@ public class CubePartsTableModel
         }
 
         model = value;
-        
+
         if (value != null) {
             value.addPropertyChangeListener(this);
             fireTableRowsInserted(0, getRowCount());
@@ -118,7 +120,7 @@ public class CubePartsTableModel
         }
         return null; // should never happen
     }
-    
+
     /**
      * Returns the name of the column at <i>columnIndex</i>.  This is used
      * to initialize the table's column header name.  Note: this name does
@@ -130,7 +132,7 @@ public class CubePartsTableModel
     public String getColumnName(int columnIndex) {
         return columnNames[columnIndex];
     }
-    
+
     /**
      * Returns wether a row may be inserted.
      *
@@ -147,7 +149,7 @@ public class CubePartsTableModel
     public boolean isRowDuplicateable(int row) {
         return false;
     }
-    
+
     /**
      * Returns the number of rows in the model. A
      * <B>JTable</B> uses this method to determine how many rows it
@@ -160,7 +162,7 @@ public class CubePartsTableModel
     public int getRowCount() {
         return (model == null) ? 0 : model.getParts().getChildCount();
     }
-    
+
     /**
      * Invoke this to insert a new row into the table.
      *
@@ -201,14 +203,14 @@ public class CubePartsTableModel
     public boolean isCellEditable(int row, int column) {
         return column > 0;
     }
-    
+
     /**
-     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to 
+     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to
      * <I>aValue</I> is the new value.
      *
-     * @param    value         the new value
-     * @param    row         the row whose value is to be changed
-     * @param    column     the column whose value is to be changed
+     * @param value  the new value
+     * @param row    the row whose value is to be changed
+     * @param column the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
@@ -226,17 +228,17 @@ public class CubePartsTableModel
                     item.setFillColorModel((CubeColorModel) value);
                 }
                 break;
-            case 3 : 
+            case 3 :
                 if (value != null) {
                 item.setOutlineColorModel((CubeColorModel) value);
                 }
                 break;
         }
     }
-    
+
     /**
-     * Returns the most specific superclass for all the cell values 
-     * in the column.  This is used by the JTable to set up a default 
+     * Returns the most specific superclass for all the cell values
+     * in the column.  This is used by the JTable to set up a default
      * renderer and editor for the column.
      *
      * @return the common ancestor class of the object values in the model.
@@ -244,7 +246,7 @@ public class CubePartsTableModel
     @Nonnull
     public Class<?> getColumnClass(int column) {
         switch (column) {
-            case 1 : 
+            case 1 :
                 return Boolean.class;
             case 2 :
             case 3 :
@@ -253,7 +255,7 @@ public class CubePartsTableModel
                 return String.class;
         }
     }
-    
+
     /**
      * Message this to remove a row from the table.
      *
@@ -263,7 +265,7 @@ public class CubePartsTableModel
     public void removeRow(int row) {
         throw new IllegalStateException("cannot remove row");
     }
-    
+
     /**
      * Returns wether the specified node may be removed.
      *
@@ -275,7 +277,7 @@ public class CubePartsTableModel
     public boolean isRowAddable(int row) {
         return false;
     }
-    
+
     /**
      * Returns the number of columns in the model. A
      * <B>JTable</B> uses this method to determine how many columns it
@@ -292,7 +294,7 @@ public class CubePartsTableModel
     public Action[] getRowActions(int[] rows) {
         return null;
     }
-    
+
     public void propertyChange(@Nonnull PropertyChangeEvent evt) {
         Object source = evt.getSource();
         if (source == model && evt.getPropertyName() == CubeModel.KIND_PROPERTY) {
@@ -343,7 +345,7 @@ public class CubePartsTableModel
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * <p>Invoked after nodes have been removed from the tree.  Note that
      * if a subtree is removed from the tree, this method may only be

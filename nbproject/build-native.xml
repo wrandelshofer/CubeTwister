@@ -203,7 +203,7 @@
     <target name="-set-javafx-ant-classpath" depends="-check-endorsed-javafx-ant-classpath,-pre-check-ant-javafx-version" unless="endorsed-javafx-ant-classpath-available">
         <property name="javafx.ant.classpath" value="${ant-javafx.jar.location}"/>
     </target>
-    
+
     <target name="-check-ant-javafx-version" depends="-pre-check-ant-javafx-version,
             -set-endorsed-javafx-ant-classpath,-set-javafx-ant-classpath" if="do.check.ant-javafx.version">
         <echo message="ant-javafx.jar.location = ${ant-javafx.jar.location}" level="verbose"/>
@@ -231,7 +231,7 @@
             <matches pattern="1.[2-9]" string="${javafx.ant.version}"/>
         </condition>
     </target>
-    
+
     <target name="-check-jfx-sdk-version" depends="-check-jfx-sdk-version-old, -check-jfx-sdk-version-new" unless="jfx.sdk.version.checked">
         <echo message="Detected JavaFX Ant API version ${javafx.ant.version}" level="info"/>
         <echo message="have-fx-ant-api-1.1 = ${have-fx-ant-api-1.1}" level="verbose"/>
@@ -257,28 +257,29 @@
                 <contains string="${version-output}" substring="java version &quot;1.6"/>
                 <contains string="${version-output}" substring="java version &quot;1.7.0&quot;"/>
                 <contains string="${version-output}" substring="java version &quot;1.7.0_01"/>
-                <contains string="${version-output}" substring="java version &quot;1.7.0_02"/>
-                <contains string="${version-output}" substring="java version &quot;1.7.0_03"/>
-                <contains string="${version-output}" substring="java version &quot;1.7.0_04"/>
-                <contains string="${version-output}" substring="java version &quot;1.7.0_05"/>
+              <contains string="${version-output}" substring="java version &quot;1.7.0_02"/>
+              <contains string="${version-output}" substring="java version &quot;1.7.0_03"/>
+              <contains string="${version-output}" substring="java version &quot;1.7.0_04"/>
+              <contains string="${version-output}" substring="java version &quot;1.7.0_05"/>
             </or>
         </condition>
-        <property name="ant-jre-version-checked-in-jfximpl" value="true"/>
-        <echo message="have-ant-jre-pre7u6 = ${have-ant-jre-pre7u6}" level="verbose"/>
+      <property name="ant-jre-version-checked-in-jfximpl" value="true"/>
+      <echo message="have-ant-jre-pre7u6 = ${have-ant-jre-pre7u6}" level="verbose"/>
     </target>
 
-        
-    <!-- Native Packaging main target -->    
-    
-    <target name="build-native" depends="-set-do-build-native-package, -check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl, -build-native-impl, -post-build-native-cleanup"/>
 
-    <target name="build-native-noscript">
-        <fail message="Java Application Native Packager requires JDK JavaScript support but has not found any."/>
-    </target>
+  <!-- Native Packaging main target -->
 
-    <target name="-check-do-jar">
-        <condition property="do-jar-false">
-            <and>
+  <target name="build-native"
+          depends="-set-do-build-native-package, -check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl, -build-native-impl, -post-build-native-cleanup"/>
+
+  <target name="build-native-noscript">
+    <fail message="Java Application Native Packager requires JDK JavaScript support but has not found any."/>
+  </target>
+
+  <target name="-check-do-jar">
+    <condition property="do-jar-false">
+      <and>
                 <isset property="do.jar"/>
                 <equals arg1="${do.jar}" arg2="false"/>
             </and>
@@ -292,8 +293,8 @@
     <target name="-check-ant-jre-supports-native-packaging" depends="-check-jfx-sdk-version, -check-ant-javafx-version, -check-ant-jre-version">
         <fail message="Error:${line.separator}JavaFX native packager requires NetBeans to run on JDK 1.7u6 or later !" if="have-ant-jre-pre7u6"/>
     </target>
-    
-    <target name="-check-native-bundling-type" depends="-check-operating-system" if="do.build.native.package">
+
+  <target name="-check-native-bundling-type" depends="-check-operating-system" if="do.build.native.package">
         <condition property="need.Inno.presence">
             <and>
                 <isset property="running.on.windows"/>
@@ -694,18 +695,19 @@
         </script>
     </target>
 
-    
-    <!-- Native Packaging main implementation -->    
-    
-    <target name="-build-native-impl" depends="-check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl">
 
-        <!--<property name="runtime.jre.home" value="${platform.home}"/>-->
-        <echo message="javafx.ant.classpath = ${javafx.ant.classpath}" level="verbose"/>
-        <typedef name="fx_deploy" classname="com.sun.javafx.tools.ant.DeployFXTask" classpath="${javafx.ant.classpath}"/>
-        <echo message="Launching &lt;fx:deploy&gt; task from ${ant-javafx.jar.location}" level="info"/>
-        <property name="deployment.dir" location="${dist.dir}"/>
-        <property name="pp_deploy_fs2" value="lib${file.separator}*.jar"/>
-        <basename property="deployment.jar" file="${dist.jar}"/>
+  <!-- Native Packaging main implementation -->
+
+  <target name="-build-native-impl"
+          depends="-check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl">
+
+    <!--<property name="runtime.jre.home" value="${platform.home}"/>-->
+    <echo message="javafx.ant.classpath = ${javafx.ant.classpath}" level="verbose"/>
+    <typedef name="fx_deploy" classname="com.sun.javafx.tools.ant.DeployFXTask" classpath="${javafx.ant.classpath}"/>
+    <echo message="Launching &lt;fx:deploy&gt; task from ${ant-javafx.jar.location}" level="info"/>
+    <property name="deployment.dir" location="${dist.dir}"/>
+    <property name="pp_deploy_fs2" value="lib${file.separator}*.jar"/>
+    <basename property="deployment.jar" file="${dist.jar}"/>
         <basename property="deployment.base" file="${deployment.jar}" suffix=".jar"/>
         <echo message="deploy_deploy: pp_deploy_fs2 = ${pp_deploy_fs2}" level="verbose"/>
         <echo message="deploy_deploy: deployment.dir = ${deployment.dir}" level="verbose"/>
@@ -715,9 +717,9 @@
         <script language="javascript">
             <![CDATA[
                 function isTrue(prop) {
-                    return prop != null && 
+                    return prop != null &&
                        (prop.toLowerCase()=="true" || prop.toLowerCase()=="yes" || prop.toLowerCase()=="on");
-                }                    
+                }
                 function prefix(s, len) {
                     if(s == null || len <= 0 || s.length == 0) {
                         return new String("");
@@ -940,8 +942,8 @@
             ]]>
         </script>
     </target>
-    
-    <target name="-post-build-native-cleanup">
+
+  <target name="-post-build-native-cleanup">
         <delete file="${dist.dir}/${application.title}.html" quiet="true"/>
         <delete file="${dist.dir}/${application.title}.jnlp" quiet="true"/>
         <delete file="${dist.dir}/${application.title}_browser.jnlp" quiet="true"/>

@@ -1,5 +1,6 @@
-/* @(#)AbstractPocketCubeIdx3D.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractPocketCubeIdx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -239,7 +240,7 @@ public abstract class AbstractPocketCubeIdx3D extends AbstractCubeIdx3D {
         final int[] orientations = new int[27];
         final int[] locations = evt.getAffectedLocations();
         int count = locations.length;
-        
+
         for (int i = 0; i < count; i++) {
             partIndices[i] = model.getPartAt(locations[i]);
             orientations[i] = model.getPartOrientation(partIndices[i]);

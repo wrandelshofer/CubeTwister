@@ -1,5 +1,6 @@
-/* @(#)RunnableWorker.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RunnableWorker.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
@@ -20,7 +21,7 @@ import javax.swing.SwingUtilities;
  */
 public abstract class RunnableWorker<T> implements Runnable {
     private T value;  // see getValue(), setValue()
-    
+
     /**
      * Calls #construct on the current thread and invokes
      * #finished on the AWT event dispatcher thread.
@@ -37,7 +38,7 @@ public abstract class RunnableWorker<T> implements Runnable {
             SwingUtilities.invokeLater(doFinished);
         }
     }
-    
+
     /**
      * Compute the value to be returned by the <code>get</code> method.
      */

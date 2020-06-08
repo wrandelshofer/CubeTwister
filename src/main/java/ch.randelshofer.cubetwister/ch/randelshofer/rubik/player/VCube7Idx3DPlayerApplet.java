@@ -1,5 +1,6 @@
-/* @(#)VCube7Idx3DPlayerApplet.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VCube7Idx3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 
@@ -42,13 +43,13 @@ public class VCube7Idx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
 
 
     /**
-     * Returns the Default XML Resource Data of this Applet as an Input Stream. 
+     * Returns the Default XML Resource Data of this Applet as an Input Stream.
      */
     @Override
     protected InputStream getPlayerResources() {
         return getClass().getResourceAsStream("/ch/randelshofer/rubik/player/VCube7PlayerResources.xml");
     }
-    
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -60,8 +61,8 @@ public class VCube7Idx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
         getContentPane().setLayout(new java.awt.FlowLayout());
     }// </editor-fold>//GEN-END:initComponents
     */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

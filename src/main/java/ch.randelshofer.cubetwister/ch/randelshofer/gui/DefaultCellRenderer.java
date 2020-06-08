@@ -1,5 +1,6 @@
-/* @(#)DefaultCellRenderer.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultCellRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -110,13 +111,13 @@ public class DefaultCellRenderer implements TableCellRenderer, ListCellRenderer 
                 }
                 renderComponent.setBackground(bg);
                 renderComponent.setForeground(fg);
-                
+
             }
         }*/
 
         return renderComponent;
     }
-    
+
     public Component getListCellRendererComponent(@Nonnull JList parent, Object value, int index, boolean isSelected, boolean hasFocus) {
         delegate.setValue(value);
 
@@ -143,22 +144,23 @@ public class DefaultCellRenderer implements TableCellRenderer, ListCellRenderer 
                 }
                 renderComponent.setBackground(bg);
                 renderComponent.setForeground(fg);
-                
+
             }
         }
         */
         return renderComponent;
     }
-    
-    
+
+
     /**
      * The protected <code>RenderDelegate</code> class.
      */
     protected interface RenderDelegate {
-       /**
-        * Sets the value of this cell. 
-        * @param value the new value of this cell
-        */
-    	public void setValue(Object value);
+        /**
+         * Sets the value of this cell.
+         *
+         * @param value the new value of this cell
+         */
+        public void setValue(Object value);
     }
 }

@@ -1,19 +1,20 @@
-/* @(#)Viewer.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Viewer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
 
-import java.awt.*;
+import java.awt.Component;
 
 /**
- * Defines the requirements for a viewer that displays an object. 
+ * Defines the requirements for a viewer that displays an object.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public interface Viewer {
     /**
-     * Sets the value of the viewer to value. 
+     * Sets the value of the viewer to value.
      *
      * @param parent This is the component into which the viewer will be
      * embedded.

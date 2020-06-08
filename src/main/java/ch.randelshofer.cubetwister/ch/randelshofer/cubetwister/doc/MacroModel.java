@@ -1,5 +1,6 @@
-/* @(#)CubeMacro.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MacroModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -83,15 +84,15 @@ public class MacroModel extends InfoModel {
     public void basicSetScript(String value) {
         script = value;
     }
-    
+
     public String toString() {
         return identifier;
     }
-    
+
     public Object getUserObject() {
         return identifier;
     }
-    
+
     public void setUserObject(Object obj) {
         setIdentifier((String) obj);
     }

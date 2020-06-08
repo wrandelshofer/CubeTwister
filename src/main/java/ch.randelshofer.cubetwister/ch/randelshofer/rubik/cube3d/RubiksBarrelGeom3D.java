@@ -1,5 +1,6 @@
-/* @(#)Barrel3D.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksBarrelGeom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -20,8 +21,8 @@ import java.util.Arrays;
  */
 public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
     private final static int STICKER_COUNT = 42;
-    
-    
+
+
     private final static int[] stickerToPartMap = {
         17, 22, 19, // front
         0, 9, 1,  // front right
@@ -31,7 +32,7 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
         4, 15, 5, // back left
         14, 23, 16, // left
         6, 18, 7, // front left
-        
+
         7, 19, 1, 16, 24, 10, 5, 13, 3, // down
         4, 11, 2, 14, 21, 8, 6, 17, 0  // up
     };
@@ -44,11 +45,11 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
         1, 0, 1, // back left
         1, 0, 1, // left
         1, 0, 1, // front left
-        
+
         0, 1, 0, 0, 0, 0, 0, 1, 0, // down
         0, 1, 0, 0, 0, 0, 0, 1, 0  // up
     };
-    
+
     private static float[] CORNER_VERTS;
     private static int[][] CORNER_FACES;
     protected void initCorners() {
@@ -58,30 +59,30 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             // ----------------------------
             //0: Oblique Front Face: top-center, top-right, bottom-right, bottom-center
             -0,8,0,  8,8,8,   8,-8,8,  0,-8,0,
-            
-            //4: Right Face: top-front, top-back, center-back, bottom-center, bottom-front
+
+                    //4: Right Face: top-front, top-back, center-back, bottom-center, bottom-front
             9,8,8,  9,8,-8, 9,-5,-8,  9,-8,-5,  9,-8,8,
-            
-            //9: Bottom Face: center, front-right, center-right, back-center, back-left
+
+                    //9: Bottom Face: center, front-right, center-right, back-center, back-left
             .5f,-9,-.5f,  8,-9,7,  8,-9,-5,  5,-9,-8,  -7,-9,-8,
-            
-            //14: Back Face: up-right, up-left, down-left, down-center, center-right
+
+                    //14: Back Face: up-right, up-left, down-left, down-center, center-right
             8,8,-9,  -8,8,-9,  -8,-8,-9, 5,-8,-9,  8,-5,-9,
-            
-            //19: Oblique Left Face: top-back, left-front, bottom-front, bottom-back
+
+                    //19: Oblique Left Face: top-back, left-front, bottom-front, bottom-back
             -8,8,-8,  -0,8,0, -0,-8,0, -8,-8,-8,
-            
-            //23: Top Face: back-left, back-right, front-right, center
+
+                    //23: Top Face: back-left, back-right, front-right, center
             -7,9,-8,  8,9,-8,   8,9,7,   .5f,9,-.5f,
-            
-            // Vertices of the additional cubicle at the bottom right
+
+                    // Vertices of the additional cubicle at the bottom right
             //27
             9,-4,-14, 14,-4,-14, 9,-4,-9,   14,-4,-9,
-            
-            //31
+
+                    //31
             4,-9,-14, 4,-9,-9,   4,-14,-14, 4,-14,-9,
-            
-            //35
+
+                    //35
             9,-14,-4, 14,-14,-4, 9,-9,-4, 14,-9,-4, 14,-14,-14
         };
         }
@@ -92,13 +93,13 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             {23, 24, 25}, //Top face        The order of these faces
             {19, 1, 2, 22},   //Oblique face    is relevant, for method
             //                updateStickersFillColor()
-            
-            // Sensor faces (no outlines and no fill color)
+
+                    // Sensor faces (no outlines and no fill color)
             // ------------
             {0, 1, 2, 3},     //Front Sensor face
             {19, 20, 21, 22}, //Left Sensor face
-            
-            // Faces with outlines
+
+                    // Faces with outlines
             // (all faces which have outlines must be
             // at the beginning, this is relevant
             // for method updatePartsOutlineColor()
@@ -107,9 +108,9 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             {4, 5, 6, 7, 8},     //Right Face
             {9, 10, 11, 12, 13}, //Bottom Face
             {14, 15, 16, 17, 18},//Back Face
-            
-            
-            // Faces of the additional cubicle at the bottom right
+
+
+                    // Faces of the additional cubicle at the bottom right
             {27+10, 27+11, 27+9, 27+8},
             {27+11, 27+3, 27+1, 27+12, 27+9},
             {27+1, 27+0, 27+4, 27+6, 27+12},
@@ -120,33 +121,33 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             {27+2, 27+10, 27+5},
             {27+0, 27+1, 27+3, 27+2},
             {27+12, 27+6, 27+7, 27+8,27+9},
-            
-            // Faces without outlines
+
+                    // Faces without outlines
             //--------------------------------------
-            
-            // Triangles at the corners of the main cubicle
+
+                    // Triangles at the corners of the main cubicle
             {10, 2, 8}, //Bottom Front Right
             {13, 16, 22},//Bottom Back Left
-            
-            {25, 4, 1},  //Top Right Front ruuf rruf ruff
+
+                    {25, 4, 1},  //Top Right Front ruuf rruf ruff
             {23, 19, 15},//Top Left Back luub llub lubb
             {24, 14, 5}, //Top Back Right ruub rubb rrub
-            
-            // Edges of the main cubicle
+
+                    // Edges of the main cubicle
             {23, 25, 1, 19},   //Top Front to Top Left
             {25, 24, 5, 4},   //Top Right
             {24, 23, 15, 14}, //Top Back
-            
-            {10, 13, 22, 2},    //Bottom Front to Bottom Left
+
+                    {10, 13, 22, 2},    //Bottom Front to Bottom Left
             {11, 10, 8, 7},   //Bottom Right
             {13, 12, 17, 16}, //Bottom Back
-            
-            {2, 1, 4, 8},     //Front Right
+
+                    {2, 1, 4, 8},     //Front Right
             {0, 3, 21, 20},   //Front Left
             {14, 18, 6, 5},   //Back Right
             {16, 15, 19, 22}, //Back Left
-            
-        };
+
+            };
         }
         int i;
         Color[][][] colors = new Color[8][CORNER_FACES.length][0];
@@ -155,11 +156,11 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
                 colors[i][j] = new Color[2];
             }
         }
-        
+
         for (i = 0; i < cornerCount; i++) {
             shapes[cornerOffset+i] = new Shape3D(CORNER_VERTS, CORNER_FACES, colors[i]);
         }
-        
+
     }
     protected void initEdges() {
         initSquareEdges();
@@ -172,30 +173,30 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
         if (SQUARE_EDGE_VERTS == null) {
             SQUARE_EDGE_VERTS = new float[]         {
             // Vertices of the main cubicle
-            
-            //0: Front Face: top-left, top-right, bottom-right, bottom-left
+
+                    //0: Front Face: top-left, top-right, bottom-right, bottom-left
             -8,8,9,  8,8,9,   8,-8,9,   -8,-8,9,
-            
-            //4: Right Face: top-front, top-back, center-back, bottom-center, bottom-front
+
+                    //4: Right Face: top-front, top-back, center-back, bottom-center, bottom-front
             9,8,8,  9,8,-8, 9,-4,-8, 9,-8,-4, 9,-8,8,
-            
-            //9: Bottom Face: front-left, front-right, back-right, back-left
+
+                    //9: Bottom Face: front-left, front-right, back-right, back-left
             -8,-9,8,  8,-9,8, 8,-9,-3, -8,-9,-3,
-            
-            //13: Back Face: up-right, up-left, down-left, down-right
+
+                    //13: Back Face: up-right, up-left, down-left, down-right
             8,8,-9,  -8,8,-9,  -8,-3,-9, 8,-3,-9,
-            
-            //17: Left Face: top-back, top-front, bottom-front, bottom-center, center-back
+
+                    //17: Left Face: top-back, top-front, bottom-front, bottom-center, center-back
             -9,8,-8,  -9,8,8, -9,-8,8, -9,-8,-4, -9,-4,-8,
-            
-            //22: Top Face: back-left, back-right, front-right, front-left
+
+                    //22: Top Face: back-left, back-right, front-right, front-left
             -8,9,-8,  8,9,-8,   8,9,8,   -8,9,8,
-            
-            // Vertices of the additional cubicle at the back bottom.
+
+                    // Vertices of the additional cubicle at the back bottom.
             //26
             4,-3,-9,  4,-1,-9,  4,-1,-14,  4,-14,-14,  4,-14,-1,  4,-9,-1, 4,-9,-3,
-            
-            //33
+
+                    //33
             -4,-3,-9,  -4,-1,-9, -4,-1,-14, -4,-14,-14, -4,-14,-1, -4,-9,-1, -4,-9,-3
         };
 
@@ -206,9 +207,9 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             //--------------------------------------
             {0, 1, 2, 3},     //Front  The order of these faces is relevant
             {22, 23, 24, 25}, //Top    for method updateStickersFillColor
-            
-            
-            // Faces with outlines
+
+
+                    // Faces with outlines
             // (all faces which have outlines must be
             // at the beginning, this is relevant
             // for method updatePartsOutlineColor()
@@ -217,33 +218,33 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             {26+0,26+1,26+2},
             {26+0,26+2,26+3,26+4,26+6},
             {26+4,26+5,26+6},
-            
-            {26+9,26+8,26+7},
+
+                    {26+9,26+8,26+7},
             {26+13,26+11,26+10,26+9,26+7},
             {26+13,26+12,26+11},
-            
-            {26+1,26+8,26+9,26+2},
+
+                    {26+1,26+8,26+9,26+2},
             {26+2,26+9,26+10,26+3},
             {26+3,26+10,26+11,26+4},
             {26+5,26+4,26+11,26+12},
-            
-            // Faces without outlines
+
+                    // Faces without outlines
             //--------------------------------------
             // Faces of the main cubicle
             {4, 5, 6, 7, 8}, //Right
             {9, 10, 11, 12},     //Bottom
             {13, 14, 15, 16},         //Back
             {17, 18, 19, 20, 21},   //Left
-            
-            // Triangular faces at the corners of the main cubicle
+
+                    // Triangular faces at the corners of the main cubicle
             {25, 0,18}, //Top Front Left
             {24,4,1}, //Top Right Front
             {22,17,14}, //Top Left Back
             {23,13,5}, //Top Back Right
             {9,19,3}, //Bottom Left Front
             {10,2,8}, //Bottom Front Right
-            
-            // Edges of the main cubicle
+
+                    // Edges of the main cubicle
             {25,24,1,0},   //Top Front
             {24,23,5,4}, //Top Right
             {23,22,14,13},   //Top Back
@@ -256,10 +257,10 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             {5,13,16,6},   //Back Right
             {14,17,21,15},   //Back Left
             {16,15,21,20,12,11,7,6}, // Back Down
-            
-        };
+
+            };
         }
-        
+
         shapes[edgeOffset+0] = new Shape3D(SQUARE_EDGE_VERTS, SQUARE_EDGE_FACES, new Color[SQUARE_EDGE_FACES.length][2]);
         shapes[edgeOffset+2] = new Shape3D(SQUARE_EDGE_VERTS, SQUARE_EDGE_FACES, new Color[SQUARE_EDGE_FACES.length][2]);
         shapes[edgeOffset+3] = new Shape3D(SQUARE_EDGE_VERTS, SQUARE_EDGE_FACES, new Color[SQUARE_EDGE_FACES.length][2]);
@@ -273,34 +274,34 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
     private static int[][] OBLIQUE_EDGE_FACES;
     protected void initObliqueEdges() {
         int i;
-        
+
         if (OBLIQUE_EDGE_VERTS == null) {
             OBLIQUE_EDGE_VERTS = new float[]         {
             // Vertices of the main cubicle
-            
-            //0: Oblique Front Face: top-left, top-right, bottom-right, bottom-left
+
+                    //0: Oblique Front Face: top-left, top-right, bottom-right, bottom-left
             -8,0,0,  8,0,0,   8,-8,8,   -8,-8,8,
-            
-            //4: Right Face: center, top-back, center-back, bottom-center, bottom-front
+
+                    //4: Right Face: center, top-back, center-back, bottom-center, bottom-front
             9,-.5f,-.5f,  9,7,-8, 9,-4,-8, 9,-8,-4, 9,-8,7,
-            
-            //9: Bottom Face: front-left, front-right, back-right, back-left
+
+                    //9: Bottom Face: front-left, front-right, back-right, back-left
             -8,-9,8,  8,-9,8, 8,-9,-3, -8,-9,-3,
-            
-            //13: Back Face: up-right, up-left, down-left, down-right
+
+                    //13: Back Face: up-right, up-left, down-left, down-right
             8,8,-9,  -8,8,-9,  -8,-3,-9, 8,-3,-9,
-            
-            //17: Left Face: top-back, top-front, bottom-front, bottom-center, center-back
+
+                    //17: Left Face: top-back, top-front, bottom-front, bottom-center, center-back
             -9,7,-8,  -9,-.5f,-.5f, -9,-8,7, -9,-8,-4, -9,-4,-8,
-            
-            //22: Oblique Top Face: back-left, back-right, front-right, front-left
+
+                    //22: Oblique Top Face: back-left, back-right, front-right, front-left
             -8,8,-8,  8,8,-8,   8,0,0,   -8,0,0,
-            
-            // Vertices of the additional cubicle at the back bottom.
+
+                    // Vertices of the additional cubicle at the back bottom.
             //26
             4,-3,-9,  4,-1,-9,  4,-1,-14,  4,-14,-14,  4,-14,-1,  4,-9,-1, 4,-9,-3,
-            
-            //33
+
+                    //33
             -4,-3,-9,  -4,-1,-9, -4,-1,-14, -4,-14,-14, -4,-14,-1, -4,-9,-1, -4,-9,-3
         };
 
@@ -311,14 +312,14 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             //--------------------------------------
             {22,23, 2, 3},     //Oblique     The order of these faces is relevant
             //Front+Top   for method updateStickersFillColor
-            
-            // Sensor faces (no outlines and no fill color)
+
+                    // Sensor faces (no outlines and no fill color)
             // ------------
             {0, 1, 2, 3},     //Front Sensor
             {22, 23, 24, 25}, //Top Sensor
-            
-            
-            // Faces with outlines
+
+
+                    // Faces with outlines
             // (all faces which have outlines must be
             // at the beginning, this is relevant
             // for method updatePartsOutlineColor()
@@ -327,31 +328,31 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             {26+0,26+1,26+2},
             {26+0,26+2,26+3,26+4,26+6},
             {26+4,26+5,26+6},
-            
-            {26+9,26+8,26+7},
+
+                    {26+9,26+8,26+7},
             {26+13,26+11,26+10,26+9,26+7},
             {26+13,26+12,26+11},
-            
-            {26+1,26+8,26+9,26+2},
+
+                    {26+1,26+8,26+9,26+2},
             {26+2,26+9,26+10,26+3},
             {26+3,26+10,26+11,26+4},
             {26+5,26+4,26+11,26+12},
-            
-            // Faces without outlines
+
+                    // Faces without outlines
             //--------------------------------------
             // Faces of the main cubicle
             {5, 6, 7, 8}, //Right
             {9, 10, 11, 12},     //Bottom
             {13, 14, 15, 16},         //Back
             {17, 19, 20, 21},   //Left
-            
-            // Triangular faces at the corners of the main cubicle
+
+                    // Triangular faces at the corners of the main cubicle
             {22,17,14}, //Top Left Back
             {23,13,5}, //Top Back Right
             {9,19,3}, //Bottom Left Front
             {10,2,8}, //Bottom Front Right
-            
-            // Edges of the main cubicle
+
+                    // Edges of the main cubicle
             {2,23,5,8}, //Top Right to Front Right
             {23,22,14,13},   //Top Back
             {22,3,19,17},  //Top Left to Front Left
@@ -361,11 +362,11 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             {5,13,16,6},   //Back Right
             {14,17,21,15},   //Back Left
             {16,15,21,20,12,11,7,6}, // Back Down
-            
-        };
+
+            };
 
         }
-        
+
         shapes[edgeOffset+1] = new Shape3D(OBLIQUE_EDGE_VERTS, OBLIQUE_EDGE_FACES, new Color[SQUARE_EDGE_FACES.length][2]);
         shapes[edgeOffset+4] = new Shape3D(OBLIQUE_EDGE_VERTS, OBLIQUE_EDGE_FACES, new Color[SQUARE_EDGE_FACES.length][2]);
         shapes[edgeOffset+7] = new Shape3D(OBLIQUE_EDGE_VERTS, OBLIQUE_EDGE_FACES, new Color[SQUARE_EDGE_FACES.length][2]);
@@ -509,7 +510,7 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
     public int getStickerCount() {
         return STICKER_COUNT;
     }
-    
+
     /** Updates the fill color of the parts.
      */
     protected void updatePartsFillColor() {
@@ -535,7 +536,7 @@ public class RubiksBarrelGeom3D extends AbstractRubiksCubeGeom3D {
             } else {
                 offset = 0;
             }
-            
+
             for (int i=shape.getFaceCount() - 1; i >= offset; i--) {
                 shape.setFillColor(i, color);
             }

@@ -1,5 +1,6 @@
-/* @(#)Cube.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cube.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.cube;
@@ -38,20 +39,20 @@ public interface Cube extends Cloneable {
      * and has orientation 0.
      */
     boolean isSolved();
-    
+
     /**
-     * Sets the orientations and locations of the parts of this Cube to the 
+     * Sets the orientations and locations of the parts of this Cube to the
      * same values as in the specified Cube.
      * <p>
-     * If this cube was different from the specified cube, this method fires a 
+     * If this cube was different from the specified cube, this method fires a
      * cubeChanged event.
      *
      * @param tx The cube to be set to.
      * @throws IllegalArgumentException if the specified cube has not the same
-     * layer count like this cube.
+     *                                  layer count like this cube.
      */
     void setTo(Cube tx);
-    
+
     /**
      * Transforms the cube and fires a cubeTwisted event.
      *

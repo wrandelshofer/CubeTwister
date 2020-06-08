@@ -1,5 +1,6 @@
-/* @(#)TestDnDJList.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TestJDnDList.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.test;
@@ -21,7 +22,7 @@ public class TestJDnDList extends javax.swing.JFrame {
     public TestJDnDList() {
         initComponents();
         setTitle("TestJDnDList");
-        
+
     DefaultMutableListModel<String> m = new DefaultMutableListModel<String>();
         m.add("anna");
         m.add("berta");
@@ -35,7 +36,7 @@ public class TestJDnDList extends javax.swing.JFrame {
         m.add("josef");
         m.add("karl");
         m.add("lena");
-        
+
         list1.setModel(m);
         //list1.set
 
@@ -43,12 +44,12 @@ public class TestJDnDList extends javax.swing.JFrame {
         m.add("1");
         m.add("2");
         m.add("3");
- 
+
         list2.setModel(m);
-        
+
         setSize(600,400);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -118,25 +119,25 @@ public class TestJDnDList extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     /** Exit the Application */
     private void exitForm(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitForm
         System.exit(0);
     }//GEN-LAST:event_exitForm
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Throwable e) {
         }
         new TestJDnDList().setVisible(true);
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private ch.randelshofer.gui.JDnDList list1;
@@ -144,5 +145,5 @@ public class TestJDnDList extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrollPane1;
     private javax.swing.JScrollPane srollPane2;
     // End of variables declaration//GEN-END:variables
-    
+
 }

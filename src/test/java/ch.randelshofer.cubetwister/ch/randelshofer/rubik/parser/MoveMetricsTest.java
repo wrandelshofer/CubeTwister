@@ -1,5 +1,6 @@
-/* @(#)MoveMetricsTest.java
- * Copyright (c) 2018 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MoveMetricsTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.parser;
 

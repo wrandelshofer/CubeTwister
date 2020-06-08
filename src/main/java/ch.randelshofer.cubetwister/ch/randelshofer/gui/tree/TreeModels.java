@@ -1,5 +1,6 @@
-/* @(#)TreeModels.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TreeModels.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.tree;
 
@@ -184,10 +185,10 @@ public class TreeModels {
      * where the original node is the last element in the returned array.
      * The length of the returned array gives the node's depth in the
      * tree.
-     * 
+     *
      * @param aNode the TreeNode to get the path for
      * @return an array of TreeNodes giving the path from the root to the
-     *        specified node. 
+     *        specified node.
      */
     @Nullable
     public static TreeNode[] getPathToRoot(TreeNode aNode) {
@@ -204,7 +205,7 @@ public class TreeModels {
      * @param depth  an int giving the number of steps already taken towards
      *        the root (on recursive calls), used to size the returned array
      * @return an array of TreeNodes giving the path from the root to the
-     *         specified node 
+     *         specified node
      */
     @Nullable
     public static TreeNode[] getPathToRoot(@Nullable TreeNode aNode, int depth) {

@@ -1,5 +1,6 @@
-/* @(#)AbstractVCube7Idx3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractCube7Idx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -29,7 +30,7 @@ import javax.swing.SwingUtilities;
  */
 public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
 
-    /** 
+    /**
      * A cube part has a side length of 10 2/7 mm.
      */
     protected final static float PART_LENGTH = 10.2857143f;
@@ -303,7 +304,7 @@ public abstract class AbstractCube7Idx3D extends AbstractCubeIdx3D {
                 case 24:
                     vt.shift(2f*PART_LENGTH, PART_LENGTH, 0);
                     break;
-                    
+
             }
 
             switch (i % 6) {

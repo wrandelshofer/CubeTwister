@@ -1,5 +1,6 @@
-/* @(#)CubeColorsModel.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeColorsModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -21,7 +22,7 @@ import java.io.Writer;
 /**
  * Holds a collection of CubeColorModel as its children. CubeColorsModel is
  * a child of CubeModel.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class CubeColorsModel extends EntityModel {
@@ -75,7 +76,7 @@ public class CubeColorsModel extends EntityModel {
                     CubeColorModel colorModel = (CubeColorModel) in.readObject(i);
                     document.insertNodeInto(colorModel, this, index + i);
                 }
-                
+
             }
             return in.getElementCount();
         } else {

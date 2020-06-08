@@ -1,5 +1,6 @@
-/* @(#)ColorTableCellEditor.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ColorTableCellEditor.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.table;
@@ -30,12 +31,12 @@ public class ColorTableCellEditor extends DefaultCellEditor {
     private final static long serialVersionUID = 1L;
     private PolygonIcon icon;
     @Nullable Color currentColor = null;
-    
+
     public ColorTableCellEditor() {
         super(new JCheckBox()); //Unfortunately, the constructor
         //expects a check box, combo box,
         //or text field.
-        
+
         icon = new PolygonIcon(
         new Polygon(
         new int[] {0, 24, 24, 0},
@@ -44,13 +45,13 @@ public class ColorTableCellEditor extends DefaultCellEditor {
         ),
         new Dimension(25, 13)
         );
-        
+
         final JButton button = new JButton(icon);
         button.setBorderPainted(false);
         button.setMargin(new Insets(0,1,0,0));
         button.setHorizontalAlignment(SwingConstants.LEFT);
         editorComponent = button;
-        
+
         //Set up the dialog that the button brings up.
         final JColorChooser colorChooser = new JColorChooser();
         ActionListener okListener = new ActionListener() {
@@ -67,7 +68,7 @@ public class ColorTableCellEditor extends DefaultCellEditor {
         colorChooser,
         okListener,
         null); //XXXDoublecheck this is OK
-        
+
         //Here's the code that brings up the dialog.
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +77,7 @@ public class ColorTableCellEditor extends DefaultCellEditor {
                 //in the middle of the screen.
                 dialog.setLocationRelativeTo(button);
                 dialog.setVisible(true);
-                
+
                 //Must do this so that editing stops when appropriate.
                 fireEditingStopped();
             }
@@ -126,9 +127,9 @@ public class ColorTableCellEditor extends DefaultCellEditor {
             button.setBackground(table.getBackground());
 	}
 
-        
+
         currentColor = (Color) value;
-        
+
         icon.setFillColor(currentColor);
         if (currentColor == null) {
             icon.setForeground(Color.black);

@@ -1,5 +1,6 @@
-/* @(#)DOMInput.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DOMInput.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 
@@ -11,7 +12,7 @@ package ch.randelshofer.xml;
  * @author  Werner Randelshofer
  */
 public interface DOMInput {
-    
+
     /**
      * Returns the tag name of the current element.
      */
@@ -28,7 +29,7 @@ public interface DOMInput {
      * Gets the text of the current element of the DOM Document.
      */
     public String getText(String defaultValue);
-    
+
     /**
      * Gets an attribute of the current element of the DOM Document.
      */
@@ -45,8 +46,8 @@ public interface DOMInput {
      * Gets an attribute of the current element of the DOM Document.
      */
     public boolean getAttribute(String name, boolean defaultValue);
-    
-    
+
+
     /**
      * Returns the number of child elements of the current element.
      */
@@ -56,12 +57,12 @@ public interface DOMInput {
      * of the current element.
      */
     public int getElementCount(String tagName);
-    
+
     /**
      * Opens the element with the specified index and makes it the current node.
      */
     public void openElement(int index);
-    
+
     /**
      * Opens the last element with the specified name and makes it the current node.
      */
@@ -71,7 +72,7 @@ public interface DOMInput {
      * current node.
      */
     public void openElement(String tagName, int index);
-    
+
     /**
      * Closes the current element of the DOM Document.
      * The parent of the current element becomes the current element.
@@ -80,7 +81,7 @@ public interface DOMInput {
      * not match the tag name of the element.
      */
     public void closeElement();
-    
+
     /**
      * Reads an object from the current element.
      */

@@ -1,14 +1,16 @@
-/* @(#)MutableListModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableListModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.list;
 
-import javax.swing.*;
-import java.awt.datatransfer.*;
-import java.awt.dnd.*;
-import java.io.*;
-import java.util.*;
+import javax.swing.Action;
+import javax.swing.ListModel;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 /**
  * Specifies the requirements for a mutable list model.
@@ -21,38 +23,39 @@ import java.util.*;
  * <li>A setter operation for changing the value of an element.</li>
  * <li>Operations for retrieving <code>javax.swing.Action</code>'s
  *      for a group of elements</li>
- * <li>Operations for importing and exporting elements from a 
+ * <li>Operations for importing and exporting elements from a
  * <code>java.awt.transfer.Transferable</code>.</li>
  * </ul>
  *
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public interface MutableListModel
 extends ListModel {
     // Abstract factory operations
     // ====================================================
+
     /**
-     * Returns the types of elements that can be created at 
+     * Returns the types of elements that can be created at
      * the specified index of the list.
      *
-     * @param   index  The insertion point. 0 &lt;= index &lt;= getSize()
-     * @return  an array of Object's that specify element types that can be
-     *          inserted at the insertion point. Returns an empty array if no
-     *          elements can be inserted here. Never returns null.
-     *          This array must include the type returned by operation 
-     *          getCreatableType.
+     * @param index The insertion point. 0 &lt;= index &lt;= getSize()
+     * @return an array of Object's that specify element types that can be
+     * inserted at the insertion point. Returns an empty array if no
+     * elements can be inserted here. Never returns null.
+     * This array must include the type returned by operation
+     * getCreatableType.
      */
     public Object[] getCreatableTypes(int index);
     /**
-     * Returns the default type of elements that can be created at 
+     * Returns the default type of elements that can be created at
      * the specified index of the list.
      *
      * @param   index  The insertion point. 0 &lt;= index &lt;= getSize()
-     * @return  an Object that specifies the default element type that can be
+     * @return an Object that specifies the default element type that can be
      *          inserted at the insertion point. Returns null if no
-     *          elements can be inserted here. 
-     *          The value must be one of the types returned by operation 
+     *          elements can be inserted here.
+     *          The value must be one of the types returned by operation
      *          getCreatableTypes.
      */
     public Object getCreatableType(int index);
@@ -63,7 +66,7 @@ extends ListModel {
      *
      * @param index index at which the specified element is to be inserted.
      * @param type element type to be inserted.
-     * 
+     *
      * @throws    IllegalArgumentException if the type is not contained in
      *            the array returned by getInsertableTypes(int).
      * @throws    IndexOutOfBoundsException if the index is out of range
@@ -71,11 +74,11 @@ extends ListModel {
      */
     public void create(int index, Object type);
 
-    
+
 
     // Insert and remove operations
     // ====================================================
-    
+
     /**
      * Returns true if an element can be added.
      *
@@ -90,7 +93,7 @@ extends ListModel {
      * @see #remove(int)
      */
     public boolean isRemovable(int index);
-    
+
     /**
      * Removes an element from the model.
      *
@@ -101,7 +104,7 @@ extends ListModel {
      */
     public Object remove(int index)
     throws IllegalStateException;
-    
+
 
     // Editing operations.
     // ====================================================
@@ -113,7 +116,7 @@ extends ListModel {
      * @see #setElementAt(Object, int)
      */
     public boolean isEditable(int index);
-    
+
     /**
      * Sets the value of an element at the given index.
      *
@@ -124,7 +127,7 @@ extends ListModel {
      */
     public void setElementAt(Object value, int index)
     throws IllegalStateException;
-    
+
     // Operations for determining the actions for elements
     // ====================================================
     /**
@@ -133,7 +136,7 @@ extends ListModel {
      * @param   indices   The elements.
      */
     public Action[] getActions(int[] indices);
-    
+
     // Datatransfer operations
     // =======================
     /**
@@ -145,7 +148,7 @@ extends ListModel {
      * to be transferred, or null if transfer is not possible.
      */
     public Transferable exportTransferable(int[] indices);
-    
+
     /**
      * Indicates whether the model would accept an import of the
      * given set of data flavors prior to actually attempting
@@ -163,7 +166,7 @@ extends ListModel {
      * @see java.awt.dnd.DnDConstants
      */
     public boolean isImportable(DataFlavor[] transferFlavors, int action, int index, boolean asChild);
-    
+
     /**
      * Causes a transfer to the model from the specified transferable.
      *

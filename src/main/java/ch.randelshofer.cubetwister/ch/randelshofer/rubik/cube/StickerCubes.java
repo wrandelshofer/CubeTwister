@@ -1,3 +1,8 @@
+/*
+ * @(#)StickerCubes.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.rubik.cube;
 
 import org.jhotdraw.annotation.Nonnull;

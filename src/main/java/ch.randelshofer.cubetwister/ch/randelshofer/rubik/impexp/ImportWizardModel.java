@@ -1,5 +1,6 @@
-/* @(#)ImportWizardModel.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ImportWizardModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.impexp;
@@ -62,30 +63,30 @@ public class ImportWizardModel extends AbstractBean implements WizardModel {
                 }
             }
         });
-        
+
         Importer importer;
         javax.swing.filechooser.FileFilter filter;
         filterToImporterMap = new HashMap<javax.swing.filechooser.FileFilter,Importer>();
-        
+
         importer = new CSVImporter(',');
         filter = new ExtensionFileFilter("csv", "Comma Separated Values");
         filterToImporterMap.put(filter, importer);
         fileChooser.addChoosableFileFilter(filter);
-        
+
         importer = new CSVImporter('\t');
         filter = new ExtensionFileFilter("tab", "Tabulator Separated Values");
         filterToImporterMap.put(filter, importer);
         fileChooser.addChoosableFileFilter(filter);
-        
+
         importer = new CubeExplorerImporter();
         filter = new ExtensionFileFilter("txt", "CubeExplorer");
         filterToImporterMap.put(filter, importer);
         fileChooser.addChoosableFileFilter(filter);
-        
+
         titles = new String[] {
             "Choose File", "Options"
         };
-        
+
         setDocumentView(view);
     }
 
@@ -95,7 +96,7 @@ public class ImportWizardModel extends AbstractBean implements WizardModel {
 
         firePropertyChange("canFinish", oldValue != null, newValue != null);
     }
-    
+
     public boolean canFinish() {
         return file != null;
     }
@@ -107,10 +108,10 @@ public class ImportWizardModel extends AbstractBean implements WizardModel {
             importer.setDocumentModel(view.getModel());
         }
     }
-    
+
     public void cancel() {
     }
-    
+
     public void finish() {
         view.setEnabled(false);
         view.getModel().dispatch(new RunnableWorker() {
@@ -162,7 +163,7 @@ public class ImportWizardModel extends AbstractBean implements WizardModel {
     public ExtensionFileFilter getSelectedFilter() {
         return (ExtensionFileFilter) fileChooser.getFileFilter();
     }
-    
+
     @Override
     public JComponent getPanel(int index) {
         switch (index) {
@@ -173,7 +174,7 @@ public class ImportWizardModel extends AbstractBean implements WizardModel {
             default : throw new IndexOutOfBoundsException();
         }
     }
-    
+
     public int getPanelCount() {
         return 2;
     }

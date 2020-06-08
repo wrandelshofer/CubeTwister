@@ -1,5 +1,6 @@
-/* @(#)Colors.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Colors.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -13,7 +14,7 @@ import java.awt.Color;
  * @author  Werner Randelshofer
  */
 public class Colors {
-    
+
     /** Prevent instance creation. */
     private Colors() {
     }
@@ -32,5 +33,5 @@ public class Colors {
                         c.getAlpha()
                 );
     }
-    
+
 }

@@ -1,5 +1,6 @@
-/* @(#)Notation.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Notation.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.notation;
@@ -25,12 +26,12 @@ public interface Notation {
      * Returns the number of layers supported by this notation.
      */
     int getLayerCount();
-    
+
     /**
-     * Returns a macro which performs the same transformation as the cube 
+     * Returns a macro which performs the same transformation as the cube
      * parameter. Returns null if no macro is available.
      *
-     * @param cube A transformed cube.
+     * @param cube        A transformed cube.
      * @param localMacros A Map with local macros.
      * @return equivalent macro or null
      */
@@ -38,7 +39,7 @@ public interface Notation {
 
     /**
      * Returns the macros defined by this notation.
-     * 
+     *
      * @return macros.
      */
     Map<String, String> getMacros();
@@ -56,7 +57,7 @@ public interface Notation {
      *                     and if no alternative symbols could be found.
      */
     void writeToken(Writer w, Symbol symbol) throws IOException;
-    
+
     /**
      * Writes a token for the specified transformation to the print writer.
      */
@@ -66,7 +67,7 @@ public interface Notation {
      * Returns true, if this notation supports the specified symbol.
      */
     boolean isSupported(Symbol s);
-    
+
     /**
      * Returns the syntax for the specified symbol.
      */

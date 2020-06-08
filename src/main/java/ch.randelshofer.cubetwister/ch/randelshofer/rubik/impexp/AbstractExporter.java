@@ -1,5 +1,6 @@
-/* @(#)AbstractExporter.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractExporter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.impexp;
@@ -39,7 +40,7 @@ public class AbstractExporter extends JPanel implements Exporter {
     public JComponent getComponent() {
         return this;
     }
-    
+
     protected static class ScriptRecord {
         public String name;
         public String notation;
@@ -57,12 +58,12 @@ public class AbstractExporter extends JPanel implements Exporter {
         public String realPermutation;
         public String description;
     }
-    
+
     /** Creates new form. */
     public AbstractExporter() {
         initComponents();
     }
-    
+
     @Override
     public void setDocumentModel(DocumentModel documentModel) {
         this.documentModel = documentModel;
@@ -84,17 +85,17 @@ public class AbstractExporter extends JPanel implements Exporter {
 
             p.setProgress(++progress);
             p.setNote("Exporting \""+item.getName()+"\"");
-            
+
             ScriptRecord sr = new ScriptRecord();
-            
-            
+
+
             sr.name = item.getName();
             sr.description = item.getDescription();
             sr.author = item.getAuthor();
             sr.date = item.getDate();
             sr.notation = item.getNotationModel().getName();
             sr.script = item.getScript();
-            
+
             // Add synthetic fields to record
             ScriptParser parser = item.getParser();
             Node parsedScript = item.getParsedScript();
@@ -110,7 +111,7 @@ public class AbstractExporter extends JPanel implements Exporter {
                 sr.visualPermutation = Cubes.toVisualPermutationString(cube, parser.getNotation());
                 sr.realPermutation = Cubes.toPermutationString(cube, parser.getNotation());
             }
-            
+
             // Add macros to data record
             sr.macros = new String[item.getMacroModels().getChildCount()][2];
             int k = 0;
@@ -119,7 +120,7 @@ public class AbstractExporter extends JPanel implements Exporter {
                 sr.macros[k][0] = macro.getIdentifier();
                 sr.macros[k++][1] = macro.getScript();
             }
-            
+
             records.add(sr);
         }
         return records;
@@ -141,41 +142,43 @@ public class AbstractExporter extends JPanel implements Exporter {
 
             p.setProgress(++progress);
             p.setNote("Exporting \""+item.getName()+"\"");
-            
+
             ScriptRecord sr = new ScriptRecord();
-            
-            
+
+
             sr.name = item.getName();
             sr.description = item.getDescription();
             sr.author = item.getAuthor();
             sr.date = item.getDate();
             sr.notation = translator.getName();
-            
+
             // Add synthetic fields to record
             ScriptParser parser = item.getParser();
             Node parsedScript = item.getParsedScript();
             sr.isParsed = parsedScript != null;
             sr.macros = new String[item.getMacroModels().getChildCount()][2];
             if (sr.isParsed) {
-                
+
                 // Translate
                 // -------------------------------------------------
                 @SuppressWarnings("unchecked")
                 List<MacroNode> macros = (List)item.getMacroModels().getChildren();
                 ScriptParser oldParser = item.getNotationModel().getParser(macros);
-                
+
                 // Parse the local macros
                 ArrayList<MacroNode> localMacros = new ArrayList<MacroNode>();
                 for (Iterator j = macros.iterator(); j.hasNext(); ) {
                     MacroModel macro = (MacroModel) j.next();
                     localMacros.add(new MacroNode(macro.getIdentifier(),
-                    macro.getScript(), 0, 0));
+                            macro.getScript(), 0, 0));
                 }
-                
+
                 ScriptParser newParser = translator.getParser(localMacros);
-                
-                // Translate the Script 
-                if (true) throw new InternalError("not implemented");
+
+                // Translate the Script
+                if (true) {
+                    throw new InternalError("not implemented");
+                }
                 /*
                 if (oldParser.isTwistSupported() && ! newParser.isTwistSupported()) {
                     SequenceNode node = oldParser.parse(item.getScript());
@@ -185,7 +188,7 @@ public class AbstractExporter extends JPanel implements Exporter {
                 } else {
                     sr.script = newParser.toString(oldParser.parse(item.getScript()), parsedMacros);
                 }
-                
+
                 // Translate the macros
                 ArrayList translatedMacros = new ArrayList(macros.size());
                 sr.macros = new String[macros.size()][2];
@@ -220,7 +223,7 @@ public class AbstractExporter extends JPanel implements Exporter {
                 /*
                 java.util.List macros = new TreeNodeCollection(item.getMacroModels());
                 ScriptParser oldParser = item.getNotationModel().getParser(macros);
-                 
+
                 // Parse the local macros
                 HashMap parsedMacros = new HashMap();
                 for (int j=0; j < macros.size(); j++) {
@@ -235,9 +238,9 @@ public class AbstractExporter extends JPanel implements Exporter {
                         parsedMacros.put(t.nextToken(), macroNode);
                     }
                 }
-                 
+
                 ScriptParser newParser = translator.getParser(parsedMacros);
-                 
+
                 // Translate the Script and add it to the data record
                 parsedScript = oldParser.parse(item.getScript());
                 if (oldParser.isTwistSupported() && ! newParser.isTwistSupported()) {
@@ -246,9 +249,9 @@ public class AbstractExporter extends JPanel implements Exporter {
                 } else {
                     sr.script = newParser.toString(parsedScript, parsedMacros);
                 }
-                 
+
                 // Translate the macros and add them to the data record
-                 
+
                 sr.macros = new String[macros.size()][2];
                 ArrayList translatedMacros = new ArrayList(macros.size());
                 for (int k=0; k < macros.size(); k++) {
@@ -263,14 +266,14 @@ public class AbstractExporter extends JPanel implements Exporter {
                     translatedMacro.setIdentifier(identifier);
                     translatedMacro.setScript(macroScript);
                     translatedMacros.add(translatedMacro);
-                 
+
                     sr.macros[k][0] = macro.getIdentifier();
                     sr.macros[k++][1] = translatedMacro.getScript();
                 }
-                 
+
                 newParser = translator.getParser(translatedMacros);
                 parsedScript = newParser.parse(sr.script);
-                 
+
                 cube.reset();
                 parsedScript.applySubtreeTo(cube, false);
                 sr.ltm = MoveMetrics.getLayerTurnCount(parsedScript);
@@ -282,13 +285,13 @@ public class AbstractExporter extends JPanel implements Exporter {
                 sr.realPermutation = cube.toPermutationString(newParser);
                  */
             }
-            
+
             records.add(sr);
         }
-        
+
         return records;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -297,12 +300,12 @@ public class AbstractExporter extends JPanel implements Exporter {
     private void initComponents() {//GEN-BEGIN:initComponents
 
     }//GEN-END:initComponents
-    
+
     public void exportFile(File file, ProgressObserver p) throws IOException {
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

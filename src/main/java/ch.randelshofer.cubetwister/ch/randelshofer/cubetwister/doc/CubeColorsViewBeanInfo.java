@@ -1,5 +1,6 @@
-/* @(#)CubeColorsViewBeanInfo.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeColorsViewBeanInfo.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -17,7 +18,7 @@ import java.beans.SimpleBeanInfo;
  * @author  Werner Randelshofer
  */
 public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
-    
+
     // Bean descriptor information will be obtained from introspection.//GEN-FIRST:BeanDescriptor
     @Nullable
     private static BeanDescriptor beanDescriptor = null;
@@ -31,8 +32,8 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
         beanDescriptor.setValue("isContainer", Boolean.FALSE);
 
         return beanDescriptor;     }//GEN-LAST:BeanDescriptor
-    
-    
+
+
     // Properties information will be obtained from introspection.//GEN-FIRST:Properties
     @Nullable
     private static PropertyDescriptor[] properties = null;
@@ -43,7 +44,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
         // Here you can add code for customizing the properties array.
 
         return properties;     }//GEN-LAST:Properties
-    
+
     // Event set information will be obtained from introspection.//GEN-FIRST:Events
     @Nullable
     private static EventSetDescriptor[] eventSets = null;
@@ -54,7 +55,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
         // Here you can add code for customizing the event sets array.
 
         return eventSets;     }//GEN-LAST:Events
-    
+
     // Method information will be obtained from introspection.//GEN-FIRST:Methods
     @Nullable
     private static MethodDescriptor[] methods = null;
@@ -82,17 +83,17 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     private static String iconNameM16 = null;
     @Nullable
     private static String iconNameM32 = null;//GEN-END:Icons
-    
+
     private static int defaultPropertyIndex = -1;//GEN-BEGIN:Idx
     private static int defaultEventIndex = -1;//GEN-END:Idx
-    
-    
-//GEN-FIRST:Superclass
-    
+
+
+    //GEN-FIRST:Superclass
+
     // Here you can add code for customizing the Superclass BeanInfo.
-    
-//GEN-LAST:Superclass
-    
+
+    //GEN-LAST:Superclass
+
     /**
      * Gets the bean's <code>BeanDescriptor</code>s.
      *
@@ -104,7 +105,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     public BeanDescriptor getBeanDescriptor() {
         return getBdescriptor();
     }
-    
+
     /**
      * Gets the bean's <code>PropertyDescriptor</code>s.
      *
@@ -121,7 +122,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     public PropertyDescriptor[] getPropertyDescriptors() {
         return getPdescriptor();
     }
-    
+
     /**
      * Gets the bean's <code>EventSetDescriptor</code>s.
      *
@@ -133,7 +134,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     public EventSetDescriptor[] getEventSetDescriptors() {
         return getEdescriptor();
     }
-    
+
     /**
      * Gets the bean's <code>MethodDescriptor</code>s.
      *
@@ -145,7 +146,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     public MethodDescriptor[] getMethodDescriptors() {
         return getMdescriptor();
     }
-    
+
     /**
      * A bean may have a "default" property that is the property that will
      * mostly commonly be initially chosen for update by human's who are
@@ -157,7 +158,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     public int getDefaultPropertyIndex() {
         return defaultPropertyIndex;
     }
-    
+
     /**
      * A bean may have a "default" event that is the event that will
      * mostly commonly be used by human's when using the bean.
@@ -168,7 +169,7 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
     public int getDefaultEventIndex() {
         return defaultEventIndex;
     }
-    
+
     /**
      * This method returns an image object that can be used to
      * represent the bean in toolboxes, toolbars, etc.   Icon images
@@ -228,6 +229,6 @@ public class CubeColorsViewBeanInfo extends SimpleBeanInfo {
             default: return null;
         }
     }
-    
+
 }
 

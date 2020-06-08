@@ -1,5 +1,6 @@
-/* @(#)CompositeTransferable.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CompositeTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -22,7 +23,7 @@ public class CompositeTransferable implements java.awt.datatransfer.Transferable
     private HashMap<DataFlavor,Transferable> transferables = new HashMap<DataFlavor,Transferable>();
     @Nonnull
     private LinkedList<DataFlavor> flavors = new LinkedList<DataFlavor>();
-    
+
     /** Creates a new instance of CompositeTransferable */
     public CompositeTransferable() {
     }
@@ -37,7 +38,7 @@ public class CompositeTransferable implements java.awt.datatransfer.Transferable
 
         }
     }
-    
+
     /**
      * Returns an object which represents the data to be transferred.  The class
      * of the object returned is defined by the representation class of the flavor.
@@ -55,7 +56,7 @@ public class CompositeTransferable implements java.awt.datatransfer.Transferable
         if (t == null) throw new UnsupportedFlavorException(flavor);
         return t.getTransferData(flavor);
     }
-    
+
     /**
      * Returns an array of DataFlavor objects indicating the flavors the data
      * can be provided in.  The array should be ordered according to preference
@@ -66,7 +67,7 @@ public class CompositeTransferable implements java.awt.datatransfer.Transferable
     public DataFlavor[] getTransferDataFlavors() {
         return flavors.toArray(new DataFlavor[transferables.size()]);
     }
-    
+
     /**
      * Returns whether or not the specified data flavor is supported for
      * this object.

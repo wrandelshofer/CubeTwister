@@ -1,11 +1,13 @@
-/* @(#)EventLoop.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)EventLoop.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
 import org.jhotdraw.annotation.Nullable;
 
 import java.util.LinkedList;
+
 /**
  * An EventLoop can process events on a separate worker thread.
  * It consists of two parts: the event collector and the event
@@ -13,7 +15,7 @@ import java.util.LinkedList;
  * <p>
  * The event collector collects all incoming events and puts them
  * into a queue.<br>
- * The event processor removes the events from the queue and 
+ * The event processor removes the events from the queue and
  * processes them.
  * <p>
  * The key feature of the EventLoop is, that clients don't have
@@ -62,13 +64,13 @@ public abstract class EventLoop {
      * The priority of the processor thread.
      */
     private int priority;
-    
+
     /**
      * The queue stores the events until they
      * can be processed by a processor thread.
      */
     private final LinkedList<Object> queue = new LinkedList<Object>();
-    
+
     /**
      * Indicates whether multiple events will be coalesced
      * by the event processor or not.
@@ -79,15 +81,16 @@ public abstract class EventLoop {
      * event processor or not.
      */
     private volatile boolean isAlive = true;
-    
+
     /**
      * Creates a new EventLoop which processes events at Thread.NORM_PRORITY.
      */
     public EventLoop() {
         this(Thread.NORM_PRIORITY);
     }
+
     /**
-     * Creates a new EventLoop which processes events at the 
+     * Creates a new EventLoop which processes events at the
      * desired thread priority.
      *
      * @param priority The Thread priority of the event processor.
@@ -98,7 +101,7 @@ public abstract class EventLoop {
     /**
      * Collects an event and puts it into the event queue
      * for later processing.
-     * 
+     *
      * @param event The event to be put into the queue.
      */
     protected void collectEvent(Object event) {
@@ -111,9 +114,9 @@ public abstract class EventLoop {
     }
 
     /**
-     * Sets whether the EventLoop coalesces multiple pending events. 
-     * A busy application may not be able to keep up with event 
-     * generation, causing multiple events to be queued. 
+     * Sets whether the EventLoop coalesces multiple pending events.
+     * A busy application may not be able to keep up with event
+     * generation, causing multiple events to be queued.
      * Coalescing is based on equality tests of event objects.
      * More formally, coalesces an event o if and only if the queue
      * contains at least one element e such that
@@ -121,7 +124,7 @@ public abstract class EventLoop {
      * <p>
      * EventLoops do not coalesce events by default.
      *
-     * @param b Specify true to turn on coalescing. 
+     * @param b Specify true to turn on coalescing.
      */
     public void setCoalesce(boolean b) {
         isCoalesce = b;
@@ -135,7 +138,7 @@ public abstract class EventLoop {
     public boolean isCoalesce() {
         return isCoalesce;
     }
-    
+
     /**
      * Starts the event processor.
      * <br>The event processor is started by default.
@@ -146,14 +149,14 @@ public abstract class EventLoop {
             startProcessor();
         }
     }
-    
+
     /**
      * Stops the event processor.
      */
     public void stop() {
         isAlive = false;
     }
-    
+
     public void join() throws InterruptedException {
         Thread t = eventProcessor;
         if (t != null) {
@@ -182,20 +185,22 @@ public abstract class EventLoop {
                         processEvents();
                     }
                 };
-                try { 
+                try {
                     // The event processor must not be a daemon.
                     // If it was a daemon, the virtual machine would
                     // stop before the event had been processed.
                     eventProcessor.setDaemon(false);
-                } catch (SecurityException e) {}
+                } catch (SecurityException e) {
+                }
                 try {
                     eventProcessor.setPriority(priority);
-                } catch (SecurityException e) {}
+                } catch (SecurityException e) {
+                }
                 eventProcessor.start();
             }
         }
     }
-    
+
     /**
      * This method processes a single event on the event processor thread.
      *

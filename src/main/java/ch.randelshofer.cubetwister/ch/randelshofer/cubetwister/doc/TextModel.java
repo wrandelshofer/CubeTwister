@@ -1,18 +1,9 @@
-/* @(#)CubeText.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TextModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
-
-import ch.randelshofer.gui.text.*;
-import java.beans.*;
-import java.awt.event.*;
-import java.util.*;
-import java.text.*;
-import javax.swing.undo.*;
-import javax.swing.text.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
 
 /**
  * A Model for Texts.

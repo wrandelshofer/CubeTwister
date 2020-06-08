@@ -1,5 +1,6 @@
-/* @(#)Cube7Idx3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cube7Idx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -20,11 +21,11 @@ import java.util.Arrays;
  * Simplified geometrical representation of {@link Cube7} in three dimensions.
  * <p>
  * The representation is simplified in the sense that all stickers of the
- * cube are square. In a real physical representation, such as a V-Cube 7, 
+ * cube are square. In a real physical representation, such as a V-Cube 7,
  * the surfaces of the cube are slightly rounded, resulting in stickers of
  * different sizes and different aspect ratios.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class Cube7Idx3D extends AbstractCube7Idx3D {
 
@@ -149,7 +150,7 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
      * <pre>
      *    0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21
      *  0                             +---+---+---+---+---+---+---+
-     *                                |4.0|                   |2.0|  
+     *                                |4.0|                   |2.0|
      *  1                             +---+                   +---+
      *                                |                           |
      *  2                             +                           +
@@ -161,7 +162,7 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
      *  5                             +                           +
      *                                |                           |
      *  6                             +---+                   +---+
-     *                                |6.0|                   |0.0|  
+     *                                |6.0|                   |0.0|
      *  7 +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+...........................+
      *    |4.1|                   |6.2|6.1|                   |0.2|0.1|                   |2.2|                           '
      *  8 +---+                   +---+---+                   +---+---+                   +---+                           '
@@ -184,10 +185,10 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
      *                                |                           |                           |     |
      * 17                             +                           +                           +     |
      *                                |             d             |             b             |  &lt;--+
-     * 18                             +                           +                           +     
-     *                                |                           |                           |     
-     * 19                             +                           +                           +     
-     *                                |                           |                           |     
+     * 18                             +                           +                           +
+     *                                |                           |                           |
+     * 19                             +                           +                           +
+     *                                |                           |                           |
      * 20                             +---+                   +---+---+                   +---+
      *                                |5.0|                   |3.0|3.2|                   |5.1|
      * 21                             +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
@@ -376,13 +377,13 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
      *   |   |   |   |6.1|   |   |   |   |   |   |9.0|   |   |   |   |48 |24 |0.1|12 |36 |   |                           '
      * 4 +--- ---+---+---+---+--- ---+--- ---+---+---+---+--- ---+--- ---+---+---+---+--- ---+                           '
      *   |   |                   |   |   |                   |   |   |                   |   |                           '
-     *   +---+                   +---+---+                   +---+---+                   +---+                           '       
+     *   +---+                   +---+---+                   +---+---+                   +---+                           '
      *   |   |                   |   |   |                   |   |   |                   |   |                           '
-     *   +---+                   +---+---+                   +---+---+                   +---+                           '       
+     *   +---+                   +---+---+                   +---+---+                   +---+                           '
      *   |7.0|         l         10.0|10.1         f         |1.1|1.0|         r         |4.0|             b             '
-     *   +---+                   +---+---+                   +---+---+                   +---+                           '       
+     *   +---+                   +---+---+                   +---+---+                   +---+                           '
      *   |   |                   |   |   |                   |   |   |                   |   |                           '
-     *   +---+                   +---+---+                   +---+---+                   +---+                           '       
+     *   +---+                   +---+---+                   +---+---+                   +---+                           '
      *   |   |                   |   |   |                   |   |   |                   |   |                           '
      * 4 +--- ---+---+---+---+--- ---+--- ---+---+---+---+--- ---+--- ---+---+---+---+--- ---+                           '
      *   |   |   |   |8.1|   |   |   |   |   |   |11.0   |   |   |   |   |   |2.1|   |   |   |                           '
@@ -394,10 +395,10 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
      *                               |   |                   |   |   |                   |   |     |
      *                               +---+                   +---+---+                   +---+     |
      *                               |8.0|         d         |2.0|4.1|         b         |7.1|  &lt;--+
-     *                               +---+                   +---+---+                   +---+     
-     *                               |   |                   |   |   |                   |   |     
-     *                               +---+                   +---+---+                   +---+     
-     *                               |   |                   |   |   |                   |   |     
+     *                               +---+                   +---+---+                   +---+
+     *                               |   |                   |   |   |                   |   |
+     *                               +---+                   +---+---+                   +---+
+     *                               |   |                   |   |   |                   |   |
      * 8                             +--- ---+---+---+---+--- ---+--- ---+---+---+---+--- ---+
      *                               |   |   |   |5.1|   |   |   |   |   |   |5.0|   |   |   |
      * 9                             +---+---+---+---+---+---+---+---+---+---+---+---+---+---+
@@ -515,35 +516,35 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
             // Note: The side verts are longer towards the center to avoid
             // holes in the cube while twisting.
             SIDE_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        //8:lluf      lldf       rruf      rrdf
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //0:luff      ldff       ruff       rdff
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //8:lluf      lldf       rruf      rrdf
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH)
                     };
         }
@@ -693,19 +694,19 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
     /**
      * The numbers show the part indices. The stickers are numbered from top
      * left to bottom right on each face. The sequence of the faces is right,
-     * up, front, left, down, back. 
+     * up, front, left, down, back.
      * <pre>
      *                               +---+---+---+---+---+---+---+
      *                               |4.0|39 |15 |3.1|27 |51 |2.0|
      *                               +---+---+---+---+---+---+---+
      *                               |42 |55  133 85  109 61 |36 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |18 |103  7  37  13  139|12 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |6.0|79  31  1.2 43  91 |0.0|
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |30 |127 25  49  19  115|24 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |54 |73  121 97  145 67 |48 |
      *                               +---+---+---+---+---+---+---+
      *                               |6.0|45 |21 |9.1|33 |57 |0.0|
@@ -713,13 +714,13 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
      *   | 4 |42 |18 |6.1|30 |54 | 6 | 6 |45 |21 |9.0|33 |57 | 0 | 0 |48 |24 |0.1|12 |36 | 2 | 2 |51 |27 |3.0|15 |39 | 4 |
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |55 |75  129 81  105 57 |58 |58 |62  140 92  116 68 |49 |49 |66  144 96  120 72 |52 |52 |59  137 89  113 65 |55 |
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |31 |123  27  33   9 135|34 |34 |110 14  44  20  146|25 |25 |114 18  48  24  126|28 |28 |107 11  41  17  143|31 |
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |7.0|99  51  3.1 39  87 10.0|10.1 86  38 2.3 50  98 |1.1|1.0|90  42  0.0 30  78 |4.0|4.1|83  35  5.2 47  95 |7.1|
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |19 |147 21  45  15  111|22 |22 |134  8  32  26  122|13 |13 |138 12  36   6  102|16 |16 |131 29  53  23  119|19 |
-     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+ 
+     *   +---+                   +---+---+                   +---+---+                   +---+---+                   +---+
      *   |43 |69  117 93  141 63 |46 |46 |56  104 80  128 74 |37 |37 |60  108 84  132 54 |40 |40 |77  125 101 149 71 |43 |
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   | 5 |44 |20 |8.1|32 |56 | 7 | 7 |47 |23 11.0|35 |59 | 1 | 1 |50 |26 |2.1|14 |38 | 3 | 3 |53 |29 |5.0| 17|41 | 5 |
@@ -727,13 +728,13 @@ public class Cube7Idx3D extends AbstractCube7Idx3D {
      *                               |7.0|47 |23 11.1|35 |59 |1.0|
      *                               +---+---+---+---+---+---+---+
      *                               |56 |76  130 82  106 58 |50 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |32 |124 28  34  10  136|26 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |8.0|100 52  4.1 40  88 |2.0|
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |20 |148 22  46  16  112|14 |
-     *                               +---+                   +---+  
+     *                               +---+                   +---+
      *                               |44 |70  118 94  142 64 |38 |
      *                               +---+---+---+---+---+---+---+
      *                               |5.0|41 |17 |5.1|29 |53 |3.0|

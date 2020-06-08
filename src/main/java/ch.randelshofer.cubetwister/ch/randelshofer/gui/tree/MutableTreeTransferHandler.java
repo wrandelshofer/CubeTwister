@@ -1,6 +1,6 @@
-/**
- * @(#)MutableTreeTransferHandler.java  1.1  2011-01-19
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableTreeTransferHandler.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.tree;
 

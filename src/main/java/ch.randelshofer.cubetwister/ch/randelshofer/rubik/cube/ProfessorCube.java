@@ -1,12 +1,13 @@
-/* @(#)ProfessorCube.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ProfessorCube.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube;
 
 import org.jhotdraw.annotation.Nonnull;
 
 /**
- * Represents the state of a 5-times sliced cube (Professor Cube) by the 
+ * Represents the state of a 5-times sliced cube (Professor Cube) by the
  * location and orientation of its parts.
  * <p>
  * A Professor Cube has 8 corner parts, 36 edge parts, 54 side parts and one
@@ -14,7 +15,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Corner parts</b>
  * <p>
- * The following diagram shows the initial orientations and locations of 
+ * The following diagram shows the initial orientations and locations of
  * the corner parts:
  * <pre>
  *                     +---+---+---+---+---+
@@ -52,7 +53,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Edge parts</b>
  * <p>
- * The following diagram shows the initial orientations and locations of 
+ * The following diagram shows the initial orientations and locations of
  * the edge parts. The first 12 edges are located at the center of the x-, y-,
  * and z-axis. The second 12 edges are located near the origins of the
  * x-, y- and z-axis. The last 12 edges are located far from the origin
@@ -95,7 +96,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Side parts</b>
  * <p>
- * The following diagram shows the initial orientation and location of 
+ * The following diagram shows the initial orientation and location of
  * the side parts:
  * <pre>
  *                     +---+---+---+---+---+
@@ -144,7 +145,7 @@ public class ProfessorCube extends AbstractCube {
      * Third dimension: swipe direction
      * Fourth dimension: axis,layermask,angle
      * <p>
-     * The layermask value applies to the first part on an edge of a 
+     * The layermask value applies to the first part on an edge of a
      * RevengeCube. To get to the layermask value for the first edge part of a
      * ProfessorCube, the value 2 has be replaced by 4 and the value 8 by 16.
      * <pre>

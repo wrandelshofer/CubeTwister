@@ -1,5 +1,6 @@
-/* @(#)RevengeCubeGeom3DPlayerApplet.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RevengeCubeGeom3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.player;
@@ -38,14 +39,14 @@ public class RevengeCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApple
         return 4;
     }
 
-    
+
     /**
-     * Returns the Default XML Resource Data of this Applet as an Input Stream. 
+     * Returns the Default XML Resource Data of this Applet as an Input Stream.
      */
     protected InputStream getPlayerResources() {
         return getClass().getResourceAsStream("/ch/randelshofer/rubik/player/RevengePlayerResources.xml");
     }
-    
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -55,8 +56,8 @@ public class RevengeCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApple
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
     */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

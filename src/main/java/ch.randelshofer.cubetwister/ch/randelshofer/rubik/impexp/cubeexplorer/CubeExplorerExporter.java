@@ -1,5 +1,6 @@
-/* @(#)CubeExplorerExporter.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeExplorerExporter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.impexp.cubeexplorer;
@@ -43,13 +44,13 @@ implements Exporter {
     private final static long serialVersionUID = 1L;
     private DocumentModel documentModel;
     private ScriptParser parser;
-    
+
     /** Creates new form. */
     public CubeExplorerExporter() {
         initComponents();
         parser = new KociembaENGParser();
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -86,7 +87,7 @@ implements Exporter {
                 ScriptModel item = (ScriptModel) enumer.nextElement();
                 p.setProgress(++progress);
                 p.setNote("Exporting "+item.getName());
-                
+
                 Node parsedScript = item.getParsedScript();
                 if (parsedScript == null) {
                     throw new IOException("Can not parse script \""+item.getName()+"\".");
@@ -101,14 +102,16 @@ throw new InternalError("not implemented");
  */
             }
         } finally {
-            if (out != null) out.close();
+            if (out != null) {
+                out.close();
+            }
         }
-    }    
-    
+    }
+
     public void setDocumentModel(DocumentModel model) {
         this.documentModel = model;
-    }    
-    
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel noOptionsLabel;
     // End of variables declaration//GEN-END:variables
@@ -118,5 +121,5 @@ throw new InternalError("not implemented");
     public JComponent getComponent() {
         return this;
     }
-    
+
 }

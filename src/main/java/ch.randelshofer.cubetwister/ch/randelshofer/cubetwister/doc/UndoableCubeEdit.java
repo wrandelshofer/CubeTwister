@@ -1,5 +1,6 @@
-/* @(#)UndoableCubeEdit.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)UndoableCubeEdit.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -19,7 +20,7 @@ public class UndoableCubeEdit extends AbstractUndoableEdit {
     private Cube model;
     private Cube oldState;
     private Cube newState;
-    
+
     /** Creates a new instance. */
     public UndoableCubeEdit(String name, Cube model, Cube oldState, Cube newState) {
         this.name = name;

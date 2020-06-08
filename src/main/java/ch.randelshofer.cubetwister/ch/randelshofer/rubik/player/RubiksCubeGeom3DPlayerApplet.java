@@ -1,5 +1,6 @@
-/* @(#)RubiksCubeGeom3DPlayerApplet.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksCubeGeom3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.player;
 
@@ -49,8 +50,8 @@ public class RubiksCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
     */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

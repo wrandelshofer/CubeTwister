@@ -1,5 +1,6 @@
-/* @(#)FileListTransferable.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)FileListTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -44,7 +45,7 @@ implements Transferable {
     public boolean isDataFlavorSupported(@Nonnull DataFlavor dataFlavor) {
         return dataFlavor.equals(flavors[0]);
     }
-    
+
     public DataFlavor[] getTransferDataFlavors() {
         return flavors;
     }

@@ -1,5 +1,6 @@
-/* @(#)CubeColorModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeColorModelCellRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -30,7 +31,7 @@ implements ListCellRenderer {
     private final static long serialVersionUID = 1L;
     PolygonIcon icon;
 //    private boolean isOpaque;
-    
+
     /**
      * Creates new CubeColorModelCellRenderer
      */
@@ -57,7 +58,7 @@ implements ListCellRenderer {
             if (isSelected) {
                 setBackground(UIManager.getColor("Table.selectionBackground"));
             }
-            
+
             // Set the foreground color
             Color fg;
             if (isSelected) {
@@ -66,7 +67,7 @@ implements ListCellRenderer {
                 fg = UIManager.getColor("Table.foreground");
             }
             setForeground(fg);
-            
+
         }
 
 
@@ -95,20 +96,20 @@ implements ListCellRenderer {
             setBackground(list.getBackground());
             setForeground(list.getForeground());
         }
-        
+
         //if (value instanceof Icon) {
         //    setIcon((Icon)value);
        // } else {
             setText((value == null) ? "" : value.toString());
         //}
-        
+
         setEnabled(list.isEnabled());
         setFont(list.getFont());
         setBorder((hasFocus) ? UIManager.getBorder("List.focusCellHighlightBorder") : noFocusBorder);
-        
+
         icon.setFillColor((value == null) ? null : ((CubeColorModel) value).getColor());
         icon.setForeground((value == null) ? null : Colors.shadow(((CubeColorModel) value).getColor(), 38));
         return this;
     }
-    
+
 }

@@ -1,5 +1,6 @@
-/* @(#)PocketCubeIdx3DPlayerApplet.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PocketCubeIdx3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 
@@ -43,13 +44,13 @@ public class PocketCubeIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
 
 
     /**
-     * Returns the Default XML Resource Data of this Applet as an Input Stream. 
+     * Returns the Default XML Resource Data of this Applet as an Input Stream.
      */
     @Override
     protected InputStream getPlayerResources() {
         return getClass().getResourceAsStream("/ch/randelshofer/rubik/player/PocketPlayerResources.xml");
     }
-    
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -61,8 +62,8 @@ public class PocketCubeIdx3DPlayerApplet extends AbstractCubeIdx3DPlayerApplet {
         getContentPane().setLayout(new java.awt.FlowLayout());
     }// </editor-fold>//GEN-END:initComponents
     */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

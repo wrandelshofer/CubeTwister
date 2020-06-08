@@ -1,5 +1,6 @@
-/* @(#)DOMFactory.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DOMFactory.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.xml;
@@ -12,7 +13,7 @@ package ch.randelshofer.xml;
 public interface DOMFactory {
     /**
      * Returns the tag name for the specified object.
-     * Note: The tag names "string", "int", "float", "long", "double", "boolean", 
+     * Note: The tag names "string", "int", "float", "long", "double", "boolean",
      * "null" are reserved and must not be returned by this operation.
      */
     public String getTagName(DOMStorable o);

@@ -1,6 +1,6 @@
-/**
- * @(#)TripleSearchSolver.java  1.0  Mar 3, 2008
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TripleSearchSolver.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.solver;
 
@@ -10,13 +10,13 @@ package ch.randelshofer.rubik.solver;
  * Description of the algorithm (by Tom Rokicki):
  * <p>
  * Kociemba's original two phase algorithm works great, but there are a lot of
- * positions that give it some difficulty. He now uses something called 
+ * positions that give it some difficulty. He now uses something called
  * "Triple Search" in his cube explorer, and this is very effective in making it
  * work better on many cubes.
  * <p>
  * The way this works is by solving essentially *three* positions at once,
  * the input position, and two other positions where the L/R and F/B face
- * are mapped, respectively, to U/D.  If the original position gives some 
+ * are mapped, respectively, to U/D.  If the original position gives some
  * difficulty, chances are the other two will not.  So instead of
  * <pre>
  * for (increasing allowed_phase1_depth) {
@@ -43,7 +43,7 @@ package ch.randelshofer.rubik.solver;
  * (You can potentially exploit this to easily use multiple cores
  * in modern processors too, so each core gets a position and
  * depth to work on.  But this is somewhat secondary.)
- * 
+ *
  *
  * @author Werner Randelshofer
  * @version $Id$

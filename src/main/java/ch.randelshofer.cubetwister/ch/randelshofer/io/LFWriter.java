@@ -1,5 +1,6 @@
-/* @(#)LFWriter.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)LFWriter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.io;
 
@@ -22,7 +23,7 @@ public class LFWriter extends FilterWriter {
      * Line separator string.
      */
     private String lineSeparator = "\n";
-    
+
     /** If the next character is a line feed, skip it */
     private boolean skipLF;
 
@@ -41,21 +42,21 @@ public class LFWriter extends FilterWriter {
         super(out);
         this.lineSeparator = lineSeparator;
     }
-    
+
     /**
      * Gets the line separator of the println() methods.
      */
     public String getLineSeparator() {
         return lineSeparator;
     }
-    
+
     /**
      * Sets the line separator for the println() methods.
      */
     public void setLineSeparator(String lineSeparator) {
         this.lineSeparator = lineSeparator;
     }
-    
+
     /**
      * Write a single character.
      *
@@ -112,7 +113,7 @@ public class LFWriter extends FilterWriter {
         }
         if (off < end) out.write(cbuf, off, end - off);
     }
-    
+
     /**
      * Write a portion of a string.
      *

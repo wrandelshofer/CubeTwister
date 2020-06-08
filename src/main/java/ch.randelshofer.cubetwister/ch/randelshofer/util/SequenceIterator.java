@@ -1,5 +1,6 @@
-/* @(#)SequenceIterator.java
- * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)SequenceIterator.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.util;

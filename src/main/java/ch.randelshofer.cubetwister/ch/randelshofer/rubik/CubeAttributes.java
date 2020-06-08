@@ -1,5 +1,6 @@
-/* @(#)CubeAttributes.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeAttributes.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik;
@@ -9,11 +10,12 @@ package ch.randelshofer.rubik;
 import java.awt.Color;
 import java.awt.Image;
 import java.beans.PropertyChangeListener;
+
 /**
- * The interface for objects which describe the attributes of a 
+ * The interface for objects which describe the attributes of a
  * Rubik's Cube-like puzzle.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public interface CubeAttributes extends Cloneable {
     public final static String ALPHA_PROPERTY = "alpha";
@@ -80,7 +82,7 @@ public interface CubeAttributes extends Cloneable {
     public int getStickerCount(int face);
     public int getStickerOffset(int face);
     public int getTwistDuration();
-    
+
     /**
      * This attribute indicates that any upcoming changes to the value
      * of the model should be considered a single event. This attribute
@@ -90,34 +92,34 @@ public interface CubeAttributes extends Cloneable {
      * committed, instead of having to do updates for all intermediate values.
      * <p>
      * Sliders and scrollbars use this property when a drag is underway.
-     * 
+     *
      * @param b true if the upcoming changes to the value property are part of a series
      */
    public void setValueIsAdjusting(boolean b);
 
 
     /**
-     * Returns true if the current changes to the value property are part 
+     * Returns true if the current changes to the value property are part
      * of a series of changes.
-     * 
-     * @return the valueIsAdjustingProperty.  
+     *
+     * @return the valueIsAdjustingProperty.
      * @see #setValueIsAdjusting
      */
-   public boolean getValueIsAdjusting();
-    
+    public boolean getValueIsAdjusting();
+
     public void reset();
-    
+
     /**
      * Gets rid of allocated resources.
      */
     public void dispose();
-    
+
     /**
      * Sets the attributes of this cube to the specified attributes.
      * @param that
      */
     public void setTo(CubeAttributes that);
-    
+
     /**
      * Clones the attributes.
      * @return a clone of the attributes.

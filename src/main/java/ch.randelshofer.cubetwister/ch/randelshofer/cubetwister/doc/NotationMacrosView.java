@@ -1,5 +1,6 @@
-/* @(#)NotationMacrosView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)NotationMacrosView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -20,18 +21,18 @@ import javax.swing.event.UndoableEditListener;
 public class NotationMacrosView extends JPanel implements EntityView {
     private final static long serialVersionUID = 1L;
     NotationMacrosTableModel tableModel;
-    
+
     /** Creates new form CubeMacrosView */
     public NotationMacrosView() {
         initComponents();
-        
+
         tableModel = new NotationMacrosTableModel();
         table.setModel(tableModel);
         table.getColumnModel().getColumn(0).setPreferredWidth(70);
         table.getColumnModel().getColumn(1).setPreferredWidth(200);
         table.getColumnModel().getColumn(2).setPreferredWidth(100);
         table.putClientProperty("Quaqua.Table.style","striped");
-        
+
         DefaultCellEditor cellEditor = new DefaultCellEditor2(new JTextField());
         cellEditor.setClickCountToStart(1);
         table.getColumnModel().getColumn(0).setCellEditor(cellEditor);
@@ -41,8 +42,8 @@ public class NotationMacrosView extends JPanel implements EntityView {
         //textField.setFont(Fonts.getSmallDialogFont());
 
     }
-    
-    
+
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -61,7 +62,7 @@ public class NotationMacrosView extends JPanel implements EntityView {
         add(scrollPane, java.awt.BorderLayout.CENTER);
 
     }//GEN-END:initComponents
-    
+
     public void setModel(EntityModel newValue) {
         NotationModel s = (NotationModel) newValue;
         if (table.getCellEditor() != null) {
@@ -74,17 +75,17 @@ public class NotationMacrosView extends JPanel implements EntityView {
     public JComponent getViewComponent() {
         return this;
     }
-    
+
     public void addUndoableEditListener(UndoableEditListener l) {
     }
-    
+
     public void removeUndoableEditListener(UndoableEditListener l) {
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane scrollPane;
     private ch.randelshofer.gui.MutableJTable table;
     // End of variables declaration//GEN-END:variables
-    
+
 }

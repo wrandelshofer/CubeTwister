@@ -1,5 +1,6 @@
-/* @(#)LazyImageIcon.java
- * Copyright (c) 2007 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)LazyImageIcon.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -30,7 +31,7 @@ public class LazyImageIcon extends ImageIcon {
     private int height;
     private int xOffset;
     private int yOffset;
-    
+
     /** Creates a new instance. */
     public LazyImageIcon(final Image image, int width, int height) {
             this(image, width, height,0,0);
@@ -96,12 +97,12 @@ public class LazyImageIcon extends ImageIcon {
     public void paintIcon(Component c, @Nonnull Graphics g, int x, int y) {
         g.drawImage(getImage(), x + xOffset, y + yOffset, c);
     }
-    
+
     @Override
     public int getIconWidth() {
         return width;
     }
-    
+
     @Override
     public int getIconHeight() {
         return height;

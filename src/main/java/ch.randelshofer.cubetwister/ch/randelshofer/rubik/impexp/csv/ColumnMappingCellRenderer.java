@@ -1,5 +1,6 @@
-/* @(#)ColumnMappingCellRenderer.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ColumnMappingCellRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.impexp.csv;
 
@@ -23,7 +24,7 @@ implements ListCellRenderer {
     /** Creates a new instance of ColumnMappingCellRenderer */
     public ColumnMappingCellRenderer() {
     }
-    
+
     public String getDisplayTextFor(Object value) {
         String text;
         if (value instanceof Integer) {
@@ -53,12 +54,12 @@ implements ListCellRenderer {
         }
 
         setText(getDisplayTextFor(value));
-        
+
         setEnabled(list.isEnabled());
         setFont(list.getFont());
         setBorder((hasFocus) ? UIManager.getBorder("List.focusCellHighlightBorder") : noFocusBorder);
-        
+
         return this;
     }
-    
+
 }

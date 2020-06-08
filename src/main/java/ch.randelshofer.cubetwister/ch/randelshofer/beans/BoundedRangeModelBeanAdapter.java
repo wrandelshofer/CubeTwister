@@ -1,5 +1,6 @@
-/* @(#)BoundedRangeModelBeanAdapter.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)BoundedRangeModelBeanAdapter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.beans;
 

@@ -1,5 +1,6 @@
-/* @(#)CubeBackgroundView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeBackgroundView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -215,22 +216,22 @@ public class CubeBackgroundView extends AbstractEntityView {
         if (colorChooser == null) {
             colorChooser = new JColorChooser();
         }
-        Color selectedColor = Dialogs.showColorChooserDialog(colorChooser,this, "Front View Background", model.getFrontBgColor());
+        Color selectedColor = Dialogs.showColorChooserDialog(colorChooser, this, "Front View Background", model.getFrontBgColor());
         if (selectedColor != null) {
             model.setFrontBgColor(selectedColor);
-        }        
-        
+        }
+
     }//GEN-LAST:event_frontViewColorWellPerformed
 
     private void rearViewColorWellPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rearViewColorWellPerformed
         if (colorChooser == null) {
             colorChooser = new JColorChooser();
         }
-        Color selectedColor = Dialogs.showColorChooserDialog(colorChooser,this, "Rear View Background", model.getFrontBgColor());
+        Color selectedColor = Dialogs.showColorChooserDialog(colorChooser, this, "Rear View Background", model.getFrontBgColor());
         if (selectedColor != null) {
             model.setRearBgColor(selectedColor);
-        }        
-        
+        }
+
     }//GEN-LAST:event_rearViewColorWellPerformed
 
     public void setModel(EntityModel newValue) {

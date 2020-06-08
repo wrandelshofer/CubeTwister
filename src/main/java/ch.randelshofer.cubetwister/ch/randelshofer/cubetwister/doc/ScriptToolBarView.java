@@ -1,5 +1,6 @@
-/* @(#)ScriptToolBarView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptToolBarView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -136,8 +137,8 @@ public class ScriptToolBarView extends JPanel implements EntityView {
         toolBar.putClientProperty("Quaqua.Border.insets", new Insets(0, 0, 0, 0));
         toolBar.putClientProperty("Quaqua.ToolBar.style", "placard");
         toolBar.putClientProperty("Quaqua.Component.visualMargin", new Insets(0, -1, -1, -1));
-        
-        
+
+
         // Decorate the reset button 2 with an icon looking like '|<' and a west bevel.
         resetButton.setIcon(Icons.get(Icons.PLAYER_RESET_PLACARD));
         Icons.get(Icons.PLAYER_PARTIAL_RESET_PLACARD); // lazily load this icon

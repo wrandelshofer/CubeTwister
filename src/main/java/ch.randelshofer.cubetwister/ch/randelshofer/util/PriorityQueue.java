@@ -1,7 +1,6 @@
-/* @(#)PriorityQueue.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
- *
- * Original code is copyright by  JDCTechTips 2002-08-22. John Zukowski.
+/*
+ * @(#)PriorityQueue.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.util;
@@ -31,9 +30,9 @@ implements Serializable {
 
     private final static int DEFAULT_PRIORITY_COUNT = 10;
     private final static int DEFAULT_PRIORITY = 0;
-    
+
     private List<E>[] queue;
-    
+
     /**
      * Constructs an empty priority queue which supports the priorities 0 to 9
      * (10 distinct priorities).
@@ -41,7 +40,7 @@ implements Serializable {
     public PriorityQueue() {
         this(DEFAULT_PRIORITY_COUNT);
     }
-    
+
     /**
      * Constructs a priority queue containing the elements of the specified
      * collection, in the order they are returned by the collection'siterator.
@@ -52,7 +51,7 @@ implements Serializable {
     public PriorityQueue(Collection<? extends E> col) {
         this(col, DEFAULT_PRIORITY_COUNT);
     }
-    
+
     /**
      * Constructs an empty priority queue which supports the specified
      * count of priorities.
@@ -81,7 +80,7 @@ implements Serializable {
             addAll(col);
         }
     }
-    
+
     /**
      * Inserts an element to the priority queue using priority 0 (the lowest
      * priority).
@@ -90,14 +89,14 @@ implements Serializable {
         insert(element, DEFAULT_PRIORITY);
         return true;
     }
-    
+
     /**
      * Returns the priority count.
      */
     public int getPriorityCount() {
         return queue.length;
     }
-    
+
     /**
      * Inserts an element to the priority queue using the specified priority.
      *
@@ -115,7 +114,7 @@ implements Serializable {
         queue[priority].add(element);
         modCount++;
     }
-    
+
     /**
      * Returns the first element in this priority queue.
      * Elements are returned highest priority first.
@@ -123,7 +122,7 @@ implements Serializable {
     public E getFirst() {
         return iterator().next();
     }
-    
+
     /**
      * Returns the element at the specified position in this priority queue.
      * The elements are ordered by priority.
@@ -157,7 +156,7 @@ implements Serializable {
             if (queue[i] != null) queue[i].clear();
         }
     }
-    
+
     /**
      * Returns the first element in this priority queue and returns it.
      * Elements are returned highest priority first.
@@ -168,7 +167,7 @@ implements Serializable {
         iter.remove();
         return obj;
     }
-    
+
     /**
      * Returns the number of elements in this priority queue.
      */
@@ -181,7 +180,7 @@ implements Serializable {
         }
         return size;
     }
-    
+
     /**
      * Returns an iterator of the elements in this priority queue (elements
      * with higher priorities first).
@@ -193,12 +192,12 @@ implements Serializable {
             int priority = queue.length - 1;
             int count = 0;
             int size = size();
-            
+
             // Used to prevent successive remove() calls
             int lastRet = -1;
 
             @Nullable Iterator<E> tempIter;
-            
+
             // Get iterator for highest priority
             {
                 if (queue[priority] == null) {
@@ -207,17 +206,17 @@ implements Serializable {
                     tempIter = queue[priority].iterator();
                 }
             }
-            
+
             private final void checkForComodification() {
                 if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
                 }
             }
-            
+
             public boolean hasNext() {
                 return count != size();
             }
-            
+
             public E next() {
                 while (true) {
                     if ((tempIter != null) && (
@@ -241,13 +240,13 @@ implements Serializable {
                     }
                 }
             }
-            
+
             public void remove() {
                 if (lastRet == -1) {
                     throw new IllegalStateException();
                 }
                 checkForComodification();
-                
+
                 tempIter.remove();
                 count--;
                 lastRet = -1;
@@ -256,7 +255,7 @@ implements Serializable {
         };
         return iter;
     }
-    
+
     /**
      * Returns a string representation of this collection. The string
      * representation consists of a list of the collection's elements in the

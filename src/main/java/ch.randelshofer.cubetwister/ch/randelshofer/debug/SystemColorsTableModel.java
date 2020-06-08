@@ -1,14 +1,12 @@
-/* @(#)SystemColorsTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)SystemColorsTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.debug;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.AbstractTableModel;
+import java.awt.SystemColor;
 
 /**
  *
@@ -18,7 +16,7 @@ public class SystemColorsTableModel extends AbstractTableModel {
     private final static long serialVersionUID = 1L;
     private Object[][] data;
     private final static String[] columnNames = { "Key", "Value" };
-    
+
     public SystemColorsTableModel() {
         setSystemColors();
     }
@@ -53,19 +51,19 @@ public class SystemColorsTableModel extends AbstractTableModel {
         };
         fireTableDataChanged();
     }
-    
+
     public int getColumnCount() {
         return 2;
     }
-    
+
     public int getRowCount() {
         return data.length;
     }
-    
+
     public Object getValueAt(int row, int col) {
         return data[row][col];
     }
-    
+
     public String getColumnName(int col) {
         return columnNames[col];
     }

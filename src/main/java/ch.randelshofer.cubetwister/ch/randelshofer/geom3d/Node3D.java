@@ -1,9 +1,10 @@
-/* @(#)Node.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Node3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.geom3d;
 
-import java.util.*;
+import java.util.List;
 /**
  * Represents a node of a three dimensional universe.
  *

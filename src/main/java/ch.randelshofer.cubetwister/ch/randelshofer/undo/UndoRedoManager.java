@@ -1,5 +1,6 @@
-/* @(#)UndoRedoManager.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)UndoRedoManager.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.undo;
@@ -44,7 +45,7 @@ public class UndoRedoManager extends UndoManager {
      * last call to discardAllEdits.
      */
     private boolean hasSignificantEdits = false;
-    
+
     /**
      * This flag is set to true when an undo or redo
      * operation is in progress. The UndoRedoManager
@@ -52,7 +53,7 @@ public class UndoRedoManager extends UndoManager {
      * this flag is true.
      */
     private boolean undoOrRedoInProgress;
-    
+
     /**
      * Sending this UndoableEdit event to the UndoRedoManager
      * disables the Undo and Redo functions of the manager.
@@ -66,7 +67,7 @@ public class UndoRedoManager extends UndoManager {
             return false;
         }
     };
-    
+
     /**
      * Undo Action for use in a menu bar.
      */
@@ -78,7 +79,7 @@ public class UndoRedoManager extends UndoManager {
             putValue(Action.ACCELERATOR_KEY, labels.getAcceleratorProperty("edit.undo"));
             setEnabled(false);
         }
-        
+
         /**
          * Invoked when an action occurs.
          */
@@ -89,9 +90,9 @@ public class UndoRedoManager extends UndoManager {
                 System.out.println("Cannot undo: "+e);
             }
         }
-        
+
     }
-    
+
     /**
      * Redo Action for use in a menu bar.
      */
@@ -103,7 +104,7 @@ public class UndoRedoManager extends UndoManager {
             putValue(Action.ACCELERATOR_KEY, labels.getAcceleratorProperty("edit.redo"));
             setEnabled(false);
         }
-        
+
         /**
          * Invoked when an action occurs.
          */
@@ -114,21 +115,21 @@ public class UndoRedoManager extends UndoManager {
                 System.out.println("Cannot redo: "+e);
             }
         }
-        
+
     }
-    
+
     /** The undo action instance. */
     private UndoAction undoAction;
     /** The redo action instance. */
     private RedoAction redoAction;
-    
+
     /** Creates new UndoRedoManager */
     public UndoRedoManager() {
         labels = new ResourceBundleUtil(ResourceBundle.getBundle("org.jhotdraw.undo.Labels"));
         undoAction = new UndoAction();
         redoAction = new RedoAction();
     }
-    
+
     /**
      * Discards all edits.
      */
@@ -140,7 +141,7 @@ public class UndoRedoManager extends UndoManager {
         fireStateChanged();
         }
     }
-    
+
     /**
      * Returns true if at least one significant UndoableEdit
      * has been added since the last call to discardAllEdits.
@@ -148,7 +149,7 @@ public class UndoRedoManager extends UndoManager {
     public boolean hasSignificantEdits() {
         return hasSignificantEdits;
     }
-    
+
     /**
      * If inProgress, inserts anEdit at indexOfNextAdd, and removes
      * any old edits that were at indexOfNextAdd or later. The die
@@ -186,14 +187,14 @@ public class UndoRedoManager extends UndoManager {
     public Action getUndoAction() {
         return undoAction;
     }
-    
+
     /**
      * Gets the redo action for use as a Redo menu item.
      */
     public Action getRedoAction() {
         return redoAction;
     }
-    
+
     /**
      * Updates the properties of the UndoAction
      * and of the RedoAction.
@@ -206,7 +207,7 @@ public class UndoRedoManager extends UndoManager {
             undoAction.setEnabled(false);
             undoAction.putValue(Action.NAME, "Undo");
         }
-        
+
         if (canRedo()) {
             redoAction.setEnabled(true);
             redoAction.putValue(Action.NAME, getRedoPresentationName());
@@ -215,7 +216,7 @@ public class UndoRedoManager extends UndoManager {
             redoAction.putValue(Action.NAME, "Redo");
         }
     }
-    
+
     /**
      * Undoes the last edit event.
      * The UndoRedoManager ignores all incoming UndoableEdit events,
@@ -231,7 +232,7 @@ public class UndoRedoManager extends UndoManager {
             updateActions();
         }
     }
-    
+
     /**
      * Redoes the last undone edit event.
      * The UndoRedoManager ignores all incoming UndoableEdit events,
@@ -247,7 +248,7 @@ public class UndoRedoManager extends UndoManager {
             updateActions();
         }
     }
-    
+
     /**
      * Undoes or redoes the last edit event.
      * The UndoRedoManager ignores all incoming UndoableEdit events,
@@ -263,7 +264,7 @@ public class UndoRedoManager extends UndoManager {
             updateActions();
         }
     }
-    
+
     /**
      * Adds a change listener.
      * ChangeListener's get notified, when the state of hasSignificantEdits
@@ -274,13 +275,13 @@ public class UndoRedoManager extends UndoManager {
         if (listenerList == null) listenerList = new EventListenerList();
         listenerList.add(ChangeListener.class, l);
     }
-    
+
     public void removeChangeListener(ChangeListener l) {
         if (listenerList != null) {
             listenerList.remove(ChangeListener.class, l);
         }
     }
-    
+
     /**
      * Notify all listeners that have registered interest for
      * notification on this event type.  The event instance

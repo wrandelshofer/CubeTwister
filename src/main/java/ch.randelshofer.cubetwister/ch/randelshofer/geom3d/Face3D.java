@@ -1,5 +1,6 @@
-/* @(#)Face3D.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Face3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.geom3d;
 
@@ -366,7 +367,7 @@ public class Face3D implements Comparable<Face3D> {
         return normal;
     }
 
-  
+
     public void addSwipeListener(SwipeListener l) {
         if (listenerList == null) {
             listenerList = new EventListenerList();

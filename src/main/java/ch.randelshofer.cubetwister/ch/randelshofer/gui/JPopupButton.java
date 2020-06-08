@@ -1,5 +1,6 @@
-/* @(#)JPopupButton.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)JPopupButton.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -27,7 +28,7 @@ public class JPopupButton extends javax.swing.JButton {
     private Action action;
     private Rectangle actionArea;
     public final static Font itemFont = new Font("Dialog", Font.PLAIN, 10);
-    
+
     /** Creates new form JToolBarMenu */
     public JPopupButton() {
         initComponents();
@@ -47,7 +48,7 @@ public class JPopupButton extends javax.swing.JButton {
         }
         );
     }
-    
+
     public int getColumnCount() {
         return columnCount;
     }
@@ -55,7 +56,7 @@ public class JPopupButton extends javax.swing.JButton {
         columnCount = count;
         getPopupMenu().setLayout(new VerticalGridLayout(0, getColumnCount(), isVertical));
     }
-    
+
     public void add(Action action) {
         JMenuItem item = getPopupMenu().add(action);
         if (getColumnCount() > 1) {
@@ -66,7 +67,7 @@ public class JPopupButton extends javax.swing.JButton {
     public void add(JMenu submenu) {
         JMenuItem item = getPopupMenu().add(submenu);
     }
-    
+
     public void setPopupMenu(JPopupMenu popupMenu) {
         this.popupMenu = popupMenu;
     }
@@ -77,8 +78,8 @@ public class JPopupButton extends javax.swing.JButton {
         }
         return popupMenu;
     }
-    
-    
+
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -127,7 +128,7 @@ public class JPopupButton extends javax.swing.JButton {
                             //evt.getWhen(), <- requires JDK 1.4
                             evt.getModifiers())
             );
-            
+
         }
     }//GEN-LAST:event_performAction
 
@@ -155,13 +156,13 @@ public class JPopupButton extends javax.swing.JButton {
                     }
                 }
             }
-            
+
             popupMenu.show(this, x, y);
         }
     }//GEN-LAST:event_showPopup
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

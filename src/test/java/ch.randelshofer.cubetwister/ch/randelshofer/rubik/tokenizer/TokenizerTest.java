@@ -1,5 +1,6 @@
-/* @(#)TokenizerTest.java
- * Copyright (c) 2018 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TokenizerTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.tokenizer;
 

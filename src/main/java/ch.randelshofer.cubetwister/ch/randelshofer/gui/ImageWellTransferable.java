@@ -1,5 +1,6 @@
-/* @(#)ImageWellTransferable.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ImageWellTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -67,5 +68,5 @@ public class ImageWellTransferable implements Transferable {
     public boolean isDataFlavorSupported(@Nonnull DataFlavor flavor) {
         return flavor.equals(DataFlavor.imageFlavor) || flavor.equals(imageDataFlavor);
     }
-    
+
 }

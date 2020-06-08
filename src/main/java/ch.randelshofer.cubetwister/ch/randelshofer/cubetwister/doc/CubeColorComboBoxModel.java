@@ -1,5 +1,6 @@
-/* @(#)CubeColorComboBoxModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeColorComboBoxModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -13,7 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- * CubeColorComboBoxModel is used to present a choice of colors in the 
+ * CubeColorComboBoxModel is used to present a choice of colors in the
  * "Stickers" and "Parts" page of the CubeView.
  *
  * @author Werner Randelshofer
@@ -25,11 +26,11 @@ implements ComboBoxModel, PropertyChangeListener {
     private Object selectedItem;
     private CubeModel cubeModel;
     private int cachedSize;
-    
+
     public void setModel(CubeModel m) {
         if (cubeModel != null) {
             cubeModel.removePropertyChangeListener(this);
-            
+
             fireIntervalRemoved(this, 0, cachedSize);
         }
         cubeModel = m;
@@ -40,25 +41,25 @@ implements ComboBoxModel, PropertyChangeListener {
             fireIntervalAdded(this, 0, cachedSize);
         }
     }
-    
+
     /** Return the selected item  */
     public Object getSelectedItem() {
         return selectedItem;
     }
-    
+
     /** Set the selected item  */
     public void setSelectedItem(Object anItem) {
         selectedItem = anItem;
         fireContentsChanged(this, -1, -1);
     }
-    
+
     /**
      * Returns the length of the list.
      */
     public int getSize() {
         return cachedSize;
     }
-    
+
     /**
      * Returns the value at the specified index.
      */
@@ -73,6 +74,6 @@ implements ComboBoxModel, PropertyChangeListener {
             fireIntervalRemoved(this, 0, cachedSize);
             fireIntervalAdded(this, 0, cachedSize = cubeModel.getColors().getChildCount());
         }
-    }    
+    }
 }
 

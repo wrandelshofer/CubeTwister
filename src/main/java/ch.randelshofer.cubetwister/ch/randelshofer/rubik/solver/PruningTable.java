@@ -1,10 +1,6 @@
-/* @(#)PruningTable.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
- *
- * This software has been derived from the 'Kociemba
- * Cube Solver 1.0' (KCube) (c) Greg Schmidt.
- * KCube is a C++ implementation of the cube solver
- * algorithm from Herbert Kociemba.
+/*
+ * @(#)PruningTable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.solver;
 
@@ -45,7 +41,7 @@ public class PruningTable extends Object {
      * Empty table entry.
      */
     private final static int EMPTY = 0x0f;
-    
+
     // Copies of important variables
     private MoveTable moveTable1;
     private MoveTable moveTable2;
@@ -53,17 +49,17 @@ public class PruningTable extends Object {
     private int homeOrdinal2;
     private int moveTable1Size;
     private int moveTable2Size;
-    
-    
+
+
     // Number of entries in the pruning table
     private int tableSize;
-    
+
     // Actual size, in bytes, allocated for the table
     private int allocationSize;
-    
+
     // The table pointer
     private byte[] table;
-    
+
     // Tables for dealing with nybble packing/unpacking
     private final static int[] OFFSET_TO_ENTRY_MASK = {
         EMPTY<<0,  EMPTY<<4
@@ -91,15 +87,15 @@ public class PruningTable extends Object {
         moveTable1Size = moveTable1.size();
         moveTable2Size = moveTable2.size();
         tableSize = moveTable1Size * moveTable2Size;
-        
+
         // Allocate the table
         //   round up to an int and determine
         //   the number of bytes to be allocated
         allocationSize = ((tableSize+7)/8)*4;
-        
+
         // AllocationSize = TableSize/2;
         table = new byte[allocationSize];
-        
+
     }
 
     /**
@@ -137,7 +133,7 @@ public class PruningTable extends Object {
             }
         }
     }
-    
+
     /**
      * Convert a pruning table index to the associated pair
      * of move mapping table indices.
@@ -149,7 +145,7 @@ public class PruningTable extends Object {
         ordinal2 = index % moveTable2Size;
     }
      */
-    
+
     /**
      * Convert a pair of move mapping table indices to the
      * associated pruning table index.
@@ -158,7 +154,7 @@ public class PruningTable extends Object {
         // Combine move table indices
         return ordinal1 * moveTable2Size + ordinal2;
     }
-    
+
     /**
      * Get a pruning table value corresponding to the specified index.
      */
@@ -167,7 +163,7 @@ public class PruningTable extends Object {
         int offset = index % 2;
         return (table[index / 2] & OFFSET_TO_ENTRY_MASK[offset]) >> OFFSET_TO_SHIFT_COUNT[offset];
     }
-    
+
     /**
      * Set a pruning table value at the specified index.
      */
@@ -177,14 +173,14 @@ public class PruningTable extends Object {
         int offset = index % 2;
         table[i] = (byte) ((table[i] & ~OFFSET_TO_ENTRY_MASK[offset]) | (value << OFFSET_TO_SHIFT_COUNT[offset]));
     }
-    
+
     /**
      * Obtain the size of the table (number of logical entries).
      */
     public int size() {
         return tableSize;
     }
-    
+
     /**
      * Dump table contents.
      */
@@ -212,7 +208,7 @@ public class PruningTable extends Object {
         for (index = 0; index < tableSize; index++) {
             setValue(index, EMPTY);
         }
-        
+
         // Get root coordinates of search tree
         //   and initialize to zero
         setValue(moveTableIndicesToPruningTableIndex(homeOrdinal1, homeOrdinal2), depth);
@@ -236,7 +232,7 @@ public class PruningTable extends Object {
                             ordinal1 = moveTable1.get(ordinal1, move);
                             ordinal2 = moveTable2.get(ordinal2, move);
                             index2 = moveTableIndicesToPruningTableIndex(ordinal1, ordinal2);
-                            
+
                             // Update previously unexplored nodes only
                             if (getValue(index2) == EMPTY) {
                                 setValue(index2, depth+1);
@@ -282,5 +278,5 @@ public class PruningTable extends Object {
         DataInputStream in = new DataInputStream(/*new BufferedOutputStream(*/inputStream/*)*/);
         in.readFully(table);
     }
-    
+
 }

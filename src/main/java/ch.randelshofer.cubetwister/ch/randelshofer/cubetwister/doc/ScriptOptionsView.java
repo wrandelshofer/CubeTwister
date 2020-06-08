@@ -1,5 +1,6 @@
-/* @(#)ScriptOptionsView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptOptionsView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -30,14 +31,14 @@ implements EntityView, PropertyChangeListener {
      * The resource bundle used for internationalisation.
      */
     private ResourceBundleUtil labels;
-    
+
     /**
      * The model
      */
     @Nullable
     private ScriptModel model = new ScriptModel();
-    
-    
+
+
     /** Creates new form ScriptOptionsView */
     public ScriptOptionsView() {
         labels = new ResourceBundleUtil(ResourceBundle.getBundle("ch.randelshofer.cubetwister.Labels"));
@@ -46,7 +47,7 @@ implements EntityView, PropertyChangeListener {
         generatorRadioButton.setFont(Fonts.getDialogFont());
         solverRadioButton.setFont(Fonts.getDialogFont());
         model.addPropertyChangeListener(this);
-        
+
     }
 
     /**
@@ -68,21 +69,21 @@ implements EntityView, PropertyChangeListener {
         }
         updateEnabled();
     }
-    
+
     public void setEnabled(boolean b) {
         super.setEnabled(b);
         updateEnabled();
     }
-    
+
     public void updateEnabled() {
         boolean b = model != null && isEnabled();
-        
+
         java.awt.Component[] c = getComponents();
         for (int i=0; i < c.length; i++) {
             c[i].setEnabled(b);
         }
     }
-    
+
     /**
      * Gets the model.
      */
@@ -144,7 +145,7 @@ implements EntityView, PropertyChangeListener {
                 .addGap(222, 222, 222))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void generatorStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_generatorStateChanged
         boolean b = generatorRadioButton.isSelected();
         if (b != model.isGenerator()) {
@@ -184,13 +185,13 @@ implements EntityView, PropertyChangeListener {
 
     public void removeUndoableEditListener(UndoableEditListener l) {
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup generatorGroup;
     private javax.swing.JLabel generatorLabel;
     private javax.swing.JRadioButton generatorRadioButton;
     private javax.swing.JRadioButton solverRadioButton;
     // End of variables declaration//GEN-END:variables
-    
+
 }

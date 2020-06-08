@@ -1,15 +1,16 @@
-/* @(#)IntMath.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)IntMath.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.math;
 
 /**
  * Utility class for integer arithmetic.
- * 
+ *
  * @author Werner Randelshofer
  */
 public class IntMath {
-    
+
     /** Creates a new instance of IntMath */
     public IntMath() {
     }
@@ -25,13 +26,13 @@ public class IntMath {
      */
     public static int gcd(int a, int b) {
         // Quelle:
-        //   Herrmann, D. (1992). Algorithmen Arbeitsbuch. 
+        //   Herrmann, D. (1992). Algorithmen Arbeitsbuch.
         //   Bonn, München Paris: Addison Wesley.
         //   ggt6, Seite 63
-        
+
         a = Math.abs(a);
         b = Math.abs(b);
-        
+
         while (a > 0 && b > 0) {
             a = a % b;
             if (a > 0) b = b % a;
@@ -62,7 +63,7 @@ public class IntMath {
         }
         return a + b;
     }
-    
+
     /**
      * Returns an int whose value is the smallest common multiple of
      * <tt>abs(a)</tt> and <tt>abs(b)</tt>.  Returns 0 if
@@ -74,18 +75,18 @@ public class IntMath {
      */
     public static int scm(int a, int b) {
         // Quelle:
-        //   Herrmann, D. (1992). Algorithmen Arbeitsbuch. 
+        //   Herrmann, D. (1992). Algorithmen Arbeitsbuch.
         //   Bonn, München Paris: Addison Wesley.
         //   gill, Seite 141
 
         if (a == 0 || b == 0) return 0;
-                
+
         a = Math.abs(a);
         b = Math.abs(b);
 
         int u = a;
         int v = b;
-        
+
         while (a != b) {
             if (a < b) {
                 b -= a;
@@ -95,12 +96,12 @@ public class IntMath {
                 u += v;
             }
         }
-        
-        
+
+
         //return a; // gcd
         return (u + v) / 2; // scm
     }
-    
+
     /**
      * Reverses all 32 bits of the provided integer value.
      */
@@ -120,9 +121,9 @@ public class IntMath {
             a >>>= 1;
         }
         return b;
-        
+
     }
-    
+
     public static void main(String[] args) {
         for (int i=0; i < 8; i++) {
             int a = 1<<i;

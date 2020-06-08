@@ -1,9 +1,6 @@
 /*
- * @(#)StructPanel.java  1.0.1  2002-02-05
- *
- * Copyright (c) 1999 Werner Randelshofer, Switzerland.
- * You may not use, copy or modify this file, except in compliance with the
- * accompanying license terms.
+ * @(#)StructPanel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.binary;
 

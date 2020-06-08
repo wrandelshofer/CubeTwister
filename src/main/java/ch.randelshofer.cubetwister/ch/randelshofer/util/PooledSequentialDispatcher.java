@@ -1,5 +1,6 @@
-/* @(#)PooledSequentialDispatcher.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PooledSequentialDispatcher.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
@@ -75,12 +76,12 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
      * This variable holds the global thread pool for processor threads.
      */
     private static final ConcurrentDispatcher globalThreadPool = new ConcurrentDispatcher();
-    
+
     /**
      * This variable holds the local thread pool for processor threads.
      */
     private /*static*/ ConcurrentDispatcher threadPool;
-    
+
     /**
      * The state variable is used to determine the
      * state of the processor thread.
@@ -91,13 +92,13 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
     private final static int STARTING = 2;
     private final static int RUNNING = 3;
     private final static int STOPPING = 4;
-    
+
     /**
      * The queue stores Runnable objects until they
      * can be processed by the processor.
      */
     private final LinkedList<Runnable> queue = new LinkedList<Runnable>();
-    
+
     /**
      * Creates a new PooledSequentialDispatcher which uses
      * the global threadPool for dispatching its queue.
@@ -105,7 +106,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
     public PooledSequentialDispatcher() {
         threadPool = globalThreadPool;
     }
-    
+
     /**
      * Sets the maximum number of concurrent threads.
      * @param maxThreadCount Maximal number of concurrent threads.
@@ -121,7 +122,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
     public int getMaxThreadCount() {
         return threadPool.getMaxThreadCount();
     }
-    
+
     /**
      * Assigns this dispatcher to the specified thread pool.
      */
@@ -146,7 +147,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
     public static void dispatchConcurrently(@Nonnull Runnable runner) {
         globalThreadPool.dispatch(runner);
     }
-    
+
     /**
      * Enqueues the Runnable object, and executes
      * it sequentially on one of the processor threads
@@ -181,7 +182,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
             }
         }
     }
-    
+
     /**
      * (Re)starts the
      * Reassigns the queue to the thread pool provided
@@ -196,7 +197,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
             }
         }
     }
-    
+
     /**
      * Starts the event processor.
      */
@@ -229,7 +230,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
             state = ENQUEUEING;
         }
     }
-    
+
     /**
      * This method is public as a side effect of the
      * implementation of this class. Do not call
@@ -247,7 +248,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
                 return;
             }
         }
-        
+
         Object runner;
         loop: while (true) {
             synchronized(queue) {
@@ -258,7 +259,7 @@ public class PooledSequentialDispatcher implements Dispatcher, Runnable {
                 }
                 runner = queue.removeFirst();
             }
-            
+
             try {
                 ((Runnable) runner).run();
             } catch (Throwable e) {

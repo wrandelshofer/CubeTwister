@@ -1,6 +1,6 @@
-/**
- * @(#)JMultilineLabel.java  2.0  December 25, 2007
- * Copyright (c) 1996 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)JMultilineLabel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -33,19 +33,19 @@ public class JMultilineLabel extends JComponent {
     private Color selectionBackground = new Color(181,213,255);
     private Color borderColor = Color.black;
     private int minRows;
-    
+
     /** Creates new form. */
     public JMultilineLabel() {
         initComponents();
         setBackground(Color.white);
         setForeground(Color.black);
     }
-    
+
     public void setSelectionBackground(Color c) {
         selectionBackground = c;
         repaint();
     }
-    
+
     public void setBorderColor(Color c) {
         borderColor = c;
         repaint();
@@ -53,7 +53,7 @@ public class JMultilineLabel extends JComponent {
     public Color getBorderColor() {
         return borderColor;
     }
-    
+
     /**
      * Converts the given place in the view coordinate system to the nearest
      * representative location in the model.
@@ -66,12 +66,12 @@ public class JMultilineLabel extends JComponent {
         } else if (line >= lines.length) {
             return text.length();
         }
-        
+
         int pos = 0;
         for (int i=0; i < line; i++) {
             pos += lines[i].length();
         }
-        
+
         for (int i=1; i <= lines[line].length(); i++) {
             int width = fm.stringWidth(lines[line].substring(0, i));
             if (width + insets.left > x) {
@@ -80,22 +80,22 @@ public class JMultilineLabel extends JComponent {
         }
         return pos + lines[line].length();
     }
-    
-    
+
+
     public void setText(String text) {
         this.text = text;
         invalidate();
     }
-    
+
     private void wrapText() {
         String t = text;
         if (t == null) {
             return;
         }
-        
+
         int width = getSize().width - insets.left - insets.right;
         FontMetrics fm = getFontMetrics(getFont());
-        
+
         ArrayList<String> linesVector = new ArrayList<String>();
         StringTokenizer tt = new StringTokenizer(t," \n", true);
         StringBuilder line = new StringBuilder();
@@ -118,14 +118,14 @@ public class JMultilineLabel extends JComponent {
                         line.setLength(0);
                         line.append(token);
                     }
-                    
+
                 }
             }
         }
         if (line.length() > 0) {
             linesVector.add(line.toString());
         }
-        
+
         // Defensively copy the vector in the array 'newLines' before
         // assigning it to the variable 'lines'. This way we ensure,
         // that the variable lines is either null or has a fully
@@ -133,7 +133,7 @@ public class JMultilineLabel extends JComponent {
         String[] newLines = new String[linesVector.size()];
         lines = linesVector.toArray(newLines);
     }
-    
+
     public String getText() {
         return text;
     }
@@ -174,7 +174,7 @@ public class JMultilineLabel extends JComponent {
         this.selectionEnd = Math.min(text.length(), Math.max(selectionStart, selectionEnd));
         repaint();
     }
-    
+
     public void invalidate() {
         lines = null;
         super.invalidate();
@@ -237,17 +237,17 @@ public class JMultilineLabel extends JComponent {
             repaint();
             return;
         }
-        
+
         // Defensively copy the lines array into a local variable
         // to prevent race conditions.
         String[] lines = this.lines;
         if (lines == null) {
             return;
         }
-        
+
         Insets insets = getInsets();
         FontMetrics fm = getFontMetrics(getFont());
-        
+
         // Draw Selection
         if (selectionEnd > selectionStart) {
             g.setColor(selectionBackground);
@@ -266,7 +266,7 @@ public class JMultilineLabel extends JComponent {
                 y += height;
             }
         }
-        
+
         // Draw Text
             g.setColor(getForeground());
         int y = insets.top + fm.getAscent();
@@ -281,8 +281,8 @@ public class JMultilineLabel extends JComponent {
             y+=fm.getHeight();
         }
     }
-    
-    
+
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -291,9 +291,9 @@ public class JMultilineLabel extends JComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

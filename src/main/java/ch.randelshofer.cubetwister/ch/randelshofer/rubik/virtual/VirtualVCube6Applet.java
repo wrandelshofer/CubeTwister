@@ -1,5 +1,6 @@
-/* @(#)VirtualVCube6Applet.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VirtualVCube6Applet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.virtual;
 

@@ -1,5 +1,6 @@
-/* @(#)ColumnMappingTableModel.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ColumnMappingTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.impexp.csv;
 
@@ -18,8 +19,8 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
     private final static String[] columnNames = {
         "Data", "Mapping"
     };
-    
-    
+
+
     /**
      * An instance of this class specifies a column available from the import file.
      * and a mapping of that column to an index specified by TableImpExp.supportedImportColumns.
@@ -35,7 +36,7 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
          * indicates that this columns should be ignored.
          */
         public int columnMapping;
-        
+
         public Entry(String columnTitle, int mapping) {
             this.columnTitle = columnTitle;
             this.columnMapping = mapping;
@@ -45,7 +46,7 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
      * An array list holding the entries.
      */
     private ArrayList<Entry> data;
-    
+
     /** Creates a new instance of TableImportTableModel */
     public ColumnMappingTableModel() {
         data = new ArrayList<Entry>();
@@ -61,17 +62,17 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
         }
         fireTableRowsInserted(0, data.size() - 1);
     }
-    
+
     public int getColumnCount() {
         return columnNames.length;
     }
     public String getColumnName(int column) {
         return columnNames[column];
     }
-    
+
     public int getRowCount() {
         return data.size();
-        
+
     }
 
     @Nonnull
@@ -82,7 +83,7 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
             default : throw new ArrayIndexOutOfBoundsException();
         }
     }
-    
+
     public Object getValueAt(int rowIndex, int columnIndex) {
         Entry entry = data.get(rowIndex);
         switch (columnIndex) {
@@ -114,7 +115,7 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
             default : throw new ArrayIndexOutOfBoundsException();
         }
     }
-    
+
     public void clear() {
         if (data.size() > 0) {
             int lastIndex = data.size() - 1;
@@ -125,7 +126,7 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
     public boolean isCellEditable(int rowIndex, int columnIndex){
         return columnIndex == 1;
     }
-    
+
     /**
      * item[i] of this array contains the index of the data column that
      * contains the data for the data element with that index.
@@ -137,7 +138,7 @@ public class ColumnMappingTableModel extends javax.swing.table.AbstractTableMode
         for (int i=0; i < mapping.length; i++) {
             mapping[i] = -1;
         }
-        
+
         for (int i=0; i < data.size(); i++) {
             Entry entry = data.get(i);
             if (entry.columnMapping != -1) {

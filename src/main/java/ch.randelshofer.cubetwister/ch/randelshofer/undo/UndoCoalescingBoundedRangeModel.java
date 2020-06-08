@@ -1,5 +1,6 @@
-/* @(#)UndoCoalescingBoundedRangeModel.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)UndoCoalescingBoundedRangeModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.undo;
@@ -22,14 +23,14 @@ public class UndoCoalescingBoundedRangeModel extends javax.swing.DefaultBoundedR
     private CompositeEdit compositeEdit;
     @Nonnull
     protected EventListenerList listenerList = new EventListenerList();
-    
+
     /** Creates a new instance of UndoCoalescingBoundedRangeModel */
     public UndoCoalescingBoundedRangeModel() {
     }
     public UndoCoalescingBoundedRangeModel(int value, int extent, int min, int max) {
         super(value, extent, min, max);
     }
-    
+
     public void setValueIsAdjusting(boolean b) {
         //System.out.println("setValueIsAdjusting("+b+") "+this);
         if (b) {
@@ -47,14 +48,14 @@ public class UndoCoalescingBoundedRangeModel extends javax.swing.DefaultBoundedR
     public void removeUndoableEditListener(UndoableEditListener l) {
         listenerList.remove(UndoableEditListener.class, l);
     }
-    
+
     /**
      * Adds an UndoableEditListener.
      */
     public void addUndoableEditListener(UndoableEditListener l) {
         listenerList.add(UndoableEditListener.class, l);
     }
-    
+
     /**
      * Notify all listeners that have registered interest for
      * notification on this event type.  The event instance
@@ -63,7 +64,7 @@ public class UndoCoalescingBoundedRangeModel extends javax.swing.DefaultBoundedR
      */
     public void fireUndoableEditEvent(UndoableEdit edit) {
         UndoableEditEvent evt = null;
-        
+
         // Guaranteed to return a non-null array
         Object[] listeners = listenerList.getListenerList();
         // Process the listeners last to first, notifying

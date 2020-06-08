@@ -1,5 +1,6 @@
-/* @(#)AbstractVCube6Idx3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)AbstractCube6Idx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -146,7 +147,7 @@ public abstract class AbstractCube6Idx3D extends AbstractCubeIdx3D {
                     vt.shift(PART_LENGTH * -0.5f - PART_LENGTH * (i / 24), /*PART_LENGTH*2*/0f, /*PART_LENGTH*-2*/0f);
                     break;
             }
-          
+
             // Now we do the rotation with the normal matrix only
             switch (i % 12) {
                 case 0: // ur
@@ -192,12 +193,12 @@ public abstract class AbstractCube6Idx3D extends AbstractCubeIdx3D {
                     nt.rotate(0, 0, PI);
                     break;
             }
-            
+
             // Finally, we concatenate the rotation to the vertex matrix
             vt.transform(nt);
         }
 
-        /* 
+        /*
          * Side parts
          * ----------
          */
@@ -239,8 +240,8 @@ public abstract class AbstractCube6Idx3D extends AbstractCubeIdx3D {
                 case 7:
                     vt.shift(PART_LENGTH * 1.5f, PART_LENGTH * -1.5f, 0);
                     break;
-                    
-                // first edges of outer square
+
+            // first edges of outer square
                 case 8:
                     vt.shift(PART_LENGTH * -0.5f, PART_LENGTH * -1.5f, 0);
                     break;
@@ -253,8 +254,8 @@ public abstract class AbstractCube6Idx3D extends AbstractCubeIdx3D {
                 case 11:
                     vt.shift(PART_LENGTH * 1.5f, PART_LENGTH * -0.5f, 0);
                     break;
-                    
-                // second edges of outer square
+
+            // second edges of outer square
                 case 12:
                     vt.shift(PART_LENGTH * 0.5f, PART_LENGTH * -1.5f, 0);
                     break;
@@ -267,7 +268,7 @@ public abstract class AbstractCube6Idx3D extends AbstractCubeIdx3D {
                 case 15:
                     vt.shift(PART_LENGTH * 1.5f, PART_LENGTH * 0.5f, 0);
                     break;
-                    
+
             }
 
             switch (i % 6) {

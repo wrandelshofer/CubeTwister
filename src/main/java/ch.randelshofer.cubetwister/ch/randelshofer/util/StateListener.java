@@ -1,5 +1,6 @@
-/* @(#)StateListener.java
- * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)StateListener.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
@@ -11,6 +12,6 @@ import java.util.EventListener;
  */
 public interface StateListener
 extends EventListener {
-    
+
     public void stateChanged(StateEvent event);
 }

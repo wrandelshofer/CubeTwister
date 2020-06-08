@@ -1,5 +1,6 @@
-/* @(#)CubePartModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubePartModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -27,7 +28,7 @@ public class CubePartModel extends EntityModel {
      * The visible property.
      */
     private boolean isVisible = true;
-    /** 
+    /**
      * The fill color property.
      */
     @Nullable
@@ -37,12 +38,12 @@ public class CubePartModel extends EntityModel {
      */
     @Nullable
     private CubeColorModel outlineColor;
-    
+
     /**
      * The name property.
      */
     private String name;
-    
+
     /**
      * Creates new CubePartModel
      */
@@ -55,7 +56,7 @@ public class CubePartModel extends EntityModel {
     public String getName() {
         return name;
     }
-    
+
     /**
      * Sets the name property.
      */
@@ -81,8 +82,8 @@ public class CubePartModel extends EntityModel {
     public boolean isVisible() {
         return isVisible;
     }
-    
-   public void basicSetVisible(boolean value) {
+
+    public void basicSetVisible(boolean value) {
             isVisible = value;
     }
     public void setVisible(boolean value) {
@@ -108,8 +109,8 @@ public class CubePartModel extends EntityModel {
     public CubeColorModel getFillColorModel() {
         return fillColor;
     }
-    
-   public void basicSetFillColorModel(CubeColorModel value) {
+
+    public void basicSetFillColorModel(CubeColorModel value) {
             fillColor = value;
     }
     public void setFillColorModel(CubeColorModel value) {
@@ -134,8 +135,8 @@ public class CubePartModel extends EntityModel {
     public CubeColorModel getOutlineColorModel() {
         return outlineColor;
     }
-    
-   public void basicSetOutlineColorModel(CubeColorModel value) {
+
+    public void basicSetOutlineColorModel(CubeColorModel value) {
             outlineColor = value;
     }
     public void setOutlineColorModel(CubeColorModel value) {

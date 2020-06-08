@@ -1,34 +1,34 @@
-/* @(#)ProgressObserver.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ProgressObserver.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
 
-import javax.swing.*;
+import javax.swing.BoundedRangeModel;
 
 /**
  * ProgressObserver.
- * 
- * 
+ *
  * @author Werner Randelshofer
  */
 public interface ProgressObserver {
-    
+
     public void setModel(BoundedRangeModel brm);
-    
+
     public BoundedRangeModel getModel();
-    
+
     /**
      * Set cancelable to false if the operation can not be canceled.
      */
     public void setCancelable(boolean b);
-    
+
     /**
      * The specified Runnable is executed when the user presses
      * the cancel button.
      */
     public void setDoCancel(Runnable doCancel);
-    
+
     /**
      * Indicate the progress of the operation being monitored.
      * If the specified value is &gt;= the maximum, the progress
@@ -40,12 +40,12 @@ public interface ProgressObserver {
      * @see #close
      */
     public void setProgress(int nv);
-    
+
     /**
      * Returns the progress of the operation being monitored.
      */
     public int getProgress();
-    
+
     /**
      * Returns the minimum value -- the lower end of the progress value.
      *
@@ -53,8 +53,8 @@ public interface ProgressObserver {
      * @see #setMinimum
      */
     public int getMinimum();
-    
-    
+
+
     /**
      * Specifies the minimum value.
      *
@@ -62,8 +62,8 @@ public interface ProgressObserver {
      * @see #getMinimum
      */
     public void setMinimum(int m);
-    
-    
+
+
     /**
      * Returns the maximum value -- the higher end of the progress value.
      *
@@ -71,8 +71,8 @@ public interface ProgressObserver {
      * @see #setMaximum
      */
     public int getMaximum();
-    
-    
+
+
     /**
      * Specifies the maximum value.
      *
@@ -80,7 +80,7 @@ public interface ProgressObserver {
      * @see #getMaximum
      */
     public void setMaximum(int m);
-    
+
     /**
      * Sets the progress observer to indeterminate.
      */
@@ -90,7 +90,7 @@ public interface ProgressObserver {
      * Returns true if the progress observer is set to indeterminate.
      */
     public boolean isIndeterminate();
-    
+
     /**
      * Indicate that the operation is complete.  This happens automatically
      * when the value set by setProgress is &gt;= max, but it may be called
@@ -101,8 +101,8 @@ public interface ProgressObserver {
      * Returns true if the operation is completed.
      */
     public boolean isCompleted();
-    
-    
+
+
     /**
      * Cancels the operation.
      * This method must be invoked from the user event dispatch thread.
@@ -112,7 +112,7 @@ public interface ProgressObserver {
      * Returns true if the user has hit the Cancel button in the progress dialog.
      */
     public boolean isCanceled();
-    
+
     /**
      * Closes the progress observer.
      */
@@ -121,18 +121,18 @@ public interface ProgressObserver {
      * Returns true if the progress observer is closed.
      */
     public boolean isClosed();
-    
-    
+
+
     /**
      * Specifies the additional note that is displayed along with the
-     * progress message. Used, for example, to show which file 
+     * progress message. Used, for example, to show which file
      * is currently being copied during a multiple-file copy.
      *
-     * @param note  a String specifying the note to display
+     * @param note a String specifying the note to display
      * @see #getNote
      */
     public void setNote(String note);
-    
+
     /** Sets a formatted note. */
     public void printf(String format, Object... args);
 
@@ -144,7 +144,7 @@ public interface ProgressObserver {
      * @see #setNote
      */
     public String getNote();
-    
+
     /**
      * Specifies the additional warning message that is displayed along with the
      * progress message. Used, for example, to show which files couldn't
@@ -155,7 +155,7 @@ public interface ProgressObserver {
      * @see #getWarning
      */
     public void setWarning(String message);
-    
+
     /**
      * Specifies the warning message that is displayed along with the
      * progress message.
@@ -164,7 +164,7 @@ public interface ProgressObserver {
      * there is no warning.
      */
     public String getWarning();
-    
+
     /**
      * Specifies the additional error message that is displayed along with the
      * progress message. Used, for example, to show which files couldn't
@@ -175,7 +175,7 @@ public interface ProgressObserver {
      * @see #getWarning
      */
     public void setError(String message);
-    
+
     /**
      * Specifies the error message that is displayed along with the
      * progress message.

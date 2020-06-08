@@ -1,13 +1,19 @@
-/* @(#)ColorTableCellRenderer.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ColorTableCellRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.table;
 
-import ch.randelshofer.gui.*;
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.table.*;
+import ch.randelshofer.gui.Colors;
+import ch.randelshofer.gui.PolygonIcon;
+
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Polygon;
 /**
  * ColorTableCellRenderer.
  * @author  Werner Randelshofer
@@ -15,7 +21,7 @@ import javax.swing.table.*;
 public class ColorTableCellRenderer extends DefaultTableCellRenderer {
     private final static long serialVersionUID = 1L;
     private PolygonIcon icon;
-    
+
     /** Creates new ColorModelCellRenderer */
     public ColorTableCellRenderer() {
         icon = new PolygonIcon(
@@ -41,9 +47,9 @@ public class ColorTableCellRenderer extends DefaultTableCellRenderer {
     */
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Color color = (Color) value;
-        
+
         Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
+
         icon.setFillColor(color);
         if (color == null) {
             icon.setForeground(Color.black);

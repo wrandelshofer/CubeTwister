@@ -1,28 +1,35 @@
-/* @(#)TextView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TextView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
-import ch.randelshofer.gui.*;
-import ch.randelshofer.undo.*;
+import ch.randelshofer.gui.Fonts;
+import ch.randelshofer.undo.Undoable;
 
-import javax.swing.*;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.*;
+import javax.swing.event.UndoableEditListener;
+
 /**
  * TextView.
  *
  * @author Werner Randelshofer
  */
-public class TextView extends javax.swing.JPanel implements Undoable/*, PropertyChangeListener*/ {    
+public class TextView extends javax.swing.JPanel implements Undoable/*, PropertyChangeListener*/ {
     private TextModel model;
     private final static long serialVersionUID = 1L;
 
-    /** Creates new form CubeScriptView */
+    /**
+     * Creates new form CubeScriptView
+     */
     public TextView() {
-this(null);
+        this(null);
     }
-    /** Creates new form CubeScriptView */
+
+    /**
+     * Creates new form CubeScriptView
+     */
     public TextView(TextModel m) {
         initComponents();
         bodyTextArea.setFont(Fonts.getApplicationFont());
@@ -32,7 +39,7 @@ this(null);
             setBorder(new EmptyBorder(6,10,10,10));
         }
     }
-    
+
     /**
      * Adds an UndoableEditListener.
      */
@@ -72,14 +79,14 @@ this(null);
 
     public void updateEnabled() {
         boolean b = model != null && isEnabled();
-        
+
         java.awt.Component[] c = getComponents();
         for (int i=0; i < c.length; i++) {
             c[i].setEnabled(b);
         }
         bodyTextArea.setEnabled(b);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -156,7 +163,7 @@ this(null);
     }// </editor-fold>//GEN-END:initComponents
 /*
     public void propertyChange(java.beans.PropertyChangeEvent propertyChangeEvent) {
-    }    
+    }
 */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

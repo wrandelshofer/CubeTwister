@@ -1,5 +1,6 @@
-/* @(#)MimeType.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MimeType.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -21,12 +22,12 @@ import java.io.ObjectOutput;
  * @author  Werner Randelshofer
  */
 public class MimeType implements Externalizable, Cloneable {
-    
+
     /*
      * serialization support
      */
     static final long serialVersionUID = -6568722458793895906L;
-    
+
     /**
      * Constructor for externalization; this constructor should not be
      * called directly by an application, since the result will be an
@@ -78,12 +79,12 @@ public class MimeType implements Externalizable, Cloneable {
         } else {
             throw new MimeTypeParseException("Sub type is invalid.");
         }
-        
+
         parameters = mtpl.clone();
     }
-    
+
     public int hashCode() {
-        
+
         // We sum up the hash codes for all of the strings. This
         // way, the order of the strings is irrelevant
         int code = 0;
@@ -92,7 +93,7 @@ public class MimeType implements Externalizable, Cloneable {
         code += parameters.hashCode();
         return code;
     } // hashCode()
-    
+
     /**
      * <code>MimeType</code>s are equal if their primary types,
      * subtypes, and  parameters are all equal. No default values
@@ -149,34 +150,34 @@ public class MimeType implements Externalizable, Cloneable {
             //    & a parameter list but no sub type
             throw new MimeTypeParseException("Unable to find a sub type.");
         }
-        
+
         //    now validate the primary and sub types
-        
+
         //    check to see if primary is valid
         if(!isValidToken(primaryType)) {
             throw new MimeTypeParseException("Primary type is invalid.");
         }
-        
+
         //    check to see if sub is valid
         if(!isValidToken(subType)) {
             throw new MimeTypeParseException("Sub type is invalid.");
         }
     }
-    
+
     /**
      * Retrieve the primary type of this object.
      */
     public String getPrimaryType() {
         return primaryType;
     }
-    
+
     /**
      * Retrieve the sub type of this object.
      */
     public String getSubType() {
         return subType;
     }
-    
+
     /**
      * Retrieve a copy of this object's parameter list.
      */
@@ -210,7 +211,7 @@ public class MimeType implements Externalizable, Cloneable {
     public void removeParameter(@Nonnull String name) {
         parameters.remove(name);
     }
-    
+
     /**
      * Return the String representation of this object.
      */
@@ -218,7 +219,7 @@ public class MimeType implements Externalizable, Cloneable {
     public String toString() {
         return getBaseType() + parameters.toString();
     }
-    
+
     /**
      * Return a String representation of this object
      * without the parameter list.
@@ -248,7 +249,7 @@ public class MimeType implements Externalizable, Cloneable {
                 || "*".equals(type.getSubType())
                 || (subType.equals(type.getSubType())));
     }
-    
+
     /**
      * Returns <code>true</code> if the primary type and the
      * subtype of this object are the same as the content type
@@ -299,12 +300,12 @@ public class MimeType implements Externalizable, Cloneable {
             throw new IOException(e.toString());
         }
     }
-    
+
     /**
      * Returns a clone of this object.
      * @return a clone of this object
      */
-    
+
     @Nullable
     public Object clone() {
         MimeType that = null;
@@ -315,13 +316,13 @@ public class MimeType implements Externalizable, Cloneable {
         that.parameters = parameters.clone();
         return that;
     }
-    
+
     private String    primaryType;
     private String    subType;
     private MimeTypeParameterList parameters;
-    
+
     //    below here be scary parsing related things
-    
+
     /**
      * Determines whether or not a given character belongs to a legal token.
      */
@@ -346,12 +347,12 @@ public class MimeType implements Externalizable, Cloneable {
             return false;
         }
     }
-    
+
     /**
      * A string that holds all the special chars.
      */
-    
+
     private static final String TSPECIALS = "()<>@,;:\\\"/[]?=";
-    
+
 } // class MimeType
 

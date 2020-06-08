@@ -1,5 +1,6 @@
-/* @(#)IntegerTextField.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)IntegerTextField.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -76,7 +77,7 @@ public class IntegerTextField extends JTextField {
         }
         );
     }
-    
+
     protected void installKeyboardActions() {
         InputMap keyMap = getInputMap(JComponent.WHEN_FOCUSED);
         ActionMap actionMap = getActionMap();
@@ -111,37 +112,37 @@ public class IntegerTextField extends JTextField {
     public void setBoundedRangeModel(@Nonnull BoundedRangeModel m) {
         ((NumericDocument) getDocument()).setBoundedRangeModel(m);
     }
-    
+
     public javax.swing.BoundedRangeModel getBoundedRangeModel() {
         return ((NumericDocument) getDocument()).getBoundedRangeModel();
     }
-    
-    
+
+
     class ValueDelta extends AbstractAction {
         private final static long serialVersionUID = 1L;
     int delta;
-        
+
         public ValueDelta(int delta) {
             this.delta = delta;
         }
-        
+
         public void actionPerformed(ActionEvent e) {
             javax.swing.BoundedRangeModel brm = ((NumericDocument) getDocument()).getBoundedRangeModel();
             int min = brm.getMinimum();
             int max = brm.getMaximum();
             int value = brm.getValue();
             value += delta;
-            
+
             if (value < min) {
                 value = max;
             } else if (value > max) {
                 value = min;
             }
-            
+
             brm.setValue(value);
         }
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -149,12 +150,12 @@ public class IntegerTextField extends JTextField {
      */
     /*
     private void initComponents() {//GEN-BEGIN:initComponents
-        
+
         setLayout(new java.awt.BorderLayout());
-        
+
     }//GEN-END:initComponents
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

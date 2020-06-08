@@ -1,5 +1,6 @@
-/* @(#)EntityModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)EntityModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -29,15 +30,15 @@ import java.beans.PropertyChangeSupport;
 public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable, UndoableEditListener {
     private final static long serialVersionUID = 1L;
     public final static String PROP_CHILD_COUNT = "childCount";
-    
+
     /**
      * Listener support.
      */
     @Nullable
     private PropertyChangeSupport propertySupport;
-    
+
     private boolean removable = true;
-    
+
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         if (propertySupport == null) propertySupport = new PropertyChangeSupport(this);
         propertySupport.addPropertyChangeListener(listener);
@@ -48,7 +49,7 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
             if (! propertySupport.hasListeners(null)) propertySupport = null;
         }
     }
-    
+
     protected void firePropertyChange(String propertyName, boolean oldValue, boolean newValue) {
         if (propertySupport != null)
             propertySupport.firePropertyChange(propertyName, oldValue, newValue);
@@ -65,9 +66,8 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
     protected boolean hasPropertyListeners() {
         return propertySupport != null && propertySupport.hasListeners(null);
     }
-    
-    
-    
+
+
     /**
      * Creates a new EntityModel.
      */
@@ -80,7 +80,7 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
     public EntityModel(Object userObject, boolean allowsChildren) {
         super(userObject, allowsChildren);
     }
-    
+
     /**
      * Returns the DocumentMdel which holds this model
      * or null if this EntityModel is not part of a document.
@@ -108,7 +108,7 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
             edit.die();
         }
     }
-    
+
     public void fireNodeStructureChanged() {
         DocumentModel p = getDocument();
         if (p != null) {
@@ -121,8 +121,8 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
             p.nodeChanged(this);
         }
     }
-    
-    
+
+
     /**
      * Returns a shallow copy of this model.
      * All references to other entitys, are maintained.
@@ -137,14 +137,14 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
         that.propertySupport = null;
         return that;
     }
-    
+
     /**
      * Returns true if the node may be removed from its parent.
      */
     public boolean isRemovable() {
         return removable;
     }
-    
+
     /**
      * Sets the 'removable' property.
      * @see #isRemovable()
@@ -161,7 +161,7 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
     public void undoableEditHappened(@Nonnull UndoableEditEvent e) {
         fireUndoableEditHappened(e.getEdit());
     }
-    
+
     public void dispose() {
         for (EntityModel child : getChildren()) {
             child.dispose();
@@ -179,7 +179,7 @@ public class EntityModel extends TreeNodeImpl<EntityModel> implements Cloneable,
         super.remove(childIndex);
         firePropertyChange("childCount", getChildCount() + 1, getChildCount());
     }
-    
+
     public boolean isDefaultCube() {
         return false;
     }

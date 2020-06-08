@@ -1,11 +1,16 @@
-/* @(#)CompareFiles.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CompareFiles.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
-import java.util.*;
-import java.io.*;
-import java.awt.*;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
 /**
  * Compares two files of equal size and content.
  *

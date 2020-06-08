@@ -1,5 +1,6 @@
-/* @(#)CSVTokenizer.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CSVTokenizer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.io;
@@ -15,18 +16,18 @@ import java.io.Reader;
  * EBNF rules for the CSV format:
  * <pre>
  * CSV = Record {RecordSeparator, Record}
- * 
+ *
  * RecordSeparator = linebreak
  * Record = Field {FieldSeparator, Field}
- * 
+ *
  * FieldSeparator = {whitespace} comma {whitespace}
  * Field = UnquotedField | DQuotedField
- * 
+ *
  * UnquotedField = (simplechar) {{simplechar|space}, (simplechar)}
- * 
+ *
  * DQuotedField = dquote (simplechar|stuffeddquote|linebreak|comma} dquote
- * 
- * 
+ *
+ *
  * simplechar = (* every character except specialchar *)
  * specialchar = linebreak | comma | dquote | whitespace | space
  * linebreak = lf | cr | cr, lf
@@ -38,7 +39,7 @@ import java.io.Reader;
  * space = ' '
  * whitespace = ' ' | tab
  * tab = 0x07
- * 
+ *
  * </pre>
  * <p>
  * Simple Example with unquoted fields:
@@ -59,18 +60,18 @@ import java.io.Reader;
 public class CSVTokenizer {
     private Reader in;
     private int lineNumber = 0;
-    
+
     private boolean pushedBack;
     /**
      * Delimiter character.
      */
     private char delimiterChar;
-    
+
     /**
      * Quoting character.
      */
     private char quoteChar;
-    
+
     /**
      * After a call to the <code>nextToken</code> method, this field
      * contains the type of the token just read. For a single character
@@ -92,17 +93,17 @@ public class CSVTokenizer {
      * @see     #TT_VALUE
      */
     public int ttype = TT_NOTHING;
-    
+
     /**
      * A constant indicating that the end of the stream has been read.
      */
     public static final int TT_EOF = -1;
-    
+
     /**
      * A constant indicating that the end of the line has been read.
      */
     public static final int TT_EOL = '\n';
-    
+
     /**
      * A constant indicating that a delimiter token has been read.
      */
@@ -111,7 +112,7 @@ public class CSVTokenizer {
      * A constant indicating that a word token has been read.
      */
     public static final int TT_VALUE = -3;
-    
+
     /* A constant indicating that no token has been read, used for
      * initializing ttype.  FIXME This could be made public and
      * made available as the part of the API in a future release.
@@ -120,12 +121,12 @@ public class CSVTokenizer {
 
     @Nonnull
     private char buf[] = new char[20];
-    
+
     /** Creates a new instance. */
     public CSVTokenizer(Reader in) {
         this(in, ',', '"');
     }
-    
+
     /**
      * If the current token is a value token, this field contains a
      * string giving the characters of the value token.
@@ -140,8 +141,8 @@ public class CSVTokenizer {
      */
     @Nullable
     public static String value = null;
-    
-    
+
+
     /**
      * The next character to be considered by the nextToken method.  May also
      * be NEED_CHAR to indicate that a new character should be read, or SKIP_LF
@@ -150,10 +151,10 @@ public class CSVTokenizer {
      * read.
      */
     private int peekc = NEED_CHAR;
-    
+
     private static final int NEED_CHAR = Integer.MAX_VALUE;
     private static final int SKIP_LF = Integer.MAX_VALUE - 1;
-    
+
     /**
      * Creates a new instance.
      *
@@ -163,7 +164,7 @@ public class CSVTokenizer {
      * @throws IllegalArgumentException if one of the delimiters can not be used.
      */
     public CSVTokenizer(Reader in, char delimiterChar, char quoteChar) {
-        
+
         this.in = in;
         this.delimiterChar = delimiterChar;
         this.quoteChar = quoteChar;
@@ -192,7 +193,7 @@ public class CSVTokenizer {
             return ttype;
         }
         value = null;
-        
+
         int c = peekc;
         if (c < 0)
             c = NEED_CHAR;
@@ -209,12 +210,12 @@ public class CSVTokenizer {
                 return ttype = TT_EOF;
         }
         ttype = c;		/* Just to be safe */
-        
+
         /* Set peekc so that the next invocation of nextToken will read
          * another character unless peekc is reset in this invocation
          */
         peekc = NEED_CHAR;
-        
+
         // Skip whitespace
         boolean whitespace = c != delimiterChar && Character.isWhitespace((char) c);
         while (whitespace) {
@@ -234,13 +235,13 @@ public class CSVTokenizer {
             }
             whitespace = c != delimiterChar && Character.isWhitespace((char) c);
         }
-        
+
         // Parse delimiter
         if (c == delimiterChar) {
             value = null;
             return ttype = TT_DELIMITER;
         }
-        
+
         // Parse quoted value
         if (c == quoteChar) {
             int i = 0;
@@ -264,7 +265,7 @@ public class CSVTokenizer {
             value = String.copyValueOf(buf, 0, i);
             return ttype = TT_VALUE;
         }
-        
+
         // Parse unquoted value
         int i = 0;
         int trailingWhitespaceCount = 0;
@@ -302,7 +303,7 @@ public class CSVTokenizer {
         if (ttype != TT_NOTHING)   /* No-op if nextToken() not called */
             pushedBack = true;
     }
-    
+
     /** Read the next character */
     private int read() throws IOException {
         return in.read();

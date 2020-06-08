@@ -1,5 +1,6 @@
-/* @(#)DefaultCellEditor2.java
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultCellEditor2.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.table;
@@ -36,7 +37,7 @@ public class DefaultCellEditor2 extends DefaultCellEditor {
 
             @Override
             public void setValue(@Nullable Object value) {
-                // Setting the document is needed to prevent 
+                // Setting the document is needed to prevent
                 // IllegalArgumentException in java.awt.font.LineBreakMeasurer
                 // and in java.text.RuleBasedBreakIterator when
                 // composing a character which consists of multiple unicode

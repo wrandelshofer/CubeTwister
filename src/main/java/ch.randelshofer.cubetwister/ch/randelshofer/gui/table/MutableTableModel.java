@@ -1,12 +1,15 @@
-/* @(#)MutableTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.table;
 
-import java.awt.datatransfer.*;
-import java.io.*;
 import javax.swing.Action;
 import javax.swing.table.TableModel;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 /**
  * Specifies the requirements for a mutable table model.
@@ -30,27 +33,28 @@ public interface MutableTableModel
 extends TableModel {
     // Abstract factory operations
     // ====================================================
+
     /**
-     * Returns the types of elements that can be created at 
+     * Returns the types of elements that can be created at
      * the specified index of the list.
      *
-     * @param   row  The insertion point. 0 &lt;= index &lt;= getRowCount()
-     * @return  an array of Object's that specify element types that can be
-     *          inserted at the insertion point. Returns an empty array if no
-     *          elements can be inserted here. Never returns null.
-     *          This array must include the type returned by operation 
-     *          getCreatableType.
+     * @param row The insertion point. 0 &lt;= index &lt;= getRowCount()
+     * @return an array of Object's that specify element types that can be
+     * inserted at the insertion point. Returns an empty array if no
+     * elements can be inserted here. Never returns null.
+     * This array must include the type returned by operation
+     * getCreatableType.
      */
     public Object[] getCreatableRowTypes(int row);
     /**
-     * Returns the default type of elements that can be created at 
+     * Returns the default type of elements that can be created at
      * the specified index of the list.
      *
      * @param   row  The insertion point. 0 &lt;= index &lt;= getRowCount()
-     * @return  an Object that specifies the default element type that can be
+     * @return an Object that specifies the default element type that can be
      *          inserted at the insertion point. Returns null if no
-     *          elements can be inserted here. 
-     *          The value must be one of the types returned by operation 
+     *          elements can be inserted here.
+     *          The value must be one of the types returned by operation
      *          getCreatableTypes.
      */
     public Object getCreatableRowType(int row);
@@ -61,7 +65,7 @@ extends TableModel {
      *
      * @param row index at which the specified element is to be inserted.
      * @param type element type to be inserted.
-     * 
+     *
      * @throws    IllegalArgumentException if the type is not contained in
      *            the array returned by getInsertableTypes(int).
      * @throws    IndexOutOfBoundsException if the index is out of range
@@ -70,17 +74,17 @@ extends TableModel {
     public void createRow(int row, Object type)
     throws IllegalStateException;
 
-    
+
     // Insert and remove operations
     // ====================================================
-    
+
     /**
      * Returns true if a row can be added.
      *
      * @param   row   index of the element. 0 &lt;= index &lt;= getSize()
      */
     public boolean isRowAddable(int row);
-    
+
     /**
      * Returns true if the specified row can be removed.
      *
@@ -88,7 +92,7 @@ extends TableModel {
      * @see #removeRow(int)
      */
     public boolean isRowRemovable(int row);
-    
+
     /**
      * Removes an element from the model.
      *
@@ -98,7 +102,7 @@ extends TableModel {
      */
     public void removeRow(int row)
     throws IllegalStateException;
-    
+
     // Editing operations.
     // ====================================================
     /**
@@ -108,7 +112,7 @@ extends TableModel {
      * @param   column   index of the column.
      */
     public boolean isCellEditable(int row, int column);
-    
+
     // Operations for determining the actions for elements
     // ====================================================
     /**
@@ -117,7 +121,7 @@ extends TableModel {
      * @param   rows   The rows.
      */
     public Action[] getRowActions(int[] rows);
-    
+
     // Datatransfer operations
     // =======================
     /**
@@ -129,7 +133,7 @@ extends TableModel {
      * @param   rows     Row indices.
      */
     public Transferable exportRowTransferable(int[] rows);
-    
+
     /**
      * Indicates whether the model would accept an import of the
      * given set of data flavors prior to actually attempting
@@ -148,7 +152,7 @@ extends TableModel {
      * @see java.awt.dnd.DnDConstants
      */
     public boolean isRowImportable(DataFlavor[] transferFlavors, int action, int row, boolean asChild);
-    
+
     /**
      * Causes a transfer to the model from a clipboard or
      * a DND drop operation.

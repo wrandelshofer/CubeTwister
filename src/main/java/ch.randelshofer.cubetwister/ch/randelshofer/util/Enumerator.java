@@ -1,5 +1,10 @@
 /*
  * @(#)Enumerator.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
+/*
+ * @(#)Enumerator.java
  * Copyright © The authors and contributors of JHotDraw. MIT License.
  */
 package ch.randelshofer.util;

@@ -1,6 +1,6 @@
-/**
- * @(#)ScriptExportVideoAccessoryPanel.java  1.3  2011-04-20
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScriptExportVideoAccessoryPanel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 

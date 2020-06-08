@@ -1,5 +1,6 @@
-/* @(#)Cubes.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cubes.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube;
 
@@ -1086,7 +1087,7 @@ public class Cubes {
             isFirst = true;
 
             // First Pass: Only print permutation cycles which lie on a single
-            // face of the cube. 
+            // face of the cube.
             // Second pass: Only print permutation cycles which don't lie on
             // a singe fass of the cube.
             for (int twoPass = 0; twoPass < 2; twoPass++) {
@@ -1228,7 +1229,7 @@ public class Cubes {
             int previousCycleStartSide;
 
             // First Pass: Only print permutation cycles which lie on a single
-            // face of the cube. 
+            // face of the cube.
             // Second pass: Only print permutation cycles which don't lie on
             // a singe fass of the cube.
             for (int twoPass = 0; twoPass < 2; twoPass++) {

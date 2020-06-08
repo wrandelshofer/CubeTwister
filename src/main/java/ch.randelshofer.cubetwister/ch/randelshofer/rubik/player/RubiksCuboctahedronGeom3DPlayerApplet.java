@@ -1,5 +1,6 @@
-/* @(#)RubiksCuboctahedronGeom3DPlayerApplet.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksCuboctahedronGeom3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.player;
@@ -11,7 +12,7 @@ import ch.randelshofer.rubik.cube3d.RubiksCuboctahedronGeom3D;
 import ch.randelshofer.rubik.parser.ScriptPlayer;
 import org.jhotdraw.annotation.Nonnull;
 
-/** 
+/**
  * RubiksCuboctahedronGeom3DPlayerApplet.
  *
  * @author  Werner Randelshofer
@@ -37,7 +38,7 @@ public class RubiksCuboctahedronGeom3DPlayerApplet extends AbstractCubeGeom3DPla
         return 3;
     }
 
-    
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -47,8 +48,8 @@ public class RubiksCuboctahedronGeom3DPlayerApplet extends AbstractCubeGeom3DPla
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
     */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

@@ -1,11 +1,12 @@
-/**
- * @(#)RepeatedList.java  2.0  2012-02-08
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RepeatedList.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.util;
 
-import java.util.*;
+import java.util.AbstractList;
+import java.util.List;
 
 /**
  * RepeatedList.
@@ -17,7 +18,7 @@ import java.util.*;
 public class RepeatedList<T> extends AbstractList<T> {
     private List<T> list;
     private int repeatCount;
-    
+
     public RepeatedList(List<T> list, int repeatCount) {
         this.list = list;
         this.repeatCount = repeatCount;

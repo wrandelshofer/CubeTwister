@@ -1,5 +1,6 @@
-/* @(#)ReverseVectorEnumeration.java
- * Copyright (c) 1999 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ReverseListIterator.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 
@@ -36,6 +37,6 @@ public class ReverseListIterator<T>
 
     @Override
     public void remove() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -1,5 +1,6 @@
-/* @(#)VCube6Geom3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VCube6Geom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -27,7 +28,7 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
      * to prevent 'holes' when the cube is twisting.
      */
     private final static float EXT_LENGTH = PART_LENGTH + 1f;
-    
+
     private final static int STICKER_COUNT = 6 * 6 * 6;
 
     private static float[] CORNER_VERTS;
@@ -37,37 +38,37 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
         if (CORNER_VERTS == null) {
             // The corner parts are bigger than the side parts
             CORNER_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, 
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        //8:lluf      lldf       rruf      rrdf
-                        -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
-                    };
+                    //0:luff      ldff       ruff       rdff
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    //8:lluf      lldf       rruf      rrdf
+                    -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
+            };
         }
         if (CORNER_FACES == null) {
             CORNER_FACES = new int[][]{
@@ -111,7 +112,7 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
                         {4, 6, 7, 5},     //Back
                     };
         }
-        
+
         for (int i = 0; i < cornerCount; i++) {
             shapes[cornerOffset+i] = new Shape3D(CORNER_VERTS, CORNER_FACES, new Color[CORNER_FACES.length][2], CORNER_FACES.length - 3);
             shapes[cornerOffset+i].setReduced(true);
@@ -130,32 +131,32 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
                         //0:luff      ldff       ruff       rdff
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        //8:lluf      lldf       rruf      rrdf
-                        -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    //8:lluf      lldf       rruf      rrdf
+                    -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
                     };
         }
@@ -228,34 +229,34 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
             // Note: The side verts are longer towards the center to avoid
             // holes in the cube while twisting.
             SIDE_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        //8:lluf      lldf       rruf      rrdf
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //0:luff      ldff       ruff       rdff
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //8:lluf      lldf       rruf      rrdf
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH)
                     };
@@ -302,13 +303,13 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
                         {17, 19, 21, 23}, //Bottom
                     };
         }
-        
+
         for (int i = 0; i < sideCount; i++) {
             shapes[sideOffset+i] = new Shape3D(SIDE_VERTS, SIDE_FACES, new Color[SIDE_FACES.length][2], SIDE_FACES.length - 2);
             shapes[sideOffset+i].setReduced(true);
         }
     }
-    
+
     /** The simple cube has no visible center because
      * it can not be taken apart.
      */
@@ -318,7 +319,7 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
         float[] verts = {
             //0:luff      ldff       ruff       rdff
             -15, 15, 15,  -15,-15, 15,   15, 15, 15,   15,-15, 15,
-         
+
             //4:rubb,    rdbb,       lubb,       ldbb
             15,15,-15,   15,-15,-15,   -15,15,-15,  -15,-15,-15,
         };
@@ -330,23 +331,23 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
             {2, 4, 5, 3}, //Right
             {3, 5, 7, 1}, //Bottom
         };
-         
+
         Color[][] colors = new Color[faces.length][2];
         Color[] faceColor = {PART_FILL_COLOR, null};
             for (int j=0; j < faces.length; j++) {
                 colors[j] = faceColor;
             }
-         
+
         shapes[centerOffset] = new Shape3D(verts, faces, colors);
          */
         float[] verts = {};
         int[][] faces = {};
-        
+
         Color[][] colors = {};
-        
+
         shapes[centerOffset] = new Shape3D(verts, faces, colors);
         shapes[centerOffset].setVisible(false);
-        
+
     }
     @Override
     protected void initActions() {
@@ -425,7 +426,7 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
     public String getName() {
         return "V-Cube 6";
     }
-    
+
     /**
      * Sticker to part map.<br>
      * (the number before the dot indicates the part,
@@ -435,11 +436,11 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
      *                           |4.0|27 |3.1|15 |39 |2.0|
      *                           +---+---+---+---+---+---+
      *                           |30 |25  79  55  31 |24 |
-     *                           +---+               +---+  
+     *                           +---+               +---+
      *                           |6.0|49   1   7  85 |0.0|
-     *                           +---+       u       +---+ 
+     *                           +---+       u       +---+
      *                           |18 |73  19  13  61 |12 |
-     *                           +---+               +---+ 
+     *                           +---+               +---+
      *                           |42 |43  67  91  37 |36 |
      *                           +---+---+---+---+---+---+
      *                           |6.0|33 |9.1|21 |45 |0.0|
@@ -447,11 +448,11 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
      *   |4.1|30 |6.1|18 |42 |6.2|6.1|33 |9.0|21 |45 |0.2|0.1|36 |12 |0.1|24 |2.2|2.1|39 |15 |3.0|27 |4.2|
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |43 |45  75  51  27 |46 |46 |32  86  62  38 |37 |37 |36  90  66  42 |40 |40 |29  83  59  35 |43 |
-     *   +---+               +---+---+               +---+---+               +---+---+               +---+ 
+     *   +---+               +---+---+               +---+---+               +---+---+               +---+
      *   |19 |69  21  3.1 81 |22 |22 |56  8.3 14  92 |13 |13 |60 12.0 18  72 |16 |16 |53  5.2 11  89 |19 |
-     *   +---+       l       +---+---+       f       +---+---+       r       +---+---+       b       +---+ 
+     *   +---+       l       +---+---+       f       +---+---+       r       +---+---+       b       +---+
      *   |7.0|93  15   9  57 10.0|10.1 80  2  20  68 |1.1|1.0|84   6   0  48 |4.0|4.1|77  23  17  65 |7.1|
-     *   +---+               +---+---+               +---+---+               +---+---+               +---+  
+     *   +---+               +---+---+               +---+---+               +---+---+               +---+
      *   |31 |39  63  87  33 |34 |34 |26  50  74  44 |25 |25 |30  54  78  24 |28 |28 |47  71  95  41 |31 |
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |5.2|32 |8.1|20 |44 |7.1|7.2|35 11.1|23 |47 |1.1|1.2|38 |14 |2.1|26 |3.1|3.2|41 |17 |5.0|29 |5.1|
@@ -459,11 +460,11 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
      *                           |7.0|35 11.1|23 |47 |1.0|
      *                           +---+---+---+---+---+---+
      *                           |44 |46  76  52  28 |38 |
-     *                           +---+               +---+ 
+     *                           +---+               +---+
      *                           |20 |70  22   4  82 |14 |
-     *                           +---+       d       +---+ 
+     *                           +---+       d       +---+
      *                           |8.0|94  16  10  58 |2.0|
-     *                           +---+               +---+  
+     *                           +---+               +---+
      *                           |32 |40  64  88  34 |26 |
      *                           +---+---+---+---+---+---+
      *                           |5.0|29 |5.1|17 |41 |3.0|
@@ -573,7 +574,7 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
         }
         return sticker;
     }
-    
+
     @Override
     public int getStickerCount() {
         return STICKER_COUNT;
@@ -642,7 +643,7 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
             Color color = getAttributes().getPartFillColor(partIndex);
             Shape3D shape = shapes[partIndex];
             int offset;
-            
+
             if (partIndex < edgeOffset) {
                 offset = 3;
             } else if (partIndex < sideOffset) {
@@ -653,7 +654,7 @@ public class VCube6Geom3D extends AbstractCube6Geom3D {
                 offset = 0;
             }
             //System.out.println("partIndex"+partIndex+" colr="+color+" faces="+shape.getFaceCount());
-            
+
             for (int i=shape.getFaceCount() - 1; i >= offset; i--) {
                 shape.setFillColor(i, color);
             }

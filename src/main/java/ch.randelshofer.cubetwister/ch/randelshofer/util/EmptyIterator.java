@@ -1,5 +1,6 @@
-/* @(#)EmptyIterator.java
- * Copyright (c) 2013 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)EmptyIterator.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.util;
 

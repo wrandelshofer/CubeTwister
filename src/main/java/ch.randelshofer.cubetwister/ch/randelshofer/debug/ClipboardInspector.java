@@ -1,5 +1,6 @@
-/* @(#)ClipboardInspector.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ClipboardInspector.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.debug;
@@ -53,7 +54,7 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
         initComponents();
         listModel = new DefaultListModel();
         list.setModel(listModel);
-        
+
         list.addListSelectionListener(this);
     }
 
@@ -137,12 +138,16 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
     }//GEN-END:initComponents
     private JFileChooser fileChooser;
     private void save(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save
-        if (fileChooser == null) fileChooser = new JFileChooser();
+        if (fileChooser == null) {
+            fileChooser = new JFileChooser();
+        }
         int returnVal = fileChooser.showSaveDialog(this);
-        if (returnVal != JFileChooser.APPROVE_OPTION) return;
-        
-        final File file = fileChooser.getSelectedFile(); 
-        
+        if (returnVal != JFileChooser.APPROVE_OPTION) {
+            return;
+        }
+
+        final File file = fileChooser.getSelectedFile();
+
         new SwingWorker() {
             @Nullable
             public Object construct() {
@@ -203,12 +208,13 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
         transferable = getToolkit().getSystemClipboard().getContents(this);
         if (transferable != null) {
             DataFlavor[] df = transferable.getTransferDataFlavors();
-            for (int i=0; i < df.length; i++) 
+            for (int i = 0; i < df.length; i++) {
                 listModel.addElement(new FlavorItem(df[i]));
+            }
         } else {
             listModel.addElement("Clipboard is Empty");
         }
-        
+
     }//GEN-LAST:event_readClipboard
 
     public static void main(String[] args) {
@@ -228,7 +234,7 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
      */
     public void valueChanged(final ListSelectionEvent evt) {
         saveButton.setEnabled(list.getSelectedIndices().length == 1);
-        
+
         new SwingWorker() {
             @Nonnull
             public Object construct() {
@@ -327,7 +333,7 @@ public class ClipboardInspector extends javax.swing.JPanel implements ListSelect
             }
         }.start();
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton readClipboardButton;
     private javax.swing.JButton saveButton;

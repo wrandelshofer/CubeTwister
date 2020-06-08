@@ -1,12 +1,13 @@
-/* @(#)RevengeCube.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RevengeCube.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube;
 
 import org.jhotdraw.annotation.Nonnull;
 
 /**
- * Represents the state of a 4-times sliced cube (Revenge Cube) by the location 
+ * Represents the state of a 4-times sliced cube (Revenge Cube) by the location
  * and orientation of its parts.
  * <p>
  * A Revenge Cube has 8 corner parts, 24 edge parts, 24 side parts and one
@@ -14,7 +15,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Corner parts</b>
  * <p>
- * The following diagram shows the initial orientations and locations of 
+ * The following diagram shows the initial orientations and locations of
  * the corner parts:
  * <pre>
  *                 +---+---+---+---+
@@ -46,7 +47,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Edge parts</b>
  * <p>
- * The following diagram shows the initial orientations and locations of 
+ * The following diagram shows the initial orientations and locations of
  * the edge parts. The first 12 edges are located near the origins of the
  * x-, y- and z-axis. The second 12 edges are located far from the origin
  * of the x-, y- and z-axis.
@@ -80,7 +81,7 @@ import org.jhotdraw.annotation.Nonnull;
  * <p>
  * <b>Side parts</b>
  * <p>
- * The following diagram shows the initial orientation and location of 
+ * The following diagram shows the initial orientation and location of
  * the face parts:
  * <pre>
  *                 +---+---+---+---+

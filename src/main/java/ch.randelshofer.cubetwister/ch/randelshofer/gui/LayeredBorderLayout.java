@@ -1,6 +1,6 @@
-/**
- * @(#)LayeredBorderLayout.java  1.1  2008-09-11
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)LayeredBorderLayout.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui;
 
@@ -17,14 +17,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 /**
- * LayoutManager which supports overlapping border layouts for use with 
+ * LayoutManager which supports overlapping border layouts for use with
  * JLayeredPane.
  * <p>
  * The border layout is computed individually for each layer of the
  * JLayeredPane.
  *
  * @author Werner Randelshofer
- * @version $Id$
+ *  @version $Id$
  * <br>1.0 Jan 5, 2008 Created.
  */
 public class LayeredBorderLayout implements LayoutManager2 {

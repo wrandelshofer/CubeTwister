@@ -1,5 +1,6 @@
-/* @(#)ScrollablePanels.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)ScrollablePanels.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui;
 
@@ -18,11 +19,11 @@ import java.awt.Rectangle;
  * @author Werner Randelshofer
  */
 public class ScrollablePanels {
-    
+
     /** Creates a new instance of ScrollablePanels */
     private ScrollablePanels() {
     }
-    
+
     /**
      * Returns the preferred size of the viewport for a view component.
      * For example the preferredSize of a JList component is the size
@@ -38,7 +39,7 @@ public class ScrollablePanels {
     public static Dimension getPreferredScrollableViewportSize(@Nonnull JPanel component) {
         return component.getPreferredSize();
     }
-    
+
     /**
      * Components that display logical rows or columns should compute
      * the scroll increment that will completely expose one block
@@ -64,7 +65,7 @@ public class ScrollablePanels {
                 throw new IllegalArgumentException("Invalid orientation: " + orientation);
         }
     }
-    
+
     /**
      * Return true if a viewport should always force the height of this
      * Scrollable to match the height of the viewport.  For example a
@@ -83,7 +84,7 @@ public class ScrollablePanels {
         }
         return false;
     }
-    
+
     /**
      * Return true if a viewport should always force the width of this
      * <code>Scrollable</code> to match the width of the viewport.
@@ -106,7 +107,7 @@ public class ScrollablePanels {
 
         return false;
     }
-    
+
     /**
      * Components that display logical rows or columns should compute
      * the scroll increment that will completely expose one new row
@@ -134,5 +135,5 @@ public class ScrollablePanels {
                 throw new IllegalArgumentException("Invalid orientation: " + orientation);
         }
     }
-    
+
 }

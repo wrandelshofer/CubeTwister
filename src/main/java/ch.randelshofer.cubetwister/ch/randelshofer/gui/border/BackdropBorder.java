@@ -1,23 +1,25 @@
-/* @(#)BackdropBorder.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)BackdropBorder.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.border;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.Border;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Insets;
 /**
  * BackdropBorder has a foreground border and a background border.
  * The foreground border is drawn, when paintBorder() is invoked.
  * The background border can be retrieved using getBackgroundBorder().
- * 
+ *
  * @author Werner Randelshofer
  */
 public class BackdropBorder implements Border {
     private Border foregroundBorder;
     private Border backgroundBorder;
-    
+
     /** Creates a new instance. */
     public BackdropBorder(Border backdropBorder) {
         this(null, backdropBorder);
@@ -32,7 +34,7 @@ public class BackdropBorder implements Border {
             foregroundBorder.paintBorder(c, g, x, y, width, height);
         }
     }
-    
+
     public Border getBackgroundBorder() {
         return backgroundBorder;
     }
@@ -47,5 +49,5 @@ public class BackdropBorder implements Border {
 
     public boolean isBorderOpaque() {
         return false;
-    }    
+    }
 }

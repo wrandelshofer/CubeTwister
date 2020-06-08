@@ -1,5 +1,6 @@
-/* @(#)CustomToggleButtonUI.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CustomToggleButtonUI.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.plaf;
@@ -32,7 +33,7 @@ import java.awt.Rectangle;
  * b.setUI((ToggleButtonUI) CustomToggleButtonUI.createUI(b));
  * b.setBorder(new BackdropBorder(....));
  * </pre>
- * 
+ *
  * @author Werner Randelshofer
  */
 public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafConstants {
@@ -58,7 +59,7 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
     }
 
     // ********************************
-    //        Install Defaults 
+    //        Install Defaults
     // ********************************
     public void installDefaults(@Nonnull AbstractButton b) {
         super.installDefaults(b);
@@ -81,7 +82,7 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
     }
 
     // ********************************
-    //         Default Accessors 
+    //         Default Accessors
     // ********************************
     protected Color getSelectColor() {
 	return selectColor;
@@ -143,17 +144,17 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
 	    Insets insets = b.getInsets();
 	    Insets margin = b.getMargin();
 	}
-	
+
         // Paint the Icon
-        if(b.getIcon() != null) { 
+        if (b.getIcon() != null) {
             paintIcon(g, b, iconRect);
         }
-	
+
         // Draw the Text
         if(text != null && !"".equals(text)) {
             paintText(g, b, textRect, text);
         }
-	
+
         // draw the dashed focus line.
         if (b.isFocusPainted() && b.hasFocus()) {
 	    paintFocus(g, b, viewRect, textRect, iconRect);
@@ -197,7 +198,7 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
     protected void paintFocus(Graphics g, AbstractButton b,
 			      Rectangle viewRect, Rectangle textRect, Rectangle iconRect){
         // Don't paint focus
-        /*                              
+        /*
         Rectangle focusRect = new Rectangle();
 	String text = b.getText();
 	boolean isIcon = b.getIcon() != null;
@@ -220,6 +221,6 @@ public class CustomToggleButtonUI extends BasicToggleButtonUI implements PlafCon
 	g.drawRect((focusRect.x-1), (focusRect.y-1),
 		  focusRect.width+1, focusRect.height+1);
          */
-	
+
     }
 }

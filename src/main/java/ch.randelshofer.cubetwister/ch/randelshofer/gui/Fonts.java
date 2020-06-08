@@ -1,5 +1,6 @@
-/* @(#)Fonts.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Fonts.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -16,16 +17,16 @@ import java.util.HashMap;
  */
 public class Fonts {
     private static HashMap<String,Object> fonts;
-    
+
     /** Creates a new instance. */
     private Fonts() {
     }
-    
+
     private static void init() {
         if (fonts == null) {
             fonts = new HashMap<String,Object>();
             Font dialogFont = UIManager.getFont("Label.font");
-            
+
             Font emphasizedDialogFont = dialogFont.deriveFont(Font.BOLD);
             Font smallDialogFont;
             if (dialogFont.getSize() >= 13) {
@@ -34,8 +35,8 @@ public class Fonts {
                 smallDialogFont = dialogFont;
             }
             Font emphasizedSmallDialogFont = smallDialogFont.deriveFont(Font.BOLD);
-            
-            
+
+
             fonts.put("Dialog", dialogFont);
             fonts.put("EmphasizedDialog", emphasizedDialogFont);
             fonts.put("SmallDialog", smallDialogFont);
@@ -44,8 +45,8 @@ public class Fonts {
             fonts.put("Label", dialogFont.deriveFont(10f));
             fonts.put("MiniDialog", dialogFont.deriveFont(9f));
             fonts.put("Monospace", new Font("Courier", Font.PLAIN, dialogFont.getSize()));
-            
-            
+
+
             if (System.getProperty("java.version").startsWith("1.4")) {
                 fonts.put("DialogTag",  "");
                 fonts.put("/DialogTag",  "");
@@ -63,7 +64,7 @@ public class Fonts {
             }
         }
     }
-    
+
     /**
      * The dialog font is used for text in menus, modeless dialogs, and titles
      * of document windows.
@@ -140,7 +141,7 @@ public class Fonts {
         init();
         return (Font) fonts.get("MiniDialog");
     }
-    
+
     /**
      * Puts an HTML font tag for the Dialog Font around the specified text.
      */

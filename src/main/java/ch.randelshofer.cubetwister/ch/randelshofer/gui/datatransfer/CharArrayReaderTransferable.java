@@ -1,5 +1,6 @@
-/* @(#)CharArrayReaderTransferable.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CharArrayReaderTransferable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.datatransfer;
@@ -51,7 +52,7 @@ public class CharArrayReaderTransferable implements java.awt.datatransfer.Transf
             throw new UnsupportedFlavorException(flavor);
         }
     }
-    
+
     /**
      * Returns an array of DataFlavor objects indicating the flavors the data
      * can be provided in.  The array should be ordered according to preference
@@ -73,5 +74,5 @@ public class CharArrayReaderTransferable implements java.awt.datatransfer.Transf
     public boolean isDataFlavorSupported(@Nonnull DataFlavor flavor) {
         return flavor.equals(this.flavor);
     }
-    
+
 }

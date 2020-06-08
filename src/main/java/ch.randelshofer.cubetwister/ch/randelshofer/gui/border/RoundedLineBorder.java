@@ -1,5 +1,6 @@
-/* @(#)RoundedLineBorder.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RoundedLineBorder.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.border;
@@ -38,8 +39,9 @@ public class RoundedLineBorder extends AbstractBorder
         return blackLine;
     }
 
-    /** Convenience method for getting the Color.gray RoundedLineBorder of thickness 1.
-      */
+    /**
+     * Convenience method for getting the Color.gray RoundedLineBorder of thickness 1.
+     */
     public static Border createGrayLineBorder() {
         if (grayLine == null) {
             grayLine = new RoundedLineBorder(Color.gray, 1);
@@ -47,9 +49,10 @@ public class RoundedLineBorder extends AbstractBorder
         return grayLine;
     }
 
-    /** 
-     * Creates a line border with the specified color and a 
+    /**
+     * Creates a line border with the specified color and a
      * thickness = 1.
+     *
      * @param color the color for the border
      */
     public RoundedLineBorder(Color color) {
@@ -80,7 +83,7 @@ public class RoundedLineBorder extends AbstractBorder
     }
 
     /**
-     * Paints the border for the specified component with the 
+     * Paints the border for the specified component with the
      * specified position and size.
      * @param c the component for which this border is being painted
      * @param gr the paint graphics
@@ -95,7 +98,7 @@ g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALI
         Color oldColor = g.getColor();
         int i;
 
-        
+
 	/// PENDING(klobad) How/should do we support Roundtangles?
         g.setColor(lineColor);
         for(i = 0; i < 1; i++)  {
@@ -153,8 +156,8 @@ g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALI
     /**
      * Returns whether or not the border is opaque.
      */
-    public boolean isBorderOpaque() { 
-        return !roundedCorners; 
+    public boolean isBorderOpaque() {
+        return !roundedCorners;
     }
 
 }

@@ -1,6 +1,6 @@
 /*
-/* @(#)CubeStickersView.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)CubeStickersView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -23,7 +23,7 @@ public class CubeStickersView extends JPanel implements EntityView, Undoable {
     private final static long serialVersionUID = 1L;
     private CubeModel model;
     private Preferences prefs;
-    
+
     /** Creates new form. */
     public CubeStickersView() {
         prefs = Preferences.userNodeForPackage(getClass());
@@ -33,7 +33,7 @@ public class CubeStickersView extends JPanel implements EntityView, Undoable {
         tabbedPane.putClientProperty("Quaqua.TabbedPane.contentBorderPainted", Boolean.FALSE);
         int selectedTab = prefs.getInt("CubeStickersView.selectedTab", 0);
         tabbedPane.setSelectedIndex(Math.max(0, Math.min(tabbedPane.getTabCount() - 1, selectedTab)));
-        
+
         colorsView.setViewClassName("ch.randelshofer.cubetwister.doc.CubeStickerColorsView");
         imageView.setViewClassName("ch.randelshofer.cubetwister.doc.CubeStickersImageView");
          tabbedPane.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -45,7 +45,7 @@ prefs.putInt("CubeStickersView.selectedTab", tabbedPane.getSelectedIndex());    
             setBorder(new EmptyBorder(6,6,8,7));
         }
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -78,10 +78,10 @@ prefs.putInt("CubeStickersView.selectedTab", tabbedPane.getSelectedIndex());    
     @Override
     public void setModel(EntityModel newValue) {
      if (model != null) {
-     } 
+     }
      model = (CubeModel) newValue;
      if (model != null) {
-     } 
+     }
           colorsView.setModel(model);
          imageView.setModel(model);
     }
@@ -96,12 +96,12 @@ prefs.putInt("CubeStickersView.selectedTab", tabbedPane.getSelectedIndex());    
 
     public void removeUndoableEditListener(UndoableEditListener l) {
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ch.randelshofer.cubetwister.doc.LazyEntityView colorsView;
     private ch.randelshofer.cubetwister.doc.LazyEntityView imageView;
     private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
-    
+
 }

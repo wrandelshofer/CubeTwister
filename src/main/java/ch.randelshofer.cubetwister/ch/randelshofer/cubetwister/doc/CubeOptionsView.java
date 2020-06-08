@@ -1,6 +1,6 @@
 /*
-/* @(#)CubeOptionsView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)CubeOptionsView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -23,7 +23,7 @@ public class CubeOptionsView extends JPanel implements EntityView, Undoable {
     private final static long serialVersionUID = 1L;
     private CubeModel model;
     private Preferences prefs;
-    
+
     /** Creates new form. */
     public CubeOptionsView() {
         prefs = Preferences.userNodeForPackage(getClass());
@@ -33,7 +33,7 @@ public class CubeOptionsView extends JPanel implements EntityView, Undoable {
         tabbedPane.putClientProperty("Quaqua.TabbedPane.contentBorderPainted", Boolean.FALSE);
         int selectedTab = prefs.getInt("CubeOptionsView.selectedTab", 0);
         tabbedPane.setSelectedIndex(Math.max(0, Math.min(tabbedPane.getTabCount() - 1, selectedTab)));
-        
+
         animationView.setViewClassName("ch.randelshofer.cubetwister.doc.CubeAnimationView");
         dimensionsView.setViewClassName("ch.randelshofer.cubetwister.doc.CubeDimensionsView");
         backgroundView.setViewClassName("ch.randelshofer.cubetwister.doc.CubeBackgroundView");
@@ -46,7 +46,7 @@ public class CubeOptionsView extends JPanel implements EntityView, Undoable {
             setBorder(new EmptyBorder(6,6,8,7));
         }
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -80,10 +80,10 @@ public class CubeOptionsView extends JPanel implements EntityView, Undoable {
 
     public void setModel(EntityModel newValue) {
      if (model != null) {
-     } 
+     }
      model = (CubeModel) newValue;
      if (model != null) {
-     } 
+     }
           animationView.setModel(model);
           dimensionsView.setModel(model);
          backgroundView.setModel(model);
@@ -99,13 +99,13 @@ public class CubeOptionsView extends JPanel implements EntityView, Undoable {
 
     public void removeUndoableEditListener(UndoableEditListener l) {
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ch.randelshofer.cubetwister.doc.LazyEntityView animationView;
     private ch.randelshofer.cubetwister.doc.LazyEntityView backgroundView;
     private ch.randelshofer.cubetwister.doc.LazyEntityView dimensionsView;
     private javax.swing.JTabbedPane tabbedPane;
     // End of variables declaration//GEN-END:variables
-    
+
 }

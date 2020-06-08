@@ -1,5 +1,6 @@
-/* @(#)LeftAlignedHeaderRenderer.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)LeftAlignedHeaderRenderer.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.table;

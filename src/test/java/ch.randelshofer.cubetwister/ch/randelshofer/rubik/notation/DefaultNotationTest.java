@@ -1,6 +1,6 @@
 /*
- * @(#)ScriptParser.java  10.0.1  2010-11-06
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)DefaultNotationTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.notation;
 

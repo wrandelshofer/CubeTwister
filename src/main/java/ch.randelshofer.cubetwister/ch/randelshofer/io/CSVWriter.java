@@ -1,5 +1,6 @@
-/* @(#)CSVWriter.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CSVWriter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.io;
@@ -16,18 +17,18 @@ import java.io.Writer;
  * EBNF rules for the CSV format:
  * <pre>
  * CSV = Record {RecordSeparator, Record}
- * 
+ *
  * RecordSeparator = linebreak
  * Record = Field {FieldSeparator, Field}
- * 
+ *
  * FieldSeparator = {whitespace} comma {whitespace}
  * Field = UnquotedField | DQuotedField
- * 
+ *
  * UnquotedField = (simplechar) {{simplechar|space}, (simplechar)}
- * 
+ *
  * DQuotedField = dquote (simplechar|stuffeddquote|linebreak|comma} dquote
- * 
- * 
+ *
+ *
  * simplechar = (* every character except specialchar *)
  * specialchar = linebreak | comma | dquote | whitespace | space
  * linebreak = lf | cr | cr, lf
@@ -39,7 +40,7 @@ import java.io.Writer;
  * space = ' '
  * whitespace = ' ' | tab
  * tab = 0x07
- * 
+ *
  * </pre>
  * <p>
  * Simple Example with unquoted fields:
@@ -62,18 +63,18 @@ public class CSVWriter extends FilterWriter {
      * Delimiter character for values.
      */
     private char valueDelimiter;
-    
+
     /**
      * Quoting character.
      */
     private char quoteChar;
-    
+
     /**
      * Delimiter String for records.
      * This must be either cr, cr lf or lf.
      */
     private String recordDelimiter;
-    
+
     private final static int NO_DELIMITER = 0;
     private final static int VALUE_DELIMITER = 1;
     private final static int RECORD_DELIMITER = 2;
@@ -122,7 +123,7 @@ public class CSVWriter extends FilterWriter {
     public void writeInt(int i) throws IOException {
         write(Integer.toString(i));
     }
-    
+
     /**
      * Writes a delimiter.
      */
@@ -138,7 +139,7 @@ public class CSVWriter extends FilterWriter {
                 break;
         }
     }
-    
+
     /**
      * Write a single character value and appends it as a new value to the
      * current record.
@@ -148,7 +149,7 @@ public class CSVWriter extends FilterWriter {
     public void write(int c) throws IOException {
         writeDelimiter();
         nextDelimiter = VALUE_DELIMITER;
-        
+
         if (c == '\n' || c == '\r' || c == valueDelimiter || Character.isWhitespace((char) c)) {
             out.write(quoteChar);
             out.write(c);
@@ -189,7 +190,7 @@ public class CSVWriter extends FilterWriter {
                     }
                 }
             }
-            
+
             if (needsQuoting) {
                 char[] qbuf = new char[len*2+2];
                 int j=0;
@@ -253,7 +254,7 @@ public class CSVWriter extends FilterWriter {
                     }
                 }
             }
-            
+
             if (needsQuoting) {
                 char[] qbuf = new char[len*2+2];
                 int j=0;
@@ -274,7 +275,7 @@ public class CSVWriter extends FilterWriter {
             }
         }
     }
-    
+
     /**
      * Finishes the current record by writing the record delimiter.
      */

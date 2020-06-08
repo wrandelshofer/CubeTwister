@@ -1,5 +1,6 @@
-/* @(#)PicturesView.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeStickersImageView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.cubetwister.doc;
@@ -34,7 +35,7 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
         scrollPane.getViewport().setOpaque(false);
         stickersImageInfoLabel.setFont(UIManager.getFont("SmallSystemFont"));
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -98,7 +99,7 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
         add(scrollPane, java.awt.BorderLayout.CENTER);
 
     }// </editor-fold>//GEN-END:initComponents
-            
+
     private void stickersImageStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stickersImageStateChanged
         if (model != null) {
             model.setStickersImageVisible(stickersImageCheck.isSelected());
@@ -111,7 +112,7 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
     public JComponent getViewComponent() {
         return this;
     }
-    
+
     @Override
     public void setModel(EntityModel newValue) {
         setModel((CubeModel) newValue);
@@ -125,7 +126,7 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
         if (model != null) {
             stickersImageWell.setModel(model.getStickersImageModel());
             model.addPropertyChangeListener(this);
-            
+
             updateStickersImageVisible();
         }
     }
@@ -136,15 +137,15 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
             updateStickersImageVisible();
         }
     }
-    
+
     private void updateStickersImageVisible() {
         boolean b = model.isStickersImageVisible();
             stickersImageCheck.setSelected(b);
         stickersImageWell.setVisible(b);
         stickersImageInfoLabel.setVisible(b);
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel layoutPanel;
     private javax.swing.JScrollPane scrollPane;
@@ -153,5 +154,5 @@ public class CubeStickersImageView extends AbstractEntityView implements Propert
     private ch.randelshofer.gui.JImageWell stickersImageWell;
     private javax.swing.JPanel strutPanel;
     // End of variables declaration//GEN-END:variables
-    
+
 }

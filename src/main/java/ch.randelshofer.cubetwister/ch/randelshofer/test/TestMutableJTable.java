@@ -1,5 +1,6 @@
-/* @(#)TestMutableJTable.java
- * Copyright (c) 2002 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)TestMutableJTable.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.test;
 
@@ -16,7 +17,7 @@ public class TestMutableJTable extends javax.swing.JFrame {
     /** Creates new form TestDnDJTable */
     public TestMutableJTable() {
         initComponents();
-        
+
         DefaultMutableTableModel m = new DefaultMutableTableModel(
         new Object[][] {
             { "Skifahren", Boolean.TRUE },
@@ -28,7 +29,7 @@ public class TestMutableJTable extends javax.swing.JFrame {
         new Class[] {String.class, Boolean.class}
         );
         table1.setModel(m);
-        
+
         m = new DefaultMutableTableModel(
         new Object[][] {
             { "Schwimmen", Boolean.TRUE },
@@ -40,11 +41,11 @@ public class TestMutableJTable extends javax.swing.JFrame {
         new Class[] {String.class, Boolean.class}
         );
         table2.setModel(m);
-        
-        
+
+
         setSize(600,400);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -129,20 +130,20 @@ public class TestMutableJTable extends javax.swing.JFrame {
         public void windowOpened(java.awt.event.WindowEvent evt) {
         }
     }//GEN-END:initComponents
-    
+
     /** Exit the Application */
     private void exitForm(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_exitForm
         System.exit(0);
     }//GEN-LAST:event_exitForm
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         new TestMutableJTable().setVisible(true);
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -150,5 +151,5 @@ public class TestMutableJTable extends javax.swing.JFrame {
     private ch.randelshofer.gui.MutableJTable table1;
     private ch.randelshofer.gui.MutableJTable table2;
     // End of variables declaration//GEN-END:variables
-    
+
 }

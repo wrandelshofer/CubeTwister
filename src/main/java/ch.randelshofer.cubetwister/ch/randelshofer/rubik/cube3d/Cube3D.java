@@ -1,5 +1,6 @@
-/* @(#)Cube3D.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cube3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.cube3d;
@@ -66,7 +67,7 @@ public interface Cube3D {
      * Stops all running animations.
      */
     void stopAnimation();
-    
+
     /**
      * Sets the underlying permutation model.
      */

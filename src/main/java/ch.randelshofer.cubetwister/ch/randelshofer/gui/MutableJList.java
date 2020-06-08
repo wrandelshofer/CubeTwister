@@ -1,5 +1,6 @@
-/* @(#)MutableJList.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)MutableJList.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui;
@@ -56,29 +57,29 @@ implements EditableComponent {
          * of the clipboard.
          */
         public void lostOwnership(Clipboard clipboard, Transferable contents) {
-            
+
         }
     }
 
     @Nonnull
     private EventHandler eventHandler = new EventHandler();
-    
+
     /**
      * Holds locale specific resources.
      */
     private ResourceBundleUtil labels;
-    
+
     /**
      * Listener for popup mouse events.
      */
     private MouseAdapter popupListener;
-    
+
     /**
      * Popup button at the top right corner
      * of the enclosing scroll pane.
      */
     private JButton popupButton;
-    
+
     /**
      * Constructs a MutableJList with an empty DefaultMutableListModel.
      */
@@ -86,7 +87,7 @@ implements EditableComponent {
         super(new DefaultMutableListModel<Object>());
         init();
     }
-    
+
     /**
      * Constructs a MutableJList with the specified MutableListModel.
      */
@@ -100,7 +101,7 @@ implements EditableComponent {
      */
     private void init() {
         initComponents();
-        
+
         // The popup button will be placed on the top right corner
         // of the parent JScrollPane when the MutableJList is
         // added to a JScrollPane.
@@ -115,7 +116,7 @@ implements EditableComponent {
             }
         }
         );
-        
+
         // The popup listener provides an alternative way for
         // opening the popup menu.
         popupListener = new MouseAdapter() {
@@ -165,12 +166,12 @@ implements EditableComponent {
                 unregisterKeyboardAction(keyStroke);
             }
         }
-        
+
         // get the locale and LAF specific resources
         labels =new ResourceBundleUtil(ResourceBundle.getBundle(
         "ch.randelshofer.gui.Labels", locale
         ));
-        
+
         // install key strokes
         if (labels != null) {
             if (null != (keyStroke = labels.getKeyStroke("edit.new.accelerator"))) {
@@ -184,7 +185,7 @@ implements EditableComponent {
                 WHEN_FOCUSED
                 );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.duplicate.accelerator"))) {
                 registerKeyboardAction(
                 new ActionListener() {
@@ -196,7 +197,7 @@ implements EditableComponent {
                 WHEN_FOCUSED
                 );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.cut.accelerator"))) {
                 registerKeyboardAction(
                 new ActionListener() {
@@ -208,7 +209,7 @@ implements EditableComponent {
                 WHEN_FOCUSED
                 );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.copy.accelerator"))) {
                 registerKeyboardAction(
                 new ActionListener() {
@@ -220,7 +221,7 @@ implements EditableComponent {
                 WHEN_FOCUSED
                 );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.paste.accelerator"))) {
                 registerKeyboardAction(
                 new ActionListener() {
@@ -232,7 +233,7 @@ implements EditableComponent {
                 WHEN_FOCUSED
                 );
             }
-            
+
             if (null != (keyStroke = labels.getKeyStroke("edit.delete.accelerator"))) {
                 registerKeyboardAction(
                 new ActionListener() {
@@ -256,12 +257,12 @@ implements EditableComponent {
     protected JPopupMenu createPopup() {
         final int[] selectedRows = getSelectedIndices();
         int leadSelectionRow = (selectedRows.length == 0) ? -1 : getSelectionModel().getLeadSelectionIndex();
-        
+
         final MutableListModel model = (MutableListModel) getModel();
         final JPopupMenu popup = new JPopupMenu();
         JMenuItem item;
         boolean b;
-        
+
         // add the "New Row" menu item.
         final int newRow = (leadSelectionRow == -1) ? model.getSize() : leadSelectionRow + 1;
         Object[] types = model.getCreatableTypes(newRow);
@@ -285,8 +286,8 @@ implements EditableComponent {
             item.setEnabled(model.isAddable(newRow));
             popup.add(item);
         }
-        
-        
+
+
         // add the "Cut" menu item.
         item = new JMenuItem(labels.getString("edit.cut.text"));
         item.setMnemonic(labels.getMnemonic("edit.cut.mnemonic"));
@@ -309,8 +310,8 @@ implements EditableComponent {
         }
         item.setEnabled(b);
         popup.add(item);
-        
-        
+
+
         // add the "Copy" menu item.
         item = new JMenuItem(labels.getString("edit.copy.text"));
         item.setMnemonic(labels.getMnemonic("edit.copy.mnemonic"));
@@ -326,8 +327,8 @@ implements EditableComponent {
         );
         item.setEnabled(selectedRows.length > 0);
         popup.add(item);
-        
-        
+
+
         // add the "Paste" menu item.
         item = new JMenuItem(labels.getString("edit.pasteMenu"));
         item.setMnemonic(labels.getMnemonic("edit.paste.mnemonic"));
@@ -350,8 +351,8 @@ implements EditableComponent {
         }
         item.setEnabled(b || selectedRows.length == 0);
         popup.add(item);
-        
-        
+
+
         if (leadSelectionRow != -1) {
             // Add the duplicate row menu item
             item = new JMenuItem(labels.getString("edit.duplicate.menu"));
@@ -382,8 +383,8 @@ implements EditableComponent {
             }
             );
             popup.add(item);
-            
-            
+
+
             // add the "Delete" menu item.
             item = new JMenuItem(labels.getString("edit.delete.menu"));
             item.setMnemonic(labels.getMnemonic("edit.delete.mnem"));
@@ -411,7 +412,7 @@ implements EditableComponent {
             );
             popup.add(item);
         }
-        
+
         // add the "Select All" menu item
         item = new JMenuItem(labels.getString("edit.selectAll.text"));
         item.setMnemonic(labels.getMnemonic("edit.selectAll.mnemonic"));
@@ -427,8 +428,8 @@ implements EditableComponent {
         );
         item.setEnabled(true);
         popup.add(item);
-        
-        
+
+
         if (leadSelectionRow != -1) {
             // Add actions provided by the MutableTableModel
             HashMap<String,JMenu> menus = new HashMap<String,JMenu>();
@@ -449,10 +450,10 @@ implements EditableComponent {
                 }
             }
         }
-        
+
         return popup;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -461,7 +462,7 @@ implements EditableComponent {
     private void initComponents() {//GEN-BEGIN:initComponents
 
     }//GEN-END:initComponents
-    
+
     /**
      * Inserts a new row after the lead selection row,
      * if the model allows it.
@@ -490,17 +491,17 @@ implements EditableComponent {
                 return;
             }
         }
-        
+
         getToolkit().getSystemClipboard().setContents(
         m.exportTransferable(selectedRows),
         eventHandler
         );
-        
+
         for (int i=selectedRows.length - 1; i > -1; i--) {
             m.remove(selectedRows[i]);
         }
     }
-    
+
     /**
      * Copies the selected region and place its contents into
      * the system clipboard.
@@ -513,7 +514,7 @@ implements EditableComponent {
         eventHandler
         );
     }
-    
+
     /** Pastes the contents of the system clipboard at the caret position.
      */
     public void paste() {
@@ -522,7 +523,7 @@ implements EditableComponent {
         if (row == 0 || row > m.getSize()) {
             row = m.getSize();
         }
-        
+
         if (m.isAddable(row)) {
             try {
                 m.importTransferable(
@@ -555,15 +556,15 @@ implements EditableComponent {
             }
         }
     }
-    
-    
+
+
     /** Duplicates the selected region.
      */
     public void duplicate() {
         int[] selectedRows = getSelectedIndices();
         if (selectedRows.length > 0) {
             MutableListModel m = (MutableListModel) getModel();
-            
+
             int row = getSelectionModel().getLeadSelectionIndex() + 1;
             if (m.isAddable(row)) {
                 try {
@@ -582,7 +583,7 @@ implements EditableComponent {
             }
         }
     }
-    
+
     /**
      * Calls the configureEnclosingScrollPane method.
      *
@@ -592,8 +593,8 @@ implements EditableComponent {
         super.addNotify();
         configureEnclosingScrollPane();
     }
-    
-    
+
+
     /**
      * If this <code>MutableJList</code> is the <code>viewportView</code> of an
      * enclosing <code>JScrollPane</code> (the usual situation), configure this
@@ -610,7 +611,7 @@ implements EditableComponent {
      */
     protected void configureEnclosingScrollPane() {
         //super.configureEnclosingScrollPane();
-        
+
         Container p = getParent();
         if (p instanceof JViewport) {
             Container gp = p.getParent();
@@ -623,14 +624,14 @@ implements EditableComponent {
                 if (viewport != null && viewport.getView() == this) {
                     // Install the mouse listener for the popup menu
                     viewport.addMouseListener(popupListener);
-                    
+
                     // Install a ScrollPaneLayout2 layout manager to ensure
                     // that the popup button we are going to add next is
                     // shown properly.
                     ScrollPaneLayout2 spl = new ScrollPaneLayout2();
                     scrollPane.setLayout(spl);
                     spl.syncWithScrollPane(scrollPane);
-                    
+
                     // Install the popup button at the top right corner
                     // of the JScrollPane
                     scrollPane.setCorner(JScrollPane.UPPER_RIGHT_CORNER, popupButton);
@@ -638,7 +639,7 @@ implements EditableComponent {
             }
         }
     }
-    
+
     /**
      * Calls the unconfigureEnclosingScrollPane method.
      *
@@ -648,9 +649,8 @@ implements EditableComponent {
         unconfigureEnclosingScrollPane();
         super.removeNotify();
     }
-    
-    
-    
+
+
     /** Reverses the effect of <code>configureEnclosingScrollPane</code> by
      * removing the button at the top right corner of the <code>JScrollPane</code>.
      * <code>MutableJTable</code>'s <code>removeNotify</code> method
@@ -672,13 +672,13 @@ implements EditableComponent {
                 if (viewport != null && viewport.getView() == this) {
                     // Remove the previously installed mouse listener for the popup menu
                     viewport.removeMouseListener(popupListener);
-                    
+
                     // Remove the previously installed ScrollPaneLayout2
                     // layout manager.
                     ScrollPaneLayout spl = new ScrollPaneLayout();
                     scrollPane.setLayout(spl);
                     spl.syncWithScrollPane(scrollPane);
-                    
+
                     // Remove the popup button from the top right corner
                     // of the JScrollPane
                     try {
@@ -696,7 +696,7 @@ implements EditableComponent {
             }
         }
     }
-    
+
     /**
      * Sets the enabled state of the component.
      */
@@ -710,8 +710,8 @@ implements EditableComponent {
         getSelectionModel().setSelectionInterval(0, getModel().getSize() - 1);
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

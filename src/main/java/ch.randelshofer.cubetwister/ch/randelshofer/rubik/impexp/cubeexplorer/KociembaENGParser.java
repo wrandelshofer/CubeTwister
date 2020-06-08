@@ -1,5 +1,6 @@
-/* @(#)KociembaENGParser.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)KociembaENGParser.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.impexp.cubeexplorer;
@@ -19,9 +20,9 @@ public class KociembaENGParser extends ScriptParser {
         super(null);
         /*
         super(
-            getTokens(), new HashMap(), 
-            ScriptParser.POSITION_UNSUPPORTED, ScriptParser.POSITION_UNSUPPORTED, ScriptParser.POSITION_UNSUPPORTED, 
-            ScriptParser.POSITION_UNSUPPORTED, ScriptParser.POSITION_UNSUPPORTED, 
+            getTokens(), new HashMap(),
+            ScriptParser.POSITION_UNSUPPORTED, ScriptParser.POSITION_UNSUPPORTED, ScriptParser.POSITION_UNSUPPORTED,
+            ScriptParser.POSITION_UNSUPPORTED, ScriptParser.POSITION_UNSUPPORTED,
             ScriptParser.POSITION_UNSUPPORTED, false, ScriptParser.POSITION_UNSUPPORTED
         );*/
     }
@@ -41,56 +42,56 @@ public class KociembaENGParser extends ScriptParser {
          */
         return null;
     }
-    
+
     private final static String COMPRESSED_TOKENS =
     // Basic Twists 90° clockwise and counter-clockwise 12
     "R;U;F;L;D;B;"+
     "R';U';F';L';D';B';"+
-    
-    // Basic Twists 180° clockwise and counter-clockwise 12
+
+            // Basic Twists 180° clockwise and counter-clockwise 12
     "R2;U2;F2;L2;D2;B2;"+
     ";;;;;;"+
-    
-    // Midlayer Twists 90° clockwise and counter-clockwise 6
+
+            // Midlayer Twists 90° clockwise and counter-clockwise 6
     ";;;;;;"+
-    
-    // Midlayer Twists 180° clockwise and counter-clockwise 6
+
+            // Midlayer Twists 180° clockwise and counter-clockwise 6
     ";;;;;;"+
-    
-    // Two-Layer Twists 90° clockwise and counter-clockwise 6
+
+            // Two-Layer Twists 90° clockwise and counter-clockwise 6
     ";;;"+
     ";;;"+
-    
-    // Two-layer Twists 180° clockwise and counter-clockwise 6
+
+            // Two-layer Twists 180° clockwise and counter-clockwise 6
     ";;;"+
     ";;;"+
-    
-    // Slice Twists 90° clockwise and counter-clockwise 6
+
+            // Slice Twists 90° clockwise and counter-clockwise 6
     ";;;"+
     ";;;"+
-    
-    // Slice Twists 180° clockwise and counter-clockwise 6
+
+            // Slice Twists 180° clockwise and counter-clockwise 6
     ";;;"+
     ";;;"+
-    
-    // Cube rotation 90° clockwise and counter-clockwise 6
+
+            // Cube rotation 90° clockwise and counter-clockwise 6
     ";;;"+
     ";;;"+
-    
-    // Cube rotation 180° clockwise and counter-clockwise 6
+
+            // Cube rotation 180° clockwise and counter-clockwise 6
     ";;;"+
     ";;;"+
-    
-    // NOP 1
+
+            // NOP 1
     ";"+
-    
-    // Permutation Faces 6
+
+            // Permutation Faces 6
     ";;;;;;"+
-    
-    // Permutation Rotations 3
+
+            // Permutation Rotations 3
     ";;;"+
-    
-    // Special tokens 23
+
+            // Special tokens 23
     // Statement Delimiter
     ";"+
     // Invertor; Reflector;

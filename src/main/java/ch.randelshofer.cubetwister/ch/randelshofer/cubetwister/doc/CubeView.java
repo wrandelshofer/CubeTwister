@@ -1,5 +1,6 @@
-/* @(#)CubeView.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -109,7 +110,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
          */
         @Override
         public void actionPerformed(@Nonnull final Cube3DEvent evt) {
-//System.out.println("CubeView.actionPerformed "+evt);            
+            //System.out.println("CubeView.actionPerformed "+evt);
             if (partsToggleButton.isSelected() && evt.getPartIndex() != -1) {
                 int modifiersEx = evt.getModifiersEx();
                 int offset;
@@ -363,7 +364,7 @@ public class CubeView extends JPanel implements Undoable, EntityView {
             toolBar.putClientProperty("Quaqua.Component.visualMargin", new Insets(0, -2, -1, -1));
             toolBar.setPreferredSize(new Dimension(24, 24));
             toolBar.setMinimumSize(new Dimension(24, 24));
-            
+
         } else if ("Windows".equals(UIManager.getLookAndFeel().getID())) {
             toolbarPanel.setBorder(new PlacardButtonBorder(SwingConstants.CENTER));
             resetButton2.setUI((ButtonUI) BasicButtonUI.createUI(resetButton2));

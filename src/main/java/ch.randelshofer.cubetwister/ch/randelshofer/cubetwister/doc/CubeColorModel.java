@@ -1,5 +1,6 @@
-/* @(#)CubeColorModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeColorModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -80,5 +81,5 @@ public class CubeColorModel extends InfoModel implements DOMStorable {
         out.addText(getName());
     }
 
-    
+
 }

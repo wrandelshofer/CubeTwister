@@ -1,3 +1,8 @@
+/*
+ * @(#)AliasWavefront3DReader.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.aliaswavefront3d;
 
 import ch.randelshofer.geom3d.FaceNode;
@@ -60,9 +65,22 @@ public class AliasWavefront3DReader implements Closeable {
                     for (String vtn : Arrays.asList(array).subList(1, array.length)) {
 
                         String[] split = vtn.split("/");
-                        Point3D vertex = vertices.get(-1 + Integer.parseInt(split[0]));
-                        Point3D texture = split[1].isEmpty() ? null : textures.get(-1 + Integer.parseInt(split[1]));
-                        Point3D normal = (split.length < 2 || split[2].isEmpty()) ? null : normals.get(-1 + Integer.parseInt(split[2]));
+                        int vidx = Integer.parseInt(split[0]);
+                        Point3D vertex = vertices.get(vidx >= 1 ? -1 + vidx : vertices.size() + vidx);
+                        Point3D texture;
+                        if (split[1].isEmpty()) {
+                            texture = null;
+                        } else {
+                            int tidx = Integer.parseInt(split[1]);
+                            texture = textures.get(tidx >= 1 ? -1 + tidx : textures.size() + tidx);
+                        }
+                        Point3D normal;
+                        if ((split.length < 2 || split[2].isEmpty())) {
+                            normal = null;
+                        } else {
+                            int nidx = Integer.parseInt(split[2]);
+                            normal = normals.get(nidx >= 1 ? -1 + nidx : normals.size() + nidx);
+                        }
                         face.add(new FaceNode(vertex, texture, normal));
                     }
                     faces.add(face);

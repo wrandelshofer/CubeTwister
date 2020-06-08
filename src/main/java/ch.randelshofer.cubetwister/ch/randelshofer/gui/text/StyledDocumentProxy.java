@@ -1,5 +1,6 @@
-/* @(#)StiledDocumentProxy.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)StyledDocumentProxy.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.text;
@@ -35,11 +36,11 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
      */
     private boolean isIgnoreAttributeEdits;
     private int isEditingAttributes;
-    
+
     /** Creates new StyledDocumentProxy */
     public StyledDocumentProxy() {
     }
-    
+
     /**
      * Sets whether AttributeEdits should be ignored.
      * If this is set to true, the DocumentProxy will not fire edit events
@@ -48,7 +49,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public void setIgnoreAttributeEdits(boolean newValue) {
         isIgnoreAttributeEdits = newValue;
     }
-    
+
     /**
      * Adds a new style into the logical style hierarchy.  Style attributes
      * resolve from bottom up so an attribute specified in a child
@@ -68,7 +69,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Style addStyle(String nm, Style parent) {
         return ((StyledDocument) getDocumentModel()).addStyle(nm, parent);
     }
-    
+
     /**
      * Takes a set of attributes and turn it into a background color
      * specification.  This might be used to specify things
@@ -80,7 +81,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Color getBackground(AttributeSet attr) {
         return ((StyledDocument) getDocumentModel()).getBackground(attr);
     }
-    
+
     /**
      * Gets the element that represents the character that
      * is at the given offset within the document.
@@ -91,7 +92,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Element getCharacterElement(int pos) {
         return ((StyledDocument) getDocumentModel()).getCharacterElement(pos);
     }
-    
+
     /**
      * Takes a set of attributes and turn it into a font
      * specification.  This can be used to turn things like
@@ -104,7 +105,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Font getFont(AttributeSet attr) {
         return ((StyledDocument) getDocumentModel()).getFont(attr);
     }
-    
+
     /**
      * Takes a set of attributes and turn it into a foreground color
      * specification.  This might be used to specify things
@@ -116,7 +117,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Color getForeground(AttributeSet attr) {
         return ((StyledDocument) getDocumentModel()).getForeground(attr);
     }
-    
+
     /**
      * Gets a logical style for a given position in a paragraph.
      *
@@ -126,7 +127,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Style getLogicalStyle(int p) {
         return ((StyledDocument) getDocumentModel()).getLogicalStyle(p);
     }
-    
+
     /**
      * Gets the element that represents the paragraph that
      * encloses the given offset within the document.
@@ -137,7 +138,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Element getParagraphElement(int pos) {
         return ((StyledDocument) getDocumentModel()).getParagraphElement(pos);
     }
-    
+
     /**
      * Fetches a named style previously added.
      *
@@ -147,7 +148,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public Style getStyle(String nm) {
         return ((StyledDocument) getDocumentModel()).getStyle(nm);
     }
-    
+
     /**
      * Removes a named style previously added to the document.
      *
@@ -156,7 +157,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
     public void removeStyle(String nm) {
         ((StyledDocument) getDocumentModel()).removeStyle(nm);
     }
-    
+
     /**
      * Changes the content element attributes used for the given range of
      * existing content in the document.  All of the attributes
@@ -181,7 +182,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
         ((StyledDocument) getDocumentModel()).setCharacterAttributes(offset, length, s, replace);
         isEditingAttributes--;
     }
-    
+
     /**
      * Sets the logical style to use for the paragraph at the
      * given position.  If attributes aren't explicitly set
@@ -198,7 +199,7 @@ public class StyledDocumentProxy extends ch.randelshofer.gui.text.DocumentProxy 
         ((StyledDocument) getDocumentModel()).setLogicalStyle(pos, s);
         isEditingAttributes--;
     }
-    
+
     /**
      * Sets paragraph attributes.
      *

@@ -1,5 +1,6 @@
-/* @(#)DocumentProxy.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DocumentProxy.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.gui.text;
 
@@ -203,7 +204,7 @@ public class DocumentProxy
      * delivered by calling the insertUpdate method on the DocumentListener. The
      * offset and length of the generated DocumentEvent will indicate what
      * change was actually made to the Document.
-     * 
+     *
      * <p>
      * If the Document structure changed as result of the insertion, the details
      * of what Elements were inserted and removed in response to the change will

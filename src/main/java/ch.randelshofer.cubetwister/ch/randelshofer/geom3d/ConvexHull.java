@@ -1,5 +1,10 @@
 /*
  * @(#)ConvexHull.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
+/*
+ * @(#)ConvexHull.java
  * Copyright © The authors and contributors of JHotDraw. MIT License.
  */
 package ch.randelshofer.geom3d;

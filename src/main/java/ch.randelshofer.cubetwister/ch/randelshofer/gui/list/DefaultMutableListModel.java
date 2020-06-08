@@ -1,5 +1,6 @@
-/* @(#)DefaultMutableListModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)DefaultMutableListModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.list;
@@ -32,10 +33,10 @@ public class DefaultMutableListModel<T>
     private final static long serialVersionUID = 1L;
     @Nonnull
     private ArrayList<T> list = new ArrayList<T>();
-    
+
     private final static DataFlavor listFlavor = new DataFlavor(List.class, "List");
     private final static DataFlavor objectFlavor = new DataFlavor(Object.class, "Object");
-    
+
     /**
      * ArrayList with importable data flavors.
      */
@@ -47,8 +48,8 @@ public class DefaultMutableListModel<T>
         DataFlavor.stringFlavor,
         DataFlavor.getTextPlainUnicodeFlavor()
     }));
-    
-    
+
+
     /** Creates a new instance of DefaultMutableListModel */
     public DefaultMutableListModel() {
     }
@@ -60,7 +61,7 @@ public class DefaultMutableListModel<T>
     public DefaultMutableListModel(T[] data) {
         list.addAll(Arrays.asList(data));
     }
-    
+
     // Abstract factory operations
     // ====================================================
     /**
@@ -114,10 +115,10 @@ public class DefaultMutableListModel<T>
             add(index, null);
         }
     }
-    
+
     // Insert and remove operations
     // ====================================================
-    
+
     /**
      * Returns true if an element can be added at the specified index.
      *
@@ -145,7 +146,7 @@ public class DefaultMutableListModel<T>
         list.add(index, element);
         fireIntervalAdded(this, index, index);
     }
-    
+
     /**
      * Adds the element to the end of the list.
      *
@@ -155,7 +156,7 @@ public class DefaultMutableListModel<T>
     public void add(T element) {
         add(list.size(), element);
     }
-    
+
     /**
      * Returns true if the specified element may be removed.
      *
@@ -165,7 +166,7 @@ public class DefaultMutableListModel<T>
     public boolean isRemovable(int index) {
         return true;
     }
-    
+
     /**
      * Removes an element from the model.
      *
@@ -180,7 +181,7 @@ public class DefaultMutableListModel<T>
         fireIntervalRemoved(this, index, index);
         return removed;
     }
-    
+
     // Editing operations.
     // ====================================================
     /**
@@ -193,7 +194,7 @@ public class DefaultMutableListModel<T>
     public boolean isEditable(int index) {
         return true;
     }
-    
+
     /**
      * Returns the value at the specified index.
      * @param index the requested index
@@ -202,7 +203,7 @@ public class DefaultMutableListModel<T>
     public T getElementAt(int index) {
         return list.get(index);
     }
-    
+
     /**
      * Sets the value of an element at the given index.
      *
@@ -231,8 +232,8 @@ public class DefaultMutableListModel<T>
         list.set(index, value);
         fireContentsChanged(value, index, index);
     }
-    
-    
+
+
     /**
      * Gets actions for the specified elements.
      *
@@ -242,8 +243,8 @@ public class DefaultMutableListModel<T>
     public Action[] getActions(int[] indices) {
         return new Action[0];
     }
-    
-    
+
+
     /**
      * Returns the length of the list.
      * @return the length of the list
@@ -268,7 +269,7 @@ public class DefaultMutableListModel<T>
         t.add(ListModels.createPlainTransferable(this, indices));
         return t;
     }
-    
+
     /**
      * Indicates whether the model would accept an import of the
      * given set of data flavors prior to actually attempting
@@ -301,7 +302,7 @@ public class DefaultMutableListModel<T>
         }
         return false;
     }
-    
+
     /**
      * Causes a transfer to the model from the specified transferable.
      *
@@ -338,10 +339,10 @@ public class DefaultMutableListModel<T>
         } else {
             throw new UnsupportedFlavorException(listFlavor);
         }
-        
+
         return addAll(index, l);
     }
-    
+
     public int addAll(int index, @Nonnull List<T> l) {
         list.addAll(index, l);
         fireIntervalAdded(this, index, index + l.size() - 1);
@@ -358,7 +359,7 @@ public class DefaultMutableListModel<T>
     public Iterator<T> iterator() {
         return list.iterator();
     }
-    
+
     /**
      * Sets the importable data flavors for this list model.
      * @param newValue A list which contains the data flavors.

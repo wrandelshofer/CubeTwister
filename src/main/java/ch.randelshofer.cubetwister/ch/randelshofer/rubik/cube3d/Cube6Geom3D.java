@@ -1,5 +1,6 @@
-/* @(#)Cube6Geom3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Cube6Geom3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -17,8 +18,8 @@ import java.util.Arrays;
  * Simplified geometrical representation of {@link Cube6} in three dimensions.
  * <p>
  * The representation is simplified in the sense that all stickers of the
- * cube are square. In a real physical representation, such as a V-Cube 6, 
- * the stickers on the edge parts need to be rectangular, and the stickers on 
+ * cube are square. In a real physical representation, such as a V-Cube 6,
+ * the stickers on the edge parts need to be rectangular, and the stickers on
  * the corner parts need to be larger than those on the center parts.
  *
  * @author Werner Randelshofer
@@ -393,11 +394,11 @@ public class Cube6Geom3D extends AbstractCube6Geom3D {
      *                           |4.0|27 |3.1|15 |39 |2.0|
      *                           +---+---+---+---+---+---+
      *                           |30 |25  79  55  31 |24 |
-     *                           +---+               +---+  
+     *                           +---+               +---+
      *                           |6.0|49   1   7  85 |0.0|
-     *                           +---+       u       +---+ 
+     *                           +---+       u       +---+
      *                           |18 |73  19  13  61 |12 |
-     *                           +---+               +---+ 
+     *                           +---+               +---+
      *                           |42 |43  67  91  37 |36 |
      *                           +---+---+---+---+---+---+
      *                           |6.0|33 |9.1|21 |45 |0.0|
@@ -405,11 +406,11 @@ public class Cube6Geom3D extends AbstractCube6Geom3D {
      *   |4.1|30 |6.1|18 |42 |6.2|6.1|33 |9.0|21 |45 |0.2|0.1|36 |12 |0.1|24 |2.2|2.1|39 |15 |3.0|27 |4.2|
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |43 |45  75  51  27 |46 |46 |32  86  62  38 |37 |37 |36  90  66  42 |40 |40 |29  83  59  35 |43 |
-     *   +---+               +---+---+               +---+---+               +---+---+               +---+ 
+     *   +---+               +---+---+               +---+---+               +---+---+               +---+
      *   |19 |69  21  3.1 81 |22 |22 |56  8.3 14  92 |13 |13 |60 12.0 18  72 |16 |16 |53  5.2 11  89 |19 |
-     *   +---+       l       +---+---+       f       +---+---+       r       +---+---+       b       +---+ 
+     *   +---+       l       +---+---+       f       +---+---+       r       +---+---+       b       +---+
      *   |7.0|93  15   9  57 10.0|10.1 80  2  20  68 |1.1|1.0|84   6   0  48 |4.0|4.1|77  23  17  65 |7.1|
-     *   +---+               +---+---+               +---+---+               +---+---+               +---+  
+     *   +---+               +---+---+               +---+---+               +---+---+               +---+
      *   |31 |39  63  87  33 |34 |34 |26  50  74  44 |25 |25 |30  54  78  24 |28 |28 |47  71  95  41 |31 |
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |5.2|32 |8.1|20 |44 |7.1|7.2|35 11.1|23 |47 |1.1|1.2|38 |14 |2.1|26 |3.1|3.2|41 |17 |5.0|29 |5.1|
@@ -417,11 +418,11 @@ public class Cube6Geom3D extends AbstractCube6Geom3D {
      *                           |7.0|35 11.1|23 |47 |1.0|
      *                           +---+---+---+---+---+---+
      *                           |44 |46  76  52  28 |38 |
-     *                           +---+               +---+ 
+     *                           +---+               +---+
      *                           |20 |70  22   4  82 |14 |
-     *                           +---+       d       +---+ 
+     *                           +---+       d       +---+
      *                           |8.0|94  16  10  58 |2.0|
-     *                           +---+               +---+  
+     *                           +---+               +---+
      *                           |32 |40  64  88  34 |26 |
      *                           +---+---+---+---+---+---+
      *                           |5.0|29 |5.1|17 |41 |3.0|

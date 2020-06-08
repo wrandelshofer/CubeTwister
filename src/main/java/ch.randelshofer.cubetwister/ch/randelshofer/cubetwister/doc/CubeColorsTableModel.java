@@ -1,5 +1,6 @@
-/* @(#)CubeColorsTableModel.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)CubeColorsTableModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -25,9 +26,9 @@ public class CubeColorsTableModel
         implements PropertyChangeListener {
     private final static long serialVersionUID = 1L;
     private final String[] columnNames = {"cube.colorNameColumn",
-    "cube.colorColumn"};
-    
-    /** 
+            "cube.colorColumn"};
+
+    /**
      * Creates a new CubeColorsTableModel which wraps a
      * default CubeModel.
      * XXX Broken
@@ -79,7 +80,7 @@ public class CubeColorsTableModel
     public CubeColorModel getRowObject(int row) {
         return (CubeColorModel) getRow(row);
     }
-    
+
     /**
      * Returns the value for the cell at <I>columnIndex</I> and <I>rowIndex</I>.
      *
@@ -98,7 +99,7 @@ public class CubeColorsTableModel
         }
         return null; // should never happen
     }
-    
+
     /**
      * Returns the name of the column at <i>columnIndex</i>.  This is used
      * to initialize the table's column header name.  Note: this name does
@@ -110,7 +111,7 @@ public class CubeColorsTableModel
     public String getColumnName(int columnIndex) {
         return columnNames[columnIndex];
     }
-    
+
     /**
      * Invoke this to insert a new row into the table.
      *
@@ -120,7 +121,7 @@ public class CubeColorsTableModel
     public void insertRow(int row) {
         CubeColorModel item = new CubeColorModel();
         item.setName("Color");
-        
+
         ((DocumentModel) treeModel).insertNodeInto(item, treeNode, row);
     }
     /**
@@ -135,14 +136,14 @@ public class CubeColorsTableModel
             item.setName(item.getName()+" Copy");
         ((DocumentModel) treeModel).insertNodeInto(item, treeNode, row + 1);
     }
-    
+
     /**
-     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to 
+     * Sets the value in the cell at <I>columnIndex</I> and <I>rowIndex</I> to
      * <I>aValue</I> is the new value.
      *
-     * @param    aValue         the new value
-     * @param    rowIndex     the row whose value is to be changed
-     * @param    columnIndex     the column whose value is to be changed
+     * @param aValue      the new value
+     * @param rowIndex    the row whose value is to be changed
+     * @param columnIndex the column whose value is to be changed
      * @see #getValueAt
      * @see #isCellEditable
      */
@@ -164,10 +165,10 @@ public class CubeColorsTableModel
         }
         fireTableCellUpdated(rowIndex, columnIndex);
     }
-    
+
     /**
-     * Returns the most specific superclass for all the cell values 
-     * in the column.  This is used by the JTable to set up a default 
+     * Returns the most specific superclass for all the cell values
+     * in the column.  This is used by the JTable to set up a default
      * renderer and editor for the column.
      *
      * @return the common ancestor class of the object values in the model.
@@ -176,7 +177,7 @@ public class CubeColorsTableModel
     public Class<?> getColumnClass(int column) {
         return (column == 0) ? String.class : Color.class;
     }
-    
+
     /**
      * Returns wether the specified node may be removed.
      *
@@ -185,7 +186,7 @@ public class CubeColorsTableModel
     public boolean isRowRemovable(int row) {
         return getRowCount() > 1;
     }
-    
+
     /**
      * Returns the number of columns in the model. A
      * <B>JTable</B> uses this method to determine how many columns it
@@ -197,7 +198,7 @@ public class CubeColorsTableModel
     public int getColumnCount() {
         return columnNames.length;
     }
-    
+
     /**
      * Gets actions for the indicated rows.
      *
@@ -207,7 +208,7 @@ public class CubeColorsTableModel
     public Action[] getRowActions(int[] rows) {
         return null;
     }
-    
+
     /**
      * This method gets called when a bound property is changed.
      * @param evt A PropertyChangeEvent object describing the event source
@@ -246,7 +247,7 @@ public class CubeColorsTableModel
             fireTableDataChanged();
         }
     }
-    
+
     /**
      * <p>Invoked after nodes have been removed from the tree.  Note that
      * if a subtree is removed from the tree, this method may only be

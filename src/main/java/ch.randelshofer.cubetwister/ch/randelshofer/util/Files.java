@@ -1,5 +1,6 @@
-/* @(#)Files.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Files.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.util;
@@ -19,7 +20,7 @@ import java.io.OutputStream;
  * @author  Werner Randelshofer
  */
 public class Files {
-    
+
     /** Prevent instance creation. */
     private Files() {
     }
@@ -68,7 +69,7 @@ public class Files {
 
             if (filter.accept(source)) {
                 File target = new File(tgtdir, source.getName());
-                
+
                 if (source.isDirectory()) {
                     copyDirectoryTree(source, target, filter);
                 } else {

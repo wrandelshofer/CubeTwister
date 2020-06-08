@@ -1,8 +1,6 @@
-/* @(#)RectangleHighlighter.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
- *
- * The original code is copyright camickr as seen at
- * http://forums.sun.com/thread.jspa?forumID=57&threadID=708866
+/*
+ * @(#)RectangleHighlighter.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.test;
 

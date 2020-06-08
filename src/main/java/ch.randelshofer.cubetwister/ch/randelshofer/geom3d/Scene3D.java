@@ -1,5 +1,6 @@
-/* @(#)Scene3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Scene3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.geom3d;
@@ -11,7 +12,7 @@ package ch.randelshofer.geom3d;
  */
 public class Scene3D extends TransformNode3D {
     private boolean isAdjusting;
-    
+
     public void setAdjusting(boolean newValue) {
         isAdjusting = newValue;
     }

@@ -1,5 +1,6 @@
-/* @(#)VCube6Idx3D.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)VCube6Idx3D.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.cube3d;
 
@@ -30,7 +31,7 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      * Corner parts are bigger than regular parts, and edge parts are rectangular.
      */
     private final float EXT_LENGTH = PART_LENGTH + 2f;
-    
+
     private final static int STICKER_COUNT = 6 * 6 * 6;
     /**
      * Image width is 504 pixels out of 512 pixels.
@@ -63,37 +64,37 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
         if (CORNER_VERTS == null) {
             // The corner parts are bigger than the side parts
             CORNER_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, 
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
-                        //8:lluf      lldf       rruf      rrdf
-                        -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
-                    };
+                    //0:luff      ldff       ruff       rdff
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f,
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f,
+                    //8:lluf      lldf       rruf      rrdf
+                    -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), EXT_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(EXT_LENGTH * 0.5f - BEVEL_LENGTH), -PART_LENGTH * 0.5f, -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
+            };
         }
         if (CORNER_FACES == null) {
             CORNER_FACES = new int[][]{
@@ -204,8 +205,8 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      *                            |                       |                       |       |
      * 15                         +           d           +           b           +    &lt;--+
      *                            |                       |                       |
-     * 16                         +                       +                       +       
-     *                            |                       |                       |       
+     * 16                         +                       +                       +
+     *                            |                       |                       |
      * 17                         +---+               +---+---+               +---+
      *                            |5.0|               |3.0|3.2|               |5.1|
      * 18                         +---+---+---+---+---+---+---+---+---+---+---+---+
@@ -293,32 +294,32 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
                         //0:luff      ldff       ruff       rdff
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
-                        //8:lluf      lldf       rruf      rrdf
-                        -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f),
+                    //8:lluf      lldf       rruf      rrdf
+                    -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH)
                     };
         }
@@ -398,15 +399,15 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      *  0                         +---+---+---+---+---+---+
      *                            |   |   |3.1|15 |   |   |
      *  1                         +---+---+---+---+---+---+
-     *                            |   |               |   | 
+     *                            |   |               |   |
      *  2                         +---+               +---+
      *                            |6.0|               |0.0|
      *  3                         +---+       u       +---+
      *                            |18 |               |12 |
      *  4                         +---+               +---+
-     *                            |   |               |   | 
+     *                            |   |               |   |
      *  5                         +---+---+---+---+---+---+
-     *                            |   |   |9.1|21 |   |   |      
+     *                            |   |   |9.1|21 |   |   |
      *  6 +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+.......................+
      *    |   |   |6.1|18 |   |   |   |   |9.0|21 |   |   |   |   |12 |0.1|   |   |               '
      *  7 +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+               '
@@ -427,8 +428,8 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      *                            |20 |               |14 |16 |               |19 |       |
      * 15                         +---+       d       +---+---+       b       +---+    &lt;--+
      *                            |8.0|               |2.0|4.1|               |7.1|
-     * 16                         +---+               +---+---+               +---+       
-     *                            |   |               |   |   |               |   |       
+     * 16                         +---+               +---+---+               +---+
+     *                            |   |               |   |   |               |   |
      * 17                         +---+---+---+---+---+---+---+---+---+---+---+---+
      *                            |   |   |5.1|17 |   |   |   |   |17 |5.0|   |   |
      * 18                         +---+---+---+---+---+---+---+---+---+---+---+---+
@@ -554,22 +555,22 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
             SIDE_VERTS = new float[]{
                         //0:luff      ldff       ruff       rdff
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), 
+                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
                         (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
                         (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f),
                         //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
+                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         //8:lluf      lldf       rruf      rrdf
                         -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), 
+                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
                         (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH),
                         //12:rrub,    rrdb,      llub,      lldb
                         (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
+                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         //16:luuf     lddf       ruuf       rddf
@@ -585,34 +586,34 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
                     };
              */
             SIDE_VERTS = new float[]{
-                        //0:luff      ldff       ruff       rdff
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
-                        //4:rubb,    rdbb,       lubb,       ldbb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        //8:lluf      lldf       rruf      rrdf
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH), 
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //12:rrub,    rrdb,      llub,      lldb
-                        (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH), 
-                        -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        //16:luuf     lddf       ruuf       rddf
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
-                        //20:ruub,    rddb,       luub,       lddb
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
-                        (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //0:luff      ldff       ruff       rdff
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f),
+                    //4:rubb,    rdbb,       lubb,       ldbb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //8:lluf      lldf       rruf      rrdf
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //12:rrub,    rrdb,      llub,      lldb
+                    (PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    //16:luuf     lddf       ruuf       rddf
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), (EXT_LENGTH * 0.5f - BEVEL_LENGTH),
+                    //20:ruub,    rddb,       luub,       lddb
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
+                    (PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), (PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH),
                         -(PART_LENGTH * 0.5f - BEVEL_LENGTH), -(PART_LENGTH * 0.5f), -(PART_LENGTH * 0.5f + BEVEL_LENGTH)
                     };
@@ -727,10 +728,10 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      * 17                         |   +               +   |   +               +   |
      *                            |                       |                       |
      * 18                         +-------+---------------+-----------------------+
-     * 
+     *
      * Whereas each area marked by the + symbols contains side parts with the
      * following placements:
-     * 
+     *
      * +---+---+---+---+
      * | 5  14  10   6 |
      * +               +
@@ -785,6 +786,7 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
 
         }
     }
+
     /**
      * Sticker to part map.<br>
      * (the number before the dot indicates the part,
@@ -794,11 +796,11 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      *                           |4.0|27 |3.1|15 |39 |2.0|
      *                           +---+---+---+---+---+---+
      *                           |30 |25  79  55  31 |24 |
-     *                           +---+               +---+  
+     *                           +---+               +---+
      *                           |6.0|49   1   7  85 |0.0|
-     *                           +---+       u       +---+ 
+     *                           +---+       u       +---+
      *                           |18 |73  19  13  61 |12 |
-     *                           +---+               +---+ 
+     *                           +---+               +---+
      *                           |42 |43  67  91  37 |36 |
      *                           +---+---+---+---+---+---+
      *                           |6.0|33 |9.1|21 |45 |0.0|
@@ -806,11 +808,11 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      *   |4.1|30 |6.1|18 |42 |6.2|6.1|33 |9.0|21 |45 |0.2|0.1|36 |12 |0.1|24 |2.2|2.1|39 |15 |3.0|27 |4.2|
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |43 |45  75  51  27 |46 |46 |32  86  62  38 |37 |37 |36  90  66  42 |40 |40 |29  83  59  35 |43 |
-     *   +---+               +---+---+               +---+---+               +---+---+               +---+ 
+     *   +---+               +---+---+               +---+---+               +---+---+               +---+
      *   |19 |69  21  3.1 81 |22 |22 |56  8.3 14  92 |13 |13 |60 12.0 18  72 |16 |16 |53  5.2 11  89 |19 |
-     *   +---+       l       +---+---+       f       +---+---+       r       +---+---+       b       +---+ 
+     *   +---+       l       +---+---+       f       +---+---+       r       +---+---+       b       +---+
      *   |7.0|93  15   9  57 10.0|10.1 80  2  20  68 |1.1|1.0|84   6   0  48 |4.0|4.1|77  23  17  65 |7.1|
-     *   +---+               +---+---+               +---+---+               +---+---+               +---+  
+     *   +---+               +---+---+               +---+---+               +---+---+               +---+
      *   |31 |39  63  87  33 |34 |34 |26  50  74  44 |25 |25 |30  54  78  24 |28 |28 |47  71  95  41 |31 |
      *   +---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
      *   |5.2|32 |8.1|20 |44 |7.1|7.2|35 11.1|23 |47 |1.1|1.2|38 |14 |2.1|26 |3.1|3.2|41 |17 |5.0|29 |5.1|
@@ -818,11 +820,11 @@ public class VCube6Idx3D extends AbstractCube6Idx3D {
      *                           |7.0|35 11.1|23 |47 |1.0|
      *                           +---+---+---+---+---+---+
      *                           |44 |46  76  52  28 |38 |
-     *                           +---+               +---+ 
+     *                           +---+               +---+
      *                           |20 |70  22   4  82 |14 |
-     *                           +---+       d       +---+ 
+     *                           +---+       d       +---+
      *                           |8.0|94  16  10  58 |2.0|
-     *                           +---+               +---+  
+     *                           +---+               +---+
      *                           |32 |40  64  88  34 |26 |
      *                           +---+---+---+---+---+---+
      *                           |5.0|29 |5.1|17 |41 |3.0|

@@ -1,5 +1,6 @@
-/* @(#)PocketCubeGeom3DPlayerApplet.java
- * Copyright (c) 2005 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)PocketCubeGeom3DPlayerApplet.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.player;
@@ -41,7 +42,7 @@ public class PocketCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet
     }
 
     /**
-     * Returns the Default XML Resource Data of this Applet as an Input Stream. 
+     * Returns the Default XML Resource Data of this Applet as an Input Stream.
      */
     protected InputStream getPlayerResources() {
         return getClass().getResourceAsStream("/ch/randelshofer/rubik/player/PocketPlayerResources.xml");
@@ -56,8 +57,8 @@ public class PocketCubeGeom3DPlayerApplet extends AbstractCubeGeom3DPlayerApplet
     private void initComponents() {
     }// </editor-fold>//GEN-END:initComponents
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-    
+
 }

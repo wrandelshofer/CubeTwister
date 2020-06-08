@@ -1,5 +1,6 @@
-/* @(#)Transform3DModel.java
- * Copyright (c) 2000 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Transform3DModel.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.geom3d;
 
@@ -132,7 +133,7 @@ public interface Transform3DModel {
      * returns it.
      */
     public Transform3D getTransform(Transform3D t);
-    
+
     /**
      * Sets this transform to a copy of the transform in the specified
      * <code>Transform3D</code> object.
@@ -145,7 +146,7 @@ public interface Transform3DModel {
      * Adds a ChangeListener to the listener list.
      */
     public void addChangeListener(ChangeListener l);
-    
+
     /**
      * Removes a ChangeListener from the listener list.
      */

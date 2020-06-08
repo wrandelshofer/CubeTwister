@@ -1,5 +1,6 @@
-/* @(#)HUDBorder.java
- * Copyright (c) 2009 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)HUDBorder.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.player;
@@ -30,8 +31,8 @@ public class HUDBorder implements Border {
                         g.drawRoundRect(x, y, width - 2, height - 2, 18, 18);
                         g.setColor(new Color(0x77cccccc, true));
                         g.fillRoundRect(x + 1, y + 1, width - 3, height - 3, 16, 16);
-                        
-                        g.setColor(new Color(0xcc000000, true));
+
+     g.setColor(new Color(0xcc000000, true));
                         g.fillRoundRect(x + 4, y + 4, width - 8, height - 8, 10, 10);
                         g.setColor(new Color(0xdd000000, true));
                         g.drawRoundRect(x + 3, y + 3, width - 8, height - 8, 12, 12);

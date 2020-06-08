@@ -1,3 +1,8 @@
+/*
+ * @(#)Main.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.twophase;
 
 import ch.randelshofer.rubik.cube.Cubes;

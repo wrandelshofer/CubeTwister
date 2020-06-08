@@ -1,6 +1,6 @@
 /*
-/* @(#)LazyEntityView.java
- * Copyright (c) 2006 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)LazyEntityView.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -56,7 +56,7 @@ public class LazyEntityView extends JPanel
             if (viewClassName != null && lazyView == null && worker == null) {
                 isRealized = true;
                 removeAll();
-                
+
                 JLabel progressIndicator = new JLabel(BusyIcon.getInstance());
                 progressIndicator.setHorizontalAlignment(JLabel.CENTER);
                 add(progressIndicator);

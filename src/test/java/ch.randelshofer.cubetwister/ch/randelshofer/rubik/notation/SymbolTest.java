@@ -1,3 +1,8 @@
+/*
+ * @(#)SymbolTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.rubik.notation;
 
 import org.junit.jupiter.api.Test;

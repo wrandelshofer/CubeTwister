@@ -1,3 +1,8 @@
+/*
+ * @(#)CubeMarkupTest.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package ch.randelshofer.cubetwister.doc;
 
 import org.jhotdraw.annotation.Nonnull;

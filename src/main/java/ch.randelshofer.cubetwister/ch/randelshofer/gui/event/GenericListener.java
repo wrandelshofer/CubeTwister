@@ -1,5 +1,6 @@
-/* @(#)GenericListener.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)GenericListener.java
+ * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.gui.event;
@@ -81,12 +82,12 @@ public abstract class GenericListener {
         if (targetMethod == null) {
             targetMethod = getTargetMethod(target, targetMethodName, new Class<?>[0]);
         }
-        
+
         // Still nothing found? We give up.
         if (targetMethod == null) {
             throw new RuntimeException("no such method "+targetMethodName+" in "+target.getClass());
         }
-        
+
         return create(listenerMethod, target, targetMethod);
     }
 
@@ -130,7 +131,7 @@ public abstract class GenericListener {
                 }
             }
         };
-        
+
         Class<?> cls = listenerMethod.getDeclaringClass();
         ClassLoader cl = cls.getClassLoader();
         return Proxy.newProxyInstance(cl, new Class<?>[]{cls}, handler);
@@ -154,7 +155,7 @@ public abstract class GenericListener {
                     return proxyToString(proxy);
                 }
             }
-            
+
             // Although listener methods are supposed to be void, we
             // allow for any return type here and produce null/0/false
             // as appropriate.
@@ -195,7 +196,7 @@ public abstract class GenericListener {
                 return byte_0;
             }
         }
-        
+
     }
 
     /* Helper methods for "EZ" version of create(): */
