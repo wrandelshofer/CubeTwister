@@ -8557,7 +8557,15 @@
   </Script>
   <Text id="o334">
     <Title>Welcome</Title>
-    <Body>Welcome to CubeTwister.&#xa;&#xa;This is the template document, which automatically loads when you start CubeTwister for the first time.&#xa;&#xa;This template document takes quite some time to load. In the final version you will be able to change it using a settings panel.&#xa;(Use the settings panel to specify whether CubeTwister shall open a blank document, the demo document or a document of your choice when opening a new window.)&#xa;&#xa;This software is free.&#xa;If you have a feature request, or if you want to honour my work, send me a bottle of good wine.&#xa;&#xa;You can download the latest version from here:&#xa;http://www.randelshofer/cubetwister/&#xa;&#xa;I hope you enjoy using CubeTwister.&#xa;&#xa;Werner Randelshofer&#xa;&#xa;CubeTwister is Copyright &#xa9; 2003-2010 by Werner Randelshofer&#xa;All rights reserved.</Body>
+    <Body>Welcome to CubeTwister.&#xa;&#xa;This is the template document, which automatically loads when you start
+      CubeTwister for the first time.&#xa;&#xa;This template document takes quite some time to load. In the final
+      version you will be able to change it using a settings panel.&#xa;(Use the settings panel to specify whether
+      CubeTwister shall open a blank document, the demo document or a document of your choice when opening a new
+      window.)&#xa;&#xa;This software is free.&#xa;If you have a feature request, or if you want to honour my work, send
+      me a bottle of good wine.&#xa;&#xa;You can download the latest version from here:&#xa;http://www.randelshofer/cubetwister/&#xa;&#xa;I
+      hope you enjoy using CubeTwister.&#xa;&#xa;Werner Randelshofer&#xa;&#xa;CubeTwister is Copyright &#xa9; 2003-2010
+      by Werner Randelshofer&#xa;MIT License.
+    </Body>
     <Author>Werner Randelshofer</Author>
     <Date>March 2010</Date>
   </Text>

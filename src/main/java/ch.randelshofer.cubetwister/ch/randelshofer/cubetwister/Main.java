@@ -49,7 +49,7 @@ public class Main {
 
         // CubeTwisterOSXApplication.main(args);
         CubeTwisterApplicationModel am = new CubeTwisterApplicationModel();
-        am.setCopyright("\u00a9 Werner Randelshofer. All Rights Reserved.");
+        am.setCopyright("\u00a9 Werner Randelshofer. MIT License.");
         am.setName("CubeTwister");
         am.setVersion(getVersion());
         am.setViewFactory(()->{

@@ -273,7 +273,7 @@ public class HTMLExporter implements Exporter {
         // Put labels
         DataMap data = entry.data;
         data.put("software.title", "CubeTwister");
-        data.put("software.copyright", "Copyright © by Werner Randelshofer. All Rights Reserved.");
+        data.put("software.copyright", "Copyright © by Werner Randelshofer. MIT License.");
         data.put("software.version", Main.getVersion());
         data.put("cubes.title", "Cubes");
         data.put("notations.title", "Notations");
@@ -282,7 +282,7 @@ public class HTMLExporter implements Exporter {
 
         // Put information about the document
         data.put("document.name", documentName);
-        data.put("document.copyright", "Copyright © by Werner Randelshofer. All Rights Reserved.");
+        data.put("document.copyright", "Copyright © by Werner Randelshofer. MIT License.");
         data.put("cube.count", model.getCubes().getChildCount());
         data.put("notation.count", model.getNotations().getChildCount());
         data.put("script.count", model.getScripts().getChildCount());
