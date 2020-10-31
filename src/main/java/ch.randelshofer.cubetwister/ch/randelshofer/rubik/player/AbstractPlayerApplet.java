@@ -638,9 +638,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
             throws AppletParameterException {
 
         readDebugParameter();
-
         readLocaleParameter();
-
 
         // Read resource data
         XMLElement resources = readResourcesParameter();

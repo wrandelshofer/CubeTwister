@@ -70,11 +70,13 @@ public abstract class AbstractCube6Idx3D extends AbstractCubeIdx3D {
 
         idx3d_Object object3D = sphere;
         object3D.material = new idx3d_InternalMaterial();
-        parts[centerOffset] = object3D;
+        idx3d_Group group = new idx3d_Group();
+        group.addChild(object3D);
+        parts[centerOffset] = group;
     }
 
     @Override
-    protected float getUnitScaleFactor() {
+    public float getUnitScaleFactor() {
         return 0.019f * 54f / (PART_LENGTH * layerCount);
     }
 

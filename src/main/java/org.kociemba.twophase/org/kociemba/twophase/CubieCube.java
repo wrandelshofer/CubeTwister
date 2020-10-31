@@ -1,7 +1,25 @@
 package org.kociemba.twophase;
 
-import static org.kociemba.twophase.Corner.*;
-import static org.kociemba.twophase.Edge.*;
+import static org.kociemba.twophase.Corner.DBL;
+import static org.kociemba.twophase.Corner.DFR;
+import static org.kociemba.twophase.Corner.DLF;
+import static org.kociemba.twophase.Corner.DRB;
+import static org.kociemba.twophase.Corner.UBR;
+import static org.kociemba.twophase.Corner.UFL;
+import static org.kociemba.twophase.Corner.ULB;
+import static org.kociemba.twophase.Corner.URF;
+import static org.kociemba.twophase.Edge.BL;
+import static org.kociemba.twophase.Edge.BR;
+import static org.kociemba.twophase.Edge.DB;
+import static org.kociemba.twophase.Edge.DF;
+import static org.kociemba.twophase.Edge.DL;
+import static org.kociemba.twophase.Edge.DR;
+import static org.kociemba.twophase.Edge.FL;
+import static org.kociemba.twophase.Edge.FR;
+import static org.kociemba.twophase.Edge.UB;
+import static org.kociemba.twophase.Edge.UF;
+import static org.kociemba.twophase.Edge.UL;
+import static org.kociemba.twophase.Edge.UR;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /** Cube on the cubie level. */

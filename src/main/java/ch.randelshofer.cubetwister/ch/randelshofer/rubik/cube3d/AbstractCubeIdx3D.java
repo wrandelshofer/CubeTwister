@@ -10,6 +10,7 @@ import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
 import idx3d.idx3d_Lightmap;
 import idx3d.idx3d_Matrix;
+import idx3d.idx3d_Node;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Texture;
@@ -23,7 +24,7 @@ import java.awt.Image;
  * Abstract base class for the geometrical representation of a {@link Cube}
  * using the Idx3D engine.
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public abstract class AbstractCubeIdx3D extends AbstractCube3D {
 
@@ -56,7 +57,7 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
     /**
      * Holds the parts in the sequence: corners, edges, sides and center.
      */
-    protected idx3d_Object[] parts;
+    protected idx3d_Group[] parts;
     /**
      * Holds the identity locationTransforms of the parts.
      * The identity locationTransforms represent the cube in solved state.
@@ -73,6 +74,7 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
     protected idx3d_Group[] explosionTransforms;
     protected float explosion = 15f;
     protected boolean isInStartedPlayer;
+    private float unitScaleFactor = 0.018f;
 
     /**
      * Creates a new instance.
@@ -89,7 +91,7 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
         sideOffset = cornerCount + edgeCount;
         centerOffset = cornerCount + edgeCount + sideCount;
 
-        parts = new idx3d_Object[partCount];
+        parts = new idx3d_Group[partCount];
 
         identityVertexMatrix = new idx3d_Matrix[partCount];
         identityNormalMatrix = new idx3d_Matrix[partCount];
@@ -157,11 +159,14 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
      * used by method getPart(int);
      */
     protected void updatePartFillColor(int index, @Nonnull Color c) {
-        idx3d_Object part = getPart(index);
-        idx3d_InternalMaterial material = part.material;
-        material.setColor(c.getRGB());
-        material.setReflectivity(280);
-        part.setMaterial(material);
+        idx3d_Group group = getPart(index);
+        for (idx3d_Node child : group.children()) {
+            idx3d_Object part = (idx3d_Object) child;
+            idx3d_InternalMaterial material = part.material;
+            material.setColor(c.getRGB());
+            material.setReflectivity(280);
+            part.setMaterial(material);
+        }
     }
 
     protected void updatePartOutlineColor(int index, Color c) {
@@ -170,25 +175,33 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
     protected void updateStickerFillColor(int index, @Nonnull Color c) {
         int partIndex = getPartIndexForStickerIndex(index);
         int triangleIndex = getPartFaceIndexForStickerIndex(index);
-        idx3d_Object part = getPart(partIndex);
-        idx3d_InternalMaterial material = part.triangle(triangleIndex).getMaterial();
-        if (getAttributes().isStickerVisible(index)) {
-            material.setColor(c.getRGB());
-            material.setReflectivity(80);
+        idx3d_Group group = getPart(partIndex);
+        int triangleOffset = 0;
+        for (idx3d_Node child : group.children()) {
+            idx3d_Object part = (idx3d_Object) child;
+            int adjustedIndex = triangleIndex - triangleOffset;
+            if (adjustedIndex >= 0 && adjustedIndex < part.triangles) {
+                idx3d_InternalMaterial material = part.triangle(adjustedIndex).getMaterial();
+                if (getAttributes().isStickerVisible(index)) {
+                    material.setColor(c.getRGB());
+                    material.setReflectivity(80);
 
-            // Set texture only, if it has pixel data
-            if (stickersTexture != null && stickersTexture.pixel != null) {
-                material.setTexture(stickersTexture);
-            } else {
-                material.setTexture(null);
+                    // Set texture only, if it has pixel data
+                    if (stickersTexture != null && stickersTexture.pixel != null) {
+                        material.setTexture(stickersTexture);
+                    } else {
+                        material.setTexture(null);
+                    }
+                } else {
+                    material.setColor(getAttributes().getPartFillColor(partIndex).getRGB());
+                    material.setReflectivity(280);
+                    material.setTexture(null);
+                }
             }
-        } else {
-            material.setColor(getAttributes().getPartFillColor(partIndex).getRGB());
-            material.setReflectivity(280);
-            material.setTexture(null);
+            triangleOffset += part.triangles;
+            //material.setFlat(true);
+            //material.setWireframe(true);
         }
-        //material.setFlat(true);
-        //material.setWireframe(true);
     }
 
     /**
@@ -198,24 +211,27 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
     protected void updateStickerVisibility(int index, float alpha) {
         int partIndex = getPartIndexForStickerIndex(index);
         int faceIndex = getPartFaceIndexForStickerIndex(index);
-        idx3d_Object part = getPart(partIndex);
-        Color stickerColor = getAttributes().getStickerFillColor(index);
-        Color partColor = getAttributes().getPartFillColor(partIndex);
+        idx3d_Group group = getPart(index);
+        for (idx3d_Node child : group.children()) {
+            idx3d_Object part = (idx3d_Object) child;
+            Color stickerColor = getAttributes().getStickerFillColor(index);
+            Color partColor = getAttributes().getPartFillColor(partIndex);
 
-        idx3d_InternalMaterial material = part.triangle(faceIndex).getMaterial();
-        if (stickersTexture == null) {
-            Color mixedColor = new Color(
-                    (int) (stickerColor.getRed() * alpha + partColor.getRed() * (1f - alpha)),
-                    (int) (stickerColor.getGreen() * alpha + partColor.getGreen() * (1f - alpha)),
-                    (int) (stickerColor.getBlue() * alpha + partColor.getBlue() * (1f - alpha)));
+            idx3d_InternalMaterial material = part.triangle(faceIndex).getMaterial();
+            if (stickersTexture == null) {
+                Color mixedColor = new Color(
+                        (int) (stickerColor.getRed() * alpha + partColor.getRed() * (1f - alpha)),
+                        (int) (stickerColor.getGreen() * alpha + partColor.getGreen() * (1f - alpha)),
+                        (int) (stickerColor.getBlue() * alpha + partColor.getBlue() * (1f - alpha)));
 
-            material.setColor(mixedColor.getRGB());
-        } else {
-            material.setTextureTransparency(255 - (int) (255 * alpha));
-            material.setColor(partColor.getRGB());
-            material.setTexture(stickersTexture);
+                material.setColor(mixedColor.getRGB());
+            } else {
+                material.setTextureTransparency(255 - (int) (255 * alpha));
+                material.setColor(partColor.getRGB());
+                material.setTexture(stickersTexture);
+            }
+            material.setReflectivity((int) (80 * alpha + 280 * (1f - alpha)));
         }
-        material.setReflectivity((int) (80 * alpha + 280 * (1f - alpha)));
     }
     /*
     protected void updateScaleFactor() {
@@ -238,8 +254,15 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
         updateScaleFactor(attributes.getScaleFactor());
     }
 
-    protected float getUnitScaleFactor() {
-        return 0.018f;
+    public float getUnitScaleFactor() {
+        return this.unitScaleFactor;
+    }
+
+    public void setUnitScaleFactor(float newValue) {
+        this.unitScaleFactor = newValue;
+        if (attributes != null) {
+            this.updateScaleFactor();
+        }
     }
 
     @Override
@@ -299,7 +322,7 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
         }
     }
 
-    protected idx3d_Object getPart(int partIndex) {
+    protected idx3d_Group getPart(int partIndex) {
         return parts[partIndex];
     }
 
@@ -345,7 +368,7 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
                                 throw e;
                             }
                         } else {
-                                System.err.println("Warning. AbstractCubeIdx3D couldn't create a texture from the stickers image - maybe because the stickers image could not be found or is corrupt.");
+                            System.err.println("Warning. AbstractCubeIdx3D couldn't create a texture from the stickers image - maybe because the stickers image could not be found or is corrupt.");
                         }
                     }
                 }
@@ -398,20 +421,24 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
      */
     @Override
     protected void updatePartVisibility(int index, float alpha) {
-        idx3d_Object part = getPart(index);
-        idx3d_InternalMaterial material = part.material;
-        int transparency = (int) ((1f - alpha) * 255);
-        if (isShowGhostParts()) {
-            transparency = Math.min(transparency, 225);
-        }
-        boolean visible = transparency != 255;
-        material.setTransparency(transparency);
-        material.setVisible(visible);
-        for (int i = 0, n = part.getTriangleCount(); i < n; i++) {
-            material = part.triangle(i).getTriangleMaterial();
-            if (material != null) {
+        idx3d_Group group = getPart(index);
+        for (idx3d_Node child : group.children()) {
+            idx3d_Object part = (idx3d_Object) child;
+
+            idx3d_InternalMaterial material = part.material;
+            int transparency = (int) ((1f - alpha) * 255);
+            if (isShowGhostParts()) {
+                transparency = Math.min(transparency, 225);
+            }
+            boolean visible = transparency != 255;
             material.setTransparency(transparency);
             material.setVisible(visible);
+            for (int i = 0, n = part.getTriangleCount(); i < n; i++) {
+                material = part.triangle(i).getTriangleMaterial();
+                if (material != null) {
+                    material.setTransparency(transparency);
+                    material.setVisible(visible);
+                }
             }
         }
     }
@@ -462,8 +489,10 @@ public abstract class AbstractCubeIdx3D extends AbstractCube3D {
 
     @Override
     public void setInStartedPlayer(boolean newValue) {
-        isInStartedPlayer=newValue;
-        if (!newValue) fireStateChanged();
+        isInStartedPlayer = newValue;
+        if (!newValue) {
+            fireStateChanged();
+        }
     }
 
     @Override

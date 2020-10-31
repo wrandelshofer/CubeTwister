@@ -7,6 +7,7 @@ package ch.randelshofer.rubik.cube3d;
 import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
+import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
@@ -271,40 +272,42 @@ public class PocketCubeIdx3D extends AbstractPocketCubeIdx3D {
                 action = new PartAction(
                         index, j, getStickerIndexForPart(index, j));
 
-                scene.addMouseListener(parts[cornerOffset + i].triangle(j * 2), action);
-                scene.addMouseListener(parts[cornerOffset + i].triangle(j * 2 + 1), action);
+                idx3d_Group group = parts[index];
+                idx3d_Object obj = (idx3d_Object) group.getChild(0);
+                scene.addMouseListener(obj.triangle(j * 2), action);
+                scene.addMouseListener(obj.triangle(j * 2 + 1), action);
                 switch (j) {
-                    case 0: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(15), a0);
-                        scene.addSwipeListener(parts[index].triangle(16), a1);
-                        scene.addSwipeListener(parts[index].triangle(17), a0);
-                        scene.addSwipeListener(parts[index].triangle(18), a1);
-                        break;
-                    }
+                case 0: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addSwipeListener(obj.triangle(j * 2), a0);
+                    scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(obj.triangle(15), a0);
+                    scene.addSwipeListener(obj.triangle(16), a1);
+                    scene.addSwipeListener(obj.triangle(17), a0);
+                    scene.addSwipeListener(obj.triangle(18), a1);
+                    break;
+                }
                     case 1: {
                         SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f + Math.PI / 4f));
                         SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(19), a0);
-                        scene.addSwipeListener(parts[index].triangle(20), a1);
-                        scene.addSwipeListener(parts[index].triangle(21), a0);
-                        scene.addSwipeListener(parts[index].triangle(22), a1);
+                        scene.addSwipeListener(obj.triangle(j * 2), a0);
+                        scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                        scene.addSwipeListener(obj.triangle(19), a0);
+                        scene.addSwipeListener(obj.triangle(20), a1);
+                        scene.addSwipeListener(obj.triangle(21), a0);
+                        scene.addSwipeListener(obj.triangle(22), a1);
                         break;
                     }
                     case 2: {
                         SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
                         SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(23), a0);
-                        scene.addSwipeListener(parts[index].triangle(24), a1);
-                        scene.addSwipeListener(parts[index].triangle(25), a0);
-                        scene.addSwipeListener(parts[index].triangle(26), a1);
+                        scene.addSwipeListener(obj.triangle(j * 2), a0);
+                        scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                        scene.addSwipeListener(obj.triangle(23), a0);
+                        scene.addSwipeListener(obj.triangle(24), a1);
+                        scene.addSwipeListener(obj.triangle(25), a0);
+                        scene.addSwipeListener(obj.triangle(26), a1);
                     }
                     break;
                 }
@@ -333,17 +336,18 @@ public class PocketCubeIdx3D extends AbstractPocketCubeIdx3D {
      */
     protected void initCornerUVMap() {
         for (int part = 0; part < 8; part++) {
-            idx3d_Object object3D = parts[cornerOffset + part];
+            idx3d_Group group = parts[cornerOffset + part];
+            idx3d_Object object3D = (idx3d_Object) group.getChild(0);
             switch (part) {
-                case 0: // up right front
-                    object3D.triangle(0).setUV(ss * 4 - bevelling, ss * 2 - bevelling, ss * 4 - bevelling, ss * 1 + bevelling, ss * 3 + bevelling, ss * 1 + bevelling);
-                    object3D.triangle(1).setUV(ss * 4 - bevelling, ss * 2 - bevelling, ss * 3 + bevelling, ss * 1 + bevelling, ss * 3 + bevelling, ss * 2 - bevelling);
-                    object3D.triangle(2).setUV(ss * 4 + bevelling, ss * 3 - bevelling, ss * 5 - bevelling, ss * 3 - bevelling, ss * 5 - bevelling, ss * 2 + bevelling);
-                    object3D.triangle(3).setUV(ss * 4 + bevelling, ss * 3 - bevelling, ss * 5 - bevelling, ss * 2 + bevelling, ss * 4 + bevelling, ss * 2 + bevelling);
-                    object3D.triangle(4).setUV(ss * 3 + bevelling, ss * 3 - bevelling, ss * 4 - bevelling, ss * 3 - bevelling, ss * 4 - bevelling, ss * 2 + bevelling);
-                    object3D.triangle(5).setUV(ss * 3 + bevelling, ss * 3 - bevelling, ss * 4 - bevelling, ss * 2 + bevelling, ss * 3 + bevelling, ss * 2 + bevelling);
-                    break;
-                case 1: // down front right
+            case 0: // up right front
+                object3D.triangle(0).setUV(ss * 4 - bevelling, ss * 2 - bevelling, ss * 4 - bevelling, ss * 1 + bevelling, ss * 3 + bevelling, ss * 1 + bevelling);
+                object3D.triangle(1).setUV(ss * 4 - bevelling, ss * 2 - bevelling, ss * 3 + bevelling, ss * 1 + bevelling, ss * 3 + bevelling, ss * 2 - bevelling);
+                object3D.triangle(2).setUV(ss * 4 + bevelling, ss * 3 - bevelling, ss * 5 - bevelling, ss * 3 - bevelling, ss * 5 - bevelling, ss * 2 + bevelling);
+                object3D.triangle(3).setUV(ss * 4 + bevelling, ss * 3 - bevelling, ss * 5 - bevelling, ss * 2 + bevelling, ss * 4 + bevelling, ss * 2 + bevelling);
+                object3D.triangle(4).setUV(ss * 3 + bevelling, ss * 3 - bevelling, ss * 4 - bevelling, ss * 3 - bevelling, ss * 4 - bevelling, ss * 2 + bevelling);
+                object3D.triangle(5).setUV(ss * 3 + bevelling, ss * 3 - bevelling, ss * 4 - bevelling, ss * 2 + bevelling, ss * 3 + bevelling, ss * 2 + bevelling);
+                break;
+            case 1: // down front right
                     object3D.triangle(0).setUV(ss * 4 - bevelling, ss * 4 + bevelling, ss * 3 + bevelling, ss * 4 + bevelling, ss * 3 + bevelling, ss * 5 - bevelling);
                     object3D.triangle(1).setUV(ss * 4 - bevelling, ss * 4 + bevelling, ss * 3 + bevelling, ss * 5 - bevelling, ss * 4 - bevelling, ss * 5 - bevelling);
                     object3D.triangle(2).setUV(ss * 4 - bevelling, ss * 3 + bevelling, ss * 3 + bevelling, ss * 3 + bevelling, ss * 3 + bevelling, ss * 4 - bevelling);
@@ -436,7 +440,9 @@ public class PocketCubeIdx3D extends AbstractPocketCubeIdx3D {
             sticker = new idx3d_InternalMaterial();
             object3D.triangle(4).setTriangleMaterial(sticker);
             object3D.triangle(5).setTriangleMaterial(sticker);
-            parts[cornerOffset + part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[cornerOffset + part] = group;
         }
         initCornerUVMap();
     }

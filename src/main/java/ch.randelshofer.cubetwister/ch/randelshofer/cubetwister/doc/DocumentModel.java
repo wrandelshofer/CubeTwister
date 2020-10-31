@@ -1298,7 +1298,7 @@ public class DocumentModel extends DefaultTreeModel
                                         if (layerMask == usefulLayerMask
                                                 || reversedLayerMask == usefulLayerMask) {
                                             Move ts = new Move(item.getLayerCount(), axis, layerMask, angle);
-                                            item.setMoveToken(ts, Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
+                                            item.setAllMoveTokens(ts, Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
                                             item.setMoveSupported(ts, isEnabled);
                                             break;
                                         }

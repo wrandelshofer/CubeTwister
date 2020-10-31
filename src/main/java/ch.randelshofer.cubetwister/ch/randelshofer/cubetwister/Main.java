@@ -38,7 +38,6 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
 
         // Enforce English Locale
         Locale.setDefault(Locale.ENGLISH);
@@ -47,7 +46,6 @@ public class Main {
         //ResourceBundleUtil.setVerbose(true);
         //ResourceBundleUtil.putPropertyNameModifier("os", "win", "default");
 
-        // CubeTwisterOSXApplication.main(args);
         CubeTwisterApplicationModel am = new CubeTwisterApplicationModel();
         am.setCopyright("\u00a9 Werner Randelshofer. MIT License.");
         am.setName("CubeTwister");

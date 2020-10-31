@@ -12,6 +12,7 @@ import ch.randelshofer.cubetwister.doc.NotationModel;
 import ch.randelshofer.cubetwister.doc.NotationView;
 import ch.randelshofer.cubetwister.doc.ScriptModel;
 import ch.randelshofer.cubetwister.doc.ScriptView;
+import ch.randelshofer.cubetwister.doc.Template;
 import ch.randelshofer.cubetwister.doc.TextModel;
 import ch.randelshofer.cubetwister.doc.TextView;
 import ch.randelshofer.gui.JExplorer;
@@ -51,6 +52,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.net.URI;
+import java.net.URL;
 import java.util.HashMap;
 
 /**
@@ -216,9 +218,10 @@ public class CubeTwisterView extends AbstractView implements Viewer {
                 if (userTemplate.exists()) {
                     in = new FileInputStream(userTemplate);
                 } else {
-                    in = DocumentModel.class.getResourceAsStream("template.xml");
+                    URL templateUrl = Template.getTemplate();
+                    in = templateUrl == null ? null : templateUrl.openStream();
                     if (in == null) {
-                        throw new IOException(userTemplate.toString());
+                        throw new IOException("Could not lode internal template:" + templateUrl);
                     }
                 }
                 in = new BufferedInputStream(in);

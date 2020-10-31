@@ -103,13 +103,16 @@ public abstract class AbstractNotation implements Notation {
         return tokens.isEmpty() ? null : tokens.get(0);
     }
 
+    @Nullable
     @Override
-    public Move getMoveFromToken(String moveToken) {
-        Move move = tokenToMoveMap.get(moveToken);
-        if (move == null) {
-            throw new IllegalArgumentException("Not a move token. token:" + moveToken);
-        }
-        return move;
+    public List<String> getMoveTokens(Move s) {
+        return moveToTokensMap.getOrDefault(s, Collections.emptyList());
+
+    }
+
+    @Override
+    public @Nullable Move getMoveFromToken(String moveToken) {
+        return tokenToMoveMap.get(moveToken);
     }
 
     @Nonnull

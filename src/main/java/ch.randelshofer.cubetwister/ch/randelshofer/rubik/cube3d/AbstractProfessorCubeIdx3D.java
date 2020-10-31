@@ -66,15 +66,17 @@ public abstract class AbstractProfessorCubeIdx3D extends AbstractCubeIdx3D {
     protected void initCenter() {
         idx3d_Object sphere;
 
-        sphere = idx3d_ObjectFactory.SPHERE(PART_LENGTH*1.5f, 18);
+        sphere = idx3d_ObjectFactory.SPHERE(PART_LENGTH * 1.5f, 18);
 
         idx3d_Object object3D = sphere;
         object3D.material = new idx3d_InternalMaterial();
-        parts[centerOffset] = object3D;
+        idx3d_Group group = new idx3d_Group();
+        group.addChild(object3D);
+        parts[centerOffset] = group;
     }
 
     @Override
-    protected float getUnitScaleFactor() {
+    public float getUnitScaleFactor() {
         return 0.019f * 54f / (PART_LENGTH * layerCount);
     }
 

@@ -4,8 +4,10 @@
 
 package fullscreen;
 
-import java.awt.event.*;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * Main.

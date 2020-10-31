@@ -8,7 +8,9 @@ import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.rubik.cube.Cube7;
+import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
+import idx3d.idx3d_Node;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
@@ -446,7 +448,9 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
             sticker = new idx3d_InternalMaterial();
             object3D.triangle(4).setTriangleMaterial(sticker);
             object3D.triangle(5).setTriangleMaterial(sticker);
-            parts[cornerOffset + part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[cornerOffset + part] = group;
         }
         initCornerUVMap();
     }
@@ -502,7 +506,7 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
      */
     protected void initCornerUVMap() {
         for (int part = 0; part < 8; part++) {
-            idx3d_Object object3D = parts[cornerOffset + part];
+            idx3d_Object object3D = (idx3d_Object) parts[cornerOffset + part].getChild(0);
             switch (part) {
                 case 0: // up right front
                     object3D.triangle(0).setUV(ss * 14 - bev, ss * 7 - bev, ss * 14 - bev, ss * 6 + bev, ss * 13 + bev, ss * 6 + bev);
@@ -920,7 +924,9 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
                 object3D.triangle(indices[i]).setTriangleMaterial(mat);
             }
 
-            parts[edgeOffset + part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[edgeOffset + part] = group;
         }
         initEdgeUVMap();
     }
@@ -976,7 +982,7 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
      */
     protected void initEdgeUVMap() {
         for (int part = 0; part < edgeCount; part++) {
-            idx3d_Object object3D = parts[edgeOffset + part];
+            idx3d_Object object3D = (idx3d_Object) parts[edgeOffset + part].getChild(0);
             int m = 0;
             if (part >= 12) {
                 switch ((part - 12) % 24) {
@@ -2059,7 +2065,9 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
             object3D.triangle(0).setTriangleMaterial(sticker1);
             object3D.triangle(1).setTriangleMaterial(sticker1);
 
-            parts[sideOffset + part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[sideOffset + part] = group;
         }
 
         initSideUVMap();
@@ -2096,7 +2104,7 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
         };
 
         for (int part = 0; part < sideCount; part++) {
-            idx3d_Object object3D = parts[sideOffset + part];
+            idx3d_Object object3D = (idx3d_Object) parts[sideOffset + part].getChild(0);
             int mx = mxMap[part / 6];
             int my = myMap[part / 6];
             switch (part % 6) {
@@ -2339,7 +2347,7 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
     protected void updatePartOutlineColor(int index, @Nonnull Color c) {
         if (index >= edgeOffset && index < sideOffset) {
 
-            idx3d_Object part = getPart(index);
+            idx3d_Object part = (idx3d_Object) getPart(index).getChild(0);
             idx3d_InternalMaterial material = part.triangle(10).getMaterial();
             material.setColor(c.getRGB());
             material.setReflectivity(280);
@@ -2351,7 +2359,7 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
     protected void updateStickerFillColor(int index, @Nonnull Color c) {
         int partIndex = getPartIndexForStickerIndex(index);
         int triangleIndex = getPartFaceIndexForStickerIndex(index);
-        idx3d_Object part = getPart(partIndex);
+        idx3d_Object part = (idx3d_Object) getPart(partIndex).getChild(0);
         idx3d_InternalMaterial material = part.triangle(triangleIndex).getMaterial();
         if (getAttributes().isStickerVisible(index)) {
             material.setColor(c.getRGB());
@@ -2387,7 +2395,7 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
             int partIndex = getPartIndexForStickerIndex(index);
             int faceIndex = getPartFaceIndexForStickerIndex(index);
         if (partIndex >= edgeOffset && partIndex < sideOffset && faceIndex==2) {
-            idx3d_Object part = getPart(partIndex);
+            idx3d_Object part = (idx3d_Object) getPart(partIndex).getChild(0);
             Color stickerColor = getAttributes().getStickerFillColor(index);
             Color partColor;
 
@@ -2458,42 +2466,43 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
                 action = new PartAction(
                         i, j, getStickerIndexForPart(i, j));
 
-                scene.addMouseListener(parts[index].triangle(j * 2), action);
-                scene.addMouseListener(parts[index].triangle(j * 2 + 1), action);
+                idx3d_Object obj = (idx3d_Object) parts[index].getChild(0);
+                scene.addMouseListener(obj.triangle(j * 2), action);
+                scene.addMouseListener(obj.triangle(j * 2 + 1), action);
                 switch (j) {
-                    case 0: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(6), a0);
-                        scene.addSwipeListener(parts[index].triangle(7), a1);
-                        scene.addSwipeListener(parts[index].triangle(8), a0);
-                        scene.addSwipeListener(parts[index].triangle(9), a1);
-                        break;
-                    }
+                case 0: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addSwipeListener(obj.triangle(j * 2), a0);
+                    scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(obj.triangle(6), a0);
+                    scene.addSwipeListener(obj.triangle(7), a1);
+                    scene.addSwipeListener(obj.triangle(8), a0);
+                    scene.addSwipeListener(obj.triangle(9), a1);
+                    break;
+                }
                     case 1: {
                         // Because this face is curved, it is rotated by 90° with
                         // respect to Cube7.
                         SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f));
                         SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(10), a0);
-                        scene.addSwipeListener(parts[index].triangle(11), a1);
-                        scene.addSwipeListener(parts[index].triangle(12), a0);
-                        scene.addSwipeListener(parts[index].triangle(13), a1);
+                        scene.addSwipeListener(obj.triangle(j * 2), a0);
+                        scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                        scene.addSwipeListener(obj.triangle(10), a0);
+                        scene.addSwipeListener(obj.triangle(11), a1);
+                        scene.addSwipeListener(obj.triangle(12), a0);
+                        scene.addSwipeListener(obj.triangle(13), a1);
                         break;
                     }
                     case 2: {
                         SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
                         SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(14), a0);
-                        scene.addSwipeListener(parts[index].triangle(15), a1);
-                        scene.addSwipeListener(parts[index].triangle(16), a0);
-                        scene.addSwipeListener(parts[index].triangle(17), a1);
+                        scene.addSwipeListener(obj.triangle(j * 2), a0);
+                        scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                        scene.addSwipeListener(obj.triangle(14), a0);
+                        scene.addSwipeListener(obj.triangle(15), a1);
+                        scene.addSwipeListener(obj.triangle(16), a0);
+                        scene.addSwipeListener(obj.triangle(17), a1);
                     }
                     break;
                 }
@@ -2508,33 +2517,34 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
                 action = new PartAction(
                         index, j, getStickerIndexForPart(index, j));
 
-                scene.addMouseListener(parts[index].triangle(j * 2), action);
-                scene.addMouseListener(parts[index].triangle(j * 2 + 1), action);
+                idx3d_Object obj = (idx3d_Object) parts[index].getChild(0);
+                scene.addMouseListener(obj.triangle(j * 2), action);
+                scene.addMouseListener(obj.triangle(j * 2 + 1), action);
                 switch (j) {
-                    case 0: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(4), a0);
-                        scene.addSwipeListener(parts[index].triangle(5), a1);
-                        scene.addSwipeListener(parts[index].triangle(6), a0);
-                        scene.addSwipeListener(parts[index].triangle(7), a1);
-                        scene.addSwipeListener(parts[index].triangle(8), a0);
-                        scene.addSwipeListener(parts[index].triangle(9), a1);
-                        break;
-                    }
+                case 0: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addSwipeListener(obj.triangle(j * 2), a0);
+                    scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                    scene.addSwipeListener(obj.triangle(4), a0);
+                    scene.addSwipeListener(obj.triangle(5), a1);
+                    scene.addSwipeListener(obj.triangle(6), a0);
+                    scene.addSwipeListener(obj.triangle(7), a1);
+                    scene.addSwipeListener(obj.triangle(8), a0);
+                    scene.addSwipeListener(obj.triangle(9), a1);
+                    break;
+                }
                     case 1: {
                         SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f));
                         SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(10), a0);
-                        scene.addSwipeListener(parts[index].triangle(11), a1);
-                        scene.addSwipeListener(parts[index].triangle(12), a0);
-                        scene.addSwipeListener(parts[index].triangle(13), a1);
-                        scene.addSwipeListener(parts[index].triangle(14), a0);
-                        scene.addSwipeListener(parts[index].triangle(15), a1);
+                        scene.addSwipeListener(obj.triangle(j * 2), a0);
+                        scene.addSwipeListener(obj.triangle(j * 2 + 1), a1);
+                        scene.addSwipeListener(obj.triangle(10), a0);
+                        scene.addSwipeListener(obj.triangle(11), a1);
+                        scene.addSwipeListener(obj.triangle(12), a0);
+                        scene.addSwipeListener(obj.triangle(13), a1);
+                        scene.addSwipeListener(obj.triangle(14), a0);
+                        scene.addSwipeListener(obj.triangle(15), a1);
                         break;
                     }
                 }
@@ -2548,27 +2558,31 @@ public class VCube7Idx3D extends AbstractCube7Idx3D {
             action = new PartAction(
                     i + sideOffset, 0, getStickerIndexForPart(index, 0));
 
-            scene.addMouseListener(parts[index].triangle(0), action);
-            scene.addMouseListener(parts[index].triangle(1), action);
+            idx3d_Object obj = (idx3d_Object) parts[index].getChild(0);
+            scene.addMouseListener(obj.triangle(0), action);
+            scene.addMouseListener(obj.triangle(1), action);
             SwipeAction a0 = new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI / 2f + Math.PI / 4f));
             SwipeAction a1 = new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) Math.PI / 2f);
-            scene.addSwipeListener(parts[index].triangle(0), a0);
-            scene.addSwipeListener(parts[index].triangle(1), a1);
-            scene.addSwipeListener(parts[index].triangle(2), a0);
-            scene.addSwipeListener(parts[index].triangle(3), a1);
-            scene.addSwipeListener(parts[index].triangle(4), a0);
-            scene.addSwipeListener(parts[index].triangle(5), a1);
-            scene.addSwipeListener(parts[index].triangle(6), a0);
-            scene.addSwipeListener(parts[index].triangle(7), a1);
-            scene.addSwipeListener(parts[index].triangle(8), a0);
-            scene.addSwipeListener(parts[index].triangle(9), a1);
+            scene.addSwipeListener(obj.triangle(0), a0);
+            scene.addSwipeListener(obj.triangle(1), a1);
+            scene.addSwipeListener(obj.triangle(2), a0);
+            scene.addSwipeListener(obj.triangle(3), a1);
+            scene.addSwipeListener(obj.triangle(4), a0);
+            scene.addSwipeListener(obj.triangle(5), a1);
+            scene.addSwipeListener(obj.triangle(6), a0);
+            scene.addSwipeListener(obj.triangle(7), a1);
+            scene.addSwipeListener(obj.triangle(8), a0);
+            scene.addSwipeListener(obj.triangle(9), a1);
         }
 
         for (i = 0; i < partCount; i++) {
             action = new PartAction(
                     i, -1, -1);
+            for (idx3d_Node child : parts[i].children()) {
+                scene.addMouseListener((idx3d_Object) child, action);
 
-            scene.addMouseListener(parts[i], action);
+            }
+
         }
 
     }

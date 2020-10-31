@@ -81,18 +81,28 @@ public interface Notation {
      * Returns null, if symbol is not supported.
      */
     String getToken(Symbol s);
+
     /**
      * Returns a token for the specified move.
      * If the move has more than one token, the first token is returned.
-     *
+     * <p>
      * Returns null, if move is not supported.
      */
     String getMoveToken(Move s);
 
     /**
+     * Returns all tokens for the specified move.
+     * <p>
+     * Returns an empty list if the move is not supported.
+     */
+    List<String> getMoveTokens(Move s);
+
+    /**
      * Returns the a move from the given move token.
+     *
      * @return a move
      */
+    @Nullable
     Move getMoveFromToken(String moveToken);
 
     /**

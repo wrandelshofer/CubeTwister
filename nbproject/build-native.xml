@@ -6,39 +6,60 @@
 -->
 
 <!--
+DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
 
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
+Copyright 2013 Oracle and/or its affiliates. All rights reserved.
 
-      http://www.apache.org/licenses/LICENSE-2.0
+Oracle and Java are registered trademarks of Oracle and/or its affiliates.
+Other names may be trademarks of their respective owners.
 
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-    KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
+The contents of this file are subject to the terms of either the GNU
+General Public License Version 2 only ("GPL") or the Common
+Development and Distribution License("CDDL") (collectively, the
+"License"). You may not use this file except in compliance with the
+License. You can obtain a copy of the License at
+http://www.netbeans.org/cddl-gplv2.html
+or nbbuild/licenses/CDDL-GPL-2-CP. See the License for the
+specific language governing permissions and limitations under the
+License.  When distributing the software, include this License Header
+Notice in each file and include the License file at
+nbbuild/licenses/CDDL-GPL-2-CP.  Oracle designates this
+particular file as subject to the "Classpath" exception as provided
+by Oracle in the GPL Version 2 section of the License file that
+accompanied this code. If applicable, add the following below the
+License Header, with the fields enclosed by brackets [] replaced by
+your own identifying information:
+"Portions Copyrighted [year] [name of copyright owner]"
 
+If you wish your version of this file to be governed by only the CDDL
+or only the GPL Version 2, indicate your decision by adding
+"[Contributor] elects to include this software in this distribution
+under the [CDDL or GPL Version 2] license." If you do not indicate a
+single choice of license, a recipient has the option to distribute
+your version of this file under either the CDDL, the GPL Version 2 or
+to extend the choice of license to its licensees as provided above.
+However, if you add GPL Version 2 code and therefore, elected the GPL
+Version 2 license, then the option applies only if the new code is
+made subject to such option by the copyright holder.
+
+Contributor(s):
+
+Portions Copyrighted 2013 Sun Microsystems, Inc.
 -->
 
 
 <project name="Build Native Packages" default="build-native"
          xmlns:fx="javafx:com.sun.javafx.tools.ant">
-  <description>Native Packager Ant calls based on SE support in JavaFX packager</description>
+    <description>Native Packager Ant calls based on SE support in JavaFX packager</description>
 
-  <!-- Check system and JDK version -->
+    <!-- Check system and JDK version -->
 
-  <target name="-check-operating-system">
-    <condition property="running.on.mac">
-      <os family="mac"/>
-    </condition>
-    <condition property="running.on.unix">
-      <os family="unix"/>
+    <target name="-check-operating-system">
+        <condition property="running.on.mac">
+            <os family="mac"/>
+        </condition>
+        <condition property="running.on.unix">
+            <os family="unix"/>
         </condition>
         <condition property="running.on.windows">
             <os family="windows"/>
@@ -46,7 +67,7 @@
         <echo message="running.on.mac = ${running.on.mac}" level="verbose"/>
         <echo message="running.on.unix = ${running.on.unix}" level="verbose"/>
         <echo message="running.on.windows = ${running.on.windows}" level="verbose"/>
-     </target>
+    </target>
 
 
     <!-- Check availability of JavaFX SDK deployment support (ant-javafx.jar) -->
@@ -257,29 +278,29 @@
                 <contains string="${version-output}" substring="java version &quot;1.6"/>
                 <contains string="${version-output}" substring="java version &quot;1.7.0&quot;"/>
                 <contains string="${version-output}" substring="java version &quot;1.7.0_01"/>
-              <contains string="${version-output}" substring="java version &quot;1.7.0_02"/>
-              <contains string="${version-output}" substring="java version &quot;1.7.0_03"/>
-              <contains string="${version-output}" substring="java version &quot;1.7.0_04"/>
-              <contains string="${version-output}" substring="java version &quot;1.7.0_05"/>
+                <contains string="${version-output}" substring="java version &quot;1.7.0_02"/>
+                <contains string="${version-output}" substring="java version &quot;1.7.0_03"/>
+                <contains string="${version-output}" substring="java version &quot;1.7.0_04"/>
+                <contains string="${version-output}" substring="java version &quot;1.7.0_05"/>
             </or>
         </condition>
-      <property name="ant-jre-version-checked-in-jfximpl" value="true"/>
-      <echo message="have-ant-jre-pre7u6 = ${have-ant-jre-pre7u6}" level="verbose"/>
+        <property name="ant-jre-version-checked-in-jfximpl" value="true"/>
+        <echo message="have-ant-jre-pre7u6 = ${have-ant-jre-pre7u6}" level="verbose"/>
     </target>
 
 
-  <!-- Native Packaging main target -->
+    <!-- Native Packaging main target -->
 
-  <target name="build-native"
-          depends="-set-do-build-native-package, -check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl, -build-native-impl, -post-build-native-cleanup"/>
+    <target name="build-native"
+            depends="-set-do-build-native-package, -check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl, -build-native-impl, -post-build-native-cleanup"/>
 
-  <target name="build-native-noscript">
-    <fail message="Java Application Native Packager requires JDK JavaScript support but has not found any."/>
-  </target>
+    <target name="build-native-noscript">
+        <fail message="Java Application Native Packager requires JDK JavaScript support but has not found any."/>
+    </target>
 
-  <target name="-check-do-jar">
-    <condition property="do-jar-false">
-      <and>
+    <target name="-check-do-jar">
+        <condition property="do-jar-false">
+            <and>
                 <isset property="do.jar"/>
                 <equals arg1="${do.jar}" arg2="false"/>
             </and>
@@ -290,11 +311,13 @@
         <property name="do.build.native.package" value="true"/>
         <echo message="do.build.native.package = ${do.build.native.package}" level="verbose"/>
     </target>
-    <target name="-check-ant-jre-supports-native-packaging" depends="-check-jfx-sdk-version, -check-ant-javafx-version, -check-ant-jre-version">
-        <fail message="Error:${line.separator}JavaFX native packager requires NetBeans to run on JDK 1.7u6 or later !" if="have-ant-jre-pre7u6"/>
+    <target name="-check-ant-jre-supports-native-packaging"
+            depends="-check-jfx-sdk-version, -check-ant-javafx-version, -check-ant-jre-version">
+        <fail message="Error:${line.separator}JavaFX native packager requires NetBeans to run on JDK 1.7u6 or later !"
+              if="have-ant-jre-pre7u6"/>
     </target>
 
-  <target name="-check-native-bundling-type" depends="-check-operating-system" if="do.build.native.package">
+    <target name="-check-native-bundling-type" depends="-check-operating-system" if="do.build.native.package">
         <condition property="need.Inno.presence">
             <and>
                 <isset property="running.on.windows"/>
@@ -696,18 +719,19 @@
     </target>
 
 
-  <!-- Native Packaging main implementation -->
+    <!-- Native Packaging main implementation -->
 
-  <target name="-build-native-impl"
-          depends="-check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl">
+    <target name="-build-native-impl"
+            depends="-check-ant-jre-supports-native-packaging, -check-native-packager-external-tools, -fx-jar-impl">
 
-    <!--<property name="runtime.jre.home" value="${platform.home}"/>-->
-    <echo message="javafx.ant.classpath = ${javafx.ant.classpath}" level="verbose"/>
-    <typedef name="fx_deploy" classname="com.sun.javafx.tools.ant.DeployFXTask" classpath="${javafx.ant.classpath}"/>
-    <echo message="Launching &lt;fx:deploy&gt; task from ${ant-javafx.jar.location}" level="info"/>
-    <property name="deployment.dir" location="${dist.dir}"/>
-    <property name="pp_deploy_fs2" value="lib${file.separator}*.jar"/>
-    <basename property="deployment.jar" file="${dist.jar}"/>
+        <!--<property name="runtime.jre.home" value="${platform.home}"/>-->
+        <echo message="javafx.ant.classpath = ${javafx.ant.classpath}" level="verbose"/>
+        <typedef name="fx_deploy" classname="com.sun.javafx.tools.ant.DeployFXTask"
+                 classpath="${javafx.ant.classpath}"/>
+        <echo message="Launching &lt;fx:deploy&gt; task from ${ant-javafx.jar.location}" level="info"/>
+        <property name="deployment.dir" location="${dist.dir}"/>
+        <property name="pp_deploy_fs2" value="lib${file.separator}*.jar"/>
+        <basename property="deployment.jar" file="${dist.jar}"/>
         <basename property="deployment.base" file="${deployment.jar}" suffix=".jar"/>
         <echo message="deploy_deploy: pp_deploy_fs2 = ${pp_deploy_fs2}" level="verbose"/>
         <echo message="deploy_deploy: deployment.dir = ${deployment.dir}" level="verbose"/>
@@ -717,9 +741,9 @@
         <script language="javascript">
             <![CDATA[
                 function isTrue(prop) {
-                    return prop != null &&
+                    return prop != null && 
                        (prop.toLowerCase()=="true" || prop.toLowerCase()=="yes" || prop.toLowerCase()=="on");
-                }
+                }                    
                 function prefix(s, len) {
                     if(s == null || len <= 0 || s.length == 0) {
                         return new String("");
@@ -943,7 +967,7 @@
         </script>
     </target>
 
-  <target name="-post-build-native-cleanup">
+    <target name="-post-build-native-cleanup">
         <delete file="${dist.dir}/${application.title}.html" quiet="true"/>
         <delete file="${dist.dir}/${application.title}.jnlp" quiet="true"/>
         <delete file="${dist.dir}/${application.title}_browser.jnlp" quiet="true"/>

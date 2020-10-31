@@ -23,6 +23,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.text.Normalizer;
+
 /**
  * NotationMovesTableModel.
  *
@@ -143,7 +144,7 @@ public class NotationMovesTableModel extends AbstractTableModel
         } else if (column == 1 || column == 2) {
             return backboneRows[row][column];
         } else {
-            String tt = model.getMoveToken((Move) backboneRows[row][column]);
+            String tt = model.getAllMoveTokens((Move) backboneRows[row][column]);
             return (tt == null) ? "" : tt;
         }
     }
@@ -161,9 +162,9 @@ public class NotationMovesTableModel extends AbstractTableModel
                 model.setMoveSupported((Move) backboneRows[row][i], b);
             }
         } else if (column > 2) {
-            model.setMoveToken((Move) backboneRows[row][column],//
+            model.setAllMoveTokens((Move) backboneRows[row][column],//
                     (value == null) ? null : Normalizer.normalize((String) value, Normalizer.Form.NFC)//
-                    );
+            );
         }
     }
 

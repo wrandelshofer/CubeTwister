@@ -145,7 +145,9 @@ public abstract class AbstractPocketCubeIdx3D extends AbstractCubeIdx3D {
          */
         idx3d_Object object3D = idx3d_ObjectFactory.SPHERE(9, 18);
         object3D.material = new idx3d_InternalMaterial();
-        parts[centerOffset] = object3D;
+        idx3d_Group group = new idx3d_Group();
+        group.addChild(object3D);
+        parts[centerOffset] = group;
     }
 
     protected void initTransforms() {
@@ -222,7 +224,7 @@ public abstract class AbstractPocketCubeIdx3D extends AbstractCubeIdx3D {
     protected abstract void initActions(idx3d_Scene scene);
 
     @Override
-    protected float getUnitScaleFactor() {
+    public float getUnitScaleFactor() {
         return 0.019f * 54f / (PART_LENGTH * layerCount);
     }
 

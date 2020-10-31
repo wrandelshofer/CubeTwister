@@ -9,23 +9,25 @@ import nanoxml.XMLElement;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.Iterator;
-import java.util.Vector;
 
 /**
  * XMLPreorderIterator.
  *
  * @author Werner Randelshofer
  */
-public class XMLPreorderIterator implements Iterator {
-	private Deque<Iterator> stack;
+public class XMLPreorderIterator implements Iterator<XMLElement> {
+    private final Deque<Iterator<XMLElement>> stack;
 
-    /** Creates a new instance. */
+    /**
+     * Creates a new instance.
+     */
     public XMLPreorderIterator(XMLElement rootNode) {
-	    Vector<XMLElement> v = new Vector<XMLElement>(1);
-        v.addElement(rootNode);
-        stack = new ArrayDeque<Iterator>();
+        var v = new ArrayList<XMLElement>(1);
+        v.add(rootNode);
+        stack = new ArrayDeque<>();
         stack.add(v.iterator());
     }
 
@@ -35,18 +37,17 @@ public class XMLPreorderIterator implements Iterator {
     }
 
     @Nonnull
-    public Object next() {
-        Iterator enu = stack.getLast();
-        XMLElement node = (XMLElement) enu.next();
-        Iterator children = node.getChildren().iterator();
-
-        if (!enu.hasNext()) {
+    public XMLElement next() {
+        var iter = stack.getLast();
+        var node = iter.next();
+        var children = node.getChildren().iterator();
+        if (!iter.hasNext()) {
             stack.removeLast();
         }
         if (children.hasNext()) {
             stack.add(children);
         }
-	    return node;
+        return node;
 	}
 
     public void remove() {

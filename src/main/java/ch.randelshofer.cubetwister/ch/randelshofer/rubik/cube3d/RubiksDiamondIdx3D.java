@@ -8,7 +8,9 @@ package ch.randelshofer.rubik.cube3d;
 import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
+import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
+import idx3d.idx3d_Node;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
@@ -50,11 +52,14 @@ public class RubiksDiamondIdx3D extends AbstractRubiksCubeIdx3D {
         0,  // up
     };
 
-    /** Creates a new instance. */
+    /**
+     * Creates a new instance.
+     */
     public RubiksDiamondIdx3D() {
     }
+
     @Override
-    protected float getUnitScaleFactor() {
+    public float getUnitScaleFactor() {
         return super.getUnitScaleFactor() * 1.5f;
     }
 
@@ -183,7 +188,9 @@ public class RubiksDiamondIdx3D extends AbstractRubiksCubeIdx3D {
             object3D.triangle(3).setTriangleMaterial(sticker);
             object3D.triangle(4).setTriangleMaterial(sticker);
             object3D.triangle(5).setTriangleMaterial(sticker);
-            parts[cornerOffset+k] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[cornerOffset + k] = group;
         }
     }
   @Override
@@ -294,14 +301,16 @@ public class RubiksDiamondIdx3D extends AbstractRubiksCubeIdx3D {
                     );
                 }
             }
-            object3D.material = new idx3d_InternalMaterial();
-            idx3d_InternalMaterial sticker = new idx3d_InternalMaterial();
-            object3D.triangle(0).setTriangleMaterial(sticker);
-            object3D.triangle(1).setTriangleMaterial(sticker);
-            //sticker = new idx3d_InternalMaterial();
-            object3D.triangle(2).setTriangleMaterial(sticker);
-            object3D.triangle(3).setTriangleMaterial(sticker);
-            parts[edgeOffset+k] = object3D;
+          object3D.material = new idx3d_InternalMaterial();
+          idx3d_InternalMaterial sticker = new idx3d_InternalMaterial();
+          object3D.triangle(0).setTriangleMaterial(sticker);
+          object3D.triangle(1).setTriangleMaterial(sticker);
+          //sticker = new idx3d_InternalMaterial();
+          object3D.triangle(2).setTriangleMaterial(sticker);
+          object3D.triangle(3).setTriangleMaterial(sticker);
+          idx3d_Group group = new idx3d_Group();
+          group.addChild(object3D);
+          parts[edgeOffset + k] = group;
         }
     }
     /**
@@ -416,17 +425,19 @@ public class RubiksDiamondIdx3D extends AbstractRubiksCubeIdx3D {
             }
 
           cylinder = idx3d_ObjectFactory.CYLINDER(8f, 4.5f, 12, true, false);
-            cylinder.rotate((float) (Math.PI / 2), 0f, 0f);
-            cylinder.shift(0f, 0f, -5f);
-            cylinder.matrixMeltdown();
+          cylinder.rotate((float) (Math.PI / 2), 0f, 0f);
+          cylinder.shift(0f, 0f, -5f);
+          cylinder.matrixMeltdown();
 
           object3D.incorporateGeometry(cylinder);
-            object3D.material = new idx3d_InternalMaterial();
-            idx3d_InternalMaterial sticker1 = new idx3d_InternalMaterial();
-            object3D.triangle(0).setTriangleMaterial(sticker1);
-            object3D.triangle(1).setTriangleMaterial(sticker1);
+          object3D.material = new idx3d_InternalMaterial();
+          idx3d_InternalMaterial sticker1 = new idx3d_InternalMaterial();
+          object3D.triangle(0).setTriangleMaterial(sticker1);
+          object3D.triangle(1).setTriangleMaterial(sticker1);
 
-          parts[sideOffset+k] = object3D;
+          idx3d_Group group = new idx3d_Group();
+          group.addChild(object3D);
+          parts[sideOffset + k] = group;
         }
     }
 
@@ -517,18 +528,19 @@ public class RubiksDiamondIdx3D extends AbstractRubiksCubeIdx3D {
                         index, j, getStickerIndexForPart(index, 0)
                 );
 
-                scene.addMouseListener(parts[index].triangle(j*2), action);
-                scene.addMouseListener(parts[index].triangle(j*2+1), action);
+                idx3d_Object obj = (idx3d_Object) parts[index].getChild(0);
+                scene.addMouseListener(obj.triangle(j * 2), action);
+                scene.addMouseListener(obj.triangle(j * 2 + 1), action);
                 switch (j) {
-                    case 0:
-                        //scene.addSwipeListener(parts[index].triangle(j * 2), new SwipeAction(index, 1, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f)));
-                        //scene.addSwipeListener(parts[index].triangle(j * 2 + 1), new SwipeAction(index, 1, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f)));
-                        break;
-                    case 1:
-                     //   scene.addSwipeListener(parts[index].triangle(j * 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f + Math.PI / 4f)));
+                case 0:
+                    //scene.addSwipeListener(parts[index].triangle(j * 2), new SwipeAction(index, 1, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f)));
+                    //scene.addSwipeListener(parts[index].triangle(j * 2 + 1), new SwipeAction(index, 1, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f)));
+                    break;
+                case 1:
+                    //   scene.addSwipeListener(parts[index].triangle(j * 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f + Math.PI / 4f)));
                     //    scene.addSwipeListener(parts[index].triangle(j * 2 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f)));
-                        break;
-                    case 2:
+                    break;
+                case 2:
                    //     scene.addSwipeListener(parts[index].triangle(j * 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f)));
                     //    scene.addSwipeListener(parts[index].triangle(j * 2 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f)));
                         break;
@@ -541,19 +553,20 @@ public class RubiksDiamondIdx3D extends AbstractRubiksCubeIdx3D {
             int index = edgeOffset + i;
             for (j=0; j < 2; j++) {
                 action = new PartAction(
-                index, j, getStickerIndexForPart(index, 0)
+                        index, j, getStickerIndexForPart(index, 0)
                 );
-                    scene.addMouseListener(parts[index].triangle(j*2), action);
-                    scene.addMouseListener(parts[index].triangle(j*2+1), action);
+                idx3d_Object obj = (idx3d_Object) parts[index].getChild(0);
+                scene.addMouseListener(obj.triangle(j * 2), action);
+                scene.addMouseListener(obj.triangle(j * 2 + 1), action);
                 switch (j) {
-                    case 0:
-                        scene.addSwipeListener(parts[index].triangle(j * 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f)));
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f)));
-                        break;
-                    case 1:
-                        scene.addSwipeListener(parts[index].triangle(j * 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f)));
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f)));
-                        break;
+                case 0:
+                    scene.addSwipeListener(obj.triangle(j * 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f)));
+                    scene.addSwipeListener(obj.triangle(j * 2 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f)));
+                    break;
+                case 1:
+                    scene.addSwipeListener(obj.triangle(j * 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f)));
+                    scene.addSwipeListener(obj.triangle(j * 2 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f)));
+                    break;
                 }
             }
         }
@@ -562,22 +575,23 @@ public class RubiksDiamondIdx3D extends AbstractRubiksCubeIdx3D {
         for (i=0; i < 6; i++) {
             int index = sideOffset + i;
             action = new PartAction(
-            index, 0, getStickerIndexForPart(index, 0)
+                    index, 0, getStickerIndexForPart(index, 0)
             );
 
-            scene.addMouseListener(parts[sideOffset+i].triangle(0), action);
-            scene.addMouseListener(parts[sideOffset+i].triangle(1), action);
-            scene.addSwipeListener(parts[index].triangle(0), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI / 2f + Math.PI / 4f)));
-            scene.addSwipeListener(parts[index].triangle(1), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) Math.PI / 2f));
+            idx3d_Object obj = (idx3d_Object) parts[index].getChild(0);
+            scene.addMouseListener(obj.triangle(0), action);
+            scene.addMouseListener(obj.triangle(1), action);
+            scene.addSwipeListener(obj.triangle(0), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI / 2f + Math.PI / 4f)));
+            scene.addSwipeListener(obj.triangle(1), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) Math.PI / 2f));
         }
 
         for (i=0; i < 27; i++) {
             action = new PartAction(
-            i, -1, -1
+                    i, -1, -1
             );
-
-            scene.addMouseListener(parts[i], action);
-
+            for (idx3d_Node child : parts[i].children()) {
+                scene.addMouseListener((idx3d_Object) child, action);
+            }
         }
     }
 

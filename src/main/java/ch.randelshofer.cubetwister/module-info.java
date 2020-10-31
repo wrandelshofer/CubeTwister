@@ -10,6 +10,7 @@ module ch.randelshofer.cubetwister {
     exports ch.randelshofer.rubik;
     exports ch.randelshofer.geom3d;
     exports ch.randelshofer.rubik.parser;
+    exports ch.randelshofer.rubik.cube;
     exports ch.randelshofer.rubik.notation;
     exports ch.randelshofer.io;
 }

@@ -8,8 +8,10 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>CubeTwister</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
+            <explicit-platform explicit-source-supported="true"/>
             <source-roots>
                 <root id="src.ch.randelshofer.cubetwister.dir"/>
+                <root id="src.org.kociemba.twophase.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>

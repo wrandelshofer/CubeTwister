@@ -20,7 +20,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -262,11 +264,16 @@ public class NotationModel extends InfoModel implements Notation {
         }
     }
 
+    public List<String> getMoveTokens(Move s) {
+        String tokens = twistToTokenMap.get(s);
+        return tokens == null ? Collections.emptyList() : Arrays.asList(tokens.split(" +"));
+    }
+
     public String getAllMoveTokens(Move key) {
         return twistToTokenMap.get(key);
     }
 
-    public void setMoveToken(final Move key, @Nullable String newValue) {
+    public void setAllMoveTokens(final Move key, @Nullable String newValue) {
         String oldValue = twistToTokenMap.get(key);
         basicSetMoveToken(key, newValue);
         if (oldValue != newValue &&
@@ -434,7 +441,7 @@ public class NotationModel extends InfoModel implements Notation {
     }
 
     @Override
-    public Move getMoveFromToken(String moveToken) {
+    public @Nullable Move getMoveFromToken(String moveToken) {
         return getTokenToTwistMap().get(moveToken);
     }
 

@@ -46,79 +46,90 @@ public final class idx3d_Math {
     private static float cosinus[];
     private static boolean trig = false;
     public static float pi = 3.1415926535f;
-	private static float rad2scale=4096f/3.14159265f/2f;
-	private static float pad=256*3.14159265f;
-	
-	private static int[] fastRandoms;
-	private static int fastRndPointer=0;
-	private static boolean fastRndInit=false;
-	
-	// A L L O W  NO  I N S T A N C E S
-	
-		private idx3d_Math() {}
-	
-	// T R I G O N O M E T R Y
-	
-		public static final float deg2rad(float deg)
-		{
-			return deg*0.0174532925194f;
-		}
-		
-		public static final float rad2deg(float rad)
-		{
-			return rad*57.295779514719f;
-		}
-		
-		public static final float sin(float angle)
-		{
-			if(!trig) buildTrig();
-			return sinus[(int)((angle+pad)*rad2scale)&0xFFF];
-		}
-	
-		public static final float cos(float angle)
-		{
-			if(!trig) buildTrig();
-			return cosinus[(int)((angle+pad)*rad2scale)&0xFFF];
-		}
-	
-		private static void buildTrig()
-		{
-                    if (idx3d_Scene.VERBOSE) {
-			System.out.println(">> Building idx3d_Math LUT");
-                    }
-			sinus=new float[4096];
-			cosinus=new float[4096];
-		
-			for (int i=0;i<4096;i++)
-			{
-				sinus[i]=(float)Math.sin((float)i/rad2scale);
-				cosinus[i]=(float)Math.cos((float)i/rad2scale);
-			}
-			trig=true;
-		}
-		
-		public static final float pythagoras(float a, float b)
-		{
-			return (float)Math.sqrt(a*a+b*b);
-		}
-		
-		public static final int pythagoras(int a, int b)
-		{
-			return (int)Math.sqrt(a*a+b*b);
-		}
-		
+    private static float rad2scale = 4096f / 3.14159265f / 2f;
+    private static float pad = 256 * 3.14159265f;
 
-	// R A N G E  T O O L S
-	
-		public static final int crop(int num, int min, int max)
-		{
-			return (num<min)?min:(num>max)?max:num;
-		}
-		
-		public static final float crop(float num, float min, float max)
-		{
-            return (num < min) ? min : (num > max) ? max : num;
+    private static int[] fastRandoms;
+    private static int fastRndPointer = 0;
+    private static boolean fastRndInit = false;
+
+    // A L L O W  NO  I N S T A N C E S
+
+    private idx3d_Math() {
+    }
+
+    // T R I G O N O M E T R Y
+
+    public static final float deg2rad(float deg) {
+        return deg * 0.0174532925194f;
+    }
+
+    public static final float rad2deg(float rad) {
+        return rad * 57.295779514719f;
+    }
+
+    public static final float sin(float angle) {
+        if (!trig) {
+            buildTrig();
         }
+        return sinus[(int) ((angle + pad) * rad2scale) & 0xFFF];
+    }
+
+    public static final float cos(float angle) {
+        if (!trig) {
+            buildTrig();
+        }
+        return cosinus[(int) ((angle + pad) * rad2scale) & 0xFFF];
+    }
+
+    private static void buildTrig() {
+        if (idx3d_Scene.VERBOSE) {
+            System.out.println(">> Building idx3d_Math LUT");
+        }
+        sinus = new float[4096];
+        cosinus = new float[4096];
+
+        for (int i = 0; i < 4096; i++) {
+            switch (i) {
+            case 1024:
+                sinus[i] = 1.0f;
+                cosinus[i] = 0.0f;
+                break;
+            case 2048:
+                sinus[i] = 0.0f;
+                cosinus[i] = -1.0f;
+                break;
+            case 3072:
+                sinus[i] = -1.0f;
+                cosinus[i] = 0.0f;
+                break;
+            default:
+                sinus[i] = (float) Math.sin((float) i / rad2scale);
+                cosinus[i] = (float) Math.cos((float) i / rad2scale);
+                break;
+            }
+        }
+        trig = true;
+    }
+
+    public static final float pythagoras(float a, float b) {
+        return (float) Math.sqrt(a * a + b * b);
+    }
+
+    public static final int pythagoras(int a, int b) {
+        return (int) Math.sqrt(a * a + b * b);
+    }
+
+
+    // R A N G E  T O O L S
+
+    public static final int crop(int num, int min, int max) {
+        return (num < min) ? min : (num > max) ? max : num;
+    }
+
+    public static final float crop(float num, float min, float max) {
+        return (num < min) ? min : (num > max) ? max : num;
+    }
 
     public static final boolean inrange(int num, int min, int max) {
         return ((num >= min) && (num < max));
@@ -135,34 +146,35 @@ public final class idx3d_Math {
         while (cleared < size) {
             System.arraycopy(buffer, 0, buffer, index, cleared);
             size -= cleared;
-				index+=cleared;
-				cleared<<=1;
-			}
-			System.arraycopy(buffer,0,buffer,index,size);
-		}
-		/*
-		public static final void clearBuffer(short[] buffer, short value)
-		{
-			int size=buffer.length-1;
-			int cleared=1;
-			int index=1;
-			buffer[0]=value;
-
-			while (cleared<size)
-			{
-				System.arraycopy(buffer,0,buffer,index,cleared);
-				size-=cleared;
-				index+=cleared;
-				cleared<<=1;
-			}
-			System.arraycopy(buffer,0,buffer,index,size);
-		}
-                */
-        public static final void cropBuffer(@Nonnull int[] buffer, int min, int max) {
-            for (int i = buffer.length - 1; i >= 0; i--) {
-                buffer[i] = crop(buffer[i], min, max);
-            }
+            index += cleared;
+            cleared <<= 1;
         }
+        System.arraycopy(buffer, 0, buffer, index, size);
+    }
+
+    /*
+    public static final void clearBuffer(short[] buffer, short value)
+    {
+        int size=buffer.length-1;
+        int cleared=1;
+        int index=1;
+        buffer[0]=value;
+
+        while (cleared<size)
+        {
+            System.arraycopy(buffer,0,buffer,index,cleared);
+            size-=cleared;
+            index+=cleared;
+            cleared<<=1;
+        }
+        System.arraycopy(buffer,0,buffer,index,size);
+    }
+            */
+    public static final void cropBuffer(@Nonnull int[] buffer, int min, int max) {
+        for (int i = buffer.length - 1; i >= 0; i--) {
+            buffer[i] = crop(buffer[i], min, max);
+        }
+    }
 
     public static final void copyBuffer(@Nonnull int[] source, @Nonnull int[] target) {
         System.arraycopy(source, 0, target, 0, crop(source.length, 0, target.length));
@@ -172,41 +184,38 @@ public final class idx3d_Math {
     // R A N D O M  N U M B E R S
 
     public static final float random() {
-			return (float)(Math.random()*2-1);
-		}
-	
-		public static final float random(float min, float max)
-		{
-			return (float)(Math.random()*(max-min)+min);
-		}
-		
-		public static final float randomWithDelta(float averidge, float delta)
-		{
-			return averidge+random()*delta;
-		}
-				
-		public static final int fastRnd(int bits)
-		{
-			if (bits<1) return 0;
-			fastRndPointer=(fastRndPointer+1)&31;
-			if (!fastRndInit)
-			{
-				fastRandoms=new int[32];
-				for (int i=0;i<32;i++) fastRandoms[i]=(int)random(0,0xFFFFFF);
-				fastRndInit=true;
-			}		
-			return fastRandoms[fastRndPointer]&(1<<(bits-1));
-		}
-		
-		public static final int fastRndBit()
-		{
-			return fastRnd(1);
-		}
-		
-		public static final float interpolate(float a, float b, float d)
-		{
-			float f=(1-cos(d*pi))*0.5f;
-			return a+f*(b-a);
-		}
-			
+        return (float) (Math.random() * 2 - 1);
+    }
+
+    public static final float random(float min, float max) {
+        return (float) (Math.random() * (max - min) + min);
+    }
+
+    public static final float randomWithDelta(float averidge, float delta) {
+        return averidge + random() * delta;
+    }
+
+    public static final int fastRnd(int bits) {
+        if (bits < 1) {
+            return 0;
+        }
+        fastRndPointer = (fastRndPointer + 1) & 31;
+        if (!fastRndInit) {
+            fastRandoms = new int[32];
+            for (int i = 0; i < 32; i++)
+                fastRandoms[i] = (int) random(0, 0xFFFFFF);
+            fastRndInit = true;
+        }
+        return fastRandoms[fastRndPointer] & (1 << (bits - 1));
+    }
+
+    public static final int fastRndBit() {
+        return fastRnd(1);
+    }
+
+    public static final float interpolate(float a, float b, float d) {
+        float f = (1 - cos(d * pi)) * 0.5f;
+        return a + f * (b - a);
+    }
+
 }

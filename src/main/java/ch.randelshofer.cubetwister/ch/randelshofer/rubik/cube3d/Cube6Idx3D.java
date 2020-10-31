@@ -8,7 +8,9 @@ import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
 import ch.randelshofer.rubik.cube.Cube6;
+import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
+import idx3d.idx3d_Node;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_Scene;
 import idx3d.idx3d_Triangle;
@@ -140,7 +142,9 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
             sticker = new idx3d_InternalMaterial();
             object3D.triangle(4).setTriangleMaterial(sticker);
             object3D.triangle(5).setTriangleMaterial(sticker);
-            parts[cornerOffset + part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[cornerOffset + part] = group;
         }
         initCornerUVMap();
     }
@@ -190,72 +194,75 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
      */
     protected void initCornerUVMap() {
         for (int part = 0; part < 8; part++) {
-            idx3d_Object object3D = parts[cornerOffset + part];
+            idx3d_Group group = parts[cornerOffset + part];
+            idx3d_Object stickerR = (idx3d_Object) group.getChild(0);
+            idx3d_Object stickerU = (idx3d_Object) group.getChild(1);
+            idx3d_Object stickerF = (idx3d_Object) group.getChild(2);
             switch (part) {
-                case 0: // up right front
-                    object3D.triangle(0).setUV(ss * 12 - bevel, ss * 6 - bevel, ss * 12 - bevel, ss * 5 + bevel, ss * 11 + bevel, ss * 5 + bevel);
-                    object3D.triangle(1).setUV(ss * 12 - bevel, ss * 6 - bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 11 + bevel, ss * 6 - bevel);
-                    object3D.triangle(2).setUV(ss * 12 + bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 6 + bevel);
-                    object3D.triangle(3).setUV(ss * 12 + bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 6 + bevel, ss * 12 + bevel, ss * 6 + bevel);
-                    object3D.triangle(4).setUV(ss * 11 + bevel, ss * 7 - bevel, ss * 12 - bevel, ss * 7 - bevel, ss * 12 - bevel, ss * 6 + bevel);
-                    object3D.triangle(5).setUV(ss * 11 + bevel, ss * 7 - bevel, ss * 12 - bevel, ss * 6 + bevel, ss * 11 + bevel, ss * 6 + bevel);
-                    break;
-                case 1: // down front right
-                    object3D.triangle(0).setUV(ss * 12 - bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 13 - bevel);
-                    object3D.triangle(1).setUV(ss * 12 - bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 13 - bevel, ss * 12 - bevel, ss * 13 - bevel);
-                    object3D.triangle(2).setUV(ss * 12 - bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 12 - bevel);
-                    object3D.triangle(3).setUV(ss * 12 - bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 12 - bevel, ss * 12 - bevel, ss * 12 - bevel);
-                    object3D.triangle(4).setUV(ss * 13 - bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 12 - bevel);
-                    object3D.triangle(5).setUV(ss * 13 - bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 12 - bevel, ss * 13 - bevel, ss * 12 - bevel);
-                    break;
-                case 2: // up back right
-                    object3D.triangle(0).setUV(ss * 12 - bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 1 - bevel);
-                    object3D.triangle(1).setUV(ss * 12 - bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 1 - bevel, ss * 12 - bevel, ss * 1 - bevel);
-                    object3D.triangle(2).setUV(ss * 12 + bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 12 + bevel);
-                    object3D.triangle(3).setUV(ss * 12 + bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 12 + bevel, ss * 12 + bevel, ss * 12 + bevel);
-                    object3D.triangle(4).setUV(ss * 17 + bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 6 + bevel);
-                    object3D.triangle(5).setUV(ss * 17 + bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 6 + bevel, ss * 17 + bevel, ss * 6 + bevel);
-                    break;
-                case 3: // down right back
-                    object3D.triangle(0).setUV(ss * 12 - bevel, ss * 18 - bevel, ss * 12 - bevel, ss * 17 + bevel, ss * 11 + bevel, ss * 17 + bevel);
-                    object3D.triangle(1).setUV(ss * 12 - bevel, ss * 18 - bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 11 + bevel, ss * 18 - bevel);
-                    object3D.triangle(2).setUV(ss * 18 - bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 12 - bevel);
-                    object3D.triangle(3).setUV(ss * 18 - bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 12 - bevel, ss * 18 - bevel, ss * 12 - bevel);
-                    object3D.triangle(4).setUV(ss * 13 - bevel, ss * 17 + bevel, ss * 12 + bevel, ss * 17 + bevel, ss * 12 + bevel, ss * 18 - bevel);
-                    object3D.triangle(5).setUV(ss * 13 - bevel, ss * 17 + bevel, ss * 12 + bevel, ss * 18 - bevel, ss * 13 - bevel, ss * 18 - bevel);
-                    break;
-                case 4: // up left back
-                    object3D.triangle(0).setUV(ss * 6 + bevel, ss * 0 + bevel, ss * 6 + bevel, ss * 1 - bevel, ss * 7 - bevel, ss * 1 - bevel);
-                    object3D.triangle(1).setUV(ss * 6 + bevel, ss * 0 + bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 7 - bevel, ss * 0 + bevel);
-                    object3D.triangle(2).setUV(ss * 0 + bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 6 + bevel);
-                    object3D.triangle(3).setUV(ss * 0 + bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 6 + bevel, ss * 0 + bevel, ss * 6 + bevel);
-                    object3D.triangle(4).setUV(ss * 17 + bevel, ss * 13 - bevel, ss * 18 - bevel, ss * 13 - bevel, ss * 18 - bevel, ss * 12 + bevel);
-                    object3D.triangle(5).setUV(ss * 17 + bevel, ss * 13 - bevel, ss * 18 - bevel, ss * 12 + bevel, ss * 17 + bevel, ss * 12 + bevel);
-                    break;
-                case 5: // down back left
-                    object3D.triangle(0).setUV(ss * 6 + bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 17 + bevel);
-                    object3D.triangle(1).setUV(ss * 6 + bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 17 + bevel, ss * 6 + bevel, ss * 17 + bevel);
-                    object3D.triangle(2).setUV(ss * 18 - bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 18 - bevel);
-                    object3D.triangle(3).setUV(ss * 18 - bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 18 - bevel, ss * 18 - bevel, ss * 18 - bevel);
-                    object3D.triangle(4).setUV(ss * 1 - bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 12 - bevel);
-                    object3D.triangle(5).setUV(ss * 1 - bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 12 - bevel, ss * 1 - bevel, ss * 12 - bevel);
-                    break;
-                case 6: // up front left
-                    object3D.triangle(0).setUV(ss * 6 + bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 5 + bevel);
-                    object3D.triangle(1).setUV(ss * 6 + bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 5 + bevel, ss * 6 + bevel, ss * 5 + bevel);
-                    object3D.triangle(2).setUV(ss * 6 + bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 6 + bevel);
-                    object3D.triangle(3).setUV(ss * 6 + bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 6 + bevel, ss * 6 + bevel, ss * 6 + bevel);
-                    object3D.triangle(4).setUV(ss * 5 + bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 6 + bevel);
-                    object3D.triangle(5).setUV(ss * 5 + bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 6 + bevel, ss * 5 + bevel, ss * 6 + bevel);
-                    break;
-                case 7: // down left front
-                    object3D.triangle(0).setUV(ss * 6 + bevel, ss * 12 + bevel, ss * 6 + bevel, ss * 13 - bevel, ss * 7 - bevel, ss * 13 - bevel);
-                    object3D.triangle(1).setUV(ss * 6 + bevel, ss * 12 + bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 7 - bevel, ss * 12 + bevel);
-                    object3D.triangle(2).setUV(ss * 6 - bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 12 - bevel);
-                    object3D.triangle(3).setUV(ss * 6 - bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 12 - bevel, ss * 6 - bevel, ss * 12 - bevel);
-                    object3D.triangle(4).setUV(ss * 7 - bevel, ss * 11 + bevel, ss * 6 + bevel, ss * 11 + bevel, ss * 6 + bevel, ss * 12 - bevel);
-                    object3D.triangle(5).setUV(ss * 7 - bevel, ss * 11 + bevel, ss * 6 + bevel, ss * 12 - bevel, ss * 7 - bevel, ss * 12 - bevel);
-                    break;
+            case 0: // up right front
+                stickerR.triangle(0).setUV(ss * 12 - bevel, ss * 6 - bevel, ss * 12 - bevel, ss * 5 + bevel, ss * 11 + bevel, ss * 5 + bevel);
+                stickerR.triangle(1).setUV(ss * 12 - bevel, ss * 6 - bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 11 + bevel, ss * 6 - bevel);
+                stickerU.triangle(0).setUV(ss * 12 + bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 6 + bevel);
+                stickerU.triangle(1).setUV(ss * 12 + bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 6 + bevel, ss * 12 + bevel, ss * 6 + bevel);
+                stickerF.triangle(0).setUV(ss * 11 + bevel, ss * 7 - bevel, ss * 12 - bevel, ss * 7 - bevel, ss * 12 - bevel, ss * 6 + bevel);
+                stickerF.triangle(1).setUV(ss * 11 + bevel, ss * 7 - bevel, ss * 12 - bevel, ss * 6 + bevel, ss * 11 + bevel, ss * 6 + bevel);
+                break;
+            case 1: // down front right
+                stickerR.triangle(0).setUV(ss * 12 - bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 13 - bevel);
+                stickerR.triangle(1).setUV(ss * 12 - bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 13 - bevel, ss * 12 - bevel, ss * 13 - bevel);
+                stickerU.triangle(0).setUV(ss * 12 - bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 12 - bevel);
+                stickerU.triangle(1).setUV(ss * 12 - bevel, ss * 11 + bevel, ss * 11 + bevel, ss * 12 - bevel, ss * 12 - bevel, ss * 12 - bevel);
+                stickerF.triangle(0).setUV(ss * 13 - bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 12 - bevel);
+                stickerF.triangle(1).setUV(ss * 13 - bevel, ss * 11 + bevel, ss * 12 + bevel, ss * 12 - bevel, ss * 13 - bevel, ss * 12 - bevel);
+                break;
+            case 2: // up back right
+                stickerR.triangle(0).setUV(ss * 12 - bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 1 - bevel);
+                stickerR.triangle(1).setUV(ss * 12 - bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 1 - bevel, ss * 12 - bevel, ss * 1 - bevel);
+                stickerU.triangle(0).setUV(ss * 12 + bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 12 + bevel);
+                stickerU.triangle(1).setUV(ss * 12 + bevel, ss * 13 - bevel, ss * 13 - bevel, ss * 12 + bevel, ss * 12 + bevel, ss * 12 + bevel);
+                stickerF.triangle(0).setUV(ss * 17 + bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 6 + bevel);
+                stickerF.triangle(1).setUV(ss * 17 + bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 6 + bevel, ss * 17 + bevel, ss * 6 + bevel);
+                break;
+            case 3: // down right back
+                stickerR.triangle(0).setUV(ss * 12 - bevel, ss * 18 - bevel, ss * 12 - bevel, ss * 17 + bevel, ss * 11 + bevel, ss * 17 + bevel);
+                stickerR.triangle(1).setUV(ss * 12 - bevel, ss * 18 - bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 11 + bevel, ss * 18 - bevel);
+                stickerU.triangle(0).setUV(ss * 18 - bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 12 - bevel);
+                stickerU.triangle(1).setUV(ss * 18 - bevel, ss * 11 + bevel, ss * 17 + bevel, ss * 12 - bevel, ss * 18 - bevel, ss * 12 - bevel);
+                stickerF.triangle(0).setUV(ss * 13 - bevel, ss * 17 + bevel, ss * 12 + bevel, ss * 17 + bevel, ss * 12 + bevel, ss * 18 - bevel);
+                stickerF.triangle(1).setUV(ss * 13 - bevel, ss * 17 + bevel, ss * 12 + bevel, ss * 18 - bevel, ss * 13 - bevel, ss * 18 - bevel);
+                break;
+            case 4: // up left back
+                stickerR.triangle(0).setUV(ss * 6 + bevel, ss * 0 + bevel, ss * 6 + bevel, ss * 1 - bevel, ss * 7 - bevel, ss * 1 - bevel);
+                stickerR.triangle(1).setUV(ss * 6 + bevel, ss * 0 + bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 7 - bevel, ss * 0 + bevel);
+                stickerU.triangle(0).setUV(ss * 0 + bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 6 + bevel);
+                stickerU.triangle(1).setUV(ss * 0 + bevel, ss * 7 - bevel, ss * 1 - bevel, ss * 6 + bevel, ss * 0 + bevel, ss * 6 + bevel);
+                stickerF.triangle(0).setUV(ss * 17 + bevel, ss * 13 - bevel, ss * 18 - bevel, ss * 13 - bevel, ss * 18 - bevel, ss * 12 + bevel);
+                stickerF.triangle(1).setUV(ss * 17 + bevel, ss * 13 - bevel, ss * 18 - bevel, ss * 12 + bevel, ss * 17 + bevel, ss * 12 + bevel);
+                break;
+            case 5: // down back left
+                stickerR.triangle(0).setUV(ss * 6 + bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 17 + bevel);
+                stickerR.triangle(1).setUV(ss * 6 + bevel, ss * 18 - bevel, ss * 7 - bevel, ss * 17 + bevel, ss * 6 + bevel, ss * 17 + bevel);
+                stickerU.triangle(0).setUV(ss * 18 - bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 18 - bevel);
+                stickerU.triangle(1).setUV(ss * 18 - bevel, ss * 17 + bevel, ss * 17 + bevel, ss * 18 - bevel, ss * 18 - bevel, ss * 18 - bevel);
+                stickerF.triangle(0).setUV(ss * 1 - bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 12 - bevel);
+                stickerF.triangle(1).setUV(ss * 1 - bevel, ss * 11 + bevel, ss * 0 + bevel, ss * 12 - bevel, ss * 1 - bevel, ss * 12 - bevel);
+                break;
+            case 6: // up front left
+                stickerR.triangle(0).setUV(ss * 6 + bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 5 + bevel);
+                stickerR.triangle(1).setUV(ss * 6 + bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 5 + bevel, ss * 6 + bevel, ss * 5 + bevel);
+                stickerU.triangle(0).setUV(ss * 6 + bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 6 + bevel);
+                stickerU.triangle(1).setUV(ss * 6 + bevel, ss * 7 - bevel, ss * 7 - bevel, ss * 6 + bevel, ss * 6 + bevel, ss * 6 + bevel);
+                stickerF.triangle(0).setUV(ss * 5 + bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 6 + bevel);
+                stickerF.triangle(1).setUV(ss * 5 + bevel, ss * 7 - bevel, ss * 6 - bevel, ss * 6 + bevel, ss * 5 + bevel, ss * 6 + bevel);
+                break;
+            case 7: // down left front
+                stickerR.triangle(0).setUV(ss * 6 + bevel, ss * 12 + bevel, ss * 6 + bevel, ss * 13 - bevel, ss * 7 - bevel, ss * 13 - bevel);
+                stickerR.triangle(1).setUV(ss * 6 + bevel, ss * 12 + bevel, ss * 7 - bevel, ss * 13 - bevel, ss * 7 - bevel, ss * 12 + bevel);
+                stickerU.triangle(0).setUV(ss * 6 - bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 12 - bevel);
+                stickerU.triangle(1).setUV(ss * 6 - bevel, ss * 11 + bevel, ss * 5 + bevel, ss * 12 - bevel, ss * 6 - bevel, ss * 12 - bevel);
+                stickerF.triangle(0).setUV(ss * 7 - bevel, ss * 11 + bevel, ss * 6 + bevel, ss * 11 + bevel, ss * 6 + bevel, ss * 12 - bevel);
+                stickerF.triangle(1).setUV(ss * 7 - bevel, ss * 11 + bevel, ss * 6 + bevel, ss * 12 - bevel, ss * 7 - bevel, ss * 12 - bevel);
+                break;
             }
         }
     }
@@ -344,7 +351,9 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
             sticker = new idx3d_InternalMaterial();
             object3D.triangle(2).setTriangleMaterial(sticker);
             object3D.triangle(3).setTriangleMaterial(sticker);
-            parts[edgeOffset + part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[edgeOffset + part] = group;
         }
         initEdgeUVMap();
     }
@@ -394,17 +403,19 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
      */
     protected void initEdgeUVMap() {
         for (int part = 0; part < edgeCount; part++) {
-            idx3d_Object object3D = parts[edgeOffset + part];
+            idx3d_Group group = parts[edgeOffset + part];
+            idx3d_Object stickerR = (idx3d_Object) group.getChild(0);
+            idx3d_Object stickerU = (idx3d_Object) group.getChild(1);
             //int m = part / 12;
             int m;
             switch (part % 24) {
-                case 12:
-                case 13:
-                case 2:
-                case 3:
-                case 4:
-                case 17:
-                case 6:
+            case 12:
+            case 13:
+            case 2:
+            case 3:
+            case 4:
+            case 17:
+            case 6:
                 case 19:
                 case 20:
                 case 21:
@@ -417,84 +428,78 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
                     break;
             }
             switch (part % 12) {
-                case 0: // up right
-                    object3D.triangle(0).setUV(ss * 12 - bevel, ss * (3 + m) - bevel, ss * 12 - bevel, ss * (2 + m) + bevel, ss * 11 + bevel, ss * (2 + m) + bevel);
-                    object3D.triangle(1).setUV(ss * 12 - bevel, ss * (3 + m) - bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 11 + bevel, ss * (3 + m) - bevel);
-                    object3D.triangle(2).setUV(ss * (15 - m) + bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 6 + bevel);
-                    object3D.triangle(3).setUV(ss * (15 - m) + bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 6 + bevel, ss * (15 - m) + bevel, ss * 6 + bevel);
-                    break;
-                case 1: // right front
-                    object3D.triangle(0).setUV(ss * 12 + bevel, ss * (9 - m) + bevel, ss * 12 + bevel, ss * (10 - m) - bevel, ss * 13 - bevel, ss * (10 - m) - bevel);
-                    object3D.triangle(1).setUV(ss * 12 + bevel, ss * (9 - m) + bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 13 - bevel, ss * (9 - m) + bevel);
-                    object3D.triangle(2).setUV(ss * 11 + bevel, ss * (9 - m) + bevel, ss * 11 + bevel, ss * (10 - m) - bevel, ss * 12 - bevel, ss * (10 - m) - bevel);
-                    object3D.triangle(3).setUV(ss * 11 + bevel, ss * (9 - m) + bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 12 - bevel, ss * (9 - m) + bevel);
-                    break;
-                case 2: // down right
-                    object3D.triangle(0).setUV(ss * 12 - bevel, ss * (15 + m) - bevel, ss * 12 - bevel, ss * (14 + m) + bevel, ss * 11 + bevel, ss * (14 + m) + bevel);
-                    object3D.triangle(1).setUV(ss * 12 - bevel, ss * (15 + m) - bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 11 + bevel, ss * (15 + m) - bevel);
-                    object3D.triangle(2).setUV(ss * (15 + m) - bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 12 - bevel);
-                    object3D.triangle(3).setUV(ss * (15 + m) - bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 12 - bevel, ss * (15 + m) - bevel, ss * 12 - bevel);
-                    break;
-                case 3: // back up
-                    object3D.triangle(0).setUV(ss * (15 + m) - bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 13 - bevel);
-                    object3D.triangle(1).setUV(ss * (15 + m) - bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 13 - bevel, ss * (15 + m) - bevel, ss * 13 - bevel);
-                    object3D.triangle(2).setUV(ss * (9 - m) + bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 0 + bevel);
-                    object3D.triangle(3).setUV(ss * (9 - m) + bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 0 + bevel, ss * (9 - m) + bevel, ss * 0 + bevel);
-                    break;
-                case 4: // right back
-                    object3D.triangle(0).setUV(ss * 18 - bevel, ss * (9 + m) - bevel, ss * 18 - bevel, ss * (8 + m) + bevel, ss * 17 + bevel, ss * (8 + m) + bevel);
-                    object3D.triangle(1).setUV(ss * 18 - bevel, ss * (9 + m) - bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 17 + bevel, ss * (9 + m) - bevel);
-                    object3D.triangle(2).setUV(ss * 13 - bevel, ss * (15 + m) - bevel, ss * 13 - bevel, ss * (14 + m) + bevel, ss * 12 + bevel, ss * (14 + m) + bevel);
-                    object3D.triangle(3).setUV(ss * 13 - bevel, ss * (15 + m) - bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 12 + bevel, ss * (15 + m) - bevel);
-                    break;
-                case 5: // back down
-                    object3D.triangle(0).setUV(ss * (15 - m) + bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 17 + bevel);
-                    object3D.triangle(1).setUV(ss * (15 - m) + bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 17 + bevel, ss * (15 - m) + bevel, ss * 17 + bevel);
-                    object3D.triangle(2).setUV(ss * (9 + m) - bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 18 - bevel);
-                    object3D.triangle(3).setUV(ss * (9 + m) - bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 18 - bevel, ss * (9 + m) - bevel, ss * 18 - bevel);
-                    break;
-                case 6: // up left
-                    object3D.triangle(0).setUV(ss * 6 + bevel, ss * (3 - m) + bevel, ss * 6 + bevel, ss * (4 - m) - bevel, ss * 7 - bevel, ss * (4 - m) - bevel);
-                    object3D.triangle(1).setUV(ss * 6 + bevel, ss * (3 - m) + bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 7 - bevel, ss * (3 - m) + bevel);
-                    object3D.triangle(2).setUV(ss * (3 - m) + bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 6 + bevel);
-                    object3D.triangle(3).setUV(ss * (3 - m) + bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 6 + bevel, ss * (3 - m) + bevel, ss * 6 + bevel);
-                    break;
-                case 7: // left back
-                    object3D.triangle(0).setUV(ss * 0 + bevel, ss * (9 - m) + bevel, ss * 0 + bevel, ss * (10 - m) - bevel, ss * 1 - bevel, ss * (10 - m) - bevel);
-                    object3D.triangle(1).setUV(ss * 0 + bevel, ss * (9 - m) + bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 1 - bevel, ss * (9 - m) + bevel);
-                    object3D.triangle(2).setUV(ss * 17 + bevel, ss * (15 - m) + bevel, ss * 17 + bevel, ss * (16 - m) - bevel, ss * 18 - bevel, ss * (16 - m) - bevel);
-                    object3D.triangle(3).setUV(ss * 17 + bevel, ss * (15 - m) + bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 18 - bevel, ss * (15 - m) + bevel);
-                    break;
-                case 8: // down left
-                    object3D.triangle(0).setUV(ss * 6 + bevel, ss * (15 - m) + bevel, ss * 6 + bevel, ss * (16 - m) - bevel, ss * 7 - bevel, ss * (16 - m) - bevel);
-                    object3D.triangle(1).setUV(ss * 6 + bevel, ss * (15 - m) + bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 7 - bevel, ss * (15 - m) + bevel);
-                    object3D.triangle(2).setUV(ss * (3 + m) - bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 12 - bevel);
-                    object3D.triangle(3).setUV(ss * (3 + m) - bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 12 - bevel, ss * (3 + m) - bevel, ss * 12 - bevel);
-                    break;
-                case 9: // front up
-                    object3D.triangle(0).setUV(ss * (9 + m) - bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 7 - bevel);
-                    object3D.triangle(1).setUV(ss * (9 + m) - bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 7 - bevel, ss * (9 + m) - bevel, ss * 7 - bevel);
-                    object3D.triangle(2).setUV(ss * (9 + m) - bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 6 - bevel);
-                    object3D.triangle(3).setUV(ss * (9 + m) - bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 6 - bevel, ss * (9 + m) - bevel, ss * 6 - bevel);
-                    break;
-                case 10: // left front
-                    object3D.triangle(0).setUV(ss * 6 - bevel, ss * (9 + m) - bevel, ss * 6 - bevel, ss * (8 + m) + bevel, ss * 5 + bevel, ss * (8 + m) + bevel);
-                    object3D.triangle(1).setUV(ss * 6 - bevel, ss * (9 + m) - bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 5 + bevel, ss * (9 + m) - bevel);
-                    object3D.triangle(2).setUV(ss * 7 - bevel, ss * (9 + m) - bevel, ss * 7 - bevel, ss * (8 + m) + bevel, ss * 6 + bevel, ss * (8 + m) + bevel);
-                    object3D.triangle(3).setUV(ss * 7 - bevel, ss * (9 + m) - bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 6 + bevel, ss * (9 + m) - bevel);
-                    break;
-                case 11: // front down
-                    //  object3D.triangle(0).setUV(ss * (10 - m) + bevel, ss * 11 - bevel, ss * (11 - m) - bevel, ss * 11 - bevel, ss * (11 - m) - bevel, ss * 10 + bevel);
-                    //  object3D.triangle(1).setUV(ss * (10 - m) + bevel, ss * 11 - bevel, ss * (11 - m) - bevel, ss * 10 + bevel, ss * (10 - m) + bevel, ss * 10 + bevel);
-                    //  object3D.triangle(2).setUV(ss * (10 - m) + bevel, ss * 12 - bevel, ss * (11 - m) - bevel, ss * 12 - bevel, ss * (11 - m) - bevel, ss * 11 + bevel);
-                    //  object3D.triangle(3).setUV(ss * (10 - m) + bevel, ss * 12 - bevel, ss * (11 - m) - bevel, ss * 11 + bevel, ss * (10 - m) + bevel, ss * 11 + bevel);
-
-                    object3D.triangle(0).setUV(ss * (9 - m) + bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 11 + bevel);
-                    object3D.triangle(1).setUV(ss * (9 - m) + bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 11 + bevel, ss * (9 - m) + bevel, ss * 11 + bevel);
-                    object3D.triangle(2).setUV(ss * (9 - m) + bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 12 + bevel);
-                    object3D.triangle(3).setUV(ss * (9 - m) + bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 12 + bevel, ss * (9 - m) + bevel, ss * 12 + bevel);
-
-                    break;
+            case 0: // up right
+                stickerR.triangle(0).setUV(ss * 12 - bevel, ss * (3 + m) - bevel, ss * 12 - bevel, ss * (2 + m) + bevel, ss * 11 + bevel, ss * (2 + m) + bevel);
+                stickerR.triangle(1).setUV(ss * 12 - bevel, ss * (3 + m) - bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 11 + bevel, ss * (3 + m) - bevel);
+                stickerU.triangle(0).setUV(ss * (15 - m) + bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 6 + bevel);
+                stickerU.triangle(1).setUV(ss * (15 - m) + bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 6 + bevel, ss * (15 - m) + bevel, ss * 6 + bevel);
+                break;
+            case 1: // right front
+                stickerR.triangle(0).setUV(ss * 12 + bevel, ss * (9 - m) + bevel, ss * 12 + bevel, ss * (10 - m) - bevel, ss * 13 - bevel, ss * (10 - m) - bevel);
+                stickerR.triangle(1).setUV(ss * 12 + bevel, ss * (9 - m) + bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 13 - bevel, ss * (9 - m) + bevel);
+                stickerU.triangle(0).setUV(ss * 11 + bevel, ss * (9 - m) + bevel, ss * 11 + bevel, ss * (10 - m) - bevel, ss * 12 - bevel, ss * (10 - m) - bevel);
+                stickerU.triangle(1).setUV(ss * 11 + bevel, ss * (9 - m) + bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 12 - bevel, ss * (9 - m) + bevel);
+                break;
+            case 2: // down right
+                stickerR.triangle(0).setUV(ss * 12 - bevel, ss * (15 + m) - bevel, ss * 12 - bevel, ss * (14 + m) + bevel, ss * 11 + bevel, ss * (14 + m) + bevel);
+                stickerR.triangle(1).setUV(ss * 12 - bevel, ss * (15 + m) - bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 11 + bevel, ss * (15 + m) - bevel);
+                stickerU.triangle(0).setUV(ss * (15 + m) - bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 12 - bevel);
+                stickerU.triangle(1).setUV(ss * (15 + m) - bevel, ss * 11 + bevel, ss * (14 + m) + bevel, ss * 12 - bevel, ss * (15 + m) - bevel, ss * 12 - bevel);
+                break;
+            case 3: // back up
+                stickerR.triangle(0).setUV(ss * (15 + m) - bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 13 - bevel);
+                stickerR.triangle(1).setUV(ss * (15 + m) - bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 13 - bevel, ss * (15 + m) - bevel, ss * 13 - bevel);
+                stickerU.triangle(0).setUV(ss * (9 - m) + bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 0 + bevel);
+                stickerU.triangle(1).setUV(ss * (9 - m) + bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 0 + bevel, ss * (9 - m) + bevel, ss * 0 + bevel);
+                break;
+            case 4: // right back
+                stickerR.triangle(0).setUV(ss * 18 - bevel, ss * (9 + m) - bevel, ss * 18 - bevel, ss * (8 + m) + bevel, ss * 17 + bevel, ss * (8 + m) + bevel);
+                stickerR.triangle(1).setUV(ss * 18 - bevel, ss * (9 + m) - bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 17 + bevel, ss * (9 + m) - bevel);
+                stickerU.triangle(0).setUV(ss * 13 - bevel, ss * (15 + m) - bevel, ss * 13 - bevel, ss * (14 + m) + bevel, ss * 12 + bevel, ss * (14 + m) + bevel);
+                stickerU.triangle(1).setUV(ss * 13 - bevel, ss * (15 + m) - bevel, ss * 12 + bevel, ss * (14 + m) + bevel, ss * 12 + bevel, ss * (15 + m) - bevel);
+                break;
+            case 5: // back down
+                stickerR.triangle(0).setUV(ss * (15 - m) + bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 17 + bevel);
+                stickerR.triangle(1).setUV(ss * (15 - m) + bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 17 + bevel, ss * (15 - m) + bevel, ss * 17 + bevel);
+                stickerU.triangle(0).setUV(ss * (9 + m) - bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 18 - bevel);
+                stickerU.triangle(1).setUV(ss * (9 + m) - bevel, ss * 17 + bevel, ss * (8 + m) + bevel, ss * 18 - bevel, ss * (9 + m) - bevel, ss * 18 - bevel);
+                break;
+            case 6: // up left
+                stickerR.triangle(0).setUV(ss * 6 + bevel, ss * (3 - m) + bevel, ss * 6 + bevel, ss * (4 - m) - bevel, ss * 7 - bevel, ss * (4 - m) - bevel);
+                stickerR.triangle(1).setUV(ss * 6 + bevel, ss * (3 - m) + bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 7 - bevel, ss * (3 - m) + bevel);
+                stickerU.triangle(0).setUV(ss * (3 - m) + bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 6 + bevel);
+                stickerU.triangle(1).setUV(ss * (3 - m) + bevel, ss * 7 - bevel, ss * (4 - m) - bevel, ss * 6 + bevel, ss * (3 - m) + bevel, ss * 6 + bevel);
+                break;
+            case 7: // left back
+                stickerR.triangle(0).setUV(ss * 0 + bevel, ss * (9 - m) + bevel, ss * 0 + bevel, ss * (10 - m) - bevel, ss * 1 - bevel, ss * (10 - m) - bevel);
+                stickerR.triangle(1).setUV(ss * 0 + bevel, ss * (9 - m) + bevel, ss * 1 - bevel, ss * (10 - m) - bevel, ss * 1 - bevel, ss * (9 - m) + bevel);
+                stickerU.triangle(0).setUV(ss * 17 + bevel, ss * (15 - m) + bevel, ss * 17 + bevel, ss * (16 - m) - bevel, ss * 18 - bevel, ss * (16 - m) - bevel);
+                stickerU.triangle(1).setUV(ss * 17 + bevel, ss * (15 - m) + bevel, ss * 18 - bevel, ss * (16 - m) - bevel, ss * 18 - bevel, ss * (15 - m) + bevel);
+                break;
+            case 8: // down left
+                stickerR.triangle(0).setUV(ss * 6 + bevel, ss * (15 - m) + bevel, ss * 6 + bevel, ss * (16 - m) - bevel, ss * 7 - bevel, ss * (16 - m) - bevel);
+                stickerR.triangle(1).setUV(ss * 6 + bevel, ss * (15 - m) + bevel, ss * 7 - bevel, ss * (16 - m) - bevel, ss * 7 - bevel, ss * (15 - m) + bevel);
+                stickerU.triangle(0).setUV(ss * (3 + m) - bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 12 - bevel);
+                stickerU.triangle(1).setUV(ss * (3 + m) - bevel, ss * 11 + bevel, ss * (2 + m) + bevel, ss * 12 - bevel, ss * (3 + m) - bevel, ss * 12 - bevel);
+                break;
+            case 9: // front up
+                stickerR.triangle(0).setUV(ss * (9 + m) - bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 7 - bevel);
+                stickerR.triangle(1).setUV(ss * (9 + m) - bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 7 - bevel, ss * (9 + m) - bevel, ss * 7 - bevel);
+                stickerU.triangle(0).setUV(ss * (9 + m) - bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 6 - bevel);
+                stickerU.triangle(1).setUV(ss * (9 + m) - bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 6 - bevel, ss * (9 + m) - bevel, ss * 6 - bevel);
+                break;
+            case 10: // left front
+                stickerR.triangle(0).setUV(ss * 6 - bevel, ss * (9 + m) - bevel, ss * 6 - bevel, ss * (8 + m) + bevel, ss * 5 + bevel, ss * (8 + m) + bevel);
+                stickerR.triangle(1).setUV(ss * 6 - bevel, ss * (9 + m) - bevel, ss * 5 + bevel, ss * (8 + m) + bevel, ss * 5 + bevel, ss * (9 + m) - bevel);
+                stickerU.triangle(0).setUV(ss * 7 - bevel, ss * (9 + m) - bevel, ss * 7 - bevel, ss * (8 + m) + bevel, ss * 6 + bevel, ss * (8 + m) + bevel);
+                stickerU.triangle(1).setUV(ss * 7 - bevel, ss * (9 + m) - bevel, ss * 6 + bevel, ss * (8 + m) + bevel, ss * 6 + bevel, ss * (9 + m) - bevel);
+                break;
+            case 11: // front down
+                stickerR.triangle(0).setUV(ss * (9 - m) + bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 11 + bevel);
+                stickerR.triangle(1).setUV(ss * (9 - m) + bevel, ss * 12 - bevel, ss * (10 - m) - bevel, ss * 11 + bevel, ss * (9 - m) + bevel, ss * 11 + bevel);
+                stickerU.triangle(0).setUV(ss * (9 - m) + bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 12 + bevel);
+                stickerU.triangle(1).setUV(ss * (9 - m) + bevel, ss * 13 - bevel, ss * (10 - m) - bevel, ss * 12 + bevel, ss * (9 - m) + bevel, ss * 12 + bevel);
+                break;
             }
         }
     }
@@ -595,7 +600,7 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
                             object3D.vertex(SIDE_FACES[i][j - 1]),
                             object3D.vertex(SIDE_FACES[i][j]));
                     object3D.addTriangle(triangle);
-                //if (i == 0) triangle.setMaterial(STICKER_MATERIALS[part]);
+                    //if (i == 0) triangle.setMaterial(STICKER_MATERIALS[part]);
                 }
             }
 
@@ -603,7 +608,9 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
             idx3d_InternalMaterial sticker1 = new idx3d_InternalMaterial();
             object3D.triangle(0).setTriangleMaterial(sticker1);
             object3D.triangle(1).setTriangleMaterial(sticker1);
-            parts[sideOffset + part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[sideOffset + part] = group;
         }
         initSideUVMap();
     }
@@ -675,34 +682,35 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
         int[] xcoords = {0, 0, 1, 1, -1, -1, 2, 2, 0, -1, 1, 2, 1, -1, 0, 2};
         int[] ycoords = {0, 1, 1, 0, -1, 2, 2, -1, -1, 1, 2, 0, -1, 0, 2, 1};
         for (int part = 0; part < sideCount; part++) {
-            idx3d_Object object3D = parts[sideOffset + part];
+            idx3d_Group group = parts[sideOffset + part];
+            idx3d_Object stickerR = (idx3d_Object) group.getChild(0);
             int mx = xcoords[part / 6];
             int my = ycoords[part / 6];
             switch (part % 6) {
-                case 0: // right
-                    object3D.triangle(0).setUV(ss * (15 - my) + bevel, ss * (9 - mx) + bevel, ss * (15 - my) + bevel, ss * (10 - mx) - bevel, ss * (16 - my) - bevel, ss * (10 - mx) - bevel);
-                    object3D.triangle(1).setUV(ss * (15 - my) + bevel, ss * (9 - mx) + bevel, ss * (16 - my) - bevel, ss * (10 - mx) - bevel, ss * (16 - my) - bevel, ss * (9 - mx) + bevel);
-                    break;
-                case 1: // up
-                    object3D.triangle(0).setUV(ss * (9 + my) - bevel, ss * (3 + mx) - bevel, ss * (9 + my) - bevel, ss * (2 + mx) + bevel, ss * (8 + my) + bevel, ss * (2 + mx) + bevel);
-                    object3D.triangle(1).setUV(ss * (9 + my) - bevel, ss * (3 + mx) - bevel, ss * (8 + my) + bevel, ss * (2 + mx) + bevel, ss * (8 + my) + bevel, ss * (3 + mx) - bevel);
-                    break;
-                case 2: // front
-                    object3D.triangle(0).setUV(ss * (9 + mx) - bevel, ss * (9 - my) + bevel, ss * (8 + mx) + bevel, ss * (9 - my) + bevel, ss * (8 + mx) + bevel, ss * (10 - my) - bevel);
-                    object3D.triangle(1).setUV(ss * (9 + mx) - bevel, ss * (9 - my) + bevel, ss * (8 + mx) + bevel, ss * (10 - my) - bevel, ss * (9 + mx) - bevel, ss * (10 - my) - bevel);
-                    break;
-                case 3: // left
-                    object3D.triangle(0).setUV(ss * (3 - mx) + bevel, ss * (9 + my) - bevel, ss * (4 - mx) - bevel, ss * (9 + my) - bevel, ss * (4 - mx) - bevel, ss * (8 + my) + bevel);
-                    object3D.triangle(1).setUV(ss * (3 - mx) + bevel, ss * (9 + my) - bevel, ss * (4 - mx) - bevel, ss * (8 + my) + bevel, ss * (3 - mx) + bevel, ss * (8 + my) + bevel);
-                    break;
-                case 4: // down
-                    object3D.triangle(0).setUV(ss * (9 - mx) + bevel, ss * (15 + my) - bevel, ss * (10 - mx) - bevel, ss * (15 + my) - bevel, ss * (10 - mx) - bevel, ss * (14 + my) + bevel);
-                    object3D.triangle(1).setUV(ss * (9 - mx) + bevel, ss * (15 + my) - bevel, ss * (10 - mx) - bevel, ss * (14 + my) + bevel, ss * (9 - mx) + bevel, ss * (14 + my) + bevel);
-                    break;
-                case 5: // back
-                    object3D.triangle(0).setUV(ss * (15 + my) - bevel, ss * (15 + mx) - bevel, ss * (15 + my) - bevel, ss * (14 + mx) + bevel, ss * (14 + my) + bevel, ss * (14 + mx) + bevel);
-                    object3D.triangle(1).setUV(ss * (15 + my) - bevel, ss * (15 + mx) - bevel, ss * (14 + my) + bevel, ss * (14 + mx) + bevel, ss * (14 + my) + bevel, ss * (15 + mx) - bevel);
-                    break;
+            case 0: // right
+                stickerR.triangle(0).setUV(ss * (15 - my) + bevel, ss * (9 - mx) + bevel, ss * (15 - my) + bevel, ss * (10 - mx) - bevel, ss * (16 - my) - bevel, ss * (10 - mx) - bevel);
+                stickerR.triangle(1).setUV(ss * (15 - my) + bevel, ss * (9 - mx) + bevel, ss * (16 - my) - bevel, ss * (10 - mx) - bevel, ss * (16 - my) - bevel, ss * (9 - mx) + bevel);
+                break;
+            case 1: // up
+                stickerR.triangle(0).setUV(ss * (9 + my) - bevel, ss * (3 + mx) - bevel, ss * (9 + my) - bevel, ss * (2 + mx) + bevel, ss * (8 + my) + bevel, ss * (2 + mx) + bevel);
+                stickerR.triangle(1).setUV(ss * (9 + my) - bevel, ss * (3 + mx) - bevel, ss * (8 + my) + bevel, ss * (2 + mx) + bevel, ss * (8 + my) + bevel, ss * (3 + mx) - bevel);
+                break;
+            case 2: // front
+                stickerR.triangle(0).setUV(ss * (9 + mx) - bevel, ss * (9 - my) + bevel, ss * (8 + mx) + bevel, ss * (9 - my) + bevel, ss * (8 + mx) + bevel, ss * (10 - my) - bevel);
+                stickerR.triangle(1).setUV(ss * (9 + mx) - bevel, ss * (9 - my) + bevel, ss * (8 + mx) + bevel, ss * (10 - my) - bevel, ss * (9 + mx) - bevel, ss * (10 - my) - bevel);
+                break;
+            case 3: // left
+                stickerR.triangle(0).setUV(ss * (3 - mx) + bevel, ss * (9 + my) - bevel, ss * (4 - mx) - bevel, ss * (9 + my) - bevel, ss * (4 - mx) - bevel, ss * (8 + my) + bevel);
+                stickerR.triangle(1).setUV(ss * (3 - mx) + bevel, ss * (9 + my) - bevel, ss * (4 - mx) - bevel, ss * (8 + my) + bevel, ss * (3 - mx) + bevel, ss * (8 + my) + bevel);
+                break;
+            case 4: // down
+                stickerR.triangle(0).setUV(ss * (9 - mx) + bevel, ss * (15 + my) - bevel, ss * (10 - mx) - bevel, ss * (15 + my) - bevel, ss * (10 - mx) - bevel, ss * (14 + my) + bevel);
+                stickerR.triangle(1).setUV(ss * (9 - mx) + bevel, ss * (15 + my) - bevel, ss * (10 - mx) - bevel, ss * (14 + my) + bevel, ss * (9 - mx) + bevel, ss * (14 + my) + bevel);
+                break;
+            case 5: // back
+                stickerR.triangle(0).setUV(ss * (15 + my) - bevel, ss * (15 + mx) - bevel, ss * (15 + my) - bevel, ss * (14 + mx) + bevel, ss * (14 + my) + bevel, ss * (14 + mx) + bevel);
+                stickerR.triangle(1).setUV(ss * (15 + my) - bevel, ss * (15 + mx) - bevel, ss * (14 + my) + bevel, ss * (14 + mx) + bevel, ss * (14 + my) + bevel, ss * (15 + mx) - bevel);
+                break;
             }
 
         }
@@ -901,40 +909,49 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
                 action = new PartAction(
                         i, j, getStickerIndexForPart(i, j));
 
-                scene.addMouseListener(parts[index].triangle(j * 2), action);
-                scene.addMouseListener(parts[index].triangle(j * 2 + 1), action);
+                idx3d_Group group = parts[index];
+                idx3d_Object stickerR = (idx3d_Object) group.getChild(0);
+                idx3d_Object stickerU = (idx3d_Object) group.getChild(1);
+                idx3d_Object stickerF = (idx3d_Object) group.getChild(2);
+                idx3d_Object obj = (idx3d_Object) group.getChild(3);
                 switch (j) {
-                    case 0: {
-                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(6), a0);
-                        scene.addSwipeListener(parts[index].triangle(7), a1);
-                        scene.addSwipeListener(parts[index].triangle(8), a0);
-                        scene.addSwipeListener(parts[index].triangle(9), a1);
-                        break;
-                    }
+                case 0: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addMouseListener(stickerR.triangle(0), action);
+                    scene.addMouseListener(stickerR.triangle(1), action);
+                    scene.addSwipeListener(stickerR.triangle(0), a0);
+                    scene.addSwipeListener(stickerR.triangle(1), a1);
+                    scene.addSwipeListener(obj.triangle(6 - 6), a0);
+                    scene.addSwipeListener(obj.triangle(7 - 6), a1);
+                    scene.addSwipeListener(obj.triangle(8 - 6), a0);
+                    scene.addSwipeListener(obj.triangle(9 - 6), a1);
+                    break;
+                }
                     case 1: {
                         SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f + Math.PI / 4f));
                         SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2 + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(10), a0);
-                        scene.addSwipeListener(parts[index].triangle(11), a1);
-                        scene.addSwipeListener(parts[index].triangle(12), a0);
-                        scene.addSwipeListener(parts[index].triangle(13), a1);
+                        scene.addMouseListener(stickerU.triangle(0), action);
+                        scene.addMouseListener(stickerU.triangle(1), action);
+                        scene.addSwipeListener(stickerU.triangle(j * 2), a0);
+                        scene.addSwipeListener(stickerU.triangle(j * 2 + 1), a1);
+                        scene.addSwipeListener(obj.triangle(10 - 6), a0);
+                        scene.addSwipeListener(obj.triangle(11 - 6), a1);
+                        scene.addSwipeListener(obj.triangle(12 - 6), a0);
+                        scene.addSwipeListener(obj.triangle(13 - 6), a1);
                         break;
                     }
                     case 2: {
                         SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
                         SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(14), a0);
-                        scene.addSwipeListener(parts[index].triangle(15), a1);
-                        scene.addSwipeListener(parts[index].triangle(16), a0);
-                        scene.addSwipeListener(parts[index].triangle(17), a1);
+                        scene.addMouseListener(stickerF.triangle(0), action);
+                        scene.addMouseListener(stickerF.triangle(1), action);
+                        scene.addSwipeListener(stickerF.triangle(j * 2), a0);
+                        scene.addSwipeListener(stickerF.triangle(j * 2 + 1), a1);
+                        scene.addSwipeListener(obj.triangle(14 - 6), a0);
+                        scene.addSwipeListener(obj.triangle(15 - 6), a1);
+                        scene.addSwipeListener(obj.triangle(16 - 6), a0);
+                        scene.addSwipeListener(obj.triangle(17 - 6), a1);
                     }
                     break;
                 }
@@ -948,35 +965,41 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
                 action = new PartAction(
                         index, j, getStickerIndexForPart(index, j));
 
-                scene.addMouseListener(parts[index].triangle(j * 2), action);
-                scene.addMouseListener(parts[index].triangle(j * 2 + 1), action);
+                idx3d_Group group = parts[index];
+                idx3d_Object stickerR = (idx3d_Object) group.getChild(0);
+                idx3d_Object stickerU = (idx3d_Object) group.getChild(1);
+                idx3d_Object obj = (idx3d_Object) group.getChild(2);
                 switch (j) {
-                    case 0:{
-                        SwipeAction a0=new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1=new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(4), a0);
-                        scene.addSwipeListener(parts[index].triangle(5), a1);
-                        scene.addSwipeListener(parts[index].triangle(6), a0);
-                        scene.addSwipeListener(parts[index].triangle(7), a1);
-                        scene.addSwipeListener(parts[index].triangle(8), a0);
-                        scene.addSwipeListener(parts[index].triangle(9), a1);
-                        break;
-                        }
+                case 0: {
+                    SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f));
+                    SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f));
+                    scene.addMouseListener(stickerR.triangle(0), action);
+                    scene.addMouseListener(stickerR.triangle(1), action);
+                    scene.addSwipeListener(stickerR.triangle(0), a0);
+                    scene.addSwipeListener(stickerR.triangle(1), a1);
+                    scene.addSwipeListener(obj.triangle(4 - 4), a0);
+                    scene.addSwipeListener(obj.triangle(5 - 4), a1);
+                    scene.addSwipeListener(obj.triangle(6 - 4), a0);
+                    scene.addSwipeListener(obj.triangle(7 - 4), a1);
+                    scene.addSwipeListener(obj.triangle(8 - 4), a0);
+                    scene.addSwipeListener(obj.triangle(9 - 4), a1);
+                    break;
+                }
                     case 1: {
-                        SwipeAction a0=new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f));
-                        SwipeAction a1=new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f));
-                        scene.addSwipeListener(parts[index].triangle(j * 2), a0);
-                        scene.addSwipeListener(parts[index].triangle(j * 2 + 1), a1);
-                        scene.addSwipeListener(parts[index].triangle(10), a0);
-                        scene.addSwipeListener(parts[index].triangle(11), a1);
-                        scene.addSwipeListener(parts[index].triangle(12), a0);
-                        scene.addSwipeListener(parts[index].triangle(13), a1);
-                        scene.addSwipeListener(parts[index].triangle(14), a0);
-                        scene.addSwipeListener(parts[index].triangle(15), a1);
+                        SwipeAction a0 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f + Math.PI / 4f));
+                        SwipeAction a1 = new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI / 2f));
+                        scene.addMouseListener(stickerU.triangle(0), action);
+                        scene.addMouseListener(stickerU.triangle(1), action);
+                        scene.addSwipeListener(stickerU.triangle(0), a0);
+                        scene.addSwipeListener(stickerU.triangle(1), a1);
+                        scene.addSwipeListener(obj.triangle(10 - 4), a0);
+                        scene.addSwipeListener(obj.triangle(11 - 4), a1);
+                        scene.addSwipeListener(obj.triangle(12 - 4), a0);
+                        scene.addSwipeListener(obj.triangle(13 - 4), a1);
+                        scene.addSwipeListener(obj.triangle(14 - 4), a0);
+                        scene.addSwipeListener(obj.triangle(15 - 4), a1);
                         break;
-                        }
+                    }
                 }
             }
         }
@@ -987,27 +1010,33 @@ public class Cube6Idx3D extends AbstractCube6Idx3D {
             action = new PartAction(
                     i + sideOffset, 0, getStickerIndexForPart(index, 0));
 
-            scene.addMouseListener(parts[index].triangle(0), action);
-            scene.addMouseListener(parts[index].triangle(1), action);
-            SwipeAction a0=new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI / 2f + Math.PI / 4f));
-            SwipeAction a1=new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) Math.PI / 2f);
-            scene.addSwipeListener(parts[index].triangle(0), a0);
-            scene.addSwipeListener(parts[index].triangle(1), a1);
-            scene.addSwipeListener(parts[index].triangle(2), a0);
-            scene.addSwipeListener(parts[index].triangle(3), a1);
-            scene.addSwipeListener(parts[index].triangle(4), a0);
-            scene.addSwipeListener(parts[index].triangle(5), a1);
-            scene.addSwipeListener(parts[index].triangle(6), a0);
-            scene.addSwipeListener(parts[index].triangle(7), a1);
-            scene.addSwipeListener(parts[index].triangle(8), a0);
-            scene.addSwipeListener(parts[index].triangle(9), a1);
+            idx3d_Group group = parts[index];
+            idx3d_Object stickerR = (idx3d_Object) group.getChild(0);
+            idx3d_Object obj = (idx3d_Object) group.getChild(1);
+            scene.addMouseListener(stickerR.triangle(0), action);
+            scene.addMouseListener(stickerR.triangle(1), action);
+            SwipeAction a0 = new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI / 2f + Math.PI / 4f));
+            SwipeAction a1 = new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) Math.PI / 2f);
+            scene.addSwipeListener(stickerR.triangle(0), a0);
+            scene.addSwipeListener(stickerR.triangle(1), a1);
+            scene.addSwipeListener(obj.triangle(2 - 2), a0);
+            scene.addSwipeListener(obj.triangle(3 - 2), a1);
+            scene.addSwipeListener(obj.triangle(4 - 2), a0);
+            scene.addSwipeListener(obj.triangle(5 - 2), a1);
+            scene.addSwipeListener(obj.triangle(6 - 2), a0);
+            scene.addSwipeListener(obj.triangle(7 - 2), a1);
+            scene.addSwipeListener(obj.triangle(8 - 2), a0);
+            scene.addSwipeListener(obj.triangle(9 - 2), a1);
         }
 
         for (i = 0; i < partCount; i++) {
             action = new PartAction(
                     i, -1, -1);
+            for (idx3d_Node child : parts[i].children()) {
+                scene.addMouseListener((idx3d_Object) child, action);
 
-            scene.addMouseListener(parts[i], action);
+            }
+
         }
     }
 

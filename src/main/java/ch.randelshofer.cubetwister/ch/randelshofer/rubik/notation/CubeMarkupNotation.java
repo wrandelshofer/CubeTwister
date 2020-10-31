@@ -4,6 +4,7 @@
  */
 package ch.randelshofer.rubik.notation;
 
+import ch.randelshofer.cubetwister.doc.Template;
 import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.xml.XMLPreorderIterator;
@@ -13,9 +14,12 @@ import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Writer;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -112,6 +116,7 @@ public class CubeMarkupNotation implements Notation {
     public CubeMarkupNotation() {
         this(new RubiksCube());
     }
+
     /**
      * Creates a new instance.
      */
@@ -119,6 +124,32 @@ public class CubeMarkupNotation implements Notation {
         this.cube = cube;
         symbolToInfoMap = new HashMap<>();
         identifierToMacroMap = new HashMap<>();
+    }
+
+    /**
+     * Configures this CubeMarkupNotation by the default Notation
+     * found in the URL.
+     * The CubeMarkup 4 DTD must be used.
+     */
+    public void readXML(URL url) throws IOException {
+        try (InputStreamReader r = new InputStreamReader(Template.getTemplate().openStream(), StandardCharsets.UTF_8)) {
+            XMLElement root = new XMLElement(new HashMap<>(), true, false);
+            root.parseFromReader(r);
+            readXML(root);
+        }
+    }
+
+    /**
+     * Configures this CubeMarkupNotation by the specified Notation
+     * found in the URL.
+     * The CubeMarkup 4 DTD must be used.
+     */
+    public void readXML(URL url, String notationName) throws IOException {
+        try (InputStreamReader r = new InputStreamReader(Template.getTemplate().openStream(), StandardCharsets.UTF_8)) {
+            XMLElement root = new XMLElement(new HashMap<>(), true, false);
+            root.parseFromReader(r);
+            readXML(root, notationName);
+        }
     }
 
     /**
@@ -195,8 +226,12 @@ public class CubeMarkupNotation implements Notation {
         HashMap<String, Syntax> syntaxValueSet = new HashMap<>();
         syntaxValueSet.put("precircumfix", Syntax.PRECIRCUMFIX);
         syntaxValueSet.put("postcircumfix", Syntax.POSTCIRCUMFIX);
+        syntaxValueSet.put("postinfix", Syntax.POSTINFIX);
+        syntaxValueSet.put("preinfix", Syntax.PREINFIX);
         syntaxValueSet.put("prefix", Syntax.PREFIX);
         syntaxValueSet.put("suffix", Syntax.SUFFIX);
+        syntaxValueSet.put("circumfix", Syntax.CIRCUMFIX);
+        syntaxValueSet.put("primary", Syntax.PRIMARY);
 
         // Axis value set
         HashMap<String, Integer> axisValueSet = new HashMap<>();
@@ -312,7 +347,7 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public Move getMoveFromToken(String moveToken) {
+    public @Nullable Move getMoveFromToken(String moveToken) {
         Move move = tokenToMoveMap.get(moveToken);
         if (move == null) {
             throw new IllegalArgumentException("Not a move token. token:" + moveToken);
@@ -341,7 +376,7 @@ public class CubeMarkupNotation implements Notation {
     @Override
     public String getToken(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
-        return (info == null || info.tokens == null) ? null : info.tokens.get(0);
+        return (info == null || info.tokens == null || info.tokens.isEmpty()) ? null : info.tokens.get(0);
     }
 
     @Override
@@ -370,7 +405,7 @@ public class CubeMarkupNotation implements Notation {
         System.out.println("description:" + name);
         Set<Symbol> ss = Symbol.SEQUENCE.getSubSymbols();
         int i = 0;
-        for (Symbol s:ss) {
+        for (Symbol s : ss) {
             if (i != 0) {
                 if (i % 10 == 0) {
                     System.out.println();
@@ -399,7 +434,14 @@ public class CubeMarkupNotation implements Notation {
 
     @Override
     public String getMoveToken(Move s) {
-        return moveToTokenMap.get(s)[0];
+        String[] strings = moveToTokenMap.get(s);
+        return strings != null && strings.length > 0 ? strings[0] : null;
+    }
+
+    @Override
+    public List<String> getMoveTokens(Move s) {
+        String[] strings = moveToTokenMap.get(s);
+        return strings != null ? Arrays.asList(strings) : Collections.emptyList();
     }
 
     @Nonnull
@@ -416,18 +458,21 @@ public class CubeMarkupNotation implements Notation {
      */
     @Nonnull
     public Collection<String> getTokens() {
-        Set<String> tokens=new LinkedHashSet<>();
+        Set<String> tokens = new LinkedHashSet<>();
         for (Map.Entry<String, ArrayList<Symbol>> entry : tokenToSymbolsMap.entrySet()) {
-            boolean enabled=false;
+            boolean enabled = false;
             for (Symbol symbol : entry.getValue()) {
                 SymbolInfo info = symbolToInfoMap.get(symbol);
-                if (info!=null&&info.isSupported) {
-                    enabled=true;
+                if (info != null && info.isSupported) {
+                    enabled = true;
                     break;
                 }
             }
-            if (enabled)tokens.add(entry.getKey());
+            if (enabled) {
+                tokens.add(entry.getKey());
+            }
         }
+        tokens.addAll(tokenToMoveMap.keySet());
 
         return tokens;
     }
@@ -435,11 +480,15 @@ public class CubeMarkupNotation implements Notation {
     @Nonnull
     public List<Symbol> getSymbols(String token) {
         ArrayList<Symbol> symbols = new ArrayList<>();
-        for (Symbol symbol : tokenToSymbolsMap.get(token)) {
+        ArrayList<Symbol> emptyList = new ArrayList<>();
+        for (Symbol symbol : tokenToSymbolsMap.getOrDefault(token, emptyList)) {
             SymbolInfo info = symbolToInfoMap.get(symbol);
             if (info != null && info.isSupported) {
                 symbols.add(symbol);
             }
+        }
+        if (tokenToMoveMap.containsKey(token)) {
+            symbols.add(Symbol.MOVE);
         }
 
         return symbols;

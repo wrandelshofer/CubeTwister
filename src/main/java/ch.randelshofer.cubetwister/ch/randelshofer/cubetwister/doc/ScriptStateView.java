@@ -9,7 +9,6 @@ import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube.CubeEvent;
 import ch.randelshofer.rubik.cube.CubeListener;
 import ch.randelshofer.rubik.cube.Cubes;
-import ch.randelshofer.rubik.parser.ScriptPlayer;
 import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JComponent;
@@ -155,17 +154,6 @@ public class ScriptStateView extends JPanel implements EntityView {
 
                                 doc.insertString(doc.getLength(), stateInfo.substring(pos + 1), (stateInfo.startsWith("Error")) ? red : plain);
                             }
-                            ScriptPlayer player = model.getPlayer();
-
-                            /*
-                            doc.insertString(doc.getLength(), "\n", plain);
-                            doc.insertString(doc.getLength(), "Current Move Count: ", bold);
-                            doc.insertString(doc.getLength(),
-                                    player.getFaceTurnCount() + " ftm, " +
-                                    player.getBlockTurnCount() + " btm, " +
-                                    player.getLayerTurnCount() + " ltm, " +
-                                    player.getQuarterTurnCount() + " qtm",
-                                    plain);*/
                             doc.insertString(doc.getLength(), "\n\n", plain);
                         }
 
@@ -188,10 +176,6 @@ public class ScriptStateView extends JPanel implements EntityView {
                                     System.out.println("ScriptStateView.updateState3 cube=Cube#" + System.identityHashCode(cube));
                                 }
                                 doc.insertString(doc.getLength(), solverModel.getMappedPermutationString(cube, model.getNotationModel()), plain);
-                            //doc.insertString(doc.getLength(), "\n\n", plain);
-                            //doc.insertString(doc.getLength(), Cubes.toPermutationString(cube), plain);
-                            //    doc.insertString(doc.getLength(), "\n\n----\n"+Cubes.toPermutationString(cube), plain);
-                            //doc.insertString(doc.getLength(), "\n"+cube.toDetailedFacesString(), code);
                             } else {
                                 doc.insertString(doc.getLength(), "\n\n", plain);
                                 doc.insertString(doc.getLength(), "Stickers:\n", bold);

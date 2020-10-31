@@ -403,7 +403,6 @@ public class idx3d_Object extends idx3d_Node {
         float bu, bv, cu, cv;
         float sab, sbc, sca, rab, rbc, rca;
         float uab, vab, ubc, vbc, uca, vca;
-        float sqrt3 = (float) Math.sqrt(3f);
 
         for (int i = 0; i < triangles; i++) {
             tri = triangle(i);
@@ -424,13 +423,7 @@ public class idx3d_Object extends idx3d_Node {
             nab = idx3d_Vector.scale(0.5f, idx3d_Vector.add(a.n, b.n));
             nbc = idx3d_Vector.scale(0.5f, idx3d_Vector.add(b.n, c.n));
             nca = idx3d_Vector.scale(0.5f, idx3d_Vector.add(c.n, a.n));
-            /*
-             uab=0.5f*(a.u+b.u);
-             vab=0.5f*(a.v+b.v);
-             ubc=0.5f*(b.u+c.u);
-             vbc=0.5f*(b.v+c.v);
-             uca=0.5f*(c.u+a.u);
-             vca=0.5f*(c.v+a.v);*/
+
             uab = 0.5f * (tri.u[0] + tri.u[1]);
             vab = 0.5f * (tri.v[0] + tri.v[1]);
             ubc = 0.5f * (tri.u[1] + tri.u[2]);
@@ -443,11 +436,7 @@ public class idx3d_Object extends idx3d_Node {
             nab.normalize();
             nbc.normalize();
             nca.normalize();
-            /*
-             d=new idx3d_Vertex(idx3d_Vector.sub(ab,idx3d_Vector.scale(rab*sab,nab)),uab,vab);
-             e=new idx3d_Vertex(idx3d_Vector.sub(bc,idx3d_Vector.scale(rbc*sbc,nbc)),ubc,vbc);
-             f=new idx3d_Vertex(idx3d_Vector.sub(ca,idx3d_Vector.scale(rca*sca,nca)),uca,vca);
-             */
+
             d = new idx3d_Vertex(idx3d_Vector.sub(ab, idx3d_Vector.scale(rab * sab, nab)));
             e = new idx3d_Vertex(idx3d_Vector.sub(bc, idx3d_Vector.scale(rbc * sbc, nbc)));
             f = new idx3d_Vertex(idx3d_Vector.sub(ca, idx3d_Vector.scale(rca * sca, nca)));

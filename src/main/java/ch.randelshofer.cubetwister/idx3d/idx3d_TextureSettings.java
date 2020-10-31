@@ -1,7 +1,5 @@
 package idx3d;
 
-import idx3d.idx3d_Texture;
-
 public class idx3d_TextureSettings
 {
 	public idx3d_Texture texture;

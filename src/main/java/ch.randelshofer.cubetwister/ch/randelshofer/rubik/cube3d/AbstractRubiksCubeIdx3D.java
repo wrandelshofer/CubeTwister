@@ -47,6 +47,7 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
 
     protected void init() {
         explosionShift = 18f;
+        setUnitScaleFactor(0.019f * 54f / (PART_LENGTH * layerCount));
         initEdges();
         initCorners();
         initSides();
@@ -56,11 +57,6 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
         initActions(scene);
         setCube(new RubiksCube());
         setAttributes(createAttributes());
-    }
-
-    @Override
-    protected float getUnitScaleFactor() {
-        return 0.019f * 54f / (PART_LENGTH * layerCount);
     }
 
     private void initScene() {
@@ -89,7 +85,6 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
             }
         };
         scene.setBackgroundColor(0xffffff);
-
 
         scaleTransform = new idx3d_Group();
         scaleTransform.scale(0.018f);
@@ -161,7 +156,9 @@ public abstract class AbstractRubiksCubeIdx3D extends AbstractCubeIdx3D {
 
         idx3d_Object object3D = cylinder1;
         object3D.material = new idx3d_InternalMaterial();
-        parts[centerOffset] = object3D;
+        idx3d_Group group = new idx3d_Group();
+        group.addChild(object3D);
+        parts[centerOffset] = group;
     }
 
     protected void initTransforms() {

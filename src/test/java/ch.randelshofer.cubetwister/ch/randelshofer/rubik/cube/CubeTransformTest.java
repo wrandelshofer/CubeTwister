@@ -3,11 +3,8 @@
  * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
  */
 
-package ch.randelshofer.rubik;
+package ch.randelshofer.rubik.cube;
 
-import ch.randelshofer.rubik.cube.Cube;
-import ch.randelshofer.rubik.cube.CubeFactory;
-import ch.randelshofer.rubik.cube.Cubes;
 import org.jhotdraw.annotation.Nonnull;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;

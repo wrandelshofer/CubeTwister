@@ -8,7 +8,9 @@ package ch.randelshofer.rubik.cube3d;
 import ch.randelshofer.rubik.CubeAttributes;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.DefaultCubeAttributes;
+import idx3d.idx3d_Group;
 import idx3d.idx3d_InternalMaterial;
+import idx3d.idx3d_Node;
 import idx3d.idx3d_Object;
 import idx3d.idx3d_ObjectFactory;
 import idx3d.idx3d_Scene;
@@ -56,7 +58,7 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
     private final static float rr = 1f / 512f;
 
     @Override
-    protected float getUnitScaleFactor() {
+    public float getUnitScaleFactor() {
         return super.getUnitScaleFactor() * 1.2f;
     }
 
@@ -201,7 +203,9 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
             object3D.triangle(5).setTriangleMaterial(sticker);
             object3D.triangle(6).setTriangleMaterial(sticker);
             object3D.triangle(7).setTriangleMaterial(sticker);
-            parts[cornerOffset+part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[cornerOffset + part] = group;
         /*
          * Corners
          *              +---+----+---+
@@ -436,7 +440,9 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
             object3D.triangle(6).setTriangleMaterial(sticker);
             sticker = new idx3d_InternalMaterial();
             object3D.triangle(7).setTriangleMaterial(sticker);
-            parts[edgeOffset+part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);
+            parts[edgeOffset + part] = group;
 
         }
     }
@@ -604,17 +610,19 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
                     object3D.triangle(0).setUV(ss * 7 + rr,ss * 8 - rr, ss * 8 - rr,ss * 8 - rr, ss * 8 - rr,ss * 7 + rr);
                     object3D.triangle(1).setUV(ss * 7 + rr,ss * 8 - rr, ss * 8 - rr,ss * 7 + rr, ss * 7 + rr,ss * 7 + rr);
                     break;
-                case 4: // left
-                    object3D.triangle(0).setUV(ss * 2 - rr,ss * 5 - rr, ss * 2 - rr,ss * 4 + rr, ss * 1 + rr,ss * 4 + rr);
-                    object3D.triangle(1).setUV(ss * 2 - rr,ss * 5 - rr, ss * 1 + rr,ss * 4 + rr, ss * 1 + rr,ss * 5 - rr);
-                    break;
-                case 5: // up
-                    object3D.triangle(0).setUV(ss * 5 - rr,ss * 2 - rr, ss * 5 - rr,ss * 1 + rr, ss * 4 + rr,ss * 1 + rr);
-                    object3D.triangle(1).setUV(ss * 5 - rr,ss * 2 - rr, ss * 4 + rr,ss * 1 + rr, ss * 4 + rr,ss * 2 - rr);
-                    break;
+            case 4: // left
+                object3D.triangle(0).setUV(ss * 2 - rr, ss * 5 - rr, ss * 2 - rr, ss * 4 + rr, ss * 1 + rr, ss * 4 + rr);
+                object3D.triangle(1).setUV(ss * 2 - rr, ss * 5 - rr, ss * 1 + rr, ss * 4 + rr, ss * 1 + rr, ss * 5 - rr);
+                break;
+            case 5: // up
+                object3D.triangle(0).setUV(ss * 5 - rr, ss * 2 - rr, ss * 5 - rr, ss * 1 + rr, ss * 4 + rr, ss * 1 + rr);
+                object3D.triangle(1).setUV(ss * 5 - rr, ss * 2 - rr, ss * 4 + rr, ss * 1 + rr, ss * 4 + rr, ss * 2 - rr);
+                break;
             }
 
-            parts[sideOffset+part] = object3D;
+            idx3d_Group group = new idx3d_Group();
+            group.addChild(object3D);// FIXME separate sticker from object
+            parts[sideOffset + part] = group;
         }
     }
 
@@ -800,17 +808,19 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
                         index, j, getStickerIndexForPart(index, j)
                 );
 
-                scene.addMouseListener(parts[index].triangle(j), action);
+                idx3d_Group group = parts[index];
+                idx3d_Object obj = (idx3d_Object) group.getChild(0);
+                scene.addMouseListener(obj.triangle(j), action);
                 switch (j) {
-                    case 0:
-                         scene.addSwipeListener(parts[index].triangle(j), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (0)));
-                        break;
-                    case 1:
-                        scene.addSwipeListener(parts[index].triangle(j), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI+Math.PI/4)));
-                       break;
-                    case 2:
-                        scene.addSwipeListener(parts[index].triangle(j), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI)));
-                        break;
+                case 0:
+                    scene.addSwipeListener(obj.triangle(j), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (0)));
+                    break;
+                case 1:
+                    scene.addSwipeListener(obj.triangle(j), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 4)));
+                    break;
+                case 2:
+                    scene.addSwipeListener(obj.triangle(j), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI)));
+                    break;
                 }
             }
         }
@@ -822,20 +832,22 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
                 action = new PartAction(
                         index, j, getStickerIndexForPart(index, j)
                 );
-                scene.addMouseListener(parts[index].triangle(j*3), action);
-                scene.addMouseListener(parts[index].triangle(j*3+1), action);
-                scene.addMouseListener(parts[index].triangle(j*3+2), action);
+                idx3d_Group group = parts[index];
+                idx3d_Object obj = (idx3d_Object) group.getChild(0);
+                scene.addMouseListener(obj.triangle(j * 3), action);
+                scene.addMouseListener(obj.triangle(j * 3 + 1), action);
+                scene.addMouseListener(obj.triangle(j * 3 + 2), action);
                 switch (j) {
-                    case 0://yellow
-                        scene.addSwipeListener(parts[index].triangle(j * 3), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (0)));
-                        scene.addSwipeListener(parts[index].triangle(j * 3 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI+Math.PI/2 + Math.PI / 4f)));
-                        scene.addSwipeListener(parts[index].triangle(j * 3 + 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI/8f)));
-                        break;
-                    case 1:
-                        scene.addSwipeListener(parts[index].triangle(j * 3), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (0)));
-                     scene.addSwipeListener(parts[index].triangle(j * 3 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI+Math.PI / 2f+Math.PI/4f)));
-                      scene.addSwipeListener(parts[index].triangle(j * 3 + 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI+Math.PI / 2f+Math.PI/8f)));
-                        break;
+                case 0://yellow
+                    scene.addSwipeListener(obj.triangle(j * 3), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (0)));
+                    scene.addSwipeListener(obj.triangle(j * 3 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2 + Math.PI / 4f)));
+                    scene.addSwipeListener(obj.triangle(j * 3 + 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 8f)));
+                    break;
+                case 1:
+                    scene.addSwipeListener(obj.triangle(j * 3), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (0)));
+                    scene.addSwipeListener(obj.triangle(j * 3 + 1), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 4f)));
+                    scene.addSwipeListener(obj.triangle(j * 3 + 2), new SwipeAction(index, j, getStickerIndexForPart(index, j), (float) (Math.PI + Math.PI / 2f + Math.PI / 8f)));
+                    break;
                 }
             }
         }
@@ -847,10 +859,12 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
                     index, 0, getStickerIndexForPart(index, 0)
             );
 
-            scene.addMouseListener(parts[sideOffset+i].triangle(0), action);
-            scene.addMouseListener(parts[sideOffset+i].triangle(1), action);
-            scene.addSwipeListener(parts[index].triangle(0), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI / 2f + Math.PI / 4f)));
-            scene.addSwipeListener(parts[index].triangle(1), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) Math.PI / 2f));
+            idx3d_Group group = parts[index];
+            idx3d_Object obj = (idx3d_Object) group.getChild(0);
+            scene.addMouseListener(obj.triangle(0), action);
+            scene.addMouseListener(obj.triangle(1), action);
+            scene.addSwipeListener(obj.triangle(0), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) (Math.PI / 2f + Math.PI / 4f)));
+            scene.addSwipeListener(obj.triangle(1), new SwipeAction(index, 0, getStickerIndexForPart(index, 0), (float) Math.PI / 2f));
         }
 
         for (i=0; i < 27; i++) {
@@ -858,8 +872,10 @@ public class RubiksCuboctahedronIdx3D extends AbstractRubiksCubeIdx3D {
                     i, -1, -1
             );
 
-            scene.addMouseListener(parts[i], action);
-
+            for (idx3d_Node child : parts[i].children()) {
+                idx3d_Object obj = (idx3d_Object) child;
+                scene.addMouseListener(obj, action);
+            }
         }
     }
 
