@@ -1,0 +1,1232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="512"
+     version="1.1" width="512">
+  <defs>
+    <clipPath id="clipPath1">
+      <rect fill="#000000" height="512" width="512"/>
+    </clipPath>
+  </defs>
+  <g class="Drawing" clip-path="url(#clipPath1)">
+    <rect fill="#ffffff" height="512" id="background" width="512"/>
+    <g class="Layer" id="background">
+      <image class="Image" height="512" id="image1" preserveAspectRatio="none" width="512" x="0"
+             xlink:href="file:///Users/Shared/Developer/Java/CubeTwister/current-git/CubeTwister/resources/textures/Permutation%20Cube%205x5.gif"
+             y="0"/>
+    </g>
+    <g class="Layer" id="labels">
+      <rect class="Rectangle" fill="#ffffff" height="100" id="rectangle1" width="90" x="340"/>
+      <g>
+        <path d="m350,10 150,0 0,90 -150,0 z" fill="#ffffff"/>
+        <text fill="#000000" font-family="'Roboto'" font-size="13">
+          <tspan x="350" y="23">Copyright © 2007</tspan>
+          <tspan x="350" y="38.234375">Werner Randelshofer</tspan>
+          <tspan x="350" y="53.46875">Walter Randelshofer</tspan>
+          <tspan x="350" y="68.703125">All rights reserved.</tspan>
+        </text>
+      </g>
+      <g>
+        <path d="m10,10 120,0 0,30 -120,0 z" fill="#ffffff"/>
+        <text fill="#000000" font-family="'Roboto Black'" font-size="14">
+          <tspan x="10" y="24.546875">Permutation</tspan>
+        </text>
+      </g>
+      <g>
+        <path d="m10,30 130,0 0,130 -130,0 z" fill="#ffffff"/>
+        <text fill="#000000" font-family="'Roboto'" font-size="13">
+          <tspan x="10" y="43">This cube has labels</tspan>
+          <tspan x="10" y="58.234375">on each sticker.</tspan>
+          <tspan x="10" y="73.46875">The orientation of the</tspan>
+          <tspan x="10" y="88.703125">labels and the</tspan>
+          <tspan x="10" y="103.9375">underlines indicate</tspan>
+          <tspan x="10" y="119.171875">the orientation of the</tspan>
+          <tspan x="10" y="134.40625">underlying cube parts.</tspan>
+        </text>
+      </g>
+    </g>
+    <g class="Layer" id="faces">
+      <rect class="Rectangle" fill="#003170" height="170" id="rectangle2" width="170" x="170"/>
+      <rect class="Rectangle" fill="#f7f7f7" height="170" id="rectangle3" width="170" y="170"/>
+      <rect class="Rectangle" fill="#7f000e" height="170" id="rectangle4" width="170" x="170" y="170"/>
+      <rect class="Rectangle" fill="#f5ca00" height="170" id="rectangle5" width="170" x="340" y="170"/>
+      <rect class="Rectangle" fill="#006e2d" height="170" id="rectangle6" width="170" x="170" y="340"/>
+      <rect class="Rectangle" fill="#ff4600" height="170" id="rectangle7" width="170" x="340" y="340"/>
+    </g>
+    <g class="Layer" id="stickers">
+      <g class="Group" id="group1">
+        <g>
+          <path d="m170,204 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,205 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="230.140625">f₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,204 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,205 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="230.140625">f₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,204 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,205 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="230.140625">f₇</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,204 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,205 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="230.140625">f₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,170 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,171 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="196.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,170 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,171 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="196.140625">f₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,170 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,171 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="196.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,170 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,171 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="196.140625">f₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,170 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,171 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="196.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,204 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,205 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="230.140625">f₃</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,272 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,273 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="298.140625">f₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,272 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,273 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="298.140625">f₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,272 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,273 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="298.140625">f₅</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,272 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,273 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="298.140625">f₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,238 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,239 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="264.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,238 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,239 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="264.140625">f₈</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,238 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,239 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="264.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,238 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,239 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="264.140625">f₆</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,238 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,239 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="264.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,272 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,273 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="298.140625">f₄</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,306 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,307 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="332.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,306 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,307 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="332.140625">f₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,306 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,307 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="332.140625">f.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,306 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,307 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="332.140625">f₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,306 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,307 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="332.140625">f.</tspan>
+          </text>
+        </g>
+      </g>
+      <g class="Group" id="group2" transform="rotate(-90, 405,215)">
+        <g>
+          <path d="m280,184 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m313,185 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="296.5" y="210.140625">r₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m314,184 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m347,185 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="330.5" y="210.140625">r₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m348,184 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m381,185 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="364.5" y="210.140625">r₇</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m416,184 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m449,185 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="432.5" y="210.140625">r₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m416,150 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m449,151 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="432.5" y="176.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m382,150 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m415,151 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="398.5" y="176.140625">r₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m348,150 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m381,151 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="364.5" y="176.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m314,150 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m347,151 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="330.5" y="176.140625">r₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m280,150 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m313,151 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="296.5" y="176.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m382,184 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m415,185 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="398.5" y="210.140625">r₃</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m280,252 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m313,253 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="296.5" y="278.140625">r₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m314,252 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m347,253 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="330.5" y="278.140625">r₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m348,252 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m381,253 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="364.5" y="278.140625">r₅</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m416,252 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m449,253 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="432.5" y="278.140625">r₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m416,218 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m449,219 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="432.5" y="244.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m382,218 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m415,219 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="398.5" y="244.140625">r₈</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m348,218 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m381,219 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="364.5" y="244.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m314,218 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m347,219 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="330.5" y="244.140625">r₆</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m280,218 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m313,219 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="296.5" y="244.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m382,252 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m415,253 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="398.5" y="278.140625">r₄</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m416,286 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m449,287 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="432.5" y="312.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m382,286 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m415,287 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="398.5" y="312.140625">r₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m348,286 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m381,287 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="364.5" y="312.140625">r.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m314,286 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m347,287 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="330.5" y="312.140625">r₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m280,286 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m313,287 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="296.5" y="312.140625">r.</tspan>
+          </text>
+        </g>
+      </g>
+      <g class="Group" id="group3" transform="rotate(180, 85,425)">
+        <g>
+          <path d="m-2.7318289349898216E-14,544 34.000000000000014,0 0,34 -34.000000000000014,0 z" fill="none"/>
+          <path
+            d="m32.999999999999986,545 0,32 -32.000000000000014,0 0,-32 z m-33.000000000000014,-1 0,34 34.000000000000014,0 0,-34 z"
+            fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="16.5" y="570.140625">l₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,544 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,545 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="50.5" y="570.140625">l₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,544 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,545 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="84.5" y="570.140625">l₇</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,544 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,545 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="152.5" y="570.140625">l₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,510 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,511 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="152.5" y="536.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,510 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,511 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="118.5" y="536.140625">l₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,510 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,511 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="84.5" y="536.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,510 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,511 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="50.5" y="536.140625">l₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m-2.7318289349898216E-14,510 34.000000000000014,0 0,34 -34.000000000000014,0 z" fill="none"/>
+          <path
+            d="m32.999999999999986,511 0,32 -32.000000000000014,0 0,-32 z m-33.000000000000014,-1 0,34 34.000000000000014,0 0,-34 z"
+            fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="16.5" y="536.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,544 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,545 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="118.5" y="570.140625">l₃</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m-2.7318289349898216E-14,612 34.000000000000014,0 0,34 -34.000000000000014,0 z" fill="none"/>
+          <path
+            d="m32.999999999999986,613 0,32 -32.000000000000014,0 0,-32 z m-33.000000000000014,-1 0,34 34.000000000000014,0 0,-34 z"
+            fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="16.5" y="638.140625">l₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,612 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,613 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="50.5" y="638.140625">l₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,612 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,613 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="84.5" y="638.140625">l₅</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,612 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,613 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="152.5" y="638.140625">l₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,578 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,579 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="152.5" y="604.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,578 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,579 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="118.5" y="604.140625">l₈</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,578 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,579 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="84.5" y="604.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,578 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,579 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="50.5" y="604.140625">l₆</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m-2.7318289349898216E-14,578 34.000000000000014,0 0,34 -34.000000000000014,0 z" fill="none"/>
+          <path
+            d="m32.999999999999986,579 0,32 -32.000000000000014,0 0,-32 z m-33.000000000000014,-1 0,34 34.000000000000014,0 0,-34 z"
+            fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="16.5" y="604.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,612 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,613 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="118.5" y="638.140625">l₄</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,646 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,647 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="152.5" y="672.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,646 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,647 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="118.5" y="672.140625">l₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,646 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,647 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="84.5" y="672.140625">l.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,646 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,647 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="50.5" y="672.140625">l₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m-2.7318289349898216E-14,646 34.000000000000014,0 0,34 -34.000000000000014,0 z" fill="none"/>
+          <path
+            d="m32.999999999999986,647 0,32 -32.000000000000014,0 0,-32 z m-33.000000000000014,-1 0,34 34.000000000000014,0 0,-34 z"
+            fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="16.5" y="672.140625">l.</tspan>
+          </text>
+        </g>
+      </g>
+      <g class="Group" id="group4" transform="rotate(90, 255,85)">
+        <g>
+          <path d="m170,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="60.140625">u₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="60.140625">u₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="60.140625">u₇</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="60.140625">u₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="322.5" y="26.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="26.140625">u₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="26.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="26.140625">u₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="186.5" y="26.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="60.140625">u₃</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="128.140625">u₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="128.140625">u₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="128.140625">u₅</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="128.140625">u₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="322.5" y="94.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="94.140625">u₈</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="94.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="94.140625">u₆</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="186.5" y="94.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="128.140625">u₄</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="322.5" y="162.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="162.140625">u₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="162.140625">u.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="162.140625">u₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="186.5" y="162.140625">u.</tspan>
+          </text>
+        </g>
+      </g>
+      <g class="Group" id="group5" transform="rotate(180, 255,425)">
+        <g>
+          <path d="m170,374 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,375 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="186.5" y="400.140625">d₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,374 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,375 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="400.140625">d₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,374 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,375 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="400.140625">d₇</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,374 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,375 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="322.5" y="400.140625">d₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,340 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,341 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="322.5" y="366.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,340 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,341 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="288.5" y="366.140625">d₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,340 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,341 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="254.5" y="366.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,340 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,341 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="220.5" y="366.140625">d₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,340 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,341 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="186.5" y="366.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,374 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,375 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="400.140625">d₃</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,442 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,443 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="186.5" y="468.140625">d₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,442 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,443 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="468.140625">d₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,442 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,443 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="468.140625">d₅</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,442 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,443 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="322.5" y="468.140625">d₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,408 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,409 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="322.5" y="434.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,408 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,409 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="434.140625">d₈</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,408 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,409 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="254.5" y="434.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,408 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,409 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="220.5" y="434.140625">d₆</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,408 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,409 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="186.5" y="434.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,442 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,443 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="288.5" y="468.140625">d₄</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m306,476 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m339,477 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="322.5" y="502.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m272,476 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m305,477 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="288.5" y="502.140625">d₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m238,476 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m271,477 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="254.5" y="502.140625">d.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m204,476 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m237,477 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="220.5" y="502.140625">d₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m170,476 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m203,477 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#f7f7f7"/>
+          <text fill="#f7f7f7" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="186.5" y="502.140625">d.</tspan>
+          </text>
+        </g>
+      </g>
+      <g class="Group" id="group6" transform="rotate(90, 85,425)">
+        <g>
+          <path d="m1.2495111235122533E-14,34 33.999999999999986,0 0,34 -33.999999999999986,0 z" fill="none"/>
+          <path d="m33,35 0,32 -31.999999999999986,0 0,-32 z m-32.999999999999986,-1 0,34 33.999999999999986,0 0,-34 z"
+                fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="16.5" y="60.140625">b₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="50.5" y="60.140625">b₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="84.5" y="60.140625">b₇</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="152.5" y="60.140625">b₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="152.5" y="26.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="118.5" y="26.140625">b₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="84.5" y="26.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,0 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,1 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="50.5" y="26.140625">b₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m1.2495111235122533E-14,0 33.999999999999986,0 0,34 -33.999999999999986,0 z" fill="none"/>
+          <path d="m33,1 0,32 -31.999999999999986,0 0,-32 z m-32.999999999999986,-1 0,34 33.999999999999986,0 0,-34 z"
+                fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="16.5" y="26.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,34 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,35 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="118.5" y="60.140625">b₃</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m1.2495111235122533E-14,102 33.999999999999986,0 0,34 -33.999999999999986,0 z" fill="none"/>
+          <path d="m33,103 0,32 -31.999999999999986,0 0,-32 z m-32.999999999999986,-1 0,34 33.999999999999986,0 0,-34 z"
+                fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="16.5" y="128.140625">b₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="50.5" y="128.140625">b₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="84.5" y="128.140625">b₅</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="152.5" y="128.140625">b₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="152.5" y="94.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="118.5" y="94.140625">b₈</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="84.5" y="94.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,68 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,69 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="50.5" y="94.140625">b₆</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m1.2495111235122533E-14,68 33.999999999999986,0 0,34 -33.999999999999986,0 z" fill="none"/>
+          <path d="m33,69 0,32 -31.999999999999986,0 0,-32 z m-32.999999999999986,-1 0,34 33.999999999999986,0 0,-34 z"
+                fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="16.5" y="94.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,102 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,103 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle"
+                text-decoration="underline">
+            <tspan x="118.5" y="128.140625">b₄</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m136,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m169,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="152.5" y="162.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m102,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m135,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="118.5" y="162.140625">b₁</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m68,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m101,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="84.5" y="162.140625">b.</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m34,136 34,0 0,34 -34,0 z" fill="none"/>
+          <path d="m67,137 0,32 -32,0 0,-32 z m-33,-1 0,34 34,0 0,-34 z" fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="50.5" y="162.140625">b₂</tspan>
+          </text>
+        </g>
+        <g>
+          <path d="m1.2495111235122533E-14,136 33.999999999999986,0 0,34 -33.999999999999986,0 z" fill="none"/>
+          <path d="m33,137 0,32 -31.999999999999986,0 0,-32 z m-32.999999999999986,-1 0,34 33.999999999999986,0 0,-34 z"
+                fill="#141414"/>
+          <text fill="#141414" font-family="'Roboto Black'" font-size="24" text-anchor="middle">
+            <tspan x="16.5" y="162.140625">b.</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

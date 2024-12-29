@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+     width="512" height="512" viewport-fill="#fff">
+  <defs/>
+  <rect x="168" y="7.6293945E-6" width="168" height="168" fill="#003373"/>
+  <rect y="168" width="168" height="168" fill="#f8f8f8"/>
+  <rect x="168" y="168" width="168" height="168" fill="#8c000f"/>
+  <rect x="336" y="168" width="168" height="168" fill="#ffd200"/>
+  <rect x="168" y="336" width="168" height="168" fill="#00732f"/>
+  <rect x="336" y="336" width="168" height="168" fill="#ff4600"/>
+  <text x="345.10352" y="20.064453" rotate="0" font-family="Verdana" font-size="12">Copyright @ 2020</text>
+  <text x="345.10352" y="40" rotate="0" font-family="Verdana" font-size="12">Walter Randelshofer</text>
+  <text x="345.10352" y="60.064453" rotate="0" font-family="Verdana" font-size="12">Werner Randelshofer</text>
+  <text x="311.5625" y="200" rotate="0" fill="#fff" font-family="Verdana" font-size="24">f</text>
+  <text x="355" y="200" rotate="0" fill="#300" font-family="Verdana" font-size="24">r</text>
+  <text x="305" y="159.1289" rotate="0" fill="#fff" font-family="Verdana" font-size="24">u</text>
+  <rect x="79.8" y="247.8" width="8.4" height="8.4" fill="#80ff00"/>
+</svg>

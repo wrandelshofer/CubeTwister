@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Drawing xmlns="http://jhotdraw.org/samples/grapher" background="#ffffff" height="512" id="drawing1" width="512">
+  <Layer id="background" locked="true">
+    <Image bounds="0 0 512 512" id="image1" src="Permutation%20Cube%205x5.gif"/>
+  </Layer>
+  <Layer id="labels" locked="true">
+    <Rectangle bounds="340 0 90 100" fill="#ffffff" id="rectangle1" stroke="none"/>
+    <TextArea bounds="350 10 150 90" fill="#ffffff" font="13 Roboto" id="textarea2" stroke="none" textFill="#000000">
+      Copyright © 2007&#xa;Werner Randelshofer&#xa;Walter Randelshofer&#xa;All rights reserved.
+    </TextArea>
+    <TextArea bounds="10 10 120 30" fill="#ffffff" font="14 Roboto Black" id="textarea4" stroke="none"
+              textFill="#000000">Permutation Cube
+    </TextArea>
+    <TextArea bounds="10 30 130 130" fill="#ffffff" font="13 Roboto" id="textarea3" stroke="none" textFill="#000000">
+      This cube has labels on each sticker.&#xa;The orientation of the labels and the underlines indicate the
+      orientation of the underlying cube parts.
+    </TextArea>
+  </Layer>
+  <Layer id="faces" locked="true">
+    <Rectangle bounds="170 0 170 170" fill="rgb(0,49,112)" id="rectangle2" stroke="none"/>
+    <Rectangle bounds="0 170 170 170" fill="rgb(247,247,247)" id="rectangle3" stroke="none"/>
+    <Rectangle bounds="170 170 170 170" fill="rgb(127,0,14)" id="rectangle4" stroke="none"/>
+    <Rectangle bounds="340 170 170 170" fill="rgb(245,202,0)" id="rectangle5" stroke="none"/>
+    <Rectangle bounds="170 340 170 170" fill="rgb(0,110,45)" id="rectangle6" stroke="none"/>
+    <Rectangle bounds="340 340 170 170" fill="rgb(255,70,0)" id="rectangle7" stroke="none"/>
+  </Layer>
+  <Layer id="stickers">
+    <Group id="group1">
+      <TextArea bounds="170 204 34 34" fill="none" font="24 Roboto Black" id="textarea10" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f₂
+      </TextArea>
+      <TextArea bounds="204 204 34 34" fill="none" font="24 Roboto Black" id="textarea11" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₂
+      </TextArea>
+      <TextArea bounds="238 204 34 34" fill="none" font="24 Roboto Black" id="textarea12" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₇
+      </TextArea>
+      <TextArea bounds="306 204 34 34" fill="none" font="24 Roboto Black" id="textarea14" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f₂
+      </TextArea>
+      <TextArea bounds="306 170 34 34" fill="none" font="24 Roboto Black" id="textarea9" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f.
+      </TextArea>
+      <TextArea bounds="272 170 34 34" fill="none" font="24 Roboto Black" id="textarea8" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₂
+      </TextArea>
+      <TextArea bounds="238 170 34 34" fill="none" font="24 Roboto Black" id="textarea7" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f.
+      </TextArea>
+      <TextArea bounds="204 170 34 34" fill="none" font="24 Roboto Black" id="textarea6" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₁
+      </TextArea>
+      <TextArea bounds="170 170 34 34" fill="none" font="24 Roboto Black" id="textarea5" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f.
+      </TextArea>
+      <TextArea bounds="272 204 34 34" fill="none" font="24 Roboto Black" id="textarea13" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₃
+      </TextArea>
+      <TextArea bounds="170 272 34 34" fill="none" font="24 Roboto Black" id="textarea15" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f₁
+      </TextArea>
+      <TextArea bounds="204 272 34 34" fill="none" font="24 Roboto Black" id="textarea16" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₁
+      </TextArea>
+      <TextArea bounds="238 272 34 34" fill="none" font="24 Roboto Black" id="textarea17" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₅
+      </TextArea>
+      <TextArea bounds="306 272 34 34" fill="none" font="24 Roboto Black" id="textarea18" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f₁
+      </TextArea>
+      <TextArea bounds="306 238 34 34" fill="none" font="24 Roboto Black" id="textarea19" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f.
+      </TextArea>
+      <TextArea bounds="272 238 34 34" fill="none" font="24 Roboto Black" id="textarea20" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₈
+      </TextArea>
+      <TextArea bounds="238 238 34 34" fill="none" font="24 Roboto Black" id="textarea21" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f.
+      </TextArea>
+      <TextArea bounds="204 238 34 34" fill="none" font="24 Roboto Black" id="textarea22" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₆
+      </TextArea>
+      <TextArea bounds="170 238 34 34" fill="none" font="24 Roboto Black" id="textarea23" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f.
+      </TextArea>
+      <TextArea bounds="272 272 34 34" fill="none" font="24 Roboto Black" id="textarea24" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₄
+      </TextArea>
+      <TextArea bounds="306 306 34 34" fill="none" font="24 Roboto Black" id="textarea29" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f.
+      </TextArea>
+      <TextArea bounds="272 306 34 34" fill="none" font="24 Roboto Black" id="textarea30" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₂
+      </TextArea>
+      <TextArea bounds="238 306 34 34" fill="none" font="24 Roboto Black" id="textarea31" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f.
+      </TextArea>
+      <TextArea bounds="204 306 34 34" fill="none" font="24 Roboto Black" id="textarea32" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">f₁
+      </TextArea>
+      <TextArea bounds="170 306 34 34" fill="none" font="24 Roboto Black" id="textarea33" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">f.
+      </TextArea>
+    </Group>
+    <Group id="group2" transform="rotate(-90, 405,215)">
+      <TextArea bounds="280 184 34 34" fill="none" font="24 Roboto Black" id="textarea1" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r₂
+      </TextArea>
+      <TextArea bounds="314 184 34 34" fill="none" font="24 Roboto Black" id="textarea25" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₃
+      </TextArea>
+      <TextArea bounds="348 184 34 34" fill="none" font="24 Roboto Black" id="textarea26" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₈
+      </TextArea>
+      <TextArea bounds="416 184 34 34" fill="none" font="24 Roboto Black" id="textarea27" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r₂
+      </TextArea>
+      <TextArea bounds="416 150 34 34" fill="none" font="24 Roboto Black" id="textarea28" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r.
+      </TextArea>
+      <TextArea bounds="382 150 34 34" fill="none" font="24 Roboto Black" id="textarea34" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₂
+      </TextArea>
+      <TextArea bounds="348 150 34 34" fill="none" font="24 Roboto Black" id="textarea35" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r.
+      </TextArea>
+      <TextArea bounds="314 150 34 34" fill="none" font="24 Roboto Black" id="textarea36" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₁
+      </TextArea>
+      <TextArea bounds="280 150 34 34" fill="none" font="24 Roboto Black" id="textarea37" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r.
+      </TextArea>
+      <TextArea bounds="382 184 34 34" fill="none" font="24 Roboto Black" id="textarea38" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₄
+      </TextArea>
+      <TextArea bounds="280 252 34 34" fill="none" font="24 Roboto Black" id="textarea39" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r₁
+      </TextArea>
+      <TextArea bounds="314 252 34 34" fill="none" font="24 Roboto Black" id="textarea40" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₂
+      </TextArea>
+      <TextArea bounds="348 252 34 34" fill="none" font="24 Roboto Black" id="textarea41" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₆
+      </TextArea>
+      <TextArea bounds="416 252 34 34" fill="none" font="24 Roboto Black" id="textarea42" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r₁
+      </TextArea>
+      <TextArea bounds="416 218 34 34" fill="none" font="24 Roboto Black" id="textarea43" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r.
+      </TextArea>
+      <TextArea bounds="382 218 34 34" fill="none" font="24 Roboto Black" id="textarea44" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₅
+      </TextArea>
+      <TextArea bounds="348 218 34 34" fill="none" font="24 Roboto Black" id="textarea45" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r.
+      </TextArea>
+      <TextArea bounds="314 218 34 34" fill="none" font="24 Roboto Black" id="textarea46" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₇
+      </TextArea>
+      <TextArea bounds="280 218 34 34" fill="none" font="24 Roboto Black" id="textarea47" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r.
+      </TextArea>
+      <TextArea bounds="382 252 34 34" fill="none" font="24 Roboto Black" id="textarea48" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₁
+      </TextArea>
+      <TextArea bounds="416 286 34 34" fill="none" font="24 Roboto Black" id="textarea49" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r.
+      </TextArea>
+      <TextArea bounds="382 286 34 34" fill="none" font="24 Roboto Black" id="textarea50" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₂
+      </TextArea>
+      <TextArea bounds="348 286 34 34" fill="none" font="24 Roboto Black" id="textarea51" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r.
+      </TextArea>
+      <TextArea bounds="314 286 34 34" fill="none" font="24 Roboto Black" id="textarea52" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        r₁
+      </TextArea>
+      <TextArea bounds="280 286 34 34" fill="none" font="24 Roboto Black" id="textarea53" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">r.
+      </TextArea>
+    </Group>
+    <Group id="group3" transform="rotate(180, 85,425)">
+      <TextArea bounds="-2.7318289349898216E-14 544 34.000000000000014 34" fill="none" font="24 Roboto Black"
+                id="textarea54" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center" underline="true">l₁
+      </TextArea>
+      <TextArea bounds="34 544 34 34" fill="none" font="24 Roboto Black" id="textarea55" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₂
+      </TextArea>
+      <TextArea bounds="68 544 34 34" fill="none" font="24 Roboto Black" id="textarea56" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₇
+      </TextArea>
+      <TextArea bounds="136 544 34 34" fill="none" font="24 Roboto Black" id="textarea57" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₁
+      </TextArea>
+      <TextArea bounds="136 510 34 34" fill="none" font="24 Roboto Black" id="textarea58" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l.
+      </TextArea>
+      <TextArea bounds="102 510 34 34" fill="none" font="24 Roboto Black" id="textarea59" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l₁
+      </TextArea>
+      <TextArea bounds="68 510 34 34" fill="none" font="24 Roboto Black" id="textarea60" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l.
+      </TextArea>
+      <TextArea bounds="34 510 34 34" fill="none" font="24 Roboto Black" id="textarea61" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l₂
+      </TextArea>
+      <TextArea bounds="-2.7318289349898216E-14 510 34.000000000000014 34" fill="none" font="24 Roboto Black"
+                id="textarea62" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center">l.
+      </TextArea>
+      <TextArea bounds="102 544 34 34" fill="none" font="24 Roboto Black" id="textarea63" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₃
+      </TextArea>
+      <TextArea bounds="-2.7318289349898216E-14 612 34.000000000000014 34" fill="none" font="24 Roboto Black"
+                id="textarea64" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center" underline="true">l₂
+      </TextArea>
+      <TextArea bounds="34 612 34 34" fill="none" font="24 Roboto Black" id="textarea65" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₁
+      </TextArea>
+      <TextArea bounds="68 612 34 34" fill="none" font="24 Roboto Black" id="textarea66" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₅
+      </TextArea>
+      <TextArea bounds="136 612 34 34" fill="none" font="24 Roboto Black" id="textarea67" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₂
+      </TextArea>
+      <TextArea bounds="136 578 34 34" fill="none" font="24 Roboto Black" id="textarea68" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l.
+      </TextArea>
+      <TextArea bounds="102 578 34 34" fill="none" font="24 Roboto Black" id="textarea69" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₈
+      </TextArea>
+      <TextArea bounds="68 578 34 34" fill="none" font="24 Roboto Black" id="textarea70" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l.
+      </TextArea>
+      <TextArea bounds="34 578 34 34" fill="none" font="24 Roboto Black" id="textarea71" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₆
+      </TextArea>
+      <TextArea bounds="-2.7318289349898216E-14 578 34.000000000000014 34" fill="none" font="24 Roboto Black"
+                id="textarea72" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center" underline="true">l.
+      </TextArea>
+      <TextArea bounds="102 612 34 34" fill="none" font="24 Roboto Black" id="textarea73" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        l₄
+      </TextArea>
+      <TextArea bounds="136 646 34 34" fill="none" font="24 Roboto Black" id="textarea74" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l.
+      </TextArea>
+      <TextArea bounds="102 646 34 34" fill="none" font="24 Roboto Black" id="textarea75" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l₁
+      </TextArea>
+      <TextArea bounds="68 646 34 34" fill="none" font="24 Roboto Black" id="textarea76" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l.
+      </TextArea>
+      <TextArea bounds="34 646 34 34" fill="none" font="24 Roboto Black" id="textarea77" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">l₂
+      </TextArea>
+      <TextArea bounds="-2.7318289349898216E-14 646 34.000000000000014 34" fill="none" font="24 Roboto Black"
+                id="textarea78" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center">l.
+      </TextArea>
+    </Group>
+    <Group id="group4" transform="rotate(90, 255,85)">
+      <TextArea bounds="170 34 34 34" fill="none" font="24 Roboto Black" id="textarea79" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">u₂
+      </TextArea>
+      <TextArea bounds="204 34 34 34" fill="none" font="24 Roboto Black" id="textarea80" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₂
+      </TextArea>
+      <TextArea bounds="238 34 34 34" fill="none" font="24 Roboto Black" id="textarea81" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₇
+      </TextArea>
+      <TextArea bounds="306 34 34 34" fill="none" font="24 Roboto Black" id="textarea82" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">u₂
+      </TextArea>
+      <TextArea bounds="306 0 34 34" fill="none" font="24 Roboto Black" id="textarea83" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u.
+      </TextArea>
+      <TextArea bounds="272 0 34 34" fill="none" font="24 Roboto Black" id="textarea84" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₂
+      </TextArea>
+      <TextArea bounds="238 0 34 34" fill="none" font="24 Roboto Black" id="textarea85" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u.
+      </TextArea>
+      <TextArea bounds="204 0 34 34" fill="none" font="24 Roboto Black" id="textarea86" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₁
+      </TextArea>
+      <TextArea bounds="170 0 34 34" fill="none" font="24 Roboto Black" id="textarea87" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u.
+      </TextArea>
+      <TextArea bounds="272 34 34 34" fill="none" font="24 Roboto Black" id="textarea88" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₃
+      </TextArea>
+      <TextArea bounds="170 102 34 34" fill="none" font="24 Roboto Black" id="textarea89" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">u₁
+      </TextArea>
+      <TextArea bounds="204 102 34 34" fill="none" font="24 Roboto Black" id="textarea90" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₁
+      </TextArea>
+      <TextArea bounds="238 102 34 34" fill="none" font="24 Roboto Black" id="textarea91" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₅
+      </TextArea>
+      <TextArea bounds="306 102 34 34" fill="none" font="24 Roboto Black" id="textarea92" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">u₁
+      </TextArea>
+      <TextArea bounds="306 68 34 34" fill="none" font="24 Roboto Black" id="textarea93" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">u.
+      </TextArea>
+      <TextArea bounds="272 68 34 34" fill="none" font="24 Roboto Black" id="textarea94" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₈
+      </TextArea>
+      <TextArea bounds="238 68 34 34" fill="none" font="24 Roboto Black" id="textarea95" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u.
+      </TextArea>
+      <TextArea bounds="204 68 34 34" fill="none" font="24 Roboto Black" id="textarea96" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₆
+      </TextArea>
+      <TextArea bounds="170 68 34 34" fill="none" font="24 Roboto Black" id="textarea97" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">u.
+      </TextArea>
+      <TextArea bounds="272 102 34 34" fill="none" font="24 Roboto Black" id="textarea98" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₄
+      </TextArea>
+      <TextArea bounds="306 136 34 34" fill="none" font="24 Roboto Black" id="textarea99" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u.
+      </TextArea>
+      <TextArea bounds="272 136 34 34" fill="none" font="24 Roboto Black" id="textarea100" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₂
+      </TextArea>
+      <TextArea bounds="238 136 34 34" fill="none" font="24 Roboto Black" id="textarea101" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u.
+      </TextArea>
+      <TextArea bounds="204 136 34 34" fill="none" font="24 Roboto Black" id="textarea102" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u₁
+      </TextArea>
+      <TextArea bounds="170 136 34 34" fill="none" font="24 Roboto Black" id="textarea103" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">u.
+      </TextArea>
+    </Group>
+    <Group id="group5" transform="rotate(180, 255,425)">
+      <TextArea bounds="170 374 34 34" fill="none" font="24 Roboto Black" id="textarea104" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₁
+      </TextArea>
+      <TextArea bounds="204 374 34 34" fill="none" font="24 Roboto Black" id="textarea105" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₂
+      </TextArea>
+      <TextArea bounds="238 374 34 34" fill="none" font="24 Roboto Black" id="textarea106" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₇
+      </TextArea>
+      <TextArea bounds="306 374 34 34" fill="none" font="24 Roboto Black" id="textarea107" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₁
+      </TextArea>
+      <TextArea bounds="306 340 34 34" fill="none" font="24 Roboto Black" id="textarea108" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d.
+      </TextArea>
+      <TextArea bounds="272 340 34 34" fill="none" font="24 Roboto Black" id="textarea109" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">d₁
+      </TextArea>
+      <TextArea bounds="238 340 34 34" fill="none" font="24 Roboto Black" id="textarea110" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">d.
+      </TextArea>
+      <TextArea bounds="204 340 34 34" fill="none" font="24 Roboto Black" id="textarea111" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">d₂
+      </TextArea>
+      <TextArea bounds="170 340 34 34" fill="none" font="24 Roboto Black" id="textarea112" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d.
+      </TextArea>
+      <TextArea bounds="272 374 34 34" fill="none" font="24 Roboto Black" id="textarea113" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₃
+      </TextArea>
+      <TextArea bounds="170 442 34 34" fill="none" font="24 Roboto Black" id="textarea114" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₂
+      </TextArea>
+      <TextArea bounds="204 442 34 34" fill="none" font="24 Roboto Black" id="textarea115" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₁
+      </TextArea>
+      <TextArea bounds="238 442 34 34" fill="none" font="24 Roboto Black" id="textarea116" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₅
+      </TextArea>
+      <TextArea bounds="306 442 34 34" fill="none" font="24 Roboto Black" id="textarea117" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₂
+      </TextArea>
+      <TextArea bounds="306 408 34 34" fill="none" font="24 Roboto Black" id="textarea118" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d.
+      </TextArea>
+      <TextArea bounds="272 408 34 34" fill="none" font="24 Roboto Black" id="textarea119" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₈
+      </TextArea>
+      <TextArea bounds="238 408 34 34" fill="none" font="24 Roboto Black" id="textarea120" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d.
+      </TextArea>
+      <TextArea bounds="204 408 34 34" fill="none" font="24 Roboto Black" id="textarea121" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₆
+      </TextArea>
+      <TextArea bounds="170 408 34 34" fill="none" font="24 Roboto Black" id="textarea122" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d.
+      </TextArea>
+      <TextArea bounds="272 442 34 34" fill="none" font="24 Roboto Black" id="textarea123" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d₄
+      </TextArea>
+      <TextArea bounds="306 476 34 34" fill="none" font="24 Roboto Black" id="textarea124" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d.
+      </TextArea>
+      <TextArea bounds="272 476 34 34" fill="none" font="24 Roboto Black" id="textarea125" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">d₁
+      </TextArea>
+      <TextArea bounds="238 476 34 34" fill="none" font="24 Roboto Black" id="textarea126" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">d.
+      </TextArea>
+      <TextArea bounds="204 476 34 34" fill="none" font="24 Roboto Black" id="textarea127" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center">d₂
+      </TextArea>
+      <TextArea bounds="170 476 34 34" fill="none" font="24 Roboto Black" id="textarea128" stroke="rgb(247,247,247)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(247,247,247)" textVPos="center"
+                underline="true">d.
+      </TextArea>
+    </Group>
+    <Group id="group6" transform="rotate(90, 85,425)">
+      <TextArea bounds="1.2495111235122535E-14 34 33.999999999999986 34" fill="none" font="24 Roboto Black"
+                id="textarea129" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center" underline="true">b₁
+      </TextArea>
+      <TextArea bounds="34 34 34 34" fill="none" font="24 Roboto Black" id="textarea130" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₂
+      </TextArea>
+      <TextArea bounds="68 34 34 34" fill="none" font="24 Roboto Black" id="textarea131" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₇
+      </TextArea>
+      <TextArea bounds="136 34 34 34" fill="none" font="24 Roboto Black" id="textarea132" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₁
+      </TextArea>
+      <TextArea bounds="136 0 34 34" fill="none" font="24 Roboto Black" id="textarea133" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b.
+      </TextArea>
+      <TextArea bounds="102 0 34 34" fill="none" font="24 Roboto Black" id="textarea134" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b₁
+      </TextArea>
+      <TextArea bounds="68 0 34 34" fill="none" font="24 Roboto Black" id="textarea135" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b.
+      </TextArea>
+      <TextArea bounds="34 0 34 34" fill="none" font="24 Roboto Black" id="textarea136" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b₂
+      </TextArea>
+      <TextArea bounds="1.2495111235122535E-14 0 33.999999999999986 34" fill="none" font="24 Roboto Black"
+                id="textarea137" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center">b.
+      </TextArea>
+      <TextArea bounds="102 34 34 34" fill="none" font="24 Roboto Black" id="textarea138" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₃
+      </TextArea>
+      <TextArea bounds="1.2495111235122535E-14 102 33.999999999999986 34" fill="none" font="24 Roboto Black"
+                id="textarea139" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center" underline="true">b₂
+      </TextArea>
+      <TextArea bounds="34 102 34 34" fill="none" font="24 Roboto Black" id="textarea140" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₁
+      </TextArea>
+      <TextArea bounds="68 102 34 34" fill="none" font="24 Roboto Black" id="textarea141" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₅
+      </TextArea>
+      <TextArea bounds="136 102 34 34" fill="none" font="24 Roboto Black" id="textarea142" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₂
+      </TextArea>
+      <TextArea bounds="136 68 34 34" fill="none" font="24 Roboto Black" id="textarea143" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b.
+      </TextArea>
+      <TextArea bounds="102 68 34 34" fill="none" font="24 Roboto Black" id="textarea144" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₈
+      </TextArea>
+      <TextArea bounds="68 68 34 34" fill="none" font="24 Roboto Black" id="textarea145" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b.
+      </TextArea>
+      <TextArea bounds="34 68 34 34" fill="none" font="24 Roboto Black" id="textarea146" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₆
+      </TextArea>
+      <TextArea bounds="1.2495111235122535E-14 68 33.999999999999986 34" fill="none" font="24 Roboto Black"
+                id="textarea147" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center" underline="true">b.
+      </TextArea>
+      <TextArea bounds="102 102 34 34" fill="none" font="24 Roboto Black" id="textarea148" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center" underline="true">
+        b₄
+      </TextArea>
+      <TextArea bounds="136 136 34 34" fill="none" font="24 Roboto Black" id="textarea149" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b.
+      </TextArea>
+      <TextArea bounds="102 136 34 34" fill="none" font="24 Roboto Black" id="textarea150" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b₁
+      </TextArea>
+      <TextArea bounds="68 136 34 34" fill="none" font="24 Roboto Black" id="textarea151" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b.
+      </TextArea>
+      <TextArea bounds="34 136 34 34" fill="none" font="24 Roboto Black" id="textarea152" stroke="rgb(20,20,20)"
+                stroke-type="inside" textAlignment="center" textFill="rgb(20,20,20)" textVPos="center">b₂
+      </TextArea>
+      <TextArea bounds="1.2495111235122535E-14 136 33.999999999999986 34" fill="none" font="24 Roboto Black"
+                id="textarea153" stroke="rgb(20,20,20)" stroke-type="inside" textAlignment="center"
+                textFill="rgb(20,20,20)" textVPos="center">b.
+      </TextArea>
+    </Group>
+  </Layer>
+</Drawing>

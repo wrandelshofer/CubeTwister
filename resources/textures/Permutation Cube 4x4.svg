@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny"
+     width="512" height="512" viewport-fill="#fff">
+  <defs/>
+  <rect x="168" y="7.6293945E-6" width="168" height="168" fill="#003373"/>
+  <rect y="168" width="168" height="168" fill="#f8f8f8"/>
+  <rect x="168" y="168" width="168" height="168" fill="#8c000f"/>
+  <rect x="336" y="168" width="168" height="168" fill="#ffd200"/>
+  <rect x="168" y="336" width="168" height="168" fill="#00732f"/>
+  <rect x="336" y="336" width="168" height="168" fill="#ff4600"/>
+  <text x="345.10352" y="20.064453" rotate="0" font-family="Verdana" font-size="12">Copyright @ 2020</text>
+  <text x="345.10352" y="40" rotate="0" font-family="Verdana" font-size="12">Walter Randelshofer</text>
+  <text x="345.10352" y="60.064453" rotate="0" font-family="Verdana" font-size="12">Werner Randelshofer</text>
+  <line y1="168" x2="504" y2="168" fill="#f00" stroke="#f00"/>
+  <line y1="210" x2="504" y2="210" fill="none" stroke="#f00"/>
+  <line y1="252" x2="504" y2="252" fill="none" stroke="#f00"/>
+  <line y1="294" x2="504" y2="294" fill="none" stroke="#f00"/>
+  <line y2="504" fill="none" stroke="#0f0"/>
+  <line y1="336" x2="504" y2="336" fill="none" stroke="#f00"/>
+  <line x2="504" fill="none" stroke="#f00"/>
+  <line y1="42" x2="504" y2="42" fill="none" stroke="#f00"/>
+  <line y1="84" x2="504" y2="84" fill="none" stroke="#f00"/>
+  <line y1="126" x2="504" y2="126" fill="none" stroke="#f00"/>
+  <line y1="378" x2="504" y2="378" fill="none" stroke="#f00"/>
+  <line y1="420" x2="504" y2="420" fill="none" stroke="#f00"/>
+  <line y1="462" x2="504" y2="462" fill="none" stroke="#f00"/>
+  <line y1="504" x2="504" y2="504" fill="none" stroke="#f00"/>
+  <line x1="42" x2="42" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="84" x2="84" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="126" x2="126" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="168" x2="168" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="210" x2="210" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="252" x2="252" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="294" x2="294" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="336" x2="336" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="378" x2="378" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="420" x2="420" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="462" x2="462" y2="504" fill="none" stroke="#0f0"/>
+  <line x1="504" x2="504" y2="504" fill="none" stroke="#0f0"/>
+  <text x="311.5625" y="200" rotate="0" fill="#fff" font-family="Verdana" font-size="24">f</text>
+  <text x="355" y="200" rotate="0" fill="#fff" font-family="Verdana" font-size="24">r</text>
+  <text x="305" y="159.1289" rotate="0" fill="#fff" font-family="Verdana" font-size="24">u</text>
+</svg>
