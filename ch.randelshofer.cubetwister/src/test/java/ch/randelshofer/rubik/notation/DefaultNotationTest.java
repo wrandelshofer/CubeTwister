@@ -52,7 +52,7 @@ public class DefaultNotationTest {
             NotationModel m = new NotationModel();
             m.setLayerCount(n.getLayerCount());
             m.setName("Superset ENG " + layerCount + "x" + layerCount);
-            m.setAuthor("Werner Randelshofer");
+            m.setAuthor("Walter Randelshofer, Werner Randelshofer");
             m.setDate(date);
             for (Symbol s : Symbol.values()) {
                 if (s == Symbol.MACRO || s == Symbol.MOVE) {
