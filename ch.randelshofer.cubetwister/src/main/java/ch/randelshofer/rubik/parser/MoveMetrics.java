@@ -4,6 +4,8 @@
  */
 package ch.randelshofer.rubik.parser;
 
+import ch.randelshofer.rubik.parser.ast.MoveNode;
+import ch.randelshofer.rubik.parser.ast.Node;
 import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 

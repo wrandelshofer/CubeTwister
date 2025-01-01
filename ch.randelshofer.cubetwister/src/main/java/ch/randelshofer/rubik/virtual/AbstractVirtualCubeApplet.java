@@ -17,10 +17,10 @@ import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube3d.AbstractCubeIdx3D;
 import ch.randelshofer.rubik.cube3d.Cube3DEvent;
 import ch.randelshofer.rubik.cube3d.Cube3DListener;
-import ch.randelshofer.rubik.notation.DefaultNotation;
-import ch.randelshofer.rubik.parser.Node;
-import ch.randelshofer.rubik.parser.ScriptKeyboardHandler;
+import ch.randelshofer.rubik.notation.DefaultScriptNotation;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.rubik.parser.ast.Node;
+import ch.randelshofer.rubik.player.ScriptKeyboardHandler;
 import ch.randelshofer.util.AppletParameterException;
 import ch.randelshofer.util.Applets;
 import ch.randelshofer.util.Cookies;
@@ -632,7 +632,7 @@ public abstract class AbstractVirtualCubeApplet extends javax.swing.JApplet {
             twistTool.setSelected(true);
         }
         random = new Random();
-        parser = new ScriptParser(new DefaultNotation(cube3d.getCube().getLayerCount()));
+        parser = new ScriptParser(new DefaultScriptNotation(cube3d.getCube().getLayerCount()));
         ScriptKeyboardHandler skp = new ScriptKeyboardHandler();
         skp.setCube(cube3d.getCube());
         skp.setParser(parser);

@@ -6,7 +6,7 @@ package ch.randelshofer.rubik.cube;
 
 import ch.randelshofer.math.IntMath;
 import ch.randelshofer.rubik.CubeAttributes;
-import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.ScriptNotation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
 import org.jhotdraw.annotation.Nonnull;
@@ -60,7 +60,7 @@ public class Cubes {
     }
 
     @Nonnull
-    public static String toVisualPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
+    public static String toVisualPermutationString(@Nonnull Cube cube, @Nonnull ScriptNotation notation) {
 
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toVisualPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
@@ -591,7 +591,7 @@ public class Cubes {
     }
 
     @Nonnull
-    public static String toPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
+    public static String toPermutationString(@Nonnull Cube cube, @Nonnull ScriptNotation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.FACE_R),
@@ -612,7 +612,7 @@ public class Cubes {
     }
 
     @Nonnull
-    public static String toCornerPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
+    public static String toCornerPermutationString(@Nonnull Cube cube, @Nonnull ScriptNotation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toCornerPermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.FACE_R),
@@ -640,7 +640,7 @@ public class Cubes {
     }
 
     @Nonnull
-    public static String toEdgePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
+    public static String toEdgePermutationString(@Nonnull Cube cube, @Nonnull ScriptNotation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toEdgePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.FACE_R),
@@ -668,7 +668,7 @@ public class Cubes {
     }
 
     @Nonnull
-    public static String toSidePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
+    public static String toSidePermutationString(@Nonnull Cube cube, @Nonnull ScriptNotation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toSidePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.FACE_R),
@@ -689,7 +689,7 @@ public class Cubes {
     }
 
     @Nonnull
-    public static String toVisualSidePermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
+    public static String toVisualSidePermutationString(@Nonnull Cube cube, @Nonnull ScriptNotation notation) {
         if (notation.isSupported(Symbol.PERMUTATION)) {
             return toVisualSidePermutationString(cube, notation.getSyntax(Symbol.PERMUTATION),
                     notation.getToken(Symbol.FACE_R),
@@ -802,19 +802,13 @@ public class Cubes {
                                                     String tBegin, String tEnd, String tDelimiter) {
 
         int[] cornerLoc = cube.getCornerLocations();
-        int[] edgeLoc = cube.getEdgeLocations();
-        int[] sideLoc = cube.getSideLocations();
         int[] cornerOrient = cube.getCornerOrientations();
-        int[] edgeOrient = cube.getEdgeOrientations();
-        int[] sideOrient = cube.getSideOrientations();
         int[] cycle = new int[Math.max(Math.max(cube.getCornerCount(), cube.getEdgeCount()), cube.getSideCount())];
-        int layerCount = cube.getLayerCount();
-        boolean hasEvenLayerCount = layerCount % 2 == 0;
 
         StringBuilder buf = new StringBuilder();
         boolean[] visitedLocs;
 
-        int i, j, k, l, p, n;
+        int i, j, k, p, n;
 
         int prevOrient;
         boolean isFirst;

@@ -6,9 +6,24 @@
 package ch.randelshofer.rubik.parser;
 
 import ch.randelshofer.io.ParseException;
-import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.ScriptNotation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
+import ch.randelshofer.rubik.parser.ast.BinaryNode;
+import ch.randelshofer.rubik.parser.ast.CommutationNode;
+import ch.randelshofer.rubik.parser.ast.ConjugationNode;
+import ch.randelshofer.rubik.parser.ast.GroupingNode;
+import ch.randelshofer.rubik.parser.ast.InversionNode;
+import ch.randelshofer.rubik.parser.ast.MacroNode;
+import ch.randelshofer.rubik.parser.ast.MoveNode;
+import ch.randelshofer.rubik.parser.ast.NOPNode;
+import ch.randelshofer.rubik.parser.ast.Node;
+import ch.randelshofer.rubik.parser.ast.PermutationCycleNode;
+import ch.randelshofer.rubik.parser.ast.ReflectionNode;
+import ch.randelshofer.rubik.parser.ast.RepetitionNode;
+import ch.randelshofer.rubik.parser.ast.RotationNode;
+import ch.randelshofer.rubik.parser.ast.SequenceNode;
+import ch.randelshofer.rubik.parser.ast.UnaryNode;
 import ch.randelshofer.rubik.tokenizer.Tokenizer;
 import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
@@ -22,11 +37,11 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
- * Parser for rubik's cube scripts. The tokens and syntax-rules used by the
+ * Parser for Rubik's Cube scripts. The tokens and syntax-rules used by the
  * parser are read from a Notation object.<p>
  * <p>
  * The parser supports the EBNF ISO/IEC 14977 productions shown below.
- * The {@link Syntax}  of the productions is read from a {@link Notation} object.
+ * The {@link Syntax}  of the productions is read from a {@link ScriptNotation} object.
  * The notation allows to specify the tokens for Expression productions which may
  * be ambiguous up until the last token of the Expression production has been parsed.
  * This parser takes the first solution that it could find using a backtracking
@@ -134,14 +149,14 @@ import java.util.stream.Collectors;
  */
 
 public class ScriptParser {
-    private Notation notation;
+    private ScriptNotation notation;
     private Map<String, MacroNode> localMacros;
 
-    public ScriptParser(Notation notation) {
+    public ScriptParser(ScriptNotation notation) {
         this(notation, Collections.emptyList());
     }
 
-    public ScriptParser(Notation notation, @Nonnull List<MacroNode> localMacros) {
+    public ScriptParser(ScriptNotation notation, @Nonnull List<MacroNode> localMacros) {
         this.notation = notation;
         this.localMacros = localMacros.stream().collect(
                 Collectors.toMap(MacroNode::getIdentifier, Function.identity()));
@@ -203,7 +218,7 @@ public class ScriptParser {
     }
 
     @Nonnull
-    private Tokenizer createTokenizer(@Nonnull Notation notation) {
+    private Tokenizer createTokenizer(@Nonnull ScriptNotation notation) {
         var tt = new Tokenizer();
         tt.addNumbers();
         tt.skipWhitespace();
@@ -241,7 +256,7 @@ public class ScriptParser {
         return unary;
     }
 
-    public Notation getNotation() {
+    public ScriptNotation getNotation() {
         return notation;
     }
 

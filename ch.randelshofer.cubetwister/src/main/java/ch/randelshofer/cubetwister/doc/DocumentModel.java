@@ -8,9 +8,6 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.datatransfer.XMLTransferable;
 import ch.randelshofer.gui.tree.MutableTreeModel;
 import ch.randelshofer.gui.tree.TreeNodeImpl;
-import ch.randelshofer.rubik.CubeKind;
-import ch.randelshofer.rubik.notation.Move;
-import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
 import ch.randelshofer.undo.CompositeEdit;
 import ch.randelshofer.undo.Undoable;
@@ -31,7 +28,6 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.UndoableEdit;
-import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -43,13 +39,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
-import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -68,7 +60,6 @@ import java.util.List;
 public class DocumentModel extends DefaultTreeModel
         implements MutableTreeModel, Undoable {
     private final static long serialVersionUID = 1L;
-    private static final int DOCUMENT_VERSION = 9;
     private final static ConcurrentDispatcher threadPool = new ConcurrentDispatcher(Thread.MIN_PRIORITY, 1/*Runtime.getRuntime().availableProcessors()*/);
     public final static int CUBE_INDEX = 0;
     public final static int NOTATION_INDEX = 1;
@@ -77,7 +68,7 @@ public class DocumentModel extends DefaultTreeModel
     private final static String[] NODE_TYPES = {
             "Cube", "Notation", "Script", "Note"
     };
-    private final static HashMap<String, Syntax> syntaxValueSet = new HashMap<String, Syntax>();
+    final static HashMap<String, Syntax> syntaxValueSet = new HashMap<String, Syntax>();
 
     static {
         syntaxValueSet.put("PREFIX", Syntax.PREFIX);
@@ -86,7 +77,7 @@ public class DocumentModel extends DefaultTreeModel
         syntaxValueSet.put("TAIL", Syntax.POSTCIRCUMFIX);
     }
 
-    private final static HashMap<String, Integer> axisValueSet = new HashMap<String, Integer>();
+    final static HashMap<String, Integer> axisValueSet = new HashMap<String, Integer>();
 
     static {
         axisValueSet.put("x", 0);
@@ -94,7 +85,7 @@ public class DocumentModel extends DefaultTreeModel
         axisValueSet.put("z", 2);
     }
 
-    private final static HashMap<String, Boolean> scriptTypeValueSet = new HashMap<String, Boolean>();
+    final static HashMap<String, Boolean> scriptTypeValueSet = new HashMap<String, Boolean>();
 
     static {
         scriptTypeValueSet.put("generator", true);
@@ -120,14 +111,6 @@ public class DocumentModel extends DefaultTreeModel
      */
     @Nullable
     private SequentialDispatcher dispatcher;
-    /**
-     * This set is used to determine which entities should
-     * be written by method writeXML.
-     *
-     * @see #writeXML(OutputStream, Object[])
-     */
-    @Nullable
-    private Object[] writeMembersOnly;
 
     /**
      * Creates a new DocumentModel.
@@ -281,26 +264,6 @@ public class DocumentModel extends DefaultTreeModel
         };
         fireUndoableEdit(edit);
     }
-    /*
-    public void itemDeleted(Object item) {
-    Iterator i = cubes.iterator();
-    while (i.hasNext()) {
-    ((DescriptionModel) i.next()).itemDeleted(item);
-    }
-    i = notations.iterator();
-    while (i.hasNext()) {
-    ((DescriptionModel) i.next()).itemDeleted(item);
-    }
-    i = scripts.iterator();
-    while (i.hasNext()) {
-    ((DescriptionModel) i.next()).itemDeleted(item);
-    }
-    i = texts.iterator();
-    while (i.hasNext()) {
-    ((DescriptionModel) i.next()).itemDeleted(item);
-    }
-    }
-     */
 
     /**
      * Writes the indicated entities of the DocumentModel into the
@@ -309,25 +272,10 @@ public class DocumentModel extends DefaultTreeModel
      */
     public void writeXML(@Nonnull OutputStream out, Object[] entities)
             throws IOException {
-        writeMembersOnly = entities;
-        PrintWriter w = new PrintWriter(new OutputStreamWriter(out, "UTF8"));
-        writeXML(w);
-        w.flush();
-        writeMembersOnly = null;
+        new DocumentModelXmlWriter().writeXml(this, out, entities);
     }
 
-    public boolean isWriteMember(EntityModel m) {
-        // FIXME Consider seriously to use an IdentityHashMap in JDK 1.4
-        if (writeMembersOnly == null) {
-            return true;
-        }
-        for (int i = 0; i < writeMembersOnly.length; i++) {
-            if (writeMembersOnly[i] == m) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     @Nonnull
     @Override
@@ -339,457 +287,9 @@ public class DocumentModel extends DefaultTreeModel
      * Writes the contents of the DocumentModel into the output stream.
      * For peak performance, the output stream should be buffered.
      */
-    public void writeXML(@Nonnull PrintWriter out)
-            throws IOException {
-        //try {
-        // We keep track of all the objects we write and
-        // we assign each an individual ID. The ID's are
-        // used to represent object references in the file.
-        // The hash map is required to map objects to
-        // their ID's.
-        // The hash map key is the object, the hash map
-        // value is an Integer wrapper of it's id.
-        //
-        // NOTE: We write objects in a specific sequence
-        // to avoid backward references: First we write
-        // all cubes, which have no references. Then
-        // we write the notations, which have no references.
-        // Then we write the scripts, which may reference
-        // cubes and notations. Then we write texts, which
-        // may reference cubes, notations and scripts.
-        int id = 0;
-        HashMap<Object, Integer> objects = new HashMap<Object, Integer>();
-
-        // Create the DOM XMLElement. Our Markup language
-        // is CubeMarkup.
-        XMLElement doc = new XMLElement(null, false, false);
-        doc.setName("CubeMarkup");
-
-        XMLElement docRoot = doc;
-        docRoot.setAttribute("version", Integer.toString(DOCUMENT_VERSION));
-        XMLElement elem, elem2, elem3, elem4;
-
-        // ------------------------------------
-        // Write Cubes
-        for (EntityModel child : getChild(getRoot(), CUBE_INDEX).getChildren()) {
-            id = writeCube(id, objects, doc, docRoot, (CubeModel) child);
-        }
-
-        // ------------------------------------
-        // Write Notations
-        String[] axisTable = {"x", "y", "z"};
-        for (EntityModel child : getChild(getRoot(), NOTATION_INDEX).getChildren()) {
-            id = writeNotation(id, objects, doc, docRoot, axisTable, (NotationModel) child);
-        }
-
-        // ------------------------------------
-        // Write Scripts
-        for (EntityModel child : getChild(getRoot(), SCRIPT_INDEX).getChildren()) {
-            id = writeScript(id, objects, doc, docRoot, (ScriptModel) child);
-        }
-
-        // ------------------------------------
-        // Write Texts
-        for (EntityModel child : getChild(getRoot(), TEXT_INDEX).getChildren()) {
-            id = writeText(id, objects, doc, docRoot, (TextModel) child);
-        }
-
-        // Write the document to the stream
-        doc.print(out);
-        out.flush();
-        /*
-        } catch (Exception e) {
-        throw new IOException(e.toString());
-        }*/
-        javax.swing.text.GlyphView r;
+    public void writeXML(@Nonnull PrintWriter out) throws IOException {
+        new DocumentModelXmlWriter().writeXml(this, out);
     }
-
-    private int writeText(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, TextModel child) {
-        XMLElement elem;
-        XMLElement elem2;
-        TextModel item = child;
-        if (!isWriteMember(item)) {
-            return id;
-        }
-
-        // Assign an id to the object and put it into our HashMap.
-        objects.put(item, ++id);
-
-        // Create the document element.
-        elem = doc.createElement("Text");
-        elem.setAttribute("id", "o" + (id));
-
-        if (item.getName() != null) {
-            elem2 = doc.createElement("Title");
-            elem2.setContent(item.getName());
-            elem.addChild(elem2);
-        }
-        if (item.getDescription() != null) {
-            elem2 = doc.createElement("Body");
-            elem2.setContent(item.getDescription());
-            elem.addChild(elem2);
-        }
-        if (item.getAuthor() != null) {
-            elem2 = doc.createElement("Author");
-            elem2.setContent(item.getAuthor());
-            elem.addChild(elem2);
-        }
-        if (item.getDate() != null) {
-            elem2 = doc.createElement("Date");
-            elem2.setContent(item.getDate());
-            elem.addChild(elem2);
-        }
-        docRoot.addChild(elem);
-        return id;
-    }
-
-    private int writeScript(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, ScriptModel child) {
-        XMLElement elem;
-        XMLElement elem2;
-        XMLElement elem3;
-        ScriptModel item = child;
-        if (!isWriteMember(item)) {
-            return id;
-        }
-
-        // Assign an id to the object and put it into our HashMap.
-        objects.put(item, ++id);
-
-        // Create the document element.
-        elem = doc.createElement("Script");
-        elem.setAttribute("id", "o" + (id));
-        if (item.getNotationModel() != null) {
-            elem.setAttribute("notationRef", "o" + objects.get(item.getNotationModel()));
-        }
-        if (item.getCubeModel() != null) {
-            elem.setAttribute("cubeRef", "o" + objects.get(item.getCubeModel()));
-        }
-        elem.setAttribute("scriptType", item.isGenerator() ? "generator" : "solver");
-
-        if (item.getName() != null) {
-            elem2 = doc.createElement("Name");
-            elem2.setContent(item.getName());
-            elem.addChild(elem2);
-        }
-        if (item.getDescription() != null) {
-            elem2 = doc.createElement("Description");
-            elem2.setContent(item.getDescription());
-            elem.addChild(elem2);
-        }
-        if (item.getScript() != null) {
-            elem2 = doc.createElement("Source");
-            if (item.getScript() != null) {
-                elem2.setContent(Normalizer.normalize(item.getScript(), Normalizer.Form.NFC));
-            }
-            elem.addChild(elem2);
-        }
-        if (item.getAuthor() != null) {
-            elem2 = doc.createElement("Author");
-            elem2.setContent(item.getAuthor());
-            elem.addChild(elem2);
-        }
-        if (item.getDate() != null) {
-            elem2 = doc.createElement("Date");
-            elem2.setContent(item.getDate());
-            elem.addChild(elem2);
-        }
-        for (EntityModel child2 : item.getMacroModels().getChildren()) {
-            MacroModel macro = (MacroModel) child2;
-            elem2 = doc.createElement("Macro");
-            elem2.setAttribute("identifier", Normalizer.normalize(macro.getIdentifier(), Normalizer.Form.NFC));
-
-            if (macro.getScript() != null && macro.getScript().length() > 0) {
-                elem3 = doc.createElement("Source");
-                elem3.setContent(Normalizer.normalize(macro.getScript(), Normalizer.Form.NFC));
-                elem2.addChild(elem3);
-            }
-            if (macro.getDescription() != null && macro.getDescription().length() > 0) {
-                elem3 = doc.createElement("Description");
-                elem3.setContent(macro.getDescription());
-                elem2.addChild(elem3);
-            }
-            elem.addChild(elem2);
-        }
-        docRoot.addChild(elem);
-        return id;
-    }
-
-    private int writeNotation(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, String[] axisTable, NotationModel child) {
-        XMLElement elem;
-        XMLElement elem2;
-        XMLElement elem3;
-        XMLElement elem4;
-        NotationModel item = child;
-        if (!isWriteMember(item)) {
-            return id;
-        }
-
-        // Assign an id to the object and put it into our HashMap.
-        objects.put(item, ++id);
-
-        // Create the document element.
-        elem = doc.createElement("Notation");
-        elem.setAttribute("id", "o" + (id));
-        elem.setAttribute("layerCount", item.getLayerCount());
-
-
-        if (item.isDefaultNotation()) {
-            elem.setAttribute("default", "true");
-        }
-
-        if (item.getName() != null) {
-            elem2 = doc.createElement("Name");
-            elem2.setContent(item.getName());
-            elem.addChild(elem2);
-        }
-        if (item.getDescription() != null) {
-            elem2 = doc.createElement("Description");
-            elem2.setContent(item.getDescription());
-            elem.addChild(elem2);
-        }
-        if (item.getAuthor() != null) {
-            elem2 = doc.createElement("Author");
-            elem2.setContent(item.getAuthor());
-            elem.addChild(elem2);
-        }
-        if (item.getDate() != null) {
-            elem2 = doc.createElement("Date");
-            elem2.setContent(item.getDate());
-            elem.addChild(elem2);
-        }
-
-        LinkedList<Symbol> statements = new LinkedList<Symbol>();
-        statements.add(Symbol.COMMENT);
-        statements.addAll(Symbol.STATEMENT.getSubSymbols());
-
-        for (Symbol s : statements) {
-            elem2 = doc.createElement("Statement");
-            elem2.setAttribute("symbol", s.toString());
-            if (s.isTerminalSymbol()) {
-                if (!item.isSupported(s)) {
-                    elem2.setAttribute("enabled", false);
-                }
-                if (item.getAllTokens(s) != null) {
-                    if (item.getAllTokens(s) != null && item.getAllTokens(s).length() > 0) {
-                        elem3 = doc.createElement("Token");
-                        elem3.setAttribute("symbol", s.toString());
-                        elem3.setContent(Normalizer.normalize(item.getAllTokens(s), Normalizer.Form.NFC));
-                        elem2.addChild(elem3);
-                    }
-                }
-            } else {
-                if (!item.isSupported(s)) {
-                    elem2.setAttribute("enabled", false);
-                }
-                if (item.getSyntax(s) != null) {
-                    elem2.setAttribute("syntax", item.getSyntax(s).toString());
-                }
-                for (Symbol t : s.getSubSymbols()) {
-                    if (item.getAllTokens(t) != null && item.getAllTokens(t).length() > 0) {
-                        elem3 = doc.createElement("Token");
-                        elem3.setAttribute("symbol", t.toString());
-                        elem3.setContent(Normalizer.normalize(item.getAllTokens(t), Normalizer.Form.NFC));
-                        elem2.addChild(elem3);
-                    }
-                }
-            }
-            elem.addChild(elem2);
-        }
-
-        // Write moves
-        {
-            elem2 = doc.createElement("Statement");
-            elem2.setAttribute("symbol", Symbol.MOVE.toString());
-            elem2.setAttribute("enabled", false);
-
-            // We sort move symbols to generate XML files with a
-            // consistent output which can be easily diffed.
-            ArrayList<Move> moveSymbols = new ArrayList<>(item.getAllMoveSymbols());
-            Collections.sort(moveSymbols);
-            for (Move ts : moveSymbols) {
-                String allTokens = (ts == null) ? null : item.getAllMoveTokens(ts);
-                if (allTokens != null && allTokens.length() > 0) {
-                    elem4 = doc.createElement("Token");
-                    elem4.setAttribute("axis", axisTable[ts.getAxis()]);
-                    elem4.setAttribute("angle", ts.getAngle() * 90);
-                    elem4.setAttribute("layerList", ts.getLayerList());
-                    elem4.setContent(Normalizer.normalize(allTokens, Normalizer.Form.NFC));
-                    if (item.isTwistSupported(ts)) {
-                        elem2.addChild(elem4);
-                    } else {
-                        elem2.addChild(elem4);
-                    }
-                }
-            }
-            // disabled twists
-            if (elem2.getChildren().size() > 0) {
-                elem.addChild(elem2);
-            }
-        }
-
-
-        // Write macros
-        for (EntityModel child2 : item.getMacroModels().getChildren()) {
-            MacroModel macro = (MacroModel) child2;
-            elem2 = doc.createElement("Macro");
-            elem2.setAttribute("identifier", Normalizer.normalize(macro.getIdentifier(), Normalizer.Form.NFC));
-
-            if (macro.getScript() != null && macro.getScript().length() > 0) {
-                elem3 = doc.createElement("Source");
-                elem3.setContent(Normalizer.normalize(macro.getScript(), Normalizer.Form.NFC));
-                elem2.addChild(elem3);
-            }
-            if (macro.getDescription() != null && macro.getDescription().length() > 0) {
-                elem3 = doc.createElement("Description");
-                elem3.setContent(macro.getDescription());
-                elem2.addChild(elem3);
-            }
-            elem.addChild(elem2);
-        }
-        docRoot.addChild(elem);
-        return id;
-    }
-
-    private int writeCube(int id, HashMap<Object, Integer> objects, XMLElement doc, XMLElement docRoot, CubeModel child) {
-        XMLElement elem;
-        XMLElement elem2;
-        CubeModel item = child;
-        if (!isWriteMember(item)) {
-            return id;
-        }
-
-
-        // Assign an id to the object and put it into our HashMap.
-        objects.put(item, ++id);
-
-        // Create the document element.
-        elem = doc.createElement("Cube");
-        elem.setAttribute("id", "o" + (id));
-
-        elem.setAttribute("kind", item.getKind().getAlternativeName(0));
-
-        if (item == getDefaultCube()) {
-            elem.setAttribute("default", "true");
-        }
-        elem.setAttribute("scale", Integer.toString(item.getIntScale()));
-        elem.setAttribute("explode", Integer.toString(item.getIntExplode()));
-        elem.setAttribute("alpha", Integer.toString(item.getIntAlpha()));
-        elem.setAttribute("beta", Integer.toString(item.getIntBeta()));
-        elem.setAttribute("twistDuration", Integer.toString(item.getTwistDuration()));
-        elem.setColorAttribute("backgroundColor", item.getFrontBgColor(), Color.WHITE);
-        elem.setColorAttribute("rearBackgroundColor", item.getRearBgColor(), Color.WHITE);
-        if (item.getName() != null) {
-            elem2 = doc.createElement("Name");
-            elem2.setContent(item.getName());
-            elem.addChild(elem2);
-        }
-        if (item.getDescription() != null) {
-            elem2 = doc.createElement("Description");
-            elem2.setContent(item.getDescription());
-            elem.addChild(elem2);
-        }
-        if (item.getAuthor() != null) {
-            elem2 = doc.createElement("Author");
-            elem2.setContent(item.getAuthor());
-            elem.addChild(elem2);
-        }
-        if (item.getDate() != null) {
-            elem2 = doc.createElement("Date");
-            elem2.setContent(item.getDate());
-            elem.addChild(elem2);
-        }
-        float[] colorComponents = new float[4];
-        for (EntityModel child2 : item.getColors().getChildren()) {
-            CubeColorModel color = (CubeColorModel) child2;
-
-            // Assign an id to the object and put it into our HashMap.
-            objects.put(color, ++id);
-
-            // Create the document element
-            elem2 = doc.createElement("Color");
-            elem2.setAttribute("id", "o" + (id));
-            if (color.getColor() != null) {
-                elem2.setAttribute("argb", Integer.toHexString(color.getColor().getRGB()));
-                elem2.setContent(color.getName());
-                elem.addChild(elem2);
-            }
-        }
-        int j = 0;
-        for (EntityModel child2 : item.getParts().getChildren()) {
-            CubePartModel part = (CubePartModel) child2;
-
-            elem2 = doc.createElement("Part");
-            elem2.setAttribute("index", Integer.toString(j++));
-            elem2.setAttribute("visible", Boolean.toString(part.isVisible()));
-            elem2.setAttribute("fillColorRef", "o" + objects.get(part.getFillColorModel()));
-            elem2.setAttribute("outlineColorRef", "o" + objects.get(part.getOutlineColorModel()));
-            elem.addChild(elem2);
-        }
-        j = 0;
-        for (EntityModel child2 : item.getStickers().getChildren()) {
-            CubeStickerModel sticker = (CubeStickerModel) child2;
-
-            elem2 = doc.createElement("Sticker");
-            elem2.setAttribute("index", Integer.toString(j++));
-            elem2.setAttribute("visible", Boolean.toString(sticker.isVisible()));
-            elem2.setAttribute("fillColorRef", "o" + objects.get(sticker.getFillColorModel()));
-            elem.addChild(elem2);
-        }
-
-        if (item.getStickersImageModel().hasImage()) {
-            elem2 = doc.createElement("StickersImage");
-            elem2.setAttribute("visible", Boolean.toString(item.isStickersImageVisible()));
-            elem2.setContent(item.getStickersImageModel().getBase64Image());
-            elem.addChild(elem2);
-        }
-        if (item.getFrontBgImageModel().hasImage()) {
-            elem2 = doc.createElement("FrontBgImage");
-            elem2.setAttribute("visible", Boolean.toString(item.isFrontBgImageVisible()));
-            elem2.setContent(item.getFrontBgImageModel().getBase64Image());
-            elem.addChild(elem2);
-        }
-        if (item.getRearBgImageModel().hasImage()) {
-            elem2 = doc.createElement("RearBgImage");
-            elem2.setAttribute("visible", Boolean.toString(item.isRearBgImageVisible()));
-            elem2.setContent(item.getRearBgImageModel().getBase64Image());
-            elem.addChild(elem2);
-        }
-        docRoot.addChild(elem);
-        return id;
-    }
-    /*
-    private String extractText(org.w3c.dom.Node n) {
-    if (n == null) return null;
-    StringBuilder buf = new StringBuilder();
-    extractText(n, buf);
-    return buf.toString();
-    }
-    private void extractText(org.w3c.dom.Node n, StringBuilder buf) {
-    if (n.getNodeValue() != null) buf.append(n.getNodeValue());
-    NodeList children = n.getChildNodes();
-    for (int i=0; i < children.getLength(); i++) {
-    extractText(children.item(i), buf);
-    }
-    }*/
-    /*
-    private boolean getBooleanAttribute(XMLElement elem, String attribName) {
-    org.w3c.dom.Node attrib = elem.getAttributes().getNamedItem(attribName);
-    return attrib != null && attrib.getNodeValue().equals("true");
-    }
-    private int getIntAttribute(XMLElement elem, String attribName, int defaultValue, int min, int max) {
-    org.w3c.dom.Node attrib = elem.getAttributes().getNamedItem(attribName);
-    if (attrib == null) {
-    return defaultValue;
-    } else {
-    try {
-    int value = Integer.parseInt(attrib.getNodeValue());
-    return Math.max(Math.min(value, max), min);
-    } catch (NumberFormatException e) {
-    return defaultValue;
-    }
-    }
-    }
-     */
 
     /**
      * Adds the contents of the input stream to the DocumentModel.
@@ -824,8 +324,7 @@ public class DocumentModel extends DefaultTreeModel
             //.newInstance().newDocumentBuilder().parse(in);
             doc.parseFromReader(r);
             long end1 = System.currentTimeMillis();
-
-            insertXMLNodeInto(doc, parent, index);
+            new DocumentModelXmlReader().insertXMLNodeInto(this, doc, parent, index);
             long end2 = System.currentTimeMillis();
             //System.out.println("DocumentModel.addSerializedNode buildDOM=" + (end1 - start) + " parseDOM=" + (end2 - end1));
 
@@ -837,589 +336,9 @@ public class DocumentModel extends DefaultTreeModel
 
     public void addXMLNode(@Nonnull XMLElement doc)
             throws IOException {
-        insertXMLNodeInto(doc, (TreeNodeImpl) root, root.getChildCount());
+        new DocumentModelXmlReader().insertXMLNodeInto(this, doc, (TreeNodeImpl) root, root.getChildCount());
     }
 
-    public void insertXMLNodeInto(@Nonnull XMLElement doc, @Nonnull MutableTreeNode parent, int index)
-            throws IOException {
-        // We keep track of all the objects we read.
-        // The hash map key is a String representation of
-        // the object's id, the hash map value is the object.
-        HashMap<String, Object> objects = new HashMap<String, Object>();
-
-        String attrValue;
-
-        // Read XMLElement root
-        if (!doc.getName().equals("CubeMarkup")) {
-            throw new IOException("Unsupported document type: " + doc);
-        }
-        attrValue = doc.getStringAttribute("version");
-        int documentVersion = 0;
-        if (attrValue != null && attrValue.length() > 0) {
-            try {
-                documentVersion = Integer.parseInt(attrValue);
-            } catch (NumberFormatException e) {
-                documentVersion = Integer.MAX_VALUE;
-            }
-        }
-        if (documentVersion > DOCUMENT_VERSION) {
-            throw new IOException("Unsupported document version: " + attrValue);
-        }
-
-        int realCubeIndex = root.getChildAt(CUBE_INDEX).getIndex(parent) + 1;
-        int realNotationIndex = root.getChildAt(NOTATION_INDEX).getIndex(parent) + 1;
-        int realScriptIndex = root.getChildAt(SCRIPT_INDEX).getIndex(parent) + 1;
-        int realTextIndex = root.getChildAt(TEXT_INDEX).getIndex(parent) + 1;
-
-        // Read Cube elements
-        // ------------------
-        for (XMLElement elem : doc.iterableChildren()) {
-            if ("Cube".equals(elem.getName())) {
-
-                attrValue = elem.getStringAttribute("id");
-                CubeModel item = null;
-                if (attrValue != null && !"".equals(attrValue) && objects.get(attrValue) instanceof CubeModel) {
-                    item = (CubeModel) objects.get(attrValue);
-                }
-                if (item == null) {
-                    item = new CubeModel(null);
-                    if (attrValue != null && !"".equals(attrValue)) {
-                        objects.put(attrValue, item);
-                    }
-                    if (parent == root.getChildAt(CUBE_INDEX)) {
-                        insertNodeInto(item, parent, index++);
-                    } else if (parent.getParent() == root.getChildAt(CUBE_INDEX)) {
-                        insertNodeInto(item, (TreeNodeImpl) parent.getParent(), realCubeIndex++);
-                    } else {
-                        addTo(item, root.getChildAt(CUBE_INDEX));
-                    }
-                }
-                if (elem.getBooleanAttribute("default", false)) {
-                    setDefaultCube(item);
-                }
-
-                item.basicSetKind(elem.getAttribute("kind", CubeKind.getKindMap(), CubeKind.RUBIK.getAlternativeName(0), false));
-
-                item.basicSetIntScale(elem.getIntAttribute("scale", 25, 300, 100));
-                item.basicSetIntExplode(elem.getIntAttribute("explode", 0, 200, 0));
-                item.basicSetIntAlpha(elem.getIntAttribute("alpha", -90, 90, -25));
-                item.basicSetIntBeta(elem.getIntAttribute("beta", -90, 90, 45));
-                item.setTwistDuration(elem.getIntAttribute("twistDuration", 0, 2000, 400));
-                item.setFrontBgColor(elem.getColorAttribute("backgroundColor", Color.WHITE));
-                item.setRearBgColor(elem.getColorAttribute("rearBackgroundColor", Color.WHITE));
-
-                boolean isFirstColor = true;
-
-                for (XMLElement elem2 : elem.iterableChildren()) {
-
-                    String name = elem2.getName();
-                    if ("Name".equals(name)) {
-                        item.basicSetName(elem2.getContent());
-                    } else if ("Description".equals(name)) {
-                        item.basicSetDescription(elem2.getContent());
-                    } else if ("Author".equals(name)) {
-                        item.basicSetAuthor(elem2.getContent());
-                    } else if ("Date".equals(name)) {
-                        item.basicSetDate(elem2.getContent());
-                    } else if ("Color".equals(name)) {
-                        if (isFirstColor) {
-                            item.getColors().removeAllChildren();
-                            isFirstColor = false;
-                        }
-                        attrValue = elem2.getStringAttribute("id");
-                        CubeColorModel color = null;
-                        if (objects.get(attrValue) instanceof CubeColorModel) {
-                            color = (CubeColorModel) objects.get(attrValue);
-                        }
-                        if (color == null) {
-                            color = new CubeColorModel();
-                            objects.put(attrValue, color);
-                            item.getColors().add(color);
-                            color.addPropertyChangeListener(item);
-                        }
-                        color.basicSetName(elem2.getContent());
-                        try {
-                            color.basicSetColor(new Color((int) Long.parseLong(elem2.getStringAttribute("argb", "ff000000"), 16), true));
-                        } catch (NumberFormatException e) {/*e.printStackTrace();*/
-
-                        }
-                        if (elem2.getAttribute("red") != null) {
-                            float red = (float) elem2.getDoubleAttribute("red");
-                            float green = (float) elem2.getDoubleAttribute("green");
-                            float blue = (float) elem2.getDoubleAttribute("blue");
-                            float alpha = (float) elem2.getDoubleAttribute("alpha");
-                            color.basicSetColor(new Color(red, green, blue, alpha));
-                        }
-                    } else if ("Part".equals(name)) {
-                        int partIndex = elem2.getIntAttribute("index");
-                        // In documents prior version 4, the parts were
-                        // numbered differently.
-                        if (documentVersion < 4) {
-                            if (partIndex < 8) {
-                                partIndex = (partIndex + 2) % 8;
-                            } else {
-                                switch (item.getKind().getLayerCount()) {
-                                case 3:
-                                    if (partIndex < 8 + 12) {
-                                        partIndex = (partIndex - 8 + 3) % 12 + 8;
-                                    } else if (partIndex < 8 + 12 + 6) {
-                                        switch (partIndex - 8 - 12) {
-                                        case 0:
-                                            partIndex = 2 + 8 + 12;
-                                            break;
-                                        case 1:
-                                            partIndex = 0 + 8 + 12;
-                                            break;
-                                        case 2:
-                                            partIndex = 4 + 8 + 12;
-                                            break;
-                                        case 3:
-                                            partIndex = 5 + 8 + 12;
-                                            break;
-                                        case 4:
-                                            partIndex = 3 + 8 + 12;
-                                            break;
-                                        case 5:
-                                            partIndex = 1 + 8 + 12;
-                                            break;
-                                        }
-                                    }
-                                    break;
-                                case 4:
-                                    if (partIndex < 8 + 24) {
-                                        partIndex = (partIndex - 8 + 3) % 24 + 8;
-                                    } else if (partIndex < 8 + 24 + 24) {
-                                        switch ((partIndex - 8 - 24) % 6) {
-                                        case 0:
-                                            partIndex = (partIndex - 8 - 24) + 2 + 8 + 24;
-                                            break;
-                                        case 1:
-                                            partIndex = (partIndex - 8 - 24 - 1) + 0 + 8 + 24;
-                                            break;
-                                        case 2:
-                                            partIndex = (partIndex - 8 - 24 - 2) + 4 + 8 + 24;
-                                            break;
-                                        case 3:
-                                            partIndex = (partIndex - 8 - 24 - 3) + 5 + 8 + 24;
-                                            break;
-                                        case 4:
-                                            partIndex = (partIndex - 8 - 24 - 4) + 3 + 8 + 24;
-                                            break;
-                                        case 5:
-                                            partIndex = (partIndex - 8 - 24 - 5) + 1 + 8 + 24;
-                                            break;
-                                        }
-                                    }
-                                    break;
-                                case 5:
-                                    if (partIndex < 8 + 36) {
-                                        partIndex = (partIndex - 8 + 3) % 36 + 8;
-                                    } else if (partIndex < 8 + 36 + 54) {
-                                        switch ((partIndex - 8 - 36) % 6) {
-                                        case 0:
-                                            partIndex = (partIndex - 8 - 36) + 2 + 8 + 36;
-                                            break;
-                                        case 1:
-                                            partIndex = (partIndex - 8 - 36 - 1) + 0 + 8 + 36;
-                                            break;
-                                        case 2:
-                                            partIndex = (partIndex - 8 - 36 - 2) + 4 + 8 + 36;
-                                            break;
-                                        case 3:
-                                            partIndex = (partIndex - 8 - 36 - 3) + 5 + 8 + 36;
-                                            break;
-                                        case 4:
-                                            partIndex = (partIndex - 8 - 36 - 4) + 3 + 8 + 36;
-                                            break;
-                                        case 5:
-                                            partIndex = (partIndex - 8 - 36 - 5) + 1 + 8 + 36;
-                                            break;
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                        if (0 <= partIndex && partIndex < item.getPartCount()) {
-                            CubePartModel part = (CubePartModel) item.getParts().getChildAt(partIndex);
-                            part.basicSetVisible(elem2.getBooleanAttribute("visible", true));
-                            part.basicSetFillColorModel((CubeColorModel) objects.get(elem2.getStringAttribute("fillColorRef")));
-                            part.basicSetOutlineColorModel((CubeColorModel) objects.get(elem2.getStringAttribute("outlineColorRef")));
-                        }
-                    } else if ("Sticker".equals(name)) {
-                        int stickerIndex = elem2.getIntAttribute("index");
-
-                        // In documents prior version 4, the stickers were
-                        // numbered differently for Pocket, Rubi, Revenge and Professor
-                        if (documentVersion < 4) {
-                            if (item.getKind() == CubeKind.POCKET
-                                    || item.getKind() == CubeKind.RUBIK
-                                    || item.getKind() == CubeKind.REVENGE
-                                    || item.getKind() == CubeKind.PROFESSOR) {
-                                int stickersPerFace = item.getStickerCount() / item.getFaceCount();
-                                int face = stickerIndex / stickersPerFace;
-                                // front,right,down,back,left,up
-                                //   2,    0,    4,   5,   3,  1
-                                // right,up,front,left,down,back
-                                switch (face) {
-                                case 0:
-                                    face = 2;
-                                    break; // front
-                                case 1:
-                                    face = 0;
-                                    break; // right
-                                case 2:
-                                    face = 4;
-                                    break; // down
-                                case 3:
-                                    face = 5;
-                                    break; // back
-                                case 4:
-                                    face = 3;
-                                    break; // left
-                                case 5:
-                                    face = 1;
-                                    break; // up
-                                }
-                                stickerIndex = face * stickersPerFace + (stickerIndex % stickersPerFace);
-                            }
-                        }
-
-                        if (0 <= stickerIndex && stickerIndex < item.getStickerCount()) {
-                            CubeStickerModel sticker = (CubeStickerModel) item.getStickers().getChildAt(stickerIndex);
-                            sticker.basicSetVisible(elem2.getBooleanAttribute("visible", true));
-                            Object fillColor = objects.get(elem2.getStringAttribute("fillColorRef"));
-                            if (fillColor != null && fillColor instanceof CubeColorModel) {
-                                sticker.basicSetFillColorModel((CubeColorModel) fillColor);
-                            }
-                        }
-                    } else if ("StickersImage".equals(name)) {
-                        item.basicSetStickersImageVisible(elem2.getBooleanAttribute("visible", true));
-                        item.getStickersImageModel().setBase64Image(elem2.getContent());
-                    } else if ("FrontBgImage".equals(name)) {
-                        item.basicSetFrontBgImageVisible(elem2.getBooleanAttribute("visible", true));
-                        item.getFrontBgImageModel().setBase64Image(elem2.getContent());
-                    } else if ("RearBgImage".equals(name)) {
-                        item.basicSetRearBgImageVisible(elem2.getBooleanAttribute("visible", true));
-                        item.getRearBgImageModel().setBase64Image(elem2.getContent());
-                    }
-                }
-            } else if ("Notation".equals(elem.getName())) {
-
-                // read Notation elements
-                attrValue = elem.getStringAttribute("id");
-                NotationModel item = null;
-                if (attrValue != null && !"".equals(attrValue)
-                        && objects.get(attrValue) instanceof NotationModel) {
-                    item = (NotationModel) objects.get(attrValue);
-                }
-                if (item == null) {
-                    item = new NotationModel();
-                    if (attrValue != null && !"".equals(attrValue)) {
-                        objects.put(attrValue, item);
-                    }
-                    if (parent == root.getChildAt(NOTATION_INDEX)) {
-                        insertNodeInto(item, parent, index++);
-                    } else if (parent.getParent() == root.getChildAt(NOTATION_INDEX)) {
-                        insertNodeInto(item, (TreeNodeImpl) parent.getParent(), realNotationIndex++);
-                    } else {
-                        addTo(item, root.getChildAt(NOTATION_INDEX));
-                    }
-                }
-
-                // Read layer count
-                item.setLayerCount(elem.getIntAttribute("layerCount", 2, 7, 3));
-                HashMap<String, Move> tvs = MoveSymbols.getMoveValueSet(item.getLayerCount());
-
-                // Must be done only after we have read the layer count!
-                if (elem.getBooleanAttribute("default", false)) {
-                    setDefaultNotation(item);
-                }
-
-
-                // Read legacy switches. These switches are only supported for
-                // the 3x3 cube.
-                boolean b;
-                b = elem.getBooleanAttribute("quarterTurnTwists", true);
-                for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(3, axis, 1, 1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 1, -1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 4, 1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 4, -1), b);
-                }
-                b = elem.getBooleanAttribute("halfTurnTwists", true);
-                for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(3, axis, 1, 2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 1, -2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 4, 2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 4, -2), b);
-                }
-                b = elem.getBooleanAttribute("midLayerTwists", true);
-                for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(3, axis, 2, 1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 2, -1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 2, 2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 2, -2), b);
-                }
-                b = elem.getBooleanAttribute("twoLayerTwists", true);
-                for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(3, axis, 3, 1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 3, -1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 3, 2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 3, -2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 6, 1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 6, -1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 6, 2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 6, -2), b);
-                }
-                b = elem.getBooleanAttribute("sliceTwists", true);
-                for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(3, axis, 5, 1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 5, -1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 5, 2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 5, -2), b);
-                }
-                b = elem.getBooleanAttribute("rotations", true);
-                for (int axis = 0; axis < 3; axis++) {
-                    item.basicSetMoveSupported(new Move(3, axis, 7, 1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 7, -1), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 7, 2), b);
-                    item.basicSetMoveSupported(new Move(3, axis, 7, -2), b);
-                }
-
-                // Read legacy switches from CubeTwister 1.0
-                b = elem.getBooleanAttribute("sequence", true);
-                item.basicSetSupported(Symbol.GROUPING, b);
-                b = elem.getBooleanAttribute("delimiter", true);
-                item.basicSetSupported(Symbol.DELIMITER, b);
-                b = elem.getBooleanAttribute("repetition", true);
-                item.basicSetSupported(Symbol.REPETITION, b);
-                b = elem.getBooleanAttribute("commutation", true);
-                item.basicSetSupported(Symbol.COMMUTATION, b);
-                b = elem.getBooleanAttribute("conjugation", true);
-                item.basicSetSupported(Symbol.CONJUGATION, b);
-                b = elem.getBooleanAttribute("permutations", true);
-                item.basicSetSupported(Symbol.PERMUTATION, b);
-                b = elem.getBooleanAttribute("rotation", true);
-                item.basicSetSupported(Symbol.ROTATION, b);
-                b = elem.getBooleanAttribute("inversion", true);
-                item.basicSetSupported(Symbol.INVERSION, b);
-                b = elem.getBooleanAttribute("reflection", true);
-                item.basicSetSupported(Symbol.REFLECTION, b);
-                b = elem.getBooleanAttribute("comments", true);
-                item.basicSetSupported(Symbol.COMMENT, b);
-
-                // Read legacy switches from CubeTwister 1.0
-                item.basicSetSyntax(Symbol.COMMUTATION, elem.getAttribute("commutatorPosition", syntaxValueSet, "HEADER", false));
-                item.basicSetSyntax(Symbol.CONJUGATION, elem.getAttribute("conjugatorPosition", syntaxValueSet, "HEADER", false));
-                item.basicSetSyntax(Symbol.ROTATION, elem.getAttribute("rotatorPosition", syntaxValueSet, "HEADER", false));
-                item.basicSetSyntax(Symbol.PERMUTATION, elem.getAttribute("permutationPosition", syntaxValueSet, "HEADER", false));
-                item.basicSetSyntax(Symbol.INVERSION, elem.getAttribute("invertorPosition", syntaxValueSet, "PREFIX", false));
-                item.basicSetSyntax(Symbol.REFLECTION, elem.getAttribute("reflectorPosition", syntaxValueSet, "PREFIX", false));
-                item.basicSetSyntax(Symbol.REPETITION, elem.getAttribute("repetitorPosition", syntaxValueSet, "PREFIX", false));
-
-                // Read child elements
-                for (XMLElement elem2 : elem.iterableChildren()) {
-
-                    String name = elem2.getName();
-                    if ("Name".equals(name)) {
-                        item.basicSetName(elem2.getContent());
-                    } else if ("Description".equals(name)) {
-                        item.basicSetDescription(elem2.getContent());
-                    } else if ("Author".equals(name)) {
-                        item.basicSetAuthor(elem2.getContent());
-                    } else if ("Date".equals(name)) {
-                        item.basicSetDate(elem2.getContent());
-
-                    } else if ("Token".equals(name)) {
-                        // Read legacy symbols
-                        try {
-                            Move ts = elem2.getAttribute("symbol", tvs, null, false);
-                            if (item.getMoveToken(ts) != null) {
-                                item.basicSetMoveToken(ts, item.getMoveToken(ts) + " " + Normalizer.normalize(elem2.getContent(), Normalizer.Form.NFC));
-                            } else {
-                                item.basicSetMoveToken(ts, Normalizer.normalize(elem2.getContent(), Normalizer.Form.NFC));
-                            }
-                        } catch (XMLParseException e) {
-                            Symbol s = elem2.getAttribute("symbol", Symbol.getSymbolValueSet(), (String) null, false);
-                            item.basicSetToken(s, Normalizer.normalize(elem2.getContent(), Normalizer.Form.NFC));
-                        }
-                    } else if ("Macro".equals(name)) {
-                        MacroModel macro = new MacroModel();
-                        macro.setIdentifier(Normalizer.normalize(elem2.getStringAttribute("identifier"), Normalizer.Form.NFC));
-
-                        for (Object child : elem2.getChildren()) {
-                            XMLElement elem3 = (XMLElement) child;
-                            String name3 = elem3.getName();
-                            if ("Source".equals(name3)) {
-                                macro.setScript(Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
-                            } else if ("Description".equals(name3)) {
-                                macro.setDescription(elem3.getContent());
-                            }
-                            item.getMacroModels().add(macro);
-                        }
-
-                        // File format up to version 2 used <Construct>
-                        // File format starting from version 3 uses <Statement>
-                    } else if ("Statement".equals(name) || "Construct".equals(name)) {
-                        Symbol s;
-                        try {
-                            s = elem2.getAttribute("symbol", Symbol.getSymbolValueSet(), null, false);
-                        } catch (XMLParseException e) {
-                            continue;
-                        }
-                        boolean isEnabled = elem2.getBooleanAttribute("enabled", true);
-                        item.setSupported(s, isEnabled);
-                        if (elem2.getAttribute("syntax") != null) {
-                            Syntax syntax = elem2.getAttribute("syntax", Syntax.getSyntaxValueSet(), null, false);
-                            if (syntax != null) {
-                                item.setSyntax(s, syntax);
-                            }
-                        }
-                        for (Object child : elem2.getChildren()) {
-                            XMLElement elem3 = (XMLElement) child;
-                            String name3 = elem3.getName();
-                            if ("Token".equals(name3)) {
-                                Symbol s2 = elem3.getAttribute("symbol", Symbol.getSymbolValueSet(), "move", false);
-                                if (s2 == null || s2 == Symbol.MOVE) {
-                                    int axis = elem3.getAttribute("axis", axisValueSet, "x", false);
-                                    int angle = elem3.getIntAttribute("angle", -180, 180, 90) / 90;
-                                    if (angle == 0) {
-                                        angle = 1;
-                                    }
-                                    int layerMask = Move.toLayerMask(elem3.getStringAttribute("layerList"));
-                                    if (layerMask == 0) {
-                                        layerMask = 1;
-                                    }
-                                    int reversedLayerMask = NotationModel.reverseLayerMask(layerMask, item.getLayerCount());
-
-                                    // Add move token, if layerMask is 'useful'
-                                    for (int usefulLayerMask : NotationModel.getUsefulLayers(item.getLayerCount())) {
-                                        if (layerMask == usefulLayerMask
-                                                || reversedLayerMask == usefulLayerMask) {
-                                            Move ts = new Move(item.getLayerCount(), axis, layerMask, angle);
-                                            item.setAllMoveTokens(ts, Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
-                                            item.setMoveSupported(ts, isEnabled);
-                                            break;
-                                        }
-                                    }
-                                } else {
-                                    item.setToken(s2, Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
-                                    item.setSupported(s2, isEnabled);
-                                }
-                            }
-                        }
-                    }
-                }
-
-            } else if ("Script".equals(elem.getName())) {
-
-                // read Script elements
-                attrValue = elem.getStringAttribute("id");
-                ScriptModel item = null;
-                if (attrValue != null && !attrValue.equals("")
-                        && objects.get(attrValue) instanceof ScriptModel) {
-                    item = (ScriptModel) objects.get(attrValue);
-                }
-                if (item == null) {
-                    item = new ScriptModel();
-                    if (attrValue != null && !"".equals(attrValue)) {
-                        objects.put(attrValue, item);
-                    }
-                    if (parent == root.getChildAt(SCRIPT_INDEX)) {
-                        insertNodeInto(item, parent, index++);
-                    } else if (parent.getParent() == root.getChildAt(SCRIPT_INDEX)) {
-                        insertNodeInto(item, (TreeNodeImpl) parent.getParent(), realScriptIndex++);
-                    } else {
-                        addTo(item, root.getChildAt(SCRIPT_INDEX));
-                    }
-                }
-                // File format up to version 2 used "generator=true/false"
-                // File format up from version 3 uses "scriptType=generator/solver"
-                boolean isGenerator;
-                if (elem.getAttribute("generator") != null) {
-                    isGenerator = elem.getBooleanAttribute("generator", true);
-                } else {
-                    isGenerator = elem.getAttribute("scriptType", scriptTypeValueSet, "generator", false);
-                }
-                item.setGenerator(isGenerator);
-
-                Object refObj = objects.get(elem.getStringAttribute("cubeRef"));
-                if (refObj instanceof CubeModel) {
-                    item.setCubeModel((CubeModel) refObj);
-                }
-                refObj = objects.get(elem.getStringAttribute("notationRef"));
-                if (refObj instanceof NotationModel) {
-                    item.setNotationModel((NotationModel) refObj);
-                }
-
-                for (XMLElement elem2 : elem.iterableChildren()) {
-
-                    String name = elem2.getName();
-                    if ("Name".equals(name)) {
-                        item.basicSetName(elem2.getContent());
-                    } else if ("Description".equals(name)) {
-                        item.basicSetDescription(elem2.getContent());
-                    } else if ("Author".equals(name)) {
-                        item.basicSetAuthor(elem2.getContent());
-                    } else if ("Date".equals(name)) {
-                        item.basicSetDate(elem2.getContent());
-                    } else if ("Source".equals(name)) {
-                        item.basicSetScript(elem2.getContent());
-                    } else if ("Macro".equals(name)) {
-                        MacroModel macro = new MacroModel();
-                        macro.setIdentifier(Normalizer.normalize(elem2.getStringAttribute("identifier"), Normalizer.Form.NFC));
-
-                        for (XMLElement elem3 : elem2.iterableChildren()) {
-                            String name3 = elem3.getName();
-                            if ("Source".equals(name3)) {
-                                macro.basicSetScript(Normalizer.normalize(elem3.getContent(), Normalizer.Form.NFC));
-                            } else if ("Description".equals(name3)) {
-                                macro.basicSetDescription(elem3.getContent());
-                            }
-                        }
-                        item.getMacroModels().add(macro);
-                    }
-                }
-
-            } else if ("Text".equals(elem.getName())) {
-                // read Text elements
-                attrValue = elem.getStringAttribute("id");
-                TextModel item = null;
-                if (attrValue != null && !"".equals(attrValue)
-                        && objects.get(attrValue) instanceof TextModel) {
-                    item = (TextModel) objects.get(attrValue);
-                }
-                if (item == null) {
-                    item = new TextModel();
-                    if (attrValue != null && !"".equals(attrValue)) {
-                        objects.put(attrValue, item);
-                    }
-                    if (parent == root.getChildAt(TEXT_INDEX)) {
-                        insertNodeInto(item, parent, index++);
-                    } else if (parent.getParent() == root.getChildAt(TEXT_INDEX)) {
-                        insertNodeInto(item, (TreeNodeImpl) parent.getParent(), realTextIndex++);
-                    } else {
-                        addTo(item, root.getChildAt(TEXT_INDEX));
-                    }
-                }
-
-                for (XMLElement elem2 : elem.iterableChildren()) {
-
-                    String name = elem2.getName();
-                    if ("Title".equals(name)) {
-                        item.setName(elem2.getContent());
-                    } else if ("Body".equals(name)) {
-                        item.setDescription(elem2.getContent());
-                    } else if ("Author".equals(name)) {
-                        item.setAuthor(elem2.getContent());
-                    } else if ("Date".equals(name)) {
-                        item.setDate(elem2.getContent());
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * Invoked this to add newChild to parents children.
@@ -1603,22 +522,22 @@ public class DocumentModel extends DefaultTreeModel
                 (realParent == parent.getParent()) ? realParent.getIndex(parent) + 1 ://
                         realParent.getChildCount();
         switch (type) {
-        case CUBE_INDEX:
-            newChild = new CubeModel();
-            ((CubeModel) newChild).setName("unnamed Cube");
-            break;
-        case NOTATION_INDEX:
-            newChild = new NotationModel();
-            ((NotationModel) newChild).setName("unnamed Notation");
-            break;
-        case SCRIPT_INDEX:
-            newChild = new ScriptModel();
-            ((ScriptModel) newChild).setName("unnamed Script");
-            break;
-        case TEXT_INDEX:
-            newChild = new TextModel();
-            ((TextModel) newChild).setName("unnamed Note");
-            break;
+            case CUBE_INDEX:
+                newChild = new CubeModel();
+                ((CubeModel) newChild).setName("unnamed Cube");
+                break;
+            case NOTATION_INDEX:
+                newChild = new NotationModel();
+                ((NotationModel) newChild).setName("unnamed Notation");
+                break;
+            case SCRIPT_INDEX:
+                newChild = new ScriptModel();
+                ((ScriptModel) newChild).setName("unnamed Script");
+                break;
+            case TEXT_INDEX:
+                newChild = new TextModel();
+                ((TextModel) newChild).setName("unnamed Note");
+                break;
         }
 
         insertNodeInto(newChild, realParent, realIndex);

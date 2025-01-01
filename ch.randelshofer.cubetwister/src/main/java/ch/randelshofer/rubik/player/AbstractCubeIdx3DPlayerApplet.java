@@ -10,7 +10,6 @@ import ch.randelshofer.rubik.Cube3DCanvas;
 import ch.randelshofer.rubik.Cube3DCanvasIdx3D;
 import ch.randelshofer.rubik.JCubeCanvasIdx3D;
 import ch.randelshofer.rubik.cube3d.Cube3D;
-import ch.randelshofer.rubik.parser.ScriptPlayer;
 import idx3d.idx3d_JCanvas;
 import idx3d.idx3d_RenderPipeline;
 import org.jhotdraw.annotation.Nonnull;

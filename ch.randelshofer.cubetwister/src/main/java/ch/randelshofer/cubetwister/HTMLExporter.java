@@ -20,8 +20,8 @@ import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.parser.MoveMetrics;
-import ch.randelshofer.rubik.parser.Node;
-import ch.randelshofer.rubik.parser.SequenceNode;
+import ch.randelshofer.rubik.parser.ast.Node;
+import ch.randelshofer.rubik.parser.ast.SequenceNode;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
 import org.apache.commons.compress.archivers.tar.TarInputStream;
 import org.apache.commons.compress.compressors.bzip2.BZip2CompressorInputStream;
@@ -349,10 +349,10 @@ public class HTMLExporter implements Exporter {
 
         for (Symbol s : Symbol.values()) {
             if (s.isTerminalSymbol()) {
-                if (m.getAllTokens(s) == null) {
+                if (m.getAllTokensAsString(s) == null) {
                     data.put(prefix + "notation." + s.toString() + "", "");
                 } else {
-                    data.put(prefix + "notation." + s.toString() + "", m.getAllTokens(s));
+                    data.put(prefix + "notation." + s.toString() + "", m.getAllTokensAsString(s));
                 }
             }
         }

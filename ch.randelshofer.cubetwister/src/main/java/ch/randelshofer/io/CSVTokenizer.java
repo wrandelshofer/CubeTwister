@@ -10,6 +10,7 @@ import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.Reader;
+
 /**
  * Parses a comma separated values (CSV) stream into tokens.
  * <p>
@@ -55,23 +56,54 @@ import java.io.Reader;
  * The Pringles, "He said ""I like it""", Pop
  * </pre>
  *
- * @author  Werner Randelshofer
+ * @author Werner Randelshofer
  */
 public class CSVTokenizer {
-    private Reader in;
-    private int lineNumber = 0;
-
-    private boolean pushedBack;
+    /**
+     * A constant indicating that a delimiter token has been read.
+     */
+    public static final int TT_DELIMITER = -2;
+    /**
+     * A constant indicating that the end of the stream has been read.
+     */
+    public static final int TT_EOF = -1;
+    /**
+     * A constant indicating that the end of the line has been read.
+     */
+    public static final int TT_EOL = '\n';
+    /**
+     * A constant indicating that a word token has been read.
+     */
+    public static final int TT_VALUE = -3;
+    /* A constant indicating that no token has been read, used for
+     * initializing ttype.
+     */
+    private static final int TT_NOTHING = -4;
+    private static final int NEED_CHAR = Integer.MAX_VALUE;
+    private static final int SKIP_LF = Integer.MAX_VALUE - 1;
+    /**
+     * If the current token is a value token, this field contains a
+     * string giving the characters of the value token.
+     * <p>
+     * The current token is a value when the value of the
+     * <code>ttype</code> field is <code>TT_VALUE</code>.
+     * <p>
+     * The initial value of this field is null.
+     *
+     * @see #TT_VALUE
+     * @see #ttype
+     */
+    @Nullable
+    public String value = null;
+    private final Reader in;
     /**
      * Delimiter character.
      */
-    private char delimiterChar;
-
+    private final char delimiterChar;
     /**
      * Quoting character.
      */
-    private char quoteChar;
-
+    private final char quoteChar;
     /**
      * After a call to the <code>nextToken</code> method, this field
      * contains the type of the token just read. For a single character
@@ -87,62 +119,16 @@ public class CSVTokenizer {
      * <p>
      * The initial value of this field is -4.
      *
-     * @see     #nextToken()
-     * @see     #TT_EOF
-     * @see     #TT_EOL
-     * @see     #TT_VALUE
+     * @see #nextToken()
+     * @see #TT_EOF
+     * @see #TT_EOL
+     * @see #TT_VALUE
      */
     public int ttype = TT_NOTHING;
-
-    /**
-     * A constant indicating that the end of the stream has been read.
-     */
-    public static final int TT_EOF = -1;
-
-    /**
-     * A constant indicating that the end of the line has been read.
-     */
-    public static final int TT_EOL = '\n';
-
-    /**
-     * A constant indicating that a delimiter token has been read.
-     */
-    public static final int TT_DELIMITER = -2;
-    /**
-     * A constant indicating that a word token has been read.
-     */
-    public static final int TT_VALUE = -3;
-
-    /* A constant indicating that no token has been read, used for
-     * initializing ttype.  FIXME This could be made public and
-     * made available as the part of the API in a future release.
-     */
-    private static final int TT_NOTHING = -4;
-
+    private int lineNumber = 0;
+    private boolean pushedBack;
     @Nonnull
-    private char buf[] = new char[20];
-
-    /** Creates a new instance. */
-    public CSVTokenizer(Reader in) {
-        this(in, ',', '"');
-    }
-
-    /**
-     * If the current token is a value token, this field contains a
-     * string giving the characters of the value token.
-     * <p>
-     * The current token is a value when the value of the
-     * <code>ttype</code> field is <code>TT_VALUE</code>.
-     * <p>
-     * The initial value of this field is null.
-     *
-     * @see     #TT_VALUE
-     * @see     #ttype
-     */
-    @Nullable
-    public static String value = null;
-
-
+    private char[] buf = new char[20];
     /**
      * The next character to be considered by the nextToken method.  May also
      * be NEED_CHAR to indicate that a new character should be read, or SKIP_LF
@@ -152,15 +138,19 @@ public class CSVTokenizer {
      */
     private int peekc = NEED_CHAR;
 
-    private static final int NEED_CHAR = Integer.MAX_VALUE;
-    private static final int SKIP_LF = Integer.MAX_VALUE - 1;
+    /**
+     * Creates a new instance.
+     */
+    public CSVTokenizer(Reader in) {
+        this(in, ',', '"');
+    }
 
     /**
      * Creates a new instance.
      *
-     * @param in reader from which to read.
+     * @param in            reader from which to read.
      * @param delimiterChar The new delimiter character to use.
-     * @param quoteChar The new character to use for quoting.
+     * @param quoteChar     The new character to use for quoting.
      * @throws IllegalArgumentException if one of the delimiters can not be used.
      */
     public CSVTokenizer(Reader in, char delimiterChar, char quoteChar) {
@@ -169,6 +159,16 @@ public class CSVTokenizer {
         this.delimiterChar = delimiterChar;
         this.quoteChar = quoteChar;
     }
+
+    /**
+     * Return the current line number.
+     *
+     * @return the current line number of this stream tokenizer.
+     */
+    public int getLineNumber() {
+        return lineNumber;
+    }
+
     /**
      * Parses the next token from the input stream of this tokenizer.
      * The type of the next token is returned in the <code>ttype</code>
@@ -181,11 +181,11 @@ public class CSVTokenizer {
      * calling nextToken to parse successive tokens until TT_EOF
      * is returned.
      *
-     * @return     the value of the <code>ttype</code> field.
-     * @exception  IOException  if an I/O error occurs.
-     * @see        java.io.StreamTokenizer#nval
-     * @see        java.io.StreamTokenizer#sval
-     * @see        java.io.StreamTokenizer#ttype
+     * @return the value of the <code>ttype</code> field.
+     * @throws IOException if an I/O error occurs.
+     * @see java.io.StreamTokenizer#nval
+     * @see java.io.StreamTokenizer#sval
+     * @see java.io.StreamTokenizer#ttype
      */
     public int nextToken() throws IOException {
         if (pushedBack) {
@@ -209,7 +209,7 @@ public class CSVTokenizer {
             if (c < 0)
                 return ttype = TT_EOF;
         }
-        ttype = c;		/* Just to be safe */
+        ttype = c;        /* Just to be safe */
 
         /* Set peekc so that the next invocation of nextToken will read
          * another character unless peekc is reset in this invocation
@@ -251,11 +251,11 @@ public class CSVTokenizer {
                     c = read();
                     if (c != quoteChar) break;
                 } else if (c < 0) {
-                    throw new IOException("Unexpected EOF in line "+(lineNumber+1)+" at quoted value \""+String.copyValueOf(buf, 0, i)+"\".");
+                    throw new IOException("Unexpected EOF in line " + (lineNumber + 1) + " at quoted value \"" + String.copyValueOf(buf, 0, i) + "\".");
                 }
 
                 if (i >= buf.length) {
-                    char nb[] = new char[buf.length * 2];
+                    char[] nb = new char[buf.length * 2];
                     System.arraycopy(buf, 0, nb, 0, buf.length);
                     buf = nb;
                 }
@@ -271,49 +271,44 @@ public class CSVTokenizer {
         int trailingWhitespaceCount = 0;
         do {
             if (i >= buf.length) {
-                char nb[] = new char[buf.length * 2];
+                char[] nb = new char[buf.length * 2];
                 System.arraycopy(buf, 0, nb, 0, buf.length);
                 buf = nb;
             }
             buf[i++] = (char) c;
-            if (c != delimiterChar &&Character.isWhitespace((char) c)) {
+            if (Character.isWhitespace((char) c)) {
                 trailingWhitespaceCount++;
             } else {
                 trailingWhitespaceCount = 0;
             }
             c = read();
             if (c == quoteChar) {
-                throw new IOException("Unexpected quote character in line "+(lineNumber+1)+" at unquoted value \""+String.copyValueOf(buf, 0, i)+"\".");
+                throw new IOException("Unexpected quote character in line " + (lineNumber + 1) + " at unquoted value \"" + String.copyValueOf(buf, 0, i) + "\".");
             }
         } while (c >= 0 && c != '\n' && c != '\r' && c != delimiterChar);
         peekc = c;
         value = String.copyValueOf(buf, 0, i - trailingWhitespaceCount);
         return ttype = TT_VALUE;
     }
+
     /**
      * Causes the next call to the <code>nextToken</code> method of this
      * tokenizer to return the current value in the <code>ttype</code>
      * field, and not to modify the value in the <code>value</code> field.
      *
-     * @see     #nextToken()
-     * @see     #value
-     * @see     #ttype
+     * @see #nextToken()
+     * @see #value
+     * @see #ttype
      */
     public void pushBack() {
         if (ttype != TT_NOTHING)   /* No-op if nextToken() not called */
             pushedBack = true;
     }
 
-    /** Read the next character */
+    /**
+     * Read the next character
+     */
     private int read() throws IOException {
         return in.read();
-    }
-    /**
-     * Return the current line number.
-     *
-     * @return  the current line number of this stream tokenizer.
-     */
-    public int getLineNumber() {
-        return lineNumber;
     }
 }

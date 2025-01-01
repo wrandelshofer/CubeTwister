@@ -7,8 +7,8 @@ package ch.randelshofer.rubik.solver;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.ProgressPrinter;
 import ch.randelshofer.gui.ProgressView;
-import ch.randelshofer.rubik.notation.DefaultNotation;
-import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.DefaultScriptNotation;
+import ch.randelshofer.rubik.notation.ScriptNotation;
 import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JFrame;
@@ -125,7 +125,7 @@ public class Main extends Object {
         Solver solver = new Solver();
         solver.initializeTables(progressMonitor);
 
-        Notation notation = new DefaultNotation();
+        ScriptNotation notation = new DefaultScriptNotation();
         try {
             switch (solver.solve(progressMonitor, cube, notation)) {
                 case Solver.ABORT:
@@ -212,7 +212,7 @@ public class Main extends Object {
                 solver.initializeTables(null);
             }
 
-            Notation notation = new DefaultNotation();
+            ScriptNotation notation = new DefaultScriptNotation();
             switch (solver.solve(progressView, cube, notation)) {
                 case Solver.ABORT:
                     JOptionPane.showMessageDialog(

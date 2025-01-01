@@ -796,7 +796,7 @@ public class XMLElement {
      * @see #enumerateAttributeNames()
      * @see #getAttribute(java.lang.String)
      *         getAttribute(String)
-     * @see #getAttribute(java.lang.String, java.lang.Object)
+     * @see #getAttribute(java.lang.String, java.lang.String)
      *         getAttribute(String, Object)
      */
     public <T> T getAttribute(String name,

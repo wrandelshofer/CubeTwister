@@ -10,8 +10,8 @@ import ch.randelshofer.cubetwister.doc.ScriptModel;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.io.BoundedRangeReader;
 import ch.randelshofer.rubik.impexp.Importer;
-import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.rubik.parser.ast.Node;
 import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JComponent;

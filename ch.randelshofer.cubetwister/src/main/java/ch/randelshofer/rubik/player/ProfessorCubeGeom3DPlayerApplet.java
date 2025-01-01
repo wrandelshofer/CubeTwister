@@ -10,7 +10,6 @@ import ch.randelshofer.rubik.Cube3DCanvasGeom3D;
 import ch.randelshofer.rubik.cube.ProfessorCube;
 import ch.randelshofer.rubik.cube3d.Cube3D;
 import ch.randelshofer.rubik.cube3d.ProfessorCubeGeom3D;
-import ch.randelshofer.rubik.parser.ScriptPlayer;
 import org.jhotdraw.annotation.Nonnull;
 
 import java.io.InputStream;

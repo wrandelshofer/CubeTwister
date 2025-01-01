@@ -8,10 +8,10 @@ package ch.randelshofer.twophase;
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.cube.StickerCubes;
-import ch.randelshofer.rubik.notation.DefaultNotation;
-import ch.randelshofer.rubik.notation.Notation;
-import ch.randelshofer.rubik.parser.Node;
+import ch.randelshofer.rubik.notation.DefaultScriptNotation;
+import ch.randelshofer.rubik.notation.ScriptNotation;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.rubik.parser.ast.Node;
 import org.jhotdraw.annotation.Nonnull;
 import org.kociemba.twophase.Search;
 import org.kociemba.twophase.Tools;
@@ -44,7 +44,7 @@ public class Main {
             RubiksCube cube = new RubiksCube();
             System.out.println(stickers);
             StickerCubes.setToStickersString(cube, stickers, "RUFLDB");
-            Notation notation = new DefaultNotation();
+            ScriptNotation notation = new DefaultScriptNotation();
             ScriptParser parser = new ScriptParser(notation);
 
             String solution = new Search().solution(facelets, 21, 1000, true);

@@ -14,8 +14,8 @@ import ch.randelshofer.rubik.cube.StickerCubes;
 import ch.randelshofer.rubik.cube3d.Cube3D;
 import ch.randelshofer.rubik.cube3d.Cube3DEvent;
 import ch.randelshofer.rubik.cube3d.Cube3DListener;
-import ch.randelshofer.rubik.notation.Notation;
-import ch.randelshofer.rubik.parser.ScriptPlayer;
+import ch.randelshofer.rubik.notation.ScriptNotation;
+import ch.randelshofer.rubik.player.ScriptPlayer;
 import ch.randelshofer.undo.UndoableIntEdit;
 import ch.randelshofer.undo.UndoableObjectEdit;
 import org.jhotdraw.annotation.Nonnull;
@@ -420,7 +420,7 @@ public class SolverModel extends AbstractBean implements CubeAttributes, Propert
     }
 
     @Nonnull
-    public String getMappedPermutationString(@Nonnull Cube cube, @Nonnull Notation notation) {
+    public String getMappedPermutationString(@Nonnull Cube cube, @Nonnull ScriptNotation notation) {
         if (isPainting()) {
             if (isSolveable()) {
                 if (mappedCube == null) {

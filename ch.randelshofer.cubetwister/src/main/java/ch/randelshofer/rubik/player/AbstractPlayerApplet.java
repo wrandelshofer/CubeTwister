@@ -22,14 +22,12 @@ import ch.randelshofer.rubik.cube.CubeListener;
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube3d.Cube3D;
 import ch.randelshofer.rubik.notation.CubeMarkupNotation;
-import ch.randelshofer.rubik.notation.DefaultNotation;
-import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.DefaultScriptNotation;
+import ch.randelshofer.rubik.notation.ScriptNotation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.parser.MoveMetrics;
-import ch.randelshofer.rubik.parser.Node;
-import ch.randelshofer.rubik.parser.ScriptKeyboardHandler;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.ScriptPlayer;
+import ch.randelshofer.rubik.parser.ast.Node;
 import ch.randelshofer.util.AppletParameterException;
 import ch.randelshofer.util.Applets;
 import ch.randelshofer.util.ArrayUtil;
@@ -116,7 +114,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
     private final static Color activeSelectionBackground = new Color(255, 255, 64);
     @Nullable
     protected Cube3DCanvas frontCanvas, rearCanvas;
-    protected Notation notation;
+    protected ScriptNotation notation;
     protected boolean isRearViewVisible;
     @Nullable
     private String script;
@@ -685,7 +683,7 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
             try {
                 ((CubeMarkupNotation) notation).readXML(resources);
             } catch (Exception e) {
-                notation = new DefaultNotation();
+                notation = new DefaultScriptNotation();
             }
         } else {
             ((CubeMarkupNotation) notation).readXML(resources, value);

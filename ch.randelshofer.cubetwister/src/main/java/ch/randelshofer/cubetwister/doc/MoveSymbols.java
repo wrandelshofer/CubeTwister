@@ -140,7 +140,7 @@ public class MoveSymbols {
                         case 3 : angle = -2; break;
                     }
                     String token = prefixes[p]+faces[f]+suffixes[s];
-                    twistValueSet.put(token, new Move(3, axis,layerMask,angle));
+                    twistValueSet.put(token, new Move(4, axis, layerMask, angle));
                 }
             }
         }
@@ -173,7 +173,7 @@ public class MoveSymbols {
                         case 3 : angle = -2; break;
                     }
                     String token = prefixes[p]+faces[f]+suffixes[s];
-                    twistValueSet.put(token, new Move(3, axis,layerMask,angle));
+                    twistValueSet.put(token, new Move(5, axis, layerMask, angle));
                 }
             }
         }

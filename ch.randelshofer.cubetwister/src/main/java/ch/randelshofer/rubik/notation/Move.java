@@ -14,8 +14,6 @@ import java.util.List;
 /**
  * Descriptor for move tokens.
  * Instances of this class are immutable.
- * <p>
- * This class must be Java 1.1 compliant.
  *
  * @author Werner Randelshofer.
  */
@@ -51,6 +49,7 @@ public class Move implements Comparable<Move> {
     public final static Move CD2 = new Move(3, 1, 7, 2);
     public final static Move CF2 = new Move(3, 2, 7, 2);
     public final static Move CB2 = new Move(3, 2, 7, 2);
+
     private final int axis;
     private final int layerMask;
     private final int angle;
@@ -60,7 +59,10 @@ public class Move implements Comparable<Move> {
         this.axis = axis;
         this.layerMask = layerMask;
         this.angle = angle;
-        this.layerCount=layerCount;
+        this.layerCount = layerCount;
+        if ((layerMask & ((1 << layerCount) - 1)) != layerMask) {
+            throw new IllegalArgumentException("illegal layerMask=" + layerMask + " for layerCount=" + layerCount);
+        }
     }
 
     public boolean equals(Object o) {
@@ -90,6 +92,7 @@ public class Move implements Comparable<Move> {
     public int getLayerMask() {
         return layerMask;
     }
+
     public int getLayerCount() {
         return layerCount;
     }
@@ -138,12 +141,20 @@ public class Move implements Comparable<Move> {
     }
 
     public int hashCode() {
-        return /*symbol.hashCode() |*/ (axis << 24) | (layerMask << 10) | (angle << 8);
+        return (axis << 24) | (layerMask << 10) | (angle << 8);
     }
 
     @Nonnull
     public String toString() {
-        return "Move axis=" + axis + " mask=" + layerMask + " angle=" + angle;
+        return "Move axis=" + axis + " mask=" + maskToString() + " angle=" + angle;
+    }
+
+    private String maskToString() {
+        var buf = new StringBuilder();
+        for (var i = 0; i < layerCount; i++) {
+            buf.append(((layerMask >>> i) & 1) == 0 ? '○' : '●');
+        }
+        return buf.toString();
     }
 
     @Nonnull
@@ -152,7 +163,6 @@ public class Move implements Comparable<Move> {
     }
 
     public int compareTo(@Nonnull Move that) {
-
         int result;
         result = this.layerMask - that.layerMask;
         if (result == 0) {

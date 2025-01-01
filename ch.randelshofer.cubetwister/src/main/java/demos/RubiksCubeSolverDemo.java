@@ -14,11 +14,11 @@ import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.cube3d.Cube3DEvent;
 import ch.randelshofer.rubik.cube3d.Cube3DListener;
 import ch.randelshofer.rubik.cube3d.RubiksCubeIdx3D;
-import ch.randelshofer.rubik.notation.DefaultNotation;
-import ch.randelshofer.rubik.notation.Notation;
-import ch.randelshofer.rubik.parser.Node;
+import ch.randelshofer.rubik.notation.DefaultScriptNotation;
+import ch.randelshofer.rubik.notation.ScriptNotation;
 import ch.randelshofer.rubik.parser.ScriptParser;
-import ch.randelshofer.rubik.parser.SequenceNode;
+import ch.randelshofer.rubik.parser.ast.Node;
+import ch.randelshofer.rubik.parser.ast.SequenceNode;
 import ch.randelshofer.rubik.solver.CubeParser;
 import ch.randelshofer.rubik.solver.FaceletCube;
 import ch.randelshofer.rubik.solver.KociembaCube;
@@ -41,7 +41,7 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
     private final static long serialVersionUID = 1L;
 
     @Nonnull
-    private Notation notation = new DefaultNotation();
+    private ScriptNotation notation = new DefaultScriptNotation();
     private Cube3DCanvas canvas;
     private RubiksCubeIdx3D cube3d;
     private RubiksCube cube;
@@ -283,7 +283,7 @@ public class RubiksCubeSolverDemo extends javax.swing.JPanel {
                     //   solution.  Since the cube is in a valid configuration
                     //   at this point, a solution should always be found.
                     Solver solver = new Solver();
-                    int result = solver.solve(progressMonitor, kcube, new DefaultNotation());
+                    int result = solver.solve(progressMonitor, kcube, new DefaultScriptNotation());
                     if (result == Solver.ABORT) {
                         return null;
                     } else {

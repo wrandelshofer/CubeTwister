@@ -45,12 +45,12 @@ public class CubeMarkupDOMFactory implements DOMFactory {
         return ((Class) tagClassMap.get(tagName)).newInstance();
         } catch (NullPointerException e) {
             IllegalArgumentException error = new IllegalArgumentException(tagName);
-            //error.initCause(e); <- requires JDK 1.4
+            error.initCause(e);
             throw error;
         } catch (Exception e) {
             InternalError error = new InternalError(e.toString());
             e.printStackTrace();
-            //error.initCause(e); <- requires JDK 1.4
+            error.initCause(e);
             throw error;
         }
     }

@@ -81,7 +81,6 @@ public class NotationMovesTableModel extends AbstractTableModel
         rowCount = 0;
         for (int i=0, n = NotationModel.getUsefulLayers(layerCount).length; i < n; i++) {
             int layerMask = NotationModel.getUsefulLayers(layerCount)[i];
-            backboneRows[rowCount][0] = Boolean.FALSE;
             String layers = "000000"+Integer.toBinaryString(layerMask);
             layers = layers.substring(layers.length() - layerCount);
             int reverseLayerMask = Integer.valueOf(Strings.reverse(layers), 2).intValue();
@@ -92,12 +91,12 @@ public class NotationMovesTableModel extends AbstractTableModel
                     backboneRows[rowCount][1] = layers;
                     backboneRows[rowCount][2] = (j == 0) ? "+90°" : "+180°";
                     int angle = (j == 0) ? 1 : 2;
-                    backboneRows[rowCount][3] = new Move(3, 0, reverseLayerMask, angle);
-                    backboneRows[rowCount][4] = new Move(3, 1, reverseLayerMask, angle);
-                    backboneRows[rowCount][5] = new Move(3, 2, reverseLayerMask, angle);
-                    backboneRows[rowCount][6] = new Move(3, 0, layerMask, -angle);
-                    backboneRows[rowCount][7] = new Move(3, 1, layerMask, -angle);
-                    backboneRows[rowCount][8] = new Move(3, 2, layerMask, -angle);
+                    backboneRows[rowCount][3] = new Move(layerCount, 0, reverseLayerMask, angle);
+                    backboneRows[rowCount][4] = new Move(layerCount, 1, reverseLayerMask, angle);
+                    backboneRows[rowCount][5] = new Move(layerCount, 2, reverseLayerMask, angle);
+                    backboneRows[rowCount][6] = new Move(layerCount, 0, layerMask, -angle);
+                    backboneRows[rowCount][7] = new Move(layerCount, 1, layerMask, -angle);
+                    backboneRows[rowCount][8] = new Move(layerCount, 2, layerMask, -angle);
                     rowCount++;
                 }
             } else {
@@ -123,15 +122,18 @@ public class NotationMovesTableModel extends AbstractTableModel
                             angle = -2;
                             break;
                     }
-                    backboneRows[rowCount][3] = new Move(3, 0, reverseLayerMask, angle);
-                    backboneRows[rowCount][4] = new Move(3, 1, reverseLayerMask, angle);
-                    backboneRows[rowCount][5] = new Move(3, 2, reverseLayerMask, angle);
-                    backboneRows[rowCount][6] = new Move(3, 0, layerMask, -angle);
-                    backboneRows[rowCount][7] = new Move(3, 1, layerMask, -angle);
-                    backboneRows[rowCount][8] = new Move(3, 2, layerMask, -angle);
+                    backboneRows[rowCount][3] = new Move(layerCount, 0, reverseLayerMask, angle);
+                    backboneRows[rowCount][4] = new Move(layerCount, 1, reverseLayerMask, angle);
+                    backboneRows[rowCount][5] = new Move(layerCount, 2, reverseLayerMask, angle);
+                    backboneRows[rowCount][6] = new Move(layerCount, 0, layerMask, -angle);
+                    backboneRows[rowCount][7] = new Move(layerCount, 1, layerMask, -angle);
+                    backboneRows[rowCount][8] = new Move(layerCount, 2, layerMask, -angle);
                     rowCount++;
                 }
             }
+        }
+        for (int i = 0; i < rowCount; i++) {
+            backboneRows[i][0] = Boolean.TRUE;
         }
     }
 
@@ -140,11 +142,11 @@ public class NotationMovesTableModel extends AbstractTableModel
     @Override
     public Object getValueAt(int row, int column) {
         if (column == 0) {
-            return Boolean.valueOf(model.isTwistSupported((Move) backboneRows[row][3]));
+            return Boolean.valueOf(model.isMoveSupported((Move) backboneRows[row][3]));
         } else if (column == 1 || column == 2) {
             return backboneRows[row][column];
         } else {
-            String tt = model.getAllMoveTokens((Move) backboneRows[row][column]);
+            String tt = model.getAllMoveTokensAsString((Move) backboneRows[row][column]);
             return (tt == null) ? "" : tt;
         }
     }

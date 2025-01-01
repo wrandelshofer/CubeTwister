@@ -145,7 +145,8 @@ public class ScriptStateView extends JPanel implements EntityView {
                         doc.getStyle(StyleContext.DEFAULT_STYLE).addAttribute(StyleConstants.FontFamily, Fonts.getSmallDialogFont().getFamily());
                         doc.getStyle(StyleContext.DEFAULT_STYLE).addAttribute(StyleConstants.FontSize, new Integer(Fonts.getSmallDialogFont().getSize()));
                         doc.remove(0, doc.getLength());
-                        if (model != null && model.getNotationModel() != null) {
+                        NotationModel notationModel = model.getNotationModel();
+                        if (model != null && notationModel != null) {
                             String stateInfo = model.getStateInfo();
                             int pos = stateInfo.indexOf('\n');
                             if (pos != -1) {
@@ -175,7 +176,9 @@ public class ScriptStateView extends JPanel implements EntityView {
                                 if (DEBUG) {
                                     System.out.println("ScriptStateView.updateState3 cube=Cube#" + System.identityHashCode(cube));
                                 }
-                                doc.insertString(doc.getLength(), solverModel.getMappedPermutationString(cube, model.getNotationModel()), plain);
+                                if (notationModel != null) {
+                                    doc.insertString(doc.getLength(), solverModel.getMappedPermutationString(cube, notationModel), plain);
+                                }
                             } else {
                                 doc.insertString(doc.getLength(), "\n\n", plain);
                                 doc.insertString(doc.getLength(), "Stickers:\n", bold);

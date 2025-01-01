@@ -26,9 +26,11 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.SequencedMap;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -37,7 +39,7 @@ import java.util.StringTokenizer;
  *
  * @author Werner Randelshofer
  */
-public class CubeMarkupNotation implements Notation {
+public class CubeMarkupNotation implements ScriptNotation {
 
     private static class SymbolInfo {
 
@@ -64,7 +66,7 @@ public class CubeMarkupNotation implements Notation {
      * Key: Symbol
      * Value: SymbolInfo
      */
-    private HashMap<Symbol, SymbolInfo> symbolToInfoMap;
+    private SequencedMap<Symbol, SymbolInfo> symbolToInfoMap;
     /**
      * This map is used for parsing a script. Or more precisely for
      * associating tokens to symbols.
@@ -73,7 +75,7 @@ public class CubeMarkupNotation implements Notation {
      * Key: String
      * Value: ArrayList<Symbol>
      */
-    private HashMap<String, ArrayList<Symbol>> tokenToSymbolsMap;
+    private SequencedMap<String, ArrayList<Symbol>> tokenToSymbolsMap;
     /**
      * This map is used for associating global macro identifiers of the notation
      * to macro scripts.
@@ -81,21 +83,21 @@ public class CubeMarkupNotation implements Notation {
      * Key: String
      * Value: String
      */
-    private HashMap<String, String> identifierToMacroMap;
+    private SequencedMap<String, String> identifierToMacroMap;
     /**
      * This map is used for pretty printing a MoveNode (aka a parsed twist).
      * <p>
      * Key: Move
      * Value: String
      */
-    private HashMap<Move, String[]> moveToTokenMap;
+    private SequencedMap<Move, String[]> moveToTokenMap;
     /**
      * This map is used for associationg a move token to a MoveNode.
      * <p>
      * Key: String
      * Value: Move
      */
-    private HashMap<String, Move> tokenToMoveMap;
+    private SequencedMap<String, Move> tokenToMoveMap;
     /**
      * Name of the notation.
      */
@@ -122,8 +124,8 @@ public class CubeMarkupNotation implements Notation {
      */
     public CubeMarkupNotation(Cube cube) {
         this.cube = cube;
-        symbolToInfoMap = new HashMap<>();
-        identifierToMacroMap = new HashMap<>();
+        symbolToInfoMap = new LinkedHashMap<>();
+        identifierToMacroMap = new LinkedHashMap<>();
     }
 
     /**
@@ -133,7 +135,7 @@ public class CubeMarkupNotation implements Notation {
      */
     public void readXML(URL url) throws IOException {
         try (InputStreamReader r = new InputStreamReader(Template.getTemplate().openStream(), StandardCharsets.UTF_8)) {
-            XMLElement root = new XMLElement(new HashMap<>(), true, false);
+            XMLElement root = new XMLElement(new LinkedHashMap<>(), true, false);
             root.parseFromReader(r);
             readXML(root);
         }
@@ -193,8 +195,7 @@ public class CubeMarkupNotation implements Notation {
         while (i.hasNext()) {
             elem = (XMLElement) i.next();
             if ("Notation".equals(elem.getName())) {
-                for (Iterator j = elem.getChildren().iterator(); j.hasNext(); ) {
-                    XMLElement notationElem = (XMLElement) j.next();
+                for (XMLElement notationElem : elem.getChildren()) {
                     if ("Name".equals(notationElem.getName())) {
                         if (notationElem.getContent().equals(notationName)) {
                             found = true;
@@ -220,10 +221,11 @@ public class CubeMarkupNotation implements Notation {
      */
     private void readNotationXMLElement(@Nonnull XMLElement notationElem) throws XMLParseException {
         // Name
-        name = notationElem.getStringAttribute("name");
+        ArrayList<XMLElement> names = notationElem.getChildren("Name");
+        name = names.isEmpty() ? null : names.getFirst().getContent();
 
         // Initialize syntax value set
-        HashMap<String, Syntax> syntaxValueSet = new HashMap<>();
+        SequencedMap<String, Syntax> syntaxValueSet = new LinkedHashMap<>();
         syntaxValueSet.put("precircumfix", Syntax.PRECIRCUMFIX);
         syntaxValueSet.put("postcircumfix", Syntax.POSTCIRCUMFIX);
         syntaxValueSet.put("postinfix", Syntax.POSTINFIX);
@@ -234,37 +236,69 @@ public class CubeMarkupNotation implements Notation {
         syntaxValueSet.put("primary", Syntax.PRIMARY);
 
         // Axis value set
-        HashMap<String, Integer> axisValueSet = new HashMap<>();
+        SequencedMap<String, Integer> axisValueSet = new LinkedHashMap<>();
         axisValueSet.put("x", 0);
         axisValueSet.put("y", 1);
         axisValueSet.put("z", 2);
 
         // Angle value set
-        HashMap<String, Integer> angleValueSet = new HashMap<>();
+        SequencedMap<String, Integer> angleValueSet = new LinkedHashMap<>();
         angleValueSet.put("-180", -2);
         angleValueSet.put("-90", -1);
         angleValueSet.put("90", 1);
         angleValueSet.put("180", 2);
 
         // Initialize symbol to info map
-        symbolToInfoMap = new HashMap<>();
-        HashMap<String, Symbol> symbolValueSet = new HashMap<>();
+        symbolToInfoMap = new LinkedHashMap<>();
+        SequencedMap<String, Symbol> symbolValueSet = new LinkedHashMap<>();
         for (Symbol symbol : Symbol.values()) {
-            symbolToInfoMap.put(symbol, new SymbolInfo(symbol, true, null));
+            symbolToInfoMap.put(symbol, new SymbolInfo(symbol, false, null));
             symbolValueSet.put(symbol.getName(), symbol);
             if (symbol.getAlternativeName() != null) {
                 symbolValueSet.put(symbol.getAlternativeName(), symbol);
             }
         }
-        symbolToInfoMap.put(Symbol.COMMUTATION, new SymbolInfo(Symbol.COMMUTATION, true, Syntax.PREFIX));
-        symbolToInfoMap.put(Symbol.CONJUGATION, new SymbolInfo(Symbol.CONJUGATION, true, Syntax.PREFIX));
-        symbolToInfoMap.put(Symbol.INVERSION, new SymbolInfo(Symbol.INVERSION, true, Syntax.SUFFIX));
-        symbolToInfoMap.put(Symbol.PERMUTATION, new SymbolInfo(Symbol.PERMUTATION, true, Syntax.SUFFIX));
-        symbolToInfoMap.put(Symbol.REFLECTION, new SymbolInfo(Symbol.REFLECTION, true, Syntax.SUFFIX));
-        symbolToInfoMap.put(Symbol.REPETITION, new SymbolInfo(Symbol.REPETITION, true, Syntax.SUFFIX));
+        symbolToInfoMap.put(Symbol.MOVE, new SymbolInfo(Symbol.MOVE, true, Syntax.PRIMARY));
+        symbolToInfoMap.put(Symbol.COMMUTATION, new SymbolInfo(Symbol.COMMUTATION, false, Syntax.PREFIX));
+        symbolToInfoMap.put(Symbol.CONJUGATION, new SymbolInfo(Symbol.CONJUGATION, false, Syntax.PREFIX));
+        symbolToInfoMap.put(Symbol.INVERSION, new SymbolInfo(Symbol.INVERSION, false, Syntax.SUFFIX));
+        symbolToInfoMap.put(Symbol.PERMUTATION, new SymbolInfo(Symbol.PERMUTATION, false, Syntax.SUFFIX));
+        symbolToInfoMap.put(Symbol.REFLECTION, new SymbolInfo(Symbol.REFLECTION, false, Syntax.SUFFIX));
+        symbolToInfoMap.put(Symbol.REPETITION, new SymbolInfo(Symbol.REPETITION, false, Syntax.SUFFIX));
+        symbolToInfoMap.put(Symbol.GROUPING, new SymbolInfo(Symbol.GROUPING, false, Syntax.CIRCUMFIX));
+        /*
+        for (Symbol s : List.of(Symbol.CONJUGATION_BEGIN,
+                Symbol.COMMUTATION_BEGIN,
+                Symbol.ROTATION_BEGIN,
+                Symbol.PERMUTATION_BEGIN,
+                Symbol.INVERSION_BEGIN,
+                Symbol.REFLECTION_BEGIN,
+                Symbol.GROUPING_BEGIN,
+                Symbol.MULTILINE_COMMENT_BEGIN,
+                Symbol.SINGLELINE_COMMENT_BEGIN)) {
+            symbolToInfoMap.put(s, new SymbolInfo(s, false, Syntax.PREFIX));
+        }
+        for (Symbol s : List.of(Symbol.CONJUGATION_END,
+                Symbol.COMMUTATION_END,
+                Symbol.PERMUTATION_END,
+                Symbol.ROTATION_END,
+                Symbol.INVERSION_END,
+                Symbol.REFLECTION_END,
+                Symbol.GROUPING_END,
+                Symbol.MULTILINE_COMMENT_END)) {
+            symbolToInfoMap.put(s, new SymbolInfo(s, false, Syntax.SUFFIX));
+        }
+        for (Symbol s : List.of(Symbol.CONJUGATION_OPERATOR,
+                Symbol.COMMUTATION_OPERATOR,
+                Symbol.ROTATION_OPERATOR,
+                Symbol.INVERSION_OPERATOR,
+                Symbol.REFLECTION_OPERATOR,
+                Symbol.REPETITION_OPERATOR)) {
+            symbolToInfoMap.put(s, new SymbolInfo(s, false, Syntax.PREINFIX));
+        }*/
 
         // Initialize move to token map
-        moveToTokenMap = new HashMap<>();
+        moveToTokenMap = new LinkedHashMap<>();
 
         // Read layer count
         layerCount = notationElem.getIntAttribute("layerCount", 2, 32, 3);
@@ -277,17 +311,24 @@ public class CubeMarkupNotation implements Notation {
                 Symbol sym = elem.getAttribute("symbol", symbolValueSet, "move", false);
                 SymbolInfo info = symbolToInfoMap.get(sym);
                 info.isSupported = elem.getBooleanAttribute("enabled", true);
-                info.syntax = elem.getAttribute("syntax", syntaxValueSet, "suffix", false);
+                if (info.syntax == null || elem.getAttribute("syntax") != null) {
+                    info.syntax = elem.getAttribute("syntax", syntaxValueSet, "suffix", false);
+                }
                 for (Iterator i2 = elem.getChildren().iterator(); i2.hasNext(); ) {
                     XMLElement elem2 = (XMLElement) i2.next();
                     String name2 = elem2.getName();
                     if ("Token".equals(name2)) {
                         Symbol sym2 = elem2.getAttribute("symbol", symbolValueSet, "move", false);
                         if (sym2 == Symbol.MOVE) {
-                            Move ts = new Move(
-                                    3, (elem2.getAttribute("axis", axisValueSet, "x", false)).intValue(),
-                                    Move.toLayerMask(elem2.getAttribute("layerList")),
-                                    (elem2.getAttribute("angle", angleValueSet, "90", false)).intValue());
+                            Move ts;
+                            try {
+                                ts = new Move(
+                                        layerCount, (elem2.getAttribute("axis", axisValueSet, "x", false)).intValue(),
+                                        Move.toLayerMask(elem2.getAttribute("layerList")),
+                                        (elem2.getAttribute("angle", angleValueSet, "90", false)).intValue());
+                            } catch (IllegalArgumentException e) {
+                                throw new XMLParseException(elem2.getName(), "Illegal move " + elem2.toString());
+                            }
                             String tokenList = elem2.getContent();
                             StringTokenizer tt = new StringTokenizer(tokenList);
                             String[] tokens = new String[tt.countTokens()];
@@ -298,7 +339,9 @@ public class CubeMarkupNotation implements Notation {
                         } else {
                             SymbolInfo info2 = symbolToInfoMap.get(sym2);
                             info2.isSupported = elem2.getBooleanAttribute("enabled", true);
-                            info2.syntax = elem2.getAttribute("syntax", syntaxValueSet, "suffix", false);
+                            if (elem2.getAttribute("syntax") != null) {
+                                info2.syntax = elem2.getAttribute("syntax", syntaxValueSet, "suffix", false);
+                            }
                             String tokenList = elem2.getContent();
                             StringTokenizer tt = new StringTokenizer(tokenList);
                             List<String> tokens = new ArrayList<>();
@@ -319,7 +362,7 @@ public class CubeMarkupNotation implements Notation {
         }
 
         // Fill token to symbol map
-        tokenToSymbolsMap = new HashMap<>();
+        tokenToSymbolsMap = new LinkedHashMap<>();
         for (Symbol symbol : symbolToInfoMap.keySet()) {
             SymbolInfo info = symbolToInfoMap.get(symbol);
             List<String> tokens = info.tokens;
@@ -331,7 +374,7 @@ public class CubeMarkupNotation implements Notation {
             }
         }
         // Fill token to move map
-        tokenToMoveMap = new HashMap<>();
+        tokenToMoveMap = new LinkedHashMap<>();
         for (Move moveSymbol : moveToTokenMap.keySet()) {
             String[] tokens = moveToTokenMap.get(moveSymbol);
             for (String token : tokens) {
@@ -345,6 +388,7 @@ public class CubeMarkupNotation implements Notation {
         }
         //System.out.println(this.toVerboseString());
     }
+
 
     @Override
     public @Nullable Move getMoveFromToken(String moveToken) {
@@ -367,9 +411,10 @@ public class CubeMarkupNotation implements Notation {
 
     @Nonnull
     @Override
-    public Syntax getSyntax(Symbol s) {
-        SymbolInfo info = symbolToInfoMap.get(s);
-        return (info == null) ? Syntax.PRIMARY : info.syntax;
+    public Syntax getSyntax(Symbol symbol) {
+        var info = this.symbolToInfoMap.get(symbol.getCompositeSymbol());
+        return info != null ? info.syntax : Syntax.PRIMARY;
+
     }
 
     @Nullable
@@ -380,9 +425,20 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
+    public List<String> getAllTokens(Symbol key) {
+        SymbolInfo info = symbolToInfoMap.get(key);
+        return (info == null || info.tokens == null) ? List.of() : info.tokens;
+    }
+
+    @Override
     public boolean isSupported(Symbol s) {
         SymbolInfo info = symbolToInfoMap.get(s);
         return info == null || info.isSupported;
+    }
+
+    @Override
+    public boolean isMoveSupported(Move key) {
+        return false;
     }
 
     @Override
@@ -439,14 +495,19 @@ public class CubeMarkupNotation implements Notation {
     }
 
     @Override
-    public List<String> getMoveTokens(Move s) {
+    public List<String> getAllMoveTokens(Move s) {
         String[] strings = moveToTokenMap.get(s);
         return strings != null ? Arrays.asList(strings) : Collections.emptyList();
     }
 
+    @Override
+    public Set<Move> getAllMoveSymbols() {
+        return moveToTokenMap.keySet();
+    }
+
     @Nonnull
     @Override
-    public Map<String, String> getMacros() {
+    public Map<String, String> getAllMacros() {
         // FIXME - Implement me
         return Collections.emptyMap();
     }

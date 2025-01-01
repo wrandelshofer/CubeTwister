@@ -6,10 +6,10 @@ package ch.randelshofer.rubik.solver;
 
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.gui.ProgressView;
-import ch.randelshofer.rubik.notation.Notation;
-import ch.randelshofer.rubik.parser.MoveNode;
-import ch.randelshofer.rubik.parser.NOPNode;
-import ch.randelshofer.rubik.parser.SequenceNode;
+import ch.randelshofer.rubik.notation.ScriptNotation;
+import ch.randelshofer.rubik.parser.ast.MoveNode;
+import ch.randelshofer.rubik.parser.ast.NOPNode;
+import ch.randelshofer.rubik.parser.ast.SequenceNode;
 import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 
@@ -168,7 +168,7 @@ public class Solver {
     /**
      * This notation is used for output of intermediate results.
      */
-    private Notation notation;
+    private ScriptNotation notation;
 
     /**
      * Initializes both the move mapping and pruning tables required
@@ -276,7 +276,7 @@ public class Solver {
      *
      * @return NOT_FOUND, FOUND, OPTIMUM_FOUND or ABORT.
      */
-    public int solve(@Nonnull ProgressObserver progressMonitor, @Nonnull KociembaCube scrambledCube, Notation notation) {
+    public int solve(@Nonnull ProgressObserver progressMonitor, @Nonnull KociembaCube scrambledCube, ScriptNotation notation) {
         int iteration = 1;
         int result = NOT_FOUND;
 

@@ -6,28 +6,31 @@ package ch.randelshofer.cubetwister.doc;
 
 import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.notation.Move;
-import ch.randelshofer.rubik.notation.Notation;
+import ch.randelshofer.rubik.notation.ScriptNotation;
 import ch.randelshofer.rubik.notation.Symbol;
 import ch.randelshofer.rubik.notation.Syntax;
-import ch.randelshofer.rubik.parser.MacroNode;
-import ch.randelshofer.rubik.parser.MoveNode;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.rubik.parser.ast.MacroNode;
+import ch.randelshofer.rubik.parser.ast.MoveNode;
 import ch.randelshofer.undo.UndoableObjectEdit;
 import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serial;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.SequencedMap;
+import java.util.SequencedSet;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -36,7 +39,8 @@ import java.util.StringTokenizer;
  *
  * @author Werner Randelshofer.
  */
-public class NotationModel extends InfoModel implements Notation {
+public class NotationModel extends InfoModel implements ScriptNotation {
+    @Serial
     private final static long serialVersionUID = 1L;
     public static final String PROP_STATEMENT_TOKEN = "StatementToken";
     public static final String PROP_TWIST_TOKEN = "TwistToken";
@@ -47,42 +51,42 @@ public class NotationModel extends InfoModel implements Notation {
      * Value = String
      */
     @Nonnull
-    private HashMap<Move, String> twistToTokenMap = new HashMap<Move, String>();
+    private SequencedMap<Move, String> moveToTokenMap = new LinkedHashMap<Move, String>();
     /**
      * Key = Symbol
      * Value = String
      */
     @Nonnull
-    private HashMap<Symbol, String> symbolToTokenMap = new HashMap<Symbol, String>();
+    private SequencedMap<Symbol, String> symbolToTokenMap = new LinkedHashMap<Symbol, String>();
     /**
      * A set of supported symbols.
      */
     @Nonnull
-    private HashSet<Symbol> supportedSymbols = new HashSet<Symbol>();
+    private SequencedSet<Symbol> supportedSymbols = new LinkedHashSet<Symbol>();
     /**
      * A set of supported twists.
      */
     @Nonnull
-    private HashSet<Move> supportedTwists = new HashSet<Move>();
+    private SequencedSet<Move> supportedTwists = new LinkedHashSet<Move>();
     /**
      * We create the token to symbol map lazily.
      * We set this variable to null, each time a token or a twist token of the notation changes.
      */
     @Nullable
-    private HashMap<String, HashSet<Symbol>> tokenToSymbolMap = null;
+    private SequencedMap<String, HashSet<Symbol>> tokenToSymbolMap = null;
     /**
      * We create the token to twist map lazily.
      * We set this variable to null, each time a token or a twist token of the notation changes.
      */
     @Nullable
-    private HashMap<String, Move> tokenToTwistMap = null;
+    private SequencedMap<String, Move> tokenToTwistMap = null;
     /**
      * A map with symbol syntaxes.
      * Key = Symbol
      * Value = Syntax
      */
     @Nonnull
-    private HashMap<Symbol, Syntax> symbolToSyntaxMap = new HashMap<Symbol, Syntax>();
+    private SequencedMap<Symbol, Syntax> symbolToSyntaxMap = new LinkedHashMap<Symbol, Syntax>();
     private final static int MACRO_INDEX = 0;
     /**
      * Number of layers supported by this notation.
@@ -90,13 +94,28 @@ public class NotationModel extends InfoModel implements Notation {
     private int layerCount = 3;
     private final static int[][] usefulLayers = {
             // 2x2 cube
-            {1, 3},
+            {0b1, 0b11},// Tier Moves
             // 3x3 cube
-            {1, 3, 7, 2, 5},
+            {0b1, 0b11, 0b111,// Tier Moves
+                    0b010, // Nth-Layer Moves width 1,
+                    0b101 // Slice-Moves width 1
+            },
             // 4x4 cube
-            {1, 3, 7, 15, 2, 6, 9},
+            {0b1, 0b11, 0b111, 0b1111,// Tier Moves
+                    0b0010, // Nth-Layer Moves width 1,
+                    0b0110, // Nth-Layer Moves width 2,
+                    0b1101, // Slice Moves width 1
+                    0b1001 // Slice Moves width 2
+            },
             // 5x5 cube
-            {1, 3, 7, 15, 31, 2, 4, 6, 14, 29, 27, 25, 17},
+            {0b1, 0b11, 0b111, 0b1111, 0b11111,// Tier Moves
+                    0b00010, 0b00100, // Nth-Layer Moves width 1,
+                    0b00110, // Nth-Layer Moves width 2,
+                    0b01110, // Nth-Layer Moves width 3,
+                    0b11101, 0b11011, // Slice-Moves width 1
+                    0b11001, // Slice Moves width 2
+                    0b10001 // Slice Moves width 3
+            },
             // 6x6 cube
             {1, 3, 7, 15, 31, 63,// Tier Moves
                     2, 4, // Nth-Layer Moves width 1,
@@ -109,7 +128,7 @@ public class NotationModel extends InfoModel implements Notation {
                     33 // Slice Moves width 4
             },
             // 7x7 cube
-            {1, 3, 7, 15, 31, 63, 127, // Tier Movies
+            {1, 1 + 2, 7, 15, 31, 63, 127, // Tier Movies
                     2, 4, 8, // Nth-Layer Moves width 1
                     6, 12, // Nth-Layer Moves width 2,
                     14, 28, // Nth-Layer Moves width 3,
@@ -181,7 +200,7 @@ public class NotationModel extends InfoModel implements Notation {
 
     @Nonnull
     @Override
-    public Map<String, String> getMacros() {
+    public Map<String, String> getAllMacros() {
         Map<String, String> macros = new LinkedHashMap<>();
         EntityModel macroModels = getMacroModels();
         for (int i = 0, n = macroModels.getChildCount(); i < n; i++) {
@@ -199,13 +218,13 @@ public class NotationModel extends InfoModel implements Notation {
         return getChildAt(MACRO_INDEX);
     }
 
-    public boolean isTwistSupported() {
+    public boolean isMoveSupported() {
         // Always return true;
         return true;
         //return supportedTwistTokensSet.size() > 0;
     }
 
-    public boolean isTwistSupported(Move key) {
+    public boolean isMoveSupported(Move key) {
         return supportedTwists.contains(key);
     }
 
@@ -245,13 +264,13 @@ public class NotationModel extends InfoModel implements Notation {
 
     @Nonnull
     public Set<Move> getAllMoveSymbols() {
-        return twistToTokenMap.keySet();
+        return moveToTokenMap.keySet();
     }
 
     @Nullable
     @Override
     public String getMoveToken(Move s) {
-        String tokens = twistToTokenMap.get(s);
+        String tokens = moveToTokenMap.get(s);
         if (tokens == null || tokens.length() == 0) {
             return null;
         } else {
@@ -264,17 +283,17 @@ public class NotationModel extends InfoModel implements Notation {
         }
     }
 
-    public List<String> getMoveTokens(Move s) {
-        String tokens = twistToTokenMap.get(s);
+    public List<String> getAllMoveTokens(Move s) {
+        String tokens = moveToTokenMap.get(s);
         return tokens == null ? Collections.emptyList() : Arrays.asList(tokens.split(" +"));
     }
 
-    public String getAllMoveTokens(Move key) {
-        return twistToTokenMap.get(key);
+    public String getAllMoveTokensAsString(Move key) {
+        return moveToTokenMap.get(key);
     }
 
     public void setAllMoveTokens(final Move key, @Nullable String newValue) {
-        String oldValue = twistToTokenMap.get(key);
+        String oldValue = moveToTokenMap.get(key);
         basicSetMoveToken(key, newValue);
         if (oldValue != newValue &&
                 (oldValue != null && newValue != null && !oldValue.equals(newValue))) {
@@ -285,7 +304,7 @@ public class NotationModel extends InfoModel implements Notation {
                         private final static long serialVersionUID = 1L;
 
                         public void revert(Object a, Object b) {
-                            twistToTokenMap.put(key, (String) b);
+                            moveToTokenMap.put(key, (String) b);
                             firePropertyChange(PROP_TWIST_TOKEN, a, b);
                         }
                     });
@@ -294,7 +313,7 @@ public class NotationModel extends InfoModel implements Notation {
 
     public void basicSetMoveToken(final Move key, String newValue) {
         invalidateTokenMaps();
-        twistToTokenMap.put(key, newValue);
+        moveToTokenMap.put(key, newValue);
     }
 
     public void basicSetToken(final Symbol key, String newValue) {
@@ -302,7 +321,7 @@ public class NotationModel extends InfoModel implements Notation {
         symbolToTokenMap.put(key, newValue);
     }
 
-    public void setToken(final Symbol key, String newValue) {
+    public void setAllTokens(final Symbol key, String newValue) {
         invalidateTokenMaps();
         String oldValue = symbolToTokenMap.get(key);
         basicSetToken(key, newValue);
@@ -435,9 +454,15 @@ public class NotationModel extends InfoModel implements Notation {
      * Returns the token regardless whether the symbol is supported or not.
      * Returns null if the token is not defined.
      */
-    public String getAllTokens(Symbol key) {
+    public String getAllTokensAsString(Symbol key) {
         String str = symbolToTokenMap.get(key);
         return str;
+    }
+
+    @Override
+    public List<String> getAllTokens(Symbol key) {
+        String str = getAllTokensAsString(key);
+        return str == null ? List.of() : Arrays.asList(str.split("\\s+"));
     }
 
     @Override
@@ -486,10 +511,10 @@ public class NotationModel extends InfoModel implements Notation {
         }
         that.add(macros);
 
-        that.twistToTokenMap = new HashMap<Move, String>(this.twistToTokenMap);
-        that.symbolToTokenMap = new HashMap<Symbol, String>(this.symbolToTokenMap);
-        that.supportedSymbols = new HashSet<Symbol>(this.supportedSymbols);
-        that.supportedTwists = new HashSet<Move>(this.supportedTwists);
+        that.moveToTokenMap = new LinkedHashMap<Move, String>(this.moveToTokenMap);
+        that.symbolToTokenMap = new LinkedHashMap<Symbol, String>(this.symbolToTokenMap);
+        that.supportedSymbols = new LinkedHashSet<Symbol>(this.supportedSymbols);
+        that.supportedTwists = new LinkedHashSet<Move>(this.supportedTwists);
         that.invalidateTokenMaps();
         return that;
     }
@@ -515,7 +540,7 @@ public class NotationModel extends InfoModel implements Notation {
 
     private void validateTokenMaps() {
         if (tokenToSymbolMap == null) {
-            tokenToSymbolMap = new HashMap<String, HashSet<Symbol>>();
+            tokenToSymbolMap = new LinkedHashMap<String, HashSet<Symbol>>();
             for (Map.Entry<Symbol, String> entry : symbolToTokenMap.entrySet()) {
                 if (entry.getValue() != null) {
                     for (StringTokenizer tt = new StringTokenizer(entry.getValue()); tt.hasMoreTokens(); ) {
@@ -529,9 +554,9 @@ public class NotationModel extends InfoModel implements Notation {
                     }
                 }
             }
-            tokenToTwistMap = new HashMap<String, Move>();
+            tokenToTwistMap = new LinkedHashMap<String, Move>();
             int validMask = (1 << layerCount) - 1;
-            for (Map.Entry<Move, String> entry : twistToTokenMap.entrySet()) {
+            for (Map.Entry<Move, String> entry : moveToTokenMap.entrySet()) {
                 if (entry.getValue() != null &&
                         (entry.getKey().getLayerMask() & validMask) == entry.getKey().getLayerMask()) {
                     for (StringTokenizer tt = new StringTokenizer(entry.getValue()); tt.hasMoreTokens(); ) {
@@ -552,7 +577,7 @@ public class NotationModel extends InfoModel implements Notation {
     private void invalidateTwists() {
         invalidateTokenMaps();
 
-        twistToTokenMap.clear();
+        moveToTokenMap.clear();
         supportedTwists.clear();
     }
 

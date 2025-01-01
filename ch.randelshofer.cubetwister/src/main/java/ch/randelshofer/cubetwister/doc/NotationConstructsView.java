@@ -78,14 +78,14 @@ public class NotationConstructsView extends ScrollablePanel
 
         public void updateFromModel() {
             if (NotationConstructsView.this.model != null) {
-                setText(NotationConstructsView.this.model.getAllTokens(symbol));
+                setText(NotationConstructsView.this.model.getAllTokensAsString(symbol));
             }
         }
 
         @Override
         public void documentChanged(@Nonnull DocumentEvent evt) {
             if (NotationConstructsView.this.model != null) {
-                NotationConstructsView.this.model.setToken(symbol, Normalizer.normalize(getText(evt), Normalizer.Form.NFC));
+                NotationConstructsView.this.model.setAllTokens(symbol, Normalizer.normalize(getText(evt), Normalizer.Form.NFC));
             }
         }
     }

@@ -100,7 +100,7 @@ public class CSVReader {
             }
         }
 
-        return record.toArray(new String[record.size()]);
+        return record.toArray(new String[0]);
     }
 
     public void close() throws IOException {

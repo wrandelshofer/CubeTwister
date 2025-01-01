@@ -11,8 +11,8 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.io.LFWriter;
 import ch.randelshofer.rubik.cube.RubiksCube;
 import ch.randelshofer.rubik.impexp.Exporter;
-import ch.randelshofer.rubik.parser.Node;
 import ch.randelshofer.rubik.parser.ScriptParser;
+import ch.randelshofer.rubik.parser.ast.Node;
 import org.jhotdraw.annotation.Nonnull;
 
 import javax.swing.JComponent;
