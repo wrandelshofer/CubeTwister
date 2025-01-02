@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdfd2d4d-8eac-41a5-b00b-430844a18561" name="Changes" comment="Refactor code. Fix bugs in DefaultScriptNotation.">
+    <list default="true" id="cdfd2d4d-8eac-41a5-b00b-430844a18561" name="Changes" comment="Refactor Superset ENG notations.">
+      <change afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/GeneratePatternTestsForJavascript.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/PatternDatabaseRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/cubetwister/doc/template.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/cubetwister/doc/template.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/notation/DefaultNotationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/notation/DefaultNotationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/cube/Cubes.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/cube/Cubes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/notation/DefaultScriptNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/notation/DefaultScriptNotation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/cube/CubeTransformTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/cube/GenerateCubeTransformTestsForJavascript.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/PatternDatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/PatternDatabaseTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,86 +52,118 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ConvexClippingTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ConvexClippingTest.testFactoryConvexClip.circle segment.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.ConvexClippingTest.testFactoryConvexClip.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CubeMarkupTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.CubeMarkupTest.testAgainstXmlSchema.Extended Template.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CubesTest.testOrder.A210.03, 1.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.DefaultNotationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DefaultNotationTest.shouldBeAbleToExportDefaultNotations.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.DefaultNotationTest.testCompareWithCubeTwisterTemplateFile.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PatternDatabaseTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PatternDatabaseTest.test3xRubik.A200.01 1.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.PatternDatabaseTest.test3xRubik.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PatternDatabaseTest.test5xProfessors.A200.01 1.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.java in ch.randelshofer.cubetwister.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.randelshofer in ch.randelshofer.cubetwister.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ch.randelshofer.cubetwister.parent [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ch.randelshofer.cubetwister.parent [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.ch.randelshofer.cubetwister.parent [deploy].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3908046&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Debug",
+    "JUnit.ConvexClippingTest.executor": "Debug",
+    "JUnit.ConvexClippingTest.testFactoryConvexClip.circle segment.executor": "Debug",
+    "JUnit.ConvexClippingTest.testFactoryConvexClip.executor": "Run",
+    "JUnit.CubeMarkupTest.executor": "Debug",
+    "JUnit.CubeMarkupTest.testAgainstXmlSchema.Extended Template.executor": "Run",
+    "JUnit.CubeTransformTest.generateTransformTests.PocketCube.executor": "Run",
+    "JUnit.CubeTransformTest.generateTransformTests.executor": "Run",
+    "JUnit.CubesTest.testOrder.A210.03, 1.executor": "Debug",
+    "JUnit.DefaultNotationTest.executor": "Run",
+    "JUnit.DefaultNotationTest.shouldBeAbleToExportDefaultNotations.executor": "Debug",
+    "JUnit.DefaultNotationTest.testCompareWithCubeTwisterTemplateFile.executor": "Run",
+    "JUnit.GeneratePatternTestsForJavascript.test2xPocket.executor": "Run",
+    "JUnit.GeneratePatternTestsForJavascript.test2xPocketMoves.Move.N1L 1.executor": "Debug",
+    "JUnit.GeneratePatternTestsForJavascript.test2xPocketMoves.executor": "Run",
+    "JUnit.GeneratePatternTestsForJavascript.test3xRubikMoves.executor": "Run",
+    "JUnit.GeneratePatternTestsForJavascript.test4xRevengeMoves.executor": "Run",
+    "JUnit.GeneratePatternTestsForJavascript.test5xProfessorMoves.executor": "Run",
+    "JUnit.GeneratePatternTestsForJavascript.test6xVCube6Moves.executor": "Run",
+    "JUnit.GeneratePatternTestsForJavascript.test7xVCube7Moves.executor": "Run",
+    "JUnit.PatternDatabaseTest.executor": "Run",
+    "JUnit.PatternDatabaseTest.test3xRubik.A200.01 1.executor": "Debug",
+    "JUnit.PatternDatabaseTest.test3xRubik.executor": "Run",
+    "JUnit.PatternDatabaseTest.test5xProfessors.A200.01 1.executor": "Debug",
+    "JUnit.PatternDatabaseTest.test6xVCube6.executor": "Run",
+    "JUnit.PatternDatabaseTest.test7xVCube7s.executor": "Run",
+    "JUnit.java in ch.randelshofer.cubetwister.executor": "Run",
+    "JUnit.randelshofer in ch.randelshofer.cubetwister.executor": "Run",
+    "Maven.ch.randelshofer.cubetwister.parent [clean].executor": "Run",
+    "Maven.ch.randelshofer.cubetwister.parent [compile].executor": "Run",
+    "Maven.ch.randelshofer.cubetwister.parent [deploy].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.3908046",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/player" />
     </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="ch.randelshofer.rubik.parser" />
+    </key>
   </component>
   <component name="RunManager" selected="JUnit.java in ch.randelshofer.cubetwister">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.cubetwister.Main" />
+    <configuration name="GeneratePatternTestsForJavascript.test7xVCube7Moves" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.randelshofer.cubetwister.*" />
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DefaultNotationTest.shouldBeAbleToExportDefaultNotations" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.notation.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.notation" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.notation.DefaultNotationTest" />
-      <option name="METHOD_NAME" value="shouldBeAbleToExportDefaultNotations" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.GeneratePatternTestsForJavascript" />
+      <option name="METHOD_NAME" value="test7xVCube7Moves" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DefaultNotationTest.testCompareWithCubeTwisterTemplateFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PatternDatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ch.randelshofer.cubetwister" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.randelshofer.rubik.notation.*" />
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.notation" />
-      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.notation.DefaultNotationTest" />
-      <option name="METHOD_NAME" value="testCompareWithCubeTwisterTemplateFile" />
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatternDatabaseTest.test3xRubik" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
+      <option name="METHOD_NAME" value="test3xRubik" />
       <option name="TEST_OBJECT" value="method" />
-      <dir value="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PatternDatabaseTest.test7xVCube7s" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ch.randelshofer.cubetwister" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.randelshofer.rubik.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.randelshofer.rubik.parser" />
+      <option name="MAIN_CLASS_NAME" value="ch.randelshofer.rubik.parser.PatternDatabaseTest" />
+      <option name="METHOD_NAME" value="test7xVCube7s" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -139,21 +176,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="randelshofer in ch.randelshofer.cubetwister" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="ch.randelshofer.cubetwister" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.java in ch.randelshofer.cubetwister" />
-        <item itemvalue="JUnit.randelshofer in ch.randelshofer.cubetwister" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.DefaultNotationTest.shouldBeAbleToExportDefaultNotations" />
-        <item itemvalue="JUnit.DefaultNotationTest.testCompareWithCubeTwisterTemplateFile" />
+        <item itemvalue="JUnit.PatternDatabaseTest.test3xRubik" />
+        <item itemvalue="JUnit.PatternDatabaseTest.test7xVCube7s" />
+        <item itemvalue="JUnit.PatternDatabaseTest" />
+        <item itemvalue="JUnit.GeneratePatternTestsForJavascript.test7xVCube7Moves" />
       </list>
     </recent_temporary>
   </component>
@@ -198,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735742268075</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Refactor Superset ENG notations.">
+      <option name="closed" value="true" />
+      <created>1735745368023</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1735745368023</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -208,87 +245,9 @@
     <MESSAGE value="Add SVG files." />
     <MESSAGE value="template.xml Fix bugs in CubeTwister ENG 6x6 and 7x7 notations." />
     <MESSAGE value="Refactor code. Fix bugs in DefaultScriptNotation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor code. Fix bugs in DefaultScriptNotation." />
+    <MESSAGE value="Refactor Superset ENG notations." />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor Superset ENG notations." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/cube/CubesTest.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="!moveFromDefault.equals(moveFromTemplate)" language="JAVA" />
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/notation/DefaultNotationTest.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="layerCount==4&amp;&amp;outerMiddle==12" language="JAVA" />
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/notation/DefaultScriptNotation.java</url>
-          <line>98</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/parser/ScriptParser.java</url>
-          <line>377</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <condition expression="sym==Symbol.GROUPING_BEGIN" language="JAVA" />
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/notation/CubeMarkupNotation.java</url>
-          <line>314</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/parser/ScriptParser.java</url>
-          <line>777</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/parser/ScriptParser.java</url>
-          <line>721</line>
-          <log-expression expression="&quot;parsePrimary &quot;+symbol+ &quot; token &quot;+token" language="JAVA" />
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/parser/ScriptParser.java</url>
-          <line>656</line>
-          <log-expression expression="&quot;parsePrecicumfix &quot;+symbol" language="JAVA" />
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/parser/ScriptParser.java</url>
-          <line>271</line>
-          <log-expression expression="&quot;parseCircumfix &quot;+symbol" language="JAVA" />
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/parser/ScriptParser.java</url>
-          <line>347</line>
-          <log-expression expression="&quot;parseNonSuffix symbol=&quot;+symbol+&quot; compositeSymbol=&quot;+c" language="JAVA" />
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="NONE" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/parser/ScriptParser.java</url>
-          <line>354</line>
-          <log-expression expression="&quot;  syntax of symbol: &quot;+syntax" language="JAVA" />
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/notation/Move.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/cubetwister/doc/DocumentModelXmlWriter.java</url>
-          <line>143</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

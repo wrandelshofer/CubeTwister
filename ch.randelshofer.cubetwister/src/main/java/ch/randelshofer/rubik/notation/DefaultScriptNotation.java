@@ -86,10 +86,7 @@ public class DefaultScriptNotation extends AbstractScriptNotation {
                 int innerMiddle = (layerCount % 2 == 0)
                         ? ((1 << (layer + 1)) - 1) << (midLayer - (layer + 1) / 2 - (layer + 1) % 2)
                         : ((1 << (layer + 1)) - 1) << (midLayer - (layer + 1) / 2);
-                //int outerMiddle = (layerCount % 2 == 0)
-                //        ? innerMiddle << 1
-                //        : innerMiddle;
-                int outerMiddle = Integer.reverse(innerMiddle) >>> (32 - layerCount); // reverse, reverses at 32 bits, must shift right by 32-layerCount
+                int outerMiddle = Integer.reverse(innerMiddle) >>> (32 - layerCount);
                 if (innerMiddle == all) {
                     continue;
                 }
@@ -119,7 +116,6 @@ public class DefaultScriptNotation extends AbstractScriptNotation {
             // N-th layer twists
             for (int layer = 0; layer < layerCount - 1; layer++) {
                 int innerLayer = 1 << layer;
-                //int outerLayer = 1 << (layerCount - layer - 1);
                 int outerLayer = Integer.reverse(innerLayer) >>> (32 - layerCount);
                 if (layer == 1) {
                     addMoves(layerCount, outerLayer, innerLayer, angle, "N", suffix);

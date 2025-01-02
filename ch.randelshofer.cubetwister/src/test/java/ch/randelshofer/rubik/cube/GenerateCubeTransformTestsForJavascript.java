@@ -6,9 +6,11 @@
 package ch.randelshofer.rubik.cube;
 
 import org.jhotdraw.annotation.Nonnull;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +19,8 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 /**
  * This class generates tests for the VirtualCube JavaScript applets.
  */
-public class CubeTransformTest {
+@Disabled
+public class GenerateCubeTransformTestsForJavascript {
     @Nonnull
     @TestFactory
     public List<DynamicTest> generateTransformTests() {
@@ -31,7 +34,11 @@ public class CubeTransformTest {
         );
     }
 
-    private void doGenerateTransformTests(int layerCount) {
+    private void doGenerateTransformTests(int layerCount) throws IOException {
+        doGenerateTransformTestsJavascript(layerCount, System.out);
+    }
+
+    private void doGenerateTransformTestsHtml(int layerCount, Appendable w) throws IOException {
         Cube cube = CubeFactory.create(layerCount);
         for (int axis = 0; axis < 3; axis++) {
             for (int layer = 0; layer < layerCount; layer++) {
@@ -44,7 +51,7 @@ public class CubeTransformTest {
                     cube.reset();
                     cube.transform(axis, layerMask, angle);
                     String expected = Cubes.toPermutationString(cube);
-                    System.out.println(
+                    w.append(
                             "  <article>\n" +
                                     "    <section class=\"unittest\">\n" +
                                     "      <p class=\"input\">" + layerCount + "," + axis + "," + layerMask + "," + angle + "</p>\n" +
@@ -52,6 +59,31 @@ public class CubeTransformTest {
                                     "      <p class=\"actual\"></p>\n" +
                                     "    </section>\n" +
                                     "  </article>\n");
+                }
+            }
+        }
+    }
+
+    private void doGenerateTransformTestsJavascript(int layerCount, Appendable w) throws IOException {
+        Cube cube = CubeFactory.create(layerCount);
+        for (int axis = 0; axis < 3; axis++) {
+            for (int layer = 0; layer < layerCount; layer++) {
+                int layerMask = 1 << layer;
+                for (int angle = -1; angle <= 2; angle++) {
+                    if (angle == 0) {
+                        continue;
+                    }
+
+                    cube.reset();
+                    cube.transform(axis, layerMask, angle);
+                    String expected = Cubes.toPermutationString(cube);
+                    w.append("{ ");
+                    w.append("layerCount: " + layerCount + ", ");
+                    w.append("axis: " + axis + ", ");
+                    w.append("layerMask: " + layerMask + ", ");
+                    w.append("angle: " + angle + ", ");
+                    w.append("perm: '" + expected.replaceAll("\\n", "\\\\n") + "' ");
+                    w.append("},\n");
                 }
             }
         }
