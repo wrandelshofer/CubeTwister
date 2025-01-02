@@ -17,6 +17,7 @@ import ch.randelshofer.rubik.parser.ast.Node;
 import ch.randelshofer.xml.XMLPreorderIterator;
 import nanoxml.XMLElement;
 import org.jhotdraw.annotation.Nonnull;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;
 
@@ -42,6 +43,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * <p>
  * (The pattern database is not part of this project.)
  */
+@Disabled
 public class PatternDatabaseTest {
 
 

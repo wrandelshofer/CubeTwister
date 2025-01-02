@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdfd2d4d-8eac-41a5-b00b-430844a18561" name="Changes" comment="Refactor Superset ENG notations.">
-      <change afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/GeneratePatternTestsForJavascript.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/PatternDatabaseRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="cdfd2d4d-8eac-41a5-b00b-430844a18561" name="Changes" comment="Implement tests.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/cube/Cubes.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/cube/Cubes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/notation/DefaultScriptNotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/main/java/ch/randelshofer/rubik/notation/DefaultScriptNotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/cube/CubeTransformTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/cube/GenerateCubeTransformTestsForJavascript.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/cube/CubesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/cube/CubesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/PatternDatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/ch.randelshofer.cubetwister/src/test/java/ch/randelshofer/rubik/parser/PatternDatabaseTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -235,7 +230,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735745368023</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Implement tests.">
+      <option name="closed" value="true" />
+      <created>1735820803324</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1735820803324</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -246,7 +249,8 @@
     <MESSAGE value="template.xml Fix bugs in CubeTwister ENG 6x6 and 7x7 notations." />
     <MESSAGE value="Refactor code. Fix bugs in DefaultScriptNotation." />
     <MESSAGE value="Refactor Superset ENG notations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactor Superset ENG notations." />
+    <MESSAGE value="Implement tests." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement tests." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>

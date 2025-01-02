@@ -59,11 +59,15 @@ public class CubesTest {
         );
     }
 
+    private final static boolean VERBOSE = false;
+
     /**
      * Test the getOrder methods of Cubes.
      */
     private void doTestOrder(int layerCount, String input, int expectedVisibleOrder, int expectedFullOrder) throws IOException {
-        System.out.println("doTestOrder input: " + input);
+        if (VERBOSE) {
+            System.out.println("doTestOrder input: " + input);
+        }
         Cube cube = CubeFactory.create(layerCount);
         ScriptNotation notation = new DefaultScriptNotation(layerCount);
         ScriptParser parser = new ScriptParser(notation);
@@ -71,9 +75,10 @@ public class CubesTest {
         ast.applyTo(cube, false);
         int actualVisibleOrder = Cubes.getVisibleOrder(cube);
         int actualFullOrder = Cubes.getOrder(cube);
-        String actual = Cubes.toVisualPermutationString(cube, notation);
-        System.out.println("  expected: " + expectedVisibleOrder + "v " + expectedFullOrder + "r");
-        System.out.println("  actual: " + actualVisibleOrder + "v " + actualFullOrder + "r");
+        if (VERBOSE) {
+            System.out.println("  expected: " + expectedVisibleOrder + "v " + expectedFullOrder + "r");
+            System.out.println("  actual: " + actualVisibleOrder + "v " + actualFullOrder + "r");
+        }
         assertEquals(expectedVisibleOrder, actualVisibleOrder, "visibleOrder");
         assertEquals(expectedFullOrder, actualFullOrder, "fullOrder");
     }
