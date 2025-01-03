@@ -1,3 +1,8 @@
+/*
+ * @(#)XMLElement.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 /* Werner Randelshofer 2011-01-21
  * Added generic collections.
  * Replaced Java 1.1 collections by Java 1.2 collections.

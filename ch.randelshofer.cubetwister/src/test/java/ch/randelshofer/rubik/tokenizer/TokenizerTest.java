@@ -1,6 +1,6 @@
 /*
  * @(#)TokenizerTest.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.tokenizer;
 
@@ -49,71 +49,90 @@ class TokenizerTest {
 
     }
 
-    @Nonnull
     @TestFactory
-    public List<DynamicTest> testTokenizer() {
-        Tokenizer ttNone = new Tokenizer();
-        Tokenizer ttWhitespace = new Tokenizer();
-        ttWhitespace.skipWhitespace();
-        Tokenizer ttWhitespaceNumber = new Tokenizer();
-        ttWhitespaceNumber.skipWhitespace();
-        ttWhitespaceNumber.addNumbers();
-        Tokenizer ttWhitespaceNumberKey = new Tokenizer();
-        ttWhitespaceNumberKey.skipWhitespace();
-        ttWhitespaceNumberKey.addNumbers();
-        ttWhitespaceNumberKey.addKeyword("tom");
-        ttWhitespaceNumberKey.addKeyword("tomato");
-        ttWhitespaceNumberKey.addKeyword("two2");
-        ttWhitespaceNumberKey.addKeyword("3three");
-
-        Tokenizer ttWhitespaceNumberKeyComment = new Tokenizer();
-        ttWhitespaceNumberKeyComment.skipWhitespace();
-        ttWhitespaceNumberKeyComment.addNumbers();
-        ttWhitespaceNumberKeyComment.addKeyword("tom");
-        ttWhitespaceNumberKeyComment.addKeyword("tomato");
-        ttWhitespaceNumberKeyComment.addKeyword("two2");
-        ttWhitespaceNumberKeyComment.addKeyword("3three");
-        ttWhitespaceNumberKeyComment.addComment("/*", "*/");
-        ttWhitespaceNumberKeyComment.addComment("//", "\n");
-
-
+    public List<DynamicTest> shouldParseEntireString() {
+        Tokenizer tt = new Tokenizer();
         return Arrays.asList(
-                dynamicTest("1", () -> doTokenizer(ttWhitespace, "lorem ipsum", "0..5:WORD:lorem, 6..11:WORD:ipsum")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumber, "1 2", "0..1:NUM:1, 2..3:NUM:2")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumber, "1lorem 2ipsum", "0..1:NUM:1, 1..6:WORD:lorem, 7..8:NUM:2, 8..13:WORD:ipsum")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumber, "lorem1 ipsum2", "0..5:WORD:lorem, 5..6:NUM:1, 7..12:WORD:ipsum, 12..13:NUM:2")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumber, "16 21", "0..2:NUM:16, 3..5:NUM:21")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumber, "-16", "0..1:WORD:-, 1..3:NUM:16")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "tom", "0..3:KEY:tom")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "toma", "0..3:KEY:tom, 3..4:WORD:a")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "tomato", "0..6:KEY:tomato")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "tomatoto", "0..6:KEY:tomato, 6..8:WORD:to")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "tomatotom", "0..6:KEY:tomato, 6..9:KEY:tom")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "to14matotom", "0..2:WORD:to, 2..4:NUM:14, 4..11:WORD:matotom")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "tomato tom", "0..6:KEY:tomato, 7..10:KEY:tom")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "tom ato tom", "0..3:KEY:tom, 4..7:WORD:ato, 8..11:KEY:tom")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "two2 3three", "0..4:KEY:two2, 5..11:KEY:3three")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "two24 63three", "0..4:KEY:two2, 4..5:NUM:4, 6..8:NUM:63, 8..13:WORD:three")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "two24 6 3three", "0..4:KEY:two2, 4..5:NUM:4, 6..7:NUM:6, 8..14:KEY:3three")),
-                dynamicTest("1", () -> doTokenizer(ttWhitespaceNumberKey, "two24 63thre", "0..4:KEY:two2, 4..5:NUM:4, 6..8:NUM:63, 8..12:WORD:thre")),
-
-                dynamicTest("comment.11 - off", () -> doTokenizer(ttWhitespaceNumberKey, "lorem/* comment */ipsum", "0..7:WORD:lorem/*, 8..15:WORD:comment, 16..23:WORD:*/ipsum")),
-                dynamicTest("comment.12 - off", () -> doTokenizer(ttWhitespaceNumberKey, "lorem// comment\nipsum", "0..7:WORD:lorem//, 8..15:WORD:comment, 16..21:WORD:ipsum")),
-                dynamicTest("comment.13 - off", () -> doTokenizer(ttWhitespaceNumberKey, "lorem /* comment */ipsum", "0..5:WORD:lorem, 6..8:WORD:/*, 9..16:WORD:comment, 17..24:WORD:*/ipsum")),
-                dynamicTest("comment.14 - off", () -> doTokenizer(ttWhitespaceNumberKey, "lorem // comment\nipsum", "0..5:WORD:lorem, 6..8:WORD://, 9..16:WORD:comment, 17..22:WORD:ipsum")),
-                dynamicTest("comment.15 - off", () -> doTokenizer(ttWhitespaceNumberKey, "tom/* comment */tom", "0..3:KEY:tom, 3..5:WORD:/*, 6..13:WORD:comment, 14..19:WORD:*/tom")),
-                dynamicTest("comment.16 - off", () -> doTokenizer(ttWhitespaceNumberKey, "tom// comment\ntom", "0..3:KEY:tom, 3..5:WORD://, 6..13:WORD:comment, 14..17:KEY:tom")),
-
-                dynamicTest("comment.21 - on, but unable to separate from word", () -> doTokenizer(ttWhitespaceNumberKeyComment, "lorem/* comment */ipsum", "0..7:WORD:lorem/*, 8..15:WORD:comment, 16..23:WORD:*/ipsum")),
-                dynamicTest("comment.22 - on, but, unable to separate from word", () -> doTokenizer(ttWhitespaceNumberKeyComment, "lorem// comment\nipsum", "0..7:WORD:lorem//, 8..15:WORD:comment, 16..21:WORD:ipsum")),
-                dynamicTest("comment.23 - on", () -> doTokenizer(ttWhitespaceNumberKeyComment, "lorem /* comment */ipsum", "0..5:WORD:lorem, 19..24:WORD:ipsum")),
-                dynamicTest("comment.24 - on", () -> doTokenizer(ttWhitespaceNumberKeyComment, "lorem // comment\nipsum", "0..5:WORD:lorem, 17..22:WORD:ipsum")),
-                dynamicTest("comment.25 - on", () -> doTokenizer(ttWhitespaceNumberKeyComment, "tom/* comment */tom", "0..3:KEY:tom, 16..19:KEY:tom")),
-                dynamicTest("comment.26 - on", () -> doTokenizer(ttWhitespaceNumberKeyComment, "tom// comment\ntom", "0..3:KEY:tom, 14..17:KEY:tom")),
-                dynamicTest("1", () -> doTokenizer(ttNone, "lorem ipsum", "0..11:WORD:lorem ipsum"))
+                dynamicTest("1", () -> doTokenizer(tt, "lorem ipsum", "0..11:WORD:lorem ipsum"))
         );
     }
 
+    @TestFactory
+    public List<DynamicTest> shouldSkipWhitespace() {
+        Tokenizer tt = new Tokenizer();
+        tt.skipWhitespace();
+        return Arrays.asList(
+                dynamicTest("1", () -> doTokenizer(tt, "lorem ipsum", "0..5:WORD:lorem, 6..11:WORD:ipsum"))
+        );
+    }
+
+    @TestFactory
+    public List<DynamicTest> shouldSkipWhitespaceAndParseNumbers() {
+        Tokenizer tt = new Tokenizer();
+        tt.skipWhitespace();
+        tt.addNumbers();
+        return Arrays.asList(
+                dynamicTest("1", () -> doTokenizer(tt, "1 2", "0..1:NUM:1, 2..3:NUM:2")),
+                dynamicTest("2", () -> doTokenizer(tt, "1lorem 2ipsum", "0..1:NUM:1, 1..6:WORD:lorem, 7..8:NUM:2, 8..13:WORD:ipsum")),
+                dynamicTest("3", () -> doTokenizer(tt, "lorem1 ipsum2", "0..5:WORD:lorem, 5..6:NUM:1, 7..12:WORD:ipsum, 12..13:NUM:2")),
+                dynamicTest("4", () -> doTokenizer(tt, "16 21", "0..2:NUM:16, 3..5:NUM:21")),
+                dynamicTest("5", () -> doTokenizer(tt, "-16", "0..1:WORD:-, 1..3:NUM:16"))
+        );
+    }
+
+    @TestFactory
+    public List<DynamicTest> shouldSkipWhitespaceAndParseNumbersAndParseKeywords() {
+        Tokenizer tt = new Tokenizer();
+        tt.skipWhitespace();
+        tt.addNumbers();
+        tt.addKeyword("tom");
+        tt.addKeyword("tomato");
+        tt.addKeyword("two2");
+        tt.addKeyword("3three");
+
+        return Arrays.asList(
+                dynamicTest("1", () -> doTokenizer(tt, "tom", "0..3:KEY:tom")),
+                dynamicTest("2", () -> doTokenizer(tt, "toma", "0..3:KEY:tom, 3..4:WORD:a")),
+                dynamicTest("3", () -> doTokenizer(tt, "tomato", "0..6:KEY:tomato")),
+                dynamicTest("4", () -> doTokenizer(tt, "tomatoto", "0..6:KEY:tomato, 6..8:WORD:to")),
+                dynamicTest("5", () -> doTokenizer(tt, "tomatotom", "0..6:KEY:tomato, 6..9:KEY:tom")),
+                dynamicTest("6", () -> doTokenizer(tt, "to14matotom", "0..2:WORD:to, 2..4:NUM:14, 4..11:WORD:matotom")),
+                dynamicTest("7", () -> doTokenizer(tt, "tomato tom", "0..6:KEY:tomato, 7..10:KEY:tom")),
+                dynamicTest("8", () -> doTokenizer(tt, "tom ato tom", "0..3:KEY:tom, 4..7:WORD:ato, 8..11:KEY:tom")),
+                dynamicTest("9", () -> doTokenizer(tt, "two2 3three", "0..4:KEY:two2, 5..11:KEY:3three")),
+                dynamicTest("10", () -> doTokenizer(tt, "two24 63three", "0..4:KEY:two2, 4..5:NUM:4, 6..8:NUM:63, 8..13:WORD:three")),
+                dynamicTest("11", () -> doTokenizer(tt, "two24 6 3three", "0..4:KEY:two2, 4..5:NUM:4, 6..7:NUM:6, 8..14:KEY:3three")),
+                dynamicTest("12", () -> doTokenizer(tt, "two24 63thre", "0..4:KEY:two2, 4..5:NUM:4, 6..8:NUM:63, 8..12:WORD:thre"))
+        );
+    }
+
+    @Nonnull
+    @TestFactory
+    public List<DynamicTest> shouldSkipWhitespaceAndParseNumbersAndParseKeywordsAndParseComments() {
+        Tokenizer tt = new Tokenizer();
+        tt.skipWhitespace();
+        tt.addNumbers();
+        tt.addKeyword("tom");
+        tt.addKeyword("tomato");
+        tt.addKeyword("two2");
+        tt.addKeyword("3three");
+        tt.addComment("/*", "*/");
+        tt.addComment("//", "\n");
+
+
+        return Arrays.asList(
+                dynamicTest("comment.21 - on, but unable to separate from word", () -> doTokenizer(tt, "lorem/* comment */ipsum", "0..7:WORD:lorem/*, 8..15:WORD:comment, 16..23:WORD:*/ipsum")),
+                dynamicTest("comment.22 - on, but, unable to separate from word", () -> doTokenizer(tt, "lorem// comment\nipsum", "0..7:WORD:lorem//, 8..15:WORD:comment, 16..21:WORD:ipsum")),
+                dynamicTest("comment.23 - on", () -> doTokenizer(tt, "lorem /* comment */ipsum", "0..5:WORD:lorem, 19..24:WORD:ipsum")),
+                dynamicTest("comment.24 - on", () -> doTokenizer(tt, "lorem // comment\nipsum", "0..5:WORD:lorem, 17..22:WORD:ipsum")),
+                dynamicTest("comment.25 - on", () -> doTokenizer(tt, "tom/* comment */tom", "0..3:KEY:tom, 16..19:KEY:tom")),
+                dynamicTest("comment.26 - on", () -> doTokenizer(tt, "tom// comment\ntom", "0..3:KEY:tom, 14..17:KEY:tom"))
+        );
+    }
+
+    /**
+     * Utility function for testing a {@link Tokenizer} instance.
+     */
     private void doTokenizer(@Nonnull Tokenizer instance, String input, String expected) {
         doNextToken(instance, input, expected);
         doPushBack(instance, input, expected);
@@ -177,7 +196,7 @@ class TokenizerTest {
      * @param buf      the buffer
      */
     private void appendToken(@Nonnull Tokenizer instance, @Nonnull StringBuffer buf) {
-        if (buf.length() != 0) {
+        if (!buf.isEmpty()) {
             buf.append(", ");
         }
         buf.append(instance.getStartPosition());

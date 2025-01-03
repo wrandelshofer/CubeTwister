@@ -1,3 +1,8 @@
+/*
+ * @(#)idx3d_3ds_Importer.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 // | -----------------------------------------------------------------
 // | idx3d III is (c)1999/2000 by Peter Walser
 // | -----------------------------------------------------------------

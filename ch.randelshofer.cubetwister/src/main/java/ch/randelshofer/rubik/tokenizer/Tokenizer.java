@@ -1,6 +1,6 @@
 /*
  * @(#)Tokenizer.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.tokenizer;
 
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * A greedy tokenizer.
  * <p>
- * By default this tokenizer parses the entire input sequence as a single word.
+ * By default, this tokenizer parses the entire input sequence as a single word.
  * You can activate skipping of whitespaces by adding whitespace tokens using {@link #addSkip}.
  * You can activate tokenization of positive integer numbers, by invoking {@link #addNumbers}.
  * You can activate tokenization of keywords, by adding keyword tokens using {@link #addKeyword}.
@@ -50,7 +50,7 @@ public class Tokenizer {
     private Integer nval = null;
 
     @Nonnull
-    private CharSeqNode keywordTree = new CharSeqNode();
+    private KeywordNode keywordTree = new KeywordNode();
     /**
      * Map<Character,TType> maps char to ttype or to null
      */
@@ -74,7 +74,7 @@ public class Tokenizer {
      * </pre>
      */
     public void addComment(@Nonnull String start, @Nonnull String end) {
-        CharSeqNode.addStartEndSequence(keywordTree, start, end);
+        KeywordNode.addStartEndSequence(keywordTree, start, end);
     }
 
     /**
@@ -90,7 +90,7 @@ public class Tokenizer {
      * @param keyword the keyword token
      */
     public void addKeyword(@Nonnull String keyword) {
-        CharSeqNode.addCharacterSequence(keywordTree, keyword);
+        KeywordNode.addCharacterSequence(keywordTree, keyword);
     }
 
 
@@ -168,10 +168,9 @@ public class Tokenizer {
     /**
      * Parses the next token.
      *
-     * @return [Object] ttype
+     * @return int the ttype
      */
     public int nextToken() {
-        loop:
         while (true) {
             if (this.pushedBack) {
                 this.pushedBack = false;
@@ -188,29 +187,29 @@ public class Tokenizer {
             }
 
             // try to tokenize a keyword or a comment
-            CharSeqNode node = this.keywordTree;
-            CharSeqNode foundNode = null;
+            KeywordNode node = this.keywordTree;
+            KeywordNode foundNode = null;
             int end = start;
             while (ch != TT_EOF && node != null && node.getChild((char) ch) != null) {
                 node = node.getChild((char) ch);
-                if (node != null && node.getCharseq() != null) {
+                if (node != null && node.getStartSeq() != null) {
                     foundNode = node;
                     end = this.pos;
                 }
                 ch = this.read();
             }
             if (foundNode != null) {
-                String commentEnd = foundNode.getEndseq();
+                String commentEnd = foundNode.getEndSeq();
                 if (commentEnd != null) {
                     seekTo(commentEnd);
-                    continue loop;
+                    continue;
                 }
 
                 this.setPosition(end);
                 this.ttype = TT_KEYWORD;
                 this.tstart = start;
                 this.tend = end;
-                this.sval = foundNode.getCharseq();
+                this.sval = foundNode.getStartSeq();
                 return this.ttype;
             }
             this.setPosition(start);

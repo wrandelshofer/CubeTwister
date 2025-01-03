@@ -1,5 +1,6 @@
-/* @(#)Main.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Main.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package fullscreen;

@@ -1,5 +1,6 @@
-/* @(#)Triangle.java
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Triangle.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package demos.perspective;
 

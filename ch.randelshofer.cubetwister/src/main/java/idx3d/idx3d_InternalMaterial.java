@@ -1,5 +1,6 @@
-/* @(#)idx3d_InternalMaterial.java
- * Copyright (c) 2003 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)idx3d_InternalMaterial.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package idx3d;

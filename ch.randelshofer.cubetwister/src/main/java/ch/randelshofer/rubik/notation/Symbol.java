@@ -1,6 +1,6 @@
 /*
  * @(#)Symbol.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.notation;
@@ -23,7 +23,7 @@ public enum Symbol {
      * Terminal symbols.
      */
     NOP("NOP"),
-    MOVE("move", "twist"),
+    MOVE("move"),
 
     // Note: Ordering of the enum constants is significant.
     // Class PermutationNode implies that PR < PU < PF < PL < PD < PB.
@@ -37,38 +37,38 @@ public enum Symbol {
     PERMUTATION_PLUS("permPlus"),
     PERMUTATION_MINUS("permMinus"),
     PERMUTATION_PLUSPLUS("permPlusPlus"),
-    PERMUTATION_BEGIN("permBegin", "permutationBegin"),
-    PERMUTATION_END("permEnd", "permutationEnd"),
-    PERMUTATION_DELIMITER("permDelim", "permutationDelimiter"),
-    DELIMITER("delimiter", "statementDelimiter"),
+    PERMUTATION_BEGIN("permBegin"),
+    PERMUTATION_END("permEnd"),
+    PERMUTATION_DELIMITER("permDelim"),
+    DELIMITER("delimiter"),
     INVERSION_BEGIN("inversionBegin"),
     INVERSION_END("inversionEnd"),
     INVERSION_OPERATOR("invertor"),
     REFLECTION_BEGIN("reflectionBegin"),
     REFLECTION_END("reflectionEnd"),
     REFLECTION_OPERATOR("reflector"),
-    GROUPING_BEGIN("groupingBegin", "sequenceBegin"),
-    GROUPING_END("groupingEnd", "sequenceEnd"),
-    REPETITION_BEGIN("repetitionBegin", "repetitorBegin"),
-    REPETITION_END("repetitionEnd", "repetitorEnd"),
-    REPETITION_DELIMITER("repetitionDelim", "repetitorDelimiter"),
+    GROUPING_BEGIN("groupingBegin"),
+    GROUPING_END("groupingEnd"),
+    REPETITION_BEGIN("repetitionBegin"),
+    REPETITION_END("repetitionEnd"),
+    REPETITION_DELIMITER("repetitionDelim"),
     REPETITION_OPERATOR("repetitionOperator"),
-    COMMUTATION_BEGIN("commutationBegin", "commutatorBegin"),
-    COMMUTATION_END("commutationEnd", "commutatorEnd"),
-    COMMUTATION_DELIMITER("commutationDelim", "commutatorDelimiter"),
+    COMMUTATION_BEGIN("commutationBegin"),
+    COMMUTATION_END("commutationEnd"),
+    COMMUTATION_DELIMITER("commutationDelim"),
     COMMUTATION_OPERATOR("commutationOperator"),
-    CONJUGATION_BEGIN("conjugationBegin", "conjugatorBegin"),
-    CONJUGATION_END("conjugationEnd", "conjugatorEnd"),
-    CONJUGATION_DELIMITER("conjugationDelim", "conjugatorDelimiter"),
+    CONJUGATION_BEGIN("conjugationBegin"),
+    CONJUGATION_END("conjugationEnd"),
+    CONJUGATION_DELIMITER("conjugationDelim"),
     CONJUGATION_OPERATOR("conjugationOperator"),
-    ROTATION_BEGIN("rotationBegin", "rotatorBegin"),
-    ROTATION_END("rotationEnd", "rotatorEnd"),
-    ROTATION_DELIMITER("rotationDelim", "rotationDelimiter"),
-    ROTATION_OPERATOR("rotationDelim", "rotatorDelimiter"),
+    ROTATION_BEGIN("rotationBegin"),
+    ROTATION_END("rotationEnd"),
+    ROTATION_DELIMITER("rotationDelim"),
+    ROTATION_OPERATOR("rotationDelim"),
     MACRO("macro"),
-    MULTILINE_COMMENT_BEGIN("commentMultiLineBegin", "slashStarCommentBegin"),
-    MULTILINE_COMMENT_END("commentMultiLineEnd", "slashStarCommentEnd"),
-    SINGLELINE_COMMENT_BEGIN("commentSingleLineBegin", "slashSlashComment"),
+    MULTILINE_COMMENT_BEGIN("commentMultiLineBegin"),
+    MULTILINE_COMMENT_END("commentMultiLineEnd"),
+    SINGLELINE_COMMENT_BEGIN("commentSingleLineBegin"),
 
     /**
      * Composite symbols.
@@ -158,32 +158,17 @@ public enum Symbol {
      * Name of the symbol.
      */
     private final String name;
-    /**
-     * Alternative symbol name for backward compatibility with older versions
-     * of CubeTwister.
-     */
-    private final String alternativeName;
 
     private Set<Symbol> subSymbols;
     private volatile static Map<String, Symbol> symbolValueSet;
     private volatile static Map<Symbol, Symbol> compositeSymbolMap;
 
     Symbol(String name) {
-        this(name, null, new Symbol[0]);
-    }
-
-    Symbol(String name, String alternativeName) {
-        this(name, alternativeName, new Symbol[0]);
+        this(name, new Symbol[0]);
     }
 
     Symbol(String name, Symbol[] subSymbols) {
-        this(name, null, subSymbols);
-
-    }
-
-    Symbol(String name, String alternativeName, Symbol[] subSymbols) {
         this.name = name;
-        this.alternativeName = alternativeName;
         this.subSymbols = Set.of(subSymbols);
 
     }
@@ -204,10 +189,6 @@ public enum Symbol {
         return name;
     }
 
-    public String getAlternativeName() {
-        return alternativeName;
-    }
-
     public Symbol getCompositeSymbol() {
         return getCompositeSymbolMap().get(this);
 
@@ -224,9 +205,6 @@ public enum Symbol {
             HashMap<String, Symbol> m = new HashMap<>();
             for (Symbol s : values()) {
                 m.put(s.name, s);
-                if (s.alternativeName != null) {
-                    m.put(s.alternativeName, s);
-                }
             }
             symbolValueSet = Collections.unmodifiableMap(m);
         }

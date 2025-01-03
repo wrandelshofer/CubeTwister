@@ -1,5 +1,6 @@
-/* @(#)Idx3DInteractionDemo.java
- * Copyright (c) 2008 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Idx3DInteractionDemo.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 /*

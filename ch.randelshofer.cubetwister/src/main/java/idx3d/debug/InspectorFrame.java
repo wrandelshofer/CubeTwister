@@ -1,3 +1,8 @@
+/*
+ * @(#)InspectorFrame.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package idx3d.debug;
 
 import org.jhotdraw.annotation.Nonnull;

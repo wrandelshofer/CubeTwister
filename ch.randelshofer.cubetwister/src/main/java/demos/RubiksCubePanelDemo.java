@@ -1,5 +1,6 @@
-/* @(#)RubiksCubePanelDemo.java
- * Copyright (c) 2009 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)RubiksCubePanelDemo.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package demos;
 

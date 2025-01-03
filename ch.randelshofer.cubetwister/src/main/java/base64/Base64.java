@@ -1,3 +1,8 @@
+/*
+ * @(#)Base64.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package base64;
 
 import org.jhotdraw.annotation.Nonnull;

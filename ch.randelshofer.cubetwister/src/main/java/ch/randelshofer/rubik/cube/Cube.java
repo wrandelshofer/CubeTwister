@@ -1,6 +1,6 @@
 /*
  * @(#)Cube.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.cube;
@@ -18,8 +18,6 @@ package ch.randelshofer.rubik.cube;
  * The parts are arranged in layers. The layers are oriented on the X-, Y- and
  * Z-axis. The number of layers is the same for all axes. The axes have at least
  * two layers and can have up to 32 layers.
- *
- * @author Werner Randelshofer.
  */
 public interface Cube extends Cloneable {
     /**

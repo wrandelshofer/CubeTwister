@@ -1,4 +1,9 @@
 /*
+ * @(#)MultiBufferTest.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
+/*
  * Copyright (c) 1995 - 2008 Sun Microsystems, Inc.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

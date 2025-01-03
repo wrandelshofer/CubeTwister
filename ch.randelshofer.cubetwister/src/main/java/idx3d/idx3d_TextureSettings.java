@@ -1,3 +1,8 @@
+/*
+ * @(#)idx3d_TextureSettings.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package idx3d;
 
 public class idx3d_TextureSettings

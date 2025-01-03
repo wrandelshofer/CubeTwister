@@ -1,6 +1,6 @@
 /*
  * @(#)NotationModel.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.cubetwister.doc;
 
@@ -17,7 +17,6 @@ import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Serial;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -399,7 +398,7 @@ public class NotationModel extends InfoModel implements ScriptNotation {
      * Writes a token for the specified transformation to the print writer.
      */
     @Override
-    public void writeMoveToken(PrintWriter w, int axis, int layerMask, int angle)
+    public void writeMoveToken(Writer w, int axis, int layerMask, int angle)
             throws IOException {
         // XXX - Implement me
     }

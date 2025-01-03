@@ -1,6 +1,6 @@
 /*
- * @(#)Notation.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)ScriptNotation.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.notation;
@@ -11,7 +11,6 @@ import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.Collection;
 import java.util.List;
@@ -19,9 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Defines the syntax and tokens of a rubik's cube script.
- *
- * @author  Werner Randelshofer
+ * Defines the syntax and tokens of a Rubik's Cube script.
  */
 public interface ScriptNotation {
     /**
@@ -63,7 +60,7 @@ public interface ScriptNotation {
     /**
      * Writes a token for the specified transformation to the print writer.
      */
-    void writeMoveToken(PrintWriter w, int axis, int layerMask, int angle) throws IOException;
+    void writeMoveToken(Writer w, int axis, int layerMask, int angle) throws IOException;
 
     /**
      * Returns true, if this notation supports the specified symbol.

@@ -1,3 +1,8 @@
+/*
+ * @(#)idx3d_Vector_Inspector.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package idx3d.debug;
 
 import idx3d.idx3d_Vector;

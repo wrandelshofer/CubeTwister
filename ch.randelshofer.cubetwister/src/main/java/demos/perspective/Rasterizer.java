@@ -1,10 +1,8 @@
-/* @(#)UndoableObjectEdit.java
- * Copyright (c) 2001 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Rasterizer.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
-/* @(#)Rasterizer.java
- *
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
- */
+
 package demos.perspective;
 
 import org.jhotdraw.annotation.Nonnull;

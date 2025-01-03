@@ -1,6 +1,6 @@
-/* @(#)idx3d_JCanvas.java
- *
- * Copyright (c) 2005-2014 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)idx3d_JCanvas.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package idx3d;
 

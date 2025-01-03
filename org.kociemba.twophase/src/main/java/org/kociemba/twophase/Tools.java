@@ -1,3 +1,8 @@
+/*
+ * @(#)Tools.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package org.kociemba.twophase;
 
 import java.util.Random;

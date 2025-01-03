@@ -1,5 +1,6 @@
-/* @(#)Geom3DInteractionDemo.java
- * Copyright (c) 2009 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Geom3DInteractionDemo.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package demos;
 

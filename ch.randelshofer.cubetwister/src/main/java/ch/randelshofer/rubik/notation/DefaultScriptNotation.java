@@ -1,6 +1,6 @@
 /*
- * @(#)DefaultNotation.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)DefaultScriptNotation.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.notation;
 
@@ -10,8 +10,6 @@ package ch.randelshofer.rubik.notation;
  * @author Werner Randelshofer
  */
 public class DefaultScriptNotation extends AbstractScriptNotation {
-    private String name;
-
     /**
      * Creates a new instance.
      */
@@ -20,7 +18,7 @@ public class DefaultScriptNotation extends AbstractScriptNotation {
     }
 
     public DefaultScriptNotation(int layerCount) {
-        name = "default";
+        setName("default");
         setLayerCount(layerCount);
 
         addToken(Symbol.NOP, "·");
@@ -202,15 +200,35 @@ public class DefaultScriptNotation extends AbstractScriptNotation {
         super.putSyntax(symbol, syntax);
     }
 
+    /**
+     * Public for testing.
+     */
+    @Override
     public void addToken(Symbol symbol, String token) {
         super.addToken(symbol, token);
     }
 
-    public String getName() {
-        return name;
+    /**
+     * Public for testing.
+     */
+    @Override
+    public void setName(String name) {
+        super.setName(name);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    /**
+     * Public for testing.
+     */
+    @Override
+    public void putMacro(String identifier, String code) {
+        super.putMacro(identifier, code);
+    }
+
+    /**
+     * Public for testing.
+     */
+    @Override
+    public void removeToken(Symbol symbol, String token) {
+        super.removeToken(symbol, token);
     }
 }

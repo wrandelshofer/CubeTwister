@@ -1,3 +1,8 @@
+/*
+ * @(#)CoordCubeP.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 package org.kociemba.twophasep;
 
 import org.kociemba.twophase.CoordCube;

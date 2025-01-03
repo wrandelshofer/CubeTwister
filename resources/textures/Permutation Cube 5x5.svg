@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  - @(#)Permutation Cube 5x5.svg
+  - Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+  -->
+
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="full" height="512"
      version="1.1" width="512">
   <defs>

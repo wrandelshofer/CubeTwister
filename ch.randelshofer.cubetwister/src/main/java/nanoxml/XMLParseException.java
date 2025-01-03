@@ -1,3 +1,8 @@
+/*
+ * @(#)XMLParseException.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
 /* XMLParseException.java
  *
  * $Revision: 1.4 $

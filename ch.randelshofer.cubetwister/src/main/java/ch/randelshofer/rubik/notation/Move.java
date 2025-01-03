@@ -1,6 +1,6 @@
 /*
  * @(#)Move.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.notation;
 
@@ -14,8 +14,6 @@ import java.util.List;
 /**
  * Descriptor for move tokens.
  * Instances of this class are immutable.
- *
- * @author Werner Randelshofer.
  */
 public class Move implements Comparable<Move> {
 
@@ -78,7 +76,7 @@ public class Move implements Comparable<Move> {
      */
     @Nonnull
     public Move toInverse() {
-        return new Move(3, axis, layerMask, -angle);
+        return new Move(layerCount, axis, layerMask, -angle);
     }
 
     public int getAxis() {

@@ -1,6 +1,6 @@
 /*
- * @(#)AbstractNotation.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)AbstractScriptNotation.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.notation;
 
@@ -10,7 +10,6 @@ import org.jhotdraw.annotation.Nonnull;
 import org.jhotdraw.annotation.Nullable;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,13 +27,14 @@ public abstract class AbstractScriptNotation implements ScriptNotation {
     private final HashMap<Symbol, Syntax> symbolToSyntaxMap = new HashMap<>();
     private final Map<String, String> macros = new HashMap<>();
     private int layerCount;
+    private String name;
 
-    public void putMacro(String identifier, String code) {
+    protected void putMacro(String identifier, String code) {
         macros.put(identifier, code);
         tokenToSymbolsMap.computeIfAbsent(identifier, k -> new ArrayList<>()).add(Symbol.MACRO);
     }
 
-    public void removeToken(Symbol symbol, String token) {
+    protected void removeToken(Symbol symbol, String token) {
         symbolToTokensMap.computeIfAbsent(symbol, k -> new ArrayList<>()).remove(token);
         tokenToSymbolsMap.computeIfAbsent(token, k -> new ArrayList<>()).remove(symbol);
     }
@@ -70,11 +70,11 @@ public abstract class AbstractScriptNotation implements ScriptNotation {
     }
 
     @Override
-    public void writeMoveToken(@Nonnull PrintWriter w, int axis, int layerMask, int angle) throws IOException {
+    public void writeMoveToken(@Nonnull Writer w, int axis, int layerMask, int angle) throws IOException {
         Move move = new Move(layerCount, axis, layerMask, angle);
         List<String> tokens = moveToTokensMap.getOrDefault(move, Collections.emptyList());
         if (!tokens.isEmpty()) {
-            w.print(tokens.get(0));
+            w.write(tokens.get(0));
         }
     }
 
@@ -156,5 +156,13 @@ public abstract class AbstractScriptNotation implements ScriptNotation {
 
     protected void putSyntax(Symbol symbol, Syntax syntax) {
         symbolToSyntaxMap.put(symbol, syntax);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    protected void setName(String name) {
+        this.name = name;
     }
 }

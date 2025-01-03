@@ -1,4 +1,9 @@
 /*
+ * @(#)DisplayModeTest.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
+/*
  * Copyright (c) 1995 - 2008 Sun Microsystems, Inc.  All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -29,14 +34,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */ 
 
-/*
-  test @(#)DisplayModeTest.java	1.4 01/07/17
-  @bug 4189326
-  @summary Tests changing display mode
-  @author martak@eng: area=FullScreen
-  @ignore This test enters full-screen mode, if available, and should not
-  be run as an applet or as part of the test harness.
-*/
 package fullscreen;
 
 /**

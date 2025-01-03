@@ -1,5 +1,6 @@
-/* @(#)Idx3DPerspectiveRasterizerDemo.java
- * Copyright (c) 2010 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)Idx3DPerspectiveRasterizerDemo.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package demos;
 

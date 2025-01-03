@@ -1,6 +1,6 @@
 /*
- * @(#)CubeTransformTest.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * @(#)GenerateCubeTransformTestsForJavascript.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.cube;

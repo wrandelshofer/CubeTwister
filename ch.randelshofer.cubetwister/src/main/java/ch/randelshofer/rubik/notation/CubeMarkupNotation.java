@@ -1,6 +1,6 @@
 /*
  * @(#)CubeMarkupNotation.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 package ch.randelshofer.rubik.notation;
 
@@ -16,7 +16,6 @@ import org.jhotdraw.annotation.Nullable;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.io.Writer;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -254,9 +253,10 @@ public class CubeMarkupNotation implements ScriptNotation {
         for (Symbol symbol : Symbol.values()) {
             symbolToInfoMap.put(symbol, new SymbolInfo(symbol, false, null));
             symbolValueSet.put(symbol.getName(), symbol);
+            /*
             if (symbol.getAlternativeName() != null) {
                 symbolValueSet.put(symbol.getAlternativeName(), symbol);
-            }
+            }*/
         }
         symbolToInfoMap.put(Symbol.MOVE, new SymbolInfo(Symbol.MOVE, true, Syntax.PRIMARY));
         symbolToInfoMap.put(Symbol.COMMUTATION, new SymbolInfo(Symbol.COMMUTATION, false, Syntax.PREFIX));
@@ -266,36 +266,6 @@ public class CubeMarkupNotation implements ScriptNotation {
         symbolToInfoMap.put(Symbol.REFLECTION, new SymbolInfo(Symbol.REFLECTION, false, Syntax.SUFFIX));
         symbolToInfoMap.put(Symbol.REPETITION, new SymbolInfo(Symbol.REPETITION, false, Syntax.SUFFIX));
         symbolToInfoMap.put(Symbol.GROUPING, new SymbolInfo(Symbol.GROUPING, false, Syntax.CIRCUMFIX));
-        /*
-        for (Symbol s : List.of(Symbol.CONJUGATION_BEGIN,
-                Symbol.COMMUTATION_BEGIN,
-                Symbol.ROTATION_BEGIN,
-                Symbol.PERMUTATION_BEGIN,
-                Symbol.INVERSION_BEGIN,
-                Symbol.REFLECTION_BEGIN,
-                Symbol.GROUPING_BEGIN,
-                Symbol.MULTILINE_COMMENT_BEGIN,
-                Symbol.SINGLELINE_COMMENT_BEGIN)) {
-            symbolToInfoMap.put(s, new SymbolInfo(s, false, Syntax.PREFIX));
-        }
-        for (Symbol s : List.of(Symbol.CONJUGATION_END,
-                Symbol.COMMUTATION_END,
-                Symbol.PERMUTATION_END,
-                Symbol.ROTATION_END,
-                Symbol.INVERSION_END,
-                Symbol.REFLECTION_END,
-                Symbol.GROUPING_END,
-                Symbol.MULTILINE_COMMENT_END)) {
-            symbolToInfoMap.put(s, new SymbolInfo(s, false, Syntax.SUFFIX));
-        }
-        for (Symbol s : List.of(Symbol.CONJUGATION_OPERATOR,
-                Symbol.COMMUTATION_OPERATOR,
-                Symbol.ROTATION_OPERATOR,
-                Symbol.INVERSION_OPERATOR,
-                Symbol.REFLECTION_OPERATOR,
-                Symbol.REPETITION_OPERATOR)) {
-            symbolToInfoMap.put(s, new SymbolInfo(s, false, Syntax.PREINFIX));
-        }*/
 
         // Initialize move to token map
         moveToTokenMap = new LinkedHashMap<>();
@@ -304,7 +274,7 @@ public class CubeMarkupNotation implements ScriptNotation {
         layerCount = notationElem.getIntAttribute("layerCount", 2, 32, 3);
 
         // Read notation constructs
-        for (Iterator i = notationElem.getChildren().iterator(); i.hasNext(); ) {
+        for (Iterator<XMLElement> i = notationElem.getChildren().iterator(); i.hasNext(); ) {
             XMLElement elem = (XMLElement) i.next();
             String name = elem.getName();
             if ("Statement".equals(name)) {
@@ -314,7 +284,7 @@ public class CubeMarkupNotation implements ScriptNotation {
                 if (info.syntax == null || elem.getAttribute("syntax") != null) {
                     info.syntax = elem.getAttribute("syntax", syntaxValueSet, "suffix", false);
                 }
-                for (Iterator i2 = elem.getChildren().iterator(); i2.hasNext(); ) {
+                for (Iterator<XMLElement> i2 = elem.getChildren().iterator(); i2.hasNext(); ) {
                     XMLElement elem2 = (XMLElement) i2.next();
                     String name2 = elem2.getName();
                     if ("Token".equals(name2)) {
@@ -452,7 +422,7 @@ public class CubeMarkupNotation implements ScriptNotation {
     }
 
     @Override
-    public void writeMoveToken(@Nonnull PrintWriter w, int axis, int layerMask, int angle) throws IOException {
+    public void writeMoveToken(@Nonnull Writer w, int axis, int layerMask, int angle) throws IOException {
         w.write(moveToTokenMap.get(new Move(getLayerCount(), axis, layerMask, angle))[0]);
     }
 

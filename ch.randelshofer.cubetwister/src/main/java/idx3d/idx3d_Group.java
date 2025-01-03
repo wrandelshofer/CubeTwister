@@ -1,8 +1,9 @@
-package idx3d;
-
-/* @(#)idx3d_Group.java
- * Copyright (c) 2004 Werner Randelshofer, Switzerland. MIT License.
+/*
+ * @(#)idx3d_Group.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
+
+package idx3d;
 
 import org.jhotdraw.annotation.Nonnull;
 

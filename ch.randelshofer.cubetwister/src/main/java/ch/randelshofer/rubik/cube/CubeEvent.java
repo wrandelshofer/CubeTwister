@@ -1,6 +1,6 @@
 /*
  * @(#)CubeEvent.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 package ch.randelshofer.rubik.cube;
@@ -10,8 +10,6 @@ import org.jhotdraw.annotation.Nonnull;
 /**
  * CubeEvent is used to notify interested parties that an event has occured
  * in a Cube object.
- *
- * @author Werner Randelshofer
  */
 public class CubeEvent extends java.util.EventObject {
     private final static long serialVersionUID = 1L;

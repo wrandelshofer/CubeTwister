@@ -1,6 +1,6 @@
 /*
  * @(#)Cube6Idx3DPlayerApplet.java
- * CubeTwister. Copyright © 2020 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
  */
 
 

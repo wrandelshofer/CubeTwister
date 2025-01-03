@@ -1,4 +1,9 @@
 /*
+ * @(#)TableSorter.java
+ * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ */
+
+/*
  * Copyright 2002 Sun Microsystems, Inc. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without

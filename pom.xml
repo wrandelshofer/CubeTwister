@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ @(#)pom.xml
-  ~ Copyright © 2024 Werner Randelshofer, Switzerland. MIT License.
-  ~
-  ~ Usage:
-  ~ export revision=$(git show -s - -format=%cs_%h)
-  ~ mvn clean deploy -Dmaven.test.skip=true -Drevision=$revision
-  ~
-  ~
-  ~ Check for dependency updates:
-  ~ mvn versions:display-dependency-updates
-  ~
-  ~ Check for maven plugin updates:
-  ~ mvn versions:display-plugin-updates
--->
+  ~ Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+  -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
