@@ -40,6 +40,79 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="SyntaxEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="primary"/>
+      <xs:enumeration value="prefix"/>
+      <xs:enumeration value="suffix"/>
+      <xs:enumeration value="circumfix"/>
+      <xs:enumeration value="precircumfix"/>
+      <xs:enumeration value="postcircumfix"/>
+      <xs:enumeration value="preinfix"/>
+      <xs:enumeration value="postinfix"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="SymbolEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NOP"/>
+      <xs:enumeration value="move"/>
+      <xs:enumeration value="permR"/>
+      <xs:enumeration value="permU"/>
+      <xs:enumeration value="permF"/>
+      <xs:enumeration value="permL"/>
+      <xs:enumeration value="permD"/>
+      <xs:enumeration value="permB"/>
+      <xs:enumeration value="permPlus"/>
+      <xs:enumeration value="permMinus"/>
+      <xs:enumeration value="permPlusPlus"/>
+      <xs:enumeration value="permBegin"/>
+      <xs:enumeration value="permEnd"/>
+      <xs:enumeration value="permDelim"/>
+      <xs:enumeration value="delimiter"/>
+      <xs:enumeration value="inversionBegin"/>
+      <xs:enumeration value="inversionEnd"/>
+      <xs:enumeration value="invertor"/>
+      <xs:enumeration value="reflectionBegin"/>
+      <xs:enumeration value="reflectionEnd"/>
+      <xs:enumeration value="reflector"/>
+      <xs:enumeration value="groupingBegin"/>
+      <xs:enumeration value="groupingEnd"/>
+      <xs:enumeration value="repetitionBegin"/>
+      <xs:enumeration value="repetitionEnd"/>
+      <xs:enumeration value="repetitionDelim"/>
+      <xs:enumeration value="repetitionOperator"/>
+      <xs:enumeration value="commutationBegin"/>
+      <xs:enumeration value="commutationEnd"/>
+      <xs:enumeration value="commutationDelim"/>
+      <xs:enumeration value="commutationOperator"/>
+      <xs:enumeration value="conjugationBegin"/>
+      <xs:enumeration value="conjugationEnd"/>
+      <xs:enumeration value="conjugationDelim"/>
+      <xs:enumeration value="conjugationOperator"/>
+      <xs:enumeration value="rotationBegin"/>
+      <xs:enumeration value="rotationEnd"/>
+      <xs:enumeration value="rotationDelim"/>
+      <xs:enumeration value="rotationOperator"/>
+      <xs:enumeration value="macro"/>
+      <xs:enumeration value="commentMultiLineBegin"/>
+      <xs:enumeration value="commentMultiLineEnd"/>
+      <xs:enumeration value="commentSingleLineBegin"/>
+      <xs:enumeration value="commutation"/>
+      <xs:enumeration value="conjugation"/>
+      <xs:enumeration value="grouping"/>
+      <xs:enumeration value="inversion"/>
+      <xs:enumeration value="permutation"/>
+      <xs:enumeration value="reflection"/>
+      <xs:enumeration value="repetition"/>
+      <xs:enumeration value="rotation"/>
+      <xs:enumeration value="comment"/>
+      <xs:enumeration value="primary"/>
+      <xs:enumeration value="statement"/>
+      <xs:enumeration value="sequence"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:complexType name="ColorType">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -115,8 +188,8 @@
     <xs:sequence>
       <xs:element type="TokenType" name="Token" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
-    <xs:attribute type="xs:string" name="symbol" use="required"/>
-    <xs:attribute type="xs:string" name="syntax" use="optional"/>
+    <xs:attribute type="SymbolEnum" name="symbol" use="required"/>
+    <xs:attribute type="SyntaxEnum" name="syntax" use="optional"/>
     <xs:attribute type="xs:string" name="enabled" use="optional"/>
   </xs:complexType>
 

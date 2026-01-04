@@ -12,7 +12,7 @@ import ch.randelshofer.cubetwister.doc.ScriptModel;
 import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube.RubiksCube;
-import ch.randelshofer.rubik.parser.MoveMetrics;
+import ch.randelshofer.rubik.metric.CubeMoveMetrics;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ast.MacroNode;
 import ch.randelshofer.rubik.parser.ast.Node;
@@ -103,9 +103,10 @@ public class AbstractExporter extends JPanel implements Exporter {
             if (sr.isParsed) {
                 cube.reset();
                 parsedScript.applyTo(cube, false);
-                sr.ltm = MoveMetrics.getLayerTurnCount(parsedScript);
-                sr.ftm = MoveMetrics.getFaceTurnCount(parsedScript);
-                sr.qtm = MoveMetrics.getQuarterTurnCount(parsedScript);
+                CubeMoveMetrics metrics = new CubeMoveMetrics();
+                sr.ltm = metrics.getLayerTurnCount(parsedScript);
+                sr.ftm = metrics.getFaceTurnCount(parsedScript);
+                sr.qtm = metrics.getQuarterTurnCount(parsedScript);
                 sr.visualOrder = Cubes.getVisibleOrder(cube);
                 sr.realOrder = Cubes.getOrder(cube);
                 sr.visualPermutation = Cubes.toVisualPermutationString(cube, parser.getNotation());
@@ -210,9 +211,9 @@ public class AbstractExporter extends JPanel implements Exporter {
                  */
                 cube.reset();
                 parsedScript.applyTo(cube, false);
-                sr.ltm = MoveMetrics.getLayerTurnCount(parsedScript);
-                sr.ftm = MoveMetrics.getFaceTurnCount(parsedScript);
-                sr.qtm = MoveMetrics.getQuarterTurnCount(parsedScript);
+                sr.ltm = new CubeMoveMetrics().getLayerTurnCount(parsedScript);
+                sr.ftm = new CubeMoveMetrics().getFaceTurnCount(parsedScript);
+                sr.qtm = new CubeMoveMetrics().getQuarterTurnCount(parsedScript);
                 sr.visualOrder = Cubes.getVisibleOrder(cube);
                 sr.realOrder = Cubes.getOrder(cube);
                 new InternalError("not implemented");

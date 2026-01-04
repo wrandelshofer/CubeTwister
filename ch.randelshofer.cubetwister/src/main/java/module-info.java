@@ -16,4 +16,5 @@ module ch.randelshofer.cubetwister {
     exports ch.randelshofer.io;
     exports ch.randelshofer.rubik.player;
     exports ch.randelshofer.rubik.parser.ast;
+    exports ch.randelshofer.rubik.metric;
 }

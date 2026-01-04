@@ -8,6 +8,7 @@ package ch.randelshofer.rubik.parser;
 import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube.CubeFactory;
 import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.metric.CubeMoveMetrics;
 import ch.randelshofer.rubik.notation.DefaultScriptNotation;
 import ch.randelshofer.rubik.notation.Move;
 import ch.randelshofer.rubik.parser.ast.Node;
@@ -262,7 +263,7 @@ public class GeneratePatternTestsForJavascript {
                 cube.reset();
                 Node parsedScript = parser.parse(token);
                 parsedScript.applyTo(cube, false);
-                MoveMetrics mm = parsedScript.resolvedStream(false).collect(() -> new MoveMetrics(false), MoveMetrics::accept, MoveMetrics::combine);
+                CubeMoveMetrics mm = parsedScript.resolvedStream(false).collect(() -> new CubeMoveMetrics(false), CubeMoveMetrics::accept, CubeMoveMetrics::combine);
                 String[] data = new String[keys.size()];
                 data[1] = "1";
                 data[2] = Integer.toString(layerCount);

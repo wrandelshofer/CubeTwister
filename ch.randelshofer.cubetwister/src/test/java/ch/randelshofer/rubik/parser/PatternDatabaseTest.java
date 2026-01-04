@@ -10,6 +10,7 @@ import ch.randelshofer.io.ParseException;
 import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube.CubeFactory;
 import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.metric.CubeMoveMetrics;
 import ch.randelshofer.rubik.notation.CubeMarkupNotation;
 import ch.randelshofer.rubik.notation.DefaultScriptNotation;
 import ch.randelshofer.rubik.notation.ScriptNotation;
@@ -265,7 +266,7 @@ public class PatternDatabaseTest {
 
         PatternDatabaseRecord computed = data.clone();
 
-        MoveMetrics mm = ast.resolvedStream(false).collect(() -> new MoveMetrics(false), MoveMetrics::accept, MoveMetrics::combine);
+        CubeMoveMetrics mm = ast.resolvedStream(false).collect(() -> new CubeMoveMetrics(false), CubeMoveMetrics::accept, CubeMoveMetrics::combine);
 
         computed.set("order", "" + Cubes.getVisibleOrder(actualCubeDefaultNotation));
 

@@ -21,11 +21,11 @@ import ch.randelshofer.rubik.cube.CubeEvent;
 import ch.randelshofer.rubik.cube.CubeListener;
 import ch.randelshofer.rubik.cube.Cubes;
 import ch.randelshofer.rubik.cube3d.Cube3D;
+import ch.randelshofer.rubik.metric.CubeMoveMetrics;
 import ch.randelshofer.rubik.notation.CubeMarkupNotation;
 import ch.randelshofer.rubik.notation.DefaultScriptNotation;
 import ch.randelshofer.rubik.notation.ScriptNotation;
 import ch.randelshofer.rubik.notation.Symbol;
-import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.ScriptParser;
 import ch.randelshofer.rubik.parser.ast.Node;
 import ch.randelshofer.util.AppletParameterException;
@@ -1640,11 +1640,12 @@ public abstract class AbstractPlayerApplet extends javax.swing.JApplet
                         if (scr == null) {
                             turnCountInfo = "";
                         } else {
+                            CubeMoveMetrics metrics = new CubeMoveMetrics();
                             turnCountInfo
-                                    = MoveMetrics.getBlockTurnCount(scr) + " btm, "
-                                    + MoveMetrics.getLayerTurnCount(scr) + " ltm, "
-                                    + MoveMetrics.getFaceTurnCount(scr) + " ftm, "
-                                    + MoveMetrics.getQuarterTurnCount(scr) + " qtm";
+                                    = metrics.getBlockTurnCount(scr) + " btm, "
+                                    + metrics.getLayerTurnCount(scr) + " ltm, "
+                                    + metrics.getFaceTurnCount(scr) + " ftm, "
+                                    + metrics.getQuarterTurnCount(scr) + " qtm";
                         }
 
                     }

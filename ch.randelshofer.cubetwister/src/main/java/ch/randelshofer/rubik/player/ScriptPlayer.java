@@ -14,7 +14,7 @@ import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube3d.Cube3D;
 import ch.randelshofer.rubik.cube3d.Cube3DEvent;
 import ch.randelshofer.rubik.cube3d.Cube3DListener;
-import ch.randelshofer.rubik.parser.MoveMetrics;
+import ch.randelshofer.rubik.metric.CubeMoveMetrics;
 import ch.randelshofer.rubik.parser.ast.Node;
 import ch.randelshofer.util.Images;
 import org.jhotdraw.annotation.Nonnull;
@@ -153,19 +153,19 @@ public class ScriptPlayer extends AbstractPlayer {
                         if (scriptIndex >= 0 || scriptIndex <= resolvedScript.size()) {
                             if (scriptIndex == newIndex - 1) {
                                 currentNode = activeNode = resolvedScript.get(scriptIndex);
-                                ftm += MoveMetrics.getFaceTurnCount(activeNode);
-                                btm += MoveMetrics.getBlockTurnCount(activeNode);
-                                ltm += MoveMetrics.getLayerTurnCount(activeNode);
-                                qtm += MoveMetrics.getQuarterTurnCount(activeNode);
+                                ftm += new CubeMoveMetrics().getFaceTurnCount(activeNode);
+                                btm += new CubeMoveMetrics().getBlockTurnCount(activeNode);
+                                ltm += new CubeMoveMetrics().getLayerTurnCount(activeNode);
+                                qtm += new CubeMoveMetrics().getQuarterTurnCount(activeNode);
                                 fireStateChanged();
                                 activeNode.applyTo(cube, false);
                                 scriptIndex++;
                             } else if (scriptIndex == newIndex + 1) {
                                 currentNode = activeNode = resolvedScript.get(--scriptIndex);
-                                ftm -= MoveMetrics.getFaceTurnCount(activeNode);
-                                btm -= MoveMetrics.getBlockTurnCount(activeNode);
-                                ltm -= MoveMetrics.getLayerTurnCount(activeNode);
-                                qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
+                                ftm -= new CubeMoveMetrics().getFaceTurnCount(activeNode);
+                                btm -= new CubeMoveMetrics().getBlockTurnCount(activeNode);
+                                ltm -= new CubeMoveMetrics().getLayerTurnCount(activeNode);
+                                qtm -= new CubeMoveMetrics().getQuarterTurnCount(activeNode);
                                 fireStateChanged();
                                 activeNode.applyTo(cube, true);
                             } else {
@@ -175,18 +175,18 @@ public class ScriptPlayer extends AbstractPlayer {
                                 while (scriptIndex < newIndex) {
                                     Node node = resolvedScript.get(scriptIndex++);
                                     node.applyTo(cube, false);
-                                    ftm += MoveMetrics.getFaceTurnCount(activeNode);
-                                    btm += MoveMetrics.getBlockTurnCount(activeNode);
-                                    ltm += MoveMetrics.getLayerTurnCount(activeNode);
-                                    qtm += MoveMetrics.getQuarterTurnCount(activeNode);
+                                    ftm += new CubeMoveMetrics().getFaceTurnCount(activeNode);
+                                    btm += new CubeMoveMetrics().getBlockTurnCount(activeNode);
+                                    ltm += new CubeMoveMetrics().getLayerTurnCount(activeNode);
+                                    qtm += new CubeMoveMetrics().getQuarterTurnCount(activeNode);
                                 }
                                 while (scriptIndex > newIndex) {
                                     Node node = resolvedScript.get(--scriptIndex);
                                     node.applyTo(cube, true);
-                                    ftm -= MoveMetrics.getFaceTurnCount(activeNode);
-                                    btm -= MoveMetrics.getBlockTurnCount(activeNode);
-                                    ltm -= MoveMetrics.getLayerTurnCount(activeNode);
-                                    qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
+                                    ftm -= new CubeMoveMetrics().getFaceTurnCount(activeNode);
+                                    btm -= new CubeMoveMetrics().getBlockTurnCount(activeNode);
+                                    ltm -= new CubeMoveMetrics().getLayerTurnCount(activeNode);
+                                    qtm -= new CubeMoveMetrics().getQuarterTurnCount(activeNode);
                                 }
                                 cube.setQuiet(false);
                             }
@@ -615,21 +615,22 @@ public class ScriptPlayer extends AbstractPlayer {
 
             while (isActive() && progress.getValue() != progress.getMaximum()) {
                 newIndex = progress.getValue() + 1;
+                CubeMoveMetrics metrics = new CubeMoveMetrics();
                 if (scriptIndex == newIndex - 1) {
                     currentNode = activeNode = resolvedScript.get(scriptIndex);
-                    ftm += MoveMetrics.getFaceTurnCount(activeNode);
-                    btm += MoveMetrics.getBlockTurnCount(activeNode);
-                    ltm += MoveMetrics.getLayerTurnCount(activeNode);
-                    qtm += MoveMetrics.getQuarterTurnCount(activeNode);
+                    ftm += metrics.getFaceTurnCount(activeNode);
+                    btm += metrics.getBlockTurnCount(activeNode);
+                    ltm += metrics.getLayerTurnCount(activeNode);
+                    qtm += metrics.getQuarterTurnCount(activeNode);
                     fireStateChanged();
                     activeNode.applyTo(cube, false);
                     scriptIndex++;
                 } else if (scriptIndex == newIndex + 1) {
                     currentNode = activeNode = resolvedScript.get(--scriptIndex);
-                    ftm -= MoveMetrics.getFaceTurnCount(activeNode);
-                    btm -= MoveMetrics.getBlockTurnCount(activeNode);
-                    ltm -= MoveMetrics.getLayerTurnCount(activeNode);
-                    qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
+                    ftm -= metrics.getFaceTurnCount(activeNode);
+                    btm -= metrics.getBlockTurnCount(activeNode);
+                    ltm -= metrics.getLayerTurnCount(activeNode);
+                    qtm -= metrics.getQuarterTurnCount(activeNode);
                     fireStateChanged();
                     activeNode.applyTo(cube, true);
                 } else if (scriptIndex < newIndex - 1) {
@@ -639,10 +640,10 @@ public class ScriptPlayer extends AbstractPlayer {
                     while (scriptIndex < newIndex - 1) {
                         Node node = resolvedScript.get(scriptIndex++);
                         node.applyTo(cube, false);
-                        ftm += MoveMetrics.getFaceTurnCount(activeNode);
-                        btm += MoveMetrics.getBlockTurnCount(activeNode);
-                        ltm += MoveMetrics.getLayerTurnCount(activeNode);
-                        qtm += MoveMetrics.getQuarterTurnCount(activeNode);
+                        ftm += metrics.getFaceTurnCount(activeNode);
+                        btm += metrics.getBlockTurnCount(activeNode);
+                        ltm += metrics.getLayerTurnCount(activeNode);
+                        qtm += metrics.getQuarterTurnCount(activeNode);
                     }
                     cube.setQuiet(false);
                     currentNode = activeNode = resolvedScript.get(scriptIndex);
@@ -656,10 +657,10 @@ public class ScriptPlayer extends AbstractPlayer {
                     while (scriptIndex > newIndex - 1) {
                         Node node = resolvedScript.get(--scriptIndex);
                         node.applyTo(cube, true);
-                        ftm -= MoveMetrics.getFaceTurnCount(activeNode);
-                        btm -= MoveMetrics.getBlockTurnCount(activeNode);
-                        ltm -= MoveMetrics.getLayerTurnCount(activeNode);
-                        qtm -= MoveMetrics.getQuarterTurnCount(activeNode);
+                        ftm -= metrics.getFaceTurnCount(activeNode);
+                        btm -= metrics.getBlockTurnCount(activeNode);
+                        ltm -= metrics.getLayerTurnCount(activeNode);
+                        qtm -= metrics.getQuarterTurnCount(activeNode);
                     }
                     newIndex--;
                     cube.setQuiet(false);

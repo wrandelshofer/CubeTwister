@@ -4,6 +4,7 @@
  */
 package ch.randelshofer.rubik.parser;
 
+import ch.randelshofer.rubik.metric.CubeMoveMetrics;
 import ch.randelshofer.rubik.notation.DefaultScriptNotation;
 import ch.randelshofer.rubik.parser.ast.Node;
 import org.jhotdraw.annotation.Nonnull;
@@ -70,7 +71,7 @@ class MoveMetricsTest {
         ScriptParser parser = new ScriptParser(new DefaultScriptNotation(layerCount));
         Node ast = parser.parse(script);
 
-        MoveMetrics instance = new MoveMetrics();
+        CubeMoveMetrics instance = new CubeMoveMetrics();
         instance.accept(ast);
 
         int ftm = instance.getFaceTurnCount();

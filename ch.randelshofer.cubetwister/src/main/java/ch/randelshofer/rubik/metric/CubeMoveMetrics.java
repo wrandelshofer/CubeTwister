@@ -1,8 +1,8 @@
 /*
  * @(#)MoveMetrics.java
- * Copyright © 2025 Werner Randelshofer, Switzerland. MIT License.
+ * Copyright © 2026 Werner Randelshofer, Switzerland. MIT License.
  */
-package ch.randelshofer.rubik.parser;
+package ch.randelshofer.rubik.metric;
 
 import ch.randelshofer.rubik.parser.ast.MoveNode;
 import ch.randelshofer.rubik.parser.ast.Node;
@@ -25,7 +25,7 @@ import static java.lang.Math.abs;
  *                                          MoveMetrics::combine);
  * }</pre>
  */
-public class MoveMetrics implements Consumer<Node> {
+public class CubeMoveMetrics implements Consumer<Node> {
     /**
      * Current move node.
      */
@@ -59,10 +59,10 @@ public class MoveMetrics implements Consumer<Node> {
      */
     private boolean coalesce = true;
 
-    public MoveMetrics() {
+    public CubeMoveMetrics() {
     }
 
-    public MoveMetrics(boolean coalesce) {
+    public CubeMoveMetrics(boolean coalesce) {
         this.coalesce = coalesce;
     }
 
@@ -70,8 +70,8 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the layer turn count of the subtree starting
      * at this node.
      */
-    public static int getLayerTurnCount(@Nonnull Node node) {
-        MoveMetrics metrics = new MoveMetrics();
+    public int getLayerTurnCount(@Nonnull Node node) {
+        CubeMoveMetrics metrics = new CubeMoveMetrics();
         metrics.accept(node);
         return metrics.getLayerTurnCount();
     }
@@ -80,8 +80,8 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the block turn count of the subtree starting
      * at this node.
      */
-    public static int getBlockTurnCount(@Nonnull Node node) {
-        MoveMetrics metrics = new MoveMetrics();
+    public int getBlockTurnCount(@Nonnull Node node) {
+        CubeMoveMetrics metrics = new CubeMoveMetrics();
         metrics.accept(node);
         return metrics.getBlockTurnCount();
     }
@@ -90,8 +90,8 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the face turn count of the subtree starting
      * at this node.
      */
-    public static int getFaceTurnCount(@Nonnull Node node) {
-        MoveMetrics metrics = new MoveMetrics();
+    public int getFaceTurnCount(@Nonnull Node node) {
+        CubeMoveMetrics metrics = new CubeMoveMetrics();
         metrics.accept(node);
         return metrics.getFaceTurnCount();
     }
@@ -100,8 +100,8 @@ public class MoveMetrics implements Consumer<Node> {
      * Gets the quarter turn count of the subtree starting
      * at this node.
      */
-    public static int getQuarterTurnCount(@Nonnull Node node) {
-        MoveMetrics metrics = new MoveMetrics();
+    public int getQuarterTurnCount(@Nonnull Node node) {
+        CubeMoveMetrics metrics = new CubeMoveMetrics();
         metrics.accept(node);
         return metrics.getQuarterTurnCount();
     }
@@ -164,7 +164,7 @@ public class MoveMetrics implements Consumer<Node> {
      * @throws NullPointerException if {@code other} is null
      */
     @Nonnull
-    public MoveMetrics combine(@Nonnull MoveMetrics that) {
+    public CubeMoveMetrics combine(@Nonnull CubeMoveMetrics that) {
         this.ltm += that.ltm;
         this.btm += that.btm;
         this.qtm += that.qtm;

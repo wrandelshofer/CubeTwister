@@ -18,8 +18,8 @@ import ch.randelshofer.gui.ProgressObserver;
 import ch.randelshofer.rubik.CubeKind;
 import ch.randelshofer.rubik.cube.Cube;
 import ch.randelshofer.rubik.cube.Cubes;
+import ch.randelshofer.rubik.metric.CubeMoveMetrics;
 import ch.randelshofer.rubik.notation.Symbol;
-import ch.randelshofer.rubik.parser.MoveMetrics;
 import ch.randelshofer.rubik.parser.ast.Node;
 import ch.randelshofer.rubik.parser.ast.SequenceNode;
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry;
@@ -406,10 +406,11 @@ public class HTMLExporter implements Exporter {
         data.put("script.permutation", Cubes.toPermutationString(cube, m.getNotationModel()));
         data.put("script.order", Cubes.getOrder(cube));
         data.put("script.visibleOrder", Cubes.getVisibleOrder(cube));
-        data.put("script.faceTurnCount", MoveMetrics.getFaceTurnCount(parsedScript));
-        data.put("script.layerTurnCount", MoveMetrics.getLayerTurnCount(parsedScript));
-        data.put("script.blockTurnCount", MoveMetrics.getBlockTurnCount(parsedScript));
-        data.put("script.quarterTurnCount", MoveMetrics.getQuarterTurnCount(parsedScript));
+        CubeMoveMetrics metrics = new CubeMoveMetrics();
+        data.put("script.faceTurnCount", metrics.getFaceTurnCount(parsedScript));
+        data.put("script.layerTurnCount", metrics.getLayerTurnCount(parsedScript));
+        data.put("script.blockTurnCount", metrics.getBlockTurnCount(parsedScript));
+        data.put("script.quarterTurnCount", metrics.getQuarterTurnCount(parsedScript));
         data.put("script.scriptType", m.isGenerator() ? "generator" : "solver");
 
         putNotationData(m.getNotationModel(), "script.");
